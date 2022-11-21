@@ -1,6 +1,6 @@
 \documentclass{TDP005mall}
 
-
+\usepackage{enumitem}
 
 \newcommand{\version}{Version 1.0}
 \author{Albin Dahlén, \url{albda746@student.liu.se}\\
@@ -114,7 +114,7 @@ Om projektilen kolliderar med en fiende ska fienden ta skada.
 
 \section{Kravformulering}
 \subsection{Ska-krav}
-\begin{enumerate}
+\begin{enumerate}[label=S\arabic*]
 \item Det skall finnas en startmeny där spelaren kan välja att spela eller avsluta spelet.
 \item Ett spelar objekt ska finnas.
 \item Spelaren ska med hjälp av piltangenterna kunna styra spelarobjektet.
@@ -131,9 +131,10 @@ Om projektilen kolliderar med en fiende ska fienden ta skada.
 \item Spelplanens uteseende slumpas fram.
 \item Det ska finnas flera instanser av varje fiendeobjekt.
 \item När spelaren dödar en fiende ska poäng erhållas.
+\end{enumerate}
 
 \subsection{Bör-krav}
-
+\begin{enumerate}[label=B\arabic*]
 \item Startmenyn ska ha ett alternativ för att ändra keybindings.
 \item Vapen ska kunna uppgraderas.
 \item När spelaren dödar en fiende ska experince points erhållas.
@@ -144,21 +145,21 @@ Om projektilen kolliderar med en fiende ska fienden ta skada.
 \section{Kravuppfyllelse}
 
 \subsection{Spelet ska simulera en värld som innehåller olika typer av objekt. Objekten ska ha olika beteenden och röra sig i världen och agera på olika sätt när de möter andra objekt.}
-Uppfylles av krav 2, 3, 4, 5, 6, 7.
+Uppfylles av krav S2, S3, S4, S5, S6, S7.
 \subsection{Det måste finnas minst tre olika typer av objekt och det ska finnas flera instanser av minst två av dessa. T.ex ett spelarobjekt och många instanser av två olika slags fiendeobjekt.}
-Uppfylles av krav 2, 4, 15.
+Uppfylles av krav S2, S4, S15.
 \subsection{Ett beteende som måste finnas med är att figurerna ska röra sig över skärmen. Rörelsen kan följa ett mönster och/eller vara slumpmässig. Minst ett objekt, utöver spelaren ska ha någon typ av rörelse.}
-Uppfylles av krav 3, 5, 6. 
+Uppfylles av krav S3, S5, S6. 
 \subsection{En figur ska styras av spelaren, antingen med tangentbordet eller med musen. Du kan även göra ett spel där man spelar två stycken genom att dela på tangentbordet (varje spelare använder olika tangenter). Då styr man var sin figur.}
-Uppfylles av krav 3.
+Uppfylles av krav S3.
 \subsection{Grafiken ska vara tvådimensionell.}
-Uppfylles av krav 13.
+Uppfylles av krav S13.
 \subsection{Världen (spelplanen) kan antas vara lika stor som fönstret (du kan göra en större spelplan med scrollning, men det blir lite krångligare).}
-Uppfylles av krav 13.
+Uppfylles av krav S13.
 \subsection{Det ska finnas kollisionshantering, det vill säga, det ska hända olika saker när objekten möter varandra, de ska påverka varandra på något sätt. T.ex kan ett av objekten tas bort, eller så kan objekten förvandlas på något sätt, eller så kan ett nytt objekt skapas. (Ett exempel på att skapa/ta bort objekt är när man i Space Invaders trycker på skjuta-knappen, t.ex en musknapp, då avfyras ett laserskott och skottet blir då en ny figur som skapas och placeras i världen, på en position vid laserkanonens mynning. Skottet rör sig framåt (uppåt) och om det träffar ett fiendeskepp tas både skottet och skeppet bort, om skottet kommer utanför spelplanen, dvs det missar, tas det endast bort.)}
-Uppfylles av krav 7, 8, 10.
+Uppfylles av krav S7, S8, S10.
 \subsection{Det ska vara enkelt att lägga till eller ändra banor i spelet. Detta kan exempelvis lösas genom att läsa in banor från en fil (lite som i Sokoban-labben i TDP002), eller genom att ha funktioner i programkoden som bygger upp en datastruktur som definierar en bana.}
-Uppfylles av krav 14.
+Uppfylles av krav S14.
 \subsection{Spelet måste upplevas som ett sammanhängande spel som går att spela!}
 Uppfylles av alla krav.
 
