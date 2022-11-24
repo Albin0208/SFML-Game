@@ -1,5 +1,8 @@
 \documentclass{TDP005mall}
 
+\usepackage{graphicx}
+\usepackage{float}
+
 \newcommand{\version}{Version 1.0}
 \author{Albin Dahlén, \url{albda746@student.liu.se}\\
   Filip Ingvarsson, \url{filin764@student.liu.se}}
@@ -26,32 +29,13 @@ Ver. & Revisionsbeskrivning & Datum \\\hline
 
 \section{Klassdiagram}
 
-State-interface
-+ update(Time): void
-+ render(RenderWindow): void
+\begin{figure}[!h]
+  \begin{center}
+  \includegraphics[width=0.9\linewidth]{uml.png}
+  \caption {UML-diagram på designen}
+  \label {fig:picture}
+  \end{center}
+\end {figure}
 
-ExitState
-
-GameState
-
-MenuState
-
-Game
-
-Gameobject-interface
-
-TextureObject
-
-MovableObject
-
-Enemy
-
-Projectile
-
-SlowEnemy
-
-FastEnemy
-
-Player
 
 \end{document}
