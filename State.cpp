@@ -40,11 +40,11 @@ void State::run(std::shared_ptr<State> state) {
         }
         window.clear();
         if (auto new_state = state->update(clock.restart())) {
-//            if (std::dynamic_pointer_cast<Exit_State>(new_state)) {
-//                return;
-//            } else {
+            if (std::dynamic_pointer_cast<ExitState>(new_state)) {
+                return;
+            } else {
                 state = new_state;
-//            }
+            }
             continue;
         }
 

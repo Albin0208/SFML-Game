@@ -15,7 +15,7 @@ MenuState::MenuState(std::shared_ptr<State> resume) : selected{0}, enter_pressed
     options.push_back(
             {sf::Text{"New Game", font, 60}, false,
              [](){return std::make_shared<GameState>();}});
-    options.push_back({sf::Text{"Exit", font, 60}, false, [](){return nullptr;}});
+    options.push_back({sf::Text{"Exit", font, 60}, false, [](){return std::make_shared<ExitState>();}});
 
 }
 

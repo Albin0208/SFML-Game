@@ -25,5 +25,10 @@ public:
     static void run(std::shared_ptr<State> state);
 };
 
+class ExitState : public State {
+public:
+    std::shared_ptr<State> update(sf::Time const& ) { return nullptr; }
+    void render(sf::RenderWindow&) {}
+};
 
 #endif //TDP005_STATE_H
