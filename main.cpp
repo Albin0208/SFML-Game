@@ -1,24 +1,12 @@
-#include <SFML/Graphics.hpp>
+//
+// Created by albin on 2022-12-01.
+//
+
+#include "State.h"
+#include "MenuState.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
-
-    while (window.isOpen())
-    {
-        sf::Event event{};
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-        window.clear();
-        window.draw(shape);
-        window.display();
-    }
-
+    State::run(std::make_shared<MenuState>(nullptr));
     return 0;
 }

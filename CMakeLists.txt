@@ -7,10 +7,8 @@ FetchContent_Declare(SFML
         GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(TDP005
-        main.cpp
-        )
-target_link_libraries(TDP005 PRIVATE sfml-graphics)
+add_executable(TDP005 main.cpp State.cpp MenuState.cpp GameState.cpp GameState.h Game.cpp Game.h)
+target_link_libraries(TDP005 PRIVATE sfml-graphics sfml-window sfml-system)
 target_compile_features(TDP005 PRIVATE cxx_std_17)
 if (WIN32 AND BUILD_SHARED_LIBS)
     add_custom_command(TARGET TDP005 POST_BUILD

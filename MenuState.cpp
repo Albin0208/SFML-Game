@@ -1,0 +1,72 @@
+//
+// Created by albin on 2022-12-01.
+//
+
+#include <iostream>
+#include "MenuState.h"
+#include "GameState.h"
+
+MenuState::MenuState(std::shared_ptr<State> resume) : selected{0}, enter_pressed{false} {
+    font.loadFromFile("../font.ttf");
+    // If the game is paused
+    if (resume)
+        options.push_back({sf::Text{"Resume", font, 60}, false, [resume](){return resume;}});
+
+    options.push_back(
+            {sf::Text{"New Game", font, 60}, false,
+             [](){return std::make_shared<GameState>();}});
+    options.push_back({sf::Text{"Exit", font, 60}, false, [](){return nullptr;}});
+
+}
+
+void MenuState::on_key_press(sf::Keyboard::Key key) {
+    switch (key) {
+        case sf::Keyboard::Down:
+        case sf::Keyboard::S:
+            if (selected + 1 < options.size())
+                selected++;
+            break;
+
+        case sf::Keyboard::Up:
+        case sf::Keyboard::W:
+            if (selected > 0)
+                selected--;
+            break;
+
+        case sf::Keyboard::Return:
+            enter_pressed = true;
+            break;
+    }
+}
+
+std::shared_ptr<State> MenuState::update(sf::Time const& time) {
+    for (size_t i = 0; i < options.size(); i++) {
+        Option& o = options[i];
+
+        if (i == selected) {
+            o.not_selected = false;
+        } else {
+            o.not_selected = true;
+        }
+    }
+
+
+    if (enter_pressed)
+        return options[selected].action();
+    return nullptr;
+}
+
+void MenuState::render(sf::RenderWindow& target) {
+    float y{100};
+    auto windowSize = target.getSize();
+
+    for (auto& o : options) {
+        auto bounds = o.text.getLocalBounds();
+        o.text.setPosition((windowSize.x - bounds.width) / 2, y);
+        y += bounds.height * 2.0f;
+
+        int state = static_cast<int>(255 * o.not_selected);
+        o.text.setFillColor(sf::Color(state, 255, state));
+        target.draw(o.text);
+    }
+}
