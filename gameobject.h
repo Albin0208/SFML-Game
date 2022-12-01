@@ -8,6 +8,8 @@
 
 #include "SFML/Graphics/RectangleShape.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
+#include "SFML/Graphics/Texture.hpp"
+#include "SFML/Graphics/Sprite.hpp"
 #include <string>
 
 class gameobject {
@@ -26,7 +28,7 @@ public:
     /**
      * Create.
      */
-    texturedobject(sf::Vector2f topleft,sf::Color);
+    texturedobject(sf::Vector2f topleft);
     /**
      * Render the object.
      */
@@ -36,8 +38,10 @@ private:
     /**
      * Shape to render.
      */
-    sf::RectangleShape shape;
-    sf::Color color;
+    //sf::RectangleShape shape;
+    sf::Texture texture;
+    //sf::Color color;
+    sf::Sprite sprite;
 };
 
 

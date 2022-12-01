@@ -7,8 +7,8 @@ int main()
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
     game game;
-    game.addobject(std::make_shared<texturedobject>(sf::Vector2f{50.0f, 50.0f},sf::Color::Blue));
-
+    game.addobject(std::make_shared<texturedobject>(sf::Vector2f{0.0f, 0.0f}));
+    game.addobject(std::make_shared<texturedobject>(sf::Vector2f{50.0f, 50.0f}));
 
     while (window.isOpen())
     {
