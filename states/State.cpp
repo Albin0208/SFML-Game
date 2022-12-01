@@ -10,7 +10,6 @@ void State::on_key_press(sf::Keyboard::Key) {}
 
 void State::on_key_release(sf::Keyboard::Key) {}
 
-
 void State::run(std::shared_ptr<State> state) {
     sf::Clock clock{};
 

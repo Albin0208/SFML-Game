@@ -4,7 +4,7 @@
 
 #include "GameState.h"
 #include "MenuState.h"
-#include "Player.h"
+#include "../Player.h"
 
 GameState::GameState() {
     // Create the player and add to game

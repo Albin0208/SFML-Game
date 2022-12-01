@@ -7,7 +7,7 @@
 
 
 #include "State.h"
-#include "Game.h"
+#include "../Game.h"
 
 class GameState : public State {
 public:

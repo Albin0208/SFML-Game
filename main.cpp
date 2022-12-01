@@ -2,8 +2,8 @@
 // Created by albin on 2022-12-01.
 //
 
-#include "State.h"
-#include "MenuState.h"
+#include "states/State.h"
+#include "states/MenuState.h"
 
 int main()
 {
