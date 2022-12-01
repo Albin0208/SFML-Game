@@ -9,7 +9,7 @@ FetchContent_MakeAvailable(SFML)
 
 add_executable(TDP005
         main.cpp
-        )
+        game.cpp game.h gameobject.cpp gameobject.h)
 target_link_libraries(TDP005 PRIVATE sfml-graphics)
 target_compile_features(TDP005 PRIVATE cxx_std_17)
 if (WIN32 AND BUILD_SHARED_LIBS)
