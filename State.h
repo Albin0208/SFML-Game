@@ -14,12 +14,12 @@
 class State : public std::enable_shared_from_this<State> {
 public:
     State();
-    virtual ~State();
+    virtual ~State() = default;
 
     virtual void on_key_press(sf::Keyboard::Key);
     virtual void on_key_release(sf::Keyboard::Key);
 
-    virtual std::shared_ptr<State> update(sf::Time const& time) = 0;
+    virtual std::shared_ptr<State> update(sf::Time const& time, sf::RenderWindow& window) = 0;
     virtual void render(sf::RenderWindow& target) = 0;
 
     static void run(std::shared_ptr<State> state);
@@ -27,7 +27,7 @@ public:
 
 class ExitState : public State {
 public:
-    std::shared_ptr<State> update(sf::Time const& ) { return nullptr; }
+    std::shared_ptr<State> update(sf::Time const&, sf::RenderWindow&) { return nullptr; }
     void render(sf::RenderWindow&) {}
 };
 

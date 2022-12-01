@@ -13,7 +13,7 @@ class GameState : public State {
 public:
     GameState();
 
-    std::shared_ptr<State> update(const sf::Time& time) override;
+    std::shared_ptr<State> update(const sf::Time& time, sf::RenderWindow& window) override;
 
     void render(sf::RenderWindow& target) override;
 private:

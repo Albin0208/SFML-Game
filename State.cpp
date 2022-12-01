@@ -6,8 +6,6 @@
 
 State::State() {}
 
-State::~State() {}
-
 void State::on_key_press(sf::Keyboard::Key) {}
 
 void State::on_key_release(sf::Keyboard::Key) {}
@@ -39,7 +37,7 @@ void State::run(std::shared_ptr<State> state) {
             }
         }
         window.clear();
-        if (auto new_state = state->update(clock.restart())) {
+        if (auto new_state = state->update(clock.restart(), window)) {
             if (std::dynamic_pointer_cast<ExitState>(new_state)) {
                 return;
             } else {

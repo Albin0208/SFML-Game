@@ -3,17 +3,24 @@
 //
 
 #include "Game.h"
+#include "Player.h"
 
-Game::Game() {}
-
-Game::~Game() {
-
+Game::Game() {
+    //objects.push_back(std::shared_ptr<Player>());
 }
 
-void Game::update(const sf::Time &time) {
-
+void Game::update(sf::Time const& time, sf::RenderWindow& window) {
+    for (auto const& o : objects) {
+        o->update(time, window);
+    }
 }
 
-void Game::render(sf::RenderWindow &target) {
+void Game::render(sf::RenderWindow& target) {
+    for (auto const& o : objects) {
+        o->render(target);
+    }
+}
 
+void Game::add(std::shared_ptr<GameObject> object) {
+    objects.push_back(object);
 }

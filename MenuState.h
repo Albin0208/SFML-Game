@@ -15,7 +15,7 @@ public:
 
     void on_key_press(sf::Keyboard::Key key) override;
 
-    std::shared_ptr<State> update(sf::Time const& time) override;
+    std::shared_ptr<State> update(sf::Time const& time, sf::RenderWindow&) override;
     void render(sf::RenderWindow &target) override;
 private:
     sf::Font font; // The menu text font;
