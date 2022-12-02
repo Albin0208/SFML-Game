@@ -11,8 +11,8 @@ GameState::GameState() {
     game.add(std::make_shared<Player>(sf::Vector2f{50, 50}));
 }
 
-std::shared_ptr<State> GameState::update(const sf::Time& time, sf::RenderWindow& window) {
-    game.update(time, window);
+std::shared_ptr<State> GameState::update(sf::Time const& time, sf::RenderWindow const& window) {
+    game.update(time);
 
     // We pause the game
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) || !window.hasFocus())

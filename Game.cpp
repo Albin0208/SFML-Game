@@ -7,9 +7,9 @@
 
 Game::Game() {}
 
-void Game::update(sf::Time const& time, sf::RenderWindow& window) {
+void Game::update(sf::Time const& time) {
     for (auto const& o : objects) {
-        o->update(time, window);
+        o->update(time);
     }
 }
 
