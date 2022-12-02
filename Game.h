@@ -16,10 +16,26 @@ public:
     Game();
     virtual ~Game() = default;
 
+    /**
+     * Update the game
+     *
+     * @param time The time since last update
+     * @param window A reference to the window
+     */
     virtual void update(sf::Time const& time, sf::RenderWindow& window);
+
+    /**
+     * Render the game
+     *
+     * @param target Where to render the game
+     */
     virtual void render(sf::RenderWindow& target);
 
-    void add(std::shared_ptr<GameObject> object);
+    /**
+     * Add a gameobject to the game
+     * @param object The object to add
+     */
+    void add(std::shared_ptr<GameObject> const& object);
 
 private:
     std::vector<std::shared_ptr<GameObject>> objects;

@@ -5,9 +5,7 @@
 #include "Game.h"
 #include "Player.h"
 
-Game::Game() {
-    //objects.push_back(std::shared_ptr<Player>());
-}
+Game::Game() {}
 
 void Game::update(sf::Time const& time, sf::RenderWindow& window) {
     for (auto const& o : objects) {
@@ -21,6 +19,6 @@ void Game::render(sf::RenderWindow& target) {
     }
 }
 
-void Game::add(std::shared_ptr<GameObject> object) {
+void Game::add(std::shared_ptr<GameObject> const& object) {
     objects.push_back(object);
 }

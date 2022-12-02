@@ -11,11 +11,32 @@
 
 class MenuState : public State {
 public:
+    /**
+     * Create a menu
+     *
+     * @param resume The state to resume to
+     */
     explicit MenuState(std::shared_ptr<State> resume);
 
+    /**
+     * Handle a keypress
+     *
+     * @param key The key pressed
+     */
     void on_key_press(sf::Keyboard::Key key) override;
 
+    /**
+     * Update the menu
+     *
+     * @param time Time since last update
+     * @return A pointer to a state
+     */
     std::shared_ptr<State> update(sf::Time const& time, sf::RenderWindow&) override;
+    /**
+     * Render the menu
+     *
+     * @param target The target of the render
+     */
     void render(sf::RenderWindow &target) override;
 private:
     sf::Font font; // The menu text font;
