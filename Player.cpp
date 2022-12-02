@@ -8,7 +8,7 @@
 Player::Player(sf::Vector2f const& position) : GameObject(position), speed{300.0f} {}
 
 static sf::Vector2f find_direction() {
-    sf::Vector2f direction;
+    sf::Vector2f direction{};
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) ||
         sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         direction.y -= 1;
@@ -22,7 +22,8 @@ static sf::Vector2f find_direction() {
         sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         direction.x += 1;
 
-    float len = sqrt(pow(direction.x, 2) + pow(direction.y, 2));
+    // Normalize movement
+    float len{static_cast<float>(sqrt(pow(direction.x, 2) + pow(direction.y, 2)))};
     if (len > 0.0f)
         return direction * (1.0f / len);
     else
