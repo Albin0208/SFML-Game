@@ -5,7 +5,6 @@
 #ifndef TDP005_PLAYER_H
 #define TDP005_PLAYER_H
 
-
 #include "GameObject.h"
 
 class Player : public GameObject {

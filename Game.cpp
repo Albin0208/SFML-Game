@@ -22,3 +22,18 @@ void Game::render(sf::RenderWindow& target) {
 void Game::add(std::shared_ptr<GameObject> const& object) {
     objects.push_back(object);
 }
+
+std::vector<std::shared_ptr<GameObject>> Game::collides_with(GameObject& obj) {
+    std::vector<std::shared_ptr<GameObject>> collided_with{};
+
+    for (auto& o : objects) {
+        // Check for self collision
+        if (o.get() == &obj)
+            continue;
+        // Check obj collides with any object
+        if (obj.checkCollision(*o))
+            collided_with.push_back(o);
+    }
+
+    return collided_with;
+}

@@ -10,6 +10,6 @@ GameObject::GameObject(sf::Vector2f const& position) : position{position} {
     shape.setFillColor(sf::Color::Green);
 }
 
-bool GameObject::checkCollision(GameObject& obj) {
+bool GameObject::checkCollision(GameObject const& obj) {
     return this->shape.getGlobalBounds().intersects(obj.shape.getGlobalBounds());
 }

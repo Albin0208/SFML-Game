@@ -36,6 +36,13 @@ void Player::update(sf::Time const& time, Game& game) {
     auto dir{find_direction()};
     position += dir * (speed * time.asMicroseconds() / 1000000.0f);
     shape.setPosition(position);
+
+    // TODO: Check for moving out if window
+
+    for (auto& o : game.collides_with(*this)) {
+        // TODO: Do some stuff on collision depending on what type it is
+    }
+
 }
 
 void Player::render(sf::RenderWindow& window) {

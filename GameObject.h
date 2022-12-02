@@ -9,6 +9,7 @@
 #include "SFML/System.hpp"
 #include "SFML/Graphics.hpp"
 #include "Game.h"
+class Game;
 
 class GameObject {
 public:
@@ -34,7 +35,7 @@ public:
      * @param obj The object to check
      * @return If the object collide
      */
-    virtual bool checkCollision(GameObject& obj);
+    virtual bool checkCollision(GameObject const& obj);
 
 protected:
     sf::RectangleShape shape;
