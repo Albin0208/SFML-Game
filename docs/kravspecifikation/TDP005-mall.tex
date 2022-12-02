@@ -71,7 +71,9 @@ Filip Ingvarsson}
     \label{tab:movement}
   \end{table}
 
-  \section{Regler}
+  \section{Spelbeskrivning}
+  Nedan följer beskrivningar för olika delar av spelet.
+  
   \subsection{Spelplan}
   \begin{itemize}
     \item Hinder på spelplanen slumpas fram.
@@ -94,7 +96,7 @@ Filip Ingvarsson}
 
 
   \subsection{Fiendetyper}
-
+  Nedan följer beskrivningar av olika fiendetyper som finnas i spelet.
   \subsubsection{Fiende typ 1}
   \begin{itemize}
     \item Rör sig alltid mot spelaren.
@@ -133,15 +135,16 @@ Filip Ingvarsson}
   \end {figure}
 
   \section{Kravformulering}
+  Nedan kommer det listas olika typer av krav, ska-krav är något som ska uppfyllas av spelet för att klara kursens mål. Bör-krav är något som inte nödvändigtvis behövs men kommer läggas till i spelet i mån av tid.
   \subsection{Ska-krav}
   \begin{enumerate}[label=S\arabic*]
-    \item Spelaren ska med hjälp av piltangenterna kunna förflytta spelarobjektet enligt tabell \ref{tab:movement}.
+    \item Spelaren ska med hjälp av piltangenterna kunna förflytta spelarkaraktären enligt tabell \ref{tab:movement}.
     \item Det ska finnas en fiende som attackerar på nära håll och en fiende som kan skjuta projektiler.
-    \item Fiendeobjekten ska förflytta sig mot spelaren.
-    \item Om fiendeobjektet kolliderar med spelaren ska spelarens hälsa minska med hur mycket beroende på vilken fiende typ det var.
-    \item Spelaren ska ha ett projektilvapen som skjuter iväg en projektil.
+    \item Fienden ska förflytta sig mot spelaren.
+    \item Om en fiende skjuter eller kolliderar med spelaren ska spelarens hälsa minska med hur mycket beroende på vilken fiende typ det var.
+    \item Spelaren ska ha ett vapen som skjuter iväg en projektil.
     \item Om spelaren träffar fienden med en projektill ska fienden ta skada.
-    \item När ett fiendeobjekt når 0 eller mindre i hälsa ska objektet försvinna från spelplanen.
+    \item När en fiende når 0 eller mindre i hälsa ska fiende försvinna från spelplanen.
     \item Om spelarens hälsa når 0 eller mindre ska spelet avslutas och game over visas.
     \item En tvådimensionell spelplan ska ritas ut på skärmen och ska täcka hela spelfönstret.
     \item Spelplanens uteseende slumpas fram, hinder och skydda hamnar på olika platser.
@@ -154,13 +157,14 @@ Filip Ingvarsson}
     \item Det skall finnas en startmeny där spelaren kan välja att spela eller avsluta spelet.
     \item Startmenyn ska ha ett alternativ för att ändra keybindings.
     \item Vapen ska kunna uppgraderas.
-    \item När spelaren dödar en fiende ska experince points erhållas.
-    \item Fiendeobjekten ska ha olika förflyttningsmönster.
-    \item Det ska finnas olika typer av attacker för fiendeobjekten.
-    \item Det finns hinder som spelar- och fiendeobjekten kan kollidera med.
+    \item När spelaren dödar en fiende ska experience points erhållas.
+    \item Fienden ska ha olika förflyttningsmönster.
+    \item Det ska finnas olika typer av attacker för fienden.
+    \item Det finns hinder som spelar- och fienden kan kollidera med.
   \end{enumerate}
 
   \section{Kravuppfyllelse}
+  Nedan länkas våra ska-krav ovanför med krav från kursen så den enkelt går att se vilka av kraven på spelet uppfyller kraven från kursen.
   \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 
   \subsection{Spelet ska simulera en värld som innehåller olika typer av objekt. Objekten ska ha olika beteenden och röra sig i världen och agera på olika sätt när de möter andra objekt.}
