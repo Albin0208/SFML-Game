@@ -20,7 +20,6 @@ public:
      * Update the game
      *
      * @param time The time since last update
-     * @param window A reference to the window
      */
     virtual void update(sf::Time const& time);
 
