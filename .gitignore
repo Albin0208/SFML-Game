@@ -17,3 +17,5 @@ build/
 !*/
 !Makefile
 cmake-build-debug
+.idea
+.idea/*
