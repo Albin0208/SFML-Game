@@ -9,7 +9,8 @@
 #include <memory>
 #include "SFML/System.hpp"
 #include "SFML/Graphics.hpp"
-#include "GameObject.h"
+
+class GameObject;
 
 class Game {
 public:

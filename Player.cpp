@@ -3,6 +3,7 @@
 //
 
 #include <cmath>
+#include <iostream>
 #include "Player.h"
 
 Player::Player(sf::Vector2f const& position) : GameObject(position), speed{300.0f} {}
@@ -31,7 +32,7 @@ static sf::Vector2f find_direction() {
 }
 
 
-void Player::update(sf::Time const& time) {
+void Player::update(sf::Time const& time, Game& game) {
     auto dir{find_direction()};
     position += dir * (speed * time.asMicroseconds() / 1000000.0f);
     shape.setPosition(position);

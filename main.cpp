@@ -7,6 +7,7 @@
 
 int main()
 {
+    // Run the game and display the main menu
     State::run(std::make_shared<MenuState>(nullptr));
     return 0;
 }

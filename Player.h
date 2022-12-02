@@ -12,7 +12,7 @@ class Player : public GameObject {
 public:
     explicit Player(sf::Vector2f const& position);
 
-    void update(sf::Time const& time) override;
+    void update(sf::Time const& time, Game& game) override;
     void render(sf::RenderWindow& window) override;
 
 private:
