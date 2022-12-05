@@ -11,14 +11,10 @@
 #include "SFML/Graphics.hpp"
 
 class Player;
-
 class GameObject;
 
 class Game {
 public:
-    Game();
-    virtual ~Game() = default;
-
     /**
      * Update the game
      *

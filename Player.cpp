@@ -3,10 +3,9 @@
 //
 
 #include <cmath>
-#include <iostream>
 #include "Player.h"
 
-Player::Player(sf::Vector2f const& position) : GameObject(position), speed{300.0f} {}
+Player::Player(sf::Vector2f const& position) : MovableObject(position, 300.0f){}
 
 static sf::Vector2f find_direction() {
     sf::Vector2f direction{};

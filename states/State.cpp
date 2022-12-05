@@ -4,8 +4,6 @@
 
 #include "State.h"
 
-State::State() {}
-
 void State::on_key_press(sf::Keyboard::Key) {}
 
 void State::on_key_release(sf::Keyboard::Key) {}
@@ -13,7 +11,7 @@ void State::on_key_release(sf::Keyboard::Key) {}
 void State::run(std::shared_ptr<State> state) {
     sf::Clock clock{};
 
-    sf::RenderWindow window{sf::VideoMode{800, 600}, "Game name"};
+    sf::RenderWindow window{sf::VideoMode{WIDTH, HEIGHT}, "Game name"};
     window.setKeyRepeatEnabled(false);
     window.setVerticalSyncEnabled(true);
 

@@ -8,12 +8,12 @@
 
 #include <memory>
 
+#include "../common.h"
 #include "SFML/System.hpp"
-#include "SFML/Graphics.hpp"
 
 class State : public std::enable_shared_from_this<State> {
 public:
-    State();
+    State() = default;
     virtual ~State() = default;
 
     /**
