@@ -60,6 +60,11 @@ void MenuState::render(sf::RenderWindow& target) {
     float y{100};
     auto windowSize = target.getSize();
 
+    sf::Text t{GAME_NAME, font, 100};
+    t.setPosition((windowSize.x - t.getLocalBounds().width) / 2, y);
+    t.setFillColor(sf::Color(255, 24, 100));
+    target.draw(t);
+    y += t.getLocalBounds().height * 2.5f;
 
     for (auto& o : options) {
         auto bounds = o.text.getLocalBounds();

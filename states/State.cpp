@@ -11,7 +11,7 @@ void State::on_key_release(sf::Keyboard::Key) {}
 void State::run(std::shared_ptr<State> state) {
     sf::Clock clock{};
 
-    sf::RenderWindow window{sf::VideoMode{WIDTH, HEIGHT}, "Game name"};
+    sf::RenderWindow window{sf::VideoMode{WIDTH, HEIGHT}, GAME_NAME};
     window.setKeyRepeatEnabled(false);
     window.setVerticalSyncEnabled(true);
 

@@ -8,6 +8,7 @@
 #include <memory>
 #include <vector>
 #include <cmath>
+#include <string>
 
 #include "SFML/Graphics.hpp"
 
@@ -17,5 +18,6 @@ using std::vector;
 
 unsigned int const WIDTH{1024};
 unsigned int const HEIGHT{768};
+std::string const GAME_NAME{"Game name"};
 
 #endif //TDP005_COMMON_H
