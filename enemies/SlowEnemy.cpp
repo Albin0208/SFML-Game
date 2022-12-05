@@ -38,10 +38,6 @@ void SlowEnemy::update(sf::Time const& time, Game& game) {
     }
 }
 
-void SlowEnemy::render(sf::RenderWindow& window) {
-    window.draw(shape);
-}
-
 int SlowEnemy::attack() {
     if (attack_timer.getElapsedTime().asMilliseconds() > attack_timer_max) {
         attack_timer.restart();
