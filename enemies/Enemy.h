@@ -11,10 +11,11 @@ class Enemy : public MovableObject {
 public:
     //TODO: Take health as a constructor parameter
     Enemy(sf::Vector2f const& position, float speed);
+    virtual ~Enemy() = default;
 
 
-    void update(sf::Time const& time, Game& game) override;
-    void render(sf::RenderWindow& window) override;
+    void update(sf::Time const& time, Game& game) override = 0;
+    void render(sf::RenderWindow& window) override = 0;
 
 private:
     int health;
