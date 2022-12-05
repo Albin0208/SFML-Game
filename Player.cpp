@@ -67,3 +67,7 @@ void Player::update(sf::Time const& time, Game& game) {
 void Player::render(sf::RenderWindow& window) {
     window.draw(shape);
 }
+
+sf::RectangleShape const& Player::get_pos() {
+    return shape;
+}

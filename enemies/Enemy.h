@@ -10,7 +10,7 @@
 class Enemy : public MovableObject {
 public:
     //TODO: Take health as a constructor parameter
-    Enemy(sf::Vector2f const& position, float speed);
+    Enemy(sf::Vector2f const& position, float speed, sf::RectangleShape const& player_pos);
     ~Enemy() override = default;
 
 
@@ -22,6 +22,7 @@ public:
 protected:
     sf::Clock attack_timer;
     int32_t attack_timer_max;
+    sf::RectangleShape const& player_pos;
 
 private:
     int health;
