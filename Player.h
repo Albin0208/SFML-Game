@@ -9,7 +9,7 @@
 
 class Player : public MovableObject {
 public:
-    explicit Player(sf::Vector2f const& position);
+    Player(sf::Vector2f const& position, float speed);
 
     void update(sf::Time const& time, Game& game) override;
     void render(sf::RenderWindow& window) override;

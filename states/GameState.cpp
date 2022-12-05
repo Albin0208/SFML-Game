@@ -8,7 +8,7 @@
 
 GameState::GameState() {
     // Create the player and add to game
-    game.add(std::make_shared<Player>(sf::Vector2f{50, 50}));
+    game.add(std::make_shared<Player>(sf::Vector2f{50, 50}, 300.f));
 }
 
 std::shared_ptr<State> GameState::update(sf::Time const& time, sf::RenderWindow const& window) {
