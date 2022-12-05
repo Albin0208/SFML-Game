@@ -5,10 +5,13 @@
 #include "GameState.h"
 #include "MenuState.h"
 #include "../Player.h"
+#include "../enemies/SlowEnemy.h"
 
 GameState::GameState() {
     // Create the player and add to game
-    game.add(std::make_shared<Player>(sf::Vector2f{50, 50}));
+    shared_ptr<Player> player{std::make_shared<Player>(sf::Vector2f{50, 50}, 300.f)};
+    game.add(player);
+    game.add(std::make_shared<SlowEnemy>(sf::Vector2f{200, 400}, 100.f, player->get_pos()));
 }
 
 std::shared_ptr<State> GameState::update(sf::Time const& time, sf::RenderWindow const& window) {

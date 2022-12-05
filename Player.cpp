@@ -3,9 +3,11 @@
 //
 
 #include <cmath>
+#include <iostream>
 #include "Player.h"
+#include "enemies/SlowEnemy.h"
 
-Player::Player(sf::Vector2f const& position) : MovableObject(position, 300.0f){}
+Player::Player(sf::Vector2f const& position, float speed) : MovableObject(position, speed), health{100} {}
 
 static sf::Vector2f find_direction() {
     sf::Vector2f direction{0, 0};
@@ -30,10 +32,10 @@ static sf::Vector2f find_direction() {
         return direction;
 }
 
-
 void Player::update(sf::Time const& time, Game& game) {
     auto dir{find_direction()};
-    shape.move(dir * speed * time.asSeconds());
+    position += dir * speed * time.asSeconds();
+    shape.setPosition(position);
 
     // Check for moving out if window
     // Left collision
@@ -51,10 +53,22 @@ void Player::update(sf::Time const& time, Game& game) {
 
     for (auto& o : game.collides_with(*this)) {
         // TODO: Do some stuff on collision depending on what type it is
-    }
+        if (auto e = dynamic_cast<Enemy*>(o.get())) {
+            health -= e->attack();
+            std::cout << health << std::endl;
 
+            // Not able to pass through an enemy
+            //position = shape.getPosition() - dir * speed * time.asSeconds();
+            //shape.setPosition(position);
+        }
+    }
+    std::cout << position.x << " " << position.y << std::endl;
 }
 
 void Player::render(sf::RenderWindow& window) {
     window.draw(shape);
+}
+
+sf::Vector2f const& Player::get_pos() {
+    return position;
 }
