@@ -10,7 +10,7 @@
 class Projectile : public MovableObject{
 public:
     Projectile(const sf::Vector2f &position, float speed, sf::Vector2f const& direction,int damage);
-    ~Projectile() override = default;
+    //~Projectile() override = default;
 
     void update(const sf::Time &time, Game &game) override;
     void render(sf::RenderWindow &window) override;

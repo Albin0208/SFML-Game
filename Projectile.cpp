@@ -36,7 +36,7 @@ void Projectile::update(sf::Time const& time, Game& game) {
     shape.setPosition(position);
     sprite.setPosition(position);
 
-    for (auto& o : game.collides_with(*this)) {
+   for (auto& o : game.collides_with(*this)) {
         // TODO: Do some stuff on collision depending on what type it is
         if (auto e = dynamic_cast<Enemy*>(o.get())) {
             //göra skada på e

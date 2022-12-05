@@ -8,7 +8,7 @@
 #include "enemies/SlowEnemy.h"
 #include "Projectile.h"
 
-Player::Player(sf::Vector2f const& position, float speed) : MovableObject(position, speed), health{100} {}
+Player::Player(sf::Vector2f const& position, float speed) : MovableObject(position, speed), health{100},attack_speed{500} {}
 
 static sf::Vector2f find_direction() {
     sf::Vector2f direction{0, 0};
@@ -68,7 +68,11 @@ void Player::update(sf::Time const& time, Game& game) {
     }
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
-        game.add(std::make_shared<Projectile>(sf::Vector2f{position.x+50,position.y+50},1.0f,sf::Vector2f{1,1},40));
+        if (attack_timer.getElapsedTime().asMilliseconds() > attack_speed) {
+            attack_timer.restart();
+            std::cout << "skjuter" << std::endl;
+            game.add(std::make_shared<Projectile>(sf::Vector2f{50,50},1.0f,sf::Vector2f{1,1},40));
+        }
     }
 }
 
