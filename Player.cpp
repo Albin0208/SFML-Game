@@ -58,11 +58,10 @@ void Player::update(sf::Time const& time, Game& game) {
             std::cout << health << std::endl;
 
             // Not able to pass through an enemy
-            //position = shape.getPosition() - dir * speed * time.asSeconds();
-            //shape.setPosition(position);
+//            position = shape.getPosition() - dir * speed * time.asSeconds();
+//            shape.setPosition(position);
         }
     }
-    std::cout << position.x << " " << position.y << std::endl;
 }
 
 void Player::render(sf::RenderWindow& window) {

@@ -28,7 +28,14 @@ void SlowEnemy::update(sf::Time const& time, Game& game) {
     float len{static_cast<float>(sqrt(pow(dir.x, 2) + pow(dir.y, 2)))};
     if (len > 0.0f)
         dir * (1.0f / len);
-    shape.move(speed * dir * time.asSeconds());
+    position += speed * dir * time.asSeconds();
+    shape.setPosition(position);
+
+//    for (auto& o : game.collides_with(*this)) {
+//
+//        position = shape.getPosition() - dir * speed * time.asSeconds();
+//        shape.setPosition(position);
+//    }
 }
 
 void SlowEnemy::render(sf::RenderWindow& window) {
