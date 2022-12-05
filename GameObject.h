@@ -39,6 +39,8 @@ public:
 protected:
     sf::RectangleShape shape;
     sf::Vector2f position;
+    sf::Sprite sprite;
+    sf::Texture texture;
 };
 
 

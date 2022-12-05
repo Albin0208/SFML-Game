@@ -6,6 +6,7 @@
 #include <iostream>
 #include "Player.h"
 #include "enemies/SlowEnemy.h"
+#include "Projectile.h"
 
 Player::Player(sf::Vector2f const& position, float speed) : MovableObject(position, speed), health{100} {}
 
@@ -52,6 +53,7 @@ void Player::update(sf::Time const& time, Game& game) {
         position = {position.x, HEIGHT- shape.getGlobalBounds().height};
 
     shape.setPosition(position);
+    sprite.setPosition(position);
 
     for (auto& o : game.collides_with(*this)) {
         // TODO: Do some stuff on collision depending on what type it is
@@ -64,10 +66,16 @@ void Player::update(sf::Time const& time, Game& game) {
 //            shape.setPosition(position);
         }
     }
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+        game.add(std::make_shared<Projectile>(sf::Vector2f{position.x+50,position.y+50},1.0f,sf::Vector2f{1,1},40));
+    }
 }
 
 void Player::render(sf::RenderWindow& window) {
     window.draw(shape);
+    window.draw(sprite);
+
 }
 
 sf::Vector2f const& Player::get_pos() {

@@ -4,6 +4,7 @@
 
 #include "Game.h"
 #include "Player.h"
+#include "Projectile.h"
 
 void Game::update(sf::Time const& time) {
     for (auto const& o : objects) {
