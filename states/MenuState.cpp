@@ -7,7 +7,7 @@
 #include "GameState.h"
 
 MenuState::MenuState(std::shared_ptr<State> resume) : selected{0}, enter_pressed{false} {
-    font.loadFromFile("../resources/fonts/Warriot.ttf");
+    font.loadFromFile(FONT_PATH);
     // If the game is paused
     if (resume)
         options.push_back({sf::Text{"Resume", font, 60}, false, [resume](){return resume;}});

@@ -4,11 +4,12 @@
 
 #include <iostream>
 #include <sstream>
+#include "../common.h"
 #include "GameOverState.h"
 #include "GameState.h"
 
 GameOverState::GameOverState(Game const& game) : selected{0}, enter_pressed{false} {
-    font.loadFromFile("../resources/fonts/font.ttf");
+    font.loadFromFile(FONT_PATH);
 
     options.push_back(
             {sf::Text{"New Game", font, 60}, false,
