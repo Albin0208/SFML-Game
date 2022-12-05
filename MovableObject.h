@@ -15,7 +15,7 @@ public:
 
     void update(const sf::Time &time, Game &game) override = 0;
     void render(sf::RenderWindow &window) override = 0;
-
+    virtual int attack() = 0;
 protected:
     float speed;
 };

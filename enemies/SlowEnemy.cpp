@@ -31,11 +31,11 @@ void SlowEnemy::update(sf::Time const& time, Game& game) {
     position += speed * dir * time.asSeconds();
     shape.setPosition(position);
 
-//    for (auto& o : game.collides_with(*this)) {
-//
+    for (auto& o : game.collides_with(*this)) {
+        // TODO: Take damage from player projectiles
 //        position = shape.getPosition() - dir * speed * time.asSeconds();
 //        shape.setPosition(position);
-//    }
+    }
 }
 
 void SlowEnemy::render(sf::RenderWindow& window) {
