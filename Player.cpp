@@ -35,21 +35,23 @@ static sf::Vector2f find_direction() {
 void Player::update(sf::Time const& time, Game& game) {
     auto dir{find_direction()};
     position += dir * speed * time.asSeconds();
-    shape.setPosition(position);
+
 
     // Check for moving out if window
     // Left collision
-    if (shape.getPosition().x < 0.f)
-        shape.setPosition(0.f, shape.getPosition().y);
+    if (position.x < 0.f)
+        position = {0.f, position.y};
     // Top collision
-    if (shape.getPosition().y < 0.f)
-        shape.setPosition(shape.getPosition().x, 0.f);
+    if (position.y < 0.f)
+        position = {position.x, 0.f};
     // Right collision
-    if (shape.getPosition().x + shape.getGlobalBounds().width > WIDTH)
-        shape.setPosition(WIDTH - shape.getGlobalBounds().width, shape.getPosition().y);
+    if (position.x + shape.getGlobalBounds().width > WIDTH)
+        position = {WIDTH - shape.getGlobalBounds().width, position.y};
     // Bottom collision
-    if (shape.getPosition().y + shape.getGlobalBounds().height > HEIGHT)
-        shape.setPosition(shape.getPosition().x, HEIGHT- shape.getGlobalBounds().height);
+    if (position.y + shape.getGlobalBounds().height > HEIGHT)
+        position = {position.x, HEIGHT- shape.getGlobalBounds().height};
+
+    shape.setPosition(position);
 
     for (auto& o : game.collides_with(*this)) {
         // TODO: Do some stuff on collision depending on what type it is
@@ -70,4 +72,8 @@ void Player::render(sf::RenderWindow& window) {
 
 sf::Vector2f const& Player::get_pos() {
     return position;
+}
+
+int Player::attack() {
+    return 0;
 }
