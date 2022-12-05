@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <sstream>
 #include "GameOverState.h"
 #include "GameState.h"
 
@@ -54,13 +55,25 @@ std::shared_ptr<State> GameOverState::update(sf::Time const& time, sf::RenderWin
     return nullptr;
 }
 
+
 void GameOverState::render(sf::RenderWindow& target) {
     float y{100};
     auto windowSize = target.getSize();
 
-    sf::Text t{"Game over", font, 80};
+    sf::Text t{"Game Over", font, 80};
     t.setPosition((windowSize.x - t.getLocalBounds().width) / 2, y);
     t.setFillColor(sf::Color(255, 0, 0));
+    target.draw(t);
+    y += t.getLocalBounds().height * 2.5f;
+
+    // TODO: Display score and waves survived
+    std::stringstream ss{};
+    ss << "Points: ";
+    ss << 100;
+    t.setString(ss.str());
+    t.setCharacterSize(40);
+    t.setPosition((windowSize.x - t.getLocalBounds().width) / 2, y);
+    t.setFillColor(sf::Color::White);
     target.draw(t);
     y += t.getLocalBounds().height * 3.0f;
 

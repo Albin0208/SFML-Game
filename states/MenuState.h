@@ -32,6 +32,7 @@ public:
      * @return A pointer to a state
      */
     std::shared_ptr<State> update(sf::Time const& time, sf::RenderWindow const&) override;
+
     /**
      * Render the menu
      *

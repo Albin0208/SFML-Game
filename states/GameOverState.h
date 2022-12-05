@@ -11,12 +11,8 @@
 
 class GameOverState : public State {
 public:
-    /**
-     * Create a menu
-     *
-     * @param resume The state to resume to
-     */
     explicit GameOverState(Game const& game);
+    ~GameOverState() override = default;
 
     /**
      * Handle a keypress
@@ -32,6 +28,7 @@ public:
      * @return A pointer to a state
      */
     std::shared_ptr<State> update(sf::Time const& time, sf::RenderWindow const&) override;
+
     /**
      * Render the menu
      *
