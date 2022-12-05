@@ -5,7 +5,7 @@
 #include <cmath>
 #include "Player.h"
 
-Player::Player(sf::Vector2f const& position, float speed) : MovableObject(position, speed){}
+Player::Player(sf::Vector2f const& position, float speed) : MovableObject(position, speed), health{100} {}
 
 static sf::Vector2f find_direction() {
     sf::Vector2f direction{0, 0};

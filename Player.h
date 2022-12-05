@@ -15,7 +15,7 @@ public:
     void render(sf::RenderWindow& window) override;
 
 private:
-    //float speed{};
+    int health;
 };
 
 

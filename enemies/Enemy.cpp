@@ -4,9 +4,7 @@
 
 #include "Enemy.h"
 
-Enemy::Enemy(sf::Vector2f const& position, float speed) : MovableObject(position, speed) {
-
-}
+Enemy::Enemy(sf::Vector2f const& position, float speed) : MovableObject(position, speed), health{100} {}
 
 void Enemy::update(sf::Time const& time, Game& game) {
 

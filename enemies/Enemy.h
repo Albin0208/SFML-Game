@@ -9,6 +9,7 @@
 
 class Enemy : public MovableObject {
 public:
+    //TODO: Take health as a constructor parameter
     Enemy(sf::Vector2f const& position, float speed);
 
 
@@ -16,6 +17,7 @@ public:
     void render(sf::RenderWindow& window) override;
 
 private:
+    int health;
 };
 
 
