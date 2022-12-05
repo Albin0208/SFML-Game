@@ -14,7 +14,7 @@ public:
     void update(sf::Time const& time, Game& game) override;
     void render(sf::RenderWindow& window) override;
 
-    sf::RectangleShape const& get_pos();
+    sf::Vector2f const& get_pos();
 
 private:
     int health;

@@ -34,7 +34,8 @@ static sf::Vector2f find_direction() {
 
 void Player::update(sf::Time const& time, Game& game) {
     auto dir{find_direction()};
-    shape.move(dir * speed * time.asSeconds());
+    position += dir * speed * time.asSeconds();
+    shape.setPosition(position);
 
     // Check for moving out if window
     // Left collision
@@ -57,17 +58,17 @@ void Player::update(sf::Time const& time, Game& game) {
             std::cout << health << std::endl;
 
             // Not able to pass through an enemy
-            position = shape.getPosition() - dir * speed * time.asSeconds();
-            shape.setPosition(position);
+            //position = shape.getPosition() - dir * speed * time.asSeconds();
+            //shape.setPosition(position);
         }
     }
-
+    std::cout << position.x << " " << position.y << std::endl;
 }
 
 void Player::render(sf::RenderWindow& window) {
     window.draw(shape);
 }
 
-sf::RectangleShape const& Player::get_pos() {
-    return shape;
+sf::Vector2f const& Player::get_pos() {
+    return position;
 }
