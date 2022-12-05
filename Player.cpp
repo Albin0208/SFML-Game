@@ -24,12 +24,10 @@ static sf::Vector2f find_direction() {
         sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         direction.x += 1;
 
-    // Normalize movement
-    float len{static_cast<float>(sqrt(pow(direction.x, 2) + pow(direction.y, 2)))};
-    if (len > 0.0f)
-        return direction * (1.0f / len);
-    else
-        return direction;
+    if (direction != sf::Vector2f{0, 0})
+        direction /= static_cast<float>(sqrt(pow(direction.x, 2) + pow(direction.y, 2)));
+
+    return direction;
 }
 
 void Player::update(sf::Time const& time, Game& game) {
