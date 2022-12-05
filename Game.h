@@ -46,8 +46,6 @@ public:
 
 private:
     vector<std::shared_ptr<GameObject>> objects;
-
-
 };
 
 
