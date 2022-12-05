@@ -33,7 +33,7 @@ static sf::Vector2f find_direction() {
         return direction;
 }
 
-void Player::update(sf::Time const& time, Game& game) {
+void Player::update(sf::Time const& time, Game& game,sf::RenderWindow const& window) {
     auto dir{find_direction()};
     position += dir * speed * time.asSeconds();
 
@@ -70,8 +70,19 @@ void Player::update(sf::Time const& time, Game& game) {
     {
         if (attack_timer.getElapsedTime().asMilliseconds() > attack_speed) {
             attack_timer.restart();
-            std::cout << "skjuter" << std::endl;
-            game.add(std::make_shared<Projectile>(sf::Vector2f{50,50},10.0f,sf::Vector2f{1,1},40));
+
+            //std::cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << std::endl;
+            sf::Vector2f mpos {sf::Mouse::getPosition(window)};
+
+            //projectile-vector is mouse-player vectors
+            sf::Vector2f prodir{mpos-position};
+            //std::cout << prodir.x << " " << prodir.y << std::endl;
+
+            //normalize the projectile-direction-vector
+            prodir = sf::Vector2f{prodir.x/(abs(prodir.x)+abs(prodir.y)),prodir.y/(abs(prodir.x)+abs(prodir.y))};
+            std::cout << prodir.x << " " << prodir.y << std::endl;
+
+            game.add(std::make_shared<Projectile>(position,50.0f,prodir,40));
         }
     }
 }

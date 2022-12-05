@@ -14,7 +14,7 @@ MovableObject(position, speed), direction{direction}, damage {damage} {
 }
 
 
-void Projectile::update(sf::Time const& time, Game& game) {
+void Projectile::update(sf::Time const& time, Game& game,sf::RenderWindow const& window) {
 
     position += direction * speed * time.asSeconds();
 

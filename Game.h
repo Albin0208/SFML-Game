@@ -21,7 +21,7 @@ public:
      *
      * @param time The time since last update
      */
-    virtual void update(sf::Time const& time);
+    virtual void update(sf::Time const& time, sf::RenderWindow const& window);
 
     /**
      * Render the game

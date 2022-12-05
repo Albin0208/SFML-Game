@@ -17,7 +17,7 @@ GameState::GameState() {
 }
 
 std::shared_ptr<State> GameState::update(sf::Time const& time, sf::RenderWindow const& window) {
-    game.update(time);
+    game.update(time, window);
 
     // We pause the game
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) || !window.hasFocus())

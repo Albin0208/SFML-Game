@@ -6,9 +6,9 @@
 #include "Player.h"
 #include "Projectile.h"
 
-void Game::update(sf::Time const& time) {
+void Game::update(sf::Time const& time, sf::RenderWindow const& window) {
     for (size_t i{0}; i < objects.size(); ++i)
-        objects[i]->update(time, *this);
+        objects[i]->update(time, *this,window);
 //
 //    for (auto const& o : objects) {
 //        o->update(time, *this);

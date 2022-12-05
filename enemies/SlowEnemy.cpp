@@ -11,7 +11,7 @@ SlowEnemy::SlowEnemy(sf::Vector2f const& position, float speed, sf::Vector2f con
     shape.setFillColor(sf::Color::Red);
 }
 
-void SlowEnemy::update(sf::Time const& time, Game& game) {
+void SlowEnemy::update(sf::Time const& time, Game& game,sf::RenderWindow const& window) {
     sf::Vector2f dir{player_pos - shape.getPosition()};
 
     if (dir.x > 1)

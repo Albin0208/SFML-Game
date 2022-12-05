@@ -13,7 +13,7 @@ public:
     MovableObject(const sf::Vector2f &position, float speed);
     ~MovableObject() override = default;
 
-    void update(const sf::Time &time, Game &game) override = 0;
+    void update(const sf::Time &time, Game &game, sf::RenderWindow const& window) override = 0;
     void render(sf::RenderWindow &window) override = 0;
     virtual int attack() = 0;
 protected:
