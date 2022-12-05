@@ -58,6 +58,8 @@ void Player::update(sf::Time const& time, Game& game) {
         if (auto e = dynamic_cast<Enemy*>(o.get())) {
             health -= e->attack();
             std::cout << health << std::endl;
+            if (health <= 0)
+                game.is_game_over = true;
 
             // Not able to pass through an enemy
 //            position = shape.getPosition() - dir * speed * time.asSeconds();

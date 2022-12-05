@@ -1,25 +1,23 @@
 //
-// Created by albin on 2022-12-01.
+// Created by albin on 2022-12-05.
 //
 
 #include <iostream>
-#include "MenuState.h"
+#include "GameOverState.h"
 #include "GameState.h"
 
-MenuState::MenuState(std::shared_ptr<State> resume) : selected{0}, enter_pressed{false} {
+GameOverState::GameOverState(Game const& game) : selected{0}, enter_pressed{false} {
     font.loadFromFile("../resources/fonts/font.ttf");
-    // If the game is paused
-    if (resume)
-        options.push_back({sf::Text{"Resume", font, 60}, false, [resume](){return resume;}});
 
     options.push_back(
             {sf::Text{"New Game", font, 60}, false,
              [](){return std::make_shared<GameState>();}});
-    options.push_back({sf::Text{"Exit", font, 60}, false, [](){return std::make_shared<ExitState>();}});
+    options.push_back({sf::Text{"Exit", font, 60}, false,
+                       [](){return std::make_shared<ExitState>();}});
 
 }
 
-void MenuState::on_key_press(sf::Keyboard::Key key) {
+void GameOverState::on_key_press(sf::Keyboard::Key key) {
     switch (key) {
         case sf::Keyboard::Down:
         case sf::Keyboard::S:
@@ -39,7 +37,7 @@ void MenuState::on_key_press(sf::Keyboard::Key key) {
     }
 }
 
-std::shared_ptr<State> MenuState::update(sf::Time const& time, sf::RenderWindow const&) {
+std::shared_ptr<State> GameOverState::update(sf::Time const& time, sf::RenderWindow const&) {
     for (size_t i = 0; i < options.size(); i++) {
         Option& o = options[i];
 
@@ -56,10 +54,15 @@ std::shared_ptr<State> MenuState::update(sf::Time const& time, sf::RenderWindow 
     return nullptr;
 }
 
-void MenuState::render(sf::RenderWindow& target) {
+void GameOverState::render(sf::RenderWindow& target) {
     float y{100};
     auto windowSize = target.getSize();
 
+    sf::Text t{"Game over", font, 80};
+    t.setPosition((windowSize.x - t.getLocalBounds().width) / 2, y);
+    t.setFillColor(sf::Color(255, 0, 0));
+    target.draw(t);
+    y += t.getLocalBounds().height * 3.0f;
 
     for (auto& o : options) {
         auto bounds = o.text.getLocalBounds();
