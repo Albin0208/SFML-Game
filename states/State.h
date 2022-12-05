@@ -32,7 +32,7 @@ public:
      * @param window A reference to the window
      * @return A pointer to a state if the state should be changed
      */
-    virtual std::shared_ptr<State> update(sf::Time const& time, sf::RenderWindow const& window) = 0;
+    virtual shared_ptr<State> update(sf::Time const& time, sf::RenderWindow const& window) = 0;
 
     /**
      * Render the state
@@ -46,7 +46,7 @@ public:
      *
      * @param state What state to run
      */
-    static void run(std::shared_ptr<State> state);
+    static void run(shared_ptr<State> state);
 };
 
 class ExitState : public State {

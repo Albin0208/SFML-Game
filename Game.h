@@ -7,8 +7,9 @@
 
 
 #include <memory>
-#include "SFML/System.hpp"
-#include "SFML/Graphics.hpp"
+
+#include "common.h"
+//#include "SFML/System.hpp"
 
 class Player;
 class GameObject;
@@ -41,10 +42,10 @@ public:
      * @param obj The object to check for collision on
      * @return A vector of the the object collided with
      */
-    std::vector<std::shared_ptr<GameObject>> collides_with(GameObject& obj);
+    vector<std::shared_ptr<GameObject>> collides_with(GameObject& obj);
 
 private:
-    std::vector<std::shared_ptr<GameObject>> objects;
+    vector<std::shared_ptr<GameObject>> objects;
 };
 
 

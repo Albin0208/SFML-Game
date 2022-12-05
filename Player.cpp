@@ -8,7 +8,7 @@
 Player::Player(sf::Vector2f const& position) : MovableObject(position, 300.0f){}
 
 static sf::Vector2f find_direction() {
-    sf::Vector2f direction{};
+    sf::Vector2f direction{0, 0};
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) ||
         sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         direction.y -= 1;
@@ -33,10 +33,21 @@ static sf::Vector2f find_direction() {
 
 void Player::update(sf::Time const& time, Game& game) {
     auto dir{find_direction()};
-    position += dir * (speed * time.asMicroseconds() / 1000000.0f);
-    shape.setPosition(position);
+    shape.move(dir * speed * time.asSeconds());
 
-    // TODO: Check for moving out if window
+    // Check for moving out if window
+    // Left collision
+    if (shape.getPosition().x < 0.f)
+        shape.setPosition(0.f, shape.getPosition().y);
+    // Top collision
+    if (shape.getPosition().y < 0.f)
+        shape.setPosition(shape.getPosition().x, 0.f);
+    // Right collision
+    if (shape.getPosition().x + shape.getGlobalBounds().width > WIDTH)
+        shape.setPosition(WIDTH - shape.getGlobalBounds().width, shape.getPosition().y);
+    // Bottom collision
+    if (shape.getPosition().y + shape.getGlobalBounds().height > HEIGHT)
+        shape.setPosition(shape.getPosition().x, HEIGHT- shape.getGlobalBounds().height);
 
     for (auto& o : game.collides_with(*this)) {
         // TODO: Do some stuff on collision depending on what type it is

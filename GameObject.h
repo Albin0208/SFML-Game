@@ -6,8 +6,8 @@
 #define TDP005_GAMEOBJECT_H
 
 
+#include "common.h"
 #include "SFML/System.hpp"
-#include "SFML/Graphics.hpp"
 #include "Game.h"
 
 class GameObject {
