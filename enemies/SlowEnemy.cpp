@@ -19,8 +19,13 @@ void SlowEnemy::update(sf::Time const& time, Game& game) {
     position += speed * dir * time.asSeconds();
     shape.setPosition(position);
 
+
+
     for (auto& o : game.collides_with(*this)) {
         // TODO: Take damage from player projectiles
+
+        if (health <= 0)
+            alive = false;
 //        position = shape.getPosition() - dir * speed * time.asSeconds();
 //        shape.setPosition(position);
     }

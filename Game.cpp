@@ -6,8 +6,13 @@
 #include "Player.h"
 
 void Game::update(sf::Time const& time) {
-    for (auto const& o : objects) {
-        o->update(time, *this);
+    for (size_t i{}; i < objects.size(); ++i) {
+        objects[i]->update(time, *this);
+        // If object is dead remove it
+        if (!objects[i]->is_alive()) {
+            objects.erase(objects.begin() + i);
+            --i;
+        }
     }
 }
 

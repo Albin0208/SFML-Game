@@ -22,8 +22,6 @@ protected:
     sf::Clock attack_timer;
     int32_t attack_timer_max;
     sf::Vector2f const& player_pos;
-
-private:
     int health;
     float attack_speed;
 };
