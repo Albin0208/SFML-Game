@@ -6,8 +6,9 @@
 #include <iostream>
 #include "Player.h"
 #include "enemies/SlowEnemy.h"
+#include "Projectile.h"
 
-Player::Player(sf::Vector2f const& position, float speed) : MovableObject(position, speed), health{100} {}
+Player::Player(sf::Vector2f const& position, float speed) : MovableObject(position, speed), health{100},attack_speed{500} {}
 
 static sf::Vector2f find_direction() {
     sf::Vector2f direction{0, 0};
@@ -30,7 +31,7 @@ static sf::Vector2f find_direction() {
     return direction;
 }
 
-void Player::update(sf::Time const& time, Game& game) {
+void Player::update(sf::Time const& time, Game& game,sf::RenderWindow const& window) {
     auto dir{find_direction()};
     position += dir * speed * time.asSeconds();
 
@@ -50,6 +51,7 @@ void Player::update(sf::Time const& time, Game& game) {
         position = {position.x, HEIGHT- shape.getGlobalBounds().height};
 
     shape.setPosition(position);
+    sprite.setPosition(position);
 
     for (auto& o : game.collides_with(*this)) {
         // TODO: Do some stuff on collision depending on what type it is
@@ -62,6 +64,25 @@ void Player::update(sf::Time const& time, Game& game) {
             // Not able to pass through an enemy
 //            position = shape.getPosition() - dir * speed * time.asSeconds();
 //            shape.setPosition(position);
+        }
+    }
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+        if (attack_timer.getElapsedTime().asMilliseconds() > attack_speed) {
+            attack_timer.restart();
+
+            //std::cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << std::endl;
+            sf::Vector2f mpos {sf::Mouse::getPosition(window)};
+
+            //projectile-vector is mouse-player vectors
+            sf::Vector2f prodir{mpos-position};
+            //std::cout << prodir.x << " " << prodir.y << std::endl;
+
+            //normalize the projectile-direction-vector
+            prodir = sf::Vector2f{prodir.x/(abs(prodir.x)+abs(prodir.y)),prodir.y/(abs(prodir.x)+abs(prodir.y))};
+            //std::cout << prodir.x << " " << prodir.y << std::endl;
+
+            game.add(std::make_shared<Projectile>(position,50.0f,prodir,40));
         }
     }
 }
