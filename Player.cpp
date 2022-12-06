@@ -8,11 +8,11 @@
 #include "enemies/SlowEnemy.h"
 #include "TextureManager.h"
 
-Player::Player(sf::Vector2f const& position, float speed) : MovableObject(position, speed,
-                                              Animation{TextureManager::get("professor_walk_cycle_no_hat.png"),
-                                                                                                     sf::Vector2u{9, 4}, 0.1f}), health{100} {
+Player::Player(sf::Vector2f const& position, float speed)
+    : MovableObject(position, speed,Animation{TextureManager::get("player_angel.png"),
+                                                                                                     sf::Vector2u{24, 1}, 0.04f}), health{100} {
     shape.setSize({100, 100});
-    sf::Texture* t{TextureManager::get("professor_walk_cycle_no_hat.png")};
+    sf::Texture* t{TextureManager::get("player_angel.png")};
     shape.setTexture(t);
     shape.setTextureRect(animation.uv_rect);
 }
@@ -42,11 +42,11 @@ void Player::update(sf::Time const& time, Game& game) {
     auto dir{find_direction()};
     position += dir * speed * time.asSeconds();
 
-    animation.update(3, time.asSeconds(), (dir.x > 0));
-    if (dir.y < 0 && dir.x == 0)
-        animation.update(0, time.asSeconds(), (dir.x > 0));
-    else if (dir.y > 0 && dir.x == 0)
-        animation.update(2, time.asSeconds(), (dir.x > 0));
+    animation.update(0, time.asSeconds(), (dir.x > 0));
+//    if (dir.y < 0 && dir.x == 0)
+//        animation.update(0, time.asSeconds(), (dir.x > 0));
+//    else if (dir.y > 0 && dir.x == 0)
+//        animation.update(2, time.asSeconds(), (dir.x > 0));
 
     shape.setTextureRect(animation.uv_rect);
 
