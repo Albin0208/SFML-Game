@@ -7,6 +7,7 @@
 #include "../Player.h"
 #include "../enemies/SlowEnemy.h"
 #include "../Projectile.h"
+#include "GameOverState.h"
 
 GameState::GameState() {
     // Create the player and add to game
@@ -18,6 +19,9 @@ GameState::GameState() {
 
 std::shared_ptr<State> GameState::update(sf::Time const& time, sf::RenderWindow const& window) {
     game.update(time, window);
+
+    if (game.is_game_over)
+        return std::make_shared<GameOverState>(game);
 
     // We pause the game
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) || !window.hasFocus())

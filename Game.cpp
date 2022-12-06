@@ -6,13 +6,15 @@
 #include "Player.h"
 #include "Projectile.h"
 
-void Game::update(sf::Time const& time, sf::RenderWindow const& window) {
-    for (size_t i{0}; i < objects.size(); ++i)
-        objects[i]->update(time, *this,window);
-//
-//    for (auto const& o : objects) {
-//        o->update(time, *this);
-//    }
+void Game::update(sf::Time const& time) {
+    for (size_t i{}; i < objects.size(); ++i) {
+        objects[i]->update(time, *this);
+        // If object is dead remove it
+        if (!objects[i]->is_alive()) {
+            objects.erase(objects.begin() + i);
+            --i;
+        }
+    }
 }
 
 void Game::render(sf::RenderWindow& target) {

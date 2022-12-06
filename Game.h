@@ -16,6 +16,7 @@ class GameObject;
 
 class Game {
 public:
+    bool is_game_over{false};
     /**
      * Update the game
      *

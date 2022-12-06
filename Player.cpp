@@ -25,12 +25,10 @@ static sf::Vector2f find_direction() {
         sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         direction.x += 1;
 
-    // Normalize movement
-    float len{static_cast<float>(sqrt(pow(direction.x, 2) + pow(direction.y, 2)))};
-    if (len > 0.0f)
-        return direction * (1.0f / len);
-    else
-        return direction;
+    if (direction != sf::Vector2f{0, 0})
+        direction /= static_cast<float>(sqrt(pow(direction.x, 2) + pow(direction.y, 2)));
+
+    return direction;
 }
 
 void Player::update(sf::Time const& time, Game& game,sf::RenderWindow const& window) {
@@ -59,7 +57,9 @@ void Player::update(sf::Time const& time, Game& game,sf::RenderWindow const& win
         // TODO: Do some stuff on collision depending on what type it is
         if (auto e = dynamic_cast<Enemy*>(o.get())) {
             health -= e->attack();
-            std::cout << health << std::endl;
+            // We have 0 health, the game is over
+            if (health <= 0)
+                game.is_game_over = true;
 
             // Not able to pass through an enemy
 //            position = shape.getPosition() - dir * speed * time.asSeconds();
@@ -85,12 +85,6 @@ void Player::update(sf::Time const& time, Game& game,sf::RenderWindow const& win
             game.add(std::make_shared<Projectile>(position,50.0f,prodir,40));
         }
     }
-}
-
-void Player::render(sf::RenderWindow& window) {
-    window.draw(shape);
-    window.draw(sprite);
-
 }
 
 sf::Vector2f const& Player::get_pos() {

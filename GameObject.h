@@ -36,11 +36,14 @@ public:
      */
     virtual bool checkCollision(GameObject const& obj);
 
+    bool is_alive() const;
+
 protected:
     sf::RectangleShape shape;
     sf::Vector2f position;
     sf::Sprite sprite;
     sf::Texture texture;
+    bool alive;
 };
 
 

@@ -14,8 +14,7 @@ public:
     ~Enemy() override = default;
 
 
-    void update(sf::Time const& time, Game& game, sf::RenderWindow const& window) override = 0;
-    void render(sf::RenderWindow& window) override = 0;
+    void update(sf::Time const& time, Game& game) override = 0;
 
     int attack() override = 0;
 
@@ -23,8 +22,6 @@ protected:
     sf::Clock attack_timer;
     int32_t attack_timer_max;
     sf::Vector2f const& player_pos;
-
-private:
     int health;
     float attack_speed;
 };
