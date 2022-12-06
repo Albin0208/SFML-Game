@@ -21,17 +21,17 @@ void Projectile::update(sf::Time const& time, Game& game,sf::RenderWindow const&
 
     // Check for moving out if window
     // Left collision
-    //if (position.x < 0.f)
-        //kill/remove projectile
+    if (position.x < 0.f)
+        alive=false;
     // Top collision
-    //if (position.y < 0.f)
-        //kill/remove projectile
+    if (position.y < 0.f)
+        alive=false;
     // Right collision
-    //if (position.x + shape.getGlobalBounds().width > WIDTH)
-        //kill/remove projectile
+    if (position.x + shape.getGlobalBounds().width > WIDTH)
+        alive=false;
     // Bottom collision
-    //if (position.y + shape.getGlobalBounds().height > HEIGHT)
-        //kill/remove projectile
+    if (position.y + shape.getGlobalBounds().height > HEIGHT)
+        alive=false;
 
     shape.setPosition(position);
     sprite.setPosition(position);
@@ -40,7 +40,9 @@ void Projectile::update(sf::Time const& time, Game& game,sf::RenderWindow const&
         // TODO: Do some stuff on collision depending on what type it is
         if (auto e = dynamic_cast<Enemy*>(o.get())) {
             //göra skada på e
-            std::cout << "träff" << std::endl;
+            e->take_damage(damage);
+            //dödar projectile
+            alive=false;
 
             // Not able to pass through an enemy
 //            position = shape.getPosition() - dir * speed * time.asSeconds();

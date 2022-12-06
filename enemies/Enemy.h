@@ -18,6 +18,8 @@ public:
 
     int attack() override = 0;
 
+    void take_damage(int damage);
+
 protected:
     sf::Clock attack_timer;
     int32_t attack_timer_max;
