@@ -42,12 +42,12 @@ static sf::Vector2f find_direction() {
 void Player::update(sf::Time const& time, Game& game) {
     auto dir{find_direction()};
     position += dir * speed * time.asSeconds();
+    if (dir.x > 0)
+        face_right = true;
+    else if (dir.x < 0)
+        face_right = false;
 
-    animation.update(0, time.asSeconds(), (dir.x > 0));
-//    if (dir.y < 0 && dir.x == 0)
-//        animation.update(0, time.asSeconds(), (dir.x > 0));
-//    else if (dir.y > 0 && dir.x == 0)
-//        animation.update(2, time.asSeconds(), (dir.x > 0));
+    animation.update(0, time.asSeconds(), face_right);
 
     sprite.setTextureRect(animation.uv_rect);
 

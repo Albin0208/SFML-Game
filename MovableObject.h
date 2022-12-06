@@ -17,6 +17,7 @@ public:
     void render(sf::RenderWindow &window) override;
     virtual int attack() = 0;
 protected:
+    bool face_right;
     float speed;
 };
 
