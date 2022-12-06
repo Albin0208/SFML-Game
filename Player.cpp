@@ -9,10 +9,10 @@
 #include "TextureManager.h"
 
 Player::Player(sf::Vector2f const& position, float speed)
-    : MovableObject(position, speed,Animation{TextureManager::get("player_angel.png"),
+    : MovableObject(position, speed,Animation{TextureManager::get("player_angel2.png"),
                                                                                                      sf::Vector2u{24, 1}, 0.04f}), health{100} {
     shape.setSize({100, 100});
-    sf::Texture* t{TextureManager::get("player_angel.png")};
+    sf::Texture* t{TextureManager::get("player_angel2.png")};
     shape.setTexture(t);
     shape.setTextureRect(animation.uv_rect);
 }
