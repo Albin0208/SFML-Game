@@ -10,11 +10,12 @@
 
 Player::Player(sf::Vector2f const& position, float speed)
     : MovableObject(position, speed,Animation{TextureManager::get("player_angel2.png"),
-                                                                                                     sf::Vector2u{24, 1}, 0.04f}), health{100} {
-    shape.setSize({100, 100});
-    sf::Texture* t{TextureManager::get("player_angel2.png")};
-    shape.setTexture(t);
-    shape.setTextureRect(animation.uv_rect);
+                                              sf::Vector2u{24, 1}, 0.04f}), health{100} {
+    shape.setSize({100, 135});
+    sprite.setTexture(*TextureManager::get("player_angel2.png"));
+    sprite.setScale({0.15f, 0.15f});
+    sprite.setTextureRect(animation.uv_rect);
+    shape.setSize({sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 1.5f});
 }
 
 static sf::Vector2f find_direction() {
@@ -48,7 +49,7 @@ void Player::update(sf::Time const& time, Game& game) {
 //    else if (dir.y > 0 && dir.x == 0)
 //        animation.update(2, time.asSeconds(), (dir.x > 0));
 
-    shape.setTextureRect(animation.uv_rect);
+    sprite.setTextureRect(animation.uv_rect);
 
     // Check for moving out if window
     // Left collision
@@ -65,6 +66,7 @@ void Player::update(sf::Time const& time, Game& game) {
         position = {position.x, HEIGHT- shape.getGlobalBounds().height};
 
     shape.setPosition(position);
+    sprite.setPosition({shape.getPosition().x - shape.getSize().x / 2, shape.getPosition().y - shape.getSize().y / 4});
 
     for (auto& o : game.collides_with(*this)) {
         // TODO: Do some stuff on collision depending on what type it is

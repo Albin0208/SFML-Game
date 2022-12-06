@@ -43,7 +43,7 @@ protected:
     sf::RectangleShape shape;
     sf::Vector2f position;
     bool alive;
-    //sf::Sprite shape;
+    sf::Sprite sprite;
     Animation animation;
 };
 

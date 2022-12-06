@@ -7,6 +7,6 @@
 MovableObject::MovableObject(sf::Vector2f const& position, float speed, Animation animation) : GameObject(position, animation), speed{speed} {}
 
 void MovableObject::render(sf::RenderWindow& window) {
-//    window.draw(hit_box);
     window.draw(shape);
+    window.draw(sprite);
 }
