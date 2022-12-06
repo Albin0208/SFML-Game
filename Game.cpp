@@ -6,9 +6,9 @@
 #include "Player.h"
 #include "Projectile.h"
 
-void Game::update(sf::Time const& time) {
+void Game::update(sf::Time const& time, sf::RenderWindow const& window) {
     for (size_t i{}; i < objects.size(); ++i) {
-        objects[i]->update(time, *this);
+        objects[i]->update(time, *this, window);
         // If object is dead remove it
         if (!objects[i]->is_alive()) {
             objects.erase(objects.begin() + i);

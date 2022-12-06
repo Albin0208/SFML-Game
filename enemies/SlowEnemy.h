@@ -12,7 +12,7 @@ class SlowEnemy : public Enemy {
 public:
     SlowEnemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos);
 
-    void update(const sf::Time &time, Game &game) override;
+    void update(const sf::Time &time, Game &game, sf::RenderWindow const& window) override;
 
     int attack() override;
 private:
