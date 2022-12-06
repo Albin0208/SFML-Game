@@ -80,7 +80,7 @@ void Player::update(sf::Time const& time, Game& game,sf::RenderWindow const& win
 
             //normalize the projectile-direction-vector
             prodir = sf::Vector2f{prodir.x/(abs(prodir.x)+abs(prodir.y)),prodir.y/(abs(prodir.x)+abs(prodir.y))};
-            std::cout << prodir.x << " " << prodir.y << std::endl;
+            //std::cout << prodir.x << " " << prodir.y << std::endl;
 
             game.add(std::make_shared<Projectile>(position,50.0f,prodir,40));
         }
