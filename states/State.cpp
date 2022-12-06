@@ -33,7 +33,7 @@ void State::run(std::shared_ptr<State> state) {
                     break;
             }
         }
-        window.clear();
+        window.clear(sf::Color::Magenta);
         if (auto new_state = state->update(clock.restart(), window)) {
             if (std::dynamic_pointer_cast<ExitState>(new_state)) {
                 return;

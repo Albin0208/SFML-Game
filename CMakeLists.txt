@@ -9,7 +9,7 @@ FetchContent_MakeAvailable(SFML)
 
 add_executable(TDP005 main.cpp states/State.h states/State.cpp states/MenuState.cpp states/GameState.cpp
         Game.cpp GameObject.h Player.cpp Player.h GameObject.cpp MovableObject.cpp MovableObject.h
-        common.h enemies/Enemy.cpp enemies/Enemy.h enemies/SlowEnemy.cpp enemies/SlowEnemy.h states/GameOverState.cpp states/GameOverState.h)
+        common.h enemies/Enemy.cpp enemies/Enemy.h enemies/SlowEnemy.cpp enemies/SlowEnemy.h states/GameOverState.cpp states/GameOverState.h TextureManager.cpp TextureManager.h Animation.cpp Animation.h)
 target_link_libraries(TDP005 PRIVATE sfml-graphics sfml-window sfml-system)
 target_compile_features(TDP005 PRIVATE cxx_std_17)
 if (WIN32 AND BUILD_SHARED_LIBS)

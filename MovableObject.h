@@ -10,7 +10,7 @@
 
 class MovableObject : public GameObject {
 public:
-    MovableObject(const sf::Vector2f &position, float speed);
+    MovableObject(const sf::Vector2f &position, float speed, Animation animation);
     ~MovableObject() override = default;
 
     void update(const sf::Time &time, Game &game) override = 0;

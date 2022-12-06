@@ -8,7 +8,7 @@
 #include <iostream>
 
 SlowEnemy::SlowEnemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos) : Enemy(position, speed, player_pos) {
-    shape.setFillColor(sf::Color::Red);
+    //shape.setFillColor(sf::Color::Red);
 }
 
 void SlowEnemy::update(sf::Time const& time, Game& game) {

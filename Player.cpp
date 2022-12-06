@@ -6,8 +6,16 @@
 #include <iostream>
 #include "Player.h"
 #include "enemies/SlowEnemy.h"
+#include "TextureManager.h"
 
-Player::Player(sf::Vector2f const& position, float speed) : MovableObject(position, speed), health{100} {}
+Player::Player(sf::Vector2f const& position, float speed) : MovableObject(position, speed,
+                                              Animation{TextureManager::get("professor_walk_cycle_no_hat.png"),
+                                                                                                     sf::Vector2u{9, 4}, 0.1f}), health{100} {
+    shape.setSize({100, 100});
+    sf::Texture* t{TextureManager::get("professor_walk_cycle_no_hat.png")};
+    shape.setTexture(t);
+    shape.setTextureRect(animation.uv_rect);
+}
 
 static sf::Vector2f find_direction() {
     sf::Vector2f direction{0, 0};
@@ -34,6 +42,13 @@ void Player::update(sf::Time const& time, Game& game) {
     auto dir{find_direction()};
     position += dir * speed * time.asSeconds();
 
+    animation.update(3, time.asSeconds(), (dir.x > 0));
+    if (dir.y < 0 && dir.x == 0)
+        animation.update(0, time.asSeconds(), (dir.x > 0));
+    else if (dir.y > 0 && dir.x == 0)
+        animation.update(2, time.asSeconds(), (dir.x > 0));
+
+    shape.setTextureRect(animation.uv_rect);
 
     // Check for moving out if window
     // Left collision
@@ -54,6 +69,7 @@ void Player::update(sf::Time const& time, Game& game) {
     for (auto& o : game.collides_with(*this)) {
         // TODO: Do some stuff on collision depending on what type it is
         if (auto e = dynamic_cast<Enemy*>(o.get())) {
+            std::cout << "Hit" << std::endl;
             health -= e->attack();
             // We have 0 health, the game is over
             if (health <= 0)

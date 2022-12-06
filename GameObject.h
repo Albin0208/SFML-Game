@@ -9,10 +9,11 @@
 #include "common.h"
 #include "SFML/System.hpp"
 #include "Game.h"
+#include "Animation.h"
 
 class GameObject {
 public:
-    explicit GameObject(sf::Vector2f const& position);
+    GameObject(sf::Vector2f const& position, Animation animation);
     virtual ~GameObject() = default;
 
     /**
@@ -42,6 +43,8 @@ protected:
     sf::RectangleShape shape;
     sf::Vector2f position;
     bool alive;
+    //sf::Sprite shape;
+    Animation animation;
 };
 
 
