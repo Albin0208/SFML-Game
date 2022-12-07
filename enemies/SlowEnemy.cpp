@@ -40,10 +40,13 @@ void SlowEnemy::update(sf::Time const& time, Game& game) {
         type = "walk";
     }
 
-     if (attacking)
-         type = "attack";
-
-    animation_manager.play(type, sprite);
+    if (attacking) {
+        animation_manager.play("attack", sprite, true);
+        if (animation_manager.is_done("attack"))
+            attacking = false;
+    }
+    else
+        animation_manager.play(type, sprite);
 
     hitbox.setPosition(position);
     sprite.setPosition({hitbox.getPosition().x - hitbox.getSize().x / 2.4f, hitbox.getPosition().y - hitbox.getSize().y / 4});

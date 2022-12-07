@@ -12,19 +12,32 @@ AnimationManager::~AnimationManager() {
         delete a.second;
 }
 
-void AnimationManager::play(std::string const& key, sf::Sprite& sprite) {
-    if (last_animation != animations[key]) {
-        if (last_animation == nullptr)
-            last_animation = animations[key];
-        else {
-            last_animation->reset();
-            last_animation = animations[key];
+void AnimationManager::play(std::string const& key, sf::Sprite& sprite, bool priority) {
+    if (priority_animation == animations[key]) {
+        animations[key]->update(sprite);
+    } else {
+        if (priority)
+            priority_animation = animations[key];
+
+        if (last_animation != animations[key]) {
+            if (last_animation == nullptr)
+                last_animation = animations[key];
+            else {
+                last_animation->reset();
+                last_animation = animations[key];
+            }
+        }
+
+        if (animations[key]->update(sprite)) {
+            priority_animation = nullptr;
         }
     }
-
-    animations[key]->update(sprite);
 }
 
 void AnimationManager::add_animation(std::string const& key, sf::Texture* texture, sf::Vector2u image_count, float total_time) {
     animations[key] = new Animation{texture, image_count, total_time};
+}
+
+bool const& AnimationManager::is_done(std::string const& key) {
+    return animations[key]->done;
 }

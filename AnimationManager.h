@@ -12,15 +12,17 @@ public:
     AnimationManager();
     ~AnimationManager();
 
-    void play(std::string const& key, sf::Sprite& sprite);
+    void play(std::string const& key, sf::Sprite& sprite, bool priority = false);
 
     void add_animation(std::string const& key, sf::Texture* texture, sf::Vector2u image_count, float total_time);
+
+    bool const& is_done(std::string const& key);
 
 private:
     class Animation {
     public:
         Animation(sf::Texture* texture, sf::Vector2u image_count, float total_time)
-                : texture{texture}, TOTAL_TIME{total_time}, current_frame{0}, current_time{0} {
+                : texture{texture}, TOTAL_TIME{total_time}, current_frame{0}, current_time{0}, done{false} {
 
             sf::Vector2u sprite_size;
 
@@ -36,20 +38,22 @@ private:
             }
         }
 
-        bool update(sf::Sprite& sprite) {
+        bool const& update(sf::Sprite& sprite) {
             current_time = clock.getElapsedTime().asSeconds();
-
+            done = false;
             if (current_time >= TOTAL_TIME) {
                 current_time -= TOTAL_TIME;
                 clock.restart();
-                if (++current_frame >= frames.size())
+                if (++current_frame >= frames.size()) {
                     current_frame = 0;
+                    done = true;
+                }
             }
 
             sprite.setTexture(*texture, true);
             sprite.setTextureRect(frames[current_frame]);
 
-            return false;
+            return done;
         }
 
         void reset() {
@@ -61,6 +65,7 @@ private:
 
         int current_frame;
         float current_time;
+        bool done;
 
         sf::Clock clock;
 
