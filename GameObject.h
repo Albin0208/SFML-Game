@@ -9,7 +9,6 @@
 #include "common.h"
 #include "SFML/System.hpp"
 #include "Game.h"
-#include "Animation.h"
 
 class GameObject {
 public:

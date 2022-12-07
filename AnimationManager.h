@@ -9,7 +9,7 @@
 
 class AnimationManager {
 public:
-    AnimationManager() = default;
+    AnimationManager();
     ~AnimationManager();
 
     void play(std::string const& key, sf::Sprite& sprite);
@@ -50,6 +50,10 @@ private:
             sprite.setTextureRect(frames[current_frame]);
 
             return false;
+        }
+
+        void reset() {
+            current_frame = 0;
         }
 
         sf::Texture* texture;

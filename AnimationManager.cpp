@@ -4,12 +4,24 @@
 
 #include "AnimationManager.h"
 
+AnimationManager::AnimationManager() : last_animation{nullptr}, priority_animation{nullptr} {}
+
+
 AnimationManager::~AnimationManager() {
     for (auto& a : animations)
         delete a.second;
 }
 
 void AnimationManager::play(std::string const& key, sf::Sprite& sprite) {
+    if (last_animation != animations[key]) {
+        if (last_animation == nullptr)
+            last_animation = animations[key];
+        else {
+            last_animation->reset();
+            last_animation = animations[key];
+        }
+    }
+
     animations[key]->update(sprite);
 }
 

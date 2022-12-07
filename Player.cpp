@@ -107,8 +107,8 @@ int Player::attack(sf::Time const& time) {
 
 void Player::set_animations() {
     // Add walk animation
-    animation_manager.add_animation("walk", TextureManager::get("run_player.png"),
-                                    sf::Vector2u{12, 1}, 3.5 / 60.f);
+    animation_manager.add_animation("walk", TextureManager::get("player_angel2.png"),
+                                    sf::Vector2u{24, 1}, 2 / 60.f);
     animation_manager.add_animation("idle", TextureManager::get("idle.png"),
                                     sf::Vector2u{18, 1}, 4 / 60.f);
 }

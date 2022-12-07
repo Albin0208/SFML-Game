@@ -22,8 +22,6 @@ protected:
 
     bool face_right;
     float speed;
-    Animation current_animation{};
-    std::map<std::string, Animation> animations;
     std::string type;
     AnimationManager animation_manager;
 };
