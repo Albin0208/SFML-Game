@@ -13,7 +13,7 @@
 
 class GameObject {
 public:
-    GameObject(sf::Vector2f const& position, Animation animation);
+    GameObject(sf::Vector2f const& position);
     virtual ~GameObject() = default;
 
     /**
@@ -40,11 +40,10 @@ public:
     bool is_alive() const;
 
 protected:
-    sf::RectangleShape shape;
+    sf::RectangleShape hitbox;
     sf::Vector2f position;
     bool alive;
     sf::Sprite sprite;
-    Animation animation;
 };
 
 

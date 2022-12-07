@@ -4,10 +4,11 @@
 
 #include "MovableObject.h"
 
-MovableObject::MovableObject(sf::Vector2f const& position, float speed, Animation animation)
-    : GameObject(position, animation), speed{speed}, face_right{true} {}
+MovableObject::MovableObject(sf::Vector2f const& position, float speed)
+    : GameObject(position), speed{speed}, face_right{true} {
+}
 
 void MovableObject::render(sf::RenderWindow& window) {
-    window.draw(shape);
+    window.draw(hitbox);
     window.draw(sprite);
 }

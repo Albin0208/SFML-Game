@@ -13,9 +13,12 @@ public:
 
     void update(sf::Time const& time, Game& game) override;
 
-    int attack() override;
+    int attack(sf::Time const& time) override;
 
     sf::Vector2f const& get_pos();
+
+protected:
+    void set_animations() override;
 
 private:
     int health;

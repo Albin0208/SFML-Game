@@ -9,13 +9,13 @@
 #include "TextureManager.h"
 
 Player::Player(sf::Vector2f const& position, float speed)
-    : MovableObject(position, speed,Animation{TextureManager::get("player_angel2.png"),
-                                              sf::Vector2u{24, 1}, 0.04f}), health{100} {
-    shape.setSize({100, 135});
+    : MovableObject(position, speed) {
+    set_animations();
+    hitbox.setSize({100, 135});
     sprite.setTexture(*TextureManager::get("player_angel2.png"));
     sprite.setScale({0.15f, 0.15f});
-    sprite.setTextureRect(animation.uv_rect);
-    shape.setSize({sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 1.5f});
+    sprite.setTextureRect(animations.find("walk")->second.uv_rect);
+    hitbox.setSize({sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 1.5f});
 }
 
 static sf::Vector2f find_direction() {
@@ -47,9 +47,8 @@ void Player::update(sf::Time const& time, Game& game) {
     else if (dir.x < 0)
         face_right = false;
 
-    animation.update(0, time.asSeconds(), face_right);
-
-    sprite.setTextureRect(animation.uv_rect);
+    animations.find("walk")->second.update(0, time.asSeconds(), face_right);
+    sprite.setTextureRect(animations.find("walk")->second.uv_rect);
 
     // Check for moving out if window
     // Left collision
@@ -59,27 +58,26 @@ void Player::update(sf::Time const& time, Game& game) {
     if (position.y < 0.f)
         position = {position.x, 0.f};
     // Right collision
-    if (position.x + shape.getGlobalBounds().width > WIDTH)
-        position = {WIDTH - shape.getGlobalBounds().width, position.y};
+    if (position.x + hitbox.getGlobalBounds().width > WIDTH)
+        position = {WIDTH - hitbox.getGlobalBounds().width, position.y};
     // Bottom collision
-    if (position.y + shape.getGlobalBounds().height > HEIGHT)
-        position = {position.x, HEIGHT- shape.getGlobalBounds().height};
+    if (position.y + hitbox.getGlobalBounds().height > HEIGHT)
+        position = {position.x, HEIGHT- hitbox.getGlobalBounds().height};
 
-    shape.setPosition(position);
-    sprite.setPosition({shape.getPosition().x - shape.getSize().x / 2, shape.getPosition().y - shape.getSize().y / 4});
+    hitbox.setPosition(position);
+    sprite.setPosition({hitbox.getPosition().x - hitbox.getSize().x / 2, hitbox.getPosition().y - hitbox.getSize().y / 4});
 
     for (auto& o : game.collides_with(*this)) {
         // TODO: Do some stuff on collision depending on what type it is
         if (auto e = dynamic_cast<Enemy*>(o.get())) {
-            std::cout << "Hit" << std::endl;
-            health -= e->attack();
+            health -= e->attack(time);
             // We have 0 health, the game is over
             if (health <= 0)
                 game.is_game_over = true;
 
             // Not able to pass through an enemy
-//            position = shape.getPosition() - dir * speed * time.asSeconds();
-//            shape.setPosition(position);
+//            position = hitbox.getPosition() - dir * speed * time.asSeconds();
+//            hitbox.setPosition(position);
         }
     }
 }
@@ -88,6 +86,13 @@ sf::Vector2f const& Player::get_pos() {
     return position;
 }
 
-int Player::attack() {
+int Player::attack(sf::Time const& time) {
     return 0;
+}
+
+void Player::set_animations() {
+    // Add walk animation
+    animations.insert(std::make_pair("walk", Animation{TextureManager::get("player_angel2.png"),
+                                                       sf::Vector2u{24, 1}, 0.04f}));
+
 }

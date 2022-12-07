@@ -10,15 +10,19 @@
 
 class MovableObject : public GameObject {
 public:
-    MovableObject(const sf::Vector2f &position, float speed, Animation animation);
+    MovableObject(const sf::Vector2f &position, float speed);
     ~MovableObject() override = default;
 
     void update(const sf::Time &time, Game &game) override = 0;
     void render(sf::RenderWindow &window) override;
-    virtual int attack() = 0;
+    virtual int attack(sf::Time const& time) = 0;
 protected:
+    virtual void set_animations() = 0;
+
     bool face_right;
     float speed;
+    std::map<std::string, Animation> animations;
+    //Animation animation;
 };
 
 
