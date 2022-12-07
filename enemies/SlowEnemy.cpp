@@ -15,7 +15,7 @@ SlowEnemy::SlowEnemy(sf::Vector2f const& position, float speed, sf::Vector2f con
     //sprite.setTexture(*TextureManager::get("slow_enemy.png"));
     sprite.setScale({0.3f, 0.3f});
 
-    animations.at("walk").update(0, 0, false, sprite);
+    animation_manager.play("walk", sprite);
     //sprite.setTextureRect(animations.find("walk")->second.uv_rect);
     hitbox.setSize({sprite.getGlobalBounds().width / 1.8f, sprite.getGlobalBounds().height / 1.3f});
 }
@@ -43,7 +43,7 @@ void SlowEnemy::update(sf::Time const& time, Game& game) {
      if (attacking)
          type = "attack";
 
-    animations.find(type)->second.update(0, time.asSeconds(), false, sprite);
+    animation_manager.play(type, sprite);
 
     hitbox.setPosition(position);
     sprite.setPosition({hitbox.getPosition().x - hitbox.getSize().x / 2.4f, hitbox.getPosition().y - hitbox.getSize().y / 4});
@@ -72,8 +72,8 @@ int SlowEnemy::attack(sf::Time const& time) {
 }
 
 void SlowEnemy::set_animations() {
-    animations.insert(std::make_pair("walk", Animation{TextureManager::get("slow_enemy.png"),
-                                                       sf::Vector2u{18, 1}, 3 / 60.f}));
-    animations.insert(std::make_pair("attack", Animation{TextureManager::get("mino_attack2.png"),
-                                                       sf::Vector2u{11, 1}, 3 / 60.f}));
+    animation_manager.add_animation("walk", TextureManager::get("slow_enemy.png"),
+                                    sf::Vector2u{18, 1}, 3 / 60.f);
+    animation_manager.add_animation("attack", TextureManager::get("mino_attack2.png"),
+                                    sf::Vector2u{11, 1}, 3 / 60.f);
 }

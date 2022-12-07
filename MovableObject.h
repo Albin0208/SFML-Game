@@ -7,6 +7,7 @@
 
 
 #include "GameObject.h"
+#include "AnimationManager.h"
 
 class MovableObject : public GameObject {
 public:
@@ -24,6 +25,7 @@ protected:
     Animation current_animation{};
     std::map<std::string, Animation> animations;
     std::string type;
+    AnimationManager animation_manager;
 };
 
 

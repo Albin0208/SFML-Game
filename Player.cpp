@@ -15,7 +15,9 @@ Player::Player(sf::Vector2f const& position, float speed)
     //sprite.setTexture(*TextureManager::get("run_player.png"));
     sprite.setScale({0.15f, 0.15f});
 
-    animations.find("idle")->second.update(0, 0, false, sprite);
+    animation_manager.play("idle", sprite);
+
+    //animations.find("idle")->second.update(0, 0, false, sprite);
     //sprite.setTextureRect(animations.find("walk")->second.uv_rect);
     hitbox.setSize({sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 1.5f});
 }
@@ -60,7 +62,8 @@ void Player::update(sf::Time const& time, Game& game) {
         type = "walk";
     }
 
-    animations.find(type)->second.update(0, time.asSeconds(), false, sprite);
+    animation_manager.play(type, sprite);
+//    animations.find(type)->second.update(0, time.asSeconds(), false, sprite);
 
     // Check for moving out if window
     // Left collision
@@ -104,9 +107,8 @@ int Player::attack(sf::Time const& time) {
 
 void Player::set_animations() {
     // Add walk animation
-    animations.insert(std::make_pair("walk", Animation{TextureManager::get("run_player.png"),
-                                                       sf::Vector2u{12, 1}, 3.5 / 60.f}));
-    animations.insert(std::make_pair("idle", Animation{TextureManager::get("idle.png"),
-                                                            sf::Vector2u{18, 1}, 4 / 60.f}));
-
+    animation_manager.add_animation("walk", TextureManager::get("run_player.png"),
+                                    sf::Vector2u{12, 1}, 3.5 / 60.f);
+    animation_manager.add_animation("idle", TextureManager::get("idle.png"),
+                                    sf::Vector2u{18, 1}, 4 / 60.f);
 }
