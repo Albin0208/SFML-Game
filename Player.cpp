@@ -9,7 +9,7 @@
 #include "TextureManager.h"
 
 Player::Player(sf::Vector2f const& position, float speed)
-    : MovableObject(position, speed) {
+    : MovableObject(position, speed), health{100} {
     set_animations();
     hitbox.setSize({100, 135});
     //sprite.setTexture(*TextureManager::get("run_player.png"));
@@ -86,6 +86,7 @@ void Player::update(sf::Time const& time, Game& game) {
         // TODO: Do some stuff on collision depending on what type it is
         if (auto e = dynamic_cast<Enemy*>(o.get())) {
             health -= e->attack(time);
+            std::cout << health << std::endl;
             // We have 0 health, the game is over
             if (health <= 0)
                 game.is_game_over = true;

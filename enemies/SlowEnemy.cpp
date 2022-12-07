@@ -65,7 +65,6 @@ void SlowEnemy::update(sf::Time const& time, Game& game) {
 
 int SlowEnemy::attack(sf::Time const& time) {
     if (attack_timer.getElapsedTime().asMilliseconds() > attack_timer_max) {
-        std::cout << "kaksdkasdkaskd";
         attacking = true;
         attack_timer.restart();
         return 5;

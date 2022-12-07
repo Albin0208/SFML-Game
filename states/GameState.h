@@ -27,7 +27,7 @@ public:
      */
     void render(sf::RenderWindow& target) override;
 private:
-    Game game;
+    Game game{};
 };
 
 
