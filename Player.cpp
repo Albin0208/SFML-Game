@@ -12,11 +12,10 @@ Player::Player(sf::Vector2f const& position, float speed)
     : MovableObject(position, speed) {
     set_animations();
     hitbox.setSize({100, 135});
-    sprite.setTexture(*TextureManager::get("run_player.png"));
+    //sprite.setTexture(*TextureManager::get("run_player.png"));
     sprite.setScale({0.15f, 0.15f});
 
-    current_animation = animations.find("walk")->second;
-    current_animation.update(0,0,face_right, sprite);
+    animations.find("idle")->second.update(0, 0, false, sprite);
     //sprite.setTextureRect(animations.find("walk")->second.uv_rect);
     hitbox.setSize({sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 1.5f});
 }

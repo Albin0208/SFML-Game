@@ -23,7 +23,7 @@ protected:
     float speed;
     Animation current_animation{};
     std::map<std::string, Animation> animations;
-    //Animation animation;
+    std::string type;
 };
 
 

@@ -12,8 +12,10 @@ SlowEnemy::SlowEnemy(sf::Vector2f const& position, float speed, sf::Vector2f con
     : Enemy(position, speed, player_pos) {
     set_animations();
     hitbox.setSize({100, 135});
-    sprite.setTexture(*TextureManager::get("slow_enemy.png"));
+    //sprite.setTexture(*TextureManager::get("slow_enemy.png"));
     sprite.setScale({0.3f, 0.3f});
+
+    animations.at("walk").update(0, 0, false, sprite);
     //sprite.setTextureRect(animations.find("walk")->second.uv_rect);
     hitbox.setSize({sprite.getGlobalBounds().width / 1.8f, sprite.getGlobalBounds().height / 1.3f});
 }
@@ -25,20 +27,23 @@ void SlowEnemy::update(sf::Time const& time, Game& game) {
 
     position += speed * dir * time.asSeconds();
 
-    if (dir.x > 0)
+    if (dir.x > 0 || dir.y != 0 && face_right) {
+        sprite.setOrigin(0.f, 0.f);
+        sprite.setScale({0.3f, 0.3f});
         face_right = true;
-    else if (dir.x < 0)
+        type = "walk";
+    }
+    if (dir.x < 0 || dir.y != 0 && !face_right) {
+        sprite.setOrigin(720.f, 0.f);
+        sprite.setScale({-0.3f, 0.3f});
         face_right = false;
+        type = "walk";
+    }
 
-//    if (animations.find("attack")->second.is_running()) {
-//        sprite.setTexture(*TextureManager::get("mino_attack2.png"));
-//        //animations.find("attack")->second.update(0, time.asSeconds(), face_right);
-//        sprite.setTextureRect(animations.find("attack")->second.uv_rect);
-//    } else {
-//        sprite.setTexture(*TextureManager::get("slow_enemy.png"));
-//        //animations.find("walk")->second.update(0, time.asSeconds(), face_right);
-//        sprite.setTextureRect(animations.find("walk")->second.uv_rect);
-//    }
+     if (attacking)
+         type = "attack";
+
+    animations.find(type)->second.update(0, time.asSeconds(), false, sprite);
 
     hitbox.setPosition(position);
     sprite.setPosition({hitbox.getPosition().x - hitbox.getSize().x / 2.4f, hitbox.getPosition().y - hitbox.getSize().y / 4});
@@ -58,7 +63,7 @@ void SlowEnemy::update(sf::Time const& time, Game& game) {
 int SlowEnemy::attack(sf::Time const& time) {
     if (attack_timer.getElapsedTime().asMilliseconds() > attack_timer_max) {
         std::cout << "kaksdkasdkaskd";
-        //animations.find("attack")->second.run();
+        attacking = true;
         attack_timer.restart();
         return 5;
     }
@@ -68,7 +73,7 @@ int SlowEnemy::attack(sf::Time const& time) {
 
 void SlowEnemy::set_animations() {
     animations.insert(std::make_pair("walk", Animation{TextureManager::get("slow_enemy.png"),
-                                                       sf::Vector2u{18, 1}, 1.f}));
+                                                       sf::Vector2u{18, 1}, 3 / 60.f}));
     animations.insert(std::make_pair("attack", Animation{TextureManager::get("mino_attack2.png"),
-                                                       sf::Vector2u{11, 1}, 0.7f}));
+                                                       sf::Vector2u{11, 1}, 3 / 60.f}));
 }

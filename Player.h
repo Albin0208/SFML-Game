@@ -22,7 +22,6 @@ protected:
 
 private:
     int health;
-    std::string type;
 };
 
 
