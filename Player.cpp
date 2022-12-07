@@ -12,9 +12,12 @@ Player::Player(sf::Vector2f const& position, float speed)
     : MovableObject(position, speed) {
     set_animations();
     hitbox.setSize({100, 135});
-    sprite.setTexture(*TextureManager::get("player_angel2.png"));
+    sprite.setTexture(*TextureManager::get("run_player.png"));
     sprite.setScale({0.15f, 0.15f});
-    sprite.setTextureRect(animations.find("walk")->second.uv_rect);
+
+    current_animation = animations.find("walk")->second;
+    current_animation.update(0,0,face_right, sprite);
+    //sprite.setTextureRect(animations.find("walk")->second.uv_rect);
     hitbox.setSize({sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 1.5f});
 }
 
@@ -42,13 +45,23 @@ static sf::Vector2f find_direction() {
 void Player::update(sf::Time const& time, Game& game) {
     auto dir{find_direction()};
     position += dir * speed * time.asSeconds();
-    if (dir.x > 0)
-        face_right = true;
-    else if (dir.x < 0)
-        face_right = false;
 
-    animations.find("walk")->second.update(0, time.asSeconds(), face_right);
-    sprite.setTextureRect(animations.find("walk")->second.uv_rect);
+    if (dir.x == 0 && dir.y == 0)
+        type = "idle";
+    if (dir.x > 0 || dir.y != 0 && face_right) {
+        sprite.setOrigin(0.f, 0.f);
+        sprite.setScale(0.15f, 0.15f);
+        face_right = true;
+        type = "walk";
+    }
+    if (dir.x < 0 || dir.y != 0 && !face_right) {
+        sprite.setOrigin(900.f, 0.f);
+        sprite.setScale(-0.15f, 0.15f);
+        face_right = false;
+        type = "walk";
+    }
+
+    animations.find(type)->second.update(0, time.asSeconds(), false, sprite);
 
     // Check for moving out if window
     // Left collision
@@ -92,7 +105,9 @@ int Player::attack(sf::Time const& time) {
 
 void Player::set_animations() {
     // Add walk animation
-    animations.insert(std::make_pair("walk", Animation{TextureManager::get("player_angel2.png"),
-                                                       sf::Vector2u{24, 1}, 0.04f}));
+    animations.insert(std::make_pair("walk", Animation{TextureManager::get("run_player.png"),
+                                                       sf::Vector2u{12, 1}, 3.5 / 60.f}));
+    animations.insert(std::make_pair("idle", Animation{TextureManager::get("idle.png"),
+                                                            sf::Vector2u{18, 1}, 4 / 60.f}));
 
 }

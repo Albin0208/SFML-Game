@@ -14,7 +14,7 @@ SlowEnemy::SlowEnemy(sf::Vector2f const& position, float speed, sf::Vector2f con
     hitbox.setSize({100, 135});
     sprite.setTexture(*TextureManager::get("slow_enemy.png"));
     sprite.setScale({0.3f, 0.3f});
-    sprite.setTextureRect(animations.find("walk")->second.uv_rect);
+    //sprite.setTextureRect(animations.find("walk")->second.uv_rect);
     hitbox.setSize({sprite.getGlobalBounds().width / 1.8f, sprite.getGlobalBounds().height / 1.3f});
 }
 
@@ -30,16 +30,15 @@ void SlowEnemy::update(sf::Time const& time, Game& game) {
     else if (dir.x < 0)
         face_right = false;
 
-    if (animations.find("attack")->second.is_running()) {
-        std::cout << "Attackl";
-        sprite.setTexture(*TextureManager::get("mino_attack2.png"));
-        animations.find("attack")->second.update(0, time.asSeconds(), face_right);
-        sprite.setTextureRect(animations.find("attack")->second.uv_rect);
-    } else {
-        sprite.setTexture(*TextureManager::get("slow_enemy.png"));
-        animations.find("walk")->second.update(0, time.asSeconds(), face_right);
-        sprite.setTextureRect(animations.find("walk")->second.uv_rect);
-    }
+//    if (animations.find("attack")->second.is_running()) {
+//        sprite.setTexture(*TextureManager::get("mino_attack2.png"));
+//        //animations.find("attack")->second.update(0, time.asSeconds(), face_right);
+//        sprite.setTextureRect(animations.find("attack")->second.uv_rect);
+//    } else {
+//        sprite.setTexture(*TextureManager::get("slow_enemy.png"));
+//        //animations.find("walk")->second.update(0, time.asSeconds(), face_right);
+//        sprite.setTextureRect(animations.find("walk")->second.uv_rect);
+//    }
 
     hitbox.setPosition(position);
     sprite.setPosition({hitbox.getPosition().x - hitbox.getSize().x / 2.4f, hitbox.getPosition().y - hitbox.getSize().y / 4});
@@ -59,7 +58,7 @@ void SlowEnemy::update(sf::Time const& time, Game& game) {
 int SlowEnemy::attack(sf::Time const& time) {
     if (attack_timer.getElapsedTime().asMilliseconds() > attack_timer_max) {
         std::cout << "kaksdkasdkaskd";
-        animations.find("attack")->second.run();
+        //animations.find("attack")->second.run();
         attack_timer.restart();
         return 5;
     }

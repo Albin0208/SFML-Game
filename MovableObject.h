@@ -21,6 +21,7 @@ protected:
 
     bool face_right;
     float speed;
+    Animation current_animation{};
     std::map<std::string, Animation> animations;
     //Animation animation;
 };
