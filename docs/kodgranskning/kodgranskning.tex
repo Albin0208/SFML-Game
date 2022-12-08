@@ -32,21 +32,30 @@ Mötet ägde rum 8 December klockan 14:00.
 Spelet som granskades var ett plattformsspel där spelaren styrde en karaktär med ett visst antal liv och målet var att nå slutet av banan.
 Under speletsgång möter spelaren fiender som kan skada spelaren om de kolliderar.
 
-Projektet vi granskat, vilka som gjort det kanske vi ska skriva?
-
 \subsection{Kommentering}
 Koden saknade nästan helt kommentarer vilket gjorde det väldigt svårt att förstå vad kodstyckena gjorde.
-
+Detta är även ett krav i projektbeskrivningen då Doxygen ska användas för att generera dokumentation.
 
 \subsection{Const ref}
-Koden saknade const och ref i sina funktioner, detta kan göra att koden gör saker man inte tänkt och kan vara väldigt svårt och tidskrävande att lägga till i slutet av projektet. Programmet tar även mer minne då den kommer skapa kopior till alla istället för att skicka referenser.
+Koden saknade const och ref i sina funktioner, detta kan göra att koden gör saker man inte tänkt och kan vara väldigt svårt och tidskrävande att lägga till i slutet av projektet. 
+Programmet tar även mer minne då den kommer skapa kopior till alla istället för att skicka referenser.
 
 \subsection{Kodupprepning}
 De hade några funktioner i sina klasser som var väldigt snarlika t.ex, i Move funktioner för player kallar de på Left() och Right() beroende på om användaren klickar på höger eller vänster piltangent. Left och right funktionerna gör dock i princip samma sak, ändrar på samma värden men till olika saker. Ett förslag hade varit att ha det i samma funktion men ta någon parameter som avgör vad som ändras enligt Don't repeat yourself principen.
 
+Visa funktioner finns i flera klasser men är inte virtuella, exempelvis funktionen getSprite finns i både block och player klassen och dessa klasser ärver från klassen object.
+Förslagsvis hade funktionen då placerats i object klassen, samma sak gäller för variabeln sprite som även den finns i båda klasserna.
+
 \subsection{Variabelnamn}
 Player har en variabel som heter 'On\_ground' samt en variabel som heter 'is\_jumping'. När vi granskade deras kod innan mötet tänkte vi bara att dessa variabler var motsattsen mot varandra men visade sig att 'on\_ground' hade att göra med vilket håll gravitationen var riktad. Detta missförstånd hade kunnat undvikas vid bättre variabelnamn kanske 'gravity\_down' istället för 'on\_ground', eller kommentering som göra att en ny läsare av koden kan förstå vad som menas.
 
+\subsection{Positiv feedback}
+
+\subsubsection{Design}
+De har följt sin design väldigt bra, vilket tyder på att de tänkt igenom projektet ordenligt innan de började.
+
+\subsubsection{Relevanta klasser och arv}
+Generellt har beställargruppen fått till bra klasstrukturer och arv.
 
 
 
@@ -61,7 +70,9 @@ däribland snake\_case och camelCase vilket gjorde koden jobbigare att läsa då
 Detta är något vi efter påpekan ska gå igenom och fixa så att det är samma standard över hela projektet.
 
 \subsection{Projektiler}
-Våra projektiler kan för tillfället bara träffa enemies, hur ska då enemies skjuta på spelaren. Vi hade inte kommit tillräckligt långt i vårt spel och har itne implementerat detta än.
+Beställargruppen påpekade att våra projektiler bara kan träffa enemies just nu och att vi i vår designspecifikation har sagt att enemies också ska kunna skjuta på spelaren.
+Anledningen till detta är att vi inte hade kommit tillräckligt lång i spelet för att ha implementerat det ännu.
+Detta kommer dock implementeras inom de närmaste dagarna.
 
 \subsection{Testa Programmet}
 Beställargruppen påpekade att det inte fanns någon instruktion hur man körde programmet.
