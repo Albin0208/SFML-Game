@@ -13,7 +13,7 @@ public:
 
     void update(sf::Time const& time, Game& game) override;
 
-    int attack(sf::Time const& time) override;
+    int attack() override;
 
     sf::Vector2f const& get_pos();
 

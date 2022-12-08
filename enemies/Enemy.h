@@ -16,7 +16,7 @@ public:
 
     void update(sf::Time const& time, Game& game) override = 0;
 
-    int attack(sf::Time const& time) override = 0;
+    int attack() override = 0;
 
     virtual void take_damage(int damage) = 0;
 

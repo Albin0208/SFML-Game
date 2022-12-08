@@ -14,7 +14,7 @@ public:
 
     void update(const sf::Time &time, Game &game) override;
 
-    int attack(sf::Time const& time) override;
+    int attack() override;
 
 protected:
     void set_animations() override;

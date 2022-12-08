@@ -2,12 +2,10 @@
 // Created by albin on 2022-12-05.
 //
 
+#include <iostream>
 #include "SlowEnemy.h"
 #include "../TextureManager.h"
 #include "../Projectile.h"
-
-#include <utility>
-#include <iostream>
 
 SlowEnemy::SlowEnemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos)
     : Enemy(position, speed, player_pos) {
@@ -52,32 +50,29 @@ void SlowEnemy::update(sf::Time const& time, Game& game) {
     hitbox.setPosition(position);
     sprite.setPosition({hitbox.getPosition().x - hitbox.getSize().x / 2.4f, hitbox.getPosition().y - hitbox.getSize().y / 4});
 
-
-
-    for (auto& o : game.collides_with(*this)) {
-        // TODO: Take damage from player projectiles
+//    for (auto& o : game.collides_with(*this)) {
+//        // TODO: Take damage from player projectiles
 //        if (auto e = dynamic_cast<Projectile*>(o.get())) {
-//            std::cout << "Enemy hit" << std::endl;
-//            health -= e->attack(time);
-
-//            if (health <= 0) {
-//                std::cout << "dead" << "\n";
-//                alive = false;
-//                animation_manager.kill();
-//            }
-//        position = hitbox.getPosition() - dir * speed * time.asSeconds();
-//        hitbox.setPosition(position);
+//            health -= o.get()->attack(time);
+//            std::cout << health << "\n";
+//
+////            if (health <= 0) {
+////                std::cout << "dead" << "\n";
+////                alive = false;
+////                animation_manager.kill();
+////            }
+////        position = hitbox.getPosition() - dir * speed * time.asSeconds();
+////        hitbox.setPosition(position);
 //        }
-    }
+//    }
     if (health <= 0) {
-        std::cout << "dead" << "\n";
         alive = false;
         animation_manager.kill();
         game.enemy_killed();
     }
 }
 
-int SlowEnemy::attack(sf::Time const& time) {
+int SlowEnemy::attack() {
     if (attack_timer.getElapsedTime().asMilliseconds() > attack_timer_max) {
         attacking = true;
         attack_timer.restart();
@@ -96,5 +91,4 @@ void SlowEnemy::set_animations() {
 
 void SlowEnemy::take_damage(int damage) {
     health -= damage;
-    std::cout << health << "\n";
 }

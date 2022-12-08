@@ -16,9 +16,18 @@ public:
 
     void update(const sf::Time &time, Game &game) override = 0;
     void render(sf::RenderWindow &window) override;
-    virtual int attack(sf::Time const& time) = 0;
+
+    /**
+     * Make the object attack
+     *
+     * @return How much damage the attack did
+     */
+    virtual int attack() = 0;
 
 protected:
+    /**
+     * Set up all the animation for the movable object
+     */
     virtual void set_animations() = 0;
 
     sf::Clock attack_timer;

@@ -13,7 +13,7 @@ bool Wave::is_over() const {
     return enemy_count == 0;
 }
 
-void Wave::create(sf::Vector2f const& player_pos) {
+vector<shared_ptr<GameObject>>& Wave::create(sf::Vector2f const& player_pos) {
     wave_number++;
 
     std::random_device rd;     // Only used once to initialise (seed) engine
@@ -22,19 +22,15 @@ void Wave::create(sf::Vector2f const& player_pos) {
     std::uniform_int_distribution<int> HeRandom(0,HEIGHT);
 
 
-    for(int i=0; i < wave_number; i++){
+    for(int i=0; i < wave_number; ++i){
         sf::Vector2f pos {static_cast<float>(wiRandom(rng)), static_cast<float>(HeRandom(rng))};
         enemies.emplace_back(std::make_shared<SlowEnemy>(pos, 75.f, player_pos));
-        enemy_count++;
+        ++enemy_count;
     }
-//    std::cout << enemy_count << "\n";
-}
 
-vector<shared_ptr<GameObject>>& Wave::get_enemies() {
     return enemies;
 }
 
 void Wave::enemy_killed() {
     --enemy_count;
-    std::cout << enemy_count << "\n";
 }

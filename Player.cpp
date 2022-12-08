@@ -66,20 +66,14 @@ void Player::update(sf::Time const& time, Game& game) {
     if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
         if (attack_timer.getElapsedTime().asMilliseconds() > attack_timer_max) {
             attack_timer.restart();
-            sf::Vector2f mpos{sf::Mouse::getPosition(*game.window)};
+            sf::Vector2f mouse_pos{sf::Mouse::getPosition(*game.window)};
 
-            //projectile-vector is mouse-player vectors
-            sf::Vector2f prodir{mpos - position};
-            //std::cout << prodir.x << " " << prodir.y << std::endl;
+            sf::Vector2f projectile_dir{mouse_pos - position};
 
-            //normalize the projectile-direction-vector
-//            prodir = sf::Vector2f{prodir.x / (abs(prodir.x) + abs(prodir.y)),
-//                                  prodir.y / (abs(prodir.x) + abs(prodir.y))};
+            // Normalize the projectile-direction-vector
+            projectile_dir /= static_cast<float>(sqrt(pow(projectile_dir.x, 2) + pow(projectile_dir.y, 2)));
 
-             prodir /= static_cast<float>(sqrt(pow(prodir.x, 2) + pow(prodir.y, 2)));
-
-            game.add(std::make_shared<Projectile>(position, 300.f, prodir, 40));
-            //game.add(std::make_shared<Projectile>(position, 300.f, {1, 1}, 40));
+            game.add(std::make_shared<Projectile>(position, 300.f, projectile_dir, 40));
         }
     }
 
@@ -102,8 +96,8 @@ void Player::update(sf::Time const& time, Game& game) {
 
     for (auto& o : game.collides_with(*this)) {
         // TODO: Do some stuff on collision depending on what type it is
-        if (auto e = dynamic_cast<Enemy*>(o.get())) {
-            health -= e->attack(time);
+        if (auto e = std::dynamic_pointer_cast<Enemy>(o)) {
+            health -= e->attack();
 
             // We have 0 health, the game is over
             if (health <= 0)
@@ -120,7 +114,7 @@ sf::Vector2f const& Player::get_pos() {
     return position;
 }
 
-int Player::attack(sf::Time const& time) {
+int Player::attack() {
     return 0;
 }
 

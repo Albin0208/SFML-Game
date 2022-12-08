@@ -12,9 +12,9 @@ public:
     Projectile(sf::Vector2f const& position, float speed, sf::Vector2f const& direction, int damage);
     ~Projectile() override = default;
 
-    void update(const sf::Time &time, Game &game) override;
-    void render(sf::RenderWindow &window) override;
-    int attack(sf::Time const& time) override;
+    void update(const sf::Time& time, Game& game) override;
+    void render(sf::RenderWindow& window) override;
+    int attack() override;
 
 protected:
     void set_animations() override;

@@ -10,8 +10,6 @@ AnimationManager::AnimationManager() : last_animation{nullptr}, priority_animati
 AnimationManager::~AnimationManager() {
     for (auto& a : animations)
         delete a.second;
-    delete priority_animation;
-    delete last_animation;
 }
 
 void AnimationManager::play(std::string const& key, sf::Sprite& sprite, bool priority) {

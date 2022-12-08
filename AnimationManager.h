@@ -39,9 +39,8 @@ private:
                         static_cast<int>(sprite_size.y));
             }
         }
-        ~Animation() {
-//            delete texture;
-        }
+
+        ~Animation() = default;
 
         bool const& update(sf::Sprite& sprite) {
             current_time = clock.getElapsedTime().asSeconds();

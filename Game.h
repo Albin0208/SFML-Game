@@ -10,7 +10,6 @@
 
 #include "common.h"
 #include "Wave.h"
-//#include "SFML/System.hpp"
 
 class Player;
 class GameObject;
@@ -18,7 +17,7 @@ class GameObject;
 class Game {
 public:
     Game();
-    ~Game();
+    ~Game() = default;
 
     bool is_game_over{false};
     /**
@@ -49,10 +48,19 @@ public:
      */
     vector<std::shared_ptr<GameObject>> collides_with(GameObject& obj);
 
+    /**
+     * Get a reference to the player position
+     *
+     * @return The player position
+     */
     sf::Vector2f const& get_player_pos();
-    sf::RenderWindow* window;
 
+    /**
+     * Tell the game that a enemy has been killed
+     */
     void enemy_killed();
+
+    sf::RenderWindow* window;
 
 private:
     vector<std::shared_ptr<GameObject>> objects;
