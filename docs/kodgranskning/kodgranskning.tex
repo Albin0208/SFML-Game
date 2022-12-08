@@ -1,0 +1,57 @@
+\documentclass{TDP005mall}
+
+\usepackage{graphicx}
+\usepackage{float}
+
+\newcommand{\version}{Version 1.0}
+\author{Albin Dahlén, \url{albda746@student.liu.se}\\
+  Filip Ingvarsson, \url{filin764@student.liu.se}}
+\title{Kodgranskningsprotokoll}
+\date{2022-12-08}
+\rhead{Albin Dahlén\\
+Filip Ingvarsson}
+
+
+\begin{document}
+\projectpage
+\section{Revisionshistorik}
+\begin{table}[!h]
+\begin{tabularx}{\linewidth}{|l|X|l|}
+\hline
+Ver. & Revisionsbeskrivning & Datum \\\hline
+1.0 & Första utkast & 22-12-08 \\\hline
+\end{tabularx}
+\end{table}
+
+\section{Möte}
+Tid, plats förberedelse etc
+
+\section{Granskat Projekt}
+Projektet vi granskat, vilka som gjort det kanske vi ska skriva?
+\subsection{Kommentering}
+Kommentering av koden saknades på många ställen
+
+\subsection{Const ref}
+Väldigt lite använding av const och referenser
+
+\subsection{Kodupprepning}
+Player::left()
+Player::right()
+
+\subsection{Variabelnamn}
+On\_ground kan skapa förvirring om man inte är insatt i projektet, bättre variabel namn eller bättre kommentering hade löst detta
+
+
+\section{Vårat Projekt}
+\subsection{Kommentering}
+Dåligt kommenterat på vissa ställen, andras ställen hade dock bra kommentering
+\subsection{Snake och camel-case}
+Blandat olika kodstilar vilket kan göra koden svårare att läsa
+
+\subsection{Projektiler}
+Våra projektiler kan för tillfället bara träffa enemies, hur ska då enemies skjuta på spelaren. Vi hade inte kommit tillräckligt långt i vårt spel och har itne implementerat detta än.
+
+\subsection{Testa Programmet}
+Inte nån read-me om hur man ska köra programmet, vi har jobbat via clion och de via vscode/terminalen.
+
+\end{document}
