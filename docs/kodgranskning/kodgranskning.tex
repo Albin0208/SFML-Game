@@ -35,12 +35,10 @@ Kommentering av koden saknades på många ställen
 Väldigt lite använding av const och referenser
 
 \subsection{Kodupprepning}
-Player::left()
-Player::right()
+De hade några funktioner i sina klasser som var väldigt snarlika t.ex, i Move funktioner för player kallar de på Left() och Right() beroende på om användaren klickar på höger eller vänster piltangent. Left och right funktionerna gör dock i princip samma sak, ändrar på samma värden men till olika saker. Ett förslag hade varit att ha det i samma funktion men ta någon parameter som avgör vad som ändras enligt Don't repeat yourself principen.
 
 \subsection{Variabelnamn}
-On\_ground kan skapa förvirring om man inte är insatt i projektet, bättre variabel namn eller bättre kommentering hade löst detta
-
+Player har en variabel som heter 'On\_ground' samt en variabel som heter 'is\_jumping'. När vi granskade deras kod innan mötet tänkte vi bara att dessa variabler var motsattsen mot varandra men visade sig att 'on\_ground' hade att göra med vilket håll gravitationen var riktad. Detta missförstånd hade kunnat undvikas vid bättre variabelnamn kanske 'gravity\_down' istället för 'on\_ground', eller kommentering som göra att en ny läsare av koden kan förstå vad som menas.
 
 \section{Vårat Projekt}
 \subsection{Kommentering}
