@@ -39,7 +39,7 @@ Koden saknade nästan helt kommentarer vilket gjorde det väldigt svårt att fö
 
 
 \subsection{Const ref}
-Väldigt lite använding av const och referenser
+Koden saknade const och ref i sina funktioner, detta kan göra att koden gör saker man inte tänkt och kan vara väldigt svårt och tidskrävande att lägga till i slutet av projektet. Programmet tar även mer minne då den kommer skapa kopior till alla istället för att skicka referenser.
 
 \subsection{Kodupprepning}
 De hade några funktioner i sina klasser som var väldigt snarlika t.ex, i Move funktioner för player kallar de på Left() och Right() beroende på om användaren klickar på höger eller vänster piltangent. Left och right funktionerna gör dock i princip samma sak, ändrar på samma värden men till olika saker. Ett förslag hade varit att ha det i samma funktion men ta någon parameter som avgör vad som ändras enligt Don't repeat yourself principen.
