@@ -36,18 +36,27 @@ Under speletsgång möter spelaren fiender som kan skada spelaren om de kollider
 Koden saknade nästan helt kommentarer vilket gjorde det väldigt svårt att förstå vad kodstyckena gjorde.
 Detta är även ett krav i projektbeskrivningen då Doxygen ska användas för att generera dokumentation.
 
-\subsection{Const ref}
-Koden saknade const och ref i sina funktioner, detta kan göra att koden gör saker man inte tänkt och kan vara väldigt svårt och tidskrävande att lägga till i slutet av projektet. 
+\subsection{Const och referenser}
+Koden saknade const och referenser i sina funktioner, detta kan göra att koden gör saker man inte tänkt och kan vara väldigt svårt och tidskrävande att lägga till i slutet av projektet. 
 Programmet tar även mer minne då den kommer skapa kopior till alla istället för att skicka referenser.
 
+Flera av klasserna innehåller getters som inte är markerade const vilket de borde vara.
+
 \subsection{Kodupprepning}
-De hade några funktioner i sina klasser som var väldigt snarlika t.ex, i Move funktioner för player kallar de på Left() och Right() beroende på om användaren klickar på höger eller vänster piltangent. Left och right funktionerna gör dock i princip samma sak, ändrar på samma värden men till olika saker. Ett förslag hade varit att ha det i samma funktion men ta någon parameter som avgör vad som ändras enligt Don't repeat yourself principen.
+Beställargruppen hade några funktioner i sina klasser som var väldigt snarlika exempelvis, i Move-funktionerna för player kallar de på Left() och Right() beroende på om användaren klickar på höger eller vänster piltangent. Left och right funktionerna gör dock i princip samma sak, ändrar på samma värden men till olika saker. Ett förslag hade varit att ha det i samma funktion men ta någon parameter som avgör vad som ändras enligt Don't repeat yourself principen.
 
 Visa funktioner finns i flera klasser men är inte virtuella, exempelvis funktionen getSprite finns i både block och player klassen och dessa klasser ärver från klassen object.
 Förslagsvis hade funktionen då placerats i object klassen, samma sak gäller för variabeln sprite som även den finns i båda klasserna.
 
+\subsection{Formatering}
+Beställargruppen använder sig av olika kodstilar, exempelvis i state machine har de blandat PascalCase och camelCase här borde bara en av dessa använts. 
+Sedan i player-delen har de blandat snake\_case samt om snake\_case skrivs med små och stora bokstäver i varje ord och slutligen blandat in funktions namn som ibland har stor bokstav och ibland liten bokstav.
+
 \subsection{Variabelnamn}
 Player har en variabel som heter 'On\_ground' samt en variabel som heter 'is\_jumping'. När vi granskade deras kod innan mötet tänkte vi bara att dessa variabler var motsattsen mot varandra men visade sig att 'on\_ground' hade att göra med vilket håll gravitationen var riktad. Detta missförstånd hade kunnat undvikas vid bättre variabelnamn kanske 'gravity\_down' istället för 'on\_ground', eller kommentering som göra att en ny läsare av koden kan förstå vad som menas.
+
+\subsection{Klasser och arv}
+Player klassen har ett multipelt arv av både object och sf::Sprite, vi ser ingen anledning till att göra på detta sätt och tycker att det skulle generera mer problem än vad det skulle hjälpa dem. De använder heller aldrig de funktioner de får från sprite klassen någon gång.
 
 \subsection{Positiv feedback}
 
