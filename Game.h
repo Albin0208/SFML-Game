@@ -18,6 +18,7 @@ class GameObject;
 class Game {
 public:
     Game();
+    ~Game();
 
     bool is_game_over{false};
     /**
@@ -50,6 +51,9 @@ public:
 
     sf::Vector2f const& get_player_pos();
     sf::RenderWindow* window;
+
+    void enemy_killed();
+
 private:
     vector<std::shared_ptr<GameObject>> objects;
     Wave wave;

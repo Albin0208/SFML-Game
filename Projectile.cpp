@@ -36,8 +36,9 @@ void Projectile::update(sf::Time const& time, Game& game) {
 
     for (auto& o : game.collides_with(*this)) {
         // TODO: Do some stuff on collision depending on what type it is
-        if (dynamic_cast<Enemy*>(o.get())) {
+        if (auto e = dynamic_cast<Enemy*>(o.get())) {
             // Kill the projectile
+            e->take_damage(damage);
             alive=false;
         }
     }

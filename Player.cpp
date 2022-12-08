@@ -14,13 +14,10 @@ Player::Player(sf::Vector2f const& position, float speed)
     set_animations();
     attack_timer_max = 500;
     hitbox.setSize({100, 135});
-    //sprite.setTexture(*TextureManager::get("run_player.png"));
     sprite.setScale({0.15f, 0.15f});
 
     animation_manager.play("idle", sprite);
 
-    //animations.find("idle")->second.update(0, 0, false, sprite);
-    //sprite.setTextureRect(animations.find("walk")->second.uv_rect);
     hitbox.setSize({sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 1.5f});
 }
 
@@ -76,9 +73,10 @@ void Player::update(sf::Time const& time, Game& game) {
             //std::cout << prodir.x << " " << prodir.y << std::endl;
 
             //normalize the projectile-direction-vector
-            prodir = sf::Vector2f{prodir.x / (abs(prodir.x) + abs(prodir.y)),
-                                  prodir.y / (abs(prodir.x) + abs(prodir.y))};
+//            prodir = sf::Vector2f{prodir.x / (abs(prodir.x) + abs(prodir.y)),
+//                                  prodir.y / (abs(prodir.x) + abs(prodir.y))};
 
+             prodir /= static_cast<float>(sqrt(pow(prodir.x, 2) + pow(prodir.y, 2)));
 
             game.add(std::make_shared<Projectile>(position, 300.f, prodir, 40));
             //game.add(std::make_shared<Projectile>(position, 300.f, {1, 1}, 40));
@@ -106,7 +104,7 @@ void Player::update(sf::Time const& time, Game& game) {
         // TODO: Do some stuff on collision depending on what type it is
         if (auto e = dynamic_cast<Enemy*>(o.get())) {
             health -= e->attack(time);
-            std::cout << health << std::endl;
+
             // We have 0 health, the game is over
             if (health <= 0)
                 game.is_game_over = true;

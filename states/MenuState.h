@@ -16,7 +16,7 @@ public:
      *
      * @param resume The state to resume to
      */
-    explicit MenuState(std::shared_ptr<State> resume);
+    explicit MenuState(std::shared_ptr<State> const& resume);
 
     /**
      * Handle a keypress

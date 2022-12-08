@@ -14,11 +14,10 @@ SlowEnemy::SlowEnemy(sf::Vector2f const& position, float speed, sf::Vector2f con
     set_animations();
     attack_timer_max = 500;
     hitbox.setSize({100, 135});
-    //sprite.setTexture(*TextureManager::get("slow_enemy.png"));
     sprite.setScale({0.3f, 0.3f});
 
     animation_manager.play("walk", sprite);
-    //sprite.setTextureRect(animations.find("walk")->second.uv_rect);
+
     hitbox.setSize({sprite.getGlobalBounds().width / 1.8f, sprite.getGlobalBounds().height / 1.3f});
 }
 
@@ -57,16 +56,24 @@ void SlowEnemy::update(sf::Time const& time, Game& game) {
 
     for (auto& o : game.collides_with(*this)) {
         // TODO: Take damage from player projectiles
-        if (auto e = dynamic_cast<Projectile*>(o.get())) {
-            health -= e->attack(time);
+//        if (auto e = dynamic_cast<Projectile*>(o.get())) {
+//            std::cout << "Enemy hit" << std::endl;
+//            health -= e->attack(time);
 
-            if (health <= 0) {
-                alive = false;
-                animation_manager.kill();
-            }
+//            if (health <= 0) {
+//                std::cout << "dead" << "\n";
+//                alive = false;
+//                animation_manager.kill();
+//            }
 //        position = hitbox.getPosition() - dir * speed * time.asSeconds();
 //        hitbox.setPosition(position);
-        }
+//        }
+    }
+    if (health <= 0) {
+        std::cout << "dead" << "\n";
+        alive = false;
+        animation_manager.kill();
+        game.enemy_killed();
     }
 }
 
@@ -85,4 +92,9 @@ void SlowEnemy::set_animations() {
                                     sf::Vector2u{18, 1}, 3 / 60.f);
     animation_manager.add_animation("attack", TextureManager::get("mino_attack2.png"),
                                     sf::Vector2u{11, 1}, 3 / 60.f);
+}
+
+void SlowEnemy::take_damage(int damage) {
+    health -= damage;
+    std::cout << health << "\n";
 }

@@ -40,7 +40,7 @@ private:
             }
         }
         ~Animation() {
-            delete texture;
+//            delete texture;
         }
 
         bool const& update(sf::Sprite& sprite) {

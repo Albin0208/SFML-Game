@@ -3,11 +3,13 @@
 //
 
 #include <random>
+#include <iostream>
 
 #include "Wave.h"
 #include "enemies/SlowEnemy.h"
 
 bool Wave::is_over() const {
+//    std::cout << enemy_count << "\n";
     return enemy_count == 0;
 }
 
@@ -25,6 +27,7 @@ void Wave::create(sf::Vector2f const& player_pos) {
         enemies.emplace_back(std::make_shared<SlowEnemy>(pos, 75.f, player_pos));
         enemy_count++;
     }
+//    std::cout << enemy_count << "\n";
 }
 
 vector<shared_ptr<GameObject>>& Wave::get_enemies() {
@@ -32,5 +35,6 @@ vector<shared_ptr<GameObject>>& Wave::get_enemies() {
 }
 
 void Wave::enemy_killed() {
-    enemy_count--;
+    --enemy_count;
+    std::cout << enemy_count << "\n";
 }

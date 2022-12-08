@@ -6,7 +6,7 @@
 #include "MenuState.h"
 #include "GameState.h"
 
-MenuState::MenuState(std::shared_ptr<State> resume) : selected{0}, enter_pressed{false} {
+MenuState::MenuState(std::shared_ptr<State> const& resume) : selected{0}, enter_pressed{false} {
     font.loadFromFile(FONT_PATH);
     // If the game is paused
     if (resume)

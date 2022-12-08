@@ -2,17 +2,11 @@ cmake_minimum_required(VERSION 3.21)
 project(TDP005 LANGUAGES CXX)
 
 include(FetchContent)
-#FetchContent_Declare(SFML
-#        GIT_REPOSITORY https://github.com/SFML/SFML.git
-#        GIT_TAG 2.6.x)
-#FetchContent_MakeAvailable(SFML)
-#set(BUILD_SHARED_LIBS OFF)
-FetchContent_Declare(
-        SFML
+FetchContent_Declare(SFML
         GIT_REPOSITORY https://github.com/SFML/SFML.git
-        GIT_TAG 2.5.1
-)
+        GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
+
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED true)

@@ -18,6 +18,8 @@ public:
 
     int attack(sf::Time const& time) override = 0;
 
+    virtual void take_damage(int damage) = 0;
+
 protected:
     void set_animations() override = 0;
 
