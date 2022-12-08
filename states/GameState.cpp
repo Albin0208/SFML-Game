@@ -15,7 +15,8 @@ GameState::GameState() {
     //game.add(std::make_shared<SlowEnemy>(sf::Vector2f{200, 400}, 75.f, player->get_pos()));
 }
 
-std::shared_ptr<State> GameState::update(sf::Time const& time, sf::RenderWindow const& window) {
+std::shared_ptr<State> GameState::update(sf::Time const& time, sf::RenderWindow& window) {
+    game.window = &window;
     game.update(time);
 
     if (game.is_game_over)

@@ -19,7 +19,7 @@ public:
      * @param time Time since last update
      * @return A pointer to a state
      */
-    std::shared_ptr<State> update(const sf::Time& time, sf::RenderWindow const& window) override;
+    std::shared_ptr<State> update(const sf::Time& time, sf::RenderWindow& window) override;
 
     /**
      * Render the gamestate
@@ -27,7 +27,7 @@ public:
      */
     void render(sf::RenderWindow& target) override;
 private:
-    Game game{};
+    Game game;
 };
 
 

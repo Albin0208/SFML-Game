@@ -39,7 +39,7 @@ void GameOverState::on_key_press(sf::Keyboard::Key key) {
     }
 }
 
-std::shared_ptr<State> GameOverState::update(sf::Time const& time, sf::RenderWindow const&) {
+std::shared_ptr<State> GameOverState::update(sf::Time const& time, sf::RenderWindow&) {
     for (size_t i = 0; i < options.size(); i++) {
         Option& o = options[i];
 

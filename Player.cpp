@@ -7,10 +7,12 @@
 #include "Player.h"
 #include "enemies/SlowEnemy.h"
 #include "TextureManager.h"
+#include "Projectile.h"
 
 Player::Player(sf::Vector2f const& position, float speed)
     : MovableObject(position, speed), health{100} {
     set_animations();
+    attack_timer_max = 500;
     hitbox.setSize({100, 135});
     //sprite.setTexture(*TextureManager::get("run_player.png"));
     sprite.setScale({0.15f, 0.15f});
@@ -63,7 +65,25 @@ void Player::update(sf::Time const& time, Game& game) {
     }
 
     animation_manager.play(type, sprite);
-//    animations.find(type)->second.update(0, time.asSeconds(), false, sprite);
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+        if (attack_timer.getElapsedTime().asMilliseconds() > attack_timer_max) {
+            attack_timer.restart();
+            sf::Vector2f mpos{sf::Mouse::getPosition(*game.window)};
+
+            //projectile-vector is mouse-player vectors
+            sf::Vector2f prodir{mpos - position};
+            //std::cout << prodir.x << " " << prodir.y << std::endl;
+
+            //normalize the projectile-direction-vector
+            prodir = sf::Vector2f{prodir.x / (abs(prodir.x) + abs(prodir.y)),
+                                  prodir.y / (abs(prodir.x) + abs(prodir.y))};
+
+
+            game.add(std::make_shared<Projectile>(position, 300.f, prodir, 40));
+            //game.add(std::make_shared<Projectile>(position, 300.f, {1, 1}, 40));
+        }
+    }
 
     // Check for moving out if window
     // Left collision

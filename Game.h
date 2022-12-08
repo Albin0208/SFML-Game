@@ -17,7 +17,7 @@ class GameObject;
 
 class Game {
 public:
-    Game() = default;
+    Game();
 
     bool is_game_over{false};
     /**
@@ -49,6 +49,7 @@ public:
     vector<std::shared_ptr<GameObject>> collides_with(GameObject& obj);
 
     sf::Vector2f const& get_player_pos();
+    sf::RenderWindow* window;
 private:
     vector<std::shared_ptr<GameObject>> objects;
     Wave wave;

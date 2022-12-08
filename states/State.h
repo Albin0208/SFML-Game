@@ -32,7 +32,7 @@ public:
      * @param window A reference to the window
      * @return A pointer to a state if the state should be changed
      */
-    virtual shared_ptr<State> update(sf::Time const& time, sf::RenderWindow const& window) = 0;
+    virtual shared_ptr<State> update(sf::Time const& time, sf::RenderWindow& window) = 0;
 
     /**
      * Render the state
@@ -55,7 +55,7 @@ public:
      * Update the exit state
      * @return A null pointer meaning the program should end
      */
-    std::shared_ptr<State> update(sf::Time const&, sf::RenderWindow const&) override { return nullptr; }
+    std::shared_ptr<State> update(sf::Time const&, sf::RenderWindow&) override { return nullptr; }
     /**
      * Render the exit state
      */

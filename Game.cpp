@@ -2,6 +2,7 @@
 // Created by albin on 2022-12-01.
 //
 
+#include <iostream>
 #include "Game.h"
 #include "Player.h"
 
@@ -36,11 +37,14 @@ void Game::add(std::shared_ptr<GameObject> const& object) {
 std::vector<std::shared_ptr<GameObject>> Game::collides_with(GameObject& obj) {
     std::vector<std::shared_ptr<GameObject>> collided_with{};
 
+    std::cout << objects.size() << std::endl;
+
     for (auto& o : objects) {
         // Check for self collision
-        if (o.get() == &obj)
+        if (o.get() == &obj || !o->is_alive())
             continue;
         // Check obj collides with any object
+
         if (obj.checkCollision(*o))
             collided_with.push_back(o);
     }
@@ -51,4 +55,8 @@ std::vector<std::shared_ptr<GameObject>> Game::collides_with(GameObject& obj) {
 sf::Vector2f const& Game::get_player_pos() {
     Player* o{dynamic_cast<Player*>(objects.at(0).get())};
     return o->get_pos();
+}
+
+Game::Game() {
+
 }

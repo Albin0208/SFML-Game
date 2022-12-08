@@ -19,11 +19,8 @@ public:
     int attack(sf::Time const& time) override = 0;
 
 protected:
-    sf::Clock attack_timer;
-
     void set_animations() override = 0;
 
-    int32_t attack_timer_max;
     sf::Vector2f const& player_pos;
     int health;
     float attack_speed;

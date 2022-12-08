@@ -4,6 +4,7 @@
 
 #include "SlowEnemy.h"
 #include "../TextureManager.h"
+#include "../Projectile.h"
 
 #include <utility>
 #include <iostream>
@@ -11,6 +12,7 @@
 SlowEnemy::SlowEnemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos)
     : Enemy(position, speed, player_pos) {
     set_animations();
+    attack_timer_max = 500;
     hitbox.setSize({100, 135});
     //sprite.setTexture(*TextureManager::get("slow_enemy.png"));
     sprite.setScale({0.3f, 0.3f});
@@ -55,11 +57,16 @@ void SlowEnemy::update(sf::Time const& time, Game& game) {
 
     for (auto& o : game.collides_with(*this)) {
         // TODO: Take damage from player projectiles
+        if (auto e = dynamic_cast<Projectile*>(o.get())) {
+            health -= e->attack(time);
 
-        if (health <= 0)
-            alive = false;
+            if (health <= 0) {
+                alive = false;
+                animation_manager.kill();
+            }
 //        position = hitbox.getPosition() - dir * speed * time.asSeconds();
 //        hitbox.setPosition(position);
+        }
     }
 }
 

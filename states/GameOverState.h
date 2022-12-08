@@ -28,7 +28,7 @@ public:
      * @param time Time since last update
      * @return A pointer to a state
      */
-    std::shared_ptr<State> update(sf::Time const& time, sf::RenderWindow const&) override;
+    std::shared_ptr<State> update(sf::Time const& time, sf::RenderWindow&) override;
 
     /**
      * Render the menu

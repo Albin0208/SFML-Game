@@ -18,6 +18,8 @@ public:
 
     bool const& is_done(std::string const& key);
 
+    void kill();
+
 private:
     class Animation {
     public:
@@ -36,6 +38,9 @@ private:
                         static_cast<int>(sprite_size.x),
                         static_cast<int>(sprite_size.y));
             }
+        }
+        ~Animation() {
+            delete texture;
         }
 
         bool const& update(sf::Sprite& sprite) {
