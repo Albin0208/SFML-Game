@@ -3,10 +3,10 @@
 //
 
 #include <iostream>
-#include "MenuState.h"
-#include "GameState.h"
+#include "Menu_State.h"
+#include "Game_State.h"
 
-MenuState::MenuState(std::shared_ptr<State> resume) : selected{0}, enter_pressed{false} {
+Menu_State::Menu_State(std::shared_ptr<State> const& resume) : selected{0}, enter_pressed{false} {
     font.loadFromFile(FONT_PATH);
     // If the game is paused
     if (resume)
@@ -14,12 +14,12 @@ MenuState::MenuState(std::shared_ptr<State> resume) : selected{0}, enter_pressed
 
     options.push_back(
             {sf::Text{"New Game", font, 60}, false,
-             [](){return std::make_shared<GameState>();}});
-    options.push_back({sf::Text{"Exit", font, 60}, false, [](){return std::make_shared<ExitState>();}});
+             [](){return std::make_shared<Game_State>();}});
+    options.push_back({sf::Text{"Exit", font, 60}, false, [](){return std::make_shared<Exit_State>();}});
 
 }
 
-void MenuState::on_key_press(sf::Keyboard::Key key) {
+void Menu_State::on_key_press(sf::Keyboard::Key key) {
     switch (key) {
         case sf::Keyboard::Down:
         case sf::Keyboard::S:
@@ -36,10 +36,12 @@ void MenuState::on_key_press(sf::Keyboard::Key key) {
         case sf::Keyboard::Return:
             enter_pressed = true;
             break;
+        default:
+            break;
     }
 }
 
-std::shared_ptr<State> MenuState::update(sf::Time const& time, sf::RenderWindow const&) {
+std::shared_ptr<State> Menu_State::update(sf::Time const& time, sf::RenderWindow&) {
     for (size_t i = 0; i < options.size(); i++) {
         Option& o = options[i];
 
@@ -56,7 +58,7 @@ std::shared_ptr<State> MenuState::update(sf::Time const& time, sf::RenderWindow 
     return nullptr;
 }
 
-void MenuState::render(sf::RenderWindow& target) {
+void Menu_State::render(sf::RenderWindow& target) {
     float y{100};
     auto windowSize = target.getSize();
 

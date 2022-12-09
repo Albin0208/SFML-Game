@@ -9,13 +9,16 @@
 #include <memory>
 
 #include "common.h"
-//#include "SFML/System.hpp"
+#include "Wave.h"
 
 class Player;
-class GameObject;
+class Game_Object;
 
 class Game {
 public:
+    Game();
+    ~Game() = default;
+
     bool is_game_over{false};
     /**
      * Update the game
@@ -35,7 +38,7 @@ public:
      * Add a gameobject to the game
      * @param object The object to add
      */
-    void add(std::shared_ptr<GameObject> const& object);
+    void add(std::shared_ptr<Game_Object> const& object);
 
     /**
      * Check what object a object collides with
@@ -43,10 +46,36 @@ public:
      * @param obj The object to check for collision on
      * @return A vector of the the object collided with
      */
-    vector<std::shared_ptr<GameObject>> collides_with(GameObject& obj);
+    vector<std::shared_ptr<Game_Object>> collides_with(Game_Object& obj) const;
+
+    /**
+     * Get a reference to the player position
+     *
+     * @return The player position
+     */
+    sf::Vector2f const& get_player_pos() const;
+
+    /**
+     * Tell the game that a enemy has been killed
+     */
+
+    void enemy_killed();
+
+    sf::RenderWindow* window;
+
+    int get_points() const;
+
+    void add_points(int points);
 
 private:
-    vector<std::shared_ptr<GameObject>> objects;
+    vector<std::shared_ptr<Game_Object>> objects;
+    Wave wave;
+    sf::Clock survived_clock;
+
+    sf::Time time_survived;
+
+    sf::Font font;
+    int points;
 };
 
 

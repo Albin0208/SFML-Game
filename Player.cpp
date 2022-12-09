@@ -5,10 +5,21 @@
 #include <cmath>
 #include <iostream>
 #include "Player.h"
-#include "enemies/SlowEnemy.h"
+#include "enemies/Slow_Enemy.h"
+#include "Texture_Manager.h"
 #include "Projectile.h"
 
-Player::Player(sf::Vector2f const& position, float speed) : MovableObject(position, speed), health{100},attack_speed{500} {}
+Player::Player(sf::Vector2f const& position, float speed)
+    : Movable_Object(position, speed), health{100} {
+    set_animations();
+    attack_timer_max = 500;
+    hitbox.setSize({100, 135});
+    sprite.setScale({0.15f, 0.15f});
+
+    animation_manager.play("idle", sprite);
+
+    hitbox.setSize({sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 1.5f});
+}
 
 static sf::Vector2f find_direction() {
     sf::Vector2f direction{0, 0};
@@ -31,10 +42,40 @@ static sf::Vector2f find_direction() {
     return direction;
 }
 
-void Player::update(sf::Time const& time, Game& game,sf::RenderWindow const& window) {
+void Player::update(sf::Time const& time, Game& game) {
     auto dir{find_direction()};
     position += dir * speed * time.asSeconds();
 
+    if (dir.x == 0 && dir.y == 0)
+        type = "idle";
+    if (dir.x > 0 || dir.y != 0 && face_right) {
+        sprite.setOrigin(0.f, 0.f);
+        sprite.setScale(0.15f, 0.15f);
+        face_right = true;
+        type = "walk";
+    }
+    if (dir.x < 0 || dir.y != 0 && !face_right) {
+        sprite.setOrigin(900.f, 0.f);
+        sprite.setScale(-0.15f, 0.15f);
+        face_right = false;
+        type = "walk";
+    }
+
+    animation_manager.play(type, sprite);
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+        if (attack_timer.getElapsedTime().asMilliseconds() > attack_timer_max) {
+            attack_timer.restart();
+            sf::Vector2f mouse_pos{sf::Mouse::getPosition(*game.window)};
+
+            sf::Vector2f projectile_dir{mouse_pos - position};
+
+            // Normalize the projectile-direction-vector
+            projectile_dir /= static_cast<float>(sqrt(pow(projectile_dir.x, 2) + pow(projectile_dir.y, 2)));
+
+            game.add(std::make_shared<Projectile>(position, 300.f, projectile_dir, 40));
+        }
+    }
 
     // Check for moving out if window
     // Left collision
@@ -44,45 +85,27 @@ void Player::update(sf::Time const& time, Game& game,sf::RenderWindow const& win
     if (position.y < 0.f)
         position = {position.x, 0.f};
     // Right collision
-    if (position.x + shape.getGlobalBounds().width > WIDTH)
-        position = {WIDTH - shape.getGlobalBounds().width, position.y};
+    if (position.x + hitbox.getGlobalBounds().width > WIDTH)
+        position = {WIDTH - hitbox.getGlobalBounds().width, position.y};
     // Bottom collision
-    if (position.y + shape.getGlobalBounds().height > HEIGHT)
-        position = {position.x, HEIGHT- shape.getGlobalBounds().height};
+    if (position.y + hitbox.getGlobalBounds().height > HEIGHT)
+        position = {position.x, HEIGHT- hitbox.getGlobalBounds().height};
 
-    shape.setPosition(position);
-    sprite.setPosition(position);
+    hitbox.setPosition(position);
+    sprite.setPosition({hitbox.getPosition().x - hitbox.getSize().x / 2, hitbox.getPosition().y - hitbox.getSize().y / 4});
 
     for (auto& o : game.collides_with(*this)) {
         // TODO: Do some stuff on collision depending on what type it is
-        if (auto e = dynamic_cast<Enemy*>(o.get())) {
+        if (auto e = std::dynamic_pointer_cast<Enemy>(o)) {
             health -= e->attack();
+
             // We have 0 health, the game is over
             if (health <= 0)
                 game.is_game_over = true;
 
             // Not able to pass through an enemy
-//            position = shape.getPosition() - dir * speed * time.asSeconds();
-//            shape.setPosition(position);
-        }
-    }
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-    {
-        if (attack_timer.getElapsedTime().asMilliseconds() > attack_speed) {
-            attack_timer.restart();
-
-            //std::cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << std::endl;
-            sf::Vector2f mpos {sf::Mouse::getPosition(window)};
-
-            //projectile-vector is mouse-player vectors
-            sf::Vector2f prodir{mpos-position};
-            //std::cout << prodir.x << " " << prodir.y << std::endl;
-
-            //normalize the projectile-direction-vector
-            prodir = sf::Vector2f{prodir.x/(abs(prodir.x)+abs(prodir.y)),prodir.y/(abs(prodir.x)+abs(prodir.y))};
-            //std::cout << prodir.x << " " << prodir.y << std::endl;
-
-            game.add(std::make_shared<Projectile>(position,50.0f,prodir,40));
+//            position = hitbox.getPosition() - dir * speed * time.asSeconds();
+//            hitbox.setPosition(position);
         }
     }
 }
@@ -93,4 +116,12 @@ sf::Vector2f const& Player::get_pos() {
 
 int Player::attack() {
     return 0;
+}
+
+void Player::set_animations() {
+    // Add walk animation
+    animation_manager.add_animation("walk", Texture_Manager::get("player_angel2.png"),
+                                    sf::Vector2u{24, 1}, 2 / 60.f);
+    animation_manager.add_animation("idle", Texture_Manager::get("idle.png"),
+                                    sf::Vector2u{18, 1}, 4 / 60.f);
 }

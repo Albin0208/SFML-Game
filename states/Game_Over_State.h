@@ -2,18 +2,18 @@
 // Created by albin on 2022-12-05.
 //
 
-#ifndef TDP005_GAMEOVERSTATE_H
-#define TDP005_GAMEOVERSTATE_H
+#ifndef TDP005_GAME_OVER_STATE_H
+#define TDP005_GAME_OVER_STATE_H
 
 
 #include "State.h"
 #include "../Game.h"
-#include "MenuState.h"
+#include "Menu_State.h"
 
-class GameOverState : public State {
+class Game_Over_State : public State {
 public:
-    explicit GameOverState(Game const& game);
-    ~GameOverState() override = default;
+    explicit Game_Over_State(Game const& game);
+    ~Game_Over_State() override = default;
 
     /**
      * Handle a keypress
@@ -28,7 +28,7 @@ public:
      * @param time Time since last update
      * @return A pointer to a state
      */
-    std::shared_ptr<State> update(sf::Time const& time, sf::RenderWindow const&) override;
+    std::shared_ptr<State> update(sf::Time const& time, sf::RenderWindow&) override;
 
     /**
      * Render the menu
@@ -53,7 +53,8 @@ private:
     };
 
     std::vector<Option> options;
+    Game game;
 };
 
 
-#endif //TDP005_GAMEOVERSTATE_H
+#endif //TDP005_GAME_OVER_STATE_H

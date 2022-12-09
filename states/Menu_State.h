@@ -2,21 +2,21 @@
 // Created by albin on 2022-12-01.
 //
 
-#ifndef TDP005_MENUSTATE_H
-#define TDP005_MENUSTATE_H
+#ifndef TDP005_MENU_STATE_H
+#define TDP005_MENU_STATE_H
 
 
 #include <functional>
 #include "State.h"
 
-class MenuState : public State {
+class Menu_State : public State {
 public:
     /**
      * Create a menu
      *
      * @param resume The state to resume to
      */
-    explicit MenuState(std::shared_ptr<State> resume);
+    explicit Menu_State(std::shared_ptr<State> const& resume);
 
     /**
      * Handle a keypress
@@ -31,7 +31,7 @@ public:
      * @param time Time since last update
      * @return A pointer to a state
      */
-    std::shared_ptr<State> update(sf::Time const& time, sf::RenderWindow const&) override;
+    std::shared_ptr<State> update(sf::Time const& time, sf::RenderWindow&) override;
 
     /**
      * Render the menu
@@ -59,4 +59,4 @@ private:
 };
 
 
-#endif //TDP005_MENUSTATE_H
+#endif //TDP005_Menu_State_H

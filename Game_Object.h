@@ -2,18 +2,20 @@
 // Created by albin on 2022-12-01.
 //
 
-#ifndef TDP005_GAMEOBJECT_H
-#define TDP005_GAMEOBJECT_H
+#ifndef TDP005_GAME_OBJECT_H
+#define TDP005_GAME_OBJECT_H
 
 
 #include "common.h"
 #include "SFML/System.hpp"
 #include "Game.h"
 
-class GameObject {
+class Game;
+
+class Game_Object {
 public:
-    explicit GameObject(sf::Vector2f const& position);
-    virtual ~GameObject() = default;
+    Game_Object(sf::Vector2f const& position);
+    virtual ~Game_Object() = default;
 
     /**
      * Update the gameobject
@@ -34,17 +36,18 @@ public:
      * @param obj The object to check
      * @return If the object collide
      */
-    virtual bool checkCollision(GameObject const& obj);
+    virtual bool checkCollision(Game_Object const& obj);
 
     bool is_alive() const;
 
 protected:
-    sf::RectangleShape shape;
+    sf::RectangleShape hitbox;
     sf::Vector2f position;
     sf::Sprite sprite;
     sf::Texture texture;
     bool alive;
+    sf::Sprite sprite;
 };
 
 
-#endif //TDP005_GAMEOBJECT_H
+#endif //TDP005_GAME_OBJECT_H

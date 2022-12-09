@@ -4,17 +4,21 @@
 
 #ifndef TDP005_PROJECTILE_H
 #define TDP005_PROJECTILE_H
-#include "MovableObject.h"
+#include "Movable_Object.h"
 
 
-class Projectile : public MovableObject{
+class Projectile : public Movable_Object {
 public:
-    Projectile(const sf::Vector2f &position, float speed, sf::Vector2f const& direction,int damage);
-    //~Projectile() override = default;
+    Projectile(sf::Vector2f const& position, float speed, sf::Vector2f const& direction, int damage);
+    ~Projectile() override = default;
 
-    void update(const sf::Time &time, Game &game, sf::RenderWindow const& window) override;
-    void render(sf::RenderWindow &window) override;
+    void update(const sf::Time& time, Game& game) override;
+    void render(sf::RenderWindow& window) override;
     int attack() override;
+
+protected:
+    void set_animations() override;
+
 protected:
     sf::Vector2f direction;
     int damage;

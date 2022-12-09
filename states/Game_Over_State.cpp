@@ -5,21 +5,21 @@
 #include <iostream>
 #include <sstream>
 #include "../common.h"
-#include "GameOverState.h"
-#include "GameState.h"
+#include "Game_Over_State.h"
+#include "Game_State.h"
 
-GameOverState::GameOverState(Game const& game) : selected{0}, enter_pressed{false} {
+Game_Over_State::Game_Over_State(Game const& game) : game{game}, selected{0}, enter_pressed{false} {
     font.loadFromFile(FONT_PATH);
 
     options.push_back(
             {sf::Text{"New Game", font, 60}, false,
-             [](){return std::make_shared<GameState>();}});
+             [](){return std::make_shared<Game_State>();}});
     options.push_back({sf::Text{"Exit", font, 60}, false,
-                       [](){return std::make_shared<ExitState>();}});
+                       [](){return std::make_shared<Exit_State>();}});
 
 }
 
-void GameOverState::on_key_press(sf::Keyboard::Key key) {
+void Game_Over_State::on_key_press(sf::Keyboard::Key key) {
     switch (key) {
         case sf::Keyboard::Down:
         case sf::Keyboard::S:
@@ -39,7 +39,7 @@ void GameOverState::on_key_press(sf::Keyboard::Key key) {
     }
 }
 
-std::shared_ptr<State> GameOverState::update(sf::Time const& time, sf::RenderWindow const&) {
+std::shared_ptr<State> Game_Over_State::update(sf::Time const& time, sf::RenderWindow&) {
     for (size_t i = 0; i < options.size(); i++) {
         Option& o = options[i];
 
@@ -57,7 +57,7 @@ std::shared_ptr<State> GameOverState::update(sf::Time const& time, sf::RenderWin
 }
 
 
-void GameOverState::render(sf::RenderWindow& target) {
+void Game_Over_State::render(sf::RenderWindow& target) {
     float y{100};
     auto windowSize = target.getSize();
 
@@ -70,7 +70,7 @@ void GameOverState::render(sf::RenderWindow& target) {
     // TODO: Display score and waves survived
     std::stringstream ss{};
     ss << "Points: ";
-    ss << 100;
+    ss << game.get_points();
     t.setString(ss.str());
     t.setCharacterSize(40);
     t.setPosition((windowSize.x - t.getLocalBounds().width) / 2, y);
