@@ -73,11 +73,16 @@ private:
     vector<std::shared_ptr<Game_Object>> objects;
     Wave wave;
     sf::Clock survived_clock;
+    shared_ptr<Player> player;
 
     sf::Time time_survived;
 
     sf::Font font;
     int points;
+
+    // Healthbar components
+    sf::RectangleShape back;
+    sf::RectangleShape bar;
 };
 
 
