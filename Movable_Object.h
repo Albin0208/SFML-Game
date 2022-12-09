@@ -2,17 +2,17 @@
 // Created by albin on 2022-12-05.
 //
 
-#ifndef TDP005_MOVABLEOBJECT_H
-#define TDP005_MOVABLEOBJECT_H
+#ifndef TDP005_MOVABLE_OBJECT_H
+#define TDP005_MOVABLE_OBJECT_H
 
 
-#include "GameObject.h"
-#include "AnimationManager.h"
+#include "Game_Object.h"
+#include "Animation_Manager.h"
 
-class MovableObject : public GameObject {
+class Movable_Object : public Game_Object {
 public:
-    MovableObject(const sf::Vector2f &position, float speed);
-    ~MovableObject() override = default;
+    Movable_Object(const sf::Vector2f &position, float speed);
+    ~Movable_Object() override = default;
 
     void update(const sf::Time &time, Game &game) override = 0;
     void render(sf::RenderWindow &window) override;
@@ -35,8 +35,8 @@ protected:
     bool face_right;
     float speed;
     std::string type;
-    AnimationManager animation_manager;
+    Animation_Manager animation_manager;
 };
 
 
-#endif //TDP005_MOVABLEOBJECT_H
+#endif //TDP005_MOVABLE_OBJECT_H

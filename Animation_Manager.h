@@ -2,15 +2,15 @@
 // Created by albin on 2022-12-07.
 //
 
-#ifndef TDP005_ANIMATIONMANAGER_H
-#define TDP005_ANIMATIONMANAGER_H
+#ifndef TDP005_ANIMATION_MANAGER_H
+#define TDP005_ANIMATION_MANAGER_H
 
 #include "common.h"
 
-class AnimationManager {
+class Animation_Manager {
 public:
-    AnimationManager();
-    ~AnimationManager();
+    Animation_Manager();
+    ~Animation_Manager();
 
     void play(std::string const& key, sf::Sprite& sprite, bool priority = false);
 
@@ -82,4 +82,4 @@ private:
 };
 
 
-#endif //TDP005_ANIMATIONMANAGER_H
+#endif //TDP005_ANIMATION_MANAGER_H

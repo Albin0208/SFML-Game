@@ -1,25 +1,25 @@
 //
-// Created by albin on 2022-12-05.
+// Created by albin on 2022-12-01.
 //
 
 #include <iostream>
-#include <sstream>
-#include "../common.h"
-#include "GameOverState.h"
-#include "GameState.h"
+#include "Menu_State.h"
+#include "Game_State.h"
 
-GameOverState::GameOverState(Game const& game) : selected{0}, enter_pressed{false} {
+Menu_State::Menu_State(std::shared_ptr<State> const& resume) : selected{0}, enter_pressed{false} {
     font.loadFromFile(FONT_PATH);
+    // If the game is paused
+    if (resume)
+        options.push_back({sf::Text{"Resume", font, 60}, false, [resume](){return resume;}});
 
     options.push_back(
             {sf::Text{"New Game", font, 60}, false,
-             [](){return std::make_shared<GameState>();}});
-    options.push_back({sf::Text{"Exit", font, 60}, false,
-                       [](){return std::make_shared<ExitState>();}});
+             [](){return std::make_shared<Game_State>();}});
+    options.push_back({sf::Text{"Exit", font, 60}, false, [](){return std::make_shared<Exit_State>();}});
 
 }
 
-void GameOverState::on_key_press(sf::Keyboard::Key key) {
+void Menu_State::on_key_press(sf::Keyboard::Key key) {
     switch (key) {
         case sf::Keyboard::Down:
         case sf::Keyboard::S:
@@ -39,7 +39,7 @@ void GameOverState::on_key_press(sf::Keyboard::Key key) {
     }
 }
 
-std::shared_ptr<State> GameOverState::update(sf::Time const& time, sf::RenderWindow&) {
+std::shared_ptr<State> Menu_State::update(sf::Time const& time, sf::RenderWindow&) {
     for (size_t i = 0; i < options.size(); i++) {
         Option& o = options[i];
 
@@ -56,27 +56,15 @@ std::shared_ptr<State> GameOverState::update(sf::Time const& time, sf::RenderWin
     return nullptr;
 }
 
-
-void GameOverState::render(sf::RenderWindow& target) {
+void Menu_State::render(sf::RenderWindow& target) {
     float y{100};
     auto windowSize = target.getSize();
 
-    sf::Text t{"Game Over", font, 80};
+    sf::Text t{GAME_NAME, font, 100};
     t.setPosition((windowSize.x - t.getLocalBounds().width) / 2, y);
-    t.setFillColor(sf::Color(255, 0, 0));
+    t.setFillColor(sf::Color(255, 24, 100));
     target.draw(t);
     y += t.getLocalBounds().height * 2.5f;
-
-    // TODO: Display score and waves survived
-    std::stringstream ss{};
-    ss << "Points: ";
-    ss << 100;
-    t.setString(ss.str());
-    t.setCharacterSize(40);
-    t.setPosition((windowSize.x - t.getLocalBounds().width) / 2, y);
-    t.setFillColor(sf::Color::White);
-    target.draw(t);
-    y += t.getLocalBounds().height * 3.0f;
 
     for (auto& o : options) {
         auto bounds = o.text.getLocalBounds();

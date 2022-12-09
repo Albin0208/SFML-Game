@@ -5,9 +5,9 @@
 #ifndef TDP005_PLAYER_H
 #define TDP005_PLAYER_H
 
-#include "MovableObject.h"
+#include "Movable_Object.h"
 
-class Player : public MovableObject {
+class Player : public Movable_Object {
 public:
     Player(sf::Vector2f const& position, float speed);
 

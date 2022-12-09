@@ -11,7 +11,9 @@ Game::Game() : window{nullptr} {}
 
 void Game::update(sf::Time const& time) {
     if (wave.is_over()) {
-        vector<shared_ptr<GameObject>>& tmp{wave.create(get_player_pos())};
+        vector<shared_ptr<Game_Object>>& tmp{wave.create(get_player_pos())};
+
+        objects.reserve(tmp.size());
         // Move all the enemies to the object vector
         std::move(tmp.begin(), tmp.end(), std::back_inserter(objects));
     }
@@ -36,12 +38,12 @@ void Game::render(sf::RenderWindow& target) {
     }
 }
 
-void Game::add(std::shared_ptr<GameObject> const& object) {
+void Game::add(std::shared_ptr<Game_Object> const& object) {
     objects.push_back(object);
 }
 
-std::vector<std::shared_ptr<GameObject>> Game::collides_with(GameObject& obj) {
-    std::vector<std::shared_ptr<GameObject>> collided_with{};
+std::vector<std::shared_ptr<Game_Object>> Game::collides_with(Game_Object& obj) {
+    std::vector<std::shared_ptr<Game_Object>> collided_with{};
 
     for (auto const& o : objects) {
         // Check for self collision

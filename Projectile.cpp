@@ -6,7 +6,7 @@
 #include "enemies/Enemy.h"
 
 Projectile::Projectile(sf::Vector2f const& position, float speed, sf::Vector2f const& direction, int damage) :
-        MovableObject(position, speed), direction{direction}, damage{damage} {
+        Movable_Object(position, speed), direction{direction}, damage{damage} {
 
     hitbox.setSize(sf::Vector2f{5, 5});
     hitbox.setPosition(position);

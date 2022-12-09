@@ -3,11 +3,11 @@
 //
 
 #include <iostream>
-#include "SlowEnemy.h"
-#include "../TextureManager.h"
+#include "Slow_Enemy.h"
+#include "../Texture_Manager.h"
 #include "../Projectile.h"
 
-SlowEnemy::SlowEnemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos)
+Slow_Enemy::Slow_Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos)
     : Enemy(position, speed, player_pos) {
     set_animations();
     attack_timer_max = 500;
@@ -19,7 +19,7 @@ SlowEnemy::SlowEnemy(sf::Vector2f const& position, float speed, sf::Vector2f con
     hitbox.setSize({sprite.getGlobalBounds().width / 1.8f, sprite.getGlobalBounds().height / 1.3f});
 }
 
-void SlowEnemy::update(sf::Time const& time, Game& game) {
+void Slow_Enemy::update(sf::Time const& time, Game& game) {
     sf::Vector2f dir{player_pos - hitbox.getPosition()};
 
     dir /= static_cast<float>(sqrt(pow(dir.x, 2) + pow(dir.y, 2)));
@@ -72,7 +72,7 @@ void SlowEnemy::update(sf::Time const& time, Game& game) {
     }
 }
 
-int SlowEnemy::attack() {
+int Slow_Enemy::attack() {
     if (attack_timer.getElapsedTime().asMilliseconds() > attack_timer_max) {
         attacking = true;
         attack_timer.restart();
@@ -82,13 +82,13 @@ int SlowEnemy::attack() {
     return 0;
 }
 
-void SlowEnemy::set_animations() {
-    animation_manager.add_animation("walk", TextureManager::get("slow_enemy.png"),
+void Slow_Enemy::set_animations() {
+    animation_manager.add_animation("walk", Texture_Manager::get("slow_enemy.png"),
                                     sf::Vector2u{18, 1}, 3 / 60.f);
-    animation_manager.add_animation("attack", TextureManager::get("mino_attack2.png"),
+    animation_manager.add_animation("attack", Texture_Manager::get("mino_attack2.png"),
                                     sf::Vector2u{11, 1}, 3 / 60.f);
 }
 
-void SlowEnemy::take_damage(int damage) {
+void Slow_Enemy::take_damage(int damage) {
     health -= damage;
 }

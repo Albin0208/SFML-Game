@@ -12,7 +12,7 @@
 #include "Wave.h"
 
 class Player;
-class GameObject;
+class Game_Object;
 
 class Game {
 public:
@@ -38,7 +38,7 @@ public:
      * Add a gameobject to the game
      * @param object The object to add
      */
-    void add(std::shared_ptr<GameObject> const& object);
+    void add(std::shared_ptr<Game_Object> const& object);
 
     /**
      * Check what object a object collides with
@@ -46,7 +46,7 @@ public:
      * @param obj The object to check for collision on
      * @return A vector of the the object collided with
      */
-    vector<std::shared_ptr<GameObject>> collides_with(GameObject& obj);
+    vector<std::shared_ptr<Game_Object>> collides_with(Game_Object& obj);
 
     /**
      * Get a reference to the player position
@@ -63,8 +63,10 @@ public:
     sf::RenderWindow* window;
 
 private:
-    vector<std::shared_ptr<GameObject>> objects;
+    vector<std::shared_ptr<Game_Object>> objects;
     Wave wave;
+
+    int points;
 };
 
 

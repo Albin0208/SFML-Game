@@ -5,12 +5,12 @@
 #include <cmath>
 #include <iostream>
 #include "Player.h"
-#include "enemies/SlowEnemy.h"
-#include "TextureManager.h"
+#include "enemies/Slow_Enemy.h"
+#include "Texture_Manager.h"
 #include "Projectile.h"
 
 Player::Player(sf::Vector2f const& position, float speed)
-    : MovableObject(position, speed), health{100} {
+    : Movable_Object(position, speed), health{100} {
     set_animations();
     attack_timer_max = 500;
     hitbox.setSize({100, 135});
@@ -120,8 +120,8 @@ int Player::attack() {
 
 void Player::set_animations() {
     // Add walk animation
-    animation_manager.add_animation("walk", TextureManager::get("player_angel2.png"),
+    animation_manager.add_animation("walk", Texture_Manager::get("player_angel2.png"),
                                     sf::Vector2u{24, 1}, 2 / 60.f);
-    animation_manager.add_animation("idle", TextureManager::get("idle.png"),
+    animation_manager.add_animation("idle", Texture_Manager::get("idle.png"),
                                     sf::Vector2u{18, 1}, 4 / 60.f);
 }

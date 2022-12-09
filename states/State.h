@@ -49,7 +49,7 @@ public:
     static void run(shared_ptr<State> state);
 };
 
-class ExitState : public State {
+class Exit_State : public State {
 public:
     /**
      * Update the exit state

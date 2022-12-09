@@ -1,19 +1,22 @@
 //
-// Created by albin on 2022-12-05.
+// Created by albin on 2022-12-01.
 //
 
-#ifndef TDP005_GAMEOVERSTATE_H
-#define TDP005_GAMEOVERSTATE_H
+#ifndef TDP005_MENU_STATE_H
+#define TDP005_MENU_STATE_H
 
 
+#include <functional>
 #include "State.h"
-#include "../Game.h"
-#include "MenuState.h"
 
-class GameOverState : public State {
+class Menu_State : public State {
 public:
-    explicit GameOverState(Game const& game);
-    ~GameOverState() override = default;
+    /**
+     * Create a menu
+     *
+     * @param resume The state to resume to
+     */
+    explicit Menu_State(std::shared_ptr<State> const& resume);
 
     /**
      * Handle a keypress
@@ -56,4 +59,4 @@ private:
 };
 
 
-#endif //TDP005_GAMEOVERSTATE_H
+#endif //TDP005_Menu_State_H

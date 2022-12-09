@@ -7,7 +7,7 @@
 
 
 #include "common.h"
-class GameObject;
+class Game_Object;
 
 class Wave {
 public:
@@ -22,16 +22,18 @@ public:
      * @param player_pos The position of the player
      * @return A vector of all the enemies
      */
-    vector<shared_ptr<GameObject>>& create(sf::Vector2f const& player_pos);
+    vector<shared_ptr<Game_Object>>& create(sf::Vector2f const& player_pos);
 
     /**
      * Kill a enemy in the wave;
      */
     void enemy_killed();
+
+    int get_wave() const;
 private:
     int enemy_count{0};
     int wave_number{1};
-    vector<shared_ptr<GameObject>> enemies;
+    vector<shared_ptr<Game_Object>> enemies;
 };
 
 

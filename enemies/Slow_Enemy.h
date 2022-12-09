@@ -2,15 +2,15 @@
 // Created by albin on 2022-12-05.
 //
 
-#ifndef TDP005_SLOWENEMY_H
-#define TDP005_SLOWENEMY_H
+#ifndef TDP005_SLOW_ENEMY_H
+#define TDP005_SLOW_ENEMY_H
 
 
 #include "Enemy.h"
 
-class SlowEnemy : public Enemy {
+class Slow_Enemy : public Enemy {
 public:
-    SlowEnemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos);
+    Slow_Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos);
 
     void update(const sf::Time &time, Game &game) override;
 
@@ -27,4 +27,4 @@ private:
 };
 
 
-#endif //TDP005_SLOWENEMY_H
+#endif //TDP005_SLOW_ENEMY_H

@@ -2,17 +2,17 @@
 // Created by albin on 2022-12-07.
 //
 
-#include "AnimationManager.h"
+#include "Animation_Manager.h"
 
-AnimationManager::AnimationManager() : last_animation{nullptr}, priority_animation{nullptr} {}
+Animation_Manager::Animation_Manager() : last_animation{nullptr}, priority_animation{nullptr} {}
 
 
-AnimationManager::~AnimationManager() {
+Animation_Manager::~Animation_Manager() {
     for (auto& a : animations)
         delete a.second;
 }
 
-void AnimationManager::play(std::string const& key, sf::Sprite& sprite, bool priority) {
+void Animation_Manager::play(std::string const& key, sf::Sprite& sprite, bool priority) {
     if (priority_animation == animations[key]) {
         animations[key]->update(sprite);
     } else {
@@ -34,15 +34,15 @@ void AnimationManager::play(std::string const& key, sf::Sprite& sprite, bool pri
     }
 }
 
-void AnimationManager::add_animation(std::string const& key, sf::Texture* texture, sf::Vector2u image_count, float total_time) {
+void Animation_Manager::add_animation(std::string const& key, sf::Texture* texture, sf::Vector2u image_count, float total_time) {
     animations[key] = new Animation{texture, image_count, total_time};
 }
 
-bool const& AnimationManager::is_done(std::string const& key) {
+bool const& Animation_Manager::is_done(std::string const& key) {
     return animations[key]->done;
 }
 
-void AnimationManager::kill() {
+void Animation_Manager::kill() {
     priority_animation = nullptr;
     last_animation = nullptr;
 }

@@ -4,10 +4,10 @@
 
 #ifndef TDP005_PROJECTILE_H
 #define TDP005_PROJECTILE_H
-#include "MovableObject.h"
+#include "Movable_Object.h"
 
 
-class Projectile : public MovableObject {
+class Projectile : public Movable_Object {
 public:
     Projectile(sf::Vector2f const& position, float speed, sf::Vector2f const& direction, int damage);
     ~Projectile() override = default;

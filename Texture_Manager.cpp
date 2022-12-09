@@ -2,9 +2,9 @@
 // Created by albin on 2022-12-05.
 //
 
-#include "TextureManager.h"
+#include "Texture_Manager.h"
 
-sf::Texture* TextureManager::get(std::string const& name) {
+sf::Texture* Texture_Manager::get(std::string const& name) {
     auto found = instance.textures.find(name);
     if (found != instance.textures.end())
         return found->second.get();
@@ -18,4 +18,4 @@ sf::Texture* TextureManager::get(std::string const& name) {
 
 }
 
-TextureManager TextureManager::instance;
+Texture_Manager Texture_Manager::instance;

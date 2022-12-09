@@ -5,9 +5,9 @@
 #ifndef TDP005_ENEMY_H
 #define TDP005_ENEMY_H
 
-#include "../MovableObject.h"
+#include "../Movable_Object.h"
 
-class Enemy : public MovableObject {
+class Enemy : public Movable_Object {
 public:
     //TODO: Take health as a constructor parameter
     Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos);
