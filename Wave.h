@@ -32,7 +32,7 @@ public:
     int get_wave() const;
 private:
     int enemy_count{0};
-    int wave_number{1};
+    int wave_number{0};
     vector<shared_ptr<Game_Object>> enemies;
 };
 

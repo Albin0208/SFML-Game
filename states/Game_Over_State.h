@@ -53,6 +53,7 @@ private:
     };
 
     std::vector<Option> options;
+    Game game;
 };
 
 

@@ -8,7 +8,7 @@
 #include "Game_Over_State.h"
 #include "Game_State.h"
 
-Game_Over_State::Game_Over_State(Game const& game) : selected{0}, enter_pressed{false} {
+Game_Over_State::Game_Over_State(Game const& game) : game{game}, selected{0}, enter_pressed{false} {
     font.loadFromFile(FONT_PATH);
 
     options.push_back(
@@ -70,7 +70,7 @@ void Game_Over_State::render(sf::RenderWindow& target) {
     // TODO: Display score and waves survived
     std::stringstream ss{};
     ss << "Points: ";
-    ss << 100;
+    ss << game.get_points();
     t.setString(ss.str());
     t.setCharacterSize(40);
     t.setPosition((windowSize.x - t.getLocalBounds().width) / 2, y);

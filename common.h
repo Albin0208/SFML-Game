@@ -18,8 +18,6 @@ using std::vector;
 
 unsigned int const WIDTH{1280};
 unsigned int const HEIGHT{960};
-//unsigned int const WIDTH{1024};
-//unsigned int const HEIGHT{768};
 std::string const GAME_NAME{"Game name"};
 std::string const FONT_PATH{"../resources/fonts/survivor_font.ttf"};
 

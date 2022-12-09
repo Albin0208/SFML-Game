@@ -36,6 +36,8 @@ void Menu_State::on_key_press(sf::Keyboard::Key key) {
         case sf::Keyboard::Return:
             enter_pressed = true;
             break;
+        default:
+            break;
     }
 }
 

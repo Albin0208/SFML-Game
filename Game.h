@@ -46,14 +46,14 @@ public:
      * @param obj The object to check for collision on
      * @return A vector of the the object collided with
      */
-    vector<std::shared_ptr<Game_Object>> collides_with(Game_Object& obj);
+    vector<std::shared_ptr<Game_Object>> collides_with(Game_Object& obj) const;
 
     /**
      * Get a reference to the player position
      *
      * @return The player position
      */
-    sf::Vector2f const& get_player_pos();
+    sf::Vector2f const& get_player_pos() const;
 
     /**
      * Tell the game that a enemy has been killed
@@ -62,10 +62,16 @@ public:
 
     sf::RenderWindow* window;
 
+    int get_points() const;
+
 private:
     vector<std::shared_ptr<Game_Object>> objects;
     Wave wave;
+    sf::Clock survived_clock;
 
+    sf::Time time_survived;
+
+    sf::Font font;
     int points;
 };
 
