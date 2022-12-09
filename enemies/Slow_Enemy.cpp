@@ -11,7 +11,6 @@ Slow_Enemy::Slow_Enemy(sf::Vector2f const& position, float speed, sf::Vector2f c
     : Enemy(position, speed, player_pos, 10) {
     set_animations();
     attack_timer_max = 500;
-    hitbox.setSize({100, 135});
     sprite.setScale({0.3f, 0.3f});
 
     animation_manager.play("walk", sprite);
