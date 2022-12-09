@@ -15,8 +15,8 @@ int Enemy::get_points() const {
 
 void Enemy::update(sf::Time const& time, Game& game) {
     if (health <= 0) {
-        animation_manager.force_play("dying", sprite);
         type = "dying";
+        animation_manager.force_play(type, sprite);
         if (animation_manager.is_done("dying")) {
             alive = false;
             animation_manager.kill();

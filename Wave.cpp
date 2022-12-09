@@ -27,7 +27,7 @@ vector<shared_ptr<Game_Object>>& Wave::create(sf::Vector2f const& player_pos) {
     for(int i=0; i < wave_number + 1; ++i){
         sf::Vector2f pos {static_cast<float>(wiRandom(rng)), static_cast<float>(HeRandom(rng))};
 
-        if (wiRandom(rng) % 2 == 0)
+        if (static_cast<int>(pos.x) % 2 == 0)
             enemies.emplace_back(std::make_shared<Ranged_Enemy>(pos, 75.f, player_pos));
         else
             enemies.emplace_back(std::make_shared<Slow_Enemy>(pos, 75.f, player_pos));

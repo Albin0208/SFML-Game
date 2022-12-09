@@ -14,6 +14,8 @@
 class Player;
 class Game_Object;
 
+enum Objects_to_hit { all_enemies, all_players, slowerenemy, rangedenemy};
+
 class Game {
 public:
     Game();

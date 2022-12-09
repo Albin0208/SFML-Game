@@ -10,7 +10,7 @@
 #include "Projectile.h"
 
 Player::Player(sf::Vector2f const& position, float speed)
-    : Movable_Object(position, speed), health{100} {
+    : Movable_Object(position, speed), health{100}, attacking{false} {
     set_animations();
     attack_timer_max = 500;
     sprite.setScale({0.15f, 0.15f});
@@ -60,8 +60,6 @@ void Player::update(sf::Time const& time, Game& game) {
         type = "walk";
     }
 
-    animation_manager.play(type, sprite);
-
     if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
         if (attack_timer.getElapsedTime().asMilliseconds() > attack_timer_max) {
             attack_timer.restart();
@@ -75,8 +73,18 @@ void Player::update(sf::Time const& time, Game& game) {
             game.add(std::make_shared<Projectile>(
                     sf::Vector2f{position.x + hitbox.getSize().x / 2, position.y + hitbox.getSize().y / 2},
                     300.f, projectile_dir, 40, Objects_to_hit::all_enemies));
+//            animation_manager.play("attack", sprite, true);
+            attacking = true;
         }
     }
+
+    if (attacking) {
+        animation_manager.play("attack", sprite, true);
+        if (animation_manager.is_done("attack"))
+            attacking = false;
+    }
+    else
+        animation_manager.play(type, sprite);
 
     // Check for moving out if window
     // Left collision
@@ -127,4 +135,6 @@ void Player::set_animations() {
                                     sf::Vector2u{24, 1}, 2 / 60.f);
     animation_manager.add_animation("idle", Texture_Manager::get("idle.png"),
                                     sf::Vector2u{18, 1}, 4 / 60.f);
+    animation_manager.add_animation("attack", Texture_Manager::get("player_attack.png"),
+                                    sf::Vector2u{12, 1}, 2.5 / 60.f);
 }
