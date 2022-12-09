@@ -4,9 +4,12 @@
 #include <iostream>
 #include "Projectile.h"
 #include "enemies/Enemy.h"
+#include "enemies/Slow_Enemy.h"
+#include "enemies/Ranged_Enemy.h"
+#include "Player.h"
 
-Projectile::Projectile(sf::Vector2f const& position, float speed, sf::Vector2f const& direction, int damage) :
-        Movable_Object(position, speed), direction{direction}, damage{damage} {
+Projectile::Projectile(sf::Vector2f const& position, float speed, sf::Vector2f const& direction, int damage, Objects_to_hit what_to_hit) :
+        Movable_Object(position, speed), direction{direction}, damage{damage}, what_to_hit{what_to_hit} {
 
     hitbox.setSize(sf::Vector2f{5, 5});
     hitbox.setPosition(position);
@@ -35,13 +38,42 @@ void Projectile::update(sf::Time const& time, Game& game) {
     sprite.setPosition(position);
 
     for (auto& o : game.collides_with(*this)) {
-        // TODO: Do some stuff on collision depending on what type it is
-        if (auto e = dynamic_cast<Enemy*>(o.get())) {
-            // Make enemy take damage
-            e->take_damage(damage);
-            // Kill the projectile
-            alive=false;
+        //Do some stuff on collision depending on what type it is
+        switch (what_to_hit) {
+            case Objects_to_hit::all_enemies:
+                if (auto e = dynamic_cast<Enemy*>(o.get())) {
+                    // Make enemy take damage
+                    e->take_damage(damage);
+                    // Kill the projectile
+                    alive=false;
+                }
+                break;
+            case Objects_to_hit::all_players:
+                if (auto e = dynamic_cast<Player*>(o.get())) {
+                    // Make enemy take damage
+                    e->take_damage(damage);
+                    // Kill the projectile
+                    alive=false;
+                }
+                break;
+            case Objects_to_hit::slowerenemy:
+                if (auto e = dynamic_cast<Slow_Enemy*>(o.get())) {
+                    // Make enemy take damage
+                    e->take_damage(damage);
+                    // Kill the projectile
+                    alive=false;
+                }
+                break;
+            case Objects_to_hit::rangedenemy:
+                if (auto e = dynamic_cast<Ranged_Enemy*>(o.get())) {
+                    // Make enemy take damage
+                    e->take_damage(damage);
+                    // Kill the projectile
+                    alive=false;
+                }
+                break;
         }
+
     }
 }
 

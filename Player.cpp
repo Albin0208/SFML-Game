@@ -8,6 +8,7 @@
 #include "enemies/Slow_Enemy.h"
 #include "Texture_Manager.h"
 #include "Projectile.h"
+#include "enemies/Enemy.h"
 
 Player::Player(sf::Vector2f const& position, float speed)
     : Movable_Object(position, speed), health{100} {
@@ -73,7 +74,7 @@ void Player::update(sf::Time const& time, Game& game) {
             // Normalize the projectile-direction-vector
             projectile_dir /= static_cast<float>(sqrt(pow(projectile_dir.x, 2) + pow(projectile_dir.y, 2)));
 
-            game.add(std::make_shared<Projectile>(position, 300.f, projectile_dir, 40));
+            game.add(std::make_shared<Projectile>(position, 300.f, projectile_dir, 40,Objects_to_hit::all_enemies));
         }
     }
 
@@ -99,15 +100,14 @@ void Player::update(sf::Time const& time, Game& game) {
         if (auto e = std::dynamic_pointer_cast<Enemy>(o)) {
             health -= e->attack();
 
-            // We have 0 health, the game is over
-            if (health <= 0)
-                game.is_game_over = true;
-
             // Not able to pass through an enemy
 //            position = hitbox.getPosition() - dir * speed * time.asSeconds();
 //            hitbox.setPosition(position);
         }
     }
+    if (health <= 0)
+        game.is_game_over = true;
+
 }
 
 sf::Vector2f const& Player::get_pos() {
@@ -116,6 +116,9 @@ sf::Vector2f const& Player::get_pos() {
 
 int Player::attack() {
     return 0;
+}
+void Player::take_damage(int damage) {
+    health -=damage;
 }
 
 void Player::set_animations() {
