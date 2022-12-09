@@ -6,7 +6,7 @@
 #include "../Texture_Manager.h"
 
 Ranged_Enemy::Ranged_Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos)
-                            : Enemy(position, speed, player_pos, 10) {
+                            : Enemy(position, speed, player_pos, 5, 60) {
     set_animations();
     attack_timer_max = 2000;
     sprite.setScale({0.3f, 0.3f});
@@ -86,8 +86,3 @@ void Ranged_Enemy::set_animations() {
     animation_manager.add_animation("dying", Texture_Manager::get("dying_range.png"),
                                     sf::Vector2u{15, 1}, 2 / 60.f);
 }
-
-void Ranged_Enemy::take_damage(int damage) {
-    health -= damage;
-}
-

@@ -10,7 +10,7 @@
 #include "Projectile.h"
 
 Player::Player(sf::Vector2f const& position, float speed)
-    : Movable_Object(position, speed), health{100}, attacking{false} {
+    : Movable_Object(position, speed), health{100} {
     set_animations();
     attack_timer_max = 500;
     sprite.setScale({0.15f, 0.15f});

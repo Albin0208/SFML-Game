@@ -5,7 +5,7 @@
 #include "Movable_Object.h"
 
 Movable_Object::Movable_Object(sf::Vector2f const& position, float speed)
-    : Game_Object(position), speed{speed}, face_right{true} {
+    : Game_Object(position), speed{speed}, face_right{true}, attacking{false} {
 }
 
 void Movable_Object::render(sf::RenderWindow& window) {

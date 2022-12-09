@@ -34,6 +34,7 @@ protected:
     int32_t attack_timer_max{};
     bool face_right;
     float speed;
+    bool attacking;
     std::string type;
     Animation_Manager animation_manager;
 };

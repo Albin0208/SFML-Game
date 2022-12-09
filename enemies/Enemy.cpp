@@ -4,13 +4,9 @@
 
 #include "Enemy.h"
 
-Enemy::Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos, int points)
-    : Movable_Object(position, speed), health{100}, player_pos{player_pos}, points{points} {
+Enemy::Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos, int points, int health)
+    : Movable_Object(position, speed), health{health}, player_pos{player_pos}, points{points} {
     attack_timer.restart();
-}
-
-int Enemy::get_points() const {
-    return points;
 }
 
 void Enemy::update(sf::Time const& time, Game& game) {
@@ -24,4 +20,14 @@ void Enemy::update(sf::Time const& time, Game& game) {
             game.add_points(points);
         }
     }
+
+    if (dmg_clock.getElapsedTime().asMilliseconds() > 60)
+        sprite.setColor(sf::Color::White);
 }
+
+void Enemy::take_damage(int damage) {
+    sprite.setColor(sf::Color::Red);
+    dmg_clock.restart();
+    health -= damage;
+}
+

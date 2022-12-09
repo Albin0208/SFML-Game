@@ -19,11 +19,6 @@ public:
 protected:
     void set_animations() override;
 
-public:
-    void take_damage(int damage) override;
-
-private:
-    bool attacking{false};
 };
 
 

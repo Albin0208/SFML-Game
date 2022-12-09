@@ -8,7 +8,7 @@
 #include "../Projectile.h"
 
 Slow_Enemy::Slow_Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos)
-    : Enemy(position, speed, player_pos, 10) {
+    : Enemy(position, speed, player_pos, 10, 100) {
     set_animations();
     attack_timer_max = 500;
     sprite.setScale({0.3f, 0.3f});
@@ -88,8 +88,4 @@ void Slow_Enemy::set_animations() {
                                     sf::Vector2u{11, 1}, 3 / 60.f);
     animation_manager.add_animation("dying", Texture_Manager::get("dying_slow.png"),
                                     sf::Vector2u{15, 1}, 3 / 60.f);
-}
-
-void Slow_Enemy::take_damage(int damage) {
-    health -= damage;
 }

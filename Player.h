@@ -25,7 +25,6 @@ protected:
 private:
     int health;
     sf::Clock attack_timer;
-    bool attacking;
 };
 
 

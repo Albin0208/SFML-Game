@@ -45,13 +45,8 @@ std::shared_ptr<State> Menu_State::update(sf::Time const& time, sf::RenderWindow
     for (size_t i = 0; i < options.size(); i++) {
         Option& o = options[i];
 
-        if (i == selected) {
-            o.not_selected = false;
-        } else {
-            o.not_selected = true;
-        }
+        o.not_selected = i != selected;
     }
-
 
     if (enter_pressed)
         return options[selected].action();
