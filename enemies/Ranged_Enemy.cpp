@@ -8,13 +8,12 @@
 Ranged_Enemy::Ranged_Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos)
                             : Enemy(position, speed, player_pos, 10) {
     set_animations();
-    attack_timer_max = 500;
-    hitbox.setSize({100, 135});
+    attack_timer_max = 2000;
     sprite.setScale({0.3f, 0.3f});
 
     animation_manager.play("walk", sprite);
 
-    hitbox.setSize({sprite.getGlobalBounds().width / 1.8f, sprite.getGlobalBounds().height / 1.3f});
+    hitbox.setSize({sprite.getGlobalBounds().width / 2.f, sprite.getGlobalBounds().height / 1.5f});
 }
 
 void Ranged_Enemy::update(sf::Time const& time, Game& game) {
@@ -35,7 +34,9 @@ void Ranged_Enemy::update(sf::Time const& time, Game& game) {
         // Normalize the projectile-direction-vector
         projectile_dir /= static_cast<float>(sqrt(pow(projectile_dir.x, 2) + pow(projectile_dir.y, 2)));
 
-        game.add(std::make_shared<Projectile>(position, 300.f, projectile_dir, 5,Objects_to_hit::all_players));
+        game.add(std::make_shared<Projectile>(position, 300.f, projectile_dir,
+                                              5, Objects_to_hit::all_players,
+                                              sf::Color(0,213,200)));
     }
 
     if (dir.x > 0 || dir.y != 0 && face_right) {
@@ -45,7 +46,7 @@ void Ranged_Enemy::update(sf::Time const& time, Game& game) {
         type = "walk";
     }
     if (dir.x < 0 || dir.y != 0 && !face_right) {
-        sprite.setOrigin(720.f, 0.f);
+        sprite.setOrigin(520.f, 0.f);
         sprite.setScale({-0.3f, 0.3f});
         face_right = false;
         type = "walk";
@@ -81,10 +82,10 @@ int Ranged_Enemy::attack() {
 }
 
 void Ranged_Enemy::set_animations() {
-    animation_manager.add_animation("walk", Texture_Manager::get("slow_enemy.png"),
-                                    sf::Vector2u{18, 1}, 3 / 60.f);
-    animation_manager.add_animation("attack", Texture_Manager::get("mino_attack2.png"),
-                                    sf::Vector2u{11, 1}, 3 / 60.f);
+    animation_manager.add_animation("walk", Texture_Manager::get("range_enemy_blue.png"),
+                                    sf::Vector2u{12, 1}, 3 / 60.f);
+    animation_manager.add_animation("attack", Texture_Manager::get("range_attack_blue.png"),
+                                    sf::Vector2u{18, 1}, 2 / 60.f);
 }
 
 void Ranged_Enemy::take_damage(int damage) {

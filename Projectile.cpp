@@ -9,7 +9,8 @@
 #include "Player.h"
 #include "Texture_Manager.h"
 
-Projectile::Projectile(sf::Vector2f const& position, float speed, sf::Vector2f const& direction, int damage, Objects_to_hit what_to_hit) :
+Projectile::Projectile(sf::Vector2f const& position, float speed, sf::Vector2f const& direction,
+                       int damage, Objects_to_hit what_to_hit, sf::Color color) :
         Movable_Object(position, speed), direction{direction}, damage{damage}, what_to_hit{what_to_hit} {
     set_animations();
     sprite.setScale(1, 1);
@@ -92,7 +93,11 @@ void Projectile::update(sf::Time const& time, Game& game) {
 }
 
 void Projectile::set_animations() {
-    animation_manager.add_animation("shoot", Texture_Manager::get("fireball1.png"),
+    sf::Texture* texture{Texture_Manager::get("fireball1.png")};
+
+    if (what_to_hit == Objects_to_hit::all_players)
+        texture= Texture_Manager::get("fireball_blue.png");
+    animation_manager.add_animation("shoot", texture,
                                     sf::Vector2u{5, 1}, 2 / 60.f);
 }
 

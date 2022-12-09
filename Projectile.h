@@ -10,7 +10,8 @@
 
 class Projectile : public Movable_Object {
 public:
-    Projectile(sf::Vector2f const& position, float speed, sf::Vector2f const& direction, int damage, Objects_to_hit what_to_hit);
+    Projectile(sf::Vector2f const& position, float speed, sf::Vector2f const& direction,
+               int damage, Objects_to_hit what_to_hit, sf::Color color = sf::Color::White);
     ~Projectile() override = default;
 
     void update(const sf::Time& time, Game& game) override;
