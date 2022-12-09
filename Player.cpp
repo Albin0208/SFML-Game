@@ -74,7 +74,7 @@ void Player::update(sf::Time const& time, Game& game) {
 
             game.add(std::make_shared<Projectile>(
                     sf::Vector2f{position.x + hitbox.getSize().x / 2, position.y + hitbox.getSize().y / 2},
-                    300.f, projectile_dir, 40));
+                    300.f, projectile_dir, 40, Objects_to_hit::all_enemies));
         }
     }
 
