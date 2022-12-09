@@ -17,11 +17,15 @@ Ranged_Enemy::Ranged_Enemy(sf::Vector2f const& position, float speed, sf::Vector
 }
 
 void Ranged_Enemy::update(sf::Time const& time, Game& game) {
+
     sf::Vector2f dir{player_pos - hitbox.getPosition()};
 
     dir /= static_cast<float>(sqrt(pow(dir.x, 2) + pow(dir.y, 2)));
 
     position += speed * dir * time.asSeconds();
+
+    if (health <= 0)
+        position -= speed * dir * time.asSeconds();
 
     //make a ranged attack
     if (attack_timer.getElapsedTime().asMilliseconds() > attack_timer_max) {

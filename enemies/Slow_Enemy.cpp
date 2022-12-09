@@ -19,11 +19,15 @@ Slow_Enemy::Slow_Enemy(sf::Vector2f const& position, float speed, sf::Vector2f c
 }
 
 void Slow_Enemy::update(sf::Time const& time, Game& game) {
+
     sf::Vector2f dir{player_pos - hitbox.getPosition()};
 
     dir /= static_cast<float>(sqrt(pow(dir.x, 2) + pow(dir.y, 2)));
 
     position += speed * dir * time.asSeconds();
+
+    if (health <= 0)
+        position -= speed * dir * time.asSeconds();
 
     if (dir.x > 0 || dir.y != 0 && face_right) {
         sprite.setOrigin(0.f, 0.f);
