@@ -64,12 +64,7 @@ void Slow_Enemy::update(sf::Time const& time, Game& game) {
 ////        hitbox.setPosition(position);
 //        }
 //    }
-    if (health <= 0) {
-        alive = false;
-        animation_manager.kill();
-        game.enemy_killed();
-        game.add_points(points);
-    }
+    Enemy::update(time, game);
 }
 
 int Slow_Enemy::attack() {
@@ -87,6 +82,8 @@ void Slow_Enemy::set_animations() {
                                     sf::Vector2u{18, 1}, 3 / 60.f);
     animation_manager.add_animation("attack", Texture_Manager::get("mino_attack2.png"),
                                     sf::Vector2u{11, 1}, 3 / 60.f);
+    animation_manager.add_animation("dying", Texture_Manager::get("dying_slow.png"),
+                                    sf::Vector2u{15, 1}, 3 / 60.f);
 }
 
 void Slow_Enemy::take_damage(int damage) {

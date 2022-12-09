@@ -46,3 +46,8 @@ void Animation_Manager::kill() {
     priority_animation = nullptr;
     last_animation = nullptr;
 }
+
+void Animation_Manager::force_play(std::string const& key, sf::Sprite& sprite) {
+    priority_animation = animations[key];
+    play(key, sprite);
+}

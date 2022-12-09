@@ -14,7 +14,7 @@ public:
     ~Enemy() override = default;
 
 
-    void update(sf::Time const& time, Game& game) override = 0;
+    void update(sf::Time const& time, Game& game) override;
 
     int attack() override = 0;
 

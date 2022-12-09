@@ -12,3 +12,16 @@ Enemy::Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& play
 int Enemy::get_points() const {
     return points;
 }
+
+void Enemy::update(sf::Time const& time, Game& game) {
+    if (health <= 0) {
+        animation_manager.force_play("dying", sprite);
+        type = "dying";
+        if (animation_manager.is_done("dying")) {
+            alive = false;
+            animation_manager.kill();
+            game.enemy_killed();
+            game.add_points(points);
+        }
+    }
+}

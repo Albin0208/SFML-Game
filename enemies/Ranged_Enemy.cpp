@@ -63,12 +63,7 @@ void Ranged_Enemy::update(sf::Time const& time, Game& game) {
     hitbox.setPosition(position);
     sprite.setPosition({hitbox.getPosition().x - hitbox.getSize().x / 2.4f, hitbox.getPosition().y - hitbox.getSize().y / 4});
 
-    if (health <= 0) {
-        alive = false;
-        animation_manager.kill();
-        game.enemy_killed();
-        game.add_points(points);
-    }
+    Enemy::update(time, game);
 }
 
 int Ranged_Enemy::attack() {
@@ -86,6 +81,8 @@ void Ranged_Enemy::set_animations() {
                                     sf::Vector2u{12, 1}, 3 / 60.f);
     animation_manager.add_animation("attack", Texture_Manager::get("range_attack_blue.png"),
                                     sf::Vector2u{18, 1}, 2 / 60.f);
+    animation_manager.add_animation("dying", Texture_Manager::get("dying_range.png"),
+                                    sf::Vector2u{15, 1}, 2 / 60.f);
 }
 
 void Ranged_Enemy::take_damage(int damage) {

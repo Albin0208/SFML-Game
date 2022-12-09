@@ -20,6 +20,8 @@ public:
 
     void kill();
 
+    void force_play(std::string const& key, sf::Sprite& sprite);
+
 private:
     class Animation {
     public:
