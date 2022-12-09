@@ -13,3 +13,9 @@ void Movable_Object::render(sf::RenderWindow& window) {
 //    window.draw(hitbox);
     window.draw(sprite);
 }
+
+void Movable_Object::take_damage(int damage) {
+    sprite.setColor(sf::Color::Red);
+    dmg_clock.restart();
+    health -= damage;
+}

@@ -10,9 +10,10 @@
 #include "Projectile.h"
 
 Player::Player(sf::Vector2f const& position, float speed)
-    : Movable_Object(position, speed), health{100} {
+    : Movable_Object(position, speed){
     set_animations();
     attack_timer_max = 500;
+    health = 100;
     sprite.setScale({0.15f, 0.15f});
 
     animation_manager.play("idle", sprite);
@@ -103,19 +104,21 @@ void Player::update(sf::Time const& time, Game& game) {
     hitbox.setPosition(position);
     sprite.setPosition({hitbox.getPosition().x - hitbox.getSize().x / 2, hitbox.getPosition().y - hitbox.getSize().y / 4});
 
-    for (auto& o : game.collides_with(*this)) {
-        // TODO: Do some stuff on collision depending on what type it is
-        if (auto e = std::dynamic_pointer_cast<Enemy>(o)) {
-            health -= e->attack();
-
-            // Not able to pass through an enemy
-//            position = hitbox.getPosition() - dir * speed * time.asSeconds();
-//            hitbox.setPosition(position);
-        }
-    }
+//    for (auto& o : game.collides_with(*this)) {
+//        // TODO: Do some stuff on collision depending on what type it is
+//        if (auto e = std::dynamic_pointer_cast<Enemy>(o)) {
+////            health -= e->attack();
+//
+//            // Not able to pass through an enemy
+////            position = hitbox.getPosition() - dir * speed * time.asSeconds();
+////            hitbox.setPosition(position);
+//        }
+//    }
     if (health <= 0)
         game.is_game_over = true;
 
+    if (dmg_clock.getElapsedTime().asMilliseconds() > 60)
+        sprite.setColor(sf::Color::White);
 }
 
 sf::Vector2f const& Player::get_pos() {
@@ -124,9 +127,6 @@ sf::Vector2f const& Player::get_pos() {
 
 int Player::attack() {
     return 0;
-}
-void Player::take_damage(int damage) {
-    health -=damage;
 }
 
 void Player::set_animations() {
@@ -137,4 +137,8 @@ void Player::set_animations() {
                                     sf::Vector2u{18, 1}, 4 / 60.f);
     animation_manager.add_animation("attack", Texture_Manager::get("player_attack.png"),
                                     sf::Vector2u{12, 1}, 2.5 / 60.f);
+}
+
+int Player::get_hp() const {
+    return health;
 }

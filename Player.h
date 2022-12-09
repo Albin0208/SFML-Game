@@ -17,14 +17,10 @@ public:
 
     sf::Vector2f const& get_pos();
 
-    void take_damage(int damage);
+    int get_hp() const;
 
 protected:
     void set_animations() override;
-
-private:
-    int health;
-    sf::Clock attack_timer;
 };
 
 

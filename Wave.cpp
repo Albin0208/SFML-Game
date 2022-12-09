@@ -10,7 +10,6 @@
 #include "enemies/Ranged_Enemy.h"
 
 bool Wave::is_over() const {
-//    std::cout << enemy_count << "\n";
     return enemy_count == 0;
 }
 
@@ -18,14 +17,16 @@ vector<shared_ptr<Game_Object>>& Wave::create(sf::Vector2f const& player_pos) {
     wave_number++;
     enemies.reserve(wave_number);
 
-    std::random_device rd;     // Only used once to initialise (seed) engine
-    std::mt19937 rng(rd());    // Random-number engine used (Mersenne-Twister in this case)
-    std::uniform_int_distribution<int> wiRandom(0,WIDTH); // Guaranteed unbiased
-    std::uniform_int_distribution<int> HeRandom(0,HEIGHT);
+//    std::random_device rd;     // Only used once to initialise (seed) engine
+//    std::mt19937 rng(rd());    // Random-number engine used (Mersenne-Twister in this case)
+//    std::uniform_int_distribution<int> wiRandom(-100,WIDTH); // Guaranteed unbiased
+//    std::uniform_int_distribution<int> HeRandom(-100,HEIGHT);
 
 
     for(int i=0; i < wave_number + 1; ++i){
-        sf::Vector2f pos {static_cast<float>(wiRandom(rng)), static_cast<float>(HeRandom(rng))};
+//        Wave::random();
+        sf::Vector2f pos {static_cast<float>(Wave::random({-100, WIDTH})),
+                          static_cast<float>(Wave::random({-100, HEIGHT}))};
 
         if (static_cast<int>(pos.x) % 2 == 0)
             enemies.emplace_back(std::make_shared<Ranged_Enemy>(pos, 75.f, player_pos));
@@ -35,6 +36,15 @@ vector<shared_ptr<Game_Object>>& Wave::create(sf::Vector2f const& player_pos) {
     }
 
     return enemies;
+}
+
+int Wave::random(sf::Vector2i range) {
+    std::random_device rd;     // Only used once to initialise (seed) engine
+    std::mt19937 rng(rd());    // Random-number engine used (Mersenne-Twister in this case)
+    std::uniform_int_distribution<int> wiRandom(range.x,range.y); // Guaranteed unbiased
+
+    return wiRandom(rng);
+
 }
 
 void Wave::enemy_killed() {
