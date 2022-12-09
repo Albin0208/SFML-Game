@@ -132,11 +132,11 @@ int Player::attack() {
 void Player::set_animations() {
     // Add walk animation
     animation_manager.add_animation("walk", Texture_Manager::get("player_angel2.png"),
-                                    sf::Vector2u{24, 1}, 2 / 60.f);
+                                    24, 2 / 60.f);
     animation_manager.add_animation("idle", Texture_Manager::get("idle.png"),
-                                    sf::Vector2u{18, 1}, 4 / 60.f);
+                                    18, 4 / 60.f);
     animation_manager.add_animation("attack", Texture_Manager::get("player_attack.png"),
-                                    sf::Vector2u{12, 1}, 2.5 / 60.f);
+                                    12, 2.5 / 60.f);
 }
 
 int Player::get_hp() const {

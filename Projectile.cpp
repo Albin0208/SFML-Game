@@ -98,7 +98,7 @@ void Projectile::set_animations() {
     if (what_to_hit == Objects_to_hit::all_players)
         texture= Texture_Manager::get("fireball_blue.png");
     animation_manager.add_animation("shoot", texture,
-                                    sf::Vector2u{5, 1}, 2 / 60.f);
+                                    5, 2 / 60.f);
 }
 
 int Projectile::attack() {

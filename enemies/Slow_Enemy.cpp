@@ -78,9 +78,9 @@ int Slow_Enemy::attack() {
 
 void Slow_Enemy::set_animations() {
     animation_manager.add_animation("walk", Texture_Manager::get("slow_enemy.png"),
-                                    sf::Vector2u{18, 1}, 3 / 60.f);
+                                    18, 3 / 60.f);
     animation_manager.add_animation("attack", Texture_Manager::get("mino_attack2.png"),
-                                    sf::Vector2u{11, 1}, 3 / 60.f);
+                                    11, 3 / 60.f);
     animation_manager.add_animation("dying", Texture_Manager::get("dying_slow.png"),
-                                    sf::Vector2u{15, 1}, 3 / 60.f);
+                                    15, 3 / 60.f);
 }

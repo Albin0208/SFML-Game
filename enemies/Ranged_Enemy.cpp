@@ -87,9 +87,9 @@ int Ranged_Enemy::attack() {
 
 void Ranged_Enemy::set_animations() {
     animation_manager.add_animation("walk", Texture_Manager::get("range_enemy_blue.png"),
-                                    sf::Vector2u{12, 1}, 3 / 60.f);
+                                    12, 3 / 60.f);
     animation_manager.add_animation("attack", Texture_Manager::get("range_attack_blue.png"),
-                                    sf::Vector2u{18, 1}, 2 / 60.f);
+                                    18, 2 / 60.f);
     animation_manager.add_animation("dying", Texture_Manager::get("dying_range.png"),
-                                    sf::Vector2u{15, 1}, 2 / 60.f);
+                                    15, 2 / 60.f);
 }
