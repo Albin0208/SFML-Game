@@ -23,8 +23,6 @@ protected:
 private:
     int health;
     sf::Clock attack_timer;
-    int32_t attack_speed;
-
 };
 
 

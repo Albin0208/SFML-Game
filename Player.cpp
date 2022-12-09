@@ -70,10 +70,14 @@ void Player::update(sf::Time const& time, Game& game) {
 
             sf::Vector2f projectile_dir{mouse_pos - position};
 
+            //std::cout << projectile_dir.x << " " << projectile_dir.y << "\n";
+
             // Normalize the projectile-direction-vector
             projectile_dir /= static_cast<float>(sqrt(pow(projectile_dir.x, 2) + pow(projectile_dir.y, 2)));
 
-            game.add(std::make_shared<Projectile>(position, 300.f, projectile_dir, 40));
+            game.add(std::make_shared<Projectile>(
+                    sf::Vector2f{position.x + hitbox.getSize().x / 2, position.y + hitbox.getSize().y / 2},
+                    300.f, projectile_dir, 40));
         }
     }
 
