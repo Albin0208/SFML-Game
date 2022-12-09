@@ -22,7 +22,7 @@ public:
      * @param time The time since last update
      * @param game A reference to the game world
      */
-    virtual void update(sf::Time const& time, Game& game,sf::RenderWindow const& window) = 0;
+    virtual void update(sf::Time const& time, Game& game) = 0;
 
     /**
      * Render the game object
@@ -46,7 +46,6 @@ protected:
     sf::Sprite sprite;
     sf::Texture texture;
     bool alive;
-    sf::Sprite sprite;
 };
 
 

@@ -11,7 +11,7 @@ class Player : public Movable_Object {
 public:
     Player(sf::Vector2f const& position, float speed);
 
-    void update(sf::Time const& time, Game& game, sf::RenderWindow const& window) override;
+    void update(sf::Time const& time, Game& game) override;
 
     int attack() override;
 

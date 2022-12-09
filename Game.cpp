@@ -48,7 +48,7 @@ void Game::render(sf::RenderWindow& target) {
     target.draw(point_text);
     int minutes{static_cast<int>(time_survived.asSeconds() / 60)};
     int seconds{static_cast<int>(time_survived.asSeconds() - minutes * 60)};
-    std::string s{std::to_string(minutes) + " : " + std::to_string(seconds)};
+    std::string s{std::to_string(minutes) + ":" + std::to_string(seconds)};
 
     point_text.setString(s);
     point_text.setOrigin(point_text.getGlobalBounds().width / 2, 0.f);
