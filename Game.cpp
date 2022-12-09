@@ -6,7 +6,6 @@
 #include <iostream>
 #include "Game.h"
 #include "Player.h"
-#include "enemies/Enemy.h"
 #include "Texture_Manager.h"
 
 Game::Game() : window{nullptr}, points{0} {
@@ -69,7 +68,7 @@ void Game::render(sf::RenderWindow& target) {
     time_survived = survived_clock.getElapsedTime();
     target.draw(point_text);
     int minutes{static_cast<int>(time_survived.asSeconds() / 60)};
-    int seconds{static_cast<int>(time_survived.asSeconds() - minutes * 60)};
+    int seconds{static_cast<int>(time_survived.asSeconds()) - minutes * 60};
 
     point_text.setString(std::to_string(minutes) + ":" + std::to_string(seconds));
     point_text.setOrigin(point_text.getGlobalBounds().width / 2, 0.f);
@@ -111,10 +110,6 @@ std::vector<std::shared_ptr<Game_Object>> Game::collides_with(Game_Object& obj) 
     }
 
     return collided_with;
-}
-
-sf::Vector2f const& Game::get_player_pos() const {
-    return dynamic_cast<Player*>(objects.at(0).get())->get_pos();
 }
 
 void Game::enemy_killed() {

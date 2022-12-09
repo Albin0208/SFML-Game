@@ -51,16 +51,8 @@ public:
     vector<std::shared_ptr<Game_Object>> collides_with(Game_Object& obj) const;
 
     /**
-     * Get a reference to the player position
-     *
-     * @return The player position
-     */
-    sf::Vector2f const& get_player_pos() const;
-
-    /**
      * Tell the game that a enemy has been killed
      */
-
     void enemy_killed();
 
     sf::RenderWindow* window;
