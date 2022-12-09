@@ -28,6 +28,7 @@ void Ranged_Enemy::update(sf::Time const& time, Game& game) {
     if (attack_timer.getElapsedTime().asMilliseconds() > attack_timer_max) {
         //&& (player_pos - hitbox.getPosition()-position) < 100.0f      add attack range to ranged enemies
         attack_timer.restart();
+        attacking=true;
 
         sf::Vector2f projectile_dir{player_pos - position};
 
