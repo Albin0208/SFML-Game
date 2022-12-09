@@ -4,13 +4,22 @@
 #include <iostream>
 #include "Projectile.h"
 #include "enemies/Enemy.h"
+#include "Texture_Manager.h"
 
 Projectile::Projectile(sf::Vector2f const& position, float speed, sf::Vector2f const& direction, int damage) :
         Movable_Object(position, speed), direction{direction}, damage{damage} {
+    set_animations();
+    sprite.setScale(1, 1);
+    sf::Vector2f sprite_size{Texture_Manager::get("fireball1.png")->getSize()};
+    animation_manager.play("shoot", sprite);
 
-    hitbox.setSize(sf::Vector2f{5, 5});
-    hitbox.setPosition(position);
-    hitbox.setFillColor(sf::Color::White);
+//    sprite_size.x /= 5;
+//    sprite_size.y /= 5;
+    sprite.setOrigin({sprite_size.x  / 5 / 2, sprite_size.y / 5 / 2});
+
+    sprite.setRotation(static_cast<float>(atan2(direction.y, direction.x) * (180 / M_PI)));
+
+    hitbox.setSize({sprite.getLocalBounds().width / 3.f, sprite.getLocalBounds().height / 2.f});
 }
 
 
@@ -18,21 +27,27 @@ void Projectile::update(sf::Time const& time, Game& game) {
     position += direction * speed * time.asSeconds();
 
     // Check for moving out if window
-    // Left collision
-    if (position.x < 0.f)
+    // Left / top collision
+    if (position.x < 0.f || position.y < 0.f)
         alive=false;
-    // Top collision
-    if (position.y < 0.f)
-        alive=false;
-    // Right collision
-    if (position.x + hitbox.getGlobalBounds().width > WIDTH)
-        alive=false;
-    // Bottom collision
-    if (position.y + hitbox.getGlobalBounds().height > HEIGHT)
+    // Right / bottom collision
+    if (position.x + hitbox.getGlobalBounds().width > WIDTH ||
+        position.y + hitbox.getGlobalBounds().height > HEIGHT)
         alive=false;
 
+    animation_manager.play("shoot", sprite);
+
     hitbox.setPosition(position);
-    sprite.setPosition(position);
+    sprite.setPosition({hitbox.getPosition().x - hitbox.getGlobalBounds().width / 2, hitbox.getPosition().y - hitbox.getGlobalBounds().height / 2});
+
+    if (direction.x > 0)
+        sprite.move({hitbox.getGlobalBounds().width, 0});
+    if (direction.x < 0)
+        sprite.move({hitbox.getGlobalBounds().width, hitbox.getGlobalBounds().height});
+    if (direction.y > 0)
+        sprite.move({hitbox.getGlobalBounds().width -10, 0});
+    if (direction.y < 0)
+        sprite.move({0, hitbox.getGlobalBounds().height});
 
     for (auto& o : game.collides_with(*this)) {
         // TODO: Do some stuff on collision depending on what type it is
@@ -46,12 +61,8 @@ void Projectile::update(sf::Time const& time, Game& game) {
 }
 
 void Projectile::set_animations() {
-
-}
-
-void Projectile::render(sf::RenderWindow& window) {
-    window.draw(hitbox);
-    window.draw(sprite);
+    animation_manager.add_animation("shoot", Texture_Manager::get("fireball1.png"),
+                                    sf::Vector2u{5, 1}, 2 / 60.f);
 }
 
 int Projectile::attack() {

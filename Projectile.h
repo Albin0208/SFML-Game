@@ -13,7 +13,6 @@ public:
     ~Projectile() override = default;
 
     void update(const sf::Time& time, Game& game) override;
-    void render(sf::RenderWindow& window) override;
     int attack() override;
 
 protected:
