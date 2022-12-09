@@ -69,8 +69,6 @@ void Player::update(sf::Time const& time, Game& game) {
 
             sf::Vector2f projectile_dir{mouse_pos - position};
 
-            //std::cout << projectile_dir.x << " " << projectile_dir.y << "\n";
-
             // Normalize the projectile-direction-vector
             projectile_dir /= static_cast<float>(sqrt(pow(projectile_dir.x, 2) + pow(projectile_dir.y, 2)));
 
@@ -102,15 +100,14 @@ void Player::update(sf::Time const& time, Game& game) {
         if (auto e = std::dynamic_pointer_cast<Enemy>(o)) {
             health -= e->attack();
 
-            // We have 0 health, the game is over
-            if (health <= 0)
-                game.is_game_over = true;
-
             // Not able to pass through an enemy
 //            position = hitbox.getPosition() - dir * speed * time.asSeconds();
 //            hitbox.setPosition(position);
         }
     }
+    if (health <= 0)
+        game.is_game_over = true;
+
 }
 
 sf::Vector2f const& Player::get_pos() {
@@ -119,6 +116,9 @@ sf::Vector2f const& Player::get_pos() {
 
 int Player::attack() {
     return 0;
+}
+void Player::take_damage(int damage) {
+    health -=damage;
 }
 
 void Player::set_animations() {

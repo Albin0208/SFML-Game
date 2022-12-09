@@ -17,6 +17,8 @@ public:
 
     sf::Vector2f const& get_pos();
 
+    void take_damage(int damage);
+
 protected:
     void set_animations() override;
 
