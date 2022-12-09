@@ -8,7 +8,7 @@
 #include "../Projectile.h"
 
 Slow_Enemy::Slow_Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos)
-    : Enemy(position, speed, player_pos) {
+    : Enemy(position, speed, player_pos, 10) {
     set_animations();
     attack_timer_max = 500;
     hitbox.setSize({100, 135});
@@ -69,6 +69,7 @@ void Slow_Enemy::update(sf::Time const& time, Game& game) {
         alive = false;
         animation_manager.kill();
         game.enemy_killed();
+        game.add_points(points);
     }
 }
 

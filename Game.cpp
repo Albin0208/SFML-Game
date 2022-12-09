@@ -6,6 +6,7 @@
 #include <iostream>
 #include "Game.h"
 #include "Player.h"
+#include "enemies/Enemy.h"
 
 Game::Game() : window{nullptr}, points{0} {
     font.loadFromFile(FONT_PATH);
@@ -85,10 +86,13 @@ sf::Vector2f const& Game::get_player_pos() const {
 }
 
 void Game::enemy_killed() {
-    points++;
     wave.enemy_killed();
 }
 
 int Game::get_points() const {
     return points;
+}
+
+void Game::add_points(int points_to_add) {
+    points += points_to_add;
 }

@@ -10,6 +10,8 @@
 #include "SFML/System.hpp"
 #include "Game.h"
 
+class Game;
+
 class Game_Object {
 public:
     Game_Object(sf::Vector2f const& position);

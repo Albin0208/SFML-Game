@@ -58,11 +58,14 @@ public:
     /**
      * Tell the game that a enemy has been killed
      */
+
     void enemy_killed();
 
     sf::RenderWindow* window;
 
     int get_points() const;
+
+    void add_points(int points);
 
 private:
     vector<std::shared_ptr<Game_Object>> objects;
