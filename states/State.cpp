@@ -2,7 +2,6 @@
 // Created by albin on 2022-12-01.
 //
 
-#include <iostream>
 #include "State.h"
 
 void State::on_key_press(sf::Keyboard::Key) {}
@@ -12,6 +11,7 @@ void State::on_key_release(sf::Keyboard::Key) {}
 void State::run(std::shared_ptr<State> state) {
     sf::Clock clock{};
 
+    // Create the window
     sf::RenderWindow window{sf::VideoMode{WIDTH, HEIGHT}, GAME_NAME};
     window.setKeyRepeatEnabled(false);
     window.setVerticalSyncEnabled(true);
@@ -34,7 +34,10 @@ void State::run(std::shared_ptr<State> state) {
             }
         }
         window.clear();
+
+        // Handle state change
         if (auto new_state = state->update(clock.restart(), window)) {
+            // The state is exit quit the loop
             if (std::dynamic_pointer_cast<Exit_State>(new_state)) {
                 return;
             } else {

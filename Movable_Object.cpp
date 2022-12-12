@@ -15,7 +15,10 @@ void Movable_Object::render(sf::RenderWindow& window) {
 }
 
 void Movable_Object::take_damage(int damage) {
-    sprite.setColor(sf::Color::Red);
-    dmg_clock.restart();
-    health -= damage;
+    // Make sure that we have taken damage
+    if (damage > 0) {
+        sprite.setColor(sf::Color::Red);
+        dmg_clock.restart();
+        health -= damage;
+    }
 }
