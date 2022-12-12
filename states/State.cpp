@@ -2,6 +2,7 @@
 // Created by albin on 2022-12-01.
 //
 
+#include <iostream>
 #include "State.h"
 
 void State::on_key_press(sf::Keyboard::Key) {}
@@ -14,7 +15,6 @@ void State::run(std::shared_ptr<State> state) {
     sf::RenderWindow window{sf::VideoMode{WIDTH, HEIGHT}, GAME_NAME};
     window.setKeyRepeatEnabled(false);
     window.setVerticalSyncEnabled(true);
-
 
     while (state) {
         sf::Event event{};
@@ -42,23 +42,6 @@ void State::run(std::shared_ptr<State> state) {
             }
             continue;
         }
-        sf::Texture BackgroundTexture;
-        sf::Sprite background;
-        sf::Vector2u TextureSize;  //Added to store texture size.
-        sf::Vector2u WindowSize;   //Added to store window size.
-
-        BackgroundTexture.loadFromFile("..//resources//textures//background.png");
-
-        TextureSize = BackgroundTexture.getSize(); //Get size of texture.
-        WindowSize = window.getSize();             //Get size of window.
-
-        float ScaleX = (float) WindowSize.x / TextureSize.x;
-        float ScaleY = (float) WindowSize.y / TextureSize.y;     //Calculate scale.
-
-        background.setTexture(BackgroundTexture);
-        background.setScale(ScaleX, ScaleY);      //Set scale.
-
-        window.draw(background);
 
         state->render(window);
         window.display();
