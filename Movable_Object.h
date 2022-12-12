@@ -24,6 +24,8 @@ public:
      */
     virtual int attack() = 0;
 
+    void take_damage(int damage);
+
 protected:
     /**
      * Set up all the animation for the movable object
@@ -34,6 +36,9 @@ protected:
     int32_t attack_timer_max{};
     bool face_right;
     float speed;
+    bool attacking;
+    int health;
+    sf::Clock dmg_clock;
     std::string type;
     Animation_Manager animation_manager;
 };

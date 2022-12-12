@@ -8,11 +8,13 @@
 #include "enemies/Slow_Enemy.h"
 #include "Texture_Manager.h"
 #include "Projectile.h"
+#include "Obstacle.h"
 
 Player::Player(sf::Vector2f const& position, float speed)
-    : Movable_Object(position, speed), health{100} {
+    : Movable_Object(position, speed){
     set_animations();
     attack_timer_max = 500;
+    health = 100;
     sprite.setScale({0.15f, 0.15f});
 
     animation_manager.play("idle", sprite);
@@ -60,8 +62,6 @@ void Player::update(sf::Time const& time, Game& game) {
         type = "walk";
     }
 
-    animation_manager.play(type, sprite);
-
     if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
         if (attack_timer.getElapsedTime().asMilliseconds() > attack_timer_max) {
             attack_timer.restart();
@@ -75,8 +75,18 @@ void Player::update(sf::Time const& time, Game& game) {
             game.add(std::make_shared<Projectile>(
                     sf::Vector2f{position.x + hitbox.getSize().x / 2, position.y + hitbox.getSize().y / 2},
                     300.f, projectile_dir, 40, Objects_to_hit::all_enemies));
+//            animation_manager.play("attack", sprite, true);
+            attacking = true;
         }
     }
+
+    if (attacking) {
+        animation_manager.play("attack", sprite, true);
+        if (animation_manager.is_done("attack"))
+            attacking = false;
+    }
+    else
+        animation_manager.play(type, sprite);
 
     // Check for moving out if window
     // Left collision
@@ -93,21 +103,22 @@ void Player::update(sf::Time const& time, Game& game) {
         position = {position.x, HEIGHT- hitbox.getGlobalBounds().height};
 
     hitbox.setPosition(position);
-    sprite.setPosition({hitbox.getPosition().x - hitbox.getSize().x / 2, hitbox.getPosition().y - hitbox.getSize().y / 4});
 
     for (auto& o : game.collides_with(*this)) {
-        // TODO: Do some stuff on collision depending on what type it is
-        if (auto e = std::dynamic_pointer_cast<Enemy>(o)) {
-            health -= e->attack();
-
-            // Not able to pass through an enemy
-//            position = hitbox.getPosition() - dir * speed * time.asSeconds();
-//            hitbox.setPosition(position);
+        if (auto e = std::dynamic_pointer_cast<Obstacle>(o)) {
+            // Not able to pass through an obstacle
+            position = hitbox.getPosition() - dir * speed * time.asSeconds();
+            hitbox.setPosition(position);
         }
     }
+
+    sprite.setPosition({hitbox.getPosition().x - hitbox.getSize().x / 2, hitbox.getPosition().y - hitbox.getSize().y / 4});
+
     if (health <= 0)
         game.is_game_over = true;
 
+    if (dmg_clock.getElapsedTime().asMilliseconds() > 60)
+        sprite.setColor(sf::Color::White);
 }
 
 sf::Vector2f const& Player::get_pos() {
@@ -117,14 +128,17 @@ sf::Vector2f const& Player::get_pos() {
 int Player::attack() {
     return 0;
 }
-void Player::take_damage(int damage) {
-    health -=damage;
-}
 
 void Player::set_animations() {
     // Add walk animation
     animation_manager.add_animation("walk", Texture_Manager::get("player_angel2.png"),
-                                    sf::Vector2u{24, 1}, 2 / 60.f);
+                                    24, 2 / 60.f);
     animation_manager.add_animation("idle", Texture_Manager::get("idle.png"),
-                                    sf::Vector2u{18, 1}, 4 / 60.f);
+                                    18, 4 / 60.f);
+    animation_manager.add_animation("attack", Texture_Manager::get("player_attack.png"),
+                                    12, 2.5 / 60.f);
+}
+
+int Player::get_hp() const {
+    return health;
 }

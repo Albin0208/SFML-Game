@@ -14,24 +14,26 @@ public:
 
     void play(std::string const& key, sf::Sprite& sprite, bool priority = false);
 
-    void add_animation(std::string const& key, sf::Texture* texture, sf::Vector2u image_count, float total_time);
+    void add_animation(std::string const& key, sf::Texture* texture, int image_count, float total_time);
 
     bool const& is_done(std::string const& key);
 
     void kill();
 
+    void force_play(std::string const& key, sf::Sprite& sprite);
+
 private:
     class Animation {
     public:
-        Animation(sf::Texture* texture, sf::Vector2u image_count, float total_time)
+        Animation(sf::Texture* texture, int image_count, float total_time)
                 : texture{texture}, TOTAL_TIME{total_time}, current_frame{0}, current_time{0}, done{false} {
 
             sf::Vector2u sprite_size;
 
-            sprite_size.x = texture->getSize().x / image_count.x;
-            sprite_size.y = texture->getSize().y / image_count.y;
+            sprite_size.x = texture->getSize().x / image_count;
+            sprite_size.y = texture->getSize().y;
 
-            for (int i = 0; i < image_count.x; ++i) {
+            for (int i = 0; i < image_count; ++i) {
                 frames.emplace_back(
                         static_cast<int>(sprite_size.x * i),
                         static_cast<int>(0),

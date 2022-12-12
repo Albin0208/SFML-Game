@@ -14,6 +14,8 @@
 class Player;
 class Game_Object;
 
+enum Objects_to_hit { all_enemies, all_players, slowerenemy, rangedenemy};
+
 class Game {
 public:
     Game();
@@ -49,16 +51,8 @@ public:
     vector<std::shared_ptr<Game_Object>> collides_with(Game_Object& obj) const;
 
     /**
-     * Get a reference to the player position
-     *
-     * @return The player position
-     */
-    sf::Vector2f const& get_player_pos() const;
-
-    /**
      * Tell the game that a enemy has been killed
      */
-
     void enemy_killed();
 
     sf::RenderWindow* window;
@@ -71,11 +65,18 @@ private:
     vector<std::shared_ptr<Game_Object>> objects;
     Wave wave;
     sf::Clock survived_clock;
+    shared_ptr<Player> player;
 
     sf::Time time_survived;
 
     sf::Font font;
     int points;
+
+    // Healthbar components
+    sf::RectangleShape back;
+    sf::RectangleShape bar;
+
+    sf::Sprite player_img;
 };
 
 

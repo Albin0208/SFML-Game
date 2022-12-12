@@ -11,20 +11,16 @@
 
 class Ranged_Enemy : public Enemy {
 public:
-Ranged_Enemy(sf::Vector2f const& position1, float speed1, sf::Vector2f const& playerPos);
+    Ranged_Enemy(sf::Vector2f const& position1, float speed1, sf::Vector2f const& playerPos);
 
-void update(const sf::Time &time, Game &game) override;
+    void update(const sf::Time &time, Game &game) override;
 
-int attack() override;
+    int attack() override;
 
 protected:
-void set_animations() override;
+    void set_animations() override;
 
-public:
-void take_damage(int damage) override;
 
-private:
-bool attacking{false};
 };
 
 

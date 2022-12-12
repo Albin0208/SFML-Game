@@ -34,7 +34,7 @@ void Animation_Manager::play(std::string const& key, sf::Sprite& sprite, bool pr
     }
 }
 
-void Animation_Manager::add_animation(std::string const& key, sf::Texture* texture, sf::Vector2u image_count, float total_time) {
+void Animation_Manager::add_animation(std::string const& key, sf::Texture* texture, int image_count, float total_time) {
     animations[key] = new Animation{texture, image_count, total_time};
 }
 
@@ -45,4 +45,9 @@ bool const& Animation_Manager::is_done(std::string const& key) {
 void Animation_Manager::kill() {
     priority_animation = nullptr;
     last_animation = nullptr;
+}
+
+void Animation_Manager::force_play(std::string const& key, sf::Sprite& sprite) {
+    priority_animation = animations[key];
+    play(key, sprite);
 }

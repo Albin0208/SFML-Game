@@ -10,24 +10,27 @@
 class Enemy : public Movable_Object {
 public:
     //TODO: Take health as a constructor parameter
-    Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos, int points);
+    Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos,
+          int points, int health, int damage);
     ~Enemy() override = default;
 
-
-    void update(sf::Time const& time, Game& game) override = 0;
+    void update(sf::Time const& time, Game& game) override;
+    void render(sf::RenderWindow& window) override;
 
     int attack() override = 0;
-
-    virtual void take_damage(int damage) = 0;
-
-    int get_points() const;
 
 protected:
     void set_animations() override = 0;
 
     sf::Vector2f const& player_pos;
-    int health;
     int points;
+    int damage;
+
+private:
+    sf::RectangleShape health_bar_background;
+    sf::RectangleShape health_bar;
+
+    int max_health;
 };
 
 
