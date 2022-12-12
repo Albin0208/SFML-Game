@@ -2,11 +2,11 @@
 // Created by albin on 2022-12-01.
 //
 
-//#include <iostream>
 #include <iostream>
 #include "Game.h"
 #include "Player.h"
 #include "Texture_Manager.h"
+#include "Obstacle.h"
 
 Game::Game() : window{nullptr}, points{0} {
     font.loadFromFile(FONT_PATH);
@@ -38,6 +38,7 @@ Game::Game() : window{nullptr}, points{0} {
 
     // Restart the survived clock to get time from after loading is done
     survived_clock.restart();
+    add(std::make_shared<Obstacle>(sf::Vector2f{400, 400}, nullptr));
 }
 
 void Game::update(sf::Time const& time) {

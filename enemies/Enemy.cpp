@@ -2,7 +2,6 @@
 // Created by albin on 2022-12-05.
 //
 
-#include <iostream>
 #include "Enemy.h"
 
 Enemy::Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos,

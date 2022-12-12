@@ -8,6 +8,7 @@
 #include "enemies/Slow_Enemy.h"
 #include "Texture_Manager.h"
 #include "Projectile.h"
+#include "Obstacle.h"
 
 Player::Player(sf::Vector2f const& position, float speed)
     : Movable_Object(position, speed){
@@ -102,18 +103,17 @@ void Player::update(sf::Time const& time, Game& game) {
         position = {position.x, HEIGHT- hitbox.getGlobalBounds().height};
 
     hitbox.setPosition(position);
+
+    for (auto& o : game.collides_with(*this)) {
+        if (auto e = std::dynamic_pointer_cast<Obstacle>(o)) {
+            // Not able to pass through an obstacle
+            position = hitbox.getPosition() - dir * speed * time.asSeconds();
+            hitbox.setPosition(position);
+        }
+    }
+
     sprite.setPosition({hitbox.getPosition().x - hitbox.getSize().x / 2, hitbox.getPosition().y - hitbox.getSize().y / 4});
 
-//    for (auto& o : game.collides_with(*this)) {
-//        // TODO: Do some stuff on collision depending on what type it is
-//        if (auto e = std::dynamic_pointer_cast<Enemy>(o)) {
-////            health -= e->attack();
-//
-//            // Not able to pass through an enemy
-////            position = hitbox.getPosition() - dir * speed * time.asSeconds();
-////            hitbox.setPosition(position);
-//        }
-//    }
     if (health <= 0)
         game.is_game_over = true;
 
