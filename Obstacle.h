@@ -15,6 +15,13 @@ public:
     void update(sf::Time const& time, Game& game) override;
 
     void render(sf::RenderWindow& window) override;
+
+    sf::CircleShape const& get_shape() const;
+
+    sf::RectangleShape get_pos() const;
+
+private:
+    sf::CircleShape shape;
 };
 
 

@@ -3,6 +3,7 @@
 //
 
 #include <cmath>
+#include <algorithm>
 #include <iostream>
 #include "Player.h"
 #include "enemies/Slow_Enemy.h"
@@ -107,8 +108,8 @@ void Player::update(sf::Time const& time, Game& game) {
     for (auto& o : game.collides_with(*this)) {
         if (auto e = std::dynamic_pointer_cast<Obstacle>(o)) {
             // Not able to pass through an obstacle
-            position = hitbox.getPosition() - dir * speed * time.asSeconds();
-            hitbox.setPosition(position);
+            position = position - dir * speed * time.asSeconds();
+            // hitbox.setPosition(position);
         }
     }
 

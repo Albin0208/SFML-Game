@@ -5,8 +5,11 @@
 #include "Obstacle.h"
 
 Obstacle::Obstacle(sf::Vector2f const& position, sf::Texture* texture) : Game_Object(position) {
-    hitbox.setSize({50, 50});
-    hitbox.setFillColor(sf::Color::White);
+    shape.setRadius(50);
+    hitbox.setSize({100, 100});
+    shape.setFillColor(sf::Color::White);
+    hitbox.setFillColor(sf::Color::Red);
+//    shape.setPosition(position);
 }
 
 void Obstacle::update(sf::Time const& time, Game& game) {
@@ -15,4 +18,13 @@ void Obstacle::update(sf::Time const& time, Game& game) {
 
 void Obstacle::render(sf::RenderWindow& window) {
     window.draw(hitbox);
+//    window.draw(shape);
+}
+
+sf::CircleShape const& Obstacle::get_shape() const {
+    return shape;
+}
+
+sf::RectangleShape Obstacle::get_pos() const {
+    return hitbox;
 }

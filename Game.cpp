@@ -42,13 +42,13 @@ Game::Game() : window{nullptr}, points{0} {
 }
 
 void Game::update(sf::Time const& time) {
-    if (wave.is_over()) {
-        vector<shared_ptr<Game_Object>>& tmp{wave.create(player->get_pos())};
-
-        objects.reserve(tmp.size());
-        // Move all the enemies to the object vector
-        std::move(tmp.begin(), tmp.end(), std::back_inserter(objects));
-    }
+//    if (wave.is_over()) {
+//        vector<shared_ptr<Game_Object>>& tmp{wave.create(player->get_pos())};
+//
+//        objects.reserve(tmp.size());
+//        // Move all the enemies to the object vector
+//        std::move(tmp.begin(), tmp.end(), std::back_inserter(objects));
+//    }
 
     for (size_t i{}; i < objects.size(); ++i) {
         if (objects[i] != nullptr) {
