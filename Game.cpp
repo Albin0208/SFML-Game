@@ -28,8 +28,13 @@ Game::Game() : window{nullptr}, points{0} {
     back.setOutlineThickness(2.f);
     back.setOutlineColor(sf::Color::White),
     bar = back;
-    bar.setSize({298, 25});
     bar.setFillColor(sf::Color::Green);
+
+    sf::Sprite sprite{*Texture_Manager::get("player_angel2.png"), sf::IntRect{900, 0, 900, 900}};
+    sprite.setScale({0.1f, 0.1f});
+    sprite.setPosition(back.getPosition());
+    sprite.move({-sprite.getGlobalBounds().width, -sprite.getGlobalBounds().height / 2});
+    player_img = sprite;
 
     // Restart the survived clock to get time from after loading is done
     survived_clock.restart();
@@ -82,11 +87,7 @@ void Game::render(sf::RenderWindow& target) {
 
     bar.setScale({static_cast<float>(player->get_hp()) / 100.f, 1.f});
 
-    sf::Sprite sprite{*Texture_Manager::get("player_angel2.png"), sf::IntRect{900, 0, 900, 900}};
-    sprite.setScale({0.1f, 0.1f});
-    sprite.setPosition(back.getPosition());
-    sprite.move({-sprite.getGlobalBounds().width, -sprite.getGlobalBounds().height / 2});
-    target.draw(sprite);
+    target.draw(player_img);
     target.draw(back);
     target.draw(bar);
 
