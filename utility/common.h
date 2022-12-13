@@ -18,7 +18,7 @@ using std::vector;
 
 unsigned int const WIDTH{1280};
 unsigned int const HEIGHT{960};
-std::string const GAME_NAME{"Game name"};
+std::string const GAME_NAME{"Survival Shooter"};
 std::string const FONT_PATH{"../resources/fonts/survivant.ttf"};
 
 #endif //TDP005_COMMON_H
