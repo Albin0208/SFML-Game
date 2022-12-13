@@ -17,7 +17,7 @@ add_executable(TDP005 main.cpp states/State.h states/State.cpp states/Menu_State
         states/Game_Over_State.cpp states/Game_Over_State.h Texture_Manager.cpp Texture_Manager.h
         Animation_Manager.cpp Animation_Manager.h Wave.cpp Wave.h Projectile.cpp Projectile.h
         enemies/Ranged_Enemy.h enemies/Ranged_Enemy.h enemies/Ranged_Enemy.cpp enemies/Ranged_Enemy.cpp
-        Obstacle.cpp Obstacle.h)
+        Obstacle.cpp Obstacle.h Random.cpp Random.h)
 
 target_link_libraries(
         TDP005

@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Texture_Manager.h"
 #include "Obstacle.h"
+#include "Random.h"
 
 Game::Game() : window{nullptr}, points{0} {
     font.loadFromFile(FONT_PATH);
@@ -131,9 +132,9 @@ void Game::spawn_obstacles() {
     for (int i{}; i < 8; ++i) {
         shared_ptr<Obstacle> obstacle = std::make_shared<Obstacle>(
                 sf::Vector2f{
-                    static_cast<float>(Wave::random({70, WIDTH - 70})),
-                    static_cast<float>(Wave::random({70, HEIGHT- 70}))},
-                Texture_Manager::get("obstacle_sheet.png"), Wave::random({0, 3}));
+                    static_cast<float>(random_int(70, WIDTH - 70)),
+                    static_cast<float>(random_int(70, HEIGHT- 70))},
+                Texture_Manager::get("obstacle_sheet.png"), random_int(0, 3));
 
         add(obstacle);
     }

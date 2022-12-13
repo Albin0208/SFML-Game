@@ -31,7 +31,6 @@ public:
 
     int get_wave() const;
 
-    static int random(sf::Vector2i range);
 private:
     int enemy_count{0};
     int wave_number{0};
