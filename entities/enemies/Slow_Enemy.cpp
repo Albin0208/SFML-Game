@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include "Slow_Enemy.h"
-#include "../Texture_Manager.h"
+#include "../../utility/Texture_Manager.h"
 #include "../Projectile.h"
 #include "../Player.h"
 

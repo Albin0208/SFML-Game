@@ -6,9 +6,9 @@
 #define TDP005_GAME_OBJECT_H
 
 
-#include "common.h"
+#include "../common.h"
 #include "SFML/System.hpp"
-#include "Game.h"
+#include "../Game.h"
 
 class Game;
 

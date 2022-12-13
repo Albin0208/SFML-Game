@@ -3,7 +3,7 @@
 //
 
 #include "Game_Object.h"
-#include "Texture_Manager.h"
+#include "../utility/Texture_Manager.h"
 #include "Obstacle.h"
 
 Game_Object::Game_Object(sf::Vector2f const& position)

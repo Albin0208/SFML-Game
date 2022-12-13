@@ -3,12 +3,10 @@
 //
 
 #include <cmath>
-#include <iostream>
 #include "Player.h"
-#include "enemies/Slow_Enemy.h"
-#include "Texture_Manager.h"
 #include "Projectile.h"
 #include "Obstacle.h"
+#include "../utility/Texture_Manager.h"
 
 Player::Player(sf::Vector2f const& position, float speed)
     : Movable_Object(position, speed){

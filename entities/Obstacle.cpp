@@ -19,6 +19,6 @@ void Obstacle::update(sf::Time const& time, Game& game) {
 }
 
 void Obstacle::render(sf::RenderWindow& window) {
-//    window.draw(hitbox);
+    window.draw(hitbox);
     window.draw(sprite);
 }

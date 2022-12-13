@@ -3,9 +3,9 @@
 //
 
 #include "Wave.h"
-#include "Random.h"
-#include "enemies/Slow_Enemy.h"
-#include "enemies/Ranged_Enemy.h"
+#include "utility/Random.h"
+#include "entities/enemies/Ranged_Enemy.h"
+#include "entities/enemies/Slow_Enemy.h"
 
 bool Wave::is_over() const {
     return enemy_count == 0;

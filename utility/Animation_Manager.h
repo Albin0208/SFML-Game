@@ -5,7 +5,7 @@
 #ifndef TDP005_ANIMATION_MANAGER_H
 #define TDP005_ANIMATION_MANAGER_H
 
-#include "common.h"
+#include "../common.h"
 
 class Animation_Manager {
 public:

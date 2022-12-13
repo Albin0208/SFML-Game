@@ -5,7 +5,7 @@
 #ifndef TDP005_PROJECTILE_H
 #define TDP005_PROJECTILE_H
 #include "Movable_Object.h"
-#include "Game.h"
+#include "../Game.h"
 
 
 class Projectile : public Movable_Object {

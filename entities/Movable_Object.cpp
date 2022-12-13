@@ -9,8 +9,6 @@ Movable_Object::Movable_Object(sf::Vector2f const& position, float speed)
 }
 
 void Movable_Object::render(sf::RenderWindow& window) {
-//    hitbox.setFillColor(sf::Color::White);
-//    window.draw(hitbox);
     window.draw(sprite);
 }
 

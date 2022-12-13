@@ -7,7 +7,7 @@
 
 
 #include "Game_Object.h"
-#include "Animation_Manager.h"
+#include "../utility/Animation_Manager.h"
 
 class Movable_Object : public Game_Object {
 public:

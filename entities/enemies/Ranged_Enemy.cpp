@@ -4,7 +4,7 @@
 
 #include "Ranged_Enemy.h"
 #include "../Projectile.h"
-#include "../Texture_Manager.h"
+#include "../../utility/Texture_Manager.h"
 
 
 Ranged_Enemy::Ranged_Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos)
