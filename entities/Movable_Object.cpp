@@ -15,8 +15,8 @@ void Movable_Object::render(sf::RenderWindow& window) {
 void Movable_Object::obstacle_collision(Obstacle* obstacle) {
     // Not able to pass through an obstacle
     sf::Vector2f obstacle_center = obstacle->get_pos() + (obstacle->get_size() / 2.f);
-    sf::Vector2f player_center = position + (hitbox.getSize() / 2.f);
-    sf::Vector2f distance = player_center - obstacle_center;
+    sf::Vector2f moving_object_center = position + (hitbox.getSize() / 2.f);
+    sf::Vector2f distance = moving_object_center - obstacle_center;
 
     if(std::abs(distance.x) >= std::abs(distance.y)) {// To the right or left of obstacle
         if (distance.x <= 0)
