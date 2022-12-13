@@ -4,20 +4,21 @@
 
 #include <iostream>
 #include "Game.h"
-#include "Player.h"
-#include "Texture_Manager.h"
-#include "Obstacle.h"
+#include "entities/Player.h"
+#include "utility/Texture_Manager.h"
+#include "entities/Obstacle.h"
+#include "utility/Random.h"
 
 Game::Game() : window{nullptr}, points{0} {
     font.loadFromFile(FONT_PATH);
 
     // Preload enemy textures
-    Texture_Manager::get("range_enemy_blue.png");
-    Texture_Manager::get("range_attack_blue.png");
-    Texture_Manager::get("dying_range.png");
-    Texture_Manager::get("slow_enemy.png");
-    Texture_Manager::get("mino_attack2.png");
-    Texture_Manager::get("dying_slow.png");
+//    Texture_Manager::get("range_enemy_blue.png");
+//    Texture_Manager::get("range_attack_blue.png");
+//    Texture_Manager::get("dying_range.png");
+//    Texture_Manager::get("slow_enemy.png");
+//    Texture_Manager::get("mino_attack2.png");
+//    Texture_Manager::get("dying_slow.png");
 
     player = std::make_shared<Player>(sf::Vector2f{50, 50}, 300.f);
     add(player);
@@ -30,15 +31,16 @@ Game::Game() : window{nullptr}, points{0} {
     bar = back;
     bar.setFillColor(sf::Color::Green);
 
-    sf::Sprite sprite{*Texture_Manager::get("player_angel2.png"), sf::IntRect{900, 0, 900, 900}};
-    sprite.setScale({0.1f, 0.1f});
+    sf::Sprite sprite{*Texture_Manager::get("player_angel2.png"), sf::IntRect{0, 0, 135, 135}};
+    sprite.setScale({0.66f, 0.66f});
     sprite.setPosition(back.getPosition());
     sprite.move({-sprite.getGlobalBounds().width, -sprite.getGlobalBounds().height / 2});
     player_img = sprite;
 
+    spawn_obstacles();
+
     // Restart the survived clock to get time from after loading is done
     survived_clock.restart();
-    add(std::make_shared<Obstacle>(sf::Vector2f{400, 400}, nullptr));
 }
 
 void Game::update(sf::Time const& time) {
@@ -76,15 +78,15 @@ void Game::render(sf::RenderWindow& target) {
     int minutes{static_cast<int>(time_survived.asSeconds() / 60)};
     int seconds{static_cast<int>(time_survived.asSeconds()) - minutes * 60};
 
+    point_text.setString("Wave: " + std::to_string(wave.get_wave()));
+    point_text.setPosition((WIDTH) - point_text.getGlobalBounds().width - 15.f, 0.f);
+    target.draw(point_text);
+
     point_text.setString(std::to_string(minutes) + ":" + std::to_string(seconds));
     point_text.setOrigin(point_text.getGlobalBounds().width / 2, 0.f);
     point_text.setPosition((WIDTH / 2), 0.f);
     target.draw(point_text);
 
-    point_text.setOrigin(0.f, 0.f);
-    point_text.setString("Wave: " + std::to_string(wave.get_wave()));
-    point_text.setPosition((WIDTH) - point_text.getGlobalBounds().width - 15.f, 0.f);
-    target.draw(point_text);
 
     bar.setScale({static_cast<float>(player->get_hp()) / 100.f, 1.f});
 
@@ -124,4 +126,18 @@ int Game::get_points() const {
 
 void Game::add_points(int points_to_add) {
     points += points_to_add;
+}
+
+void Game::spawn_obstacles() {
+    for (int i{}; i < 8; ++i) {
+        shared_ptr<Obstacle> obstacle = std::make_shared<Obstacle>(
+                sf::Vector2f{
+                    static_cast<float>(random_int(70, WIDTH - 70)),
+                    static_cast<float>(random_int(70, HEIGHT- 70))},
+                Texture_Manager::get("obstacle_sheet.png"), random_int(0, 2));
+
+        // TODO: Check so not colliding with other obstacle
+        add(obstacle);
+    }
+
 }

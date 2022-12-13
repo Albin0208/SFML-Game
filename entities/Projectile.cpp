@@ -1,13 +1,13 @@
 //
 // Created by ingva on 2022-12-05.
 //
-#include <iostream>
+
 #include "Projectile.h"
 #include "enemies/Enemy.h"
 #include "enemies/Slow_Enemy.h"
 #include "enemies/Ranged_Enemy.h"
 #include "Player.h"
-#include "Texture_Manager.h"
+#include "../utility/Texture_Manager.h"
 
 Projectile::Projectile(sf::Vector2f const& position, float speed, sf::Vector2f const& direction,
                        int damage, Objects_to_hit what_to_hit, sf::Color color) :
@@ -17,9 +17,7 @@ Projectile::Projectile(sf::Vector2f const& position, float speed, sf::Vector2f c
     sf::Vector2f sprite_size{Texture_Manager::get("fireball1.png")->getSize()};
     animation_manager.play("shoot", sprite);
 
-//    sprite_size.x /= 5;
-//    sprite_size.y /= 5;
-    sprite.setOrigin({sprite_size.x  / 5 / 2, sprite_size.y / 5 / 2});
+    sprite.setOrigin({sprite_size.x  / 10, sprite_size.y / 10});
 
     sprite.setRotation(static_cast<float>(atan2(direction.y, direction.x) * (180 / M_PI)));
 

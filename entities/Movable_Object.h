@@ -7,10 +7,15 @@
 
 
 #include "Game_Object.h"
-#include "Animation_Manager.h"
+#include "../utility/Animation_Manager.h"
 
 class Movable_Object : public Game_Object {
 public:
+    /**
+     * Create a movable object
+     * @param position The position to spawn at
+     * @param speed
+     */
     Movable_Object(const sf::Vector2f &position, float speed);
     ~Movable_Object() override = default;
 
@@ -24,6 +29,10 @@ public:
      */
     virtual int attack() = 0;
 
+    /**
+     * Make the object take damage
+     * @param damage The amount to take damage by
+     */
     void take_damage(int damage);
 
 protected:

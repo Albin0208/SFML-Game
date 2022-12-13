@@ -10,19 +10,24 @@
 #include "Texture_Manager.h"
 #include "Projectile.h"
 #include "Obstacle.h"
+#include "../utility/Texture_Manager.h"
 
 Player::Player(sf::Vector2f const& position, float speed)
     : Movable_Object(position, speed){
     set_animations();
     attack_timer_max = 500;
     health = 100;
-    sprite.setScale({0.15f, 0.15f});
+    sprite.setScale(1.f, 1.f);
 
     animation_manager.play("idle", sprite);
 
     hitbox.setSize({sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 1.5f});
 }
 
+/**
+ * Find the direction the player should be moving in
+ * @return The direction
+ */
 static sf::Vector2f find_direction() {
     sf::Vector2f direction{0, 0};
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) ||
@@ -52,13 +57,13 @@ void Player::update(sf::Time const& time, Game& game) {
         type = "idle";
     if (dir.x > 0 || dir.y != 0 && face_right) {
         sprite.setOrigin(0.f, 0.f);
-        sprite.setScale(0.15f, 0.15f);
+        sprite.setScale(1.f, 1.f);
         face_right = true;
         type = "walk";
     }
     if (dir.x < 0 || dir.y != 0 && !face_right) {
-        sprite.setOrigin(900.f, 0.f);
-        sprite.setScale(-0.15f, 0.15f);
+        sprite.setOrigin(135.f, 0.f);
+        sprite.setScale(-1.f, 1.f);
         face_right = false;
         type = "walk";
     }
@@ -76,7 +81,6 @@ void Player::update(sf::Time const& time, Game& game) {
             game.add(std::make_shared<Projectile>(
                     sf::Vector2f{position.x + hitbox.getSize().x / 2, position.y + hitbox.getSize().y / 2},
                     300.f, projectile_dir, 40, Objects_to_hit::all_enemies));
-//            animation_manager.play("attack", sprite, true);
             attacking = true;
         }
     }

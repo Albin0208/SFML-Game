@@ -6,7 +6,7 @@
 #define TDP005_RANGED_ENEMY_H
 
 #include "SFML/System/Vector2.hpp"
-#include "../Game.h"
+#include "../../Game.h"
 #include "Enemy.h"
 
 class Ranged_Enemy : public Enemy {

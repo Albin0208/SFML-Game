@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include "Slow_Enemy.h"
-#include "../Texture_Manager.h"
+#include "../../utility/Texture_Manager.h"
 #include "../Projectile.h"
 #include "../Player.h"
 
@@ -12,7 +12,7 @@ Slow_Enemy::Slow_Enemy(sf::Vector2f const& position, float speed, sf::Vector2f c
     : Enemy(position, speed, player_pos, 10, 100, 5) {
     set_animations();
     attack_timer_max = 1500;
-    sprite.setScale({0.3f, 0.3f});
+    sprite.setScale({1.f, 1.f});
 
     animation_manager.play("walk", sprite);
 
@@ -31,13 +31,13 @@ void Slow_Enemy::update(sf::Time const& time, Game& game) {
 
     if (dir.x > 0 || dir.y != 0 && face_right) {
         sprite.setOrigin(0.f, 0.f);
-        sprite.setScale({0.3f, 0.3f});
+        sprite.setScale({1.f, 1.f});
         face_right = true;
         type = "walk";
     }
     if (dir.x < 0 || dir.y != 0 && !face_right) {
-        sprite.setOrigin(720.f, 0.f);
-        sprite.setScale({-0.3f, 0.3f});
+        sprite.setOrigin(198.4f, 0.f);
+        sprite.setScale({-1.f, 1.f});
         face_right = false;
         type = "walk";
     }

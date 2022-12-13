@@ -5,9 +5,9 @@
 #include <iostream>
 #include "Game_State.h"
 #include "Menu_State.h"
-#include "../Player.h"
+#include "../entities/Player.h"
 #include "Game_Over_State.h"
-#include "../Texture_Manager.h"
+#include "../utility/Texture_Manager.h"
 
 Game_State::Game_State() {
     background.setTexture(*Texture_Manager::get("background.png"));
