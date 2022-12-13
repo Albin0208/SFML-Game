@@ -19,10 +19,9 @@ public:
      * @param direction The direction the projectile should move in
      * @param damage How much damage the projectile does
      * @param what_to_hit What object the projectile should hit
-     * @param color The color of the projectile
      */
     Projectile(sf::Vector2f const& position, float speed, sf::Vector2f const& direction,
-               int damage, Objects_to_hit what_to_hit, sf::Color color = sf::Color::White);
+               int damage, Objects_to_hit what_to_hit);
 
     ~Projectile() override = default;
 

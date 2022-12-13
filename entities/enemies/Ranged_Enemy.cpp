@@ -44,8 +44,7 @@ void Ranged_Enemy::update(sf::Time const& time, Game& game) {
             projectile_dir /= static_cast<float>(sqrt(pow(projectile_dir.x, 2) + pow(projectile_dir.y, 2)));
 
             game.add(std::make_shared<Projectile>(position, 300.f, projectile_dir,
-                                                  5, Objects_to_hit::all_players,
-                                                  sf::Color(0,213,200)));
+                                                  5, Objects_to_hit::all_players));
         }
 
     if (dir.x > 0 || dir.y != 0 && face_right) {
