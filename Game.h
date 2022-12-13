@@ -8,7 +8,7 @@
 
 #include <memory>
 
-#include "common.h"
+#include "utility/common.h"
 #include "Wave.h"
 
 class Player;

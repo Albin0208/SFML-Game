@@ -6,7 +6,7 @@
 #define TDP005_WAVE_H
 
 
-#include "common.h"
+#include "utility/common.h"
 class Game_Object;
 
 class Wave {

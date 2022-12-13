@@ -5,7 +5,7 @@
 #ifndef TDP005_OBSTACLE_H
 #define TDP005_OBSTACLE_H
 
-#include "../common.h"
+#include "../utility/common.h"
 #include "Game_Object.h"
 
 class Obstacle : public Game_Object {

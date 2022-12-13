@@ -6,7 +6,7 @@
 #define TDP005_TEXTURE_MANAGER_H
 
 #include <map>
-#include "../common.h"
+#include "common.h"
 
 class Texture_Manager {
 public:
