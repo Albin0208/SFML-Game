@@ -10,7 +10,7 @@
 
 class Obstacle : public Game_Object {
 public:
-    Obstacle(sf::Vector2f const& position, sf::Texture* texture);
+    Obstacle(sf::Vector2f const& position, sf::Texture* texture, int texture_num);
 
     void update(sf::Time const& time, Game& game) override;
 

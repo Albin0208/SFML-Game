@@ -15,7 +15,7 @@ Player::Player(sf::Vector2f const& position, float speed)
     set_animations();
     attack_timer_max = 500;
     health = 100;
-    sprite.setScale({0.15f, 0.15f});
+    sprite.setScale(1.f, 1.f);
 
     animation_manager.play("idle", sprite);
 
@@ -51,13 +51,13 @@ void Player::update(sf::Time const& time, Game& game) {
         type = "idle";
     if (dir.x > 0 || dir.y != 0 && face_right) {
         sprite.setOrigin(0.f, 0.f);
-        sprite.setScale(0.15f, 0.15f);
+        sprite.setScale(1.f, 1.f);
         face_right = true;
         type = "walk";
     }
     if (dir.x < 0 || dir.y != 0 && !face_right) {
-        sprite.setOrigin(900.f, 0.f);
-        sprite.setScale(-0.15f, 0.15f);
+        sprite.setOrigin(135.f, 0.f);
+        sprite.setScale(-1.f, 1.f);
         face_right = false;
         type = "walk";
     }

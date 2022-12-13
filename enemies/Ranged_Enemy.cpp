@@ -11,7 +11,7 @@ Ranged_Enemy::Ranged_Enemy(sf::Vector2f const& position, float speed, sf::Vector
                             : Enemy(position, speed, player_pos, 5, 60, 5) {
     set_animations();
     attack_timer_max = 2000;
-    sprite.setScale({0.3f, 0.3f});
+    sprite.setScale({1.f, 1.f});
 
     animation_manager.play("walk", sprite);
 
@@ -50,13 +50,13 @@ void Ranged_Enemy::update(sf::Time const& time, Game& game) {
 
     if (dir.x > 0 || dir.y != 0 && face_right) {
         sprite.setOrigin(0.f, 0.f);
-        sprite.setScale({0.3f, 0.3f});
+        sprite.setScale({1.f, 1.f});
         face_right = true;
         type = "walk";
     }
     if (dir.x < 0 || dir.y != 0 && !face_right) {
-        sprite.setOrigin(520.f, 0.f);
-        sprite.setScale({-0.3f, 0.3f});
+        sprite.setOrigin(135.f, 0.f);
+        sprite.setScale({-1.f, 1.f});
         face_right = false;
         type = "walk";
     }

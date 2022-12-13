@@ -30,15 +30,15 @@ Game::Game() : window{nullptr}, points{0} {
     bar = back;
     bar.setFillColor(sf::Color::Green);
 
-    sf::Sprite sprite{*Texture_Manager::get("player_angel2.png"), sf::IntRect{900, 0, 900, 900}};
-    sprite.setScale({0.1f, 0.1f});
+    sf::Sprite sprite{*Texture_Manager::get("player_angel2.png"), sf::IntRect{0, 0, 135, 135}};
+    sprite.setScale({0.66f, 0.66f});
     sprite.setPosition(back.getPosition());
     sprite.move({-sprite.getGlobalBounds().width, -sprite.getGlobalBounds().height / 2});
     player_img = sprite;
 
     // Restart the survived clock to get time from after loading is done
     survived_clock.restart();
-    add(std::make_shared<Obstacle>(sf::Vector2f{400, 400}, nullptr));
+    add(std::make_shared<Obstacle>(sf::Vector2f{400, 400}, Texture_Manager::get("obstacle_sheet.png"), Wave::random({0, 3})));
 }
 
 void Game::update(sf::Time const& time) {
