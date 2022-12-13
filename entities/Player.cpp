@@ -65,13 +65,13 @@ void Player::update(sf::Time const& time, Game& game) {
             attack_timer.restart();
             sf::Vector2f mouse_pos{sf::Mouse::getPosition(*game.window)};
 
-            sf::Vector2f projectile_dir{mouse_pos - position};
+            sf::Vector2f projectile_dir{mouse_pos - (position+(hitbox.getSize()*0.5f))};
 
             // Normalize the projectile-direction-vector
             projectile_dir /= static_cast<float>(sqrt(pow(projectile_dir.x, 2) + pow(projectile_dir.y, 2)));
 
             game.add(std::make_shared<Projectile>(
-                    sf::Vector2f{position.x + hitbox.getSize().x / 2, position.y + hitbox.getSize().y / 2},
+                    sf::Vector2f{position.x + (hitbox.getSize().x / 2), position.y + (hitbox.getSize().y / 2)},
                     300.f, projectile_dir, 40, Objects_to_hit::all_enemies));
 //            animation_manager.play("attack", sprite, true);
             attacking = true;
