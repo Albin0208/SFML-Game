@@ -5,7 +5,7 @@
 #ifndef TDP005_OBSTACLE_H
 #define TDP005_OBSTACLE_H
 
-#include "common.h"
+#include "../utility/common.h"
 #include "Game_Object.h"
 
 class Obstacle : public Game_Object {
@@ -15,6 +15,10 @@ public:
     void update(sf::Time const& time, Game& game) override;
 
     void render(sf::RenderWindow& window) override;
+
+    sf::Vector2f get_pos() const;
+
+    sf::Vector2f get_size() const;
 };
 
 

@@ -8,7 +8,7 @@
 
 #include <memory>
 
-#include "../common.h"
+#include "../utility/common.h"
 #include "SFML/System.hpp"
 
 class State : public std::enable_shared_from_this<State> {
