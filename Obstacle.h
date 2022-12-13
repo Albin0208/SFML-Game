@@ -18,7 +18,9 @@ public:
 
     sf::CircleShape const& get_shape() const;
 
-    sf::RectangleShape get_pos() const;
+    sf::Vector2f get_pos() const;
+
+    sf::Vector2f get_size() const;
 
 private:
     sf::CircleShape shape;

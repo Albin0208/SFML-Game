@@ -108,8 +108,24 @@ void Player::update(sf::Time const& time, Game& game) {
     for (auto& o : game.collides_with(*this)) {
         if (auto e = std::dynamic_pointer_cast<Obstacle>(o)) {
             // Not able to pass through an obstacle
-            position = position - dir * speed * time.asSeconds();
-            // hitbox.setPosition(position);
+            sf::Vector2f obsticlecenter = e->get_pos()+(e->get_size()*0.5f);
+            sf::Vector2f playercenter = get_pos()+(hitbox.getSize()*0.5f);
+            sf::Vector2f distance = playercenter-obsticlecenter;
+
+            if(abs(distance.x) >= abs(distance.y)) //står till höger eller vänster om hindret
+                if(distance.x <= 0)
+                    position.x = e->get_pos().x-hitbox.getSize().x; //står till vänster
+                else
+                    position.x = e->get_pos().x+e->get_size().x; //står till höger
+            else                                                       //står över eller under
+                if(distance.y <= 0)
+                    position.y = e->get_pos().y-hitbox.getSize().y;         //står över
+                else
+                    position.y = e->get_pos().y+e->get_size().y;        //står under
+
+
+
+
         }
     }
 

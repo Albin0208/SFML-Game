@@ -25,6 +25,9 @@ sf::CircleShape const& Obstacle::get_shape() const {
     return shape;
 }
 
-sf::RectangleShape Obstacle::get_pos() const {
-    return hitbox;
+sf::Vector2f Obstacle::get_pos() const {
+    return position;
+}
+sf::Vector2f Obstacle::get_size() const {
+    return hitbox.getSize();
 }
