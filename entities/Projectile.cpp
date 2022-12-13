@@ -53,47 +53,41 @@ void Projectile::update(sf::Time const& time, Game& game) {
 
     for (auto& o : game.collides_with(*this)) {
         //Do some stuff on collision depending on what type it is
-        switch (what_to_hit) {
-            case Objects_to_hit::all_enemies:
-                if (auto e = dynamic_cast<Enemy*>(o.get())) {
-                    // Make enemy take damage
-                    if (alive) {
-                        e->take_damage(damage);
-                        // Kill the projectile
-                        alive = false;
-                    }
-                }
-                break;
-            case Objects_to_hit::all_players:
-                if (auto e = dynamic_cast<Player*>(o.get())) {
-                    if (alive) {
-                        // Make enemy take damage
-                        e->take_damage(damage);
-                        // Kill the projectile
-                        alive = false;
-                    }
-                }
-                break;
-            case Objects_to_hit::slowerenemy:
-                if (auto e = dynamic_cast<Slow_Enemy*>(o.get())) {
-                    if (alive) {
-                        // Make enemy take damage
-                        e->take_damage(damage);
-                        // Kill the projectile
-                        alive = false;
-                    }
-                }
-                break;
-            case Objects_to_hit::rangedenemy:
-                if (auto e = dynamic_cast<Ranged_Enemy*>(o.get())) {
-                    if (alive) {
-                        // Make enemy take damage
-                        e->take_damage(damage);
-                        // Kill the projectile
-                        alive = false;
-                    }
-                }
-                break;
+        if (alive) {
+              switch (what_to_hit) {
+                  case Objects_to_hit::all_enemies:
+                      if (auto e = dynamic_cast<Enemy *>(o.get())) {
+                          // Make enemy take damage
+                          e->take_damage(damage);
+                          // Kill the projectile
+                          alive = false;
+                      }
+                      return;
+                  case Objects_to_hit::all_players:
+                      if (auto e = dynamic_cast<Player *>(o.get())) {
+                          // Make enemy take damage
+                          e->take_damage(damage);
+                          // Kill the projectile
+                          alive = false;
+                      }
+                      return;
+                  case Objects_to_hit::slowerenemy:
+                      if (auto e = dynamic_cast<Slow_Enemy *>(o.get())) {
+                          // Make enemy take damage
+                          e->take_damage(damage);
+                          // Kill the projectile
+                          alive = false;
+                      }
+                      return;
+                  case Objects_to_hit::rangedenemy:
+                      if (auto e = dynamic_cast<Ranged_Enemy *>(o.get())) {
+                          // Make enemy take damage
+                          e->take_damage(damage);
+                          // Kill the projectile
+                          alive = false;
+                      }
+                      return;
+              }
         }
     }
 }
