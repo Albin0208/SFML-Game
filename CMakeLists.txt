@@ -8,14 +8,16 @@ FetchContent_Declare(SFML
 FetchContent_MakeAvailable(SFML)
 
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 
 add_executable(TDP005 main.cpp states/State.h states/State.cpp states/Menu_State.cpp states/Game_State.cpp
         Game.cpp Game_Object.h Player.cpp Player.h Game_Object.cpp Movable_Object.cpp Movable_Object.h
         common.h enemies/Enemy.cpp enemies/Enemy.h enemies/Slow_Enemy.cpp enemies/Slow_Enemy.h
         states/Game_Over_State.cpp states/Game_Over_State.h Texture_Manager.cpp Texture_Manager.h
-        Animation_Manager.cpp Animation_Manager.h Wave.cpp Wave.h Projectile.cpp Projectile.h enemies/Ranged_Enemy.h enemies/Ranged_Enemy.h enemies/Ranged_Enemy.cpp enemies/Ranged_Enemy.cpp Obstacle.cpp Obstacle.h)
+        Animation_Manager.cpp Animation_Manager.h Wave.cpp Wave.h Projectile.cpp Projectile.h
+        enemies/Ranged_Enemy.h enemies/Ranged_Enemy.h enemies/Ranged_Enemy.cpp enemies/Ranged_Enemy.cpp
+        Obstacle.cpp Obstacle.h)
 
 target_link_libraries(
         TDP005
