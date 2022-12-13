@@ -57,33 +57,41 @@ void Projectile::update(sf::Time const& time, Game& game) {
             case Objects_to_hit::all_enemies:
                 if (auto e = dynamic_cast<Enemy*>(o.get())) {
                     // Make enemy take damage
-                    e->take_damage(damage);
-                    // Kill the projectile
-                    alive=false;
+                    if (alive) {
+                        e->take_damage(damage);
+                        // Kill the projectile
+                        alive = false;
+                    }
                 }
                 break;
             case Objects_to_hit::all_players:
                 if (auto e = dynamic_cast<Player*>(o.get())) {
-                    // Make enemy take damage
-                    e->take_damage(damage);
-                    // Kill the projectile
-                    alive=false;
+                    if (alive) {
+                        // Make enemy take damage
+                        e->take_damage(damage);
+                        // Kill the projectile
+                        alive = false;
+                    }
                 }
                 break;
             case Objects_to_hit::slowerenemy:
                 if (auto e = dynamic_cast<Slow_Enemy*>(o.get())) {
-                    // Make enemy take damage
-                    e->take_damage(damage);
-                    // Kill the projectile
-                    alive=false;
+                    if (alive) {
+                        // Make enemy take damage
+                        e->take_damage(damage);
+                        // Kill the projectile
+                        alive = false;
+                    }
                 }
                 break;
             case Objects_to_hit::rangedenemy:
                 if (auto e = dynamic_cast<Ranged_Enemy*>(o.get())) {
-                    // Make enemy take damage
-                    e->take_damage(damage);
-                    // Kill the projectile
-                    alive=false;
+                    if (alive) {
+                        // Make enemy take damage
+                        e->take_damage(damage);
+                        // Kill the projectile
+                        alive = false;
+                    }
                 }
                 break;
         }
