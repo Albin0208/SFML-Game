@@ -17,7 +17,7 @@ public:
      * @param position The position to spawn at
      * @param speed
      */
-    Movable_Object(const sf::Vector2f &position, float speed, float single_sprite_width);
+    Movable_Object(const sf::Vector2f &position, float speed, float single_sprite_width = 0);
     ~Movable_Object() override = default;
 
     void update(const sf::Time &time, Game &game) override = 0;
