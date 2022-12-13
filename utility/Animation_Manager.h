@@ -5,26 +5,64 @@
 #ifndef TDP005_ANIMATION_MANAGER_H
 #define TDP005_ANIMATION_MANAGER_H
 
-#include "../common.h"
+#include "common.h"
 
+/**
+ * Handle all the animations connected to a object
+ */
 class Animation_Manager {
 public:
     Animation_Manager();
     ~Animation_Manager();
 
+    /**
+     * Play the animation
+     * @param key - The key of the animation
+     * @param sprite To what sprite it should be applied to
+     * @param priority If it is a priority animation
+     */
     void play(std::string const& key, sf::Sprite& sprite, bool priority = false);
 
+    /**
+     * Add a new animation to the manager
+     * @param key The key to identify the animation by
+     * @param texture The texture to use
+     * @param image_count How many images the texture contains
+     * @param total_time How long the animation should take
+     */
     void add_animation(std::string const& key, sf::Texture* texture, int image_count, float total_time);
 
+    /**
+     * Get if a animation is done
+     * @param key The Name of the animation
+     * @return If the animation is done playing
+     */
     bool const& is_done(std::string const& key);
 
+    /**
+     * Kill the animation
+     */
     void kill();
 
+    /**
+     * Force a animation to play no mather what
+     * @param key The animation key
+     * @param sprite The sprite to apply it to
+     */
     void force_play(std::string const& key, sf::Sprite& sprite);
 
 private:
+    /**
+     * Handles an animation
+     */
     class Animation {
     public:
+        /**
+         * Create a new animation
+         * @param texture The texture to use
+         * @param image_count How many images the texture contains
+         * @param total_time How long the animation should play for
+         */
         Animation(sf::Texture* texture, int image_count, float total_time)
                 : texture{texture}, TOTAL_TIME{total_time}, current_frame{0}, current_time{0}, done{false} {
 
@@ -44,6 +82,11 @@ private:
 
         ~Animation() = default;
 
+        /**
+         * Update the animation
+         * @param sprite The sprite to apply it to
+         * @return Returns if the animation is done
+         */
         bool const& update(sf::Sprite& sprite) {
             current_time = clock.getElapsedTime().asSeconds();
             done = false;
@@ -62,6 +105,9 @@ private:
             return done;
         }
 
+        /**
+         * Reset the animation to the beginning
+         */
         void reset() {
             current_frame = 0;
         }

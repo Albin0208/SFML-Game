@@ -6,10 +6,18 @@
 #define TDP005_TEXTURE_MANAGER_H
 
 #include <map>
-#include "../common.h"
+#include "common.h"
 
+/**
+ * Handle loading add fetching of textures
+ */
 class Texture_Manager {
 public:
+    /**
+     * Get the texture if it exist, if not load the texture from file
+     * @param name The texture name
+     * @return A pointer to the texture
+     */
     static sf::Texture* get(std::string const& name);
 private:
     Texture_Manager() = default;

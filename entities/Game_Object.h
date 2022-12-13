@@ -6,7 +6,7 @@
 #define TDP005_GAME_OBJECT_H
 
 
-#include "../common.h"
+#include "../utility/common.h"
 #include "SFML/System.hpp"
 #include "../Game.h"
 
@@ -38,6 +38,10 @@ public:
      */
     virtual bool checkCollision(Game_Object const& obj);
 
+    /**
+     * Get if the current object is alive
+     * @return If the object is alive
+     */
     bool is_alive() const;
 
 protected:
