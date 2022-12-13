@@ -62,6 +62,8 @@ public:
     void add_points(int points);
 
 private:
+    void spawn_obstacles();
+
     vector<std::shared_ptr<Game_Object>> objects;
     Wave wave;
     sf::Clock survived_clock;

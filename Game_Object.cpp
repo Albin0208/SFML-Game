@@ -17,8 +17,6 @@ Game_Object::Game_Object(sf::Vector2f const& position)
 }
 
 bool Game_Object::checkCollision(Game_Object const& obj) {
-
-
     return this->hitbox.getGlobalBounds().intersects(obj.hitbox.getGlobalBounds());
 }
 

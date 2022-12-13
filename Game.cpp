@@ -36,9 +36,10 @@ Game::Game() : window{nullptr}, points{0} {
     sprite.move({-sprite.getGlobalBounds().width, -sprite.getGlobalBounds().height / 2});
     player_img = sprite;
 
+    spawn_obstacles();
+
     // Restart the survived clock to get time from after loading is done
     survived_clock.restart();
-    add(std::make_shared<Obstacle>(sf::Vector2f{400, 400}, Texture_Manager::get("obstacle_sheet.png"), Wave::random({0, 3})));
 }
 
 void Game::update(sf::Time const& time) {
@@ -124,4 +125,17 @@ int Game::get_points() const {
 
 void Game::add_points(int points_to_add) {
     points += points_to_add;
+}
+
+void Game::spawn_obstacles() {
+    for (int i{}; i < 8; ++i) {
+        shared_ptr<Obstacle> obstacle = std::make_shared<Obstacle>(
+                sf::Vector2f{
+                    static_cast<float>(Wave::random({70, WIDTH - 70})),
+                    static_cast<float>(Wave::random({70, HEIGHT- 70}))},
+                Texture_Manager::get("obstacle_sheet.png"), Wave::random({0, 3}));
+
+        add(obstacle);
+    }
+
 }

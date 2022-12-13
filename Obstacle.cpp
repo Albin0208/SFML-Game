@@ -5,7 +5,6 @@
 #include "Obstacle.h"
 
 Obstacle::Obstacle(sf::Vector2f const& position, sf::Texture* texture, int texture_num) : Game_Object(position) {
-    hitbox.setFillColor(sf::Color::White);
     sprite.setTexture(*texture);
     sprite.setPosition(position);
     sprite.setScale(3, 3);
@@ -20,6 +19,6 @@ void Obstacle::update(sf::Time const& time, Game& game) {
 }
 
 void Obstacle::render(sf::RenderWindow& window) {
-    window.draw(hitbox);
+//    window.draw(hitbox);
     window.draw(sprite);
 }
