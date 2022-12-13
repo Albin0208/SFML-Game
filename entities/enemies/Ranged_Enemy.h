@@ -19,12 +19,6 @@ public:
 
 protected:
     void set_animations() override;
-
-
 };
-
-
-
-
 
 #endif //TDP005_RANGED_ENEMY_H

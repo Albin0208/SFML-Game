@@ -12,7 +12,7 @@
 #include "../utility/Texture_Manager.h"
 
 Player::Player(sf::Vector2f const& position, float speed)
-    : Movable_Object(position, speed){
+    : Movable_Object(position, speed, 135.f){
     set_animations();
     attack_timer_max = 500;
     health = 100;
@@ -52,21 +52,6 @@ void Player::update(sf::Time const& time, Game& game) {
     auto dir{find_direction()};
     position += dir * speed * time.asSeconds();
 
-    if (dir.x == 0 && dir.y == 0)
-        type = "idle";
-    if (dir.x > 0 || dir.y != 0 && face_right) {
-        sprite.setOrigin(0.f, 0.f);
-        sprite.setScale(1.f, 1.f);
-        face_right = true;
-        type = "walk";
-    }
-    if (dir.x < 0 || dir.y != 0 && !face_right) {
-        sprite.setOrigin(135.f, 0.f);
-        sprite.setScale(-1.f, 1.f);
-        face_right = false;
-        type = "walk";
-    }
-
     if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
         if (attack_timer.getElapsedTime().asMilliseconds() > attack_timer_max) {
             attack_timer.restart();
@@ -84,13 +69,10 @@ void Player::update(sf::Time const& time, Game& game) {
         }
     }
 
-    if (attacking) {
-        animation_manager.play("attack", sprite, true);
-        if (animation_manager.is_done("attack"))
-            attacking = false;
-    }
-    else
-        animation_manager.play(type, sprite);
+    if (dir.x == 0 && dir.y == 0)
+        type = "idle";
+
+    handle_animation(dir);
 
     // Check for moving out if window
     // Left collision

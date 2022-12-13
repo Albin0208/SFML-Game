@@ -5,8 +5,8 @@
 #include "Enemy.h"
 
 Enemy::Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos,
-             int points, int health, int damage)
-    : Movable_Object(position, speed), player_pos{player_pos}, points{points}, damage{damage}, max_health{health} {
+             int points, int health, int damage, float single_sprite_width)
+    : Movable_Object(position, speed, single_sprite_width), player_pos{player_pos}, points{points}, damage{damage}, max_health{health} {
     attack_timer.restart();
     this->health = health;
     health_bar_background.setSize({50, 5});

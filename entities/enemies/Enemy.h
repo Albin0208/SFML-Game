@@ -9,9 +9,8 @@
 
 class Enemy : public Movable_Object {
 public:
-    //TODO: Take health as a constructor parameter
     Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos,
-          int points, int health, int damage);
+          int points, int health, int damage, float single_sprite_width);
     ~Enemy() override = default;
 
     void update(sf::Time const& time, Game& game) override;

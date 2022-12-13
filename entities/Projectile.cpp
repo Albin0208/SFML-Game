@@ -10,7 +10,7 @@
 #include "../utility/Texture_Manager.h"
 
 Projectile::Projectile(sf::Vector2f const& position, float speed, sf::Vector2f const& direction,
-                       int damage, Objects_to_hit what_to_hit, sf::Color color) :
+                       int damage, Objects_to_hit what_to_hit) :
         Movable_Object(position, speed), direction{direction}, damage{damage}, what_to_hit{what_to_hit} {
     set_animations();
     sprite.setScale(1, 1);
