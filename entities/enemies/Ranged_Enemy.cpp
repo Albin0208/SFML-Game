@@ -6,15 +6,12 @@
 #include "../Projectile.h"
 #include "../../utility/Texture_Manager.h"
 
-
 Ranged_Enemy::Ranged_Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos)
-                            : Enemy(position, speed, player_pos, 5, 60, 5) {
+                            : Enemy(position, speed, player_pos, 5, 60, 5, 135.f) {
     set_animations();
     attack_timer_max = 2000;
     sprite.setScale({1.f, 1.f});
-
     animation_manager.play("walk", sprite);
-
     hitbox.setSize({sprite.getGlobalBounds().width / 2.f, sprite.getGlobalBounds().height / 1.5f});
 }
 
@@ -34,7 +31,6 @@ void Ranged_Enemy::update(sf::Time const& time, Game& game) {
     // Make a ranged attack
     if (distance < 500.f)
         if (attack_timer.getElapsedTime().asMilliseconds() > attack_timer_max) {
-            //&& (player_pos - hitbox.getPosition()-position) < 100.0f      add attack range to ranged enemies
             attack_timer.restart();
             attacking=true;
 
@@ -47,26 +43,7 @@ void Ranged_Enemy::update(sf::Time const& time, Game& game) {
                                                   5, Objects_to_hit::all_players));
         }
 
-    if (dir.x > 0 || dir.y != 0 && face_right) {
-        sprite.setOrigin(0.f, 0.f);
-        sprite.setScale({1.f, 1.f});
-        face_right = true;
-        type = "walk";
-    }
-    if (dir.x < 0 || dir.y != 0 && !face_right) {
-        sprite.setOrigin(135.f, 0.f);
-        sprite.setScale({-1.f, 1.f});
-        face_right = false;
-        type = "walk";
-    }
-
-    if (attacking) {
-        animation_manager.play("attack", sprite, true);
-        if (animation_manager.is_done("attack"))
-            attacking = false;
-    }
-    else
-        animation_manager.play(type, sprite);
+    handle_animation(dir);
 
     hitbox.setPosition(position);
     sprite.setPosition({hitbox.getPosition().x - hitbox.getSize().x / 2.4f, hitbox.getPosition().y - hitbox.getSize().y / 4});

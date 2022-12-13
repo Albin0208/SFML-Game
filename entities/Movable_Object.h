@@ -17,7 +17,7 @@ public:
      * @param position The position to spawn at
      * @param speed
      */
-    Movable_Object(const sf::Vector2f &position, float speed);
+    Movable_Object(const sf::Vector2f &position, float speed, float single_sprite_width);
     ~Movable_Object() override = default;
 
     void update(const sf::Time &time, Game &game) override = 0;
@@ -48,12 +48,17 @@ protected:
      */
     virtual void set_animations() = 0;
 
+    void handle_animation(sf::Vector2f& dir);
+
     sf::Clock attack_timer;
     int32_t attack_timer_max{};
     bool face_right;
     float speed;
     bool attacking;
     int health;
+
+    float single_sprite_width;
+
     sf::Clock dmg_clock;
     std::string type;
     Animation_Manager animation_manager;

@@ -10,11 +10,10 @@
 #include "../Obstacle.h"
 
 Slow_Enemy::Slow_Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos)
-    : Enemy(position, speed, player_pos, 10, 100, 5) {
+    : Enemy(position, speed, player_pos, 10, 100, 5, 198.4f) {
     set_animations();
     attack_timer_max = 1500;
     sprite.setScale({1.f, 1.f});
-
     animation_manager.play("walk", sprite);
 
     hitbox.setSize({sprite.getGlobalBounds().width / 1.8f, sprite.getGlobalBounds().height / 1.3f});
@@ -30,26 +29,7 @@ void Slow_Enemy::update(sf::Time const& time, Game& game) {
     if (health > 0)
         position += speed * dir * time.asSeconds();
 
-    if (dir.x > 0 || dir.y != 0 && face_right) {
-        sprite.setOrigin(0.f, 0.f);
-        sprite.setScale({1.f, 1.f});
-        face_right = true;
-        type = "walk";
-    }
-    if (dir.x < 0 || dir.y != 0 && !face_right) {
-        sprite.setOrigin(198.4f, 0.f);
-        sprite.setScale({-1.f, 1.f});
-        face_right = false;
-        type = "walk";
-    }
-
-    if (attacking) {
-        animation_manager.play("attack", sprite, true);
-        if (animation_manager.is_done("attack"))
-            attacking = false;
-    }
-    else
-        animation_manager.play(type, sprite);
+    handle_animation(dir);
 
     hitbox.setPosition(position);
     sprite.setPosition({hitbox.getPosition().x - hitbox.getSize().x / 2.4f, hitbox.getPosition().y - hitbox.getSize().y / 4});

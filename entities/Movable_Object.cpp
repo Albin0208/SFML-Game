@@ -4,8 +4,8 @@
 
 #include "Movable_Object.h"
 
-Movable_Object::Movable_Object(sf::Vector2f const& position, float speed)
-    : Game_Object(position), speed{speed}, face_right{true}, attacking{false} {
+Movable_Object::Movable_Object(sf::Vector2f const& position, float speed, float single_sprite_width)
+    : Game_Object(position), speed{speed}, face_right{true}, attacking{false}, single_sprite_width{single_sprite_width} {
 }
 
 void Movable_Object::render(sf::RenderWindow& window) {
@@ -39,4 +39,27 @@ void Movable_Object::take_damage(int damage) {
         dmg_clock.restart();
         health -= damage;
     }
+}
+
+void Movable_Object::handle_animation(sf::Vector2f& dir) {
+    if (dir.x > 0 || dir.y != 0 && face_right) {
+        sprite.setOrigin(0.f, 0.f);
+        sprite.setScale(1.f, 1.f);
+        face_right = true;
+        type = "walk";
+    }
+    if (dir.x < 0 || dir.y != 0 && !face_right) {
+        sprite.setOrigin(single_sprite_width, 0.f);
+        sprite.setScale(-1.f, 1.f);
+        face_right = false;
+        type = "walk";
+    }
+
+    if (attacking) {
+        animation_manager.play("attack", sprite, true);
+        if (animation_manager.is_done("attack"))
+            attacking = false;
+    }
+    else
+        animation_manager.play(type, sprite);
 }
