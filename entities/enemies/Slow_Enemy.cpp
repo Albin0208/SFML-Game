@@ -7,6 +7,7 @@
 #include "../../utility/Texture_Manager.h"
 #include "../Projectile.h"
 #include "../Player.h"
+#include "../Obstacle.h"
 
 Slow_Enemy::Slow_Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos)
     : Enemy(position, speed, player_pos, 10, 100, 5) {
@@ -62,8 +63,15 @@ void Slow_Enemy::update(sf::Time const& time, Game& game) {
                 position = hitbox.getPosition() - ((dir * speed * time.asSeconds()));
                 hitbox.setPosition(position);
             }
+
+            if (auto e = std::dynamic_pointer_cast<Obstacle>(o)) {
+                // Not able to pass through an obstacle
+                obstacle_collision(e.get());
+            }
         }
     }
+
+
     Enemy::update(time, game);
 }
 

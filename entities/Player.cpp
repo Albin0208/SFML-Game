@@ -111,21 +111,7 @@ void Player::update(sf::Time const& time, Game& game) {
     for (auto& o : game.collides_with(*this)) {
         if (auto e = std::dynamic_pointer_cast<Obstacle>(o)) {
             // Not able to pass through an obstacle
-            sf::Vector2f obstacle_center = e->get_pos() + (e->get_size() / 2.f);
-            sf::Vector2f player_center = get_pos()+(hitbox.getSize() / 2.f);
-            sf::Vector2f distance = player_center - obstacle_center;
-
-            if(std::abs(distance.x) >= std::abs(distance.y)) {// To the right or left of obstacle
-                if (distance.x <= 0)
-                    position.x = e->get_pos().x - hitbox.getSize().x; // To the left of the obstacle
-                else
-                    position.x = e->get_pos().x + e->get_size().x; // To the right of the obstacle
-            } else { // Above or below obstacle
-                if (distance.y <= 0)
-                    position.y = e->get_pos().y - hitbox.getSize().y; // Above teh obstacle
-                else
-                    position.y = e->get_pos().y + e->get_size().y; //Below the obstacle
-            }
+            obstacle_collision(e.get());
         }
     }
 

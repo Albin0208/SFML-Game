@@ -8,6 +8,7 @@
 
 #include "Game_Object.h"
 #include "../utility/Animation_Manager.h"
+#include "Obstacle.h"
 
 class Movable_Object : public Game_Object {
 public:
@@ -34,6 +35,12 @@ public:
      * @param damage The amount to take damage by
      */
     void take_damage(int damage);
+
+    /**
+     * Handle collision with an obstacle
+     * @param obstacle The obstacle we are colliding with
+     */
+    void obstacle_collision(Obstacle* obstacle);
 
 protected:
     /**
