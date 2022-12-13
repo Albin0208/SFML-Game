@@ -16,12 +16,9 @@ Obstacle::Obstacle(sf::Vector2f const& position, sf::Texture* texture, int textu
 
 }
 
-void Obstacle::update(sf::Time const& time, Game& game) {
-
-}
+void Obstacle::update(sf::Time const& time, Game& game) {}
 
 void Obstacle::render(sf::RenderWindow& window) {
-    window.draw(hitbox);
     window.draw(sprite);
 }
 
