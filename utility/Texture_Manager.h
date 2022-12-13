@@ -8,6 +8,9 @@
 #include <map>
 #include "common.h"
 
+/**
+ * Handle loading add fetching of textures
+ */
 class Texture_Manager {
 public:
     /**

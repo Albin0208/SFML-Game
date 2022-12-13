@@ -9,6 +9,9 @@
 #include "utility/common.h"
 class Game_Object;
 
+/**
+ * Wave class to handle waves
+ */
 class Wave {
 public:
     /**
@@ -25,10 +28,14 @@ public:
     vector<shared_ptr<Game_Object>>& create(sf::Vector2f const& player_pos);
 
     /**
-     * Kill a enemy in the wave;
+     * Tell the wave an enemy has been killed
      */
     void enemy_killed();
 
+    /**
+     * Get the current wave number
+     * @return The wave number
+     */
     int get_wave() const;
 
 private:

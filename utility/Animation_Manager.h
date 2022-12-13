@@ -7,6 +7,9 @@
 
 #include "common.h"
 
+/**
+ * Handle all the animations connected to a object
+ */
 class Animation_Manager {
 public:
     Animation_Manager();
@@ -49,6 +52,9 @@ public:
     void force_play(std::string const& key, sf::Sprite& sprite);
 
 private:
+    /**
+     * Handles an animation
+     */
     class Animation {
     public:
         /**

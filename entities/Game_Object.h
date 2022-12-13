@@ -38,6 +38,10 @@ public:
      */
     virtual bool checkCollision(Game_Object const& obj);
 
+    /**
+     * Get if the current object is alive
+     * @return If the object is alive
+     */
     bool is_alive() const;
 
 protected:

@@ -16,6 +16,9 @@ class Game_Object;
 
 enum Objects_to_hit { all_enemies, all_players, slowerenemy, rangedenemy};
 
+/**
+ * The game class responsible for updating and rendering the game
+ */
 class Game {
 public:
     Game();
@@ -57,8 +60,16 @@ public:
 
     sf::RenderWindow* window;
 
+    /**
+     * Get the points collected during the game
+     * @return The points
+     */
     int get_points() const;
 
+    /**
+     * Add points to the collected points
+     * @param points How many points to add
+     */
     void add_points(int points);
 
 private:

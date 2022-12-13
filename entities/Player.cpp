@@ -20,6 +20,10 @@ Player::Player(sf::Vector2f const& position, float speed)
     hitbox.setSize({sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 1.5f});
 }
 
+/**
+ * Find the direction the player should be moving in
+ * @return The direction
+ */
 static sf::Vector2f find_direction() {
     sf::Vector2f direction{0, 0};
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) ||
@@ -73,7 +77,6 @@ void Player::update(sf::Time const& time, Game& game) {
             game.add(std::make_shared<Projectile>(
                     sf::Vector2f{position.x + hitbox.getSize().x / 2, position.y + hitbox.getSize().y / 2},
                     300.f, projectile_dir, 40, Objects_to_hit::all_enemies));
-//            animation_manager.play("attack", sprite, true);
             attacking = true;
         }
     }
