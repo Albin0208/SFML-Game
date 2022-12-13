@@ -10,7 +10,7 @@ sf::Texture* Texture_Manager::get(std::string const& name) {
         return found->second.get();
 
     sf::Texture* t{new sf::Texture()};
-    if (!t->loadFromFile("../resources/textures/" + name))
+    if (!t->loadFromFile("resources/textures/" + name))
         throw std::logic_error("Failed to load texture!");
 
     instance.textures.insert(std::make_pair(name, std::unique_ptr<sf::Texture>(t)));
