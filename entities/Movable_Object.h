@@ -51,7 +51,7 @@ protected:
     void handle_animation(sf::Vector2f& dir);
 
     sf::Clock attack_timer;
-    float attack_timer_max;
+    int attack_timer_max;
     bool face_right;
     float speed;
     bool attacking;
