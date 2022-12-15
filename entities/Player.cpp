@@ -70,7 +70,7 @@ void Player::update(sf::Time const& time, Game& game) {
     }
 
     if (dir.x == 0 && dir.y == 0)
-        type = "idle";
+        animation_type = "idle";
 
     handle_animation(dir);
 
@@ -106,7 +106,7 @@ void Player::update(sf::Time const& time, Game& game) {
         sprite.setColor(sf::Color::White);
 }
 
-sf::Vector2f const& Player::get_pos() {
+sf::Vector2f const& Player::get_pos() const{
     return position;
 }
 

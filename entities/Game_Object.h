@@ -48,7 +48,7 @@ protected:
     sf::RectangleShape hitbox;
     sf::Vector2f position;
     sf::Sprite sprite;
-    sf::Texture texture;
+//    sf::Texture texture;
     bool alive;
 };
 
