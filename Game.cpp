@@ -128,6 +128,14 @@ void Game::add_points(int points_to_add) {
     points += points_to_add;
 }
 
+sf::RenderWindow const* Game::get_window() const {
+    return window;
+}
+
+void Game::set_window(sf::RenderWindow& window) {
+    this->window = &window;
+}
+
 void Game::spawn_obstacles() {
     for (int i{}; i < 8; ++i) {
         shared_ptr<Obstacle> obstacle = std::make_shared<Obstacle>(
