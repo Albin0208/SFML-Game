@@ -7,7 +7,7 @@
 #include "../../utility/Texture_Manager.h"
 
 Ranged_Enemy::Ranged_Enemy(sf::Vector2f const& position, float speed, sf::Vector2f const& player_pos)
-                            : Enemy(position, speed, player_pos, 5, 60, 5, 135.f) {
+                            : Enemy(position, speed, player_pos, 5, 60, 5, 135.f), range{500.f} {
     set_animations();
     attack_timer_max = 2000;
     sprite.setScale({1.f, 1.f});
@@ -24,12 +24,12 @@ void Ranged_Enemy::update(sf::Time const& time, Game& game) {
     dir /= static_cast<float>(sqrt(pow(dir.x, 2) + pow(dir.y, 2)));
 
     // Move if we are alive and in range
-    if (distance > 200.f && health > 0) {
+    if (distance > range / 2 && health > 0) {
         position += speed * dir * time.asSeconds();
     }
 
     // Make a ranged attack
-    if (distance < 500.f)
+    if (distance < range)
         if (attack_timer.getElapsedTime().asMilliseconds() > attack_timer_max) {
             attack_timer.restart();
             attacking=true;
@@ -52,12 +52,6 @@ void Ranged_Enemy::update(sf::Time const& time, Game& game) {
 }
 
 int Ranged_Enemy::attack() {
-    if (attack_timer.getElapsedTime().asMilliseconds() > attack_timer_max) {
-        attacking = true;
-        attack_timer.restart();
-        return 5;
-    }
-
     return 0;
 }
 

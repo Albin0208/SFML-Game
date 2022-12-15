@@ -39,7 +39,7 @@ protected:
      */
     void set_animations() override;
 
-protected:
+private:
     sf::Vector2f direction;
     int damage;
     Objects_to_hit what_to_hit;
