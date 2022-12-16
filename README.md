@@ -18,6 +18,14 @@ The program is now compiled in a file called ``TDP005``.
 ### Run the game
 To run the game run the command ``./TDP005``
 
+### Controlls
+
+#### Movement
+Move the player by using ``wasd`` or the ``arrow keys``.
+
+#### Shoot projectiles
+Aim the cursor in the direction where you want to shoot then press ``Mouse 1`` to fire.
+
 ## Documentation
 The documentation is located in the folders ``html`` and ``latex``.
 
