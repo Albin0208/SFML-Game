@@ -1,0 +1,198 @@
+\hypertarget{classsf_1_1priv_1_1SensorManager}{}\doxysection{sf\+::priv\+::Sensor\+Manager Class Reference}
+\label{classsf_1_1priv_1_1SensorManager}\index{sf::priv::SensorManager@{sf::priv::SensorManager}}
+
+
+Global sensor manager.  
+
+
+
+
+{\ttfamily \#include $<$Sensor\+Manager.\+hpp$>$}
+
+
+
+Inheritance diagram for sf\+::priv\+::Sensor\+Manager\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{d3/dfa/classsf_1_1priv_1_1SensorManager__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for sf\+::priv\+::Sensor\+Manager\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d8/d4a/classsf_1_1priv_1_1SensorManager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsf_1_1priv_1_1SensorManager_1_1Item}{Item}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classsf_1_1Sensor}{Sensor}} information and state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classsf_1_1priv_1_1SensorManager_acd34f542bb8cd397b71dd4f751d52e59}{is\+Available}} (\mbox{\hyperlink{classsf_1_1Sensor_a687375af3ab77b818fca73735bcaea84}{Sensor\+::\+Type}} sensor)
+\begin{DoxyCompactList}\small\item\em Check if a sensor is available on the underlying platform. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsf_1_1priv_1_1SensorManager_a8eed920a83371de4f89da8708b4334e8}{set\+Enabled}} (\mbox{\hyperlink{classsf_1_1Sensor_a687375af3ab77b818fca73735bcaea84}{Sensor\+::\+Type}} sensor, bool enabled)
+\begin{DoxyCompactList}\small\item\em Enable or disable a sensor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classsf_1_1priv_1_1SensorManager_a526897f9528f3a17676ca1afc088f628}{is\+Enabled}} (\mbox{\hyperlink{classsf_1_1Sensor_a687375af3ab77b818fca73735bcaea84}{Sensor\+::\+Type}} sensor) const
+\begin{DoxyCompactList}\small\item\em Check if a sensor is enabled. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsf_1_1Vector3}{Vector3f}} \mbox{\hyperlink{classsf_1_1priv_1_1SensorManager_a505c819a6c3757ab5f0c3c7643e95553}{get\+Value}} (\mbox{\hyperlink{classsf_1_1Sensor_a687375af3ab77b818fca73735bcaea84}{Sensor\+::\+Type}} sensor) const
+\begin{DoxyCompactList}\small\item\em Get the current value of a sensor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsf_1_1priv_1_1SensorManager_ad4b02b4d29c6c8846fde11a0bf7c4967}{update}} ()
+\begin{DoxyCompactList}\small\item\em Update the state of all the sensors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classsf_1_1priv_1_1SensorManager}{Sensor\+Manager}} \& \mbox{\hyperlink{classsf_1_1priv_1_1SensorManager_ad3bf38a8e8cfde5b200400681da13b46}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Get the global unique instance of the manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsf_1_1priv_1_1SensorManager_a3422c05a7c25592fd7a0b568720ff3fe}{Sensor\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsf_1_1priv_1_1SensorManager_aad56bb020009e4f891e21c1a4ee40c66}{$\sim$\+Sensor\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classsf_1_1priv_1_1SensorManager_a8236df9a3869557b393079fe8160af2d}\label{classsf_1_1priv_1_1SensorManager_a8236df9a3869557b393079fe8160af2d}} 
+\mbox{\hyperlink{structsf_1_1priv_1_1SensorManager_1_1Item}{Item}} {\bfseries m\+\_\+sensors} \mbox{[}\mbox{\hyperlink{classsf_1_1Sensor_a687375af3ab77b818fca73735bcaea84afcb4a80eb9e3f927c5837207a1b9eb29}{Sensor\+::\+Count}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Sensors information and state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Global sensor manager. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsf_1_1priv_1_1SensorManager_a3422c05a7c25592fd7a0b568720ff3fe}\label{classsf_1_1priv_1_1SensorManager_a3422c05a7c25592fd7a0b568720ff3fe}} 
+\index{sf::priv::SensorManager@{sf::priv::SensorManager}!SensorManager@{SensorManager}}
+\index{SensorManager@{SensorManager}!sf::priv::SensorManager@{sf::priv::SensorManager}}
+\doxysubsubsection{\texorpdfstring{SensorManager()}{SensorManager()}}
+{\footnotesize\ttfamily sf\+::priv\+::\+Sensor\+Manager\+::\+Sensor\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Default constructor. 
+
+\mbox{\Hypertarget{classsf_1_1priv_1_1SensorManager_aad56bb020009e4f891e21c1a4ee40c66}\label{classsf_1_1priv_1_1SensorManager_aad56bb020009e4f891e21c1a4ee40c66}} 
+\index{sf::priv::SensorManager@{sf::priv::SensorManager}!````~SensorManager@{$\sim$SensorManager}}
+\index{````~SensorManager@{$\sim$SensorManager}!sf::priv::SensorManager@{sf::priv::SensorManager}}
+\doxysubsubsection{\texorpdfstring{$\sim$SensorManager()}{~SensorManager()}}
+{\footnotesize\ttfamily sf\+::priv\+::\+Sensor\+Manager\+::$\sim$\+Sensor\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Destructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsf_1_1priv_1_1SensorManager_ad3bf38a8e8cfde5b200400681da13b46}\label{classsf_1_1priv_1_1SensorManager_ad3bf38a8e8cfde5b200400681da13b46}} 
+\index{sf::priv::SensorManager@{sf::priv::SensorManager}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!sf::priv::SensorManager@{sf::priv::SensorManager}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsf_1_1priv_1_1SensorManager}{Sensor\+Manager}} \& sf\+::priv\+::\+Sensor\+Manager\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the global unique instance of the manager. 
+
+\begin{DoxyReturn}{Returns}
+Unique instance of the sensor manager 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsf_1_1priv_1_1SensorManager_a505c819a6c3757ab5f0c3c7643e95553}\label{classsf_1_1priv_1_1SensorManager_a505c819a6c3757ab5f0c3c7643e95553}} 
+\index{sf::priv::SensorManager@{sf::priv::SensorManager}!getValue@{getValue}}
+\index{getValue@{getValue}!sf::priv::SensorManager@{sf::priv::SensorManager}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsf_1_1Vector3}{Vector3f}} sf\+::priv\+::\+Sensor\+Manager\+::get\+Value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsf_1_1Sensor_a687375af3ab77b818fca73735bcaea84}{Sensor\+::\+Type}}}]{sensor }\end{DoxyParamCaption}) const}
+
+
+
+Get the current value of a sensor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensor} & \mbox{\hyperlink{classsf_1_1Sensor}{Sensor}} to read\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Current value of the sensor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsf_1_1priv_1_1SensorManager_acd34f542bb8cd397b71dd4f751d52e59}\label{classsf_1_1priv_1_1SensorManager_acd34f542bb8cd397b71dd4f751d52e59}} 
+\index{sf::priv::SensorManager@{sf::priv::SensorManager}!isAvailable@{isAvailable}}
+\index{isAvailable@{isAvailable}!sf::priv::SensorManager@{sf::priv::SensorManager}}
+\doxysubsubsection{\texorpdfstring{isAvailable()}{isAvailable()}}
+{\footnotesize\ttfamily bool sf\+::priv\+::\+Sensor\+Manager\+::is\+Available (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsf_1_1Sensor_a687375af3ab77b818fca73735bcaea84}{Sensor\+::\+Type}}}]{sensor }\end{DoxyParamCaption})}
+
+
+
+Check if a sensor is available on the underlying platform. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensor} & \mbox{\hyperlink{classsf_1_1Sensor}{Sensor}} to check\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the sensor is available, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsf_1_1priv_1_1SensorManager_a526897f9528f3a17676ca1afc088f628}\label{classsf_1_1priv_1_1SensorManager_a526897f9528f3a17676ca1afc088f628}} 
+\index{sf::priv::SensorManager@{sf::priv::SensorManager}!isEnabled@{isEnabled}}
+\index{isEnabled@{isEnabled}!sf::priv::SensorManager@{sf::priv::SensorManager}}
+\doxysubsubsection{\texorpdfstring{isEnabled()}{isEnabled()}}
+{\footnotesize\ttfamily bool sf\+::priv\+::\+Sensor\+Manager\+::is\+Enabled (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsf_1_1Sensor_a687375af3ab77b818fca73735bcaea84}{Sensor\+::\+Type}}}]{sensor }\end{DoxyParamCaption}) const}
+
+
+
+Check if a sensor is enabled. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensor} & \mbox{\hyperlink{classsf_1_1Sensor}{Sensor}} to check\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the sensor is enabled, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsf_1_1priv_1_1SensorManager_a8eed920a83371de4f89da8708b4334e8}\label{classsf_1_1priv_1_1SensorManager_a8eed920a83371de4f89da8708b4334e8}} 
+\index{sf::priv::SensorManager@{sf::priv::SensorManager}!setEnabled@{setEnabled}}
+\index{setEnabled@{setEnabled}!sf::priv::SensorManager@{sf::priv::SensorManager}}
+\doxysubsubsection{\texorpdfstring{setEnabled()}{setEnabled()}}
+{\footnotesize\ttfamily void sf\+::priv\+::\+Sensor\+Manager\+::set\+Enabled (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsf_1_1Sensor_a687375af3ab77b818fca73735bcaea84}{Sensor\+::\+Type}}}]{sensor,  }\item[{bool}]{enabled }\end{DoxyParamCaption})}
+
+
+
+Enable or disable a sensor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensor} & \mbox{\hyperlink{classsf_1_1Sensor}{Sensor}} to modify \\
+\hline
+{\em enabled} & Whether it should be enabled or not \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsf_1_1priv_1_1SensorManager_ad4b02b4d29c6c8846fde11a0bf7c4967}\label{classsf_1_1priv_1_1SensorManager_ad4b02b4d29c6c8846fde11a0bf7c4967}} 
+\index{sf::priv::SensorManager@{sf::priv::SensorManager}!update@{update}}
+\index{update@{update}!sf::priv::SensorManager@{sf::priv::SensorManager}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void sf\+::priv\+::\+Sensor\+Manager\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Update the state of all the sensors. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+cmake-\/build-\/debug/\+\_\+deps/sfml-\/src/src/\+SFML/\+Window/Sensor\+Manager.\+hpp\item 
+cmake-\/build-\/debug/\+\_\+deps/sfml-\/src/src/\+SFML/\+Window/Sensor\+Manager.\+cpp\end{DoxyCompactItemize}

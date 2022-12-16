@@ -1,0 +1,59 @@
+\hypertarget{classTexture__Manager}{}\doxysection{Texture\+\_\+\+Manager Class Reference}
+\label{classTexture__Manager}\index{Texture\_Manager@{Texture\_Manager}}
+
+
+{\ttfamily \#include $<$Texture\+\_\+\+Manager.\+h$>$}
+
+
+
+Collaboration diagram for Texture\+\_\+\+Manager\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{d0/d57/classTexture__Manager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classsf_1_1Texture}{sf\+::\+Texture}} $\ast$ \mbox{\hyperlink{classTexture__Manager_ac28d05feffba8c7238cd2fd54d927d19}{get}} (std\+::string const \&name)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTexture__Manager_a713a12e63f1dceb15fb97c1369a5e1cb}\label{classTexture__Manager_a713a12e63f1dceb15fb97c1369a5e1cb}} 
+std\+::map$<$ std\+::string, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classsf_1_1Texture}{sf\+::\+Texture}} $>$ $>$ {\bfseries textures}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTexture__Manager_aac6c4fd471fe21e1ce267abe44caac6d}\label{classTexture__Manager_aac6c4fd471fe21e1ce267abe44caac6d}} 
+static \mbox{\hyperlink{classTexture__Manager}{Texture\+\_\+\+Manager}} {\bfseries instance}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handle loading add fetching of textures 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTexture__Manager_ac28d05feffba8c7238cd2fd54d927d19}\label{classTexture__Manager_ac28d05feffba8c7238cd2fd54d927d19}} 
+\index{Texture\_Manager@{Texture\_Manager}!get@{get}}
+\index{get@{get}!Texture\_Manager@{Texture\_Manager}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsf_1_1Texture}{sf\+::\+Texture}} $\ast$ Texture\+\_\+\+Manager\+::get (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Get the texture if it exist, if not load the texture from file 
+\begin{DoxyParams}{Parameters}
+{\em name} & The texture name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the texture 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+utility/Texture\+\_\+\+Manager.\+h\item 
+utility/Texture\+\_\+\+Manager.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,5 @@
+<map id="sf::priv::SoundFileReaderFlac::ClientData" name="sf::priv::SoundFileReaderFlac::ClientData">
+<area shape="rect" id="node1" title="Hold the state that is passed to the decoder callbacks." alt="" coords="67,204,250,340"/>
+<area shape="rect" id="node2" href="$dc/dc4/classsf_1_1InputStream.html" title="Abstract class for custom file input streams." alt="" coords="5,5,144,141"/>
+<area shape="rect" id="node3" href="$d0/db7/structsf_1_1SoundFileReader_1_1Info.html" title="Structure holding the audio properties of a sound file." alt="" coords="169,13,319,134"/>
+</map>

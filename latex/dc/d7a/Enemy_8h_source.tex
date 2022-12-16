@@ -1,0 +1,42 @@
+\hypertarget{Enemy_8h_source}{}\doxysection{Enemy.\+h}
+\label{Enemy_8h_source}\index{entities/enemies/Enemy.h@{entities/enemies/Enemy.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by albin on 2022-\/12-\/05.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef TDP005\_ENEMY\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define TDP005\_ENEMY\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}../Movable\_Object.h"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{class }\mbox{\hyperlink{classEnemy}{Enemy}} : \textcolor{keyword}{public} \mbox{\hyperlink{classMovable__Object}{Movable\_Object}} \{}
+\DoxyCodeLine{11 \textcolor{keyword}{public}:}
+\DoxyCodeLine{12     \mbox{\hyperlink{classEnemy}{Enemy}}(\mbox{\hyperlink{classsf_1_1Vector2}{sf::Vector2f}} \textcolor{keyword}{const}\& position, \textcolor{keywordtype}{float} speed, \mbox{\hyperlink{classsf_1_1Vector2}{sf::Vector2f}} \textcolor{keyword}{const}\& player\_pos,}
+\DoxyCodeLine{13           \textcolor{keywordtype}{int} points, \textcolor{keywordtype}{int} health, \textcolor{keywordtype}{int} damage, \textcolor{keywordtype}{float} single\_sprite\_width);}
+\DoxyCodeLine{14     \mbox{\hyperlink{classEnemy}{\string~Enemy}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16     \textcolor{keywordtype}{void} \mbox{\hyperlink{classEnemy_a85dfaf519227462d503f0504a5367ac6}{update}}(\mbox{\hyperlink{classsf_1_1Time}{sf::Time}} \textcolor{keyword}{const}\& time, \mbox{\hyperlink{classGame}{Game}}\& game) \textcolor{keyword}{override};}
+\DoxyCodeLine{17     \textcolor{keywordtype}{void} \mbox{\hyperlink{classEnemy_a8743fbde6f1de40d11788da5d2d46299}{render}}(\mbox{\hyperlink{classsf_1_1RenderWindow}{sf::RenderWindow}}\& window) \textcolor{keyword}{override};}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19     \textcolor{keywordtype}{int} \mbox{\hyperlink{classEnemy_a5c622332b9b44ec06ff288580810312b}{attack}}() \textcolor{keyword}{override} = 0;}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{22     \textcolor{keywordtype}{void} \mbox{\hyperlink{classEnemy_ac11d3ee40ebd70aaf6a7d46deb0e6c98}{set\_animations}}() \textcolor{keyword}{override} = 0;}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \mbox{\hyperlink{classsf_1_1Vector2}{sf::Vector2f}} \textcolor{keyword}{const}\& player\_pos;}
+\DoxyCodeLine{25     \textcolor{keywordtype}{int} points;}
+\DoxyCodeLine{26     \textcolor{keywordtype}{int} damage;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{keyword}{private}:}
+\DoxyCodeLine{29     \mbox{\hyperlink{classsf_1_1RectangleShape}{sf::RectangleShape}} health\_bar\_background;}
+\DoxyCodeLine{30     \mbox{\hyperlink{classsf_1_1RectangleShape}{sf::RectangleShape}} health\_bar;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32     \textcolor{keywordtype}{int} max\_health;}
+\DoxyCodeLine{33 \};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//TDP005\_ENEMY\_H}}
+
+\end{DoxyCode}

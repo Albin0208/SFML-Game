@@ -1,0 +1,379 @@
+\hypertarget{ftmm_8h_source}{}\doxysection{ftmm.\+h}
+\label{ftmm_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/ftmm.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/ftmm.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftmm.h                                                                 */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType Multiple Master font interface (specification).             */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2001, 2003, 2004, 2006, 2009, 2013 by                   */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FTMM\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FTMM\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include FT\_TYPE1\_TABLES\_H}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{31   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{32   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{33   \textcolor{comment}{/*    multiple\_masters                                                   */}}
+\DoxyCodeLine{34   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{35   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{36   \textcolor{comment}{/*    Multiple Masters                                                   */}}
+\DoxyCodeLine{37   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{38   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{39   \textcolor{comment}{/*    How to manage Multiple Masters fonts.                              */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{41   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{42   \textcolor{comment}{/*    The following types and functions are used to manage Multiple      */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*    Master fonts, i.e., the selection of specific design instances by  */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*    setting design axis coordinates.                                   */}}
+\DoxyCodeLine{45   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*    George Williams has extended this interface to make it work with   */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*    both Type\string~1 Multiple Masters fonts and GX distortable (var)        */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*    fonts.  Some of these routines only work with MM fonts, others     */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*    will work with both types.  They are similar enough that a         */}}
+\DoxyCodeLine{50   \textcolor{comment}{/*    consistent interface makes sense.                                  */}}
+\DoxyCodeLine{51   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{52 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{56   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{57   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*    FT\_MM\_Axis                                                         */}}
+\DoxyCodeLine{59   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{60   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{61   \textcolor{comment}{/*    A simple structure used to model a given axis in design space for  */}}
+\DoxyCodeLine{62   \textcolor{comment}{/*    Multiple Masters fonts.                                            */}}
+\DoxyCodeLine{63   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{64   \textcolor{comment}{/*    This structure can't be used for GX var fonts.                     */}}
+\DoxyCodeLine{65   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{66   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{67   \textcolor{comment}{/*    name    :: The axis's name.                                        */}}
+\DoxyCodeLine{68   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{69   \textcolor{comment}{/*    minimum :: The axis's minimum design coordinate.                   */}}
+\DoxyCodeLine{70   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{71   \textcolor{comment}{/*    maximum :: The axis's maximum design coordinate.                   */}}
+\DoxyCodeLine{72   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{73   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structFT__MM__Axis__}{FT\_MM\_Axis\_}}}
+\DoxyCodeLine{74   \{}
+\DoxyCodeLine{75     FT\_String*  name;}
+\DoxyCodeLine{76     FT\_Long     minimum;}
+\DoxyCodeLine{77     FT\_Long     maximum;}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79   \} FT\_MM\_Axis;}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{83   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{84   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{85   \textcolor{comment}{/*    FT\_Multi\_Master                                                    */}}
+\DoxyCodeLine{86   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{87   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{88   \textcolor{comment}{/*    A structure used to model the axes and space of a Multiple Masters */}}
+\DoxyCodeLine{89   \textcolor{comment}{/*    font.                                                              */}}
+\DoxyCodeLine{90   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{91   \textcolor{comment}{/*    This structure can't be used for GX var fonts.                     */}}
+\DoxyCodeLine{92   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{93   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{94   \textcolor{comment}{/*    num\_axis    :: Number of axes.  Cannot exceed\string~4.                   */}}
+\DoxyCodeLine{95   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{96   \textcolor{comment}{/*    num\_designs :: Number of designs; should be normally 2\string^num\_axis    */}}
+\DoxyCodeLine{97   \textcolor{comment}{/*                   even though the Type\string~1 specification strangely      */}}
+\DoxyCodeLine{98   \textcolor{comment}{/*                   allows for intermediate designs to be present. This */}}
+\DoxyCodeLine{99   \textcolor{comment}{/*                   number cannot exceed\string~16.                            */}}
+\DoxyCodeLine{100   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{101   \textcolor{comment}{/*    axis        :: A table of axis descriptors.                        */}}
+\DoxyCodeLine{102   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{103   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structFT__Multi__Master__}{FT\_Multi\_Master\_}}}
+\DoxyCodeLine{104   \{}
+\DoxyCodeLine{105     FT\_UInt     num\_axis;}
+\DoxyCodeLine{106     FT\_UInt     num\_designs;}
+\DoxyCodeLine{107     FT\_MM\_Axis  axis[T1\_MAX\_MM\_AXIS];}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109   \} \mbox{\hyperlink{structFT__Multi__Master__}{FT\_Multi\_Master}};}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{113   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{114   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{115   \textcolor{comment}{/*    FT\_Var\_Axis                                                        */}}
+\DoxyCodeLine{116   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{117   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{118   \textcolor{comment}{/*    A simple structure used to model a given axis in design space for  */}}
+\DoxyCodeLine{119   \textcolor{comment}{/*    Multiple Masters and GX var fonts.                                 */}}
+\DoxyCodeLine{120   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{121   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{122   \textcolor{comment}{/*    name    :: The axis's name.                                        */}}
+\DoxyCodeLine{123   \textcolor{comment}{/*               Not always meaningful for GX.                           */}}
+\DoxyCodeLine{124   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{125   \textcolor{comment}{/*    minimum :: The axis's minimum design coordinate.                   */}}
+\DoxyCodeLine{126   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{127   \textcolor{comment}{/*    def     :: The axis's default design coordinate.                   */}}
+\DoxyCodeLine{128   \textcolor{comment}{/*               FreeType computes meaningful default values for MM; it  */}}
+\DoxyCodeLine{129   \textcolor{comment}{/*               is then an integer value, not in 16.16 format.          */}}
+\DoxyCodeLine{130   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{131   \textcolor{comment}{/*    maximum :: The axis's maximum design coordinate.                   */}}
+\DoxyCodeLine{132   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{133   \textcolor{comment}{/*    tag     :: The axis's tag (the GX equivalent to `name').           */}}
+\DoxyCodeLine{134   \textcolor{comment}{/*               FreeType provides default values for MM if possible.    */}}
+\DoxyCodeLine{135   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{136   \textcolor{comment}{/*    strid   :: The entry in `name' table (another GX version of        */}}
+\DoxyCodeLine{137   \textcolor{comment}{/*               `name').                                                */}}
+\DoxyCodeLine{138   \textcolor{comment}{/*               Not meaningful for MM.                                  */}}
+\DoxyCodeLine{139   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{140   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structFT__Var__Axis__}{FT\_Var\_Axis\_}}}
+\DoxyCodeLine{141   \{}
+\DoxyCodeLine{142     FT\_String*  name;}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144     FT\_Fixed    minimum;}
+\DoxyCodeLine{145     FT\_Fixed    def;}
+\DoxyCodeLine{146     FT\_Fixed    maximum;}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148     FT\_ULong    tag;}
+\DoxyCodeLine{149     FT\_UInt     strid;}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151   \} \mbox{\hyperlink{structFT__Var__Axis__}{FT\_Var\_Axis}};}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{155   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{156   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{157   \textcolor{comment}{/*    FT\_Var\_Named\_Style                                                 */}}
+\DoxyCodeLine{158   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{159   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{160   \textcolor{comment}{/*    A simple structure used to model a named style in a GX var font.   */}}
+\DoxyCodeLine{161   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{162   \textcolor{comment}{/*    This structure can't be used for MM fonts.                         */}}
+\DoxyCodeLine{163   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{164   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{165   \textcolor{comment}{/*    coords :: The design coordinates for this style.                   */}}
+\DoxyCodeLine{166   \textcolor{comment}{/*              This is an array with one entry for each axis.           */}}
+\DoxyCodeLine{167   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{168   \textcolor{comment}{/*    strid  :: The entry in `name' table identifying this style.        */}}
+\DoxyCodeLine{169   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{170   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structFT__Var__Named__Style__}{FT\_Var\_Named\_Style\_}}}
+\DoxyCodeLine{171   \{}
+\DoxyCodeLine{172     FT\_Fixed*  coords;}
+\DoxyCodeLine{173     FT\_UInt    strid;}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175   \} \mbox{\hyperlink{structFT__Var__Named__Style__}{FT\_Var\_Named\_Style}};}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{179   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{180   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{181   \textcolor{comment}{/*    FT\_MM\_Var                                                          */}}
+\DoxyCodeLine{182   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{183   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{184   \textcolor{comment}{/*    A structure used to model the axes and space of a Multiple Masters */}}
+\DoxyCodeLine{185   \textcolor{comment}{/*    or GX var distortable font.                                        */}}
+\DoxyCodeLine{186   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{187   \textcolor{comment}{/*    Some fields are specific to one format and not to the other.       */}}
+\DoxyCodeLine{188   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{189   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{190   \textcolor{comment}{/*    num\_axis        :: The number of axes.  The maximum value is\string~4 for */}}
+\DoxyCodeLine{191   \textcolor{comment}{/*                       MM; no limit in GX.                             */}}
+\DoxyCodeLine{192   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{193   \textcolor{comment}{/*    num\_designs     :: The number of designs; should be normally       */}}
+\DoxyCodeLine{194   \textcolor{comment}{/*                       2\string^num\_axis for MM fonts.  Not meaningful for GX */}}
+\DoxyCodeLine{195   \textcolor{comment}{/*                       (where every glyph could have a different       */}}
+\DoxyCodeLine{196   \textcolor{comment}{/*                       number of designs).                             */}}
+\DoxyCodeLine{197   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{198   \textcolor{comment}{/*    num\_namedstyles :: The number of named styles; only meaningful for */}}
+\DoxyCodeLine{199   \textcolor{comment}{/*                       GX that allows certain design coordinates to    */}}
+\DoxyCodeLine{200   \textcolor{comment}{/*                       have a string ID (in the `name' table)          */}}
+\DoxyCodeLine{201   \textcolor{comment}{/*                       associated with them.  The font can tell the    */}}
+\DoxyCodeLine{202   \textcolor{comment}{/*                       user that, for example, Weight=1.5 is `Bold'.   */}}
+\DoxyCodeLine{203   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{204   \textcolor{comment}{/*    axis            :: A table of axis descriptors.                    */}}
+\DoxyCodeLine{205   \textcolor{comment}{/*                       GX fonts contain slightly more data than MM.    */}}
+\DoxyCodeLine{206   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{207   \textcolor{comment}{/*    namedstyles     :: A table of named styles.                        */}}
+\DoxyCodeLine{208   \textcolor{comment}{/*                       Only meaningful with GX.                        */}}
+\DoxyCodeLine{209   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{210   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structFT__MM__Var__}{FT\_MM\_Var\_}}}
+\DoxyCodeLine{211   \{}
+\DoxyCodeLine{212     FT\_UInt              num\_axis;}
+\DoxyCodeLine{213     FT\_UInt              num\_designs;}
+\DoxyCodeLine{214     FT\_UInt              num\_namedstyles;}
+\DoxyCodeLine{215     \mbox{\hyperlink{structFT__Var__Axis__}{FT\_Var\_Axis}}*         axis;}
+\DoxyCodeLine{216     \mbox{\hyperlink{structFT__Var__Named__Style__}{FT\_Var\_Named\_Style}}*  namedstyle;}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{218   \} \mbox{\hyperlink{structFT__MM__Var__}{FT\_MM\_Var}};}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{220 }
+\DoxyCodeLine{221 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{222   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{223   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{224   \textcolor{comment}{/*    FT\_Get\_Multi\_Master                                                */}}
+\DoxyCodeLine{225   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{226   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{227   \textcolor{comment}{/*    Retrieve the Multiple Master descriptor of a given font.           */}}
+\DoxyCodeLine{228   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{229   \textcolor{comment}{/*    This function can't be used with GX fonts.                         */}}
+\DoxyCodeLine{230   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{231   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{232   \textcolor{comment}{/*    face    :: A handle to the source face.                            */}}
+\DoxyCodeLine{233   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{234   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{235   \textcolor{comment}{/*    amaster :: The Multiple Masters descriptor.                        */}}
+\DoxyCodeLine{236   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{237   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{238   \textcolor{comment}{/*    FreeType error code.  0\string~means success.                             */}}
+\DoxyCodeLine{239   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{240   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{241   FT\_Get\_Multi\_Master( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}           face,}
+\DoxyCodeLine{242                        \mbox{\hyperlink{structFT__Multi__Master__}{FT\_Multi\_Master}}  *amaster );}
+\DoxyCodeLine{243 }
+\DoxyCodeLine{244 }
+\DoxyCodeLine{245 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{246   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{247   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{248   \textcolor{comment}{/*    FT\_Get\_MM\_Var                                                      */}}
+\DoxyCodeLine{249   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{250   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{251   \textcolor{comment}{/*    Retrieve the Multiple Master/GX var descriptor of a given font.    */}}
+\DoxyCodeLine{252   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{253   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{254   \textcolor{comment}{/*    face    :: A handle to the source face.                            */}}
+\DoxyCodeLine{255   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{256   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{257   \textcolor{comment}{/*    amaster :: The Multiple Masters/GX var descriptor.                 */}}
+\DoxyCodeLine{258   \textcolor{comment}{/*               Allocates a data structure, which the user must free.   */}}
+\DoxyCodeLine{259   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{260   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{261   \textcolor{comment}{/*    FreeType error code.  0\string~means success.                             */}}
+\DoxyCodeLine{262   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{263   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{264   FT\_Get\_MM\_Var( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}      face,}
+\DoxyCodeLine{265                  \mbox{\hyperlink{structFT__MM__Var__}{FT\_MM\_Var}}*  *amaster );}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{267 }
+\DoxyCodeLine{268 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{269   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{270   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{271   \textcolor{comment}{/*    FT\_Set\_MM\_Design\_Coordinates                                       */}}
+\DoxyCodeLine{272   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{273   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{274   \textcolor{comment}{/*    For Multiple Masters fonts, choose an interpolated font design     */}}
+\DoxyCodeLine{275   \textcolor{comment}{/*    through design coordinates.                                        */}}
+\DoxyCodeLine{276   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{277   \textcolor{comment}{/*    This function can't be used with GX fonts.                         */}}
+\DoxyCodeLine{278   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{279   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{280   \textcolor{comment}{/*    face       :: A handle to the source face.                         */}}
+\DoxyCodeLine{281   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{282   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{283   \textcolor{comment}{/*    num\_coords :: The number of design coordinates (must be equal to   */}}
+\DoxyCodeLine{284   \textcolor{comment}{/*                  the number of axes in the font).                     */}}
+\DoxyCodeLine{285   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{286   \textcolor{comment}{/*    coords     :: An array of design coordinates.                      */}}
+\DoxyCodeLine{287   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{288   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{289   \textcolor{comment}{/*    FreeType error code.  0\string~means success.                             */}}
+\DoxyCodeLine{290   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{291   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{292   FT\_Set\_MM\_Design\_Coordinates( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}   face,}
+\DoxyCodeLine{293                                 FT\_UInt   num\_coords,}
+\DoxyCodeLine{294                                 FT\_Long*  coords );}
+\DoxyCodeLine{295 }
+\DoxyCodeLine{296 }
+\DoxyCodeLine{297 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{298   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{299   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{300   \textcolor{comment}{/*    FT\_Set\_Var\_Design\_Coordinates                                      */}}
+\DoxyCodeLine{301   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{302   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{303   \textcolor{comment}{/*    For Multiple Master or GX Var fonts, choose an interpolated font   */}}
+\DoxyCodeLine{304   \textcolor{comment}{/*    design through design coordinates.                                 */}}
+\DoxyCodeLine{305   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{306   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{307   \textcolor{comment}{/*    face       :: A handle to the source face.                         */}}
+\DoxyCodeLine{308   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{309   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{310   \textcolor{comment}{/*    num\_coords :: The number of design coordinates (must be equal to   */}}
+\DoxyCodeLine{311   \textcolor{comment}{/*                  the number of axes in the font).                     */}}
+\DoxyCodeLine{312   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{313   \textcolor{comment}{/*    coords     :: An array of design coordinates.                      */}}
+\DoxyCodeLine{314   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{315   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{316   \textcolor{comment}{/*    FreeType error code.  0\string~means success.                             */}}
+\DoxyCodeLine{317   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{318   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{319   FT\_Set\_Var\_Design\_Coordinates( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}    face,}
+\DoxyCodeLine{320                                  FT\_UInt    num\_coords,}
+\DoxyCodeLine{321                                  FT\_Fixed*  coords );}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{323 }
+\DoxyCodeLine{324 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{325   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{326   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{327   \textcolor{comment}{/*    FT\_Set\_MM\_Blend\_Coordinates                                        */}}
+\DoxyCodeLine{328   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{329   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{330   \textcolor{comment}{/*    For Multiple Masters and GX var fonts, choose an interpolated font */}}
+\DoxyCodeLine{331   \textcolor{comment}{/*    design through normalized blend coordinates.                       */}}
+\DoxyCodeLine{332   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{333   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{334   \textcolor{comment}{/*    face       :: A handle to the source face.                         */}}
+\DoxyCodeLine{335   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{336   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{337   \textcolor{comment}{/*    num\_coords :: The number of design coordinates (must be equal to   */}}
+\DoxyCodeLine{338   \textcolor{comment}{/*                  the number of axes in the font).                     */}}
+\DoxyCodeLine{339   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{340   \textcolor{comment}{/*    coords     :: The design coordinates array (each element must be   */}}
+\DoxyCodeLine{341   \textcolor{comment}{/*                  between 0 and 1.0).                                  */}}
+\DoxyCodeLine{342   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{343   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{344   \textcolor{comment}{/*    FreeType error code.  0\string~means success.                             */}}
+\DoxyCodeLine{345   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{346   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{347   FT\_Set\_MM\_Blend\_Coordinates( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}    face,}
+\DoxyCodeLine{348                                FT\_UInt    num\_coords,}
+\DoxyCodeLine{349                                FT\_Fixed*  coords );}
+\DoxyCodeLine{350 }
+\DoxyCodeLine{351 }
+\DoxyCodeLine{352 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{353   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{354   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{355   \textcolor{comment}{/*    FT\_Set\_Var\_Blend\_Coordinates                                       */}}
+\DoxyCodeLine{356   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{357   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{358   \textcolor{comment}{/*    This is another name of @FT\_Set\_MM\_Blend\_Coordinates.              */}}
+\DoxyCodeLine{359   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{360   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{361   FT\_Set\_Var\_Blend\_Coordinates( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}    face,}
+\DoxyCodeLine{362                                 FT\_UInt    num\_coords,}
+\DoxyCodeLine{363                                 FT\_Fixed*  coords );}
+\DoxyCodeLine{364 }
+\DoxyCodeLine{365   \textcolor{comment}{/* */}}
+\DoxyCodeLine{366 }
+\DoxyCodeLine{367 }
+\DoxyCodeLine{368 FT\_END\_HEADER}
+\DoxyCodeLine{369 }
+\DoxyCodeLine{370 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTMM\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{371 }
+\DoxyCodeLine{372 }
+\DoxyCodeLine{373 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

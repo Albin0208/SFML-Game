@@ -1,0 +1,74 @@
+\hypertarget{SoundFileReaderOgg_8hpp_source}{}\doxysection{Sound\+File\+Reader\+Ogg.\+hpp}
+\label{SoundFileReaderOgg_8hpp_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/src/SFML/Audio/SoundFileReaderOgg.hpp@{cmake-\/build-\/debug/\_deps/sfml-\/src/src/SFML/Audio/SoundFileReaderOgg.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{// SFML -\/ Simple and Fast Multimedia Library}}
+\DoxyCodeLine{4 \textcolor{comment}{// Copyright (C) 2007-\/2022 Laurent Gomila (laurent@sfml-\/dev.org)}}
+\DoxyCodeLine{5 \textcolor{comment}{//}}
+\DoxyCodeLine{6 \textcolor{comment}{// This software is provided 'as-\/is', without any express or implied warranty.}}
+\DoxyCodeLine{7 \textcolor{comment}{// In no event will the authors be held liable for any damages arising from the use of this software.}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{// Permission is granted to anyone to use this software for any purpose,}}
+\DoxyCodeLine{10 \textcolor{comment}{// including commercial applications, and to alter it and redistribute it freely,}}
+\DoxyCodeLine{11 \textcolor{comment}{// subject to the following restrictions:}}
+\DoxyCodeLine{12 \textcolor{comment}{//}}
+\DoxyCodeLine{13 \textcolor{comment}{// 1. The origin of this software must not be misrepresented;}}
+\DoxyCodeLine{14 \textcolor{comment}{//    you must not claim that you wrote the original software.}}
+\DoxyCodeLine{15 \textcolor{comment}{//    If you use this software in a product, an acknowledgment}}
+\DoxyCodeLine{16 \textcolor{comment}{//    in the product documentation would be appreciated but is not required.}}
+\DoxyCodeLine{17 \textcolor{comment}{//}}
+\DoxyCodeLine{18 \textcolor{comment}{// 2. Altered source versions must be plainly marked as such,}}
+\DoxyCodeLine{19 \textcolor{comment}{//    and must not be misrepresented as being the original software.}}
+\DoxyCodeLine{20 \textcolor{comment}{//}}
+\DoxyCodeLine{21 \textcolor{comment}{// 3. This notice may not be removed or altered from any source distribution.}}
+\DoxyCodeLine{22 \textcolor{comment}{//}}
+\DoxyCodeLine{24 \textcolor{comment}{}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifndef SFML\_SOUNDFILEREADEROGG\_HPP}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define SFML\_SOUNDFILEREADEROGG\_HPP}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{29 \textcolor{comment}{// Headers}}
+\DoxyCodeLine{31 \textcolor{comment}{}\textcolor{preprocessor}{\#include <SFML/Audio/SoundFileReader.hpp>}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <vorbis/vorbisfile.h>}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacesf}{sf}}}
+\DoxyCodeLine{36 \{}
+\DoxyCodeLine{37 \textcolor{keyword}{namespace }priv}
+\DoxyCodeLine{38 \{}
+\DoxyCodeLine{43 \textcolor{keyword}{class }\mbox{\hyperlink{classsf_1_1priv_1_1SoundFileReaderOgg}{SoundFileReaderOgg}} : \textcolor{keyword}{public} \mbox{\hyperlink{classsf_1_1SoundFileReader}{SoundFileReader}}}
+\DoxyCodeLine{44 \{}
+\DoxyCodeLine{45 \textcolor{keyword}{public}:}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{55     \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classsf_1_1priv_1_1SoundFileReaderOgg_a055989ce4a7f7bb750fde519a3abc127}{check}}(\mbox{\hyperlink{classsf_1_1InputStream}{InputStream}}\& stream);}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{keyword}{public}:}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{63     \mbox{\hyperlink{classsf_1_1priv_1_1SoundFileReaderOgg_ab27436db3f09240c89979f54556b028a}{SoundFileReaderOgg}}();}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{69     \mbox{\hyperlink{classsf_1_1priv_1_1SoundFileReaderOgg_a9e27715614d4f5c832b9b91c39f87ae5}{\string~SoundFileReaderOgg}}();}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{80     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classsf_1_1priv_1_1SoundFileReaderOgg_ac0a436385f2a39b38ec32f5631b9f8fa}{open}}(\mbox{\hyperlink{classsf_1_1InputStream}{InputStream}}\& stream, \mbox{\hyperlink{structsf_1_1SoundFileReader_1_1Info}{Info}}\& info);}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{95     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1SoundFileReaderOgg_a091fad95720ed9f236bc0ebcc40dee55}{seek}}(Uint64 sampleOffset);}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{106     \textcolor{keyword}{virtual} Uint64 \mbox{\hyperlink{classsf_1_1priv_1_1SoundFileReaderOgg_ade27184e1efc5209180a6cbd5d9e7f00}{read}}(Int16* samples, Uint64 maxCount);}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108 \textcolor{keyword}{private}:}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{114     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1SoundFileReaderOgg_a8974f4fa9f4522c652e0762321bd6270}{close}}();}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{117     \textcolor{comment}{// Member data}}
+\DoxyCodeLine{119 \textcolor{comment}{}    \mbox{\hyperlink{structOggVorbis__File}{OggVorbis\_File}} m\_vorbis;       \textcolor{comment}{// ogg/vorbis file handle}}
+\DoxyCodeLine{120     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}   m\_channelCount; \textcolor{comment}{// number of channels of the open sound file}}
+\DoxyCodeLine{121 \};}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123 \} \textcolor{comment}{// namespace priv}}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125 \} \textcolor{comment}{// namespace sf}}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SFML\_SOUNDFILEREADEROGG\_HPP}}
+
+\end{DoxyCode}

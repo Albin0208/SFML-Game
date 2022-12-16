@@ -1,0 +1,353 @@
+\hypertarget{al_8h_source}{}\doxysection{al.\+h}
+\label{al_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/AL/al.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/AL/al.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AL\_AL\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AL\_AL\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#if defined(\_\_cplusplus)}}
+\DoxyCodeLine{5 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#ifndef AL\_API}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{ \#if defined(AL\_LIBTYPE\_STATIC)}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{  \#define AL\_API}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{ \#elif defined(\_WIN32)}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{  \#define AL\_API \_\_declspec(dllimport)}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{  \#define AL\_API extern}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{ \#endif}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#if defined(\_WIN32)}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{ \#define AL\_APIENTRY \_\_cdecl}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{ \#define AL\_APIENTRY}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define OPENAL}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define ALAPI                                    AL\_API}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define ALAPIENTRY                               AL\_APIENTRY}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define AL\_INVALID                               (-\/1)}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define AL\_ILLEGAL\_ENUM                          AL\_INVALID\_ENUM}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#define AL\_ILLEGAL\_COMMAND                       AL\_INVALID\_OPERATION}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define AL\_VERSION\_1\_0}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define AL\_VERSION\_1\_1}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{38 \textcolor{keyword}{typedef} \textcolor{keywordtype}{char} ALboolean;}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{41 \textcolor{keyword}{typedef} \textcolor{keywordtype}{char} ALchar;}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{44 \textcolor{keyword}{typedef} \textcolor{keywordtype}{signed} \textcolor{keywordtype}{char} ALbyte;}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{47 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ALubyte;}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{50 \textcolor{keyword}{typedef} \textcolor{keywordtype}{short} ALshort;}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{53 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} ALushort;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{56 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} ALint;}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{59 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} ALuint;}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{62 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} ALsizei;}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{65 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} ALenum;}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{68 \textcolor{keyword}{typedef} \textcolor{keywordtype}{float} ALfloat;}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{71 \textcolor{keyword}{typedef} \textcolor{keywordtype}{double} ALdouble;}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{74 \textcolor{keyword}{typedef} \textcolor{keywordtype}{void} ALvoid;}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 \textcolor{comment}{/* Enumerant values begin at column 50. No tabs. */}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define AL\_NONE                                  0}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#define AL\_FALSE                                 0}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#define AL\_TRUE                                  1}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 }
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#define AL\_SOURCE\_RELATIVE                       0x202}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 }
+\DoxyCodeLine{108 \textcolor{preprocessor}{\#define AL\_CONE\_INNER\_ANGLE                      0x1001}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#define AL\_CONE\_OUTER\_ANGLE                      0x1002}}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#define AL\_PITCH                                 0x1003}}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{144 \textcolor{preprocessor}{\#define AL\_POSITION                              0x1004}}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{154 \textcolor{preprocessor}{\#define AL\_DIRECTION                             0x1005}}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#define AL\_VELOCITY                              0x1006}}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{173 \textcolor{preprocessor}{\#define AL\_LOOPING                               0x1007}}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{182 \textcolor{preprocessor}{\#define AL\_BUFFER                                0x1009}}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{196 \textcolor{preprocessor}{\#define AL\_GAIN                                  0x100A}}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{206 \textcolor{preprocessor}{\#define AL\_MIN\_GAIN                              0x100D}}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{216 \textcolor{preprocessor}{\#define AL\_MAX\_GAIN                              0x100E}}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{228 \textcolor{preprocessor}{\#define AL\_ORIENTATION                           0x100F}}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{235 \textcolor{preprocessor}{\#define AL\_SOURCE\_STATE                          0x1010}}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{238 \textcolor{preprocessor}{\#define AL\_INITIAL                               0x1011}}
+\DoxyCodeLine{239 \textcolor{preprocessor}{\#define AL\_PLAYING                               0x1012}}
+\DoxyCodeLine{240 \textcolor{preprocessor}{\#define AL\_PAUSED                                0x1013}}
+\DoxyCodeLine{241 \textcolor{preprocessor}{\#define AL\_STOPPED                               0x1014}}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{250 \textcolor{preprocessor}{\#define AL\_BUFFERS\_QUEUED                        0x1015}}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{262 \textcolor{preprocessor}{\#define AL\_BUFFERS\_PROCESSED                     0x1016}}
+\DoxyCodeLine{263 }
+\DoxyCodeLine{274 \textcolor{preprocessor}{\#define AL\_REFERENCE\_DISTANCE                    0x1020}}
+\DoxyCodeLine{275 }
+\DoxyCodeLine{286 \textcolor{preprocessor}{\#define AL\_ROLLOFF\_FACTOR                        0x1021}}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{297 \textcolor{preprocessor}{\#define AL\_CONE\_OUTER\_GAIN                       0x1022}}
+\DoxyCodeLine{298 }
+\DoxyCodeLine{309 \textcolor{preprocessor}{\#define AL\_MAX\_DISTANCE                          0x1023}}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{312 \textcolor{preprocessor}{\#define AL\_SEC\_OFFSET                            0x1024}}
+\DoxyCodeLine{314 \textcolor{preprocessor}{\#define AL\_SAMPLE\_OFFSET                         0x1025}}
+\DoxyCodeLine{316 \textcolor{preprocessor}{\#define AL\_BYTE\_OFFSET                           0x1026}}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{331 \textcolor{preprocessor}{\#define AL\_SOURCE\_TYPE                           0x1027}}
+\DoxyCodeLine{332 }
+\DoxyCodeLine{334 \textcolor{preprocessor}{\#define AL\_STATIC                                0x1028}}
+\DoxyCodeLine{335 \textcolor{preprocessor}{\#define AL\_STREAMING                             0x1029}}
+\DoxyCodeLine{336 \textcolor{preprocessor}{\#define AL\_UNDETERMINED                          0x1030}}
+\DoxyCodeLine{337 }
+\DoxyCodeLine{339 \textcolor{preprocessor}{\#define AL\_FORMAT\_MONO8                          0x1100}}
+\DoxyCodeLine{340 \textcolor{preprocessor}{\#define AL\_FORMAT\_MONO16                         0x1101}}
+\DoxyCodeLine{341 \textcolor{preprocessor}{\#define AL\_FORMAT\_STEREO8                        0x1102}}
+\DoxyCodeLine{342 \textcolor{preprocessor}{\#define AL\_FORMAT\_STEREO16                       0x1103}}
+\DoxyCodeLine{343 }
+\DoxyCodeLine{345 \textcolor{preprocessor}{\#define AL\_FREQUENCY                             0x2001}}
+\DoxyCodeLine{347 \textcolor{preprocessor}{\#define AL\_BITS                                  0x2002}}
+\DoxyCodeLine{349 \textcolor{preprocessor}{\#define AL\_CHANNELS                              0x2003}}
+\DoxyCodeLine{351 \textcolor{preprocessor}{\#define AL\_SIZE                                  0x2004}}
+\DoxyCodeLine{352 }
+\DoxyCodeLine{358 \textcolor{preprocessor}{\#define AL\_UNUSED                                0x2010}}
+\DoxyCodeLine{359 \textcolor{preprocessor}{\#define AL\_PENDING                               0x2011}}
+\DoxyCodeLine{360 \textcolor{preprocessor}{\#define AL\_PROCESSED                             0x2012}}
+\DoxyCodeLine{361 }
+\DoxyCodeLine{362 }
+\DoxyCodeLine{364 \textcolor{preprocessor}{\#define AL\_NO\_ERROR                              0}}
+\DoxyCodeLine{365 }
+\DoxyCodeLine{367 \textcolor{preprocessor}{\#define AL\_INVALID\_NAME                          0xA001}}
+\DoxyCodeLine{368 }
+\DoxyCodeLine{370 \textcolor{preprocessor}{\#define AL\_INVALID\_ENUM                          0xA002}}
+\DoxyCodeLine{371 }
+\DoxyCodeLine{373 \textcolor{preprocessor}{\#define AL\_INVALID\_VALUE                         0xA003}}
+\DoxyCodeLine{374 }
+\DoxyCodeLine{376 \textcolor{preprocessor}{\#define AL\_INVALID\_OPERATION                     0xA004}}
+\DoxyCodeLine{377 }
+\DoxyCodeLine{379 \textcolor{preprocessor}{\#define AL\_OUT\_OF\_MEMORY                         0xA005}}
+\DoxyCodeLine{380 }
+\DoxyCodeLine{381 }
+\DoxyCodeLine{383 \textcolor{preprocessor}{\#define AL\_VENDOR                                0xB001}}
+\DoxyCodeLine{385 \textcolor{preprocessor}{\#define AL\_VERSION                               0xB002}}
+\DoxyCodeLine{387 \textcolor{preprocessor}{\#define AL\_RENDERER                              0xB003}}
+\DoxyCodeLine{389 \textcolor{preprocessor}{\#define AL\_EXTENSIONS                            0xB004}}
+\DoxyCodeLine{390 }
+\DoxyCodeLine{391 }
+\DoxyCodeLine{400 \textcolor{preprocessor}{\#define AL\_DOPPLER\_FACTOR                        0xC000}}
+\DoxyCodeLine{401 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alDopplerFactor(ALfloat value);}
+\DoxyCodeLine{402 }
+\DoxyCodeLine{408 \textcolor{preprocessor}{\#define AL\_DOPPLER\_VELOCITY                      0xC001}}
+\DoxyCodeLine{409 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alDopplerVelocity(ALfloat value);}
+\DoxyCodeLine{410 }
+\DoxyCodeLine{420 \textcolor{preprocessor}{\#define AL\_SPEED\_OF\_SOUND                        0xC003}}
+\DoxyCodeLine{421 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alSpeedOfSound(ALfloat value);}
+\DoxyCodeLine{422 }
+\DoxyCodeLine{441 \textcolor{preprocessor}{\#define AL\_DISTANCE\_MODEL                        0xD000}}
+\DoxyCodeLine{442 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alDistanceModel(ALenum distanceModel);}
+\DoxyCodeLine{443 }
+\DoxyCodeLine{445 \textcolor{preprocessor}{\#define AL\_INVERSE\_DISTANCE                      0xD001}}
+\DoxyCodeLine{446 \textcolor{preprocessor}{\#define AL\_INVERSE\_DISTANCE\_CLAMPED              0xD002}}
+\DoxyCodeLine{447 \textcolor{preprocessor}{\#define AL\_LINEAR\_DISTANCE                       0xD003}}
+\DoxyCodeLine{448 \textcolor{preprocessor}{\#define AL\_LINEAR\_DISTANCE\_CLAMPED               0xD004}}
+\DoxyCodeLine{449 \textcolor{preprocessor}{\#define AL\_EXPONENT\_DISTANCE                     0xD005}}
+\DoxyCodeLine{450 \textcolor{preprocessor}{\#define AL\_EXPONENT\_DISTANCE\_CLAMPED             0xD006}}
+\DoxyCodeLine{451 }
+\DoxyCodeLine{453 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alEnable(ALenum capability);}
+\DoxyCodeLine{454 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alDisable(ALenum capability);}
+\DoxyCodeLine{455 AL\_API ALboolean AL\_APIENTRY alIsEnabled(ALenum capability);}
+\DoxyCodeLine{456 }
+\DoxyCodeLine{458 AL\_API \textcolor{keyword}{const} ALchar* AL\_APIENTRY alGetString(ALenum param);}
+\DoxyCodeLine{459 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetBooleanv(ALenum param, ALboolean *values);}
+\DoxyCodeLine{460 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetIntegerv(ALenum param, ALint *values);}
+\DoxyCodeLine{461 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetFloatv(ALenum param, ALfloat *values);}
+\DoxyCodeLine{462 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetDoublev(ALenum param, ALdouble *values);}
+\DoxyCodeLine{463 AL\_API ALboolean AL\_APIENTRY alGetBoolean(ALenum param);}
+\DoxyCodeLine{464 AL\_API ALint AL\_APIENTRY alGetInteger(ALenum param);}
+\DoxyCodeLine{465 AL\_API ALfloat AL\_APIENTRY alGetFloat(ALenum param);}
+\DoxyCodeLine{466 AL\_API ALdouble AL\_APIENTRY alGetDouble(ALenum param);}
+\DoxyCodeLine{467 }
+\DoxyCodeLine{473 AL\_API ALenum AL\_APIENTRY alGetError(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{474 }
+\DoxyCodeLine{481 AL\_API ALboolean AL\_APIENTRY alIsExtensionPresent(\textcolor{keyword}{const} ALchar *extname);}
+\DoxyCodeLine{482 AL\_API \textcolor{keywordtype}{void}* AL\_APIENTRY alGetProcAddress(\textcolor{keyword}{const} ALchar *fname);}
+\DoxyCodeLine{483 AL\_API ALenum AL\_APIENTRY alGetEnumValue(\textcolor{keyword}{const} ALchar *ename);}
+\DoxyCodeLine{484 }
+\DoxyCodeLine{485 }
+\DoxyCodeLine{487 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alListenerf(ALenum param, ALfloat value);}
+\DoxyCodeLine{488 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alListener3f(ALenum param, ALfloat value1, ALfloat value2, ALfloat value3);}
+\DoxyCodeLine{489 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alListenerfv(ALenum param, \textcolor{keyword}{const} ALfloat *values);}
+\DoxyCodeLine{490 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alListeneri(ALenum param, ALint value);}
+\DoxyCodeLine{491 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alListener3i(ALenum param, ALint value1, ALint value2, ALint value3);}
+\DoxyCodeLine{492 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alListeneriv(ALenum param, \textcolor{keyword}{const} ALint *values);}
+\DoxyCodeLine{493 }
+\DoxyCodeLine{495 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetListenerf(ALenum param, ALfloat *value);}
+\DoxyCodeLine{496 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetListener3f(ALenum param, ALfloat *value1, ALfloat *value2, ALfloat *value3);}
+\DoxyCodeLine{497 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetListenerfv(ALenum param, ALfloat *values);}
+\DoxyCodeLine{498 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetListeneri(ALenum param, ALint *value);}
+\DoxyCodeLine{499 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetListener3i(ALenum param, ALint *value1, ALint *value2, ALint *value3);}
+\DoxyCodeLine{500 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetListeneriv(ALenum param, ALint *values);}
+\DoxyCodeLine{501 }
+\DoxyCodeLine{502 }
+\DoxyCodeLine{504 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGenSources(ALsizei n, ALuint *sources);}
+\DoxyCodeLine{506 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alDeleteSources(ALsizei n, \textcolor{keyword}{const} ALuint *sources);}
+\DoxyCodeLine{508 AL\_API ALboolean AL\_APIENTRY alIsSource(ALuint source);}
+\DoxyCodeLine{509 }
+\DoxyCodeLine{511 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alSourcef(ALuint source, ALenum param, ALfloat value);}
+\DoxyCodeLine{512 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alSource3f(ALuint source, ALenum param, ALfloat value1, ALfloat value2, ALfloat value3);}
+\DoxyCodeLine{513 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alSourcefv(ALuint source, ALenum param, \textcolor{keyword}{const} ALfloat *values);}
+\DoxyCodeLine{514 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alSourcei(ALuint source, ALenum param, ALint value);}
+\DoxyCodeLine{515 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alSource3i(ALuint source, ALenum param, ALint value1, ALint value2, ALint value3);}
+\DoxyCodeLine{516 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alSourceiv(ALuint source, ALenum param, \textcolor{keyword}{const} ALint *values);}
+\DoxyCodeLine{517 }
+\DoxyCodeLine{519 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetSourcef(ALuint source, ALenum param, ALfloat *value);}
+\DoxyCodeLine{520 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetSource3f(ALuint source, ALenum param, ALfloat *value1, ALfloat *value2, ALfloat *value3);}
+\DoxyCodeLine{521 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetSourcefv(ALuint source, ALenum param, ALfloat *values);}
+\DoxyCodeLine{522 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetSourcei(ALuint source,  ALenum param, ALint *value);}
+\DoxyCodeLine{523 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetSource3i(ALuint source, ALenum param, ALint *value1, ALint *value2, ALint *value3);}
+\DoxyCodeLine{524 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetSourceiv(ALuint source,  ALenum param, ALint *values);}
+\DoxyCodeLine{525 }
+\DoxyCodeLine{526 }
+\DoxyCodeLine{528 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alSourcePlayv(ALsizei n, \textcolor{keyword}{const} ALuint *sources);}
+\DoxyCodeLine{530 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alSourceStopv(ALsizei n, \textcolor{keyword}{const} ALuint *sources);}
+\DoxyCodeLine{532 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alSourceRewindv(ALsizei n, \textcolor{keyword}{const} ALuint *sources);}
+\DoxyCodeLine{534 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alSourcePausev(ALsizei n, \textcolor{keyword}{const} ALuint *sources);}
+\DoxyCodeLine{535 }
+\DoxyCodeLine{537 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alSourcePlay(ALuint source);}
+\DoxyCodeLine{539 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alSourceStop(ALuint source);}
+\DoxyCodeLine{541 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alSourceRewind(ALuint source);}
+\DoxyCodeLine{543 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alSourcePause(ALuint source);}
+\DoxyCodeLine{544 }
+\DoxyCodeLine{546 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alSourceQueueBuffers(ALuint source, ALsizei nb, \textcolor{keyword}{const} ALuint *buffers);}
+\DoxyCodeLine{548 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alSourceUnqueueBuffers(ALuint source, ALsizei nb, ALuint *buffers);}
+\DoxyCodeLine{549 }
+\DoxyCodeLine{550 }
+\DoxyCodeLine{552 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGenBuffers(ALsizei n, ALuint *buffers);}
+\DoxyCodeLine{554 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alDeleteBuffers(ALsizei n, \textcolor{keyword}{const} ALuint *buffers);}
+\DoxyCodeLine{556 AL\_API ALboolean AL\_APIENTRY alIsBuffer(ALuint buffer);}
+\DoxyCodeLine{557 }
+\DoxyCodeLine{559 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alBufferData(ALuint buffer, ALenum format, \textcolor{keyword}{const} ALvoid *data, ALsizei size, ALsizei freq);}
+\DoxyCodeLine{560 }
+\DoxyCodeLine{562 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alBufferf(ALuint buffer, ALenum param, ALfloat value);}
+\DoxyCodeLine{563 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alBuffer3f(ALuint buffer, ALenum param, ALfloat value1, ALfloat value2, ALfloat value3);}
+\DoxyCodeLine{564 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alBufferfv(ALuint buffer, ALenum param, \textcolor{keyword}{const} ALfloat *values);}
+\DoxyCodeLine{565 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alBufferi(ALuint buffer, ALenum param, ALint value);}
+\DoxyCodeLine{566 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alBuffer3i(ALuint buffer, ALenum param, ALint value1, ALint value2, ALint value3);}
+\DoxyCodeLine{567 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alBufferiv(ALuint buffer, ALenum param, \textcolor{keyword}{const} ALint *values);}
+\DoxyCodeLine{568 }
+\DoxyCodeLine{570 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetBufferf(ALuint buffer, ALenum param, ALfloat *value);}
+\DoxyCodeLine{571 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetBuffer3f(ALuint buffer, ALenum param, ALfloat *value1, ALfloat *value2, ALfloat *value3);}
+\DoxyCodeLine{572 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetBufferfv(ALuint buffer, ALenum param, ALfloat *values);}
+\DoxyCodeLine{573 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetBufferi(ALuint buffer, ALenum param, ALint *value);}
+\DoxyCodeLine{574 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetBuffer3i(ALuint buffer, ALenum param, ALint *value1, ALint *value2, ALint *value3);}
+\DoxyCodeLine{575 AL\_API \textcolor{keywordtype}{void} AL\_APIENTRY alGetBufferiv(ALuint buffer, ALenum param, ALint *values);}
+\DoxyCodeLine{576 }
+\DoxyCodeLine{578 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALENABLE)(ALenum capability);}
+\DoxyCodeLine{579 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALDISABLE)(ALenum capability);}
+\DoxyCodeLine{580 \textcolor{keyword}{typedef} ALboolean     (AL\_APIENTRY *LPALISENABLED)(ALenum capability);}
+\DoxyCodeLine{581 \textcolor{keyword}{typedef} \textcolor{keyword}{const} ALchar* (AL\_APIENTRY *LPALGETSTRING)(ALenum param);}
+\DoxyCodeLine{582 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETBOOLEANV)(ALenum param, ALboolean *values);}
+\DoxyCodeLine{583 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETINTEGERV)(ALenum param, ALint *values);}
+\DoxyCodeLine{584 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETFLOATV)(ALenum param, ALfloat *values);}
+\DoxyCodeLine{585 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETDOUBLEV)(ALenum param, ALdouble *values);}
+\DoxyCodeLine{586 \textcolor{keyword}{typedef} ALboolean     (AL\_APIENTRY *LPALGETBOOLEAN)(ALenum param);}
+\DoxyCodeLine{587 \textcolor{keyword}{typedef} ALint         (AL\_APIENTRY *LPALGETINTEGER)(ALenum param);}
+\DoxyCodeLine{588 \textcolor{keyword}{typedef} ALfloat       (AL\_APIENTRY *LPALGETFLOAT)(ALenum param);}
+\DoxyCodeLine{589 \textcolor{keyword}{typedef} ALdouble      (AL\_APIENTRY *LPALGETDOUBLE)(ALenum param);}
+\DoxyCodeLine{590 \textcolor{keyword}{typedef} ALenum        (AL\_APIENTRY *LPALGETERROR)(void);}
+\DoxyCodeLine{591 \textcolor{keyword}{typedef} ALboolean     (AL\_APIENTRY *LPALISEXTENSIONPRESENT)(\textcolor{keyword}{const} ALchar *extname);}
+\DoxyCodeLine{592 \textcolor{keyword}{typedef} \textcolor{keywordtype}{void}*         (AL\_APIENTRY *LPALGETPROCADDRESS)(\textcolor{keyword}{const} ALchar *fname);}
+\DoxyCodeLine{593 \textcolor{keyword}{typedef} ALenum        (AL\_APIENTRY *LPALGETENUMVALUE)(\textcolor{keyword}{const} ALchar *ename);}
+\DoxyCodeLine{594 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALLISTENERF)(ALenum param, ALfloat value);}
+\DoxyCodeLine{595 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALLISTENER3F)(ALenum param, ALfloat value1, ALfloat value2, ALfloat value3);}
+\DoxyCodeLine{596 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALLISTENERFV)(ALenum param, \textcolor{keyword}{const} ALfloat *values);}
+\DoxyCodeLine{597 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALLISTENERI)(ALenum param, ALint value);}
+\DoxyCodeLine{598 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALLISTENER3I)(ALenum param, ALint value1, ALint value2, ALint value3);}
+\DoxyCodeLine{599 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALLISTENERIV)(ALenum param, \textcolor{keyword}{const} ALint *values);}
+\DoxyCodeLine{600 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETLISTENERF)(ALenum param, ALfloat *value);}
+\DoxyCodeLine{601 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETLISTENER3F)(ALenum param, ALfloat *value1, ALfloat *value2, ALfloat *value3);}
+\DoxyCodeLine{602 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETLISTENERFV)(ALenum param, ALfloat *values);}
+\DoxyCodeLine{603 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETLISTENERI)(ALenum param, ALint *value);}
+\DoxyCodeLine{604 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETLISTENER3I)(ALenum param, ALint *value1, ALint *value2, ALint *value3);}
+\DoxyCodeLine{605 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETLISTENERIV)(ALenum param, ALint *values);}
+\DoxyCodeLine{606 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGENSOURCES)(ALsizei n, ALuint *sources);}
+\DoxyCodeLine{607 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALDELETESOURCES)(ALsizei n, \textcolor{keyword}{const} ALuint *sources);}
+\DoxyCodeLine{608 \textcolor{keyword}{typedef} ALboolean     (AL\_APIENTRY *LPALISSOURCE)(ALuint source);}
+\DoxyCodeLine{609 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALSOURCEF)(ALuint source, ALenum param, ALfloat value);}
+\DoxyCodeLine{610 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALSOURCE3F)(ALuint source, ALenum param, ALfloat value1, ALfloat value2, ALfloat value3);}
+\DoxyCodeLine{611 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALSOURCEFV)(ALuint source, ALenum param, \textcolor{keyword}{const} ALfloat *values);}
+\DoxyCodeLine{612 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALSOURCEI)(ALuint source, ALenum param, ALint value);}
+\DoxyCodeLine{613 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALSOURCE3I)(ALuint source, ALenum param, ALint value1, ALint value2, ALint value3);}
+\DoxyCodeLine{614 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALSOURCEIV)(ALuint source, ALenum param, \textcolor{keyword}{const} ALint *values);}
+\DoxyCodeLine{615 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETSOURCEF)(ALuint source, ALenum param, ALfloat *value);}
+\DoxyCodeLine{616 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETSOURCE3F)(ALuint source, ALenum param, ALfloat *value1, ALfloat *value2, ALfloat *value3);}
+\DoxyCodeLine{617 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETSOURCEFV)(ALuint source, ALenum param, ALfloat *values);}
+\DoxyCodeLine{618 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETSOURCEI)(ALuint source, ALenum param, ALint *value);}
+\DoxyCodeLine{619 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETSOURCE3I)(ALuint source, ALenum param, ALint *value1, ALint *value2, ALint *value3);}
+\DoxyCodeLine{620 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETSOURCEIV)(ALuint source, ALenum param, ALint *values);}
+\DoxyCodeLine{621 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALSOURCEPLAYV)(ALsizei n, \textcolor{keyword}{const} ALuint *sources);}
+\DoxyCodeLine{622 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALSOURCESTOPV)(ALsizei n, \textcolor{keyword}{const} ALuint *sources);}
+\DoxyCodeLine{623 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALSOURCEREWINDV)(ALsizei n, \textcolor{keyword}{const} ALuint *sources);}
+\DoxyCodeLine{624 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALSOURCEPAUSEV)(ALsizei n, \textcolor{keyword}{const} ALuint *sources);}
+\DoxyCodeLine{625 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALSOURCEPLAY)(ALuint source);}
+\DoxyCodeLine{626 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALSOURCESTOP)(ALuint source);}
+\DoxyCodeLine{627 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALSOURCEREWIND)(ALuint source);}
+\DoxyCodeLine{628 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALSOURCEPAUSE)(ALuint source);}
+\DoxyCodeLine{629 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALSOURCEQUEUEBUFFERS)(ALuint source, ALsizei nb, \textcolor{keyword}{const} ALuint *buffers);}
+\DoxyCodeLine{630 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALSOURCEUNQUEUEBUFFERS)(ALuint source, ALsizei nb, ALuint *buffers);}
+\DoxyCodeLine{631 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGENBUFFERS)(ALsizei n, ALuint *buffers);}
+\DoxyCodeLine{632 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALDELETEBUFFERS)(ALsizei n, \textcolor{keyword}{const} ALuint *buffers);}
+\DoxyCodeLine{633 \textcolor{keyword}{typedef} ALboolean     (AL\_APIENTRY *LPALISBUFFER)(ALuint buffer);}
+\DoxyCodeLine{634 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALBUFFERDATA)(ALuint buffer, ALenum format, \textcolor{keyword}{const} ALvoid *data, ALsizei size, ALsizei freq);}
+\DoxyCodeLine{635 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALBUFFERF)(ALuint buffer, ALenum param, ALfloat value);}
+\DoxyCodeLine{636 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALBUFFER3F)(ALuint buffer, ALenum param, ALfloat value1, ALfloat value2, ALfloat value3);}
+\DoxyCodeLine{637 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALBUFFERFV)(ALuint buffer, ALenum param, \textcolor{keyword}{const} ALfloat *values);}
+\DoxyCodeLine{638 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALBUFFERI)(ALuint buffer, ALenum param, ALint value);}
+\DoxyCodeLine{639 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALBUFFER3I)(ALuint buffer, ALenum param, ALint value1, ALint value2, ALint value3);}
+\DoxyCodeLine{640 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALBUFFERIV)(ALuint buffer, ALenum param, \textcolor{keyword}{const} ALint *values);}
+\DoxyCodeLine{641 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETBUFFERF)(ALuint buffer, ALenum param, ALfloat *value);}
+\DoxyCodeLine{642 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETBUFFER3F)(ALuint buffer, ALenum param, ALfloat *value1, ALfloat *value2, ALfloat *value3);}
+\DoxyCodeLine{643 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETBUFFERFV)(ALuint buffer, ALenum param, ALfloat *values);}
+\DoxyCodeLine{644 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETBUFFERI)(ALuint buffer, ALenum param, ALint *value);}
+\DoxyCodeLine{645 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETBUFFER3I)(ALuint buffer, ALenum param, ALint *value1, ALint *value2, ALint *value3);}
+\DoxyCodeLine{646 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALGETBUFFERIV)(ALuint buffer, ALenum param, ALint *values);}
+\DoxyCodeLine{647 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALDOPPLERFACTOR)(ALfloat value);}
+\DoxyCodeLine{648 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALDOPPLERVELOCITY)(ALfloat value);}
+\DoxyCodeLine{649 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALSPEEDOFSOUND)(ALfloat value);}
+\DoxyCodeLine{650 \textcolor{keyword}{typedef} void          (AL\_APIENTRY *LPALDISTANCEMODEL)(ALenum distanceModel);}
+\DoxyCodeLine{651 }
+\DoxyCodeLine{652 \textcolor{preprocessor}{\#if defined(\_\_cplusplus)}}
+\DoxyCodeLine{653 \}  \textcolor{comment}{/* extern "{}C"{} */}}
+\DoxyCodeLine{654 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{655 }
+\DoxyCodeLine{656 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AL\_AL\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

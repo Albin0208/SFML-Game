@@ -1,0 +1,173 @@
+\hypertarget{ftcid_8h_source}{}\doxysection{ftcid.\+h}
+\label{ftcid_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/ftcid.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/ftcid.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftcid.h                                                                */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType API for accessing CID font information (specification).     */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2007, 2009 by Dereg Clegg, Michael Toftdal.                  */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{15 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef \_\_FTCID\_H\_\_}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define \_\_FTCID\_H\_\_}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#ifdef FREETYPE\_H}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#error "{}freetype.h of FreeType 1 has been loaded!"{}}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#error "{}Please fix the directory search order for header files"{}}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#error "{}so that freetype.h of FreeType 2 is found first."{}}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{35   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{36   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{37   \textcolor{comment}{/*    cid\_fonts                                                          */}}
+\DoxyCodeLine{38   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{39   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*    CID Fonts                                                          */}}
+\DoxyCodeLine{41   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{42   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*    CID-\/keyed font specific API.                                       */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{45   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*    This section contains the declaration of CID-\/keyed font specific   */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*    functions.                                                         */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{49 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{comment}{  /**********************************************************************}}
+\DoxyCodeLine{53 \textcolor{comment}{   *}}
+\DoxyCodeLine{54 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{55 \textcolor{comment}{   *    FT\_Get\_CID\_Registry\_Ordering\_Supplement}}
+\DoxyCodeLine{56 \textcolor{comment}{   *}}
+\DoxyCodeLine{57 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{58 \textcolor{comment}{   *    Retrieve the Registry/Ordering/Supplement triple (also known as the}}
+\DoxyCodeLine{59 \textcolor{comment}{   *    "{}R/O/S"{}) from a CID-\/keyed font.}}
+\DoxyCodeLine{60 \textcolor{comment}{   *}}
+\DoxyCodeLine{61 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{62 \textcolor{comment}{   *    face ::}}
+\DoxyCodeLine{63 \textcolor{comment}{   *       A handle to the input face.}}
+\DoxyCodeLine{64 \textcolor{comment}{   *}}
+\DoxyCodeLine{65 \textcolor{comment}{   * @output:}}
+\DoxyCodeLine{66 \textcolor{comment}{   *    registry ::}}
+\DoxyCodeLine{67 \textcolor{comment}{   *       The registry, as a C\string~string, owned by the face.}}
+\DoxyCodeLine{68 \textcolor{comment}{   *}}
+\DoxyCodeLine{69 \textcolor{comment}{   *    ordering ::}}
+\DoxyCodeLine{70 \textcolor{comment}{   *       The ordering, as a C\string~string, owned by the face.}}
+\DoxyCodeLine{71 \textcolor{comment}{   *}}
+\DoxyCodeLine{72 \textcolor{comment}{   *    supplement ::}}
+\DoxyCodeLine{73 \textcolor{comment}{   *       The supplement.}}
+\DoxyCodeLine{74 \textcolor{comment}{   *}}
+\DoxyCodeLine{75 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{76 \textcolor{comment}{   *    FreeType error code.  0\string~means success.}}
+\DoxyCodeLine{77 \textcolor{comment}{   *}}
+\DoxyCodeLine{78 \textcolor{comment}{   * @note:}}
+\DoxyCodeLine{79 \textcolor{comment}{   *    This function only works with CID faces, returning an error}}
+\DoxyCodeLine{80 \textcolor{comment}{   *    otherwise.}}
+\DoxyCodeLine{81 \textcolor{comment}{   *}}
+\DoxyCodeLine{82 \textcolor{comment}{   * @since:}}
+\DoxyCodeLine{83 \textcolor{comment}{   *    2.3.6}}
+\DoxyCodeLine{84 \textcolor{comment}{   */}}
+\DoxyCodeLine{85   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{86   FT\_Get\_CID\_Registry\_Ordering\_Supplement( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}       face,}
+\DoxyCodeLine{87                                            \textcolor{keyword}{const} \textcolor{keywordtype}{char}*  *registry,}
+\DoxyCodeLine{88                                            \textcolor{keyword}{const} \textcolor{keywordtype}{char}*  *ordering,}
+\DoxyCodeLine{89                                            FT\_Int       *supplement);}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 \textcolor{comment}{  /**********************************************************************}}
+\DoxyCodeLine{93 \textcolor{comment}{   *}}
+\DoxyCodeLine{94 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{95 \textcolor{comment}{   *    FT\_Get\_CID\_Is\_Internally\_CID\_Keyed}}
+\DoxyCodeLine{96 \textcolor{comment}{   *}}
+\DoxyCodeLine{97 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{98 \textcolor{comment}{   *    Retrieve the type of the input face, CID keyed or not.  In}}
+\DoxyCodeLine{99 \textcolor{comment}{   *    constrast to the @FT\_IS\_CID\_KEYED macro this function returns}}
+\DoxyCodeLine{100 \textcolor{comment}{   *    successfully also for CID-\/keyed fonts in an SNFT wrapper.}}
+\DoxyCodeLine{101 \textcolor{comment}{   *}}
+\DoxyCodeLine{102 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{103 \textcolor{comment}{   *    face ::}}
+\DoxyCodeLine{104 \textcolor{comment}{   *       A handle to the input face.}}
+\DoxyCodeLine{105 \textcolor{comment}{   *}}
+\DoxyCodeLine{106 \textcolor{comment}{   * @output:}}
+\DoxyCodeLine{107 \textcolor{comment}{   *    is\_cid ::}}
+\DoxyCodeLine{108 \textcolor{comment}{   *       The type of the face as an @FT\_Bool.}}
+\DoxyCodeLine{109 \textcolor{comment}{   *}}
+\DoxyCodeLine{110 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{111 \textcolor{comment}{   *    FreeType error code.  0\string~means success.}}
+\DoxyCodeLine{112 \textcolor{comment}{   *}}
+\DoxyCodeLine{113 \textcolor{comment}{   * @note:}}
+\DoxyCodeLine{114 \textcolor{comment}{   *    This function only works with CID faces and OpenType fonts,}}
+\DoxyCodeLine{115 \textcolor{comment}{   *    returning an error otherwise.}}
+\DoxyCodeLine{116 \textcolor{comment}{   *}}
+\DoxyCodeLine{117 \textcolor{comment}{   * @since:}}
+\DoxyCodeLine{118 \textcolor{comment}{   *    2.3.9}}
+\DoxyCodeLine{119 \textcolor{comment}{   */}}
+\DoxyCodeLine{120   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{121   FT\_Get\_CID\_Is\_Internally\_CID\_Keyed( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}   face,}
+\DoxyCodeLine{122                                       FT\_Bool  *is\_cid );}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125 \textcolor{comment}{  /**********************************************************************}}
+\DoxyCodeLine{126 \textcolor{comment}{   *}}
+\DoxyCodeLine{127 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{128 \textcolor{comment}{   *    FT\_Get\_CID\_From\_Glyph\_Index}}
+\DoxyCodeLine{129 \textcolor{comment}{   *}}
+\DoxyCodeLine{130 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{131 \textcolor{comment}{   *    Retrieve the CID of the input glyph index.}}
+\DoxyCodeLine{132 \textcolor{comment}{   *}}
+\DoxyCodeLine{133 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{134 \textcolor{comment}{   *    face ::}}
+\DoxyCodeLine{135 \textcolor{comment}{   *       A handle to the input face.}}
+\DoxyCodeLine{136 \textcolor{comment}{   *}}
+\DoxyCodeLine{137 \textcolor{comment}{   *    glyph\_index ::}}
+\DoxyCodeLine{138 \textcolor{comment}{   *       The input glyph index.}}
+\DoxyCodeLine{139 \textcolor{comment}{   *}}
+\DoxyCodeLine{140 \textcolor{comment}{   * @output:}}
+\DoxyCodeLine{141 \textcolor{comment}{   *    cid ::}}
+\DoxyCodeLine{142 \textcolor{comment}{   *       The CID as an @FT\_UInt.}}
+\DoxyCodeLine{143 \textcolor{comment}{   *}}
+\DoxyCodeLine{144 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{145 \textcolor{comment}{   *    FreeType error code.  0\string~means success.}}
+\DoxyCodeLine{146 \textcolor{comment}{   *}}
+\DoxyCodeLine{147 \textcolor{comment}{   * @note:}}
+\DoxyCodeLine{148 \textcolor{comment}{   *    This function only works with CID faces and OpenType fonts,}}
+\DoxyCodeLine{149 \textcolor{comment}{   *    returning an error otherwise.}}
+\DoxyCodeLine{150 \textcolor{comment}{   *}}
+\DoxyCodeLine{151 \textcolor{comment}{   * @since:}}
+\DoxyCodeLine{152 \textcolor{comment}{   *    2.3.9}}
+\DoxyCodeLine{153 \textcolor{comment}{   */}}
+\DoxyCodeLine{154   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{155   FT\_Get\_CID\_From\_Glyph\_Index( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}   face,}
+\DoxyCodeLine{156                                FT\_UInt   glyph\_index,}
+\DoxyCodeLine{157                                FT\_UInt  *cid );}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159   \textcolor{comment}{/* */}}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162 FT\_END\_HEADER}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTCID\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

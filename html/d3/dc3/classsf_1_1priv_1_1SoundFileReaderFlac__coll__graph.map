@@ -1,0 +1,8 @@
+<map id="sf::priv::SoundFileReaderFlac" name="sf::priv::SoundFileReaderFlac">
+<area shape="rect" id="node1" title="Implementation of sound file reader that handles FLAC files." alt="" coords="177,403,387,568"/>
+<area shape="rect" id="node2" href="$de/dad/classsf_1_1SoundFileReader.html" title="Abstract base class for sound file decoding." alt="" coords="5,211,172,333"/>
+<area shape="rect" id="node3" href="$d8/dd2/structFLAC____StreamDecoder.html" title=" " alt="" coords="197,226,367,318"/>
+<area shape="rect" id="node4" href="$d8/d50/structsf_1_1priv_1_1SoundFileReaderFlac_1_1ClientData.html" title="Hold the state that is passed to the decoder callbacks." alt="" coords="392,204,575,340"/>
+<area shape="rect" id="node5" href="$dc/dc4/classsf_1_1InputStream.html" title="Abstract class for custom file input streams." alt="" coords="330,5,469,141"/>
+<area shape="rect" id="node6" href="$d0/db7/structsf_1_1SoundFileReader_1_1Info.html" title="Structure holding the audio properties of a sound file." alt="" coords="493,13,644,134"/>
+</map>

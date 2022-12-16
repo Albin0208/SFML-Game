@@ -1,0 +1,154 @@
+\hypertarget{ftgzip_8h_source}{}\doxysection{ftgzip.\+h}
+\label{ftgzip_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/ftgzip.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/ftgzip.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftgzip.h                                                               */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Gzip-\/compressed stream support.                                      */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2002-\/2004, 2006, 2013 by                                     */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FTGZIP\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FTGZIP\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifdef FREETYPE\_H}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#error "{}freetype.h of FreeType 1 has been loaded!"{}}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#error "{}Please fix the directory search order for header files"{}}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#error "{}so that freetype.h of FreeType 2 is found first."{}}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{35   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{36   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{37   \textcolor{comment}{/*    gzip                                                               */}}
+\DoxyCodeLine{38   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{39   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*    GZIP Streams                                                       */}}
+\DoxyCodeLine{41   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{42   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*    Using gzip-\/compressed font files.                                  */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{45   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*    This section contains the declaration of Gzip-\/specific functions.  */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{48 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \textcolor{comment}{ /************************************************************************}}
+\DoxyCodeLine{52 \textcolor{comment}{  *}}
+\DoxyCodeLine{53 \textcolor{comment}{  * @function:}}
+\DoxyCodeLine{54 \textcolor{comment}{  *   FT\_Stream\_OpenGzip}}
+\DoxyCodeLine{55 \textcolor{comment}{  *}}
+\DoxyCodeLine{56 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{57 \textcolor{comment}{  *   Open a new stream to parse gzip-\/compressed font files.  This is}}
+\DoxyCodeLine{58 \textcolor{comment}{  *   mainly used to support the compressed `*.pcf.gz' fonts that come}}
+\DoxyCodeLine{59 \textcolor{comment}{  *   with XFree86.}}
+\DoxyCodeLine{60 \textcolor{comment}{  *}}
+\DoxyCodeLine{61 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{62 \textcolor{comment}{  *   stream ::}}
+\DoxyCodeLine{63 \textcolor{comment}{  *     The target embedding stream.}}
+\DoxyCodeLine{64 \textcolor{comment}{  *}}
+\DoxyCodeLine{65 \textcolor{comment}{  *   source ::}}
+\DoxyCodeLine{66 \textcolor{comment}{  *     The source stream.}}
+\DoxyCodeLine{67 \textcolor{comment}{  *}}
+\DoxyCodeLine{68 \textcolor{comment}{  * @return:}}
+\DoxyCodeLine{69 \textcolor{comment}{  *   FreeType error code.  0\string~means success.}}
+\DoxyCodeLine{70 \textcolor{comment}{  *}}
+\DoxyCodeLine{71 \textcolor{comment}{  * @note:}}
+\DoxyCodeLine{72 \textcolor{comment}{  *   The source stream must be opened \_before\_ calling this function.}}
+\DoxyCodeLine{73 \textcolor{comment}{  *}}
+\DoxyCodeLine{74 \textcolor{comment}{  *   Calling the internal function `FT\_Stream\_Close' on the new stream will}}
+\DoxyCodeLine{75 \textcolor{comment}{  *   *not* call `FT\_Stream\_Close' on the source stream.  None of the stream}}
+\DoxyCodeLine{76 \textcolor{comment}{  *   objects will be released to the heap.}}
+\DoxyCodeLine{77 \textcolor{comment}{  *}}
+\DoxyCodeLine{78 \textcolor{comment}{  *   The stream implementation is very basic and resets the decompression}}
+\DoxyCodeLine{79 \textcolor{comment}{  *   process each time seeking backwards is needed within the stream.}}
+\DoxyCodeLine{80 \textcolor{comment}{  *}}
+\DoxyCodeLine{81 \textcolor{comment}{  *   In certain builds of the library, gzip compression recognition is}}
+\DoxyCodeLine{82 \textcolor{comment}{  *   automatically handled when calling @FT\_New\_Face or @FT\_Open\_Face.}}
+\DoxyCodeLine{83 \textcolor{comment}{  *   This means that if no font driver is capable of handling the raw}}
+\DoxyCodeLine{84 \textcolor{comment}{  *   compressed file, the library will try to open a gzipped stream from}}
+\DoxyCodeLine{85 \textcolor{comment}{  *   it and re-\/open the face with it.}}
+\DoxyCodeLine{86 \textcolor{comment}{  *}}
+\DoxyCodeLine{87 \textcolor{comment}{  *   This function may return `FT\_Err\_Unimplemented\_Feature' if your build}}
+\DoxyCodeLine{88 \textcolor{comment}{  *   of FreeType was not compiled with zlib support.}}
+\DoxyCodeLine{89 \textcolor{comment}{  */}}
+\DoxyCodeLine{90   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{91   FT\_Stream\_OpenGzip( \mbox{\hyperlink{structFT__StreamRec__}{FT\_Stream}}  stream,}
+\DoxyCodeLine{92                       \mbox{\hyperlink{structFT__StreamRec__}{FT\_Stream}}  source );}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \textcolor{comment}{ /************************************************************************}}
+\DoxyCodeLine{96 \textcolor{comment}{  *}}
+\DoxyCodeLine{97 \textcolor{comment}{  * @function:}}
+\DoxyCodeLine{98 \textcolor{comment}{  *   FT\_Gzip\_Uncompress}}
+\DoxyCodeLine{99 \textcolor{comment}{  *}}
+\DoxyCodeLine{100 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{101 \textcolor{comment}{  *   Decompress a zipped input buffer into an output buffer.  This function}}
+\DoxyCodeLine{102 \textcolor{comment}{  *   is modeled after zlib's `uncompress' function.}}
+\DoxyCodeLine{103 \textcolor{comment}{  *}}
+\DoxyCodeLine{104 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{105 \textcolor{comment}{  *   memory ::}}
+\DoxyCodeLine{106 \textcolor{comment}{  *     A FreeType memory handle.}}
+\DoxyCodeLine{107 \textcolor{comment}{  *}}
+\DoxyCodeLine{108 \textcolor{comment}{  *   input ::}}
+\DoxyCodeLine{109 \textcolor{comment}{  *     The input buffer.}}
+\DoxyCodeLine{110 \textcolor{comment}{  *}}
+\DoxyCodeLine{111 \textcolor{comment}{  *   input\_len ::}}
+\DoxyCodeLine{112 \textcolor{comment}{  *     The length of the input buffer.}}
+\DoxyCodeLine{113 \textcolor{comment}{  *}}
+\DoxyCodeLine{114 \textcolor{comment}{  * @output:}}
+\DoxyCodeLine{115 \textcolor{comment}{  *   output::}}
+\DoxyCodeLine{116 \textcolor{comment}{  *     The output buffer.}}
+\DoxyCodeLine{117 \textcolor{comment}{  *}}
+\DoxyCodeLine{118 \textcolor{comment}{  * @inout:}}
+\DoxyCodeLine{119 \textcolor{comment}{  *   output\_len ::}}
+\DoxyCodeLine{120 \textcolor{comment}{  *     Before calling the function, this is the the total size of the}}
+\DoxyCodeLine{121 \textcolor{comment}{  *     output buffer, which must be large enough to hold the entire}}
+\DoxyCodeLine{122 \textcolor{comment}{  *     uncompressed data (so the size of the uncompressed data must be}}
+\DoxyCodeLine{123 \textcolor{comment}{  *     known in advance).  After calling the function, `output\_len' is the}}
+\DoxyCodeLine{124 \textcolor{comment}{  *     size of the used data in `output'.}}
+\DoxyCodeLine{125 \textcolor{comment}{  *}}
+\DoxyCodeLine{126 \textcolor{comment}{  * @return:}}
+\DoxyCodeLine{127 \textcolor{comment}{  *   FreeType error code.  0\string~means success.}}
+\DoxyCodeLine{128 \textcolor{comment}{  *}}
+\DoxyCodeLine{129 \textcolor{comment}{  * @note:}}
+\DoxyCodeLine{130 \textcolor{comment}{  *   This function may return `FT\_Err\_Unimplemented\_Feature' if your build}}
+\DoxyCodeLine{131 \textcolor{comment}{  *   of FreeType was not compiled with zlib support.}}
+\DoxyCodeLine{132 \textcolor{comment}{  */}}
+\DoxyCodeLine{133   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{134   FT\_Gzip\_Uncompress( FT\_Memory       memory,}
+\DoxyCodeLine{135                       FT\_Byte*        output,}
+\DoxyCodeLine{136                       FT\_ULong*       output\_len,}
+\DoxyCodeLine{137                       \textcolor{keyword}{const} FT\_Byte*  input,}
+\DoxyCodeLine{138                       FT\_ULong        input\_len );}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140   \textcolor{comment}{/* */}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143 FT\_END\_HEADER}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTGZIP\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

@@ -1,0 +1,117 @@
+\hypertarget{tttags_8h_source}{}\doxysection{tttags.\+h}
+\label{tttags_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/tttags.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/tttags.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  tttags.h                                                               */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Tags for TrueType and OpenType tables (specification only).          */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2001, 2004, 2005, 2007, 2008, 2013 by                   */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_TTAGS\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_TTAGS\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifdef FREETYPE\_H}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#error "{}freetype.h of FreeType 1 has been loaded!"{}}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#error "{}Please fix the directory search order for header files"{}}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#error "{}so that freetype.h of FreeType 2 is found first."{}}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#define TTAG\_avar  FT\_MAKE\_TAG( 'a', 'v', 'a', 'r' )}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define TTAG\_BASE  FT\_MAKE\_TAG( 'B', 'A', 'S', 'E' )}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#define TTAG\_bdat  FT\_MAKE\_TAG( 'b', 'd', 'a', 't' )}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#define TTAG\_BDF   FT\_MAKE\_TAG( 'B', 'D', 'F', ' ' )}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#define TTAG\_bhed  FT\_MAKE\_TAG( 'b', 'h', 'e', 'd' )}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#define TTAG\_bloc  FT\_MAKE\_TAG( 'b', 'l', 'o', 'c' )}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define TTAG\_bsln  FT\_MAKE\_TAG( 'b', 's', 'l', 'n' )}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#define TTAG\_CBDT  FT\_MAKE\_TAG( 'C', 'B', 'D', 'T' )}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#define TTAG\_CBLC  FT\_MAKE\_TAG( 'C', 'B', 'L', 'C' )}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#define TTAG\_CFF   FT\_MAKE\_TAG( 'C', 'F', 'F', ' ' )}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#define TTAG\_CID   FT\_MAKE\_TAG( 'C', 'I', 'D', ' ' )}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#define TTAG\_cmap  FT\_MAKE\_TAG( 'c', 'm', 'a', 'p' )}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#define TTAG\_cvar  FT\_MAKE\_TAG( 'c', 'v', 'a', 'r' )}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#define TTAG\_cvt   FT\_MAKE\_TAG( 'c', 'v', 't', ' ' )}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#define TTAG\_DSIG  FT\_MAKE\_TAG( 'D', 'S', 'I', 'G' )}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#define TTAG\_EBDT  FT\_MAKE\_TAG( 'E', 'B', 'D', 'T' )}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#define TTAG\_EBLC  FT\_MAKE\_TAG( 'E', 'B', 'L', 'C' )}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#define TTAG\_EBSC  FT\_MAKE\_TAG( 'E', 'B', 'S', 'C' )}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#define TTAG\_feat  FT\_MAKE\_TAG( 'f', 'e', 'a', 't' )}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#define TTAG\_FOND  FT\_MAKE\_TAG( 'F', 'O', 'N', 'D' )}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#define TTAG\_fpgm  FT\_MAKE\_TAG( 'f', 'p', 'g', 'm' )}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#define TTAG\_fvar  FT\_MAKE\_TAG( 'f', 'v', 'a', 'r' )}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#define TTAG\_gasp  FT\_MAKE\_TAG( 'g', 'a', 's', 'p' )}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#define TTAG\_GDEF  FT\_MAKE\_TAG( 'G', 'D', 'E', 'F' )}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#define TTAG\_glyf  FT\_MAKE\_TAG( 'g', 'l', 'y', 'f' )}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#define TTAG\_GPOS  FT\_MAKE\_TAG( 'G', 'P', 'O', 'S' )}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#define TTAG\_GSUB  FT\_MAKE\_TAG( 'G', 'S', 'U', 'B' )}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#define TTAG\_gvar  FT\_MAKE\_TAG( 'g', 'v', 'a', 'r' )}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define TTAG\_hdmx  FT\_MAKE\_TAG( 'h', 'd', 'm', 'x' )}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#define TTAG\_head  FT\_MAKE\_TAG( 'h', 'e', 'a', 'd' )}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define TTAG\_hhea  FT\_MAKE\_TAG( 'h', 'h', 'e', 'a' )}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define TTAG\_hmtx  FT\_MAKE\_TAG( 'h', 'm', 't', 'x' )}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#define TTAG\_JSTF  FT\_MAKE\_TAG( 'J', 'S', 'T', 'F' )}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define TTAG\_just  FT\_MAKE\_TAG( 'j', 'u', 's', 't' )}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define TTAG\_kern  FT\_MAKE\_TAG( 'k', 'e', 'r', 'n' )}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define TTAG\_lcar  FT\_MAKE\_TAG( 'l', 'c', 'a', 'r' )}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#define TTAG\_loca  FT\_MAKE\_TAG( 'l', 'o', 'c', 'a' )}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#define TTAG\_LTSH  FT\_MAKE\_TAG( 'L', 'T', 'S', 'H' )}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#define TTAG\_LWFN  FT\_MAKE\_TAG( 'L', 'W', 'F', 'N' )}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#define TTAG\_MATH  FT\_MAKE\_TAG( 'M', 'A', 'T', 'H' )}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define TTAG\_maxp  FT\_MAKE\_TAG( 'm', 'a', 'x', 'p' )}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#define TTAG\_META  FT\_MAKE\_TAG( 'M', 'E', 'T', 'A' )}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#define TTAG\_MMFX  FT\_MAKE\_TAG( 'M', 'M', 'F', 'X' )}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#define TTAG\_MMSD  FT\_MAKE\_TAG( 'M', 'M', 'S', 'D' )}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define TTAG\_mort  FT\_MAKE\_TAG( 'm', 'o', 'r', 't' )}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#define TTAG\_morx  FT\_MAKE\_TAG( 'm', 'o', 'r', 'x' )}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#define TTAG\_name  FT\_MAKE\_TAG( 'n', 'a', 'm', 'e' )}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#define TTAG\_opbd  FT\_MAKE\_TAG( 'o', 'p', 'b', 'd' )}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#define TTAG\_OS2   FT\_MAKE\_TAG( 'O', 'S', '/', '2' )}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#define TTAG\_OTTO  FT\_MAKE\_TAG( 'O', 'T', 'T', 'O' )}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#define TTAG\_PCLT  FT\_MAKE\_TAG( 'P', 'C', 'L', 'T' )}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#define TTAG\_POST  FT\_MAKE\_TAG( 'P', 'O', 'S', 'T' )}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#define TTAG\_post  FT\_MAKE\_TAG( 'p', 'o', 's', 't' )}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#define TTAG\_prep  FT\_MAKE\_TAG( 'p', 'r', 'e', 'p' )}}
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#define TTAG\_prop  FT\_MAKE\_TAG( 'p', 'r', 'o', 'p' )}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#define TTAG\_sbix  FT\_MAKE\_TAG( 's', 'b', 'i', 'x' )}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#define TTAG\_sfnt  FT\_MAKE\_TAG( 's', 'f', 'n', 't' )}}
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#define TTAG\_SING  FT\_MAKE\_TAG( 'S', 'I', 'N', 'G' )}}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#define TTAG\_trak  FT\_MAKE\_TAG( 't', 'r', 'a', 'k' )}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#define TTAG\_true  FT\_MAKE\_TAG( 't', 'r', 'u', 'e' )}}
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#define TTAG\_ttc   FT\_MAKE\_TAG( 't', 't', 'c', ' ' )}}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#define TTAG\_ttcf  FT\_MAKE\_TAG( 't', 't', 'c', 'f' )}}
+\DoxyCodeLine{98 \textcolor{preprocessor}{\#define TTAG\_TYP1  FT\_MAKE\_TAG( 'T', 'Y', 'P', '1' )}}
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#define TTAG\_typ1  FT\_MAKE\_TAG( 't', 'y', 'p', '1' )}}
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#define TTAG\_VDMX  FT\_MAKE\_TAG( 'V', 'D', 'M', 'X' )}}
+\DoxyCodeLine{101 \textcolor{preprocessor}{\#define TTAG\_vhea  FT\_MAKE\_TAG( 'v', 'h', 'e', 'a' )}}
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#define TTAG\_vmtx  FT\_MAKE\_TAG( 'v', 'm', 't', 'x' )}}
+\DoxyCodeLine{103 \textcolor{preprocessor}{\#define TTAG\_wOFF  FT\_MAKE\_TAG( 'w', 'O', 'F', 'F' )}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 FT\_END\_HEADER}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_TTAGS\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

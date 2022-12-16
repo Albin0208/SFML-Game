@@ -1,0 +1,243 @@
+\hypertarget{ftrender_8h_source}{}\doxysection{ftrender.\+h}
+\label{ftrender_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/ftrender.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/ftrender.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftrender.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType renderer modules public interface (specification).          */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2001, 2005, 2006, 2010 by                               */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FTRENDER\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FTRENDER\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include FT\_MODULE\_H}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include FT\_GLYPH\_H}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{32   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{33   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{34   \textcolor{comment}{/*    module\_management                                                  */}}
+\DoxyCodeLine{35   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{36 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39   \textcolor{comment}{/* create a new glyph object */}}
+\DoxyCodeLine{40   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{41   (*FT\_Glyph\_InitFunc)( \mbox{\hyperlink{structFT__GlyphRec__}{FT\_Glyph}}      glyph,}
+\DoxyCodeLine{42                         \mbox{\hyperlink{structFT__GlyphSlotRec__}{FT\_GlyphSlot}}  slot );}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44   \textcolor{comment}{/* destroys a given glyph object */}}
+\DoxyCodeLine{45   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{46   (*FT\_Glyph\_DoneFunc)( \mbox{\hyperlink{structFT__GlyphRec__}{FT\_Glyph}}  glyph );}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{49   (*FT\_Glyph\_TransformFunc)( \mbox{\hyperlink{structFT__GlyphRec__}{FT\_Glyph}}          glyph,}
+\DoxyCodeLine{50                              \textcolor{keyword}{const} \mbox{\hyperlink{structFT__Matrix__}{FT\_Matrix}}*  matrix,}
+\DoxyCodeLine{51                              \textcolor{keyword}{const} \mbox{\hyperlink{structFT__Vector__}{FT\_Vector}}*  delta );}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{54   (*FT\_Glyph\_GetBBoxFunc)( \mbox{\hyperlink{structFT__GlyphRec__}{FT\_Glyph}}  glyph,}
+\DoxyCodeLine{55                            \mbox{\hyperlink{structFT__BBox__}{FT\_BBox}}*  abbox );}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{58   (*FT\_Glyph\_CopyFunc)( \mbox{\hyperlink{structFT__GlyphRec__}{FT\_Glyph}}   source,}
+\DoxyCodeLine{59                         \mbox{\hyperlink{structFT__GlyphRec__}{FT\_Glyph}}   target );}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{62   (*FT\_Glyph\_PrepareFunc)( \mbox{\hyperlink{structFT__GlyphRec__}{FT\_Glyph}}      glyph,}
+\DoxyCodeLine{63                            \mbox{\hyperlink{structFT__GlyphSlotRec__}{FT\_GlyphSlot}}  slot );}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{comment}{/* deprecated */}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define FT\_Glyph\_Init\_Func       FT\_Glyph\_InitFunc}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define FT\_Glyph\_Done\_Func       FT\_Glyph\_DoneFunc}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#define FT\_Glyph\_Transform\_Func  FT\_Glyph\_TransformFunc}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define FT\_Glyph\_BBox\_Func       FT\_Glyph\_GetBBoxFunc}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define FT\_Glyph\_Copy\_Func       FT\_Glyph\_CopyFunc}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define FT\_Glyph\_Prepare\_Func    FT\_Glyph\_PrepareFunc}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74   \textcolor{keyword}{struct  }\mbox{\hyperlink{structFT__Glyph__Class__}{FT\_Glyph\_Class\_}}}
+\DoxyCodeLine{75   \{}
+\DoxyCodeLine{76     FT\_Long                 glyph\_size;}
+\DoxyCodeLine{77     FT\_Glyph\_Format         glyph\_format;}
+\DoxyCodeLine{78     FT\_Glyph\_InitFunc       glyph\_init;}
+\DoxyCodeLine{79     FT\_Glyph\_DoneFunc       glyph\_done;}
+\DoxyCodeLine{80     FT\_Glyph\_CopyFunc       glyph\_copy;}
+\DoxyCodeLine{81     FT\_Glyph\_TransformFunc  glyph\_transform;}
+\DoxyCodeLine{82     FT\_Glyph\_GetBBoxFunc    glyph\_bbox;}
+\DoxyCodeLine{83     FT\_Glyph\_PrepareFunc    glyph\_prepare;}
+\DoxyCodeLine{84   \};}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{88   (*FT\_Renderer\_RenderFunc)( FT\_Renderer       renderer,}
+\DoxyCodeLine{89                              \mbox{\hyperlink{structFT__GlyphSlotRec__}{FT\_GlyphSlot}}      slot,}
+\DoxyCodeLine{90                              FT\_UInt           mode,}
+\DoxyCodeLine{91                              \textcolor{keyword}{const} \mbox{\hyperlink{structFT__Vector__}{FT\_Vector}}*  origin );}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{94   (*FT\_Renderer\_TransformFunc)( FT\_Renderer       renderer,}
+\DoxyCodeLine{95                                 \mbox{\hyperlink{structFT__GlyphSlotRec__}{FT\_GlyphSlot}}      slot,}
+\DoxyCodeLine{96                                 \textcolor{keyword}{const} \mbox{\hyperlink{structFT__Matrix__}{FT\_Matrix}}*  matrix,}
+\DoxyCodeLine{97                                 \textcolor{keyword}{const} \mbox{\hyperlink{structFT__Vector__}{FT\_Vector}}*  delta );}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{101   (*FT\_Renderer\_GetCBoxFunc)( FT\_Renderer   renderer,}
+\DoxyCodeLine{102                               \mbox{\hyperlink{structFT__GlyphSlotRec__}{FT\_GlyphSlot}}  slot,}
+\DoxyCodeLine{103                               \mbox{\hyperlink{structFT__BBox__}{FT\_BBox}}*      cbox );}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{107   (*FT\_Renderer\_SetModeFunc)( FT\_Renderer  renderer,}
+\DoxyCodeLine{108                               FT\_ULong     mode\_tag,}
+\DoxyCodeLine{109                               FT\_Pointer   mode\_ptr );}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111 \textcolor{comment}{/* deprecated identifiers */}}
+\DoxyCodeLine{112 \textcolor{preprocessor}{\#define FTRenderer\_render  FT\_Renderer\_RenderFunc}}
+\DoxyCodeLine{113 \textcolor{preprocessor}{\#define FTRenderer\_transform  FT\_Renderer\_TransformFunc}}
+\DoxyCodeLine{114 \textcolor{preprocessor}{\#define FTRenderer\_getCBox  FT\_Renderer\_GetCBoxFunc}}
+\DoxyCodeLine{115 \textcolor{preprocessor}{\#define FTRenderer\_setMode  FT\_Renderer\_SetModeFunc}}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{119   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{120   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{121   \textcolor{comment}{/*    FT\_Renderer\_Class                                                  */}}
+\DoxyCodeLine{122   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{123   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{124   \textcolor{comment}{/*    The renderer module class descriptor.                              */}}
+\DoxyCodeLine{125   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{126   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{127   \textcolor{comment}{/*    root            :: The root @FT\_Module\_Class fields.               */}}
+\DoxyCodeLine{128   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{129   \textcolor{comment}{/*    glyph\_format    :: The glyph image format this renderer handles.   */}}
+\DoxyCodeLine{130   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{131   \textcolor{comment}{/*    render\_glyph    :: A method used to render the image that is in a  */}}
+\DoxyCodeLine{132   \textcolor{comment}{/*                       given glyph slot into a bitmap.                 */}}
+\DoxyCodeLine{133   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{134   \textcolor{comment}{/*    transform\_glyph :: A method used to transform the image that is in */}}
+\DoxyCodeLine{135   \textcolor{comment}{/*                       a given glyph slot.                             */}}
+\DoxyCodeLine{136   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{137   \textcolor{comment}{/*    get\_glyph\_cbox  :: A method used to access the glyph's cbox.       */}}
+\DoxyCodeLine{138   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{139   \textcolor{comment}{/*    set\_mode        :: A method used to pass additional parameters.    */}}
+\DoxyCodeLine{140   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{141   \textcolor{comment}{/*    raster\_class    :: For @FT\_GLYPH\_FORMAT\_OUTLINE renderers only.    */}}
+\DoxyCodeLine{142   \textcolor{comment}{/*                       This is a pointer to its raster's class.        */}}
+\DoxyCodeLine{143   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{144   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structFT__Renderer__Class__}{FT\_Renderer\_Class\_}}}
+\DoxyCodeLine{145   \{}
+\DoxyCodeLine{146     \mbox{\hyperlink{structFT__Module__Class__}{FT\_Module\_Class}}            root;}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148     FT\_Glyph\_Format            glyph\_format;}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150     FT\_Renderer\_RenderFunc     render\_glyph;}
+\DoxyCodeLine{151     FT\_Renderer\_TransformFunc  transform\_glyph;}
+\DoxyCodeLine{152     FT\_Renderer\_GetCBoxFunc    get\_glyph\_cbox;}
+\DoxyCodeLine{153     FT\_Renderer\_SetModeFunc    set\_mode;}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155     \mbox{\hyperlink{structFT__Raster__Funcs__}{FT\_Raster\_Funcs}}*           raster\_class;}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157   \} \mbox{\hyperlink{structFT__Renderer__Class__}{FT\_Renderer\_Class}};}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{161   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{162   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{163   \textcolor{comment}{/*    FT\_Get\_Renderer                                                    */}}
+\DoxyCodeLine{164   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{165   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{166   \textcolor{comment}{/*    Retrieve the current renderer for a given glyph format.            */}}
+\DoxyCodeLine{167   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{168   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{169   \textcolor{comment}{/*    library :: A handle to the library object.                         */}}
+\DoxyCodeLine{170   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{171   \textcolor{comment}{/*    format  :: The glyph format.                                       */}}
+\DoxyCodeLine{172   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{173   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{174   \textcolor{comment}{/*    A renderer handle.  0\string~if none found.                               */}}
+\DoxyCodeLine{175   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{176   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{177   \textcolor{comment}{/*    An error will be returned if a module already exists by that name, */}}
+\DoxyCodeLine{178   \textcolor{comment}{/*    or if the module requires a version of FreeType that is too great. */}}
+\DoxyCodeLine{179   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{180   \textcolor{comment}{/*    To add a new renderer, simply use @FT\_Add\_Module.  To retrieve a   */}}
+\DoxyCodeLine{181   \textcolor{comment}{/*    renderer by its name, use @FT\_Get\_Module.                          */}}
+\DoxyCodeLine{182   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{183   FT\_EXPORT( FT\_Renderer )}
+\DoxyCodeLine{184   FT\_Get\_Renderer( FT\_Library       library,}
+\DoxyCodeLine{185                    FT\_Glyph\_Format  format );}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{189   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{190   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{191   \textcolor{comment}{/*    FT\_Set\_Renderer                                                    */}}
+\DoxyCodeLine{192   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{193   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{194   \textcolor{comment}{/*    Set the current renderer to use, and set additional mode.          */}}
+\DoxyCodeLine{195   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{196   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{197   \textcolor{comment}{/*    library    :: A handle to the library object.                      */}}
+\DoxyCodeLine{198   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{199   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{200   \textcolor{comment}{/*    renderer   :: A handle to the renderer object.                     */}}
+\DoxyCodeLine{201   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{202   \textcolor{comment}{/*    num\_params :: The number of additional parameters.                 */}}
+\DoxyCodeLine{203   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{204   \textcolor{comment}{/*    parameters :: Additional parameters.                               */}}
+\DoxyCodeLine{205   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{206   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{207   \textcolor{comment}{/*    FreeType error code.  0\string~means success.                             */}}
+\DoxyCodeLine{208   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{209   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{210   \textcolor{comment}{/*    In case of success, the renderer will be used to convert glyph     */}}
+\DoxyCodeLine{211   \textcolor{comment}{/*    images in the renderer's known format into bitmaps.                */}}
+\DoxyCodeLine{212   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{213   \textcolor{comment}{/*    This doesn't change the current renderer for other formats.        */}}
+\DoxyCodeLine{214   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{215   \textcolor{comment}{/*    Currently, only the B/W renderer, if compiled with                 */}}
+\DoxyCodeLine{216   \textcolor{comment}{/*    FT\_RASTER\_OPTION\_ANTI\_ALIASING (providing a 5-\/levels               */}}
+\DoxyCodeLine{217   \textcolor{comment}{/*    anti-\/aliasing mode; this option must be set directly in            */}}
+\DoxyCodeLine{218   \textcolor{comment}{/*    `ftraster.c' and is undefined by default) accepts a single tag     */}}
+\DoxyCodeLine{219   \textcolor{comment}{/*    `pal5' to set its gray palette as a character string with          */}}
+\DoxyCodeLine{220   \textcolor{comment}{/*    5\string~elements.  Consequently, the third and fourth argument are zero  */}}
+\DoxyCodeLine{221   \textcolor{comment}{/*    normally.                                                          */}}
+\DoxyCodeLine{222   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{223   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{224   FT\_Set\_Renderer( FT\_Library     library,}
+\DoxyCodeLine{225                    FT\_Renderer    renderer,}
+\DoxyCodeLine{226                    FT\_UInt        num\_params,}
+\DoxyCodeLine{227                    \mbox{\hyperlink{structFT__Parameter__}{FT\_Parameter}}*  parameters );}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229   \textcolor{comment}{/* */}}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231 }
+\DoxyCodeLine{232 FT\_END\_HEADER}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTRENDER\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

@@ -1,0 +1,281 @@
+\hypertarget{ftwinfnt_8h_source}{}\doxysection{ftwinfnt.\+h}
+\label{ftwinfnt_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/ftwinfnt.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/ftwinfnt.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftwinfnt.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType API for accessing Windows fnt-\/specific data.                */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2003, 2004, 2008 by                                          */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FTWINFNT\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FTWINFNT\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifdef FREETYPE\_H}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#error "{}freetype.h of FreeType 1 has been loaded!"{}}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#error "{}Please fix the directory search order for header files"{}}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#error "{}so that freetype.h of FreeType 2 is found first."{}}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{36   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{37   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{38   \textcolor{comment}{/*    winfnt\_fonts                                                       */}}
+\DoxyCodeLine{39   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{40   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{41   \textcolor{comment}{/*    Window FNT Files                                                   */}}
+\DoxyCodeLine{42   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{43   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*    Windows FNT specific API.                                          */}}
+\DoxyCodeLine{45   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{46   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*    This section contains the declaration of Windows FNT specific      */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*    functions.                                                         */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{50 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{comment}{  /*************************************************************************}}
+\DoxyCodeLine{54 \textcolor{comment}{   *}}
+\DoxyCodeLine{55 \textcolor{comment}{   * @enum:}}
+\DoxyCodeLine{56 \textcolor{comment}{   *   FT\_WinFNT\_ID\_XXX}}
+\DoxyCodeLine{57 \textcolor{comment}{   *}}
+\DoxyCodeLine{58 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{59 \textcolor{comment}{   *   A list of valid values for the `charset' byte in}}
+\DoxyCodeLine{60 \textcolor{comment}{   *   @FT\_WinFNT\_HeaderRec.  Exact mapping tables for the various cpXXXX}}
+\DoxyCodeLine{61 \textcolor{comment}{   *   encodings (except for cp1361) can be found at}}
+\DoxyCodeLine{62 \textcolor{comment}{   *   ftp://ftp.unicode.org/public in the MAPPINGS/VENDORS/MICSFT/WINDOWS}}
+\DoxyCodeLine{63 \textcolor{comment}{   *   subdirectory.  cp1361 is roughly a superset of}}
+\DoxyCodeLine{64 \textcolor{comment}{   *   MAPPINGS/OBSOLETE/EASTASIA/KSC/JOHAB.TXT.}}
+\DoxyCodeLine{65 \textcolor{comment}{   *}}
+\DoxyCodeLine{66 \textcolor{comment}{   * @values:}}
+\DoxyCodeLine{67 \textcolor{comment}{   *   FT\_WinFNT\_ID\_DEFAULT ::}}
+\DoxyCodeLine{68 \textcolor{comment}{   *     This is used for font enumeration and font creation as a}}
+\DoxyCodeLine{69 \textcolor{comment}{   *     `don't care' value.  Valid font files don't contain this value.}}
+\DoxyCodeLine{70 \textcolor{comment}{   *     When querying for information about the character set of the font}}
+\DoxyCodeLine{71 \textcolor{comment}{   *     that is currently selected into a specified device context, this}}
+\DoxyCodeLine{72 \textcolor{comment}{   *     return value (of the related Windows API) simply denotes failure.}}
+\DoxyCodeLine{73 \textcolor{comment}{   *}}
+\DoxyCodeLine{74 \textcolor{comment}{   *   FT\_WinFNT\_ID\_SYMBOL ::}}
+\DoxyCodeLine{75 \textcolor{comment}{   *     There is no known mapping table available.}}
+\DoxyCodeLine{76 \textcolor{comment}{   *}}
+\DoxyCodeLine{77 \textcolor{comment}{   *   FT\_WinFNT\_ID\_MAC ::}}
+\DoxyCodeLine{78 \textcolor{comment}{   *     Mac Roman encoding.}}
+\DoxyCodeLine{79 \textcolor{comment}{   *}}
+\DoxyCodeLine{80 \textcolor{comment}{   *   FT\_WinFNT\_ID\_OEM ::}}
+\DoxyCodeLine{81 \textcolor{comment}{   *     From Michael Pöttgen <michael@poettgen.de>:}}
+\DoxyCodeLine{82 \textcolor{comment}{   *}}
+\DoxyCodeLine{83 \textcolor{comment}{   *       The `Windows Font Mapping' article says that FT\_WinFNT\_ID\_OEM}}
+\DoxyCodeLine{84 \textcolor{comment}{   *       is used for the charset of vector fonts, like `modern.fon',}}
+\DoxyCodeLine{85 \textcolor{comment}{   *       `roman.fon', and `script.fon' on Windows.}}
+\DoxyCodeLine{86 \textcolor{comment}{   *}}
+\DoxyCodeLine{87 \textcolor{comment}{   *       The `CreateFont' documentation says: The FT\_WinFNT\_ID\_OEM value}}
+\DoxyCodeLine{88 \textcolor{comment}{   *       specifies a character set that is operating-\/system dependent.}}
+\DoxyCodeLine{89 \textcolor{comment}{   *}}
+\DoxyCodeLine{90 \textcolor{comment}{   *       The `IFIMETRICS' documentation from the `Windows Driver}}
+\DoxyCodeLine{91 \textcolor{comment}{   *       Development Kit' says: This font supports an OEM-\/specific}}
+\DoxyCodeLine{92 \textcolor{comment}{   *       character set.  The OEM character set is system dependent.}}
+\DoxyCodeLine{93 \textcolor{comment}{   *}}
+\DoxyCodeLine{94 \textcolor{comment}{   *       In general OEM, as opposed to ANSI (i.e., cp1252), denotes the}}
+\DoxyCodeLine{95 \textcolor{comment}{   *       second default codepage that most international versions of}}
+\DoxyCodeLine{96 \textcolor{comment}{   *       Windows have.  It is one of the OEM codepages from}}
+\DoxyCodeLine{97 \textcolor{comment}{   *}}
+\DoxyCodeLine{98 \textcolor{comment}{   *         http://www.microsoft.com/globaldev/reference/cphome.mspx,}}
+\DoxyCodeLine{99 \textcolor{comment}{   *}}
+\DoxyCodeLine{100 \textcolor{comment}{   *       and is used for the `DOS boxes', to support legacy applications.}}
+\DoxyCodeLine{101 \textcolor{comment}{   *       A German Windows version for example usually uses ANSI codepage}}
+\DoxyCodeLine{102 \textcolor{comment}{   *       1252 and OEM codepage 850.}}
+\DoxyCodeLine{103 \textcolor{comment}{   *}}
+\DoxyCodeLine{104 \textcolor{comment}{   *   FT\_WinFNT\_ID\_CP874 ::}}
+\DoxyCodeLine{105 \textcolor{comment}{   *     A superset of Thai TIS 620 and ISO 8859-\/11.}}
+\DoxyCodeLine{106 \textcolor{comment}{   *}}
+\DoxyCodeLine{107 \textcolor{comment}{   *   FT\_WinFNT\_ID\_CP932 ::}}
+\DoxyCodeLine{108 \textcolor{comment}{   *     A superset of Japanese Shift-\/JIS (with minor deviations).}}
+\DoxyCodeLine{109 \textcolor{comment}{   *}}
+\DoxyCodeLine{110 \textcolor{comment}{   *   FT\_WinFNT\_ID\_CP936 ::}}
+\DoxyCodeLine{111 \textcolor{comment}{   *     A superset of simplified Chinese GB 2312-\/1980 (with different}}
+\DoxyCodeLine{112 \textcolor{comment}{   *     ordering and minor deviations).}}
+\DoxyCodeLine{113 \textcolor{comment}{   *}}
+\DoxyCodeLine{114 \textcolor{comment}{   *   FT\_WinFNT\_ID\_CP949 ::}}
+\DoxyCodeLine{115 \textcolor{comment}{   *     A superset of Korean Hangul KS\string~C 5601-\/1987 (with different}}
+\DoxyCodeLine{116 \textcolor{comment}{   *     ordering and minor deviations).}}
+\DoxyCodeLine{117 \textcolor{comment}{   *}}
+\DoxyCodeLine{118 \textcolor{comment}{   *   FT\_WinFNT\_ID\_CP950 ::}}
+\DoxyCodeLine{119 \textcolor{comment}{   *     A superset of traditional Chinese Big\string~5 ETen (with different}}
+\DoxyCodeLine{120 \textcolor{comment}{   *     ordering and minor deviations).}}
+\DoxyCodeLine{121 \textcolor{comment}{   *}}
+\DoxyCodeLine{122 \textcolor{comment}{   *   FT\_WinFNT\_ID\_CP1250 ::}}
+\DoxyCodeLine{123 \textcolor{comment}{   *     A superset of East European ISO 8859-\/2 (with slightly different}}
+\DoxyCodeLine{124 \textcolor{comment}{   *     ordering).}}
+\DoxyCodeLine{125 \textcolor{comment}{   *}}
+\DoxyCodeLine{126 \textcolor{comment}{   *   FT\_WinFNT\_ID\_CP1251 ::}}
+\DoxyCodeLine{127 \textcolor{comment}{   *     A superset of Russian ISO 8859-\/5 (with different ordering).}}
+\DoxyCodeLine{128 \textcolor{comment}{   *}}
+\DoxyCodeLine{129 \textcolor{comment}{   *   FT\_WinFNT\_ID\_CP1252 ::}}
+\DoxyCodeLine{130 \textcolor{comment}{   *     ANSI encoding.  A superset of ISO 8859-\/1.}}
+\DoxyCodeLine{131 \textcolor{comment}{   *}}
+\DoxyCodeLine{132 \textcolor{comment}{   *   FT\_WinFNT\_ID\_CP1253 ::}}
+\DoxyCodeLine{133 \textcolor{comment}{   *     A superset of Greek ISO 8859-\/7 (with minor modifications).}}
+\DoxyCodeLine{134 \textcolor{comment}{   *}}
+\DoxyCodeLine{135 \textcolor{comment}{   *   FT\_WinFNT\_ID\_CP1254 ::}}
+\DoxyCodeLine{136 \textcolor{comment}{   *     A superset of Turkish ISO 8859-\/9.}}
+\DoxyCodeLine{137 \textcolor{comment}{   *}}
+\DoxyCodeLine{138 \textcolor{comment}{   *   FT\_WinFNT\_ID\_CP1255 ::}}
+\DoxyCodeLine{139 \textcolor{comment}{   *     A superset of Hebrew ISO 8859-\/8 (with some modifications).}}
+\DoxyCodeLine{140 \textcolor{comment}{   *}}
+\DoxyCodeLine{141 \textcolor{comment}{   *   FT\_WinFNT\_ID\_CP1256 ::}}
+\DoxyCodeLine{142 \textcolor{comment}{   *     A superset of Arabic ISO 8859-\/6 (with different ordering).}}
+\DoxyCodeLine{143 \textcolor{comment}{   *}}
+\DoxyCodeLine{144 \textcolor{comment}{   *   FT\_WinFNT\_ID\_CP1257 ::}}
+\DoxyCodeLine{145 \textcolor{comment}{   *     A superset of Baltic ISO 8859-\/13 (with some deviations).}}
+\DoxyCodeLine{146 \textcolor{comment}{   *}}
+\DoxyCodeLine{147 \textcolor{comment}{   *   FT\_WinFNT\_ID\_CP1258 ::}}
+\DoxyCodeLine{148 \textcolor{comment}{   *     For Vietnamese.  This encoding doesn't cover all necessary}}
+\DoxyCodeLine{149 \textcolor{comment}{   *     characters.}}
+\DoxyCodeLine{150 \textcolor{comment}{   *}}
+\DoxyCodeLine{151 \textcolor{comment}{   *   FT\_WinFNT\_ID\_CP1361 ::}}
+\DoxyCodeLine{152 \textcolor{comment}{   *     Korean (Johab).}}
+\DoxyCodeLine{153 \textcolor{comment}{   */}}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 \textcolor{preprocessor}{\#define FT\_WinFNT\_ID\_CP1252    0}}
+\DoxyCodeLine{156 \textcolor{preprocessor}{\#define FT\_WinFNT\_ID\_DEFAULT   1}}
+\DoxyCodeLine{157 \textcolor{preprocessor}{\#define FT\_WinFNT\_ID\_SYMBOL    2}}
+\DoxyCodeLine{158 \textcolor{preprocessor}{\#define FT\_WinFNT\_ID\_MAC      77}}
+\DoxyCodeLine{159 \textcolor{preprocessor}{\#define FT\_WinFNT\_ID\_CP932   128}}
+\DoxyCodeLine{160 \textcolor{preprocessor}{\#define FT\_WinFNT\_ID\_CP949   129}}
+\DoxyCodeLine{161 \textcolor{preprocessor}{\#define FT\_WinFNT\_ID\_CP1361  130}}
+\DoxyCodeLine{162 \textcolor{preprocessor}{\#define FT\_WinFNT\_ID\_CP936   134}}
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#define FT\_WinFNT\_ID\_CP950   136}}
+\DoxyCodeLine{164 \textcolor{preprocessor}{\#define FT\_WinFNT\_ID\_CP1253  161}}
+\DoxyCodeLine{165 \textcolor{preprocessor}{\#define FT\_WinFNT\_ID\_CP1254  162}}
+\DoxyCodeLine{166 \textcolor{preprocessor}{\#define FT\_WinFNT\_ID\_CP1258  163}}
+\DoxyCodeLine{167 \textcolor{preprocessor}{\#define FT\_WinFNT\_ID\_CP1255  177}}
+\DoxyCodeLine{168 \textcolor{preprocessor}{\#define FT\_WinFNT\_ID\_CP1256  178}}
+\DoxyCodeLine{169 \textcolor{preprocessor}{\#define FT\_WinFNT\_ID\_CP1257  186}}
+\DoxyCodeLine{170 \textcolor{preprocessor}{\#define FT\_WinFNT\_ID\_CP1251  204}}
+\DoxyCodeLine{171 \textcolor{preprocessor}{\#define FT\_WinFNT\_ID\_CP874   222}}
+\DoxyCodeLine{172 \textcolor{preprocessor}{\#define FT\_WinFNT\_ID\_CP1250  238}}
+\DoxyCodeLine{173 \textcolor{preprocessor}{\#define FT\_WinFNT\_ID\_OEM     255}}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{177   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{178   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{179   \textcolor{comment}{/*    FT\_WinFNT\_HeaderRec                                                */}}
+\DoxyCodeLine{180   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{181   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{182   \textcolor{comment}{/*    Windows FNT Header info.                                           */}}
+\DoxyCodeLine{183   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{184   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structFT__WinFNT__HeaderRec__}{FT\_WinFNT\_HeaderRec\_}}}
+\DoxyCodeLine{185   \{}
+\DoxyCodeLine{186     FT\_UShort  version;}
+\DoxyCodeLine{187     FT\_ULong   file\_size;}
+\DoxyCodeLine{188     FT\_Byte    copyright[60];}
+\DoxyCodeLine{189     FT\_UShort  file\_type;}
+\DoxyCodeLine{190     FT\_UShort  nominal\_point\_size;}
+\DoxyCodeLine{191     FT\_UShort  vertical\_resolution;}
+\DoxyCodeLine{192     FT\_UShort  horizontal\_resolution;}
+\DoxyCodeLine{193     FT\_UShort  ascent;}
+\DoxyCodeLine{194     FT\_UShort  internal\_leading;}
+\DoxyCodeLine{195     FT\_UShort  external\_leading;}
+\DoxyCodeLine{196     FT\_Byte    italic;}
+\DoxyCodeLine{197     FT\_Byte    underline;}
+\DoxyCodeLine{198     FT\_Byte    strike\_out;}
+\DoxyCodeLine{199     FT\_UShort  weight;}
+\DoxyCodeLine{200     FT\_Byte    charset;}
+\DoxyCodeLine{201     FT\_UShort  pixel\_width;}
+\DoxyCodeLine{202     FT\_UShort  pixel\_height;}
+\DoxyCodeLine{203     FT\_Byte    pitch\_and\_family;}
+\DoxyCodeLine{204     FT\_UShort  avg\_width;}
+\DoxyCodeLine{205     FT\_UShort  max\_width;}
+\DoxyCodeLine{206     FT\_Byte    first\_char;}
+\DoxyCodeLine{207     FT\_Byte    last\_char;}
+\DoxyCodeLine{208     FT\_Byte    default\_char;}
+\DoxyCodeLine{209     FT\_Byte    break\_char;}
+\DoxyCodeLine{210     FT\_UShort  bytes\_per\_row;}
+\DoxyCodeLine{211     FT\_ULong   device\_offset;}
+\DoxyCodeLine{212     FT\_ULong   face\_name\_offset;}
+\DoxyCodeLine{213     FT\_ULong   bits\_pointer;}
+\DoxyCodeLine{214     FT\_ULong   bits\_offset;}
+\DoxyCodeLine{215     FT\_Byte    reserved;}
+\DoxyCodeLine{216     FT\_ULong   flags;}
+\DoxyCodeLine{217     FT\_UShort  A\_space;}
+\DoxyCodeLine{218     FT\_UShort  B\_space;}
+\DoxyCodeLine{219     FT\_UShort  C\_space;}
+\DoxyCodeLine{220     FT\_UShort  color\_table\_offset;}
+\DoxyCodeLine{221     FT\_ULong   reserved1[4];}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223   \} \mbox{\hyperlink{structFT__WinFNT__HeaderRec__}{FT\_WinFNT\_HeaderRec}};}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{227   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{228   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{229   \textcolor{comment}{/*    FT\_WinFNT\_Header                                                   */}}
+\DoxyCodeLine{230   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{231   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{232   \textcolor{comment}{/*    A handle to an @FT\_WinFNT\_HeaderRec structure.                     */}}
+\DoxyCodeLine{233   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{234   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structFT__WinFNT__HeaderRec__}{FT\_WinFNT\_HeaderRec\_}}*  \mbox{\hyperlink{structFT__WinFNT__HeaderRec__}{FT\_WinFNT\_Header}};}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237 \textcolor{comment}{  /**********************************************************************}}
+\DoxyCodeLine{238 \textcolor{comment}{   *}}
+\DoxyCodeLine{239 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{240 \textcolor{comment}{   *    FT\_Get\_WinFNT\_Header}}
+\DoxyCodeLine{241 \textcolor{comment}{   *}}
+\DoxyCodeLine{242 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{243 \textcolor{comment}{   *    Retrieve a Windows FNT font info header.}}
+\DoxyCodeLine{244 \textcolor{comment}{   *}}
+\DoxyCodeLine{245 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{246 \textcolor{comment}{   *    face    :: A handle to the input face.}}
+\DoxyCodeLine{247 \textcolor{comment}{   *}}
+\DoxyCodeLine{248 \textcolor{comment}{   * @output:}}
+\DoxyCodeLine{249 \textcolor{comment}{   *    aheader :: The WinFNT header.}}
+\DoxyCodeLine{250 \textcolor{comment}{   *}}
+\DoxyCodeLine{251 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{252 \textcolor{comment}{   *   FreeType error code.  0\string~means success.}}
+\DoxyCodeLine{253 \textcolor{comment}{   *}}
+\DoxyCodeLine{254 \textcolor{comment}{   * @note:}}
+\DoxyCodeLine{255 \textcolor{comment}{   *   This function only works with Windows FNT faces, returning an error}}
+\DoxyCodeLine{256 \textcolor{comment}{   *   otherwise.}}
+\DoxyCodeLine{257 \textcolor{comment}{   */}}
+\DoxyCodeLine{258   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{259   FT\_Get\_WinFNT\_Header( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}               face,}
+\DoxyCodeLine{260                         \mbox{\hyperlink{structFT__WinFNT__HeaderRec__}{FT\_WinFNT\_HeaderRec}}  *aheader );}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262   \textcolor{comment}{/* */}}
+\DoxyCodeLine{263 }
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265 FT\_END\_HEADER}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{267 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTWINFNT\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{269 }
+\DoxyCodeLine{270 \textcolor{comment}{/* END */}}
+\DoxyCodeLine{271 }
+\DoxyCodeLine{272 }
+\DoxyCodeLine{273 \textcolor{comment}{/* Local Variables: */}}
+\DoxyCodeLine{274 \textcolor{comment}{/* coding: utf-\/8    */}}
+\DoxyCodeLine{275 \textcolor{comment}{/* End:             */}}
+
+\end{DoxyCode}

@@ -1,0 +1,9 @@
+<map id="sf::SoundRecorder" name="sf::SoundRecorder">
+<area shape="rect" id="node1" title="Abstract base class for capturing sound data." alt="" coords="113,764,319,1164"/>
+<area shape="rect" id="node2" href="$d9/d23/classsf_1_1AlResource.html" title="Base class for classes that require an OpenAL context." alt="" coords="5,543,136,635"/>
+<area shape="rect" id="node3" href="$d5/d3c/classsf_1_1Thread.html" title="Utility class to manipulate threads." alt="" coords="161,477,271,701"/>
+<area shape="rect" id="node4" href="$d0/da7/classsf_1_1NonCopyable.html" title="Utility class that makes any derived class non&#45;copyable." alt="" coords="49,5,194,127"/>
+<area shape="rect" id="node5" href="$de/d06/classsf_1_1priv_1_1ThreadImpl.html" title="Unix implementation of threads." alt="" coords="143,176,289,415"/>
+<area shape="rect" id="node6" href="$d9/d51/structpriv_1_1ThreadFunc.html" title=" " alt="" coords="313,249,447,341"/>
+<area shape="rect" id="node7" href="$d1/d9c/classsf_1_1Time.html" title="Represents a time value." alt="" coords="295,521,446,657"/>
+</map>

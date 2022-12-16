@@ -1,0 +1,63 @@
+\hypertarget{AutoreleasePoolWrapper_8hpp_source}{}\doxysection{Autorelease\+Pool\+Wrapper.\+hpp}
+\label{AutoreleasePoolWrapper_8hpp_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/src/SFML/Window/OSX/AutoreleasePoolWrapper.hpp@{cmake-\/build-\/debug/\_deps/sfml-\/src/src/SFML/Window/OSX/AutoreleasePoolWrapper.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{// SFML -\/ Simple and Fast Multimedia Library}}
+\DoxyCodeLine{4 \textcolor{comment}{// Copyright (C) 2007-\/2022 Marco Antognini (antognini.marco@gmail.com),}}
+\DoxyCodeLine{5 \textcolor{comment}{//                         Laurent Gomila (laurent@sfml-\/dev.org)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// This software is provided 'as-\/is', without any express or implied warranty.}}
+\DoxyCodeLine{8 \textcolor{comment}{// In no event will the authors be held liable for any damages arising from the use of this software.}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 \textcolor{comment}{// Permission is granted to anyone to use this software for any purpose,}}
+\DoxyCodeLine{11 \textcolor{comment}{// including commercial applications, and to alter it and redistribute it freely,}}
+\DoxyCodeLine{12 \textcolor{comment}{// subject to the following restrictions:}}
+\DoxyCodeLine{13 \textcolor{comment}{//}}
+\DoxyCodeLine{14 \textcolor{comment}{// 1. The origin of this software must not be misrepresented;}}
+\DoxyCodeLine{15 \textcolor{comment}{//    you must not claim that you wrote the original software.}}
+\DoxyCodeLine{16 \textcolor{comment}{//    If you use this software in a product, an acknowledgment}}
+\DoxyCodeLine{17 \textcolor{comment}{//    in the product documentation would be appreciated but is not required.}}
+\DoxyCodeLine{18 \textcolor{comment}{//}}
+\DoxyCodeLine{19 \textcolor{comment}{// 2. Altered source versions must be plainly marked as such,}}
+\DoxyCodeLine{20 \textcolor{comment}{//    and must not be misrepresented as being the original software.}}
+\DoxyCodeLine{21 \textcolor{comment}{//}}
+\DoxyCodeLine{22 \textcolor{comment}{// 3. This notice may not be removed or altered from any source distribution.}}
+\DoxyCodeLine{23 \textcolor{comment}{//}}
+\DoxyCodeLine{25 \textcolor{comment}{}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifndef SFML\_AUTORELEASEPOOL\_HPP}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define SFML\_AUTORELEASEPOOL\_HPP}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#ifdef \_\_OBJC\_\_}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{keyword}{@class} NSAutoreleasePool;}
+\DoxyCodeLine{35 \textcolor{keyword}{typedef} NSAutoreleasePool* NSAutoreleasePoolRef;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#else }\textcolor{comment}{// If C++}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{keyword}{typedef} \textcolor{keywordtype}{void}* NSAutoreleasePoolRef;}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacesf}{sf}}}
+\DoxyCodeLine{44 \{}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{51 \textcolor{keyword}{class }\mbox{\hyperlink{classsf_1_1AutoreleasePool}{AutoreleasePool}}}
+\DoxyCodeLine{52 \{}
+\DoxyCodeLine{53 \textcolor{keyword}{public}:}
+\DoxyCodeLine{58     \mbox{\hyperlink{classsf_1_1AutoreleasePool_ad7d49c278165f1e7a8d926ee7bcf5bf6}{AutoreleasePool}}();}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{64     \mbox{\hyperlink{classsf_1_1AutoreleasePool_a982ea174ef6fc9827b8688dcb30df562}{\string~AutoreleasePool}}();}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \textcolor{keyword}{private}:}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{69     \textcolor{comment}{// Member data}}
+\DoxyCodeLine{71 \textcolor{comment}{}    NSAutoreleasePoolRef \mbox{\hyperlink{classsf_1_1AutoreleasePool_ac385e9c1e21b72f38b587327af81b39c}{pool}}; }
+\DoxyCodeLine{72 \};}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \} \textcolor{comment}{// namespace sf}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SFML\_AUTORELEASEPOOL\_HPP}}
+
+\end{DoxyCode}

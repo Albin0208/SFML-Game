@@ -1,0 +1,456 @@
+\hypertarget{ftconfig_8h_source}{}\doxysection{ftconfig.\+h}
+\label{ftconfig_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/config/ftconfig.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/config/ftconfig.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftconfig.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    ANSI-\/specific configuration file (specification only).               */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2004, 2006-\/2008, 2010-\/2011, 2013, 2014 by               */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{20   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{21   \textcolor{comment}{/* This header file contains a number of macro definitions that are used */}}
+\DoxyCodeLine{22   \textcolor{comment}{/* by the rest of the engine.  Most of the macros here are automatically */}}
+\DoxyCodeLine{23   \textcolor{comment}{/* determined at compile time, and you should not need to change it to   */}}
+\DoxyCodeLine{24   \textcolor{comment}{/* port FreeType, except to compile the library with a non-\/ANSI          */}}
+\DoxyCodeLine{25   \textcolor{comment}{/* compiler.                                                             */}}
+\DoxyCodeLine{26   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{27   \textcolor{comment}{/* Note however that if some specific modifications are needed, we       */}}
+\DoxyCodeLine{28   \textcolor{comment}{/* advise you to place a modified copy in your build directory.          */}}
+\DoxyCodeLine{29   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{30   \textcolor{comment}{/* The build directory is usually `builds/<system>', and contains        */}}
+\DoxyCodeLine{31   \textcolor{comment}{/* system-\/specific files that are always included first when building    */}}
+\DoxyCodeLine{32   \textcolor{comment}{/* the library.                                                          */}}
+\DoxyCodeLine{33   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{34   \textcolor{comment}{/* This ANSI version should stay in `include/config/'.                   */}}
+\DoxyCodeLine{35   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{36 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#ifndef \_\_FTCONFIG\_H\_\_}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#define \_\_FTCONFIG\_H\_\_}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#include FT\_CONFIG\_OPTIONS\_H}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#include FT\_CONFIG\_STANDARD\_LIBRARY\_H}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{50   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{51   \textcolor{comment}{/*               PLATFORM-\/SPECIFIC CONFIGURATION MACROS                  */}}
+\DoxyCodeLine{52   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{53   \textcolor{comment}{/* These macros can be toggled to suit a specific system.  The current   */}}
+\DoxyCodeLine{54   \textcolor{comment}{/* ones are defaults used to compile FreeType in an ANSI C environment   */}}
+\DoxyCodeLine{55   \textcolor{comment}{/* (16bit compilers are also supported).  Copy this file to your own     */}}
+\DoxyCodeLine{56   \textcolor{comment}{/* `builds/<system>' directory, and edit it to port the engine.          */}}
+\DoxyCodeLine{57   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{58 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61   \textcolor{comment}{/* There are systems (like the Texas Instruments 'C54x) where a `char' */}}
+\DoxyCodeLine{62   \textcolor{comment}{/* has 16 bits.  ANSI C says that sizeof(char) is always 1.  Since an  */}}
+\DoxyCodeLine{63   \textcolor{comment}{/* `int' has 16 bits also for this system, sizeof(int) gives 1 which   */}}
+\DoxyCodeLine{64   \textcolor{comment}{/* is probably unexpected.                                             */}}
+\DoxyCodeLine{65   \textcolor{comment}{/*                                                                     */}}
+\DoxyCodeLine{66   \textcolor{comment}{/* `CHAR\_BIT' (defined in limits.h) gives the number of bits in a      */}}
+\DoxyCodeLine{67   \textcolor{comment}{/* `char' type.                                                        */}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#ifndef FT\_CHAR\_BIT}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define FT\_CHAR\_BIT  CHAR\_BIT}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74   \textcolor{comment}{/* The size of an `int' type.  */}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#if                                 FT\_UINT\_MAX == 0xFFFFUL}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define FT\_SIZEOF\_INT  (16 / FT\_CHAR\_BIT)}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#elif                               FT\_UINT\_MAX == 0xFFFFFFFFUL}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#define FT\_SIZEOF\_INT  (32 / FT\_CHAR\_BIT)}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#elif FT\_UINT\_MAX > 0xFFFFFFFFUL \&\& FT\_UINT\_MAX == 0xFFFFFFFFFFFFFFFFUL}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define FT\_SIZEOF\_INT  (64 / FT\_CHAR\_BIT)}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#error "{}Unsupported size of `int' type!"{}}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85   \textcolor{comment}{/* The size of a `long' type.  A five-\/byte `long' (as used e.g. on the */}}
+\DoxyCodeLine{86   \textcolor{comment}{/* DM642) is recognized but avoided.                                   */}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#if                                  FT\_ULONG\_MAX == 0xFFFFFFFFUL}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#define FT\_SIZEOF\_LONG  (32 / FT\_CHAR\_BIT)}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#elif FT\_ULONG\_MAX > 0xFFFFFFFFUL \&\& FT\_ULONG\_MAX == 0xFFFFFFFFFFUL}}
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#define FT\_SIZEOF\_LONG  (32 / FT\_CHAR\_BIT)}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#elif FT\_ULONG\_MAX > 0xFFFFFFFFUL \&\& FT\_ULONG\_MAX == 0xFFFFFFFFFFFFFFFFUL}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#define FT\_SIZEOF\_LONG  (64 / FT\_CHAR\_BIT)}}
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#error "{}Unsupported size of `long' type!"{}}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98   \textcolor{comment}{/* FT\_UNUSED is a macro used to indicate that a given parameter is not  */}}
+\DoxyCodeLine{99   \textcolor{comment}{/* used -\/-\/ this is only used to get rid of unpleasant compiler warnings */}}
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#ifndef FT\_UNUSED}}
+\DoxyCodeLine{101 \textcolor{preprocessor}{\#define FT\_UNUSED( arg )  ( (arg) = (arg) )}}
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{106   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{107   \textcolor{comment}{/*                     AUTOMATIC CONFIGURATION MACROS                    */}}
+\DoxyCodeLine{108   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{109   \textcolor{comment}{/* These macros are computed from the ones defined above.  Don't touch   */}}
+\DoxyCodeLine{110   \textcolor{comment}{/* their definition, unless you know precisely what you are doing.  No   */}}
+\DoxyCodeLine{111   \textcolor{comment}{/* porter should need to mess with them.                                 */}}
+\DoxyCodeLine{112   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{113 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{117   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{118   \textcolor{comment}{/* Mac support                                                           */}}
+\DoxyCodeLine{119   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{120   \textcolor{comment}{/*   This is the only necessary change, so it is defined here instead    */}}
+\DoxyCodeLine{121   \textcolor{comment}{/*   providing a new configuration file.                                 */}}
+\DoxyCodeLine{122   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#if defined( \_\_APPLE\_\_ ) || ( defined( \_\_MWERKS\_\_ ) \&\& defined( macintosh ) )}}
+\DoxyCodeLine{124   \textcolor{comment}{/* no Carbon frameworks for 64bit 10.4.x */}}
+\DoxyCodeLine{125   \textcolor{comment}{/* AvailabilityMacros.h is available since Mac OS X 10.2,        */}}
+\DoxyCodeLine{126   \textcolor{comment}{/* so guess the system version by maximum errno before inclusion */}}
+\DoxyCodeLine{127 \textcolor{preprocessor}{\#include <errno.h>}}
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#ifdef ECANCELED }\textcolor{comment}{/* defined since 10.2 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{\#include "{}AvailabilityMacros.h"{}}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{131 \textcolor{preprocessor}{\#if defined( \_\_LP64\_\_ ) \&\& \(\backslash\)}}
+\DoxyCodeLine{132 \textcolor{preprocessor}{    ( MAC\_OS\_X\_VERSION\_MIN\_REQUIRED <= MAC\_OS\_X\_VERSION\_10\_4 )}}
+\DoxyCodeLine{133 \textcolor{preprocessor}{\#undef FT\_MACINTOSH}}
+\DoxyCodeLine{134 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#elif defined( \_\_SC\_\_ ) || defined( \_\_MRC\_\_ )}}
+\DoxyCodeLine{137   \textcolor{comment}{/* Classic MacOS compilers */}}
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#include "{}ConditionalMacros.h"{}}}
+\DoxyCodeLine{139 \textcolor{preprocessor}{\#if TARGET\_OS\_MAC}}
+\DoxyCodeLine{140 \textcolor{preprocessor}{\#define FT\_MACINTOSH 1}}
+\DoxyCodeLine{141 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{147   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{148   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{149   \textcolor{comment}{/*    basic\_types                                                        */}}
+\DoxyCodeLine{150   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{151 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{155   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{156   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{157   \textcolor{comment}{/*    FT\_Int16                                                           */}}
+\DoxyCodeLine{158   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{159   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{160   \textcolor{comment}{/*    A typedef for a 16bit signed integer type.                         */}}
+\DoxyCodeLine{161   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{162   \textcolor{keyword}{typedef} \textcolor{keywordtype}{signed} \textcolor{keywordtype}{short}  FT\_Int16;}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{166   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{167   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{168   \textcolor{comment}{/*    FT\_UInt16                                                          */}}
+\DoxyCodeLine{169   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{170   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{171   \textcolor{comment}{/*    A typedef for a 16bit unsigned integer type.                       */}}
+\DoxyCodeLine{172   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{173   \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}  FT\_UInt16;}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175   \textcolor{comment}{/* */}}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178   \textcolor{comment}{/* this \#if 0 ... \#endif clause is for documentation purposes */}}
+\DoxyCodeLine{179 \textcolor{preprocessor}{\#if 0}}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{182   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{183   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{184   \textcolor{comment}{/*    FT\_Int32                                                           */}}
+\DoxyCodeLine{185   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{186   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{187   \textcolor{comment}{/*    A typedef for a 32bit signed integer type.  The size depends on    */}}
+\DoxyCodeLine{188   \textcolor{comment}{/*    the configuration.                                                 */}}
+\DoxyCodeLine{189   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{190   \textcolor{keyword}{typedef} \textcolor{keywordtype}{signed} XXX  FT\_Int32;}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{194   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{195   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{196   \textcolor{comment}{/*    FT\_UInt32                                                          */}}
+\DoxyCodeLine{197   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{198   \textcolor{comment}{/*    A typedef for a 32bit unsigned integer type.  The size depends on  */}}
+\DoxyCodeLine{199   \textcolor{comment}{/*    the configuration.                                                 */}}
+\DoxyCodeLine{200   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{201   \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} XXX  FT\_UInt32;}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203 }
+\DoxyCodeLine{204 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{205   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{206   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{207   \textcolor{comment}{/*    FT\_Int64                                                           */}}
+\DoxyCodeLine{208   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{209   \textcolor{comment}{/*    A typedef for a 64bit signed integer type.  The size depends on    */}}
+\DoxyCodeLine{210   \textcolor{comment}{/*    the configuration.  Only defined if there is real 64bit support;   */}}
+\DoxyCodeLine{211   \textcolor{comment}{/*    otherwise, it gets emulated with a structure (if necessary).       */}}
+\DoxyCodeLine{212   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{213   \textcolor{keyword}{typedef} \textcolor{keywordtype}{signed} XXX  FT\_Int64;}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{217   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{218   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{219   \textcolor{comment}{/*    FT\_UInt64                                                          */}}
+\DoxyCodeLine{220   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{221   \textcolor{comment}{/*    A typedef for a 64bit unsigned integer type.  The size depends on  */}}
+\DoxyCodeLine{222   \textcolor{comment}{/*    the configuration.  Only defined if there is real 64bit support;   */}}
+\DoxyCodeLine{223   \textcolor{comment}{/*    otherwise, it gets emulated with a structure (if necessary).       */}}
+\DoxyCodeLine{224   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{225   \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} XXX  FT\_UInt64;}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{227   \textcolor{comment}{/* */}}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231 \textcolor{preprocessor}{\#if FT\_SIZEOF\_INT == (32 / FT\_CHAR\_BIT)}}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{233   \textcolor{keyword}{typedef} \textcolor{keywordtype}{signed} \textcolor{keywordtype}{int}      FT\_Int32;}
+\DoxyCodeLine{234   \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}    FT\_UInt32;}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236 \textcolor{preprocessor}{\#elif FT\_SIZEOF\_LONG == (32 / FT\_CHAR\_BIT)}}
+\DoxyCodeLine{237 }
+\DoxyCodeLine{238   \textcolor{keyword}{typedef} \textcolor{keywordtype}{signed} \textcolor{keywordtype}{long}     FT\_Int32;}
+\DoxyCodeLine{239   \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}   FT\_UInt32;}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{241 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{242 \textcolor{preprocessor}{\#error "{}no 32bit type found -\/-\/ please check your configuration files"{}}}
+\DoxyCodeLine{243 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{244 }
+\DoxyCodeLine{245 }
+\DoxyCodeLine{246   \textcolor{comment}{/* look up an integer type that is at least 32 bits */}}
+\DoxyCodeLine{247 \textcolor{preprocessor}{\#if FT\_SIZEOF\_INT >= (32 / FT\_CHAR\_BIT)}}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{249   \textcolor{keyword}{typedef} \textcolor{keywordtype}{int}            FT\_Fast;}
+\DoxyCodeLine{250   \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}   FT\_UFast;}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{252 \textcolor{preprocessor}{\#elif FT\_SIZEOF\_LONG >= (32 / FT\_CHAR\_BIT)}}
+\DoxyCodeLine{253 }
+\DoxyCodeLine{254   \textcolor{keyword}{typedef} \textcolor{keywordtype}{long}           FT\_Fast;}
+\DoxyCodeLine{255   \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}  FT\_UFast;}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259 }
+\DoxyCodeLine{260   \textcolor{comment}{/* determine whether we have a 64-\/bit int type for platforms without */}}
+\DoxyCodeLine{261   \textcolor{comment}{/* Autoconf                                                          */}}
+\DoxyCodeLine{262 \textcolor{preprocessor}{\#if FT\_SIZEOF\_LONG == (64 / FT\_CHAR\_BIT)}}
+\DoxyCodeLine{263 }
+\DoxyCodeLine{264   \textcolor{comment}{/* FT\_LONG64 must be defined if a 64-\/bit type is available */}}
+\DoxyCodeLine{265 \textcolor{preprocessor}{\#define FT\_LONG64}}
+\DoxyCodeLine{266 \textcolor{preprocessor}{\#define FT\_INT64   long}}
+\DoxyCodeLine{267 \textcolor{preprocessor}{\#define FT\_UINT64  unsigned long}}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{269 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{270   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{271   \textcolor{comment}{/* A 64-\/bit data type may create compilation problems if you compile     */}}
+\DoxyCodeLine{272   \textcolor{comment}{/* in strict ANSI mode.  To avoid them, we disable other 64-\/bit data     */}}
+\DoxyCodeLine{273   \textcolor{comment}{/* types if \_\_STDC\_\_ is defined.  You can however ignore this rule       */}}
+\DoxyCodeLine{274   \textcolor{comment}{/* by defining the FT\_CONFIG\_OPTION\_FORCE\_INT64 configuration macro.     */}}
+\DoxyCodeLine{275   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{276 \textcolor{preprocessor}{\#elif !defined( \_\_STDC\_\_ ) || defined( FT\_CONFIG\_OPTION\_FORCE\_INT64 )}}
+\DoxyCodeLine{277 }
+\DoxyCodeLine{278 \textcolor{preprocessor}{\#if defined( \_MSC\_VER ) \&\& \_MSC\_VER >= 900  }\textcolor{comment}{/* Visual C++ (and Intel C++) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{279 }
+\DoxyCodeLine{280   \textcolor{comment}{/* this compiler provides the \_\_int64 type */}}
+\DoxyCodeLine{281 \textcolor{preprocessor}{\#define FT\_LONG64}}
+\DoxyCodeLine{282 \textcolor{preprocessor}{\#define FT\_INT64   \_\_int64}}
+\DoxyCodeLine{283 \textcolor{preprocessor}{\#define FT\_UINT64  unsigned \_\_int64}}
+\DoxyCodeLine{284 }
+\DoxyCodeLine{285 \textcolor{preprocessor}{\#elif defined( \_\_BORLANDC\_\_ )  }\textcolor{comment}{/* Borland C++ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{286 }
+\DoxyCodeLine{287   \textcolor{comment}{/* XXXX: We should probably check the value of \_\_BORLANDC\_\_ in order */}}
+\DoxyCodeLine{288   \textcolor{comment}{/*       to test the compiler version.                               */}}
+\DoxyCodeLine{289 }
+\DoxyCodeLine{290   \textcolor{comment}{/* this compiler provides the \_\_int64 type */}}
+\DoxyCodeLine{291 \textcolor{preprocessor}{\#define FT\_LONG64}}
+\DoxyCodeLine{292 \textcolor{preprocessor}{\#define FT\_INT64   \_\_int64}}
+\DoxyCodeLine{293 \textcolor{preprocessor}{\#define FT\_UINT64  unsigned \_\_int64}}
+\DoxyCodeLine{294 }
+\DoxyCodeLine{295 \textcolor{preprocessor}{\#elif defined( \_\_WATCOMC\_\_ )   }\textcolor{comment}{/* Watcom C++ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{296 }
+\DoxyCodeLine{297   \textcolor{comment}{/* Watcom doesn't provide 64-\/bit data types */}}
+\DoxyCodeLine{298 }
+\DoxyCodeLine{299 \textcolor{preprocessor}{\#elif defined( \_\_MWERKS\_\_ )    }\textcolor{comment}{/* Metrowerks CodeWarrior */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{300 }
+\DoxyCodeLine{301 \textcolor{preprocessor}{\#define FT\_LONG64}}
+\DoxyCodeLine{302 \textcolor{preprocessor}{\#define FT\_INT64   long long int}}
+\DoxyCodeLine{303 \textcolor{preprocessor}{\#define FT\_UINT64  unsigned long long int}}
+\DoxyCodeLine{304 }
+\DoxyCodeLine{305 \textcolor{preprocessor}{\#elif defined( \_\_GNUC\_\_ )}}
+\DoxyCodeLine{306 }
+\DoxyCodeLine{307   \textcolor{comment}{/* GCC provides the `long long' type */}}
+\DoxyCodeLine{308 \textcolor{preprocessor}{\#define FT\_LONG64}}
+\DoxyCodeLine{309 \textcolor{preprocessor}{\#define FT\_INT64   long long int}}
+\DoxyCodeLine{310 \textcolor{preprocessor}{\#define FT\_UINT64  unsigned long long int}}
+\DoxyCodeLine{311 }
+\DoxyCodeLine{312 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_MSC\_VER */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{313 }
+\DoxyCodeLine{314 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* FT\_SIZEOF\_LONG == (64 / FT\_CHAR\_BIT) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{315 }
+\DoxyCodeLine{316 \textcolor{preprocessor}{\#ifdef FT\_LONG64}}
+\DoxyCodeLine{317   \textcolor{keyword}{typedef} FT\_INT64   FT\_Int64;}
+\DoxyCodeLine{318   \textcolor{keyword}{typedef} FT\_UINT64  FT\_UInt64;}
+\DoxyCodeLine{319 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{320 }
+\DoxyCodeLine{321 }
+\DoxyCodeLine{322 \textcolor{preprocessor}{\#define FT\_BEGIN\_STMNT  do \{}}
+\DoxyCodeLine{323 \textcolor{preprocessor}{\#define FT\_END\_STMNT    \} while ( 0 )}}
+\DoxyCodeLine{324 \textcolor{preprocessor}{\#define FT\_DUMMY\_STMNT  FT\_BEGIN\_STMNT FT\_END\_STMNT}}
+\DoxyCodeLine{325 }
+\DoxyCodeLine{326 }
+\DoxyCodeLine{327 \textcolor{preprocessor}{\#ifdef FT\_MAKE\_OPTION\_SINGLE\_OBJECT}}
+\DoxyCodeLine{328 }
+\DoxyCodeLine{329 \textcolor{preprocessor}{\#define FT\_LOCAL( x )      static  x}}
+\DoxyCodeLine{330 \textcolor{preprocessor}{\#define FT\_LOCAL\_DEF( x )  static  x}}
+\DoxyCodeLine{331 }
+\DoxyCodeLine{332 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{333 }
+\DoxyCodeLine{334 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{335 \textcolor{preprocessor}{\#define FT\_LOCAL( x )      extern "{}C"{}}  x}
+\DoxyCodeLine{336 \textcolor{preprocessor}{\#define FT\_LOCAL\_DEF( x )  extern "{}C"{}}  x}
+\DoxyCodeLine{337 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{338 \textcolor{preprocessor}{\#define FT\_LOCAL( x )      extern  x}}
+\DoxyCodeLine{339 \textcolor{preprocessor}{\#define FT\_LOCAL\_DEF( x )  x}}
+\DoxyCodeLine{340 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{341 }
+\DoxyCodeLine{342 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* FT\_MAKE\_OPTION\_SINGLE\_OBJECT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{343 }
+\DoxyCodeLine{344 \textcolor{preprocessor}{\#define FT\_LOCAL\_ARRAY( x )      extern const  x}}
+\DoxyCodeLine{345 \textcolor{preprocessor}{\#define FT\_LOCAL\_ARRAY\_DEF( x )  const  x}}
+\DoxyCodeLine{346 }
+\DoxyCodeLine{347 }
+\DoxyCodeLine{348 \textcolor{preprocessor}{\#ifndef FT\_BASE}}
+\DoxyCodeLine{349 }
+\DoxyCodeLine{350 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{351 \textcolor{preprocessor}{\#define FT\_BASE( x )  extern "{}C"{}}  x}
+\DoxyCodeLine{352 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{353 \textcolor{preprocessor}{\#define FT\_BASE( x )  extern  x}}
+\DoxyCodeLine{354 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{355 }
+\DoxyCodeLine{356 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !FT\_BASE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{357 }
+\DoxyCodeLine{358 }
+\DoxyCodeLine{359 \textcolor{preprocessor}{\#ifndef FT\_BASE\_DEF}}
+\DoxyCodeLine{360 }
+\DoxyCodeLine{361 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{362 \textcolor{preprocessor}{\#define FT\_BASE\_DEF( x )  x}}
+\DoxyCodeLine{363 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{364 \textcolor{preprocessor}{\#define FT\_BASE\_DEF( x )  x}}
+\DoxyCodeLine{365 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{366 }
+\DoxyCodeLine{367 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !FT\_BASE\_DEF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{368 }
+\DoxyCodeLine{369 }
+\DoxyCodeLine{370 \textcolor{preprocessor}{\#ifndef FT\_EXPORT}}
+\DoxyCodeLine{371 }
+\DoxyCodeLine{372 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{373 \textcolor{preprocessor}{\#define FT\_EXPORT( x )  extern "{}C"{}}  x}
+\DoxyCodeLine{374 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{375 \textcolor{preprocessor}{\#define FT\_EXPORT( x )  extern  x}}
+\DoxyCodeLine{376 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{377 }
+\DoxyCodeLine{378 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !FT\_EXPORT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{379 }
+\DoxyCodeLine{380 }
+\DoxyCodeLine{381 \textcolor{preprocessor}{\#ifndef FT\_EXPORT\_DEF}}
+\DoxyCodeLine{382 }
+\DoxyCodeLine{383 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{384 \textcolor{preprocessor}{\#define FT\_EXPORT\_DEF( x )  extern "{}C"{}}  x}
+\DoxyCodeLine{385 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{386 \textcolor{preprocessor}{\#define FT\_EXPORT\_DEF( x )  extern  x}}
+\DoxyCodeLine{387 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{388 }
+\DoxyCodeLine{389 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !FT\_EXPORT\_DEF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{390 }
+\DoxyCodeLine{391 }
+\DoxyCodeLine{392 \textcolor{preprocessor}{\#ifndef FT\_EXPORT\_VAR}}
+\DoxyCodeLine{393 }
+\DoxyCodeLine{394 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{395 \textcolor{preprocessor}{\#define FT\_EXPORT\_VAR( x )  extern "{}C"{}}  x}
+\DoxyCodeLine{396 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{397 \textcolor{preprocessor}{\#define FT\_EXPORT\_VAR( x )  extern  x}}
+\DoxyCodeLine{398 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{399 }
+\DoxyCodeLine{400 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !FT\_EXPORT\_VAR */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{401 }
+\DoxyCodeLine{402   \textcolor{comment}{/* The following macros are needed to compile the library with a   */}}
+\DoxyCodeLine{403   \textcolor{comment}{/* C++ compiler and with 16bit compilers.                          */}}
+\DoxyCodeLine{404   \textcolor{comment}{/*                                                                 */}}
+\DoxyCodeLine{405 }
+\DoxyCodeLine{406   \textcolor{comment}{/* This is special.  Within C++, you must specify `extern "{}C"{}' for */}}
+\DoxyCodeLine{407   \textcolor{comment}{/* functions which are used via function pointers, and you also    */}}
+\DoxyCodeLine{408   \textcolor{comment}{/* must do that for structures which contain function pointers to  */}}
+\DoxyCodeLine{409   \textcolor{comment}{/* assure C linkage -\/-\/ it's not possible to have (local) anonymous */}}
+\DoxyCodeLine{410   \textcolor{comment}{/* functions which are accessed by (global) function pointers.     */}}
+\DoxyCodeLine{411   \textcolor{comment}{/*                                                                 */}}
+\DoxyCodeLine{412   \textcolor{comment}{/*                                                                 */}}
+\DoxyCodeLine{413   \textcolor{comment}{/* FT\_CALLBACK\_DEF is used to \_define\_ a callback function.        */}}
+\DoxyCodeLine{414   \textcolor{comment}{/*                                                                 */}}
+\DoxyCodeLine{415   \textcolor{comment}{/* FT\_CALLBACK\_TABLE is used to \_declare\_ a constant variable that */}}
+\DoxyCodeLine{416   \textcolor{comment}{/* contains pointers to callback functions.                        */}}
+\DoxyCodeLine{417   \textcolor{comment}{/*                                                                 */}}
+\DoxyCodeLine{418   \textcolor{comment}{/* FT\_CALLBACK\_TABLE\_DEF is used to \_define\_ a constant variable   */}}
+\DoxyCodeLine{419   \textcolor{comment}{/* that contains pointers to callback functions.                   */}}
+\DoxyCodeLine{420   \textcolor{comment}{/*                                                                 */}}
+\DoxyCodeLine{421   \textcolor{comment}{/*                                                                 */}}
+\DoxyCodeLine{422   \textcolor{comment}{/* Some 16bit compilers have to redefine these macros to insert    */}}
+\DoxyCodeLine{423   \textcolor{comment}{/* the infamous `\_cdecl' or `\_\_fastcall' declarations.             */}}
+\DoxyCodeLine{424   \textcolor{comment}{/*                                                                 */}}
+\DoxyCodeLine{425 \textcolor{preprocessor}{\#ifndef FT\_CALLBACK\_DEF}}
+\DoxyCodeLine{426 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{427 \textcolor{preprocessor}{\#define FT\_CALLBACK\_DEF( x )  extern "{}C"{}}  x}
+\DoxyCodeLine{428 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{429 \textcolor{preprocessor}{\#define FT\_CALLBACK\_DEF( x )  static  x}}
+\DoxyCodeLine{430 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{431 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* FT\_CALLBACK\_DEF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{432 }
+\DoxyCodeLine{433 \textcolor{preprocessor}{\#ifndef FT\_CALLBACK\_TABLE}}
+\DoxyCodeLine{434 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{435 \textcolor{preprocessor}{\#define FT\_CALLBACK\_TABLE      extern "{}C"{}}}
+\DoxyCodeLine{436 \textcolor{preprocessor}{\#define FT\_CALLBACK\_TABLE\_DEF  extern "{}C"{}}}
+\DoxyCodeLine{437 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{438 \textcolor{preprocessor}{\#define FT\_CALLBACK\_TABLE      extern}}
+\DoxyCodeLine{439 \textcolor{preprocessor}{\#define FT\_CALLBACK\_TABLE\_DEF  }\textcolor{comment}{/* nothing */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{440 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{441 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* FT\_CALLBACK\_TABLE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{442 }
+\DoxyCodeLine{443 }
+\DoxyCodeLine{444 FT\_END\_HEADER}
+\DoxyCodeLine{445 }
+\DoxyCodeLine{446 }
+\DoxyCodeLine{447 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTCONFIG\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{448 }
+\DoxyCodeLine{449 }
+\DoxyCodeLine{450 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

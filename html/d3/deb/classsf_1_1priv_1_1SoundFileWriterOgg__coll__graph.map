@@ -1,0 +1,7 @@
+<map id="sf::priv::SoundFileWriterOgg" name="sf::priv::SoundFileWriterOgg">
+<area shape="rect" id="node1" title="Implementation of sound file writer that handles OGG/Vorbis files." alt="" coords="218,652,421,832"/>
+<area shape="rect" id="node2" href="$d8/de4/classsf_1_1SoundFileWriter.html" title="Abstract base class for sound file encoding." alt="" coords="5,365,167,472"/>
+<area shape="rect" id="node3" href="$dd/d36/structogg__stream__state.html" title=" " alt="" coords="191,255,330,582"/>
+<area shape="rect" id="node4" href="$da/d7e/structvorbis__info.html" title=" " alt="" coords="329,5,469,185"/>
+<area shape="rect" id="node5" href="$d1/d12/structvorbis__dsp__state.html" title=" " alt="" coords="471,248,605,589"/>
+</map>

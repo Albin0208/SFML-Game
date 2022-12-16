@@ -1,0 +1,120 @@
+\hypertarget{classGame__Object}{}\doxysection{Game\+\_\+\+Object Class Reference}
+\label{classGame__Object}\index{Game\_Object@{Game\_Object}}
+
+
+Inheritance diagram for Game\+\_\+\+Object\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{de/d6d/classGame__Object__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Game\+\_\+\+Object\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d89/classGame__Object__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGame__Object_a4c37a2a7352023c32ab0a2c0b8c502de}\label{classGame__Object_a4c37a2a7352023c32ab0a2c0b8c502de}} 
+{\bfseries Game\+\_\+\+Object} (\mbox{\hyperlink{classsf_1_1Vector2}{sf\+::\+Vector2f}} const \&position)
+\item 
+virtual void \mbox{\hyperlink{classGame__Object_aa9363207d43d038b43a47ef799f17dca}{update}} (\mbox{\hyperlink{classsf_1_1Time}{sf\+::\+Time}} const \&time, \mbox{\hyperlink{classGame}{Game}} \&game)=0
+\item 
+virtual void \mbox{\hyperlink{classGame__Object_a7a5b475a903f4cda5d5452119135690c}{render}} (\mbox{\hyperlink{classsf_1_1RenderWindow}{sf\+::\+Render\+Window}} \&window)=0
+\item 
+virtual bool \mbox{\hyperlink{classGame__Object_a34162d9e52ab86c4ac96554b39a92d56}{check\+Collision}} (\mbox{\hyperlink{classGame__Object}{Game\+\_\+\+Object}} const \&obj)
+\item 
+bool \mbox{\hyperlink{classGame__Object_af735ee7b058db83c154835978e93efb0}{is\+\_\+alive}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGame__Object_a0d0a9c94f32fce01cd358fe810963ab7}\label{classGame__Object_a0d0a9c94f32fce01cd358fe810963ab7}} 
+\mbox{\hyperlink{classsf_1_1RectangleShape}{sf\+::\+Rectangle\+Shape}} {\bfseries hitbox}
+\item 
+\mbox{\Hypertarget{classGame__Object_a200b030bb6c3dce284366859be4a4328}\label{classGame__Object_a200b030bb6c3dce284366859be4a4328}} 
+\mbox{\hyperlink{classsf_1_1Vector2}{sf\+::\+Vector2f}} {\bfseries position}
+\item 
+\mbox{\Hypertarget{classGame__Object_a4cb045641315c3c81f3f6081a35e1ac6}\label{classGame__Object_a4cb045641315c3c81f3f6081a35e1ac6}} 
+\mbox{\hyperlink{classsf_1_1Sprite}{sf\+::\+Sprite}} {\bfseries sprite}
+\item 
+\mbox{\Hypertarget{classGame__Object_a2906b4691f0c2f6ea8b6665b6658d957}\label{classGame__Object_a2906b4691f0c2f6ea8b6665b6658d957}} 
+\mbox{\hyperlink{classsf_1_1Texture}{sf\+::\+Texture}} {\bfseries texture}
+\item 
+\mbox{\Hypertarget{classGame__Object_aa5bbbf954be8f59e05f828ccec7c9c5e}\label{classGame__Object_aa5bbbf954be8f59e05f828ccec7c9c5e}} 
+bool {\bfseries alive}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGame__Object_a34162d9e52ab86c4ac96554b39a92d56}\label{classGame__Object_a34162d9e52ab86c4ac96554b39a92d56}} 
+\index{Game\_Object@{Game\_Object}!checkCollision@{checkCollision}}
+\index{checkCollision@{checkCollision}!Game\_Object@{Game\_Object}}
+\doxysubsubsection{\texorpdfstring{checkCollision()}{checkCollision()}}
+{\footnotesize\ttfamily bool Game\+\_\+\+Object\+::check\+Collision (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGame__Object}{Game\+\_\+\+Object}} const \&}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Check for collision between this object and another 
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If the object collide 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGame__Object_af735ee7b058db83c154835978e93efb0}\label{classGame__Object_af735ee7b058db83c154835978e93efb0}} 
+\index{Game\_Object@{Game\_Object}!is\_alive@{is\_alive}}
+\index{is\_alive@{is\_alive}!Game\_Object@{Game\_Object}}
+\doxysubsubsection{\texorpdfstring{is\_alive()}{is\_alive()}}
+{\footnotesize\ttfamily bool Game\+\_\+\+Object\+::is\+\_\+alive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Get if the current object is alive \begin{DoxyReturn}{Returns}
+If the object is alive 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGame__Object_a7a5b475a903f4cda5d5452119135690c}\label{classGame__Object_a7a5b475a903f4cda5d5452119135690c}} 
+\index{Game\_Object@{Game\_Object}!render@{render}}
+\index{render@{render}!Game\_Object@{Game\_Object}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily virtual void Game\+\_\+\+Object\+::render (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsf_1_1RenderWindow}{sf\+::\+Render\+Window}} \&}]{window }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Render the game object
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The window to render to \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classEnemy_a8743fbde6f1de40d11788da5d2d46299}{Enemy}}, \mbox{\hyperlink{classMovable__Object_ac6cf4990ec3f34926312c9f55e315ffb}{Movable\+\_\+\+Object}}, and \mbox{\hyperlink{classObstacle_a93f616b508d892e6dd838bb41b5c73a5}{Obstacle}}.
+
+\mbox{\Hypertarget{classGame__Object_aa9363207d43d038b43a47ef799f17dca}\label{classGame__Object_aa9363207d43d038b43a47ef799f17dca}} 
+\index{Game\_Object@{Game\_Object}!update@{update}}
+\index{update@{update}!Game\_Object@{Game\_Object}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily virtual void Game\+\_\+\+Object\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsf_1_1Time}{sf\+::\+Time}} const \&}]{time,  }\item[{\mbox{\hyperlink{classGame}{Game}} \&}]{game }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Update the gameobject 
+\begin{DoxyParams}{Parameters}
+{\em time} & The time since last update \\
+\hline
+{\em game} & A reference to the game world \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classRanged__Enemy_a9e67088168626cc2a41485804872ad69}{Ranged\+\_\+\+Enemy}}, \mbox{\hyperlink{classSlow__Enemy_af08b0e1e9ba23ead9bf469b648a35e8e}{Slow\+\_\+\+Enemy}}, \mbox{\hyperlink{classProjectile_a235cfa9328d52a3cc59700003530abad}{Projectile}}, \mbox{\hyperlink{classMovable__Object_a05751f47a751f849ae22b7e879803ed9}{Movable\+\_\+\+Object}}, \mbox{\hyperlink{classEnemy_a85dfaf519227462d503f0504a5367ac6}{Enemy}}, \mbox{\hyperlink{classObstacle_ab6e583e865d9a405221db5b8c250de1c}{Obstacle}}, and \mbox{\hyperlink{classPlayer_a12e6aec41678cb48eba51f5433334ee9}{Player}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+entities/Game\+\_\+\+Object.\+h\item 
+entities/Game\+\_\+\+Object.\+cpp\end{DoxyCompactItemize}

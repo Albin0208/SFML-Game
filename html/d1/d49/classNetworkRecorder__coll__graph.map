@@ -1,0 +1,14 @@
+<map id="NetworkRecorder" name="NetworkRecorder">
+<area shape="rect" id="node1" title=" " alt="" coords="510,1227,681,1363"/>
+<area shape="rect" id="node2" href="$de/ddc/classsf_1_1SoundRecorder.html" title="Abstract base class for capturing sound data." alt="" coords="228,764,435,1164"/>
+<area shape="rect" id="node3" href="$d9/d23/classsf_1_1AlResource.html" title="Base class for classes that require an OpenAL context." alt="" coords="183,543,314,635"/>
+<area shape="rect" id="node4" href="$d5/d3c/classsf_1_1Thread.html" title="Utility class to manipulate threads." alt="" coords="48,477,159,701"/>
+<area shape="rect" id="node5" href="$d0/da7/classsf_1_1NonCopyable.html" title="Utility class that makes any derived class non&#45;copyable." alt="" coords="40,5,185,127"/>
+<area shape="rect" id="node6" href="$de/d06/classsf_1_1priv_1_1ThreadImpl.html" title="Unix implementation of threads." alt="" coords="39,176,186,415"/>
+<area shape="rect" id="node11" href="$dc/d22/classsf_1_1Socket.html" title="Base class for all the socket types." alt="" coords="607,191,730,400"/>
+<area shape="rect" id="node7" href="$d9/d51/structpriv_1_1ThreadFunc.html" title=" " alt="" coords="210,249,343,341"/>
+<area shape="rect" id="node8" href="$d1/d9c/classsf_1_1Time.html" title="Represents a time value." alt="" coords="339,521,489,657"/>
+<area shape="rect" id="node9" href="$d7/d22/classsf_1_1IpAddress.html" title="Encapsulate an IPv4 network address." alt="" coords="692,852,851,1076"/>
+<area shape="rect" id="node10" href="$da/daf/classsf_1_1TcpSocket.html" title="Specialized socket using the TCP protocol." alt="" coords="583,477,754,701"/>
+<area shape="rect" id="node12" href="$d7/df6/structsf_1_1TcpSocket_1_1PendingPacket.html" title="Structure holding the data of a pending packet." alt="" coords="376,242,583,349"/>
+</map>

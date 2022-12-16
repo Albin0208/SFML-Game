@@ -1,0 +1,162 @@
+\hypertarget{WindowImplCocoa_8hpp_source}{}\doxysection{Window\+Impl\+Cocoa.\+hpp}
+\label{WindowImplCocoa_8hpp_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/src/SFML/Window/OSX/WindowImplCocoa.hpp@{cmake-\/build-\/debug/\_deps/sfml-\/src/src/SFML/Window/OSX/WindowImplCocoa.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{// SFML -\/ Simple and Fast Multimedia Library}}
+\DoxyCodeLine{4 \textcolor{comment}{// Copyright (C) 2007-\/2022 Marco Antognini (antognini.marco@gmail.com),}}
+\DoxyCodeLine{5 \textcolor{comment}{//                         Laurent Gomila (laurent@sfml-\/dev.org)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// This software is provided 'as-\/is', without any express or implied warranty.}}
+\DoxyCodeLine{8 \textcolor{comment}{// In no event will the authors be held liable for any damages arising from the use of this software.}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 \textcolor{comment}{// Permission is granted to anyone to use this software for any purpose,}}
+\DoxyCodeLine{11 \textcolor{comment}{// including commercial applications, and to alter it and redistribute it freely,}}
+\DoxyCodeLine{12 \textcolor{comment}{// subject to the following restrictions:}}
+\DoxyCodeLine{13 \textcolor{comment}{//}}
+\DoxyCodeLine{14 \textcolor{comment}{// 1. The origin of this software must not be misrepresented;}}
+\DoxyCodeLine{15 \textcolor{comment}{//    you must not claim that you wrote the original software.}}
+\DoxyCodeLine{16 \textcolor{comment}{//    If you use this software in a product, an acknowledgment}}
+\DoxyCodeLine{17 \textcolor{comment}{//    in the product documentation would be appreciated but is not required.}}
+\DoxyCodeLine{18 \textcolor{comment}{//}}
+\DoxyCodeLine{19 \textcolor{comment}{// 2. Altered source versions must be plainly marked as such,}}
+\DoxyCodeLine{20 \textcolor{comment}{//    and must not be misrepresented as being the original software.}}
+\DoxyCodeLine{21 \textcolor{comment}{//}}
+\DoxyCodeLine{22 \textcolor{comment}{// 3. This notice may not be removed or altered from any source distribution.}}
+\DoxyCodeLine{23 \textcolor{comment}{//}}
+\DoxyCodeLine{25 \textcolor{comment}{}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifndef SFML\_WINDOWIMPLCOCOA\_HPP}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define SFML\_WINDOWIMPLCOCOA\_HPP}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{30 \textcolor{comment}{// Headers}}
+\DoxyCodeLine{32 \textcolor{comment}{}\textcolor{preprocessor}{\#include <SFML/Window/Event.hpp>}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include <SFML/Window/WindowImpl.hpp>}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <SFML/System/String.hpp>}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#if defined(\_\_APPLE\_\_)}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{    \#if defined(\_\_clang\_\_)}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{        \#pragma clang diagnostic push}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{        \#pragma clang diagnostic ignored "{}-\/Wdeprecated-\/declarations"{}}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{    \#elif defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{        \#pragma GCC diagnostic push}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{        \#pragma GCC diagnostic ignored "{}-\/Wdeprecated-\/declarations"{}}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#ifdef \_\_OBJC\_\_}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#import <SFML/Window/OSX/WindowImplDelegateProtocol.h>}}
+\DoxyCodeLine{52 \textcolor{keyword}{typedef} id<WindowImplDelegateProtocol,NSObject> WindowImplDelegateRef;}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{keyword}{@class} NSOpenGLContext;}
+\DoxyCodeLine{55 \textcolor{keyword}{typedef} NSOpenGLContext* NSOpenGLContextRef;}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#else }\textcolor{comment}{// If C++}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} unichar; \textcolor{comment}{// See NSString.h}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{keyword}{typedef} \textcolor{keywordtype}{void}* WindowImplDelegateRef;}
+\DoxyCodeLine{62 \textcolor{keyword}{typedef} \textcolor{keywordtype}{void}* NSOpenGLContextRef;}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacesf}{sf}}}
+\DoxyCodeLine{67 \{}
+\DoxyCodeLine{68 \textcolor{keyword}{namespace }priv}
+\DoxyCodeLine{69 \{}
+\DoxyCodeLine{74 \textcolor{keyword}{class }\mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa}{WindowImplCocoa}} : \textcolor{keyword}{public} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImpl}{WindowImpl}}}
+\DoxyCodeLine{75 \{}
+\DoxyCodeLine{76 \textcolor{keyword}{public}:}
+\DoxyCodeLine{83     \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa}{WindowImplCocoa}}(WindowHandle handle);}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{94     \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa}{WindowImplCocoa}}(\mbox{\hyperlink{classsf_1_1VideoMode}{VideoMode}} mode, \textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1String}{String}}\& title, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} style, \textcolor{keyword}{const} \mbox{\hyperlink{structsf_1_1ContextSettings}{ContextSettings}}\& settings);}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{100     \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a0c2b0f129bf714614ab82decf6579f92}{\string~WindowImplCocoa}}();}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{108     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a5cef195a2d94e29d7391736865ce6abc}{windowClosed}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{119     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a0a472ccc8d3320cc33ae29ffb81e14f8}{windowResized}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} width, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} height);}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{127     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a1aa435bc8dca6cc4c0db2ec9b06dfa12}{windowLostFocus}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{135     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a0553fdce39f1891175c4e6c9b3f99398}{windowGainedFocus}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{147     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a7cfb73ee514462dad6602c6edab077b5}{mouseDownAt}}(\mbox{\hyperlink{classsf_1_1Mouse_a4fb128be433f9aafe66bc0c605daaa90}{Mouse::Button}} button, \textcolor{keywordtype}{int} x, \textcolor{keywordtype}{int} y);}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{159     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a0b529152d906507d33517eca1f020478}{mouseUpAt}}(\mbox{\hyperlink{classsf_1_1Mouse_a4fb128be433f9aafe66bc0c605daaa90}{Mouse::Button}} button, \textcolor{keywordtype}{int} x, \textcolor{keywordtype}{int} y);}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{170     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a093e3c8a6ccf400b0dea9becd2f72fb1}{mouseMovedAt}}(\textcolor{keywordtype}{int} x, \textcolor{keywordtype}{int} y);}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{183     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_afca3d3630f7b761e73d6c9fd470fce9e}{mouseWheelScrolledAt}}(\textcolor{keywordtype}{float} deltaX, \textcolor{keywordtype}{float} deltaY, \textcolor{keywordtype}{int} x, \textcolor{keywordtype}{int} y);}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{191     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a88841040750ca24b48bbeb22a5124f59}{mouseMovedIn}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{199     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_acd6129ea2a5555c0318a6572b4f3bd4f}{mouseMovedOut}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{209     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_ab1c9e943fd5e6c64ff2c9d49759cb229}{keyDown}}(\mbox{\hyperlink{structsf_1_1Event_1_1KeyEvent}{Event::KeyEvent}} key);}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{219     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a3352a1617d1ef37d60967665cf89b6b5}{keyUp}}(\mbox{\hyperlink{structsf_1_1Event_1_1KeyEvent}{Event::KeyEvent}} key);}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{229     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a67bd49b9e9f0d5531ff80dd32a121fe6}{textEntered}}(unichar charcode);}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{239     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_aca62a9f9cf2d9d00cc381e2c4c87bced}{applyContext}}(NSOpenGLContextRef context) \textcolor{keyword}{const};}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{248     \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a5176fd987cc25fb6cff9fba4097d9bc1}{setUpProcess}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{249 }
+\DoxyCodeLine{250 \textcolor{keyword}{public}:}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{258     \textcolor{keyword}{virtual} WindowHandle \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a0c87f0fb7d3dbc5e751686e8db298ffd}{getSystemHandle}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{266     \textcolor{keyword}{virtual} \mbox{\hyperlink{classsf_1_1Vector2}{Vector2i}} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_aa45ea7b3419a9a60f8f723f84f134ffd}{getPosition}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{267 }
+\DoxyCodeLine{274     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_ac0e57bdca29b1284263790b56b28e2ac}{setPosition}}(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Vector2}{Vector2i}}\& position);}
+\DoxyCodeLine{275 }
+\DoxyCodeLine{282     \textcolor{keyword}{virtual} \mbox{\hyperlink{classsf_1_1Vector2}{Vector2u}} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_aa2ed1efd381e32743d2ec6d671fb4468}{getSize}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{283 }
+\DoxyCodeLine{290     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a4f19d90ce1a5b39537a99dd87b4246f6}{setSize}}(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Vector2}{Vector2u}}\& size);}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{298     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_aefcb8c4a136a6c26b8a613d0031837f6}{setTitle}}(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1String}{String}}\& title);}
+\DoxyCodeLine{299 }
+\DoxyCodeLine{308     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_ab84d6ed7bdb555ed163d96bec33926e0}{setIcon}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} width, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} height, \textcolor{keyword}{const} Uint8* pixels);}
+\DoxyCodeLine{309 }
+\DoxyCodeLine{316     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a3fc1cf1288ba074f69117fbc791423df}{setVisible}}(\textcolor{keywordtype}{bool} visible);}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{324     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_aae65c8ed21c0cae7f488458a393be44b}{setMouseCursorVisible}}(\textcolor{keywordtype}{bool} visible);}
+\DoxyCodeLine{325 }
+\DoxyCodeLine{332     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a15b7d22048316714b740a53410bf556c}{setMouseCursorGrabbed}}(\textcolor{keywordtype}{bool} grabbed);}
+\DoxyCodeLine{333 }
+\DoxyCodeLine{340     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_ab1e437adf494aecd7d506ba7ac05f7e7}{setMouseCursor}}(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1priv_1_1CursorImpl}{CursorImpl}}\& cursor);}
+\DoxyCodeLine{341 }
+\DoxyCodeLine{348     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a20fde5aa19e54fb848443be96a519989}{setKeyRepeatEnabled}}(\textcolor{keywordtype}{bool} enabled);}
+\DoxyCodeLine{349 }
+\DoxyCodeLine{355     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a5b24511f3e163faa92a946ce21af8c07}{requestFocus}}();}
+\DoxyCodeLine{356 }
+\DoxyCodeLine{363     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_af87993115ca26353119af75f534ec3c5}{hasFocus}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{364 }
+\DoxyCodeLine{365 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{366 }
+\DoxyCodeLine{371     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_ac07eb451ab1e68f4c8f963f3461cc8c8}{processEvents}}();}
+\DoxyCodeLine{372 }
+\DoxyCodeLine{373 \textcolor{keyword}{private}:}
+\DoxyCodeLine{374 }
+\DoxyCodeLine{376     \textcolor{comment}{// Member data}}
+\DoxyCodeLine{378 \textcolor{comment}{}    WindowImplDelegateRef \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a8c53a8d75aff71c97eab0dfd66180fbc}{m\_delegate}};   }
+\DoxyCodeLine{379     \textcolor{keywordtype}{bool}                  \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplCocoa_a2890abff46335c840c95bd597f129a93}{m\_showCursor}}; }
+\DoxyCodeLine{380 \};}
+\DoxyCodeLine{381 }
+\DoxyCodeLine{382 \} \textcolor{comment}{// namespace priv}}
+\DoxyCodeLine{383 }
+\DoxyCodeLine{384 \} \textcolor{comment}{// namespace sf}}
+\DoxyCodeLine{385 }
+\DoxyCodeLine{386 \textcolor{preprocessor}{\#if defined(\_\_APPLE\_\_)}}
+\DoxyCodeLine{387 \textcolor{preprocessor}{    \#if defined(\_\_clang\_\_)}}
+\DoxyCodeLine{388 \textcolor{preprocessor}{        \#pragma clang diagnostic pop}}
+\DoxyCodeLine{389 \textcolor{preprocessor}{    \#elif defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{390 \textcolor{preprocessor}{        \#pragma GCC diagnostic pop}}
+\DoxyCodeLine{391 \textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{392 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{393 }
+\DoxyCodeLine{394 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SFML\_WINDOWIMPLCOCOA\_HPP}}
+
+\end{DoxyCode}

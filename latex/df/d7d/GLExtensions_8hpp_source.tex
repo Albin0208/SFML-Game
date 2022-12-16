@@ -1,0 +1,349 @@
+\hypertarget{GLExtensions_8hpp_source}{}\doxysection{GLExtensions.\+hpp}
+\label{GLExtensions_8hpp_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/src/SFML/Graphics/GLExtensions.hpp@{cmake-\/build-\/debug/\_deps/sfml-\/src/src/SFML/Graphics/GLExtensions.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{// SFML -\/ Simple and Fast Multimedia Library}}
+\DoxyCodeLine{4 \textcolor{comment}{// Copyright (C) 2007-\/2022 Laurent Gomila (laurent@sfml-\/dev.org)}}
+\DoxyCodeLine{5 \textcolor{comment}{//}}
+\DoxyCodeLine{6 \textcolor{comment}{// This software is provided 'as-\/is', without any express or implied warranty.}}
+\DoxyCodeLine{7 \textcolor{comment}{// In no event will the authors be held liable for any damages arising from the use of this software.}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{// Permission is granted to anyone to use this software for any purpose,}}
+\DoxyCodeLine{10 \textcolor{comment}{// including commercial applications, and to alter it and redistribute it freely,}}
+\DoxyCodeLine{11 \textcolor{comment}{// subject to the following restrictions:}}
+\DoxyCodeLine{12 \textcolor{comment}{//}}
+\DoxyCodeLine{13 \textcolor{comment}{// 1. The origin of this software must not be misrepresented;}}
+\DoxyCodeLine{14 \textcolor{comment}{//    you must not claim that you wrote the original software.}}
+\DoxyCodeLine{15 \textcolor{comment}{//    If you use this software in a product, an acknowledgment}}
+\DoxyCodeLine{16 \textcolor{comment}{//    in the product documentation would be appreciated but is not required.}}
+\DoxyCodeLine{17 \textcolor{comment}{//}}
+\DoxyCodeLine{18 \textcolor{comment}{// 2. Altered source versions must be plainly marked as such,}}
+\DoxyCodeLine{19 \textcolor{comment}{//    and must not be misrepresented as being the original software.}}
+\DoxyCodeLine{20 \textcolor{comment}{//}}
+\DoxyCodeLine{21 \textcolor{comment}{// 3. This notice may not be removed or altered from any source distribution.}}
+\DoxyCodeLine{22 \textcolor{comment}{//}}
+\DoxyCodeLine{24 \textcolor{comment}{}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifndef SFML\_GLEXTENSIONS\_HPP}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define SFML\_GLEXTENSIONS\_HPP}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{29 \textcolor{comment}{// Headers}}
+\DoxyCodeLine{31 \textcolor{comment}{}\textcolor{preprocessor}{\#include <SFML/Config.hpp>}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <glad/gl.h>}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#ifdef SFML\_OPENGL\_ES}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36     \textcolor{comment}{// SFML requires at a bare minimum OpenGL ES 1.0 capability}}
+\DoxyCodeLine{37     \textcolor{comment}{// Some extensions only incorporated by 2.0 are also required}}
+\DoxyCodeLine{38     \textcolor{comment}{// OpenGL ES 1.0 is defined relative to OpenGL 1.3}}
+\DoxyCodeLine{39     \textcolor{comment}{// OpenGL ES 1.1 is defined relative to OpenGL 1.5}}
+\DoxyCodeLine{40     \textcolor{comment}{// OpenGL ES 2.0 is defined relative to OpenGL 2.0}}
+\DoxyCodeLine{41     \textcolor{comment}{// All functionality beyond that is optional}}
+\DoxyCodeLine{42     \textcolor{comment}{// and has to be checked for prior to use}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \textcolor{comment}{// Core since 1.0}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{    \#define GLEXT\_multitexture                        true}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{    \#define GLEXT\_texture\_edge\_clamp                  true}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{    \#define GLEXT\_EXT\_texture\_edge\_clamp              true}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{    \#define GLEXT\_glClientActiveTexture               glClientActiveTexture}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{    \#define GLEXT\_glActiveTexture                     glActiveTexture}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{    \#define GLEXT\_GL\_TEXTURE0                         GL\_TEXTURE0}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{    \#define GLEXT\_GL\_CLAMP                            GL\_CLAMP\_TO\_EDGE}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{    \#define GLEXT\_GL\_CLAMP\_TO\_EDGE                    GL\_CLAMP\_TO\_EDGE}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54     \textcolor{comment}{// Core since 1.1}}
+\DoxyCodeLine{55     \textcolor{comment}{// 1.1 does not support GL\_STREAM\_DRAW so we just define it to GL\_DYNAMIC\_DRAW}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{    \#define GLEXT\_vertex\_buffer\_object                true}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{    \#define GLEXT\_GL\_ARRAY\_BUFFER                     GL\_ARRAY\_BUFFER}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{    \#define GLEXT\_GL\_DYNAMIC\_DRAW                     GL\_DYNAMIC\_DRAW}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{    \#define GLEXT\_GL\_STATIC\_DRAW                      GL\_STATIC\_DRAW}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{    \#define GLEXT\_GL\_STREAM\_DRAW                      GL\_DYNAMIC\_DRAW}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{    \#define GLEXT\_glBindBuffer                        glBindBuffer}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{    \#define GLEXT\_glBufferData                        glBufferData}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{    \#define GLEXT\_glBufferSubData                     glBufferSubData}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{    \#define GLEXT\_glDeleteBuffers                     glDeleteBuffers}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{    \#define GLEXT\_glGenBuffers                        glGenBuffers}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67     \textcolor{comment}{// The following extensions are listed chronologically}}
+\DoxyCodeLine{68     \textcolor{comment}{// Extension macro first, followed by tokens then}}
+\DoxyCodeLine{69     \textcolor{comment}{// functions according to the corresponding specification}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71     \textcolor{comment}{// The following extensions are required.}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73     \textcolor{comment}{// Core since 2.0 -\/ OES\_blend\_subtract}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{    \#define GLEXT\_blend\_subtract                      SF\_GLAD\_GL\_OES\_blend\_subtract}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{    \#define GLEXT\_glBlendEquation                     glBlendEquationOES}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{    \#define GLEXT\_GL\_FUNC\_ADD                         GL\_FUNC\_ADD\_OES}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{    \#define GLEXT\_GL\_FUNC\_SUBTRACT                    GL\_FUNC\_SUBTRACT\_OES}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{    \#define GLEXT\_GL\_FUNC\_REVERSE\_SUBTRACT            GL\_FUNC\_REVERSE\_SUBTRACT\_OES}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80     \textcolor{comment}{// The following extensions are optional.}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82     \textcolor{comment}{// Core since 2.0 -\/ OES\_blend\_func\_separate}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{    \#define GLEXT\_blend\_func\_separate                 SF\_GLAD\_GL\_OES\_blend\_func\_separate}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{    \#define GLEXT\_glBlendFuncSeparate                 glBlendFuncSeparateOES}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86     \textcolor{comment}{// Core since 2.0 -\/ OES\_blend\_equation\_separate}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{    \#define GLEXT\_blend\_equation\_separate             SF\_GLAD\_GL\_OES\_blend\_equation\_separate}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{    \#define GLEXT\_glBlendEquationSeparate             glBlendEquationSeparateOES}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90     \textcolor{comment}{// Core since 2.0 -\/ OES\_texture\_npot}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{    \#define GLEXT\_texture\_non\_power\_of\_two            false}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93     \textcolor{comment}{// Core since 2.0 -\/ OES\_framebuffer\_object}}
+\DoxyCodeLine{94 \textcolor{preprocessor}{    \#define GLEXT\_framebuffer\_object                  SF\_GLAD\_GL\_OES\_framebuffer\_object}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{    \#define GLEXT\_glBindRenderbuffer                  glBindRenderbufferOES}}
+\DoxyCodeLine{96 \textcolor{preprocessor}{    \#define GLEXT\_glDeleteRenderbuffers               glDeleteRenderbuffersOES}}
+\DoxyCodeLine{97 \textcolor{preprocessor}{    \#define GLEXT\_glGenRenderbuffers                  glGenRenderbuffersOES}}
+\DoxyCodeLine{98 \textcolor{preprocessor}{    \#define GLEXT\_glRenderbufferStorage               glRenderbufferStorageOES}}
+\DoxyCodeLine{99 \textcolor{preprocessor}{    \#define GLEXT\_glBindFramebuffer                   glBindFramebufferOES}}
+\DoxyCodeLine{100 \textcolor{preprocessor}{    \#define GLEXT\_glDeleteFramebuffers                glDeleteFramebuffersOES}}
+\DoxyCodeLine{101 \textcolor{preprocessor}{    \#define GLEXT\_glGenFramebuffers                   glGenFramebuffersOES}}
+\DoxyCodeLine{102 \textcolor{preprocessor}{    \#define GLEXT\_glCheckFramebufferStatus            glCheckFramebufferStatusOES}}
+\DoxyCodeLine{103 \textcolor{preprocessor}{    \#define GLEXT\_glFramebufferTexture2D              glFramebufferTexture2DOES}}
+\DoxyCodeLine{104 \textcolor{preprocessor}{    \#define GLEXT\_glFramebufferRenderbuffer           glFramebufferRenderbufferOES}}
+\DoxyCodeLine{105 \textcolor{preprocessor}{    \#define GLEXT\_glGenerateMipmap                    glGenerateMipmapOES}}
+\DoxyCodeLine{106 \textcolor{preprocessor}{    \#define GLEXT\_GL\_FRAMEBUFFER                      GL\_FRAMEBUFFER\_OES}}
+\DoxyCodeLine{107 \textcolor{preprocessor}{    \#define GLEXT\_GL\_RENDERBUFFER                     GL\_RENDERBUFFER\_OES}}
+\DoxyCodeLine{108 \textcolor{preprocessor}{    \#define GLEXT\_GL\_DEPTH\_COMPONENT                  GL\_DEPTH\_COMPONENT16\_OES}}
+\DoxyCodeLine{109 \textcolor{preprocessor}{    \#define GLEXT\_GL\_COLOR\_ATTACHMENT0                GL\_COLOR\_ATTACHMENT0\_OES}}
+\DoxyCodeLine{110 \textcolor{preprocessor}{    \#define GLEXT\_GL\_DEPTH\_ATTACHMENT                 GL\_DEPTH\_ATTACHMENT\_OES}}
+\DoxyCodeLine{111 \textcolor{preprocessor}{    \#define GLEXT\_GL\_FRAMEBUFFER\_COMPLETE             GL\_FRAMEBUFFER\_COMPLETE\_OES}}
+\DoxyCodeLine{112 \textcolor{preprocessor}{    \#define GLEXT\_GL\_FRAMEBUFFER\_BINDING              GL\_FRAMEBUFFER\_BINDING\_OES}}
+\DoxyCodeLine{113 \textcolor{preprocessor}{    \#define GLEXT\_GL\_INVALID\_FRAMEBUFFER\_OPERATION    GL\_INVALID\_FRAMEBUFFER\_OPERATION\_OES}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115     \textcolor{comment}{// Core since 3.0}}
+\DoxyCodeLine{116 \textcolor{preprocessor}{    \#define GLEXT\_packed\_depth\_stencil                SF\_GLAD\_GL\_OES\_packed\_depth\_stencil}}
+\DoxyCodeLine{117 \textcolor{preprocessor}{    \#define GLEXT\_GL\_DEPTH24\_STENCIL8                 GL\_DEPTH24\_STENCIL8\_OES}}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119     \textcolor{comment}{// Core since 3.0}}
+\DoxyCodeLine{120 \textcolor{preprocessor}{    \#define GLEXT\_framebuffer\_blit                    false}}
+\DoxyCodeLine{121 \textcolor{preprocessor}{    \#define GLEXT\_glBlitFramebuffer                   glBlitFramebufferEXT }\textcolor{comment}{// Placeholder to satisfy the compiler, entry point is not loaded in GLES}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{    \#define GLEXT\_GL\_READ\_FRAMEBUFFER                 0}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{    \#define GLEXT\_GL\_DRAW\_FRAMEBUFFER                 0}}
+\DoxyCodeLine{124 \textcolor{preprocessor}{    \#define GLEXT\_GL\_DRAW\_FRAMEBUFFER\_BINDING         0}}
+\DoxyCodeLine{125 \textcolor{preprocessor}{    \#define GLEXT\_GL\_READ\_FRAMEBUFFER\_BINDING         0}}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127     \textcolor{comment}{// Core since 3.0}}
+\DoxyCodeLine{128 \textcolor{preprocessor}{    \#define GLEXT\_framebuffer\_multisample             false}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{    \#define GLEXT\_glRenderbufferStorageMultisample    glRenderbufferStorageMultisampleEXT }\textcolor{comment}{// Placeholder to satisfy the compiler, entry point is not loaded in GLES}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{    \#define GLEXT\_GL\_MAX\_SAMPLES                      0}}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132     \textcolor{comment}{// Core since 3.0 -\/ NV\_copy\_buffer}}
+\DoxyCodeLine{133 \textcolor{preprocessor}{    \#define GLEXT\_copy\_buffer                         false}}
+\DoxyCodeLine{134 \textcolor{preprocessor}{    \#define GLEXT\_GL\_COPY\_READ\_BUFFER                 0}}
+\DoxyCodeLine{135 \textcolor{preprocessor}{    \#define GLEXT\_GL\_COPY\_WRITE\_BUFFER                0}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{    \#define GLEXT\_glCopyBufferSubData                 glCopyBufferSubData }\textcolor{comment}{// Placeholder to satisfy the compiler, entry point is not loaded in GLES}}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138     \textcolor{comment}{// Core since 3.0 -\/ EXT\_sRGB}}
+\DoxyCodeLine{139 \textcolor{preprocessor}{    \#define GLEXT\_texture\_sRGB                        false}}
+\DoxyCodeLine{140 \textcolor{preprocessor}{    \#define GLEXT\_GL\_SRGB8\_ALPHA8                     0}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142     \textcolor{comment}{// Core since 3.0 -\/ EXT\_blend\_minmax}}
+\DoxyCodeLine{143 \textcolor{preprocessor}{    \#define GLEXT\_blend\_minmax                        SF\_GLAD\_GL\_EXT\_blend\_minmax}}
+\DoxyCodeLine{144 \textcolor{preprocessor}{    \#define GLEXT\_GL\_MIN                              GL\_MIN\_EXT}}
+\DoxyCodeLine{145 \textcolor{preprocessor}{    \#define GLEXT\_GL\_MAX                              GL\_MAX\_EXT}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149     \textcolor{comment}{// SFML requires at a bare minimum OpenGL 1.1 capability}}
+\DoxyCodeLine{150     \textcolor{comment}{// All functionality beyond that is optional}}
+\DoxyCodeLine{151     \textcolor{comment}{// and has to be checked for prior to use}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153     \textcolor{comment}{// Core since 1.1}}
+\DoxyCodeLine{154 \textcolor{preprocessor}{    \#define GLEXT\_GL\_DEPTH\_COMPONENT                  GL\_DEPTH\_COMPONENT}}
+\DoxyCodeLine{155 \textcolor{preprocessor}{    \#define GLEXT\_GL\_CLAMP                            GL\_CLAMP}}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157     \textcolor{comment}{// The following extensions are listed chronologically}}
+\DoxyCodeLine{158     \textcolor{comment}{// Extension macro first, followed by tokens then}}
+\DoxyCodeLine{159     \textcolor{comment}{// functions according to the corresponding specification}}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161     \textcolor{comment}{// The following extensions are optional.}}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163     \textcolor{comment}{// Core since 1.2 -\/ SGIS\_texture\_edge\_clamp / EXT\_texture\_edge\_clamp}}
+\DoxyCodeLine{164 \textcolor{preprocessor}{    \#define GLEXT\_texture\_edge\_clamp                  SF\_GLAD\_GL\_SGIS\_texture\_edge\_clamp}}
+\DoxyCodeLine{165 \textcolor{preprocessor}{    \#define GLEXT\_GL\_CLAMP\_TO\_EDGE                    GL\_CLAMP\_TO\_EDGE\_SGIS}}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167     \textcolor{comment}{// Core since 1.2 -\/ EXT\_blend\_minmax}}
+\DoxyCodeLine{168 \textcolor{preprocessor}{    \#define GLEXT\_blend\_minmax                        SF\_GLAD\_GL\_EXT\_blend\_minmax}}
+\DoxyCodeLine{169 \textcolor{preprocessor}{    \#define GLEXT\_glBlendEquation                     glBlendEquationEXT}}
+\DoxyCodeLine{170 \textcolor{preprocessor}{    \#define GLEXT\_GL\_FUNC\_ADD                         GL\_FUNC\_ADD\_EXT}}
+\DoxyCodeLine{171 \textcolor{preprocessor}{    \#define GLEXT\_GL\_MIN                              GL\_MIN\_EXT}}
+\DoxyCodeLine{172 \textcolor{preprocessor}{    \#define GLEXT\_GL\_MAX                              GL\_MAX\_EXT}}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174     \textcolor{comment}{// Core since 1.2 -\/ EXT\_blend\_subtract}}
+\DoxyCodeLine{175 \textcolor{preprocessor}{    \#define GLEXT\_blend\_subtract                      SF\_GLAD\_GL\_EXT\_blend\_subtract}}
+\DoxyCodeLine{176 \textcolor{preprocessor}{    \#define GLEXT\_GL\_FUNC\_SUBTRACT                    GL\_FUNC\_SUBTRACT\_EXT}}
+\DoxyCodeLine{177 \textcolor{preprocessor}{    \#define GLEXT\_GL\_FUNC\_REVERSE\_SUBTRACT            GL\_FUNC\_REVERSE\_SUBTRACT\_EXT}}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179     \textcolor{comment}{// Core since 1.3 -\/ ARB\_multitexture}}
+\DoxyCodeLine{180 \textcolor{preprocessor}{    \#define GLEXT\_multitexture                        SF\_GLAD\_GL\_ARB\_multitexture}}
+\DoxyCodeLine{181 \textcolor{preprocessor}{    \#define GLEXT\_glClientActiveTexture               glClientActiveTextureARB}}
+\DoxyCodeLine{182 \textcolor{preprocessor}{    \#define GLEXT\_glActiveTexture                     glActiveTextureARB}}
+\DoxyCodeLine{183 \textcolor{preprocessor}{    \#define GLEXT\_GL\_TEXTURE0                         GL\_TEXTURE0\_ARB}}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185     \textcolor{comment}{// Core since 1.4 -\/ EXT\_blend\_func\_separate}}
+\DoxyCodeLine{186 \textcolor{preprocessor}{    \#define GLEXT\_blend\_func\_separate                 SF\_GLAD\_GL\_EXT\_blend\_func\_separate}}
+\DoxyCodeLine{187 \textcolor{preprocessor}{    \#define GLEXT\_glBlendFuncSeparate                 glBlendFuncSeparateEXT}}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189     \textcolor{comment}{// Core since 1.5 -\/ ARB\_vertex\_buffer\_object}}
+\DoxyCodeLine{190 \textcolor{preprocessor}{    \#define GLEXT\_vertex\_buffer\_object                SF\_GLAD\_GL\_ARB\_vertex\_buffer\_object}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{    \#define GLEXT\_GL\_ARRAY\_BUFFER                     GL\_ARRAY\_BUFFER\_ARB}}
+\DoxyCodeLine{192 \textcolor{preprocessor}{    \#define GLEXT\_GL\_DYNAMIC\_DRAW                     GL\_DYNAMIC\_DRAW\_ARB}}
+\DoxyCodeLine{193 \textcolor{preprocessor}{    \#define GLEXT\_GL\_READ\_ONLY                        GL\_READ\_ONLY\_ARB}}
+\DoxyCodeLine{194 \textcolor{preprocessor}{    \#define GLEXT\_GL\_STATIC\_DRAW                      GL\_STATIC\_DRAW\_ARB}}
+\DoxyCodeLine{195 \textcolor{preprocessor}{    \#define GLEXT\_GL\_STREAM\_DRAW                      GL\_STREAM\_DRAW\_ARB}}
+\DoxyCodeLine{196 \textcolor{preprocessor}{    \#define GLEXT\_GL\_WRITE\_ONLY                       GL\_WRITE\_ONLY\_ARB}}
+\DoxyCodeLine{197 \textcolor{preprocessor}{    \#define GLEXT\_glBindBuffer                        glBindBufferARB}}
+\DoxyCodeLine{198 \textcolor{preprocessor}{    \#define GLEXT\_glBufferData                        glBufferDataARB}}
+\DoxyCodeLine{199 \textcolor{preprocessor}{    \#define GLEXT\_glBufferSubData                     glBufferSubDataARB}}
+\DoxyCodeLine{200 \textcolor{preprocessor}{    \#define GLEXT\_glDeleteBuffers                     glDeleteBuffersARB}}
+\DoxyCodeLine{201 \textcolor{preprocessor}{    \#define GLEXT\_glGenBuffers                        glGenBuffersARB}}
+\DoxyCodeLine{202 \textcolor{preprocessor}{    \#define GLEXT\_glMapBuffer                         glMapBufferARB}}
+\DoxyCodeLine{203 \textcolor{preprocessor}{    \#define GLEXT\_glUnmapBuffer                       glUnmapBufferARB}}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205     \textcolor{comment}{// Core since 2.0 -\/ ARB\_shading\_language\_100}}
+\DoxyCodeLine{206 \textcolor{preprocessor}{    \#define GLEXT\_shading\_language\_100                SF\_GLAD\_GL\_ARB\_shading\_language\_100}}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208     \textcolor{comment}{// Core since 2.0 -\/ ARB\_shader\_objects}}
+\DoxyCodeLine{209 \textcolor{preprocessor}{    \#define GLEXT\_shader\_objects                      SF\_GLAD\_GL\_ARB\_shader\_objects}}
+\DoxyCodeLine{210 \textcolor{preprocessor}{    \#define GLEXT\_glDeleteObject                      glDeleteObjectARB}}
+\DoxyCodeLine{211 \textcolor{preprocessor}{    \#define GLEXT\_glGetHandle                         glGetHandleARB}}
+\DoxyCodeLine{212 \textcolor{preprocessor}{    \#define GLEXT\_glCreateShaderObject                glCreateShaderObjectARB}}
+\DoxyCodeLine{213 \textcolor{preprocessor}{    \#define GLEXT\_glShaderSource                      glShaderSourceARB}}
+\DoxyCodeLine{214 \textcolor{preprocessor}{    \#define GLEXT\_glCompileShader                     glCompileShaderARB}}
+\DoxyCodeLine{215 \textcolor{preprocessor}{    \#define GLEXT\_glCreateProgramObject               glCreateProgramObjectARB}}
+\DoxyCodeLine{216 \textcolor{preprocessor}{    \#define GLEXT\_glAttachObject                      glAttachObjectARB}}
+\DoxyCodeLine{217 \textcolor{preprocessor}{    \#define GLEXT\_glLinkProgram                       glLinkProgramARB}}
+\DoxyCodeLine{218 \textcolor{preprocessor}{    \#define GLEXT\_glUseProgramObject                  glUseProgramObjectARB}}
+\DoxyCodeLine{219 \textcolor{preprocessor}{    \#define GLEXT\_glUniform1f                         glUniform1fARB}}
+\DoxyCodeLine{220 \textcolor{preprocessor}{    \#define GLEXT\_glUniform2f                         glUniform2fARB}}
+\DoxyCodeLine{221 \textcolor{preprocessor}{    \#define GLEXT\_glUniform3f                         glUniform3fARB}}
+\DoxyCodeLine{222 \textcolor{preprocessor}{    \#define GLEXT\_glUniform4f                         glUniform4fARB}}
+\DoxyCodeLine{223 \textcolor{preprocessor}{    \#define GLEXT\_glUniform1i                         glUniform1iARB}}
+\DoxyCodeLine{224 \textcolor{preprocessor}{    \#define GLEXT\_glUniform2i                         glUniform2iARB}}
+\DoxyCodeLine{225 \textcolor{preprocessor}{    \#define GLEXT\_glUniform3i                         glUniform3iARB}}
+\DoxyCodeLine{226 \textcolor{preprocessor}{    \#define GLEXT\_glUniform4i                         glUniform4iARB}}
+\DoxyCodeLine{227 \textcolor{preprocessor}{    \#define GLEXT\_glUniform1fv                        glUniform1fvARB}}
+\DoxyCodeLine{228 \textcolor{preprocessor}{    \#define GLEXT\_glUniform2fv                        glUniform2fvARB}}
+\DoxyCodeLine{229 \textcolor{preprocessor}{    \#define GLEXT\_glUniform2iv                        glUniform2ivARB}}
+\DoxyCodeLine{230 \textcolor{preprocessor}{    \#define GLEXT\_glUniform3fv                        glUniform3fvARB}}
+\DoxyCodeLine{231 \textcolor{preprocessor}{    \#define GLEXT\_glUniform4fv                        glUniform4fvARB}}
+\DoxyCodeLine{232 \textcolor{preprocessor}{    \#define GLEXT\_glUniformMatrix3fv                  glUniformMatrix3fvARB}}
+\DoxyCodeLine{233 \textcolor{preprocessor}{    \#define GLEXT\_glUniformMatrix4fv                  glUniformMatrix4fvARB}}
+\DoxyCodeLine{234 \textcolor{preprocessor}{    \#define GLEXT\_glGetObjectParameteriv              glGetObjectParameterivARB}}
+\DoxyCodeLine{235 \textcolor{preprocessor}{    \#define GLEXT\_glGetInfoLog                        glGetInfoLogARB}}
+\DoxyCodeLine{236 \textcolor{preprocessor}{    \#define GLEXT\_glGetUniformLocation                glGetUniformLocationARB}}
+\DoxyCodeLine{237 \textcolor{preprocessor}{    \#define GLEXT\_GL\_PROGRAM\_OBJECT                   GL\_PROGRAM\_OBJECT\_ARB}}
+\DoxyCodeLine{238 \textcolor{preprocessor}{    \#define GLEXT\_GL\_OBJECT\_COMPILE\_STATUS            GL\_OBJECT\_COMPILE\_STATUS\_ARB}}
+\DoxyCodeLine{239 \textcolor{preprocessor}{    \#define GLEXT\_GL\_OBJECT\_LINK\_STATUS               GL\_OBJECT\_LINK\_STATUS\_ARB}}
+\DoxyCodeLine{240 \textcolor{preprocessor}{    \#define GLEXT\_GLhandle                            GLhandleARB}}
+\DoxyCodeLine{241 }
+\DoxyCodeLine{242     \textcolor{comment}{// Core since 2.0 -\/ ARB\_vertex\_shader}}
+\DoxyCodeLine{243 \textcolor{preprocessor}{    \#define GLEXT\_vertex\_shader                       SF\_GLAD\_GL\_ARB\_vertex\_shader}}
+\DoxyCodeLine{244 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERTEX\_SHADER                    GL\_VERTEX\_SHADER\_ARB}}
+\DoxyCodeLine{245 \textcolor{preprocessor}{    \#define GLEXT\_GL\_MAX\_COMBINED\_TEXTURE\_IMAGE\_UNITS GL\_MAX\_COMBINED\_TEXTURE\_IMAGE\_UNITS\_ARB}}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247     \textcolor{comment}{// Core since 2.0 -\/ ARB\_fragment\_shader}}
+\DoxyCodeLine{248 \textcolor{preprocessor}{    \#define GLEXT\_fragment\_shader                     SF\_GLAD\_GL\_ARB\_fragment\_shader}}
+\DoxyCodeLine{249 \textcolor{preprocessor}{    \#define GLEXT\_GL\_FRAGMENT\_SHADER                  GL\_FRAGMENT\_SHADER\_ARB}}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251     \textcolor{comment}{// Core since 2.0 -\/ ARB\_texture\_non\_power\_of\_two}}
+\DoxyCodeLine{252 \textcolor{preprocessor}{    \#define GLEXT\_texture\_non\_power\_of\_two            SF\_GLAD\_GL\_ARB\_texture\_non\_power\_of\_two}}
+\DoxyCodeLine{253 }
+\DoxyCodeLine{254     \textcolor{comment}{// Core since 2.0 -\/ EXT\_blend\_equation\_separate}}
+\DoxyCodeLine{255 \textcolor{preprocessor}{    \#define GLEXT\_blend\_equation\_separate             SF\_GLAD\_GL\_EXT\_blend\_equation\_separate}}
+\DoxyCodeLine{256 \textcolor{preprocessor}{    \#define GLEXT\_glBlendEquationSeparate             glBlendEquationSeparateEXT}}
+\DoxyCodeLine{257 }
+\DoxyCodeLine{258     \textcolor{comment}{// Core since 2.1 -\/ EXT\_texture\_sRGB}}
+\DoxyCodeLine{259 \textcolor{preprocessor}{    \#define GLEXT\_texture\_sRGB                        SF\_GLAD\_GL\_EXT\_texture\_sRGB}}
+\DoxyCodeLine{260 \textcolor{preprocessor}{    \#define GLEXT\_GL\_SRGB8\_ALPHA8                     GL\_SRGB8\_ALPHA8\_EXT}}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262     \textcolor{comment}{// Core since 3.0 -\/ EXT\_framebuffer\_object}}
+\DoxyCodeLine{263 \textcolor{preprocessor}{    \#define GLEXT\_framebuffer\_object                  SF\_GLAD\_GL\_EXT\_framebuffer\_object}}
+\DoxyCodeLine{264 \textcolor{preprocessor}{    \#define GLEXT\_glBindRenderbuffer                  glBindRenderbufferEXT}}
+\DoxyCodeLine{265 \textcolor{preprocessor}{    \#define GLEXT\_glDeleteRenderbuffers               glDeleteRenderbuffersEXT}}
+\DoxyCodeLine{266 \textcolor{preprocessor}{    \#define GLEXT\_glGenRenderbuffers                  glGenRenderbuffersEXT}}
+\DoxyCodeLine{267 \textcolor{preprocessor}{    \#define GLEXT\_glRenderbufferStorage               glRenderbufferStorageEXT}}
+\DoxyCodeLine{268 \textcolor{preprocessor}{    \#define GLEXT\_glBindFramebuffer                   glBindFramebufferEXT}}
+\DoxyCodeLine{269 \textcolor{preprocessor}{    \#define GLEXT\_glDeleteFramebuffers                glDeleteFramebuffersEXT}}
+\DoxyCodeLine{270 \textcolor{preprocessor}{    \#define GLEXT\_glGenFramebuffers                   glGenFramebuffersEXT}}
+\DoxyCodeLine{271 \textcolor{preprocessor}{    \#define GLEXT\_glCheckFramebufferStatus            glCheckFramebufferStatusEXT}}
+\DoxyCodeLine{272 \textcolor{preprocessor}{    \#define GLEXT\_glFramebufferTexture2D              glFramebufferTexture2DEXT}}
+\DoxyCodeLine{273 \textcolor{preprocessor}{    \#define GLEXT\_glFramebufferRenderbuffer           glFramebufferRenderbufferEXT}}
+\DoxyCodeLine{274 \textcolor{preprocessor}{    \#define GLEXT\_glGenerateMipmap                    glGenerateMipmapEXT}}
+\DoxyCodeLine{275 \textcolor{preprocessor}{    \#define GLEXT\_GL\_FRAMEBUFFER                      GL\_FRAMEBUFFER\_EXT}}
+\DoxyCodeLine{276 \textcolor{preprocessor}{    \#define GLEXT\_GL\_RENDERBUFFER                     GL\_RENDERBUFFER\_EXT}}
+\DoxyCodeLine{277 \textcolor{preprocessor}{    \#define GLEXT\_GL\_COLOR\_ATTACHMENT0                GL\_COLOR\_ATTACHMENT0\_EXT}}
+\DoxyCodeLine{278 \textcolor{preprocessor}{    \#define GLEXT\_GL\_DEPTH\_ATTACHMENT                 GL\_DEPTH\_ATTACHMENT\_EXT}}
+\DoxyCodeLine{279 \textcolor{preprocessor}{    \#define GLEXT\_GL\_FRAMEBUFFER\_COMPLETE             GL\_FRAMEBUFFER\_COMPLETE\_EXT}}
+\DoxyCodeLine{280 \textcolor{preprocessor}{    \#define GLEXT\_GL\_FRAMEBUFFER\_BINDING              GL\_FRAMEBUFFER\_BINDING\_EXT}}
+\DoxyCodeLine{281 \textcolor{preprocessor}{    \#define GLEXT\_GL\_INVALID\_FRAMEBUFFER\_OPERATION    GL\_INVALID\_FRAMEBUFFER\_OPERATION\_EXT}}
+\DoxyCodeLine{282 \textcolor{preprocessor}{    \#define GLEXT\_GL\_STENCIL\_ATTACHMENT               GL\_STENCIL\_ATTACHMENT\_EXT}}
+\DoxyCodeLine{283 }
+\DoxyCodeLine{284     \textcolor{comment}{// Core since 3.0 -\/ EXT\_packed\_depth\_stencil}}
+\DoxyCodeLine{285 \textcolor{preprocessor}{    \#define GLEXT\_packed\_depth\_stencil                SF\_GLAD\_GL\_EXT\_packed\_depth\_stencil}}
+\DoxyCodeLine{286 \textcolor{preprocessor}{    \#define GLEXT\_GL\_DEPTH24\_STENCIL8                 GL\_DEPTH24\_STENCIL8\_EXT}}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288     \textcolor{comment}{// Core since 3.0 -\/ EXT\_framebuffer\_blit}}
+\DoxyCodeLine{289 \textcolor{preprocessor}{    \#define GLEXT\_framebuffer\_blit                    SF\_GLAD\_GL\_EXT\_framebuffer\_blit}}
+\DoxyCodeLine{290 \textcolor{preprocessor}{    \#define GLEXT\_glBlitFramebuffer                   glBlitFramebufferEXT}}
+\DoxyCodeLine{291 \textcolor{preprocessor}{    \#define GLEXT\_GL\_READ\_FRAMEBUFFER                 GL\_READ\_FRAMEBUFFER\_EXT}}
+\DoxyCodeLine{292 \textcolor{preprocessor}{    \#define GLEXT\_GL\_DRAW\_FRAMEBUFFER                 GL\_DRAW\_FRAMEBUFFER\_EXT}}
+\DoxyCodeLine{293 \textcolor{preprocessor}{    \#define GLEXT\_GL\_DRAW\_FRAMEBUFFER\_BINDING         GL\_DRAW\_FRAMEBUFFER\_BINDING\_EXT}}
+\DoxyCodeLine{294 \textcolor{preprocessor}{    \#define GLEXT\_GL\_READ\_FRAMEBUFFER\_BINDING         GL\_READ\_FRAMEBUFFER\_BINDING\_EXT}}
+\DoxyCodeLine{295 }
+\DoxyCodeLine{296     \textcolor{comment}{// Core since 3.0 -\/ EXT\_framebuffer\_multisample}}
+\DoxyCodeLine{297 \textcolor{preprocessor}{    \#define GLEXT\_framebuffer\_multisample             SF\_GLAD\_GL\_EXT\_framebuffer\_multisample}}
+\DoxyCodeLine{298 \textcolor{preprocessor}{    \#define GLEXT\_glRenderbufferStorageMultisample    glRenderbufferStorageMultisampleEXT}}
+\DoxyCodeLine{299 \textcolor{preprocessor}{    \#define GLEXT\_GL\_MAX\_SAMPLES                      GL\_MAX\_SAMPLES\_EXT}}
+\DoxyCodeLine{300 }
+\DoxyCodeLine{301     \textcolor{comment}{// Core since 3.1 -\/ ARB\_copy\_buffer}}
+\DoxyCodeLine{302 \textcolor{preprocessor}{    \#define GLEXT\_copy\_buffer                         SF\_GLAD\_GL\_ARB\_copy\_buffer}}
+\DoxyCodeLine{303 \textcolor{preprocessor}{    \#define GLEXT\_GL\_COPY\_READ\_BUFFER                 GL\_COPY\_READ\_BUFFER}}
+\DoxyCodeLine{304 \textcolor{preprocessor}{    \#define GLEXT\_GL\_COPY\_WRITE\_BUFFER                GL\_COPY\_WRITE\_BUFFER}}
+\DoxyCodeLine{305 \textcolor{preprocessor}{    \#define GLEXT\_glCopyBufferSubData                 glCopyBufferSubData}}
+\DoxyCodeLine{306 }
+\DoxyCodeLine{307     \textcolor{comment}{// Core since 3.2 -\/ ARB\_geometry\_shader4}}
+\DoxyCodeLine{308 \textcolor{preprocessor}{    \#define GLEXT\_geometry\_shader4                    SF\_GLAD\_GL\_ARB\_geometry\_shader4}}
+\DoxyCodeLine{309 \textcolor{preprocessor}{    \#define GLEXT\_GL\_GEOMETRY\_SHADER                  GL\_GEOMETRY\_SHADER\_ARB}}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{312 }
+\DoxyCodeLine{313     \textcolor{comment}{// OpenGL Versions}}
+\DoxyCodeLine{314 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERSION\_1\_0                      SF\_GLAD\_GL\_VERSION\_1\_0}}
+\DoxyCodeLine{315 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERSION\_1\_1                      SF\_GLAD\_GL\_VERSION\_1\_1}}
+\DoxyCodeLine{316 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERSION\_1\_2                      SF\_GLAD\_GL\_VERSION\_1\_2}}
+\DoxyCodeLine{317 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERSION\_1\_3                      SF\_GLAD\_GL\_VERSION\_1\_3}}
+\DoxyCodeLine{318 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERSION\_1\_4                      SF\_GLAD\_GL\_VERSION\_1\_4}}
+\DoxyCodeLine{319 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERSION\_1\_5                      SF\_GLAD\_GL\_VERSION\_1\_5}}
+\DoxyCodeLine{320 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERSION\_2\_0                      SF\_GLAD\_GL\_VERSION\_2\_0}}
+\DoxyCodeLine{321 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERSION\_2\_1                      SF\_GLAD\_GL\_VERSION\_2\_1}}
+\DoxyCodeLine{322 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERSION\_3\_0                      SF\_GLAD\_GL\_VERSION\_3\_0}}
+\DoxyCodeLine{323 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERSION\_3\_1                      SF\_GLAD\_GL\_VERSION\_3\_1}}
+\DoxyCodeLine{324 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERSION\_3\_2                      SF\_GLAD\_GL\_VERSION\_3\_2}}
+\DoxyCodeLine{325 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERSION\_3\_3                      SF\_GLAD\_GL\_VERSION\_3\_3}}
+\DoxyCodeLine{326 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERSION\_4\_0                      SF\_GLAD\_GL\_VERSION\_4\_0}}
+\DoxyCodeLine{327 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERSION\_4\_1                      SF\_GLAD\_GL\_VERSION\_4\_1}}
+\DoxyCodeLine{328 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERSION\_4\_2                      SF\_GLAD\_GL\_VERSION\_4\_2}}
+\DoxyCodeLine{329 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERSION\_4\_3                      SF\_GLAD\_GL\_VERSION\_4\_3}}
+\DoxyCodeLine{330 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERSION\_4\_4                      SF\_GLAD\_GL\_VERSION\_4\_4}}
+\DoxyCodeLine{331 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERSION\_4\_5                      SF\_GLAD\_GL\_VERSION\_4\_5}}
+\DoxyCodeLine{332 \textcolor{preprocessor}{    \#define GLEXT\_GL\_VERSION\_4\_6                      SF\_GLAD\_GL\_VERSION\_4\_6}}
+\DoxyCodeLine{333 }
+\DoxyCodeLine{334 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacesf}{sf}}}
+\DoxyCodeLine{335 \{}
+\DoxyCodeLine{336 \textcolor{keyword}{namespace }priv}
+\DoxyCodeLine{337 \{}
+\DoxyCodeLine{338 }
+\DoxyCodeLine{343 \textcolor{keywordtype}{void} ensureExtensionsInit();}
+\DoxyCodeLine{344 }
+\DoxyCodeLine{345 \} \textcolor{comment}{// namespace priv}}
+\DoxyCodeLine{346 }
+\DoxyCodeLine{347 \} \textcolor{comment}{// namespace sf}}
+\DoxyCodeLine{348 }
+\DoxyCodeLine{349 }
+\DoxyCodeLine{350 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SFML\_GLEXTENSIONS\_HPP}}
+
+\end{DoxyCode}

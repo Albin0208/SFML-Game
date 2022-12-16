@@ -1,0 +1,75 @@
+\hypertarget{vk__sdk__platform_8h_source}{}\doxysection{vk\+\_\+sdk\+\_\+platform.\+h}
+\label{vk__sdk__platform_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/vulkan/vk\_sdk\_platform.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/vulkan/vk\_sdk\_platform.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// File: vk\_sdk\_platform.h}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{/*}}
+\DoxyCodeLine{5 \textcolor{comment}{ * Copyright (c) 2015-\/2016 The Khronos Group Inc.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * Copyright (c) 2015-\/2016 Valve Corporation}}
+\DoxyCodeLine{7 \textcolor{comment}{ * Copyright (c) 2015-\/2016 LunarG, Inc.}}
+\DoxyCodeLine{8 \textcolor{comment}{ *}}
+\DoxyCodeLine{9 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{10 \textcolor{comment}{ * you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{11 \textcolor{comment}{ * You may obtain a copy of the License at}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ *     http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{14 \textcolor{comment}{ *}}
+\DoxyCodeLine{15 \textcolor{comment}{ * Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{16 \textcolor{comment}{ * distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{17 \textcolor{comment}{ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{18 \textcolor{comment}{ * See the License for the specific language governing permissions and}}
+\DoxyCodeLine{19 \textcolor{comment}{ * limitations under the License.}}
+\DoxyCodeLine{20 \textcolor{comment}{ */}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#ifndef VK\_SDK\_PLATFORM\_H}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#define VK\_SDK\_PLATFORM\_H}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#if defined(\_WIN32)}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define NOMINMAX}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#ifndef \_\_cplusplus}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#undef inline}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define inline \_\_inline}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_\_cplusplus}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#if (defined(\_MSC\_VER) \&\& \_MSC\_VER < 1900 }\textcolor{comment}{/*vs2015*/}\textcolor{preprocessor}{)}}
+\DoxyCodeLine{33 \textcolor{comment}{// C99:}}
+\DoxyCodeLine{34 \textcolor{comment}{// Microsoft didn't implement C99 in Visual Studio; but started adding it with}}
+\DoxyCodeLine{35 \textcolor{comment}{// VS2013.  However, VS2013 still didn't have snprintf().  The following is a}}
+\DoxyCodeLine{36 \textcolor{comment}{// work-\/around (Note: The \_CRT\_SECURE\_NO\_WARNINGS macro must be set in the}}
+\DoxyCodeLine{37 \textcolor{comment}{// "{}CMakeLists.txt"{} file).}}
+\DoxyCodeLine{38 \textcolor{comment}{// NOTE: This is fixed in Visual Studio 2015.}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#define snprintf \_snprintf}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define strdup \_strdup}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_WIN32}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{comment}{// Check for noexcept support using clang, with fallback to Windows or GCC version numbers}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#ifndef NOEXCEPT}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#if defined(\_\_clang\_\_)}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#if \_\_has\_feature(cxx\_noexcept)}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#define HAS\_NOEXCEPT}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#if defined(\_\_GXX\_EXPERIMENTAL\_CXX0X\_\_) \&\& \_\_GNUC\_\_ * 10 + \_\_GNUC\_MINOR\_\_ >= 46}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#define HAS\_NOEXCEPT}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#if defined(\_MSC\_FULL\_VER) \&\& \_MSC\_FULL\_VER >= 190023026 \&\& defined(\_HAS\_EXCEPTIONS) \&\& \_HAS\_EXCEPTIONS}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#define HAS\_NOEXCEPT}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#ifdef HAS\_NOEXCEPT}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#define NOEXCEPT noexcept}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#define NOEXCEPT}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// VK\_SDK\_PLATFORM\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,40 @@
+\hypertarget{Projectile_8h_source}{}\doxysection{Projectile.\+h}
+\label{Projectile_8h_source}\index{entities/Projectile.h@{entities/Projectile.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by ingva on 2022-\/12-\/05.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef TDP005\_PROJECTILE\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define TDP005\_PROJECTILE\_H}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}Movable\_Object.h"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}../Game.h"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{classProjectile}{Projectile}} : \textcolor{keyword}{public} \mbox{\hyperlink{classMovable__Object}{Movable\_Object}} \{}
+\DoxyCodeLine{14 \textcolor{keyword}{public}:}
+\DoxyCodeLine{23     \mbox{\hyperlink{classProjectile}{Projectile}}(\mbox{\hyperlink{classsf_1_1Vector2}{sf::Vector2f}} \textcolor{keyword}{const}\& position, \textcolor{keywordtype}{float} speed, \mbox{\hyperlink{classsf_1_1Vector2}{sf::Vector2f}} \textcolor{keyword}{const}\& direction,}
+\DoxyCodeLine{24                \textcolor{keywordtype}{int} damage, Objects\_to\_hit what\_to\_hit);}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26     \mbox{\hyperlink{classProjectile}{\string~Projectile}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{33     \textcolor{keywordtype}{void} \mbox{\hyperlink{classProjectile_a235cfa9328d52a3cc59700003530abad}{update}}(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Time}{sf::Time}}\& time, \mbox{\hyperlink{classGame}{Game}}\& game) \textcolor{keyword}{override};}
+\DoxyCodeLine{34     \textcolor{keywordtype}{int} \mbox{\hyperlink{classProjectile_a0d445efd3dacf2a11565e7f33f6e7b69}{attack}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{40     \textcolor{keywordtype}{void} \mbox{\hyperlink{classProjectile_ae2f1da518aeddc72babc2824db367374}{set\_animations}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{43     \mbox{\hyperlink{classsf_1_1Vector2}{sf::Vector2f}} direction;}
+\DoxyCodeLine{44     \textcolor{keywordtype}{int} damage;}
+\DoxyCodeLine{45     Objects\_to\_hit what\_to\_hit;}
+\DoxyCodeLine{46 \};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//TDP005\_PROJECTILE\_H}}
+
+\end{DoxyCode}
