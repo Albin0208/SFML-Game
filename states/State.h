@@ -20,6 +20,7 @@ public:
      * Functionality for what happens on key_press
      */
     virtual void on_key_press(sf::Keyboard::Key);
+
     /**
      * Functionality for what happens on key_release
      */

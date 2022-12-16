@@ -20,7 +20,18 @@ public:
     Movable_Object(const sf::Vector2f &position, float speed, float single_sprite_width = 0);
     ~Movable_Object() override = default;
 
+    /**
+     * Update the object
+     *
+     * @param time Time since last update
+     * @param game A reference to the game
+     */
     void update(const sf::Time &time, Game &game) override = 0;
+
+    /**
+     * Render the object to the window
+     * @param window The window to render to
+     */
     void render(sf::RenderWindow &window) override;
 
     /**

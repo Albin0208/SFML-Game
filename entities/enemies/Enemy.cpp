@@ -29,7 +29,6 @@ void Enemy::update(sf::Time const& time, Game& game) {
         animation_manager.force_play(animation_type, sprite);
         if (animation_manager.is_done(animation_type)) {
             alive = false;
-            animation_manager.kill();
             game.enemy_killed();
             game.add_points(points);
         }

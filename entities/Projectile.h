@@ -31,6 +31,12 @@ public:
      * @param game A reference to the game
      */
     void update(const sf::Time& time, Game& game) override;
+
+    /**
+     * Perform the attack, aka get the damage of the projectile
+     *
+     * @return The damage done
+     */
     int attack() override;
 
 protected:

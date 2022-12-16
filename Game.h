@@ -90,7 +90,6 @@ private:
     // Healthbar components
     sf::RectangleShape back;
     sf::RectangleShape bar;
-
     sf::Sprite player_img;
 
     sf::RenderWindow* window;
