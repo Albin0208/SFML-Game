@@ -18,7 +18,7 @@ The program is now compiled in a file called ``TDP005``.
 ### Run the game
 To run the game run the command ``./TDP005``
 
-### Controlls
+## Controls
 
 #### Movement
 Move the player by using ``wasd`` or the ``arrow keys``.
