@@ -23,6 +23,7 @@ void Animation_Manager::play(std::string const& key, sf::Sprite& sprite, bool pr
             if (last_animation == nullptr)
                 last_animation = animations[key];
             else {
+                // Reset the previous animation to the beginning
                 last_animation->reset();
                 last_animation = animations[key];
             }

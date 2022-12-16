@@ -70,8 +70,16 @@ public:
      */
     void add_points(int points);
 
+    /**
+     * Get a pointer to the window
+     * @return A window pointer
+     */
     sf::RenderWindow const* get_window() const;
 
+    /**
+     * Set the window pointer
+     * @param window The window to point to
+     */
     void set_window(sf::RenderWindow& window);
 
 private:

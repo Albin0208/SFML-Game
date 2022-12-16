@@ -59,6 +59,10 @@ protected:
      */
     virtual void set_animations() = 0;
 
+    /**
+     * Perform the animation that is relevant
+     * @param dir The direction we are moving
+     */
     void handle_animation(sf::Vector2f& dir);
 
     sf::Clock attack_timer;
