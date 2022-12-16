@@ -20,7 +20,18 @@ public:
     Movable_Object(const sf::Vector2f &position, float speed, float single_sprite_width = 0);
     ~Movable_Object() override = default;
 
+    /**
+     * Update the object
+     *
+     * @param time Time since last update
+     * @param game A reference to the game
+     */
     void update(const sf::Time &time, Game &game) override = 0;
+
+    /**
+     * Render the object to the window
+     * @param window The window to render to
+     */
     void render(sf::RenderWindow &window) override;
 
     /**
@@ -48,10 +59,14 @@ protected:
      */
     virtual void set_animations() = 0;
 
+    /**
+     * Perform the animation that is relevant
+     * @param dir The direction we are moving
+     */
     void handle_animation(sf::Vector2f& dir);
 
     sf::Clock attack_timer;
-    int32_t attack_timer_max{};
+    int attack_timer_max;
     bool face_right;
     float speed;
     bool attacking;
@@ -60,7 +75,7 @@ protected:
     float single_sprite_width;
 
     sf::Clock dmg_clock;
-    std::string type;
+    std::string animation_type;
     Animation_Manager animation_manager;
 };
 

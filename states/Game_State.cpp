@@ -14,7 +14,7 @@ Game_State::Game_State() {
 }
 
 std::shared_ptr<State> Game_State::update(sf::Time const& time, sf::RenderWindow& window) {
-    game.window = &window;
+    game.set_window(window);
     game.update(time);
 
     if (game.is_game_over)

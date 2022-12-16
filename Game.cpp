@@ -12,14 +12,6 @@
 Game::Game() : window{nullptr}, points{0} {
     font.loadFromFile(FONT_PATH);
 
-    // Preload enemy textures
-//    Texture_Manager::get("range_enemy_blue.png");
-//    Texture_Manager::get("range_attack_blue.png");
-//    Texture_Manager::get("dying_range.png");
-//    Texture_Manager::get("slow_enemy.png");
-//    Texture_Manager::get("mino_attack2.png");
-//    Texture_Manager::get("dying_slow.png");
-
     player = std::make_shared<Player>(sf::Vector2f{50, 50}, 300.f);
     add(player);
 
@@ -128,6 +120,14 @@ void Game::add_points(int points_to_add) {
     points += points_to_add;
 }
 
+sf::RenderWindow const* Game::get_window() const {
+    return window;
+}
+
+void Game::set_window(sf::RenderWindow& window) {
+    this->window = &window;
+}
+
 void Game::spawn_obstacles() {
     for (int i{}; i < 8; ++i) {
         shared_ptr<Obstacle> obstacle = std::make_shared<Obstacle>(
@@ -136,7 +136,6 @@ void Game::spawn_obstacles() {
                     static_cast<float>(random_int(70, HEIGHT- 70))},
                 Texture_Manager::get("obstacle_sheet.png"), random_int(0, 2));
 
-        // TODO: Check so not colliding with other obstacle
         add(obstacle);
     }
 

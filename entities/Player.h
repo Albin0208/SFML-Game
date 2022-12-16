@@ -32,7 +32,7 @@ public:
      * Get the position of the player
      * @return The position of the player
      */
-    sf::Vector2f const& get_pos();
+    sf::Vector2f const& get_pos() const;
 
     /**
      * Get the current hp of the player

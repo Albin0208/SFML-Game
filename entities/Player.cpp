@@ -55,7 +55,7 @@ void Player::update(sf::Time const& time, Game& game) {
     if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
         if (attack_timer.getElapsedTime().asMilliseconds() > attack_timer_max) {
             attack_timer.restart();
-            sf::Vector2f mouse_pos{sf::Mouse::getPosition(*game.window)};
+            sf::Vector2f mouse_pos{sf::Mouse::getPosition(*game.get_window())};
 
             sf::Vector2f projectile_dir{mouse_pos - (position+(hitbox.getSize()*0.5f))};
 
@@ -70,7 +70,7 @@ void Player::update(sf::Time const& time, Game& game) {
     }
 
     if (dir.x == 0 && dir.y == 0)
-        type = "idle";
+        animation_type = "idle";
 
     handle_animation(dir);
 
@@ -106,7 +106,7 @@ void Player::update(sf::Time const& time, Game& game) {
         sprite.setColor(sf::Color::White);
 }
 
-sf::Vector2f const& Player::get_pos() {
+sf::Vector2f const& Player::get_pos() const{
     return position;
 }
 

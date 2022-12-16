@@ -23,6 +23,7 @@ void Animation_Manager::play(std::string const& key, sf::Sprite& sprite, bool pr
             if (last_animation == nullptr)
                 last_animation = animations[key];
             else {
+                // Reset the previous animation to the beginning
                 last_animation->reset();
                 last_animation = animations[key];
             }
@@ -40,11 +41,6 @@ void Animation_Manager::add_animation(std::string const& key, sf::Texture* textu
 
 bool const& Animation_Manager::is_done(std::string const& key) {
     return animations[key]->done;
-}
-
-void Animation_Manager::kill() {
-    priority_animation = nullptr;
-    last_animation = nullptr;
 }
 
 void Animation_Manager::force_play(std::string const& key, sf::Sprite& sprite) {

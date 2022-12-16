@@ -38,7 +38,7 @@ public:
     void render(sf::RenderWindow &target) override;
 private:
     sf::Font font; // The menu text font;
-    bool enter_pressed; // Is enter pressed aka a menu option has been chosen
+    bool enter_pressed; // Is enter pressed, a menu option has been chosen
     sf::RectangleShape background;
 
     // The number for the selected menu options

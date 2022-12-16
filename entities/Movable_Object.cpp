@@ -46,13 +46,13 @@ void Movable_Object::handle_animation(sf::Vector2f& dir) {
         sprite.setOrigin(0.f, 0.f);
         sprite.setScale(1.f, 1.f);
         face_right = true;
-        type = "walk";
+        animation_type = "walk";
     }
     if (dir.x < 0 || dir.y != 0 && !face_right) {
         sprite.setOrigin(single_sprite_width, 0.f);
         sprite.setScale(-1.f, 1.f);
         face_right = false;
-        type = "walk";
+        animation_type = "walk";
     }
 
     if (attacking) {
@@ -61,5 +61,5 @@ void Movable_Object::handle_animation(sf::Vector2f& dir) {
             attacking = false;
     }
     else
-        animation_manager.play(type, sprite);
+        animation_manager.play(animation_type, sprite);
 }

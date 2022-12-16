@@ -12,7 +12,7 @@ sf::Texture* Texture_Manager::get(std::string const& name) {
 
     // Texture not loaded, load from file
     sf::Texture* t{new sf::Texture()};
-    if (!t->loadFromFile("../resources/textures/" + name))
+    if (!t->loadFromFile("resources/textures/" + name))
         throw std::logic_error("Failed to load texture!");
 
     // Add texture to our loaded textures

@@ -40,11 +40,6 @@ public:
     bool const& is_done(std::string const& key);
 
     /**
-     * Kill the animation
-     */
-    void kill();
-
-    /**
      * Force a animation to play no mather what
      * @param key The animation key
      * @param sprite The sprite to apply it to

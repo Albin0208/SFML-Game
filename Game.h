@@ -58,8 +58,6 @@ public:
      */
     void enemy_killed();
 
-    sf::RenderWindow* window;
-
     /**
      * Get the points collected during the game
      * @return The points
@@ -71,6 +69,18 @@ public:
      * @param points How many points to add
      */
     void add_points(int points);
+
+    /**
+     * Get a pointer to the window
+     * @return A window pointer
+     */
+    sf::RenderWindow const* get_window() const;
+
+    /**
+     * Set the window pointer
+     * @param window The window to point to
+     */
+    void set_window(sf::RenderWindow& window);
 
 private:
     void spawn_obstacles();
@@ -88,8 +98,9 @@ private:
     // Healthbar components
     sf::RectangleShape back;
     sf::RectangleShape bar;
-
     sf::Sprite player_img;
+
+    sf::RenderWindow* window;
 };
 
 

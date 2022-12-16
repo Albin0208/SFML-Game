@@ -25,11 +25,10 @@ void Enemy::update(sf::Time const& time, Game& game) {
 
     if (health <= 0) {
         health_bar.setScale({0, 1});
-        type = "dying";
-        animation_manager.force_play(type, sprite);
-        if (animation_manager.is_done("dying")) {
+        animation_type = "dying";
+        animation_manager.force_play(animation_type, sprite);
+        if (animation_manager.is_done(animation_type)) {
             alive = false;
-            animation_manager.kill();
             game.enemy_killed();
             game.add_points(points);
         }
