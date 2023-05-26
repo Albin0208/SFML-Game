@@ -1,6 +1,0 @@
-<map id="sf::CircleShape" name="sf::CircleShape">
-<area shape="rect" id="node1" title="Specialized shape representing a circle." alt="" coords="99,1063,237,1228"/>
-<area shape="rect" id="node2" href="$dd/d35/classsf_1_1Shape.html" title="Base class for textured shapes with outline." alt="" coords="78,512,258,1015"/>
-<area shape="rect" id="node3" href="$d1/ddd/classsf_1_1Drawable.html" title="Abstract base class for objects that can be drawn to a render target." alt="" coords="5,189,125,281"/>
-<area shape="rect" id="node4" href="$df/dc5/classsf_1_1Transformable.html" title="Decomposed transform defined by a position, a rotation and a scale." alt="" coords="149,5,395,464"/>
-</map>

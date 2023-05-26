@@ -1,7 +1,0 @@
-<map id="Enemy" name="Enemy">
-<area shape="rect" id="node1" title=" " alt="" coords="73,637,256,861"/>
-<area shape="rect" id="node4" href="$df/ddf/classRanged__Enemy.html" title=" " alt="" coords="5,909,153,1031"/>
-<area shape="rect" id="node5" href="$d5/dbf/classSlow__Enemy.html" title=" " alt="" coords="178,909,325,1031"/>
-<area shape="rect" id="node2" href="$d3/d12/classMovable__Object.html" title=" " alt="" coords="81,263,249,589"/>
-<area shape="rect" id="node3" href="$d8/dfe/classGame__Object.html" title=" " alt="" coords="91,5,238,215"/>
-</map>

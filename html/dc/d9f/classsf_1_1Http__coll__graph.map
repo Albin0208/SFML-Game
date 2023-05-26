@@ -1,8 +1,0 @@
-<map id="sf::Http" name="sf::Http">
-<area shape="rect" id="node1" title="A HTTP client." alt="" coords="119,735,250,871"/>
-<area shape="rect" id="node2" href="$d0/da7/classsf_1_1NonCopyable.html" title="Utility class that makes any derived class non&#45;copyable." alt="" coords="5,5,151,127"/>
-<area shape="rect" id="node4" href="$dc/d22/classsf_1_1Socket.html" title="Base class for all the socket types." alt="" coords="99,176,222,385"/>
-<area shape="rect" id="node3" href="$da/daf/classsf_1_1TcpSocket.html" title="Specialized socket using the TCP protocol." alt="" coords="99,448,270,672"/>
-<area shape="rect" id="node5" href="$d7/df6/structsf_1_1TcpSocket_1_1PendingPacket.html" title="Structure holding the data of a pending packet." alt="" coords="247,227,453,334"/>
-<area shape="rect" id="node6" href="$d7/d22/classsf_1_1IpAddress.html" title="Encapsulate an IPv4 network address." alt="" coords="295,448,453,672"/>
-</map>
