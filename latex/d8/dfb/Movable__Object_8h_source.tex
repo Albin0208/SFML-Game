@@ -1,0 +1,53 @@
+\hypertarget{Movable__Object_8h_source}{}\doxysection{Movable\+\_\+\+Object.\+h}
+\label{Movable__Object_8h_source}\index{entities/Movable\_Object.h@{entities/Movable\_Object.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by albin on 2022-\/12-\/05.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef TDP005\_MOVABLE\_OBJECT\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define TDP005\_MOVABLE\_OBJECT\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}Game\_Object.h"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}../utility/Animation\_Manager.h"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}Obstacle.h"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{classMovable__Object}{Movable\_Object}} : \textcolor{keyword}{public} \mbox{\hyperlink{classGame__Object}{Game\_Object}} \{}
+\DoxyCodeLine{14 \textcolor{keyword}{public}:}
+\DoxyCodeLine{20     \mbox{\hyperlink{classMovable__Object}{Movable\_Object}}(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Vector2}{sf::Vector2f}} \&position, \textcolor{keywordtype}{float} speed, \textcolor{keywordtype}{float} single\_sprite\_width = 0);}
+\DoxyCodeLine{21     \mbox{\hyperlink{classMovable__Object}{\string~Movable\_Object}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     \textcolor{keywordtype}{void} \mbox{\hyperlink{classMovable__Object_a05751f47a751f849ae22b7e879803ed9}{update}}(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Time}{sf::Time}} \&time, \mbox{\hyperlink{classGame}{Game}} \&game) \textcolor{keyword}{override} = 0;}
+\DoxyCodeLine{24     \textcolor{keywordtype}{void} \mbox{\hyperlink{classMovable__Object_ac6cf4990ec3f34926312c9f55e315ffb}{render}}(\mbox{\hyperlink{classsf_1_1RenderWindow}{sf::RenderWindow}} \&window) \textcolor{keyword}{override};}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{31     \textcolor{keyword}{virtual} \textcolor{keywordtype}{int} \mbox{\hyperlink{classMovable__Object_acdb8de8a1eb331cc19da5adc10b35667}{attack}}() = 0;}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{37     \textcolor{keywordtype}{void} \mbox{\hyperlink{classMovable__Object_ae5873ee8b9cf22030d0ff3515bd724ad}{take\_damage}}(\textcolor{keywordtype}{int} damage);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{43     \textcolor{keywordtype}{void} \mbox{\hyperlink{classMovable__Object_a4e3453038c33b758fbd792934a622159}{obstacle\_collision}}(\mbox{\hyperlink{classObstacle}{Obstacle}}* obstacle);}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{49     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classMovable__Object_ac40d5ebc5182297620ca5b078aa6e350}{set\_animations}}() = 0;}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51     \textcolor{keywordtype}{void} handle\_animation(\mbox{\hyperlink{classsf_1_1Vector2}{sf::Vector2f}}\& dir);}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53     \mbox{\hyperlink{classsf_1_1Clock}{sf::Clock}} attack\_timer;}
+\DoxyCodeLine{54     int32\_t attack\_timer\_max\{\};}
+\DoxyCodeLine{55     \textcolor{keywordtype}{bool} face\_right;}
+\DoxyCodeLine{56     \textcolor{keywordtype}{float} speed;}
+\DoxyCodeLine{57     \textcolor{keywordtype}{bool} attacking;}
+\DoxyCodeLine{58     \textcolor{keywordtype}{int} health;}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60     \textcolor{keywordtype}{float} single\_sprite\_width;}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62     \mbox{\hyperlink{classsf_1_1Clock}{sf::Clock}} dmg\_clock;}
+\DoxyCodeLine{63     std::string type;}
+\DoxyCodeLine{64     \mbox{\hyperlink{classAnimation__Manager}{Animation\_Manager}} animation\_manager;}
+\DoxyCodeLine{65 \};}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//TDP005\_MOVABLE\_OBJECT\_H}}
+
+\end{DoxyCode}

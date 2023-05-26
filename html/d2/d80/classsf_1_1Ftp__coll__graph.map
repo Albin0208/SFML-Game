@@ -1,0 +1,7 @@
+<map id="sf::Ftp" name="sf::Ftp">
+<area shape="rect" id="node1" title="A FTP client." alt="" coords="5,735,187,1061"/>
+<area shape="rect" id="node2" href="$d0/da7/classsf_1_1NonCopyable.html" title="Utility class that makes any derived class non&#45;copyable." alt="" coords="18,5,163,127"/>
+<area shape="rect" id="node4" href="$dc/d22/classsf_1_1Socket.html" title="Base class for all the socket types." alt="" coords="112,176,235,385"/>
+<area shape="rect" id="node3" href="$da/daf/classsf_1_1TcpSocket.html" title="Specialized socket using the TCP protocol." alt="" coords="112,448,283,672"/>
+<area shape="rect" id="node5" href="$d7/df6/structsf_1_1TcpSocket_1_1PendingPacket.html" title="Structure holding the data of a pending packet." alt="" coords="259,227,466,334"/>
+</map>

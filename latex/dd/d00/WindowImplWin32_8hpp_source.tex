@@ -1,0 +1,123 @@
+\hypertarget{WindowImplWin32_8hpp_source}{}\doxysection{Window\+Impl\+Win32.\+hpp}
+\label{WindowImplWin32_8hpp_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/src/SFML/Window/Win32/WindowImplWin32.hpp@{cmake-\/build-\/debug/\_deps/sfml-\/src/src/SFML/Window/Win32/WindowImplWin32.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{// SFML -\/ Simple and Fast Multimedia Library}}
+\DoxyCodeLine{4 \textcolor{comment}{// Copyright (C) 2007-\/2022 Laurent Gomila (laurent@sfml-\/dev.org)}}
+\DoxyCodeLine{5 \textcolor{comment}{//}}
+\DoxyCodeLine{6 \textcolor{comment}{// This software is provided 'as-\/is', without any express or implied warranty.}}
+\DoxyCodeLine{7 \textcolor{comment}{// In no event will the authors be held liable for any damages arising from the use of this software.}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{// Permission is granted to anyone to use this software for any purpose,}}
+\DoxyCodeLine{10 \textcolor{comment}{// including commercial applications, and to alter it and redistribute it freely,}}
+\DoxyCodeLine{11 \textcolor{comment}{// subject to the following restrictions:}}
+\DoxyCodeLine{12 \textcolor{comment}{//}}
+\DoxyCodeLine{13 \textcolor{comment}{// 1. The origin of this software must not be misrepresented;}}
+\DoxyCodeLine{14 \textcolor{comment}{//    you must not claim that you wrote the original software.}}
+\DoxyCodeLine{15 \textcolor{comment}{//    If you use this software in a product, an acknowledgment}}
+\DoxyCodeLine{16 \textcolor{comment}{//    in the product documentation would be appreciated but is not required.}}
+\DoxyCodeLine{17 \textcolor{comment}{//}}
+\DoxyCodeLine{18 \textcolor{comment}{// 2. Altered source versions must be plainly marked as such,}}
+\DoxyCodeLine{19 \textcolor{comment}{//    and must not be misrepresented as being the original software.}}
+\DoxyCodeLine{20 \textcolor{comment}{//}}
+\DoxyCodeLine{21 \textcolor{comment}{// 3. This notice may not be removed or altered from any source distribution.}}
+\DoxyCodeLine{22 \textcolor{comment}{//}}
+\DoxyCodeLine{24 \textcolor{comment}{}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifndef SFML\_WINDOWIMPLWIN32\_HPP}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define SFML\_WINDOWIMPLWIN32\_HPP}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{29 \textcolor{comment}{// Headers}}
+\DoxyCodeLine{31 \textcolor{comment}{}\textcolor{preprocessor}{\#include <SFML/Window/Event.hpp>}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <SFML/Window/WindowImpl.hpp>}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include <SFML/System/String.hpp>}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <windows.h>}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacesf}{sf}}}
+\DoxyCodeLine{38 \{}
+\DoxyCodeLine{39 \textcolor{keyword}{namespace }priv}
+\DoxyCodeLine{40 \{}
+\DoxyCodeLine{45 \textcolor{keyword}{class }\mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32}{WindowImplWin32}} : \textcolor{keyword}{public} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImpl}{WindowImpl}}}
+\DoxyCodeLine{46 \{}
+\DoxyCodeLine{47 \textcolor{keyword}{public}:}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{55     \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32}{WindowImplWin32}}(WindowHandle handle);}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{66     \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32}{WindowImplWin32}}(\mbox{\hyperlink{classsf_1_1VideoMode}{VideoMode}} mode, \textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1String}{String}}\& title, Uint32 style, \textcolor{keyword}{const} \mbox{\hyperlink{structsf_1_1ContextSettings}{ContextSettings}}\& settings);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{72     \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a4dba0111513d3bd9637090bb8b486efc}{\string~WindowImplWin32}}();}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{80     \textcolor{keyword}{virtual} WindowHandle \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_aaa0bb4170a5e4887cb8ee5f8fb87ff0d}{getSystemHandle}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{88     \textcolor{keyword}{virtual} \mbox{\hyperlink{classsf_1_1Vector2}{Vector2i}} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a3200dddd1fd240886b7f41d14df6fe28}{getPosition}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{96     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a58b8f35f51fa6a8010797f507197b835}{setPosition}}(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Vector2}{Vector2i}}\& position);}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{104     \textcolor{keyword}{virtual} \mbox{\hyperlink{classsf_1_1Vector2}{Vector2u}} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a76be535abf17c6585a9f354a9c86adbc}{getSize}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{112     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a1f9317ce9c22180dc98ccc8b2af578ec}{setSize}}(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Vector2}{Vector2u}}\& size);}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{120     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a5116d56e6717ca6d2d18fb278a73d8a7}{setTitle}}(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1String}{String}}\& title);}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{130     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_afdc575fb480419a108e6594d44fc7944}{setIcon}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} width, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} height, \textcolor{keyword}{const} Uint8* pixels);}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{138     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a0d077acd1dbfe6d47fb1d61816d37e6a}{setVisible}}(\textcolor{keywordtype}{bool} visible);}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{146     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a35c4f933a7666ad28dd0c26586b36d07}{setMouseCursorVisible}}(\textcolor{keywordtype}{bool} visible);}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{154     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_aa550aebc13bbd8255d37dd78cddd2889}{setMouseCursorGrabbed}}(\textcolor{keywordtype}{bool} grabbed);}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{162     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a0b7e5daa9b4f0cf254b5bee3231ed24c}{setMouseCursor}}(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1priv_1_1CursorImpl}{CursorImpl}}\& cursor);}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{170     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a4a38ca689f879d933113f9f1de9701da}{setKeyRepeatEnabled}}(\textcolor{keywordtype}{bool} enabled);}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{177     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_aa48968aa471208400a57e94c5be827f6}{requestFocus}}();}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{185     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a6cb465d87ca0a514e64b937df8500f05}{hasFocus}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{193     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_aa418e3446e2e9a9994f84f5d52b8b53d}{processEvents}}();}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195 \textcolor{keyword}{private}:}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{201     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a3ca395755f7d1f2fc6185eb928fb3c29}{registerWindowClass}}();}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{209     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_aacad4d3ed30fc64bf245706cc75fe57a}{switchToFullscreen}}(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1VideoMode}{VideoMode}}\& mode);}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{215     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a728b51815fb8b9959c620e553075a9d9}{cleanup}}();}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{225     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a1e221d565d1a87d59bf53258da13a36a}{processEvent}}(UINT message, WPARAM wParam, LPARAM lParam);}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{233     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a0e14c19f33bf7517780de12ae4a22c74}{setTracking}}(\textcolor{keywordtype}{bool} track);}
+\DoxyCodeLine{234 }
+\DoxyCodeLine{246     \textcolor{keywordtype}{void} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_ad46230726e514688bdd7fef21e243ea2}{grabCursor}}(\textcolor{keywordtype}{bool} grabbed);}
+\DoxyCodeLine{247 }
+\DoxyCodeLine{257     \textcolor{keyword}{static} \mbox{\hyperlink{classsf_1_1Keyboard_acb4cacd7cc5802dec45724cf3314a142}{Keyboard::Key}} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a55f81779d74403e135bcb2b78c4c1d27}{virtualKeyCodeToSF}}(WPARAM key, LPARAM flags);}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{270     \textcolor{keyword}{static} LRESULT CALLBACK \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_aa96e01a30de752c6ba89f42b3e8f1ff8}{globalOnEvent}}(HWND handle, UINT message, WPARAM wParam, LPARAM lParam);}
+\DoxyCodeLine{271 }
+\DoxyCodeLine{273     \textcolor{comment}{// Member data}}
+\DoxyCodeLine{275 \textcolor{comment}{}    HWND     \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a2e1ade7af6915bde6005ab93ff7bafcc}{m\_handle}};           }
+\DoxyCodeLine{276     LONG\_PTR \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_aefb6500adf9f8df2d08a6b57aec8d162}{m\_callback}};         }
+\DoxyCodeLine{277     \textcolor{keywordtype}{bool}     \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_ac689f5af1fc17b8d7f31e4a13cd3b885}{m\_cursorVisible}};    }
+\DoxyCodeLine{278     HCURSOR  \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a9c3df74045ccbbacfe3f9aee62be2d92}{m\_lastCursor}};       }
+\DoxyCodeLine{279     HICON    \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_ade123ee2daa0bfc68350a2def6bc9b2f}{m\_icon}};             }
+\DoxyCodeLine{280     \textcolor{keywordtype}{bool}     \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_aaa38d70151d3299efdd6f0e8347c380d}{m\_keyRepeatEnabled}}; }
+\DoxyCodeLine{281     \mbox{\hyperlink{classsf_1_1Vector2}{Vector2u}} \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a3cb5120ba48138deb0041933bcf6f1e6}{m\_lastSize}};         }
+\DoxyCodeLine{282     \textcolor{keywordtype}{bool}     \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a39bab0d52fceb2c36bc972acb8a4179e}{m\_resizing}};         }
+\DoxyCodeLine{283     Uint16   \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_af5637ac8259941d6dd4b954ca9321c61}{m\_surrogate}};        }
+\DoxyCodeLine{284     \textcolor{keywordtype}{bool}     \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a03e2647c08c659cca58836a3bd932118}{m\_mouseInside}};      }
+\DoxyCodeLine{285     \textcolor{keywordtype}{bool}     \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_af05efbdf5ff9a47e8c7b587ccc04187d}{m\_fullscreen}};       }
+\DoxyCodeLine{286     \textcolor{keywordtype}{bool}     \mbox{\hyperlink{classsf_1_1priv_1_1WindowImplWin32_a400bbe2f43749d3a2a006f3b2cc6d8d3}{m\_cursorGrabbed}};    }
+\DoxyCodeLine{287 \};}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289 \} \textcolor{comment}{// namespace priv}}
+\DoxyCodeLine{290 }
+\DoxyCodeLine{291 \} \textcolor{comment}{// namespace sf}}
+\DoxyCodeLine{292 }
+\DoxyCodeLine{293 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SFML\_WINDOWIMPLWIN32\_HPP}}
+
+\end{DoxyCode}

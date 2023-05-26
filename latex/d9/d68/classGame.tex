@@ -1,0 +1,171 @@
+\hypertarget{classGame}{}\doxysection{Game Class Reference}
+\label{classGame}\index{Game@{Game}}
+
+
+{\ttfamily \#include $<$Game.\+h$>$}
+
+
+
+Collaboration diagram for Game\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{de/da7/classGame__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classGame_a8f264337bcb1032ef41d34e1a5b26cea}{update}} (\mbox{\hyperlink{classsf_1_1Time}{sf\+::\+Time}} const \&time)
+\item 
+virtual void \mbox{\hyperlink{classGame_a975e370ea19fd4942ca201d80d7b5a82}{render}} (\mbox{\hyperlink{classsf_1_1RenderWindow}{sf\+::\+Render\+Window}} \&target)
+\item 
+void \mbox{\hyperlink{classGame_ad9780d07361a3d07ca2fdca1cd3e5819}{add}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classGame__Object}{Game\+\_\+\+Object}} $>$ const \&object)
+\item 
+vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classGame__Object}{Game\+\_\+\+Object}} $>$ $>$ \mbox{\hyperlink{classGame_ae9d3550364bdd678d878c9bca1560697}{collides\+\_\+with}} (\mbox{\hyperlink{classGame__Object}{Game\+\_\+\+Object}} \&obj) const
+\item 
+void \mbox{\hyperlink{classGame_a77a0c81edef3606c4d5315420c22a8ac}{enemy\+\_\+killed}} ()
+\item 
+int \mbox{\hyperlink{classGame_a58dc56ff13ee28da878a364887bb1a2f}{get\+\_\+points}} () const
+\item 
+void \mbox{\hyperlink{classGame_ae59e364d24c46bf31e45c12ffdb2a2d5}{add\+\_\+points}} (int points)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGame_af53e4409a43d9fd814dbf48051fa8de2}\label{classGame_af53e4409a43d9fd814dbf48051fa8de2}} 
+bool {\bfseries is\+\_\+game\+\_\+over} \{false\}
+\item 
+\mbox{\Hypertarget{classGame_af00d15651edd39b7c28262b23bb50c7a}\label{classGame_af00d15651edd39b7c28262b23bb50c7a}} 
+\mbox{\hyperlink{classsf_1_1RenderWindow}{sf\+::\+Render\+Window}} $\ast$ {\bfseries window}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGame_a1de5ed2ef8541de579edca4130dfc1e7}\label{classGame_a1de5ed2ef8541de579edca4130dfc1e7}} 
+void {\bfseries spawn\+\_\+obstacles} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGame_a215f7e89bd1ce1c64063bc6c26340457}\label{classGame_a215f7e89bd1ce1c64063bc6c26340457}} 
+vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classGame__Object}{Game\+\_\+\+Object}} $>$ $>$ {\bfseries objects}
+\item 
+\mbox{\Hypertarget{classGame_a06a830f3933a438ad475d9a9e0d9f846}\label{classGame_a06a830f3933a438ad475d9a9e0d9f846}} 
+\mbox{\hyperlink{classWave}{Wave}} {\bfseries wave}
+\item 
+\mbox{\Hypertarget{classGame_a3d9ab1f37917c95bf92e90f041d94dd6}\label{classGame_a3d9ab1f37917c95bf92e90f041d94dd6}} 
+\mbox{\hyperlink{classsf_1_1Clock}{sf\+::\+Clock}} {\bfseries survived\+\_\+clock}
+\item 
+\mbox{\Hypertarget{classGame_a71f55b33f5c3ea82523ec5edb7ac33b9}\label{classGame_a71f55b33f5c3ea82523ec5edb7ac33b9}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{classPlayer}{Player}} $>$ {\bfseries player}
+\item 
+\mbox{\Hypertarget{classGame_a0d423a6ad1d1a2342784f0df3173add2}\label{classGame_a0d423a6ad1d1a2342784f0df3173add2}} 
+\mbox{\hyperlink{classsf_1_1Time}{sf\+::\+Time}} {\bfseries time\+\_\+survived}
+\item 
+\mbox{\Hypertarget{classGame_af729561d89036f0c841bc1a428dc43cf}\label{classGame_af729561d89036f0c841bc1a428dc43cf}} 
+\mbox{\hyperlink{classsf_1_1Font}{sf\+::\+Font}} {\bfseries font}
+\item 
+\mbox{\Hypertarget{classGame_a3d3e4d68aca0adb6422ea5799cf5ec18}\label{classGame_a3d3e4d68aca0adb6422ea5799cf5ec18}} 
+int {\bfseries points}
+\item 
+\mbox{\Hypertarget{classGame_a0d4035fec20c068ffb2d1764246ae664}\label{classGame_a0d4035fec20c068ffb2d1764246ae664}} 
+\mbox{\hyperlink{classsf_1_1RectangleShape}{sf\+::\+Rectangle\+Shape}} {\bfseries back}
+\item 
+\mbox{\Hypertarget{classGame_a1d44f942a4f1e1ce5a441edd6e54ae90}\label{classGame_a1d44f942a4f1e1ce5a441edd6e54ae90}} 
+\mbox{\hyperlink{classsf_1_1RectangleShape}{sf\+::\+Rectangle\+Shape}} {\bfseries bar}
+\item 
+\mbox{\Hypertarget{classGame_ac490e172e4e001e77692465395efe30d}\label{classGame_ac490e172e4e001e77692465395efe30d}} 
+\mbox{\hyperlink{classsf_1_1Sprite}{sf\+::\+Sprite}} {\bfseries player\+\_\+img}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The game class responsible for updating and rendering the game 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGame_ad9780d07361a3d07ca2fdca1cd3e5819}\label{classGame_ad9780d07361a3d07ca2fdca1cd3e5819}} 
+\index{Game@{Game}!add@{add}}
+\index{add@{add}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily void Game\+::add (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classGame__Object}{Game\+\_\+\+Object}} $>$ const \&}]{object }\end{DoxyParamCaption})}
+
+Add a gameobject to the game 
+\begin{DoxyParams}{Parameters}
+{\em object} & The object to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGame_ae59e364d24c46bf31e45c12ffdb2a2d5}\label{classGame_ae59e364d24c46bf31e45c12ffdb2a2d5}} 
+\index{Game@{Game}!add\_points@{add\_points}}
+\index{add\_points@{add\_points}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{add\_points()}{add\_points()}}
+{\footnotesize\ttfamily void Game\+::add\+\_\+points (\begin{DoxyParamCaption}\item[{int}]{points }\end{DoxyParamCaption})}
+
+Add points to the collected points 
+\begin{DoxyParams}{Parameters}
+{\em points} & How many points to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGame_ae9d3550364bdd678d878c9bca1560697}\label{classGame_ae9d3550364bdd678d878c9bca1560697}} 
+\index{Game@{Game}!collides\_with@{collides\_with}}
+\index{collides\_with@{collides\_with}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{collides\_with()}{collides\_with()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classGame__Object}{Game\+\_\+\+Object}} $>$ $>$ Game\+::collides\+\_\+with (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGame__Object}{Game\+\_\+\+Object}} \&}]{obj }\end{DoxyParamCaption}) const}
+
+Check what object a object collides with
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object to check for collision on \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of the the object collided with 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGame_a77a0c81edef3606c4d5315420c22a8ac}\label{classGame_a77a0c81edef3606c4d5315420c22a8ac}} 
+\index{Game@{Game}!enemy\_killed@{enemy\_killed}}
+\index{enemy\_killed@{enemy\_killed}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{enemy\_killed()}{enemy\_killed()}}
+{\footnotesize\ttfamily void Game\+::enemy\+\_\+killed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Tell the game that a enemy has been killed \mbox{\Hypertarget{classGame_a58dc56ff13ee28da878a364887bb1a2f}\label{classGame_a58dc56ff13ee28da878a364887bb1a2f}} 
+\index{Game@{Game}!get\_points@{get\_points}}
+\index{get\_points@{get\_points}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{get\_points()}{get\_points()}}
+{\footnotesize\ttfamily int Game\+::get\+\_\+points (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Get the points collected during the game \begin{DoxyReturn}{Returns}
+The points 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGame_a975e370ea19fd4942ca201d80d7b5a82}\label{classGame_a975e370ea19fd4942ca201d80d7b5a82}} 
+\index{Game@{Game}!render@{render}}
+\index{render@{render}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Game\+::render (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsf_1_1RenderWindow}{sf\+::\+Render\+Window}} \&}]{target }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Render the game
+
+
+\begin{DoxyParams}{Parameters}
+{\em target} & Where to render the game \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGame_a8f264337bcb1032ef41d34e1a5b26cea}\label{classGame_a8f264337bcb1032ef41d34e1a5b26cea}} 
+\index{Game@{Game}!update@{update}}
+\index{update@{update}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Game\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsf_1_1Time}{sf\+::\+Time}} const \&}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Update the game
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & The time since last update \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game.\+h\item 
+Game.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,67 @@
+\hypertarget{Game_8h_source}{}\doxysection{Game.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by albin on 2022-\/12-\/01.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef TDP005\_GAME\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define TDP005\_GAME\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}utility/common.h"{}}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}Wave.h"{}}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{classPlayer}{Player}};}
+\DoxyCodeLine{15 \textcolor{keyword}{class }\mbox{\hyperlink{classGame__Object}{Game\_Object}};}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{enum} Objects\_to\_hit \{ all\_enemies, all\_players, slowerenemy, rangedenemy\};}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{22 \textcolor{keyword}{class }\mbox{\hyperlink{classGame}{Game}} \{}
+\DoxyCodeLine{23 \textcolor{keyword}{public}:}
+\DoxyCodeLine{24     \mbox{\hyperlink{classGame}{Game}}();}
+\DoxyCodeLine{25     \mbox{\hyperlink{classGame}{\string~Game}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     \textcolor{keywordtype}{bool} is\_game\_over\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{33     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classGame_a8f264337bcb1032ef41d34e1a5b26cea}{update}}(\mbox{\hyperlink{classsf_1_1Time}{sf::Time}} \textcolor{keyword}{const}\& time);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{40     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classGame_a975e370ea19fd4942ca201d80d7b5a82}{render}}(\mbox{\hyperlink{classsf_1_1RenderWindow}{sf::RenderWindow}}\& target);}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{46     \textcolor{keywordtype}{void} \mbox{\hyperlink{classGame_ad9780d07361a3d07ca2fdca1cd3e5819}{add}}(std::shared\_ptr<Game\_Object> \textcolor{keyword}{const}\& \textcolor{keywordtype}{object});}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{54     vector<std::shared\_ptr<Game\_Object>> \mbox{\hyperlink{classGame_ae9d3550364bdd678d878c9bca1560697}{collides\_with}}(\mbox{\hyperlink{classGame__Object}{Game\_Object}}\& obj) \textcolor{keyword}{const};}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{59     \textcolor{keywordtype}{void} \mbox{\hyperlink{classGame_a77a0c81edef3606c4d5315420c22a8ac}{enemy\_killed}}();}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61     \mbox{\hyperlink{classsf_1_1RenderWindow}{sf::RenderWindow}}* window;}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{67     \textcolor{keywordtype}{int} \mbox{\hyperlink{classGame_a58dc56ff13ee28da878a364887bb1a2f}{get\_points}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{73     \textcolor{keywordtype}{void} \mbox{\hyperlink{classGame_ae59e364d24c46bf31e45c12ffdb2a2d5}{add\_points}}(\textcolor{keywordtype}{int} points);}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 \textcolor{keyword}{private}:}
+\DoxyCodeLine{76     \textcolor{keywordtype}{void} spawn\_obstacles();}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78     vector<std::shared\_ptr<Game\_Object>> objects;}
+\DoxyCodeLine{79     \mbox{\hyperlink{classWave}{Wave}} wave;}
+\DoxyCodeLine{80     \mbox{\hyperlink{classsf_1_1Clock}{sf::Clock}} survived\_clock;}
+\DoxyCodeLine{81     shared\_ptr<Player> player;}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83     \mbox{\hyperlink{classsf_1_1Time}{sf::Time}} time\_survived;}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85     \mbox{\hyperlink{classsf_1_1Font}{sf::Font}} font;}
+\DoxyCodeLine{86     \textcolor{keywordtype}{int} points;}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88     \textcolor{comment}{// Healthbar components}}
+\DoxyCodeLine{89     \mbox{\hyperlink{classsf_1_1RectangleShape}{sf::RectangleShape}} back;}
+\DoxyCodeLine{90     \mbox{\hyperlink{classsf_1_1RectangleShape}{sf::RectangleShape}} bar;}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92     \mbox{\hyperlink{classsf_1_1Sprite}{sf::Sprite}} player\_img;}
+\DoxyCodeLine{93 \};}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//TDP005\_GAME\_H}}
+
+\end{DoxyCode}

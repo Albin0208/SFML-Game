@@ -1,0 +1,835 @@
+\hypertarget{tttables_8h_source}{}\doxysection{tttables.\+h}
+\label{tttables_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/tttables.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/tttables.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  tttables.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Basic SFNT/TrueType tables definitions and interface                 */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*    (specification only).                                                */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  Copyright 1996-\/2005, 2008-\/2014 by                                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{16 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{17 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#ifndef \_\_TTTABLES\_H\_\_}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#define \_\_TTTABLES\_H\_\_}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#ifdef FREETYPE\_H}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#error "{}freetype.h of FreeType 1 has been loaded!"{}}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#error "{}Please fix the directory search order for header files"{}}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#error "{}so that freetype.h of FreeType 2 is found first."{}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{37   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{38   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{39   \textcolor{comment}{/*    truetype\_tables                                                    */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{41   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{42   \textcolor{comment}{/*    TrueType Tables                                                    */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{44   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{45   \textcolor{comment}{/*    TrueType specific table types and functions.                       */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{47   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*    This section contains the definition of TrueType-\/specific tables   */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*    as well as some routines used to access and process them.          */}}
+\DoxyCodeLine{50   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{51   \textcolor{comment}{/* <Order>                                                               */}}
+\DoxyCodeLine{52   \textcolor{comment}{/*    TT\_Header                                                          */}}
+\DoxyCodeLine{53   \textcolor{comment}{/*    TT\_HoriHeader                                                      */}}
+\DoxyCodeLine{54   \textcolor{comment}{/*    TT\_VertHeader                                                      */}}
+\DoxyCodeLine{55   \textcolor{comment}{/*    TT\_OS2                                                             */}}
+\DoxyCodeLine{56   \textcolor{comment}{/*    TT\_Postscript                                                      */}}
+\DoxyCodeLine{57   \textcolor{comment}{/*    TT\_PCLT                                                            */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*    TT\_MaxProfile                                                      */}}
+\DoxyCodeLine{59   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{60   \textcolor{comment}{/*    FT\_Sfnt\_Tag                                                        */}}
+\DoxyCodeLine{61   \textcolor{comment}{/*    FT\_Get\_Sfnt\_Table                                                  */}}
+\DoxyCodeLine{62   \textcolor{comment}{/*    FT\_Load\_Sfnt\_Table                                                 */}}
+\DoxyCodeLine{63   \textcolor{comment}{/*    FT\_Sfnt\_Table\_Info                                                 */}}
+\DoxyCodeLine{64   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{65   \textcolor{comment}{/*    FT\_Get\_CMap\_Language\_ID                                            */}}
+\DoxyCodeLine{66   \textcolor{comment}{/*    FT\_Get\_CMap\_Format                                                 */}}
+\DoxyCodeLine{67   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{68   \textcolor{comment}{/*    FT\_PARAM\_TAG\_UNPATENTED\_HINTING                                    */}}
+\DoxyCodeLine{69   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{70 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{74   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{75   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{76   \textcolor{comment}{/*    TT\_Header                                                          */}}
+\DoxyCodeLine{77   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{78   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{79   \textcolor{comment}{/*    A structure used to model a TrueType font header table.  All       */}}
+\DoxyCodeLine{80   \textcolor{comment}{/*    fields follow the TrueType specification.                          */}}
+\DoxyCodeLine{81   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{82   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structTT__Header__}{TT\_Header\_}}}
+\DoxyCodeLine{83   \{}
+\DoxyCodeLine{84     FT\_Fixed   Table\_Version;}
+\DoxyCodeLine{85     FT\_Fixed   Font\_Revision;}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87     FT\_Long    CheckSum\_Adjust;}
+\DoxyCodeLine{88     FT\_Long    Magic\_Number;}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90     FT\_UShort  Flags;}
+\DoxyCodeLine{91     FT\_UShort  Units\_Per\_EM;}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93     FT\_Long    Created [2];}
+\DoxyCodeLine{94     FT\_Long    Modified[2];}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96     FT\_Short   xMin;}
+\DoxyCodeLine{97     FT\_Short   yMin;}
+\DoxyCodeLine{98     FT\_Short   xMax;}
+\DoxyCodeLine{99     FT\_Short   yMax;}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101     FT\_UShort  Mac\_Style;}
+\DoxyCodeLine{102     FT\_UShort  Lowest\_Rec\_PPEM;}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104     FT\_Short   Font\_Direction;}
+\DoxyCodeLine{105     FT\_Short   Index\_To\_Loc\_Format;}
+\DoxyCodeLine{106     FT\_Short   Glyph\_Data\_Format;}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108   \} TT\_Header;}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{112   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{113   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{114   \textcolor{comment}{/*    TT\_HoriHeader                                                      */}}
+\DoxyCodeLine{115   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{116   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{117   \textcolor{comment}{/*    A structure used to model a TrueType horizontal header, the `hhea' */}}
+\DoxyCodeLine{118   \textcolor{comment}{/*    table, as well as the corresponding horizontal metrics table,      */}}
+\DoxyCodeLine{119   \textcolor{comment}{/*    i.e., the `hmtx' table.                                            */}}
+\DoxyCodeLine{120   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{121   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{122   \textcolor{comment}{/*    Version                :: The table version.                       */}}
+\DoxyCodeLine{123   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{124   \textcolor{comment}{/*    Ascender               :: The font's ascender, i.e., the distance  */}}
+\DoxyCodeLine{125   \textcolor{comment}{/*                              from the baseline to the top-\/most of all */}}
+\DoxyCodeLine{126   \textcolor{comment}{/*                              glyph points found in the font.          */}}
+\DoxyCodeLine{127   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{128   \textcolor{comment}{/*                              This value is invalid in many fonts, as  */}}
+\DoxyCodeLine{129   \textcolor{comment}{/*                              it is usually set by the font designer,  */}}
+\DoxyCodeLine{130   \textcolor{comment}{/*                              and often reflects only a portion of the */}}
+\DoxyCodeLine{131   \textcolor{comment}{/*                              glyphs found in the font (maybe ASCII).  */}}
+\DoxyCodeLine{132   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{133   \textcolor{comment}{/*                              You should use the `sTypoAscender' field */}}
+\DoxyCodeLine{134   \textcolor{comment}{/*                              of the OS/2 table instead if you want    */}}
+\DoxyCodeLine{135   \textcolor{comment}{/*                              the correct one.                         */}}
+\DoxyCodeLine{136   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{137   \textcolor{comment}{/*    Descender              :: The font's descender, i.e., the distance */}}
+\DoxyCodeLine{138   \textcolor{comment}{/*                              from the baseline to the bottom-\/most of  */}}
+\DoxyCodeLine{139   \textcolor{comment}{/*                              all glyph points found in the font.  It  */}}
+\DoxyCodeLine{140   \textcolor{comment}{/*                              is negative.                             */}}
+\DoxyCodeLine{141   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{142   \textcolor{comment}{/*                              This value is invalid in many fonts, as  */}}
+\DoxyCodeLine{143   \textcolor{comment}{/*                              it is usually set by the font designer,  */}}
+\DoxyCodeLine{144   \textcolor{comment}{/*                              and often reflects only a portion of the */}}
+\DoxyCodeLine{145   \textcolor{comment}{/*                              glyphs found in the font (maybe ASCII).  */}}
+\DoxyCodeLine{146   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{147   \textcolor{comment}{/*                              You should use the `sTypoDescender'      */}}
+\DoxyCodeLine{148   \textcolor{comment}{/*                              field of the OS/2 table instead if you   */}}
+\DoxyCodeLine{149   \textcolor{comment}{/*                              want the correct one.                    */}}
+\DoxyCodeLine{150   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{151   \textcolor{comment}{/*    Line\_Gap               :: The font's line gap, i.e., the distance  */}}
+\DoxyCodeLine{152   \textcolor{comment}{/*                              to add to the ascender and descender to  */}}
+\DoxyCodeLine{153   \textcolor{comment}{/*                              get the BTB, i.e., the                   */}}
+\DoxyCodeLine{154   \textcolor{comment}{/*                              baseline-\/to-\/baseline distance for the    */}}
+\DoxyCodeLine{155   \textcolor{comment}{/*                              font.                                    */}}
+\DoxyCodeLine{156   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{157   \textcolor{comment}{/*    advance\_Width\_Max      :: This field is the maximum of all advance */}}
+\DoxyCodeLine{158   \textcolor{comment}{/*                              widths found in the font.  It can be     */}}
+\DoxyCodeLine{159   \textcolor{comment}{/*                              used to compute the maximum width of an  */}}
+\DoxyCodeLine{160   \textcolor{comment}{/*                              arbitrary string of text.                */}}
+\DoxyCodeLine{161   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{162   \textcolor{comment}{/*    min\_Left\_Side\_Bearing  :: The minimum left side bearing of all     */}}
+\DoxyCodeLine{163   \textcolor{comment}{/*                              glyphs within the font.                  */}}
+\DoxyCodeLine{164   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{165   \textcolor{comment}{/*    min\_Right\_Side\_Bearing :: The minimum right side bearing of all    */}}
+\DoxyCodeLine{166   \textcolor{comment}{/*                              glyphs within the font.                  */}}
+\DoxyCodeLine{167   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{168   \textcolor{comment}{/*    xMax\_Extent            :: The maximum horizontal extent (i.e., the */}}
+\DoxyCodeLine{169   \textcolor{comment}{/*                              `width' of a glyph's bounding box) for   */}}
+\DoxyCodeLine{170   \textcolor{comment}{/*                              all glyphs in the font.                  */}}
+\DoxyCodeLine{171   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{172   \textcolor{comment}{/*    caret\_Slope\_Rise       :: The rise coefficient of the cursor's     */}}
+\DoxyCodeLine{173   \textcolor{comment}{/*                              slope of the cursor (slope=rise/run).    */}}
+\DoxyCodeLine{174   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{175   \textcolor{comment}{/*    caret\_Slope\_Run        :: The run coefficient of the cursor's      */}}
+\DoxyCodeLine{176   \textcolor{comment}{/*                              slope.                                   */}}
+\DoxyCodeLine{177   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{178   \textcolor{comment}{/*    Reserved               :: 8\string~reserved bytes.                        */}}
+\DoxyCodeLine{179   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{180   \textcolor{comment}{/*    metric\_Data\_Format     :: Always\string~0.                                */}}
+\DoxyCodeLine{181   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{182   \textcolor{comment}{/*    number\_Of\_HMetrics     :: Number of HMetrics entries in the `hmtx' */}}
+\DoxyCodeLine{183   \textcolor{comment}{/*                              table -\/-\/ this value can be smaller than  */}}
+\DoxyCodeLine{184   \textcolor{comment}{/*                              the total number of glyphs in the font.  */}}
+\DoxyCodeLine{185   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{186   \textcolor{comment}{/*    long\_metrics           :: A pointer into the `hmtx' table.         */}}
+\DoxyCodeLine{187   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{188   \textcolor{comment}{/*    short\_metrics          :: A pointer into the `hmtx' table.         */}}
+\DoxyCodeLine{189   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{190   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{191   \textcolor{comment}{/*    IMPORTANT: The TT\_HoriHeader and TT\_VertHeader structures should   */}}
+\DoxyCodeLine{192   \textcolor{comment}{/*               be identical except for the names of their fields,      */}}
+\DoxyCodeLine{193   \textcolor{comment}{/*               which are different.                                    */}}
+\DoxyCodeLine{194   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{195   \textcolor{comment}{/*               This ensures that a single function in the `ttload'     */}}
+\DoxyCodeLine{196   \textcolor{comment}{/*               module is able to read both the horizontal and vertical */}}
+\DoxyCodeLine{197   \textcolor{comment}{/*               headers.                                                */}}
+\DoxyCodeLine{198   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{199   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structTT__HoriHeader__}{TT\_HoriHeader\_}}}
+\DoxyCodeLine{200   \{}
+\DoxyCodeLine{201     FT\_Fixed   Version;}
+\DoxyCodeLine{202     FT\_Short   Ascender;}
+\DoxyCodeLine{203     FT\_Short   Descender;}
+\DoxyCodeLine{204     FT\_Short   Line\_Gap;}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206     FT\_UShort  advance\_Width\_Max;      \textcolor{comment}{/* advance width maximum */}}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208     FT\_Short   min\_Left\_Side\_Bearing;  \textcolor{comment}{/* minimum left-\/sb       */}}
+\DoxyCodeLine{209     FT\_Short   min\_Right\_Side\_Bearing; \textcolor{comment}{/* minimum right-\/sb      */}}
+\DoxyCodeLine{210     FT\_Short   xMax\_Extent;            \textcolor{comment}{/* xmax extents          */}}
+\DoxyCodeLine{211     FT\_Short   caret\_Slope\_Rise;}
+\DoxyCodeLine{212     FT\_Short   caret\_Slope\_Run;}
+\DoxyCodeLine{213     FT\_Short   caret\_Offset;}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215     FT\_Short   Reserved[4];}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217     FT\_Short   metric\_Data\_Format;}
+\DoxyCodeLine{218     FT\_UShort  number\_Of\_HMetrics;}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{220     \textcolor{comment}{/* The following fields are not defined by the TrueType specification */}}
+\DoxyCodeLine{221     \textcolor{comment}{/* but they are used to connect the metrics header to the relevant    */}}
+\DoxyCodeLine{222     \textcolor{comment}{/* `HMTX' table.                                                      */}}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{224     \textcolor{keywordtype}{void}*      long\_metrics;}
+\DoxyCodeLine{225     \textcolor{keywordtype}{void}*      short\_metrics;}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{227   \} \mbox{\hyperlink{structTT__HoriHeader__}{TT\_HoriHeader}};}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{231   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{232   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{233   \textcolor{comment}{/*    TT\_VertHeader                                                      */}}
+\DoxyCodeLine{234   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{235   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{236   \textcolor{comment}{/*    A structure used to model a TrueType vertical header, the `vhea'   */}}
+\DoxyCodeLine{237   \textcolor{comment}{/*    table, as well as the corresponding vertical metrics table, i.e.,  */}}
+\DoxyCodeLine{238   \textcolor{comment}{/*    the `vmtx' table.                                                  */}}
+\DoxyCodeLine{239   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{240   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{241   \textcolor{comment}{/*    Version                 :: The table version.                      */}}
+\DoxyCodeLine{242   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{243   \textcolor{comment}{/*    Ascender                :: The font's ascender, i.e., the distance */}}
+\DoxyCodeLine{244   \textcolor{comment}{/*                               from the baseline to the top-\/most of    */}}
+\DoxyCodeLine{245   \textcolor{comment}{/*                               all glyph points found in the font.     */}}
+\DoxyCodeLine{246   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{247   \textcolor{comment}{/*                               This value is invalid in many fonts, as */}}
+\DoxyCodeLine{248   \textcolor{comment}{/*                               it is usually set by the font designer, */}}
+\DoxyCodeLine{249   \textcolor{comment}{/*                               and often reflects only a portion of    */}}
+\DoxyCodeLine{250   \textcolor{comment}{/*                               the glyphs found in the font (maybe     */}}
+\DoxyCodeLine{251   \textcolor{comment}{/*                               ASCII).                                 */}}
+\DoxyCodeLine{252   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{253   \textcolor{comment}{/*                               You should use the `sTypoAscender'      */}}
+\DoxyCodeLine{254   \textcolor{comment}{/*                               field of the OS/2 table instead if you  */}}
+\DoxyCodeLine{255   \textcolor{comment}{/*                               want the correct one.                   */}}
+\DoxyCodeLine{256   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{257   \textcolor{comment}{/*    Descender               :: The font's descender, i.e., the         */}}
+\DoxyCodeLine{258   \textcolor{comment}{/*                               distance from the baseline to the       */}}
+\DoxyCodeLine{259   \textcolor{comment}{/*                               bottom-\/most of all glyph points found   */}}
+\DoxyCodeLine{260   \textcolor{comment}{/*                               in the font.  It is negative.           */}}
+\DoxyCodeLine{261   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{262   \textcolor{comment}{/*                               This value is invalid in many fonts, as */}}
+\DoxyCodeLine{263   \textcolor{comment}{/*                               it is usually set by the font designer, */}}
+\DoxyCodeLine{264   \textcolor{comment}{/*                               and often reflects only a portion of    */}}
+\DoxyCodeLine{265   \textcolor{comment}{/*                               the glyphs found in the font (maybe     */}}
+\DoxyCodeLine{266   \textcolor{comment}{/*                               ASCII).                                 */}}
+\DoxyCodeLine{267   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{268   \textcolor{comment}{/*                               You should use the `sTypoDescender'     */}}
+\DoxyCodeLine{269   \textcolor{comment}{/*                               field of the OS/2 table instead if you  */}}
+\DoxyCodeLine{270   \textcolor{comment}{/*                               want the correct one.                   */}}
+\DoxyCodeLine{271   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{272   \textcolor{comment}{/*    Line\_Gap                :: The font's line gap, i.e., the distance */}}
+\DoxyCodeLine{273   \textcolor{comment}{/*                               to add to the ascender and descender to */}}
+\DoxyCodeLine{274   \textcolor{comment}{/*                               get the BTB, i.e., the                  */}}
+\DoxyCodeLine{275   \textcolor{comment}{/*                               baseline-\/to-\/baseline distance for the   */}}
+\DoxyCodeLine{276   \textcolor{comment}{/*                               font.                                   */}}
+\DoxyCodeLine{277   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{278   \textcolor{comment}{/*    advance\_Height\_Max      :: This field is the maximum of all        */}}
+\DoxyCodeLine{279   \textcolor{comment}{/*                               advance heights found in the font.  It  */}}
+\DoxyCodeLine{280   \textcolor{comment}{/*                               can be used to compute the maximum      */}}
+\DoxyCodeLine{281   \textcolor{comment}{/*                               height of an arbitrary string of text.  */}}
+\DoxyCodeLine{282   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{283   \textcolor{comment}{/*    min\_Top\_Side\_Bearing    :: The minimum top side bearing of all     */}}
+\DoxyCodeLine{284   \textcolor{comment}{/*                               glyphs within the font.                 */}}
+\DoxyCodeLine{285   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{286   \textcolor{comment}{/*    min\_Bottom\_Side\_Bearing :: The minimum bottom side bearing of all  */}}
+\DoxyCodeLine{287   \textcolor{comment}{/*                               glyphs within the font.                 */}}
+\DoxyCodeLine{288   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{289   \textcolor{comment}{/*    yMax\_Extent             :: The maximum vertical extent (i.e., the  */}}
+\DoxyCodeLine{290   \textcolor{comment}{/*                               `height' of a glyph's bounding box) for */}}
+\DoxyCodeLine{291   \textcolor{comment}{/*                               all glyphs in the font.                 */}}
+\DoxyCodeLine{292   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{293   \textcolor{comment}{/*    caret\_Slope\_Rise        :: The rise coefficient of the cursor's    */}}
+\DoxyCodeLine{294   \textcolor{comment}{/*                               slope of the cursor (slope=rise/run).   */}}
+\DoxyCodeLine{295   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{296   \textcolor{comment}{/*    caret\_Slope\_Run         :: The run coefficient of the cursor's     */}}
+\DoxyCodeLine{297   \textcolor{comment}{/*                               slope.                                  */}}
+\DoxyCodeLine{298   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{299   \textcolor{comment}{/*    caret\_Offset            :: The cursor's offset for slanted fonts.  */}}
+\DoxyCodeLine{300   \textcolor{comment}{/*                               This value is `reserved' in vmtx        */}}
+\DoxyCodeLine{301   \textcolor{comment}{/*                               version 1.0.                            */}}
+\DoxyCodeLine{302   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{303   \textcolor{comment}{/*    Reserved                :: 8\string~reserved bytes.                       */}}
+\DoxyCodeLine{304   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{305   \textcolor{comment}{/*    metric\_Data\_Format      :: Always\string~0.                               */}}
+\DoxyCodeLine{306   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{307   \textcolor{comment}{/*    number\_Of\_HMetrics      :: Number of VMetrics entries in the       */}}
+\DoxyCodeLine{308   \textcolor{comment}{/*                               `vmtx' table -\/-\/ this value can be       */}}
+\DoxyCodeLine{309   \textcolor{comment}{/*                               smaller than the total number of glyphs */}}
+\DoxyCodeLine{310   \textcolor{comment}{/*                               in the font.                            */}}
+\DoxyCodeLine{311   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{312   \textcolor{comment}{/*    long\_metrics           :: A pointer into the `vmtx' table.         */}}
+\DoxyCodeLine{313   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{314   \textcolor{comment}{/*    short\_metrics          :: A pointer into the `vmtx' table.         */}}
+\DoxyCodeLine{315   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{316   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{317   \textcolor{comment}{/*    IMPORTANT: The TT\_HoriHeader and TT\_VertHeader structures should   */}}
+\DoxyCodeLine{318   \textcolor{comment}{/*               be identical except for the names of their fields,      */}}
+\DoxyCodeLine{319   \textcolor{comment}{/*               which are different.                                    */}}
+\DoxyCodeLine{320   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{321   \textcolor{comment}{/*               This ensures that a single function in the `ttload'     */}}
+\DoxyCodeLine{322   \textcolor{comment}{/*               module is able to read both the horizontal and vertical */}}
+\DoxyCodeLine{323   \textcolor{comment}{/*               headers.                                                */}}
+\DoxyCodeLine{324   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{325   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structTT__VertHeader__}{TT\_VertHeader\_}}}
+\DoxyCodeLine{326   \{}
+\DoxyCodeLine{327     FT\_Fixed   Version;}
+\DoxyCodeLine{328     FT\_Short   Ascender;}
+\DoxyCodeLine{329     FT\_Short   Descender;}
+\DoxyCodeLine{330     FT\_Short   Line\_Gap;}
+\DoxyCodeLine{331 }
+\DoxyCodeLine{332     FT\_UShort  advance\_Height\_Max;      \textcolor{comment}{/* advance height maximum */}}
+\DoxyCodeLine{333 }
+\DoxyCodeLine{334     FT\_Short   min\_Top\_Side\_Bearing;    \textcolor{comment}{/* minimum left-\/sb or top-\/sb       */}}
+\DoxyCodeLine{335     FT\_Short   min\_Bottom\_Side\_Bearing; \textcolor{comment}{/* minimum right-\/sb or bottom-\/sb   */}}
+\DoxyCodeLine{336     FT\_Short   yMax\_Extent;             \textcolor{comment}{/* xmax or ymax extents            */}}
+\DoxyCodeLine{337     FT\_Short   caret\_Slope\_Rise;}
+\DoxyCodeLine{338     FT\_Short   caret\_Slope\_Run;}
+\DoxyCodeLine{339     FT\_Short   caret\_Offset;}
+\DoxyCodeLine{340 }
+\DoxyCodeLine{341     FT\_Short   Reserved[4];}
+\DoxyCodeLine{342 }
+\DoxyCodeLine{343     FT\_Short   metric\_Data\_Format;}
+\DoxyCodeLine{344     FT\_UShort  number\_Of\_VMetrics;}
+\DoxyCodeLine{345 }
+\DoxyCodeLine{346     \textcolor{comment}{/* The following fields are not defined by the TrueType specification */}}
+\DoxyCodeLine{347     \textcolor{comment}{/* but they're used to connect the metrics header to the relevant     */}}
+\DoxyCodeLine{348     \textcolor{comment}{/* `HMTX' or `VMTX' table.                                            */}}
+\DoxyCodeLine{349 }
+\DoxyCodeLine{350     \textcolor{keywordtype}{void}*      long\_metrics;}
+\DoxyCodeLine{351     \textcolor{keywordtype}{void}*      short\_metrics;}
+\DoxyCodeLine{352 }
+\DoxyCodeLine{353   \} \mbox{\hyperlink{structTT__VertHeader__}{TT\_VertHeader}};}
+\DoxyCodeLine{354 }
+\DoxyCodeLine{355 }
+\DoxyCodeLine{356 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{357   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{358   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{359   \textcolor{comment}{/*    TT\_OS2                                                             */}}
+\DoxyCodeLine{360   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{361   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{362   \textcolor{comment}{/*    A structure used to model a TrueType OS/2 table.  All fields       */}}
+\DoxyCodeLine{363   \textcolor{comment}{/*    comply to the OpenType specification.                              */}}
+\DoxyCodeLine{364   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{365   \textcolor{comment}{/*    Note that we now support old Mac fonts that do not include an OS/2 */}}
+\DoxyCodeLine{366   \textcolor{comment}{/*    table.  In this case, the `version' field is always set to 0xFFFF. */}}
+\DoxyCodeLine{367   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{368   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structTT__OS2__}{TT\_OS2\_}}}
+\DoxyCodeLine{369   \{}
+\DoxyCodeLine{370     FT\_UShort  version;                \textcolor{comment}{/* 0x0001 -\/ more or 0xFFFF */}}
+\DoxyCodeLine{371     FT\_Short   xAvgCharWidth;}
+\DoxyCodeLine{372     FT\_UShort  usWeightClass;}
+\DoxyCodeLine{373     FT\_UShort  usWidthClass;}
+\DoxyCodeLine{374     FT\_Short   fsType;}
+\DoxyCodeLine{375     FT\_Short   ySubscriptXSize;}
+\DoxyCodeLine{376     FT\_Short   ySubscriptYSize;}
+\DoxyCodeLine{377     FT\_Short   ySubscriptXOffset;}
+\DoxyCodeLine{378     FT\_Short   ySubscriptYOffset;}
+\DoxyCodeLine{379     FT\_Short   ySuperscriptXSize;}
+\DoxyCodeLine{380     FT\_Short   ySuperscriptYSize;}
+\DoxyCodeLine{381     FT\_Short   ySuperscriptXOffset;}
+\DoxyCodeLine{382     FT\_Short   ySuperscriptYOffset;}
+\DoxyCodeLine{383     FT\_Short   yStrikeoutSize;}
+\DoxyCodeLine{384     FT\_Short   yStrikeoutPosition;}
+\DoxyCodeLine{385     FT\_Short   sFamilyClass;}
+\DoxyCodeLine{386 }
+\DoxyCodeLine{387     FT\_Byte    panose[10];}
+\DoxyCodeLine{388 }
+\DoxyCodeLine{389     FT\_ULong   ulUnicodeRange1;        \textcolor{comment}{/* Bits 0-\/31   */}}
+\DoxyCodeLine{390     FT\_ULong   ulUnicodeRange2;        \textcolor{comment}{/* Bits 32-\/63  */}}
+\DoxyCodeLine{391     FT\_ULong   ulUnicodeRange3;        \textcolor{comment}{/* Bits 64-\/95  */}}
+\DoxyCodeLine{392     FT\_ULong   ulUnicodeRange4;        \textcolor{comment}{/* Bits 96-\/127 */}}
+\DoxyCodeLine{393 }
+\DoxyCodeLine{394     FT\_Char    achVendID[4];}
+\DoxyCodeLine{395 }
+\DoxyCodeLine{396     FT\_UShort  fsSelection;}
+\DoxyCodeLine{397     FT\_UShort  usFirstCharIndex;}
+\DoxyCodeLine{398     FT\_UShort  usLastCharIndex;}
+\DoxyCodeLine{399     FT\_Short   sTypoAscender;}
+\DoxyCodeLine{400     FT\_Short   sTypoDescender;}
+\DoxyCodeLine{401     FT\_Short   sTypoLineGap;}
+\DoxyCodeLine{402     FT\_UShort  usWinAscent;}
+\DoxyCodeLine{403     FT\_UShort  usWinDescent;}
+\DoxyCodeLine{404 }
+\DoxyCodeLine{405     \textcolor{comment}{/* only version 1 and higher: */}}
+\DoxyCodeLine{406 }
+\DoxyCodeLine{407     FT\_ULong   ulCodePageRange1;       \textcolor{comment}{/* Bits 0-\/31   */}}
+\DoxyCodeLine{408     FT\_ULong   ulCodePageRange2;       \textcolor{comment}{/* Bits 32-\/63  */}}
+\DoxyCodeLine{409 }
+\DoxyCodeLine{410     \textcolor{comment}{/* only version 2 and higher: */}}
+\DoxyCodeLine{411 }
+\DoxyCodeLine{412     FT\_Short   sxHeight;}
+\DoxyCodeLine{413     FT\_Short   sCapHeight;}
+\DoxyCodeLine{414     FT\_UShort  usDefaultChar;}
+\DoxyCodeLine{415     FT\_UShort  usBreakChar;}
+\DoxyCodeLine{416     FT\_UShort  usMaxContext;}
+\DoxyCodeLine{417 }
+\DoxyCodeLine{418     \textcolor{comment}{/* only version 5 and higher: */}}
+\DoxyCodeLine{419 }
+\DoxyCodeLine{420     FT\_UShort  usLowerOpticalPointSize;       \textcolor{comment}{/* in twips (1/20th points) */}}
+\DoxyCodeLine{421     FT\_UShort  usUpperOpticalPointSize;       \textcolor{comment}{/* in twips (1/20th points) */}}
+\DoxyCodeLine{422 }
+\DoxyCodeLine{423   \} \mbox{\hyperlink{structTT__OS2__}{TT\_OS2}};}
+\DoxyCodeLine{424 }
+\DoxyCodeLine{425 }
+\DoxyCodeLine{426 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{427   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{428   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{429   \textcolor{comment}{/*    TT\_Postscript                                                      */}}
+\DoxyCodeLine{430   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{431   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{432   \textcolor{comment}{/*    A structure used to model a TrueType PostScript table.  All fields */}}
+\DoxyCodeLine{433   \textcolor{comment}{/*    comply to the TrueType specification.  This structure does not     */}}
+\DoxyCodeLine{434   \textcolor{comment}{/*    reference the PostScript glyph names, which can be nevertheless    */}}
+\DoxyCodeLine{435   \textcolor{comment}{/*    accessed with the `ttpost' module.                                 */}}
+\DoxyCodeLine{436   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{437   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structTT__Postscript__}{TT\_Postscript\_}}}
+\DoxyCodeLine{438   \{}
+\DoxyCodeLine{439     FT\_Fixed  FormatType;}
+\DoxyCodeLine{440     FT\_Fixed  italicAngle;}
+\DoxyCodeLine{441     FT\_Short  underlinePosition;}
+\DoxyCodeLine{442     FT\_Short  underlineThickness;}
+\DoxyCodeLine{443     FT\_ULong  isFixedPitch;}
+\DoxyCodeLine{444     FT\_ULong  minMemType42;}
+\DoxyCodeLine{445     FT\_ULong  maxMemType42;}
+\DoxyCodeLine{446     FT\_ULong  minMemType1;}
+\DoxyCodeLine{447     FT\_ULong  maxMemType1;}
+\DoxyCodeLine{448 }
+\DoxyCodeLine{449     \textcolor{comment}{/* Glyph names follow in the file, but we don't   */}}
+\DoxyCodeLine{450     \textcolor{comment}{/* load them by default.  See the ttpost.c file.  */}}
+\DoxyCodeLine{451 }
+\DoxyCodeLine{452   \} \mbox{\hyperlink{structTT__Postscript__}{TT\_Postscript}};}
+\DoxyCodeLine{453 }
+\DoxyCodeLine{454 }
+\DoxyCodeLine{455 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{456   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{457   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{458   \textcolor{comment}{/*    TT\_PCLT                                                            */}}
+\DoxyCodeLine{459   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{460   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{461   \textcolor{comment}{/*    A structure used to model a TrueType PCLT table.  All fields       */}}
+\DoxyCodeLine{462   \textcolor{comment}{/*    comply to the TrueType specification.                              */}}
+\DoxyCodeLine{463   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{464   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structTT__PCLT__}{TT\_PCLT\_}}}
+\DoxyCodeLine{465   \{}
+\DoxyCodeLine{466     FT\_Fixed   Version;}
+\DoxyCodeLine{467     FT\_ULong   FontNumber;}
+\DoxyCodeLine{468     FT\_UShort  Pitch;}
+\DoxyCodeLine{469     FT\_UShort  xHeight;}
+\DoxyCodeLine{470     FT\_UShort  Style;}
+\DoxyCodeLine{471     FT\_UShort  TypeFamily;}
+\DoxyCodeLine{472     FT\_UShort  CapHeight;}
+\DoxyCodeLine{473     FT\_UShort  SymbolSet;}
+\DoxyCodeLine{474     FT\_Char    TypeFace[16];}
+\DoxyCodeLine{475     FT\_Char    CharacterComplement[8];}
+\DoxyCodeLine{476     FT\_Char    FileName[6];}
+\DoxyCodeLine{477     FT\_Char    StrokeWeight;}
+\DoxyCodeLine{478     FT\_Char    WidthType;}
+\DoxyCodeLine{479     FT\_Byte    SerifStyle;}
+\DoxyCodeLine{480     FT\_Byte    Reserved;}
+\DoxyCodeLine{481 }
+\DoxyCodeLine{482   \} \mbox{\hyperlink{structTT__PCLT__}{TT\_PCLT}};}
+\DoxyCodeLine{483 }
+\DoxyCodeLine{484 }
+\DoxyCodeLine{485 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{486   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{487   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{488   \textcolor{comment}{/*    TT\_MaxProfile                                                      */}}
+\DoxyCodeLine{489   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{490   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{491   \textcolor{comment}{/*    The maximum profile is a table containing many max values, which   */}}
+\DoxyCodeLine{492   \textcolor{comment}{/*    can be used to pre-\/allocate arrays.  This ensures that no memory   */}}
+\DoxyCodeLine{493   \textcolor{comment}{/*    allocation occurs during a glyph load.                             */}}
+\DoxyCodeLine{494   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{495   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{496   \textcolor{comment}{/*    version               :: The version number.                       */}}
+\DoxyCodeLine{497   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{498   \textcolor{comment}{/*    numGlyphs             :: The number of glyphs in this TrueType     */}}
+\DoxyCodeLine{499   \textcolor{comment}{/*                             font.                                     */}}
+\DoxyCodeLine{500   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{501   \textcolor{comment}{/*    maxPoints             :: The maximum number of points in a         */}}
+\DoxyCodeLine{502   \textcolor{comment}{/*                             non-\/composite TrueType glyph.  See also   */}}
+\DoxyCodeLine{503   \textcolor{comment}{/*                             the structure element                     */}}
+\DoxyCodeLine{504   \textcolor{comment}{/*                             `maxCompositePoints'.                     */}}
+\DoxyCodeLine{505   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{506   \textcolor{comment}{/*    maxContours           :: The maximum number of contours in a       */}}
+\DoxyCodeLine{507   \textcolor{comment}{/*                             non-\/composite TrueType glyph.  See also   */}}
+\DoxyCodeLine{508   \textcolor{comment}{/*                             the structure element                     */}}
+\DoxyCodeLine{509   \textcolor{comment}{/*                             `maxCompositeContours'.                   */}}
+\DoxyCodeLine{510   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{511   \textcolor{comment}{/*    maxCompositePoints    :: The maximum number of points in a         */}}
+\DoxyCodeLine{512   \textcolor{comment}{/*                             composite TrueType glyph.  See also the   */}}
+\DoxyCodeLine{513   \textcolor{comment}{/*                             structure element `maxPoints'.            */}}
+\DoxyCodeLine{514   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{515   \textcolor{comment}{/*    maxCompositeContours  :: The maximum number of contours in a       */}}
+\DoxyCodeLine{516   \textcolor{comment}{/*                             composite TrueType glyph.  See also the   */}}
+\DoxyCodeLine{517   \textcolor{comment}{/*                             structure element `maxContours'.          */}}
+\DoxyCodeLine{518   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{519   \textcolor{comment}{/*    maxZones              :: The maximum number of zones used for      */}}
+\DoxyCodeLine{520   \textcolor{comment}{/*                             glyph hinting.                            */}}
+\DoxyCodeLine{521   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{522   \textcolor{comment}{/*    maxTwilightPoints     :: The maximum number of points in the       */}}
+\DoxyCodeLine{523   \textcolor{comment}{/*                             twilight zone used for glyph hinting.     */}}
+\DoxyCodeLine{524   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{525   \textcolor{comment}{/*    maxStorage            :: The maximum number of elements in the     */}}
+\DoxyCodeLine{526   \textcolor{comment}{/*                             storage area used for glyph hinting.      */}}
+\DoxyCodeLine{527   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{528   \textcolor{comment}{/*    maxFunctionDefs       :: The maximum number of function            */}}
+\DoxyCodeLine{529   \textcolor{comment}{/*                             definitions in the TrueType bytecode for  */}}
+\DoxyCodeLine{530   \textcolor{comment}{/*                             this font.                                */}}
+\DoxyCodeLine{531   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{532   \textcolor{comment}{/*    maxInstructionDefs    :: The maximum number of instruction         */}}
+\DoxyCodeLine{533   \textcolor{comment}{/*                             definitions in the TrueType bytecode for  */}}
+\DoxyCodeLine{534   \textcolor{comment}{/*                             this font.                                */}}
+\DoxyCodeLine{535   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{536   \textcolor{comment}{/*    maxStackElements      :: The maximum number of stack elements used */}}
+\DoxyCodeLine{537   \textcolor{comment}{/*                             during bytecode interpretation.           */}}
+\DoxyCodeLine{538   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{539   \textcolor{comment}{/*    maxSizeOfInstructions :: The maximum number of TrueType opcodes    */}}
+\DoxyCodeLine{540   \textcolor{comment}{/*                             used for glyph hinting.                   */}}
+\DoxyCodeLine{541   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{542   \textcolor{comment}{/*    maxComponentElements  :: The maximum number of simple (i.e., non-\/  */}}
+\DoxyCodeLine{543   \textcolor{comment}{/*                             composite) glyphs in a composite glyph.   */}}
+\DoxyCodeLine{544   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{545   \textcolor{comment}{/*    maxComponentDepth     :: The maximum nesting depth of composite    */}}
+\DoxyCodeLine{546   \textcolor{comment}{/*                             glyphs.                                   */}}
+\DoxyCodeLine{547   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{548   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{549   \textcolor{comment}{/*    This structure is only used during font loading.                   */}}
+\DoxyCodeLine{550   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{551   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structTT__MaxProfile__}{TT\_MaxProfile\_}}}
+\DoxyCodeLine{552   \{}
+\DoxyCodeLine{553     FT\_Fixed   version;}
+\DoxyCodeLine{554     FT\_UShort  numGlyphs;}
+\DoxyCodeLine{555     FT\_UShort  maxPoints;}
+\DoxyCodeLine{556     FT\_UShort  maxContours;}
+\DoxyCodeLine{557     FT\_UShort  maxCompositePoints;}
+\DoxyCodeLine{558     FT\_UShort  maxCompositeContours;}
+\DoxyCodeLine{559     FT\_UShort  maxZones;}
+\DoxyCodeLine{560     FT\_UShort  maxTwilightPoints;}
+\DoxyCodeLine{561     FT\_UShort  maxStorage;}
+\DoxyCodeLine{562     FT\_UShort  maxFunctionDefs;}
+\DoxyCodeLine{563     FT\_UShort  maxInstructionDefs;}
+\DoxyCodeLine{564     FT\_UShort  maxStackElements;}
+\DoxyCodeLine{565     FT\_UShort  maxSizeOfInstructions;}
+\DoxyCodeLine{566     FT\_UShort  maxComponentElements;}
+\DoxyCodeLine{567     FT\_UShort  maxComponentDepth;}
+\DoxyCodeLine{568 }
+\DoxyCodeLine{569   \} \mbox{\hyperlink{structTT__MaxProfile__}{TT\_MaxProfile}};}
+\DoxyCodeLine{570 }
+\DoxyCodeLine{571 }
+\DoxyCodeLine{572 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{573   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{574   \textcolor{comment}{/* <Enum>                                                                */}}
+\DoxyCodeLine{575   \textcolor{comment}{/*    FT\_Sfnt\_Tag                                                        */}}
+\DoxyCodeLine{576   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{577   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{578   \textcolor{comment}{/*    An enumeration used to specify the index of an SFNT table.         */}}
+\DoxyCodeLine{579   \textcolor{comment}{/*    Used in the @FT\_Get\_Sfnt\_Table API function.                       */}}
+\DoxyCodeLine{580   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{581   \textcolor{comment}{/* <Values>                                                              */}}
+\DoxyCodeLine{582   \textcolor{comment}{/*    FT\_SFNT\_HEAD :: To access the font's @TT\_Header structure.         */}}
+\DoxyCodeLine{583   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{584   \textcolor{comment}{/*    FT\_SFNT\_MAXP :: To access the font's @TT\_MaxProfile structure.     */}}
+\DoxyCodeLine{585   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{586   \textcolor{comment}{/*    FT\_SFNT\_OS2  :: To access the font's @TT\_OS2 structure.            */}}
+\DoxyCodeLine{587   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{588   \textcolor{comment}{/*    FT\_SFNT\_HHEA :: To access the font's @TT\_HoriHeader structure.     */}}
+\DoxyCodeLine{589   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{590   \textcolor{comment}{/*    FT\_SFNT\_VHEA :: To access the font's @TT\_VertHeader struture.      */}}
+\DoxyCodeLine{591   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{592   \textcolor{comment}{/*    FT\_SFNT\_POST :: To access the font's @TT\_Postscript structure.     */}}
+\DoxyCodeLine{593   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{594   \textcolor{comment}{/*    FT\_SFNT\_PCLT :: To access the font's @TT\_PCLT structure.           */}}
+\DoxyCodeLine{595   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{596   \textcolor{keyword}{typedef} \textcolor{keyword}{enum}  FT\_Sfnt\_Tag\_}
+\DoxyCodeLine{597   \{}
+\DoxyCodeLine{598     FT\_SFNT\_HEAD,}
+\DoxyCodeLine{599     FT\_SFNT\_MAXP,}
+\DoxyCodeLine{600     FT\_SFNT\_OS2,}
+\DoxyCodeLine{601     FT\_SFNT\_HHEA,}
+\DoxyCodeLine{602     FT\_SFNT\_VHEA,}
+\DoxyCodeLine{603     FT\_SFNT\_POST,}
+\DoxyCodeLine{604     FT\_SFNT\_PCLT,}
+\DoxyCodeLine{605 }
+\DoxyCodeLine{606     FT\_SFNT\_MAX}
+\DoxyCodeLine{607 }
+\DoxyCodeLine{608   \} FT\_Sfnt\_Tag;}
+\DoxyCodeLine{609 }
+\DoxyCodeLine{610   \textcolor{comment}{/* these constants are deprecated; use the corresponding `FT\_Sfnt\_Tag' */}}
+\DoxyCodeLine{611   \textcolor{comment}{/* values instead                                                      */}}
+\DoxyCodeLine{612 \textcolor{preprocessor}{\#define ft\_sfnt\_head  FT\_SFNT\_HEAD}}
+\DoxyCodeLine{613 \textcolor{preprocessor}{\#define ft\_sfnt\_maxp  FT\_SFNT\_MAXP}}
+\DoxyCodeLine{614 \textcolor{preprocessor}{\#define ft\_sfnt\_os2   FT\_SFNT\_OS2}}
+\DoxyCodeLine{615 \textcolor{preprocessor}{\#define ft\_sfnt\_hhea  FT\_SFNT\_HHEA}}
+\DoxyCodeLine{616 \textcolor{preprocessor}{\#define ft\_sfnt\_vhea  FT\_SFNT\_VHEA}}
+\DoxyCodeLine{617 \textcolor{preprocessor}{\#define ft\_sfnt\_post  FT\_SFNT\_POST}}
+\DoxyCodeLine{618 \textcolor{preprocessor}{\#define ft\_sfnt\_pclt  FT\_SFNT\_PCLT}}
+\DoxyCodeLine{619 }
+\DoxyCodeLine{620 }
+\DoxyCodeLine{621 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{622   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{623   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{624   \textcolor{comment}{/*    FT\_Get\_Sfnt\_Table                                                  */}}
+\DoxyCodeLine{625   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{626   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{627   \textcolor{comment}{/*    Return a pointer to a given SFNT table within a face.              */}}
+\DoxyCodeLine{628   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{629   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{630   \textcolor{comment}{/*    face :: A handle to the source.                                    */}}
+\DoxyCodeLine{631   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{632   \textcolor{comment}{/*    tag  :: The index of the SFNT table.                               */}}
+\DoxyCodeLine{633   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{634   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{635   \textcolor{comment}{/*    A type-\/less pointer to the table.  This will be\string~0 in case of       */}}
+\DoxyCodeLine{636   \textcolor{comment}{/*    error, or if the corresponding table was not found *OR* loaded     */}}
+\DoxyCodeLine{637   \textcolor{comment}{/*    from the file.                                                     */}}
+\DoxyCodeLine{638   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{639   \textcolor{comment}{/*    Use a typecast according to `tag' to access the structure          */}}
+\DoxyCodeLine{640   \textcolor{comment}{/*    elements.                                                          */}}
+\DoxyCodeLine{641   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{642   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{643   \textcolor{comment}{/*    The table is owned by the face object and disappears with it.      */}}
+\DoxyCodeLine{644   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{645   \textcolor{comment}{/*    This function is only useful to access SFNT tables that are loaded */}}
+\DoxyCodeLine{646   \textcolor{comment}{/*    by the sfnt, truetype, and opentype drivers.  See @FT\_Sfnt\_Tag for */}}
+\DoxyCodeLine{647   \textcolor{comment}{/*    a list.                                                            */}}
+\DoxyCodeLine{648   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{649   \textcolor{comment}{/*    Here an example how to access the `vhea' table:                    */}}
+\DoxyCodeLine{650   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{651   \textcolor{comment}{/*    \{                                                                  */}}
+\DoxyCodeLine{652   \textcolor{comment}{/*      TT\_VertHeader*  vert\_header;                                     */}}
+\DoxyCodeLine{653   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{654   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{655   \textcolor{comment}{/*      vert\_header =                                                    */}}
+\DoxyCodeLine{656   \textcolor{comment}{/*        (TT\_VertHeader*)FT\_Get\_Sfnt\_Table( face, FT\_SFNT\_VHEA );       */}}
+\DoxyCodeLine{657   \textcolor{comment}{/*    \}                                                                  */}}
+\DoxyCodeLine{658   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{659   FT\_EXPORT( \textcolor{keywordtype}{void}* )}
+\DoxyCodeLine{660   FT\_Get\_Sfnt\_Table( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}      face,}
+\DoxyCodeLine{661                      FT\_Sfnt\_Tag  tag );}
+\DoxyCodeLine{662 }
+\DoxyCodeLine{663 }
+\DoxyCodeLine{664 \textcolor{comment}{ /**************************************************************************}}
+\DoxyCodeLine{665 \textcolor{comment}{  *}}
+\DoxyCodeLine{666 \textcolor{comment}{  * @function:}}
+\DoxyCodeLine{667 \textcolor{comment}{  *   FT\_Load\_Sfnt\_Table}}
+\DoxyCodeLine{668 \textcolor{comment}{  *}}
+\DoxyCodeLine{669 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{670 \textcolor{comment}{  *   Load any font table into client memory.}}
+\DoxyCodeLine{671 \textcolor{comment}{  *}}
+\DoxyCodeLine{672 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{673 \textcolor{comment}{  *   face ::}}
+\DoxyCodeLine{674 \textcolor{comment}{  *     A handle to the source face.}}
+\DoxyCodeLine{675 \textcolor{comment}{  *}}
+\DoxyCodeLine{676 \textcolor{comment}{  *   tag ::}}
+\DoxyCodeLine{677 \textcolor{comment}{  *     The four-\/byte tag of the table to load.  Use the value\string~0 if you want}}
+\DoxyCodeLine{678 \textcolor{comment}{  *     to access the whole font file.  Otherwise, you can use one of the}}
+\DoxyCodeLine{679 \textcolor{comment}{  *     definitions found in the @FT\_TRUETYPE\_TAGS\_H file, or forge a new}}
+\DoxyCodeLine{680 \textcolor{comment}{  *     one with @FT\_MAKE\_TAG.}}
+\DoxyCodeLine{681 \textcolor{comment}{  *}}
+\DoxyCodeLine{682 \textcolor{comment}{  *   offset ::}}
+\DoxyCodeLine{683 \textcolor{comment}{  *     The starting offset in the table (or file if tag == 0).}}
+\DoxyCodeLine{684 \textcolor{comment}{  *}}
+\DoxyCodeLine{685 \textcolor{comment}{  * @output:}}
+\DoxyCodeLine{686 \textcolor{comment}{  *   buffer ::}}
+\DoxyCodeLine{687 \textcolor{comment}{  *     The target buffer address.  The client must ensure that the memory}}
+\DoxyCodeLine{688 \textcolor{comment}{  *     array is big enough to hold the data.}}
+\DoxyCodeLine{689 \textcolor{comment}{  *}}
+\DoxyCodeLine{690 \textcolor{comment}{  * @inout:}}
+\DoxyCodeLine{691 \textcolor{comment}{  *   length ::}}
+\DoxyCodeLine{692 \textcolor{comment}{  *     If the `length' parameter is NULL, then try to load the whole table.}}
+\DoxyCodeLine{693 \textcolor{comment}{  *     Return an error code if it fails.}}
+\DoxyCodeLine{694 \textcolor{comment}{  *}}
+\DoxyCodeLine{695 \textcolor{comment}{  *     Else, if `*length' is\string~0, exit immediately while returning the}}
+\DoxyCodeLine{696 \textcolor{comment}{  *     table's (or file) full size in it.}}
+\DoxyCodeLine{697 \textcolor{comment}{  *}}
+\DoxyCodeLine{698 \textcolor{comment}{  *     Else the number of bytes to read from the table or file, from the}}
+\DoxyCodeLine{699 \textcolor{comment}{  *     starting offset.}}
+\DoxyCodeLine{700 \textcolor{comment}{  *}}
+\DoxyCodeLine{701 \textcolor{comment}{  * @return:}}
+\DoxyCodeLine{702 \textcolor{comment}{  *   FreeType error code.  0\string~means success.}}
+\DoxyCodeLine{703 \textcolor{comment}{  *}}
+\DoxyCodeLine{704 \textcolor{comment}{  * @note:}}
+\DoxyCodeLine{705 \textcolor{comment}{  *   If you need to determine the table's length you should first call this}}
+\DoxyCodeLine{706 \textcolor{comment}{  *   function with `*length' set to\string~0, as in the following example:}}
+\DoxyCodeLine{707 \textcolor{comment}{  *}}
+\DoxyCodeLine{708 \textcolor{comment}{  *     \{}}
+\DoxyCodeLine{709 \textcolor{comment}{  *       FT\_ULong  length = 0;}}
+\DoxyCodeLine{710 \textcolor{comment}{  *}}
+\DoxyCodeLine{711 \textcolor{comment}{  *}}
+\DoxyCodeLine{712 \textcolor{comment}{  *       error = FT\_Load\_Sfnt\_Table( face, tag, 0, NULL, \&length );}}
+\DoxyCodeLine{713 \textcolor{comment}{  *       if ( error ) \{ ... table does not exist ... \}}}
+\DoxyCodeLine{714 \textcolor{comment}{  *}}
+\DoxyCodeLine{715 \textcolor{comment}{  *       buffer = malloc( length );}}
+\DoxyCodeLine{716 \textcolor{comment}{  *       if ( buffer == NULL ) \{ ... not enough memory ... \}}}
+\DoxyCodeLine{717 \textcolor{comment}{  *}}
+\DoxyCodeLine{718 \textcolor{comment}{  *       error = FT\_Load\_Sfnt\_Table( face, tag, 0, buffer, \&length );}}
+\DoxyCodeLine{719 \textcolor{comment}{  *       if ( error ) \{ ... could not load table ... \}}}
+\DoxyCodeLine{720 \textcolor{comment}{  *     \}}}
+\DoxyCodeLine{721 \textcolor{comment}{  *}}
+\DoxyCodeLine{722 \textcolor{comment}{  *   Note that structures like @TT\_Header or @TT\_OS2 can't be used with}}
+\DoxyCodeLine{723 \textcolor{comment}{  *   this function; they are limited to @FT\_Get\_Sfnt\_Table.  Reason is that}}
+\DoxyCodeLine{724 \textcolor{comment}{  *   those structures depend on the processor architecture, with varying}}
+\DoxyCodeLine{725 \textcolor{comment}{  *   size (e.g. 32bit vs. 64bit) or order (big endian vs. little endian).}}
+\DoxyCodeLine{726 \textcolor{comment}{  *}}
+\DoxyCodeLine{727 \textcolor{comment}{  */}}
+\DoxyCodeLine{728   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{729   FT\_Load\_Sfnt\_Table( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}    face,}
+\DoxyCodeLine{730                       FT\_ULong   tag,}
+\DoxyCodeLine{731                       FT\_Long    offset,}
+\DoxyCodeLine{732                       FT\_Byte*   buffer,}
+\DoxyCodeLine{733                       FT\_ULong*  length );}
+\DoxyCodeLine{734 }
+\DoxyCodeLine{735 }
+\DoxyCodeLine{736 \textcolor{comment}{ /**************************************************************************}}
+\DoxyCodeLine{737 \textcolor{comment}{  *}}
+\DoxyCodeLine{738 \textcolor{comment}{  * @function:}}
+\DoxyCodeLine{739 \textcolor{comment}{  *   FT\_Sfnt\_Table\_Info}}
+\DoxyCodeLine{740 \textcolor{comment}{  *}}
+\DoxyCodeLine{741 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{742 \textcolor{comment}{  *   Return information on an SFNT table.}}
+\DoxyCodeLine{743 \textcolor{comment}{  *}}
+\DoxyCodeLine{744 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{745 \textcolor{comment}{  *   face ::}}
+\DoxyCodeLine{746 \textcolor{comment}{  *     A handle to the source face.}}
+\DoxyCodeLine{747 \textcolor{comment}{  *}}
+\DoxyCodeLine{748 \textcolor{comment}{  *   table\_index ::}}
+\DoxyCodeLine{749 \textcolor{comment}{  *     The index of an SFNT table.  The function returns}}
+\DoxyCodeLine{750 \textcolor{comment}{  *     FT\_Err\_Table\_Missing for an invalid value.}}
+\DoxyCodeLine{751 \textcolor{comment}{  *}}
+\DoxyCodeLine{752 \textcolor{comment}{  * @inout:}}
+\DoxyCodeLine{753 \textcolor{comment}{  *   tag ::}}
+\DoxyCodeLine{754 \textcolor{comment}{  *     The name tag of the SFNT table.  If the value is NULL, `table\_index'}}
+\DoxyCodeLine{755 \textcolor{comment}{  *     is ignored, and `length' returns the number of SFNT tables in the}}
+\DoxyCodeLine{756 \textcolor{comment}{  *     font.}}
+\DoxyCodeLine{757 \textcolor{comment}{  *}}
+\DoxyCodeLine{758 \textcolor{comment}{  * @output:}}
+\DoxyCodeLine{759 \textcolor{comment}{  *   length ::}}
+\DoxyCodeLine{760 \textcolor{comment}{  *     The length of the SFNT table (or the number of SFNT tables, depending}}
+\DoxyCodeLine{761 \textcolor{comment}{  *     on `tag').}}
+\DoxyCodeLine{762 \textcolor{comment}{  *}}
+\DoxyCodeLine{763 \textcolor{comment}{  * @return:}}
+\DoxyCodeLine{764 \textcolor{comment}{  *   FreeType error code.  0\string~means success.}}
+\DoxyCodeLine{765 \textcolor{comment}{  *}}
+\DoxyCodeLine{766 \textcolor{comment}{  * @note:}}
+\DoxyCodeLine{767 \textcolor{comment}{  *   While parsing fonts, FreeType handles SFNT tables with length zero as}}
+\DoxyCodeLine{768 \textcolor{comment}{  *   missing.}}
+\DoxyCodeLine{769 \textcolor{comment}{  *}}
+\DoxyCodeLine{770 \textcolor{comment}{  */}}
+\DoxyCodeLine{771   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{772   FT\_Sfnt\_Table\_Info( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}    face,}
+\DoxyCodeLine{773                       FT\_UInt    table\_index,}
+\DoxyCodeLine{774                       FT\_ULong  *tag,}
+\DoxyCodeLine{775                       FT\_ULong  *length );}
+\DoxyCodeLine{776 }
+\DoxyCodeLine{777 }
+\DoxyCodeLine{778 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{779   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{780   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{781   \textcolor{comment}{/*    FT\_Get\_CMap\_Language\_ID                                            */}}
+\DoxyCodeLine{782   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{783   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{784   \textcolor{comment}{/*    Return TrueType/sfnt specific cmap language ID.  Definitions of    */}}
+\DoxyCodeLine{785   \textcolor{comment}{/*    language ID values are in `ttnameid.h'.                            */}}
+\DoxyCodeLine{786   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{787   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{788   \textcolor{comment}{/*    charmap ::                                                         */}}
+\DoxyCodeLine{789   \textcolor{comment}{/*      The target charmap.                                              */}}
+\DoxyCodeLine{790   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{791   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{792   \textcolor{comment}{/*    The language ID of `charmap'.  If `charmap' doesn't belong to a    */}}
+\DoxyCodeLine{793   \textcolor{comment}{/*    TrueType/sfnt face, just return\string~0 as the default value.            */}}
+\DoxyCodeLine{794   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{795   \textcolor{comment}{/*    For a format\string~14 cmap (to access Unicode IVS), the return value is  */}}
+\DoxyCodeLine{796   \textcolor{comment}{/*    0xFFFFFFFF.                                                        */}}
+\DoxyCodeLine{797   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{798   FT\_EXPORT( FT\_ULong )}
+\DoxyCodeLine{799   FT\_Get\_CMap\_Language\_ID( \mbox{\hyperlink{structFT__CharMapRec__}{FT\_CharMap}}  charmap );}
+\DoxyCodeLine{800 }
+\DoxyCodeLine{801 }
+\DoxyCodeLine{802 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{803   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{804   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{805   \textcolor{comment}{/*    FT\_Get\_CMap\_Format                                                 */}}
+\DoxyCodeLine{806   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{807   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{808   \textcolor{comment}{/*    Return TrueType/sfnt specific cmap format.                         */}}
+\DoxyCodeLine{809   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{810   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{811   \textcolor{comment}{/*    charmap ::                                                         */}}
+\DoxyCodeLine{812   \textcolor{comment}{/*      The target charmap.                                              */}}
+\DoxyCodeLine{813   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{814   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{815   \textcolor{comment}{/*    The format of `charmap'.  If `charmap' doesn't belong to a         */}}
+\DoxyCodeLine{816   \textcolor{comment}{/*    TrueType/sfnt face, return -\/1.                                     */}}
+\DoxyCodeLine{817   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{818   FT\_EXPORT( FT\_Long )}
+\DoxyCodeLine{819   FT\_Get\_CMap\_Format( \mbox{\hyperlink{structFT__CharMapRec__}{FT\_CharMap}}  charmap );}
+\DoxyCodeLine{820 }
+\DoxyCodeLine{821   \textcolor{comment}{/* */}}
+\DoxyCodeLine{822 }
+\DoxyCodeLine{823 }
+\DoxyCodeLine{824 FT\_END\_HEADER}
+\DoxyCodeLine{825 }
+\DoxyCodeLine{826 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_TTTABLES\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{827 }
+\DoxyCodeLine{828 }
+\DoxyCodeLine{829 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

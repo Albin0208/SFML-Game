@@ -1,0 +1,4 @@
+<map id="sf::priv::SoundFileWriterFlac" name="sf::priv::SoundFileWriterFlac">
+<area shape="rect" id="node1" title="Implementation of sound file writer that handles FLAC files." alt="" coords="5,160,208,340"/>
+<area shape="rect" id="node2" href="$d8/de4/classsf_1_1SoundFileWriter.html" title="Abstract base class for sound file encoding." alt="" coords="26,5,187,112"/>
+</map>

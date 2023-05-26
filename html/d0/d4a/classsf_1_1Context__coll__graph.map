@@ -1,0 +1,7 @@
+<map id="sf::Context" name="sf::Context">
+<area shape="rect" id="node1" title="Class holding a valid drawing context." alt="" coords="207,696,389,891"/>
+<area shape="rect" id="node2" href="$d7/db6/classsf_1_1GlResource.html" title="Base class for classes that require an OpenGL context." alt="" coords="5,380,260,487"/>
+<area shape="rect" id="node3" href="$d0/da7/classsf_1_1NonCopyable.html" title="Utility class that makes any derived class non&#45;copyable." alt="" coords="225,27,371,149"/>
+<area shape="rect" id="node4" href="$dd/d38/classsf_1_1priv_1_1GlContext.html" title="Abstract class representing an OpenGL context." alt="" coords="336,233,591,633"/>
+<area shape="rect" id="node5" href="$de/db9/structsf_1_1ContextSettings.html" title="Structure defining the settings of the OpenGL context attached to a window." alt="" coords="395,5,545,171"/>
+</map>

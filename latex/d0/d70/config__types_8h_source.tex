@@ -1,0 +1,31 @@
+\hypertarget{config__types_8h_source}{}\doxysection{config\+\_\+types.\+h}
+\label{config__types_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/ogg/config\_types.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/ogg/config\_types.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_\_CONFIG\_TYPES\_H\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_\_CONFIG\_TYPES\_H\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{comment}{/* these are filled in by configure */}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#define INCLUDE\_INTTYPES\_H 1}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define INCLUDE\_STDINT\_H 1}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#define INCLUDE\_SYS\_TYPES\_H 1}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#if INCLUDE\_INTTYPES\_H}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#  include <inttypes.h>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#if INCLUDE\_STDINT\_H}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#  include <stdint.h>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#if INCLUDE\_SYS\_TYPES\_H}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#  include <sys/types.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{typedef} int16\_t ogg\_int16\_t;}
+\DoxyCodeLine{20 \textcolor{keyword}{typedef} uint16\_t ogg\_uint16\_t;}
+\DoxyCodeLine{21 \textcolor{keyword}{typedef} int32\_t ogg\_int32\_t;}
+\DoxyCodeLine{22 \textcolor{keyword}{typedef} uint32\_t ogg\_uint32\_t;}
+\DoxyCodeLine{23 \textcolor{keyword}{typedef} int64\_t ogg\_int64\_t;}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

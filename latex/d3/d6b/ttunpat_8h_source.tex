@@ -1,0 +1,66 @@
+\hypertarget{ttunpat_8h_source}{}\doxysection{ttunpat.\+h}
+\label{ttunpat_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/ttunpat.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/ttunpat.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ttunpat.h                                                              */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Definitions for the unpatented TrueType hinting system               */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2003, 2006 by                                                */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  Written by Graham Asher <graham.asher@btinternet.com>                  */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{16 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{17 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{18 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#ifndef \_\_TTUNPAT\_H\_\_}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#define \_\_TTUNPAT\_H\_\_}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#ifdef FREETYPE\_H}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#error "{}freetype.h of FreeType 1 has been loaded!"{}}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#error "{}Please fix the directory search order for header files"{}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#error "{}so that freetype.h of FreeType 2 is found first."{}}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{comment}{ /***************************************************************************}}
+\DoxyCodeLine{39 \textcolor{comment}{  *}}
+\DoxyCodeLine{40 \textcolor{comment}{  * @constant:}}
+\DoxyCodeLine{41 \textcolor{comment}{  *   FT\_PARAM\_TAG\_UNPATENTED\_HINTING}}
+\DoxyCodeLine{42 \textcolor{comment}{  *}}
+\DoxyCodeLine{43 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{44 \textcolor{comment}{  *   A constant used as the tag of an @FT\_Parameter structure to indicate}}
+\DoxyCodeLine{45 \textcolor{comment}{  *   that unpatented methods only should be used by the TrueType bytecode}}
+\DoxyCodeLine{46 \textcolor{comment}{  *   interpreter for a typeface opened by @FT\_Open\_Face.}}
+\DoxyCodeLine{47 \textcolor{comment}{  *}}
+\DoxyCodeLine{48 \textcolor{comment}{  */}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#define FT\_PARAM\_TAG\_UNPATENTED\_HINTING  FT\_MAKE\_TAG( 'u', 'n', 'p', 'a' )}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51   \textcolor{comment}{/* */}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 FT\_END\_HEADER}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_TTUNPAT\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

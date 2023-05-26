@@ -1,0 +1,9 @@
+<map id="sf::priv::JoystickManager::Item" name="sf::priv::JoystickManager::Item">
+<area shape="rect" id="node1" title="Joystick information and state." alt="" coords="494,2552,675,2644"/>
+<area shape="rect" id="node2" href="$d0/def/classsf_1_1priv_1_1JoystickImpl.html" title="Android implementation of joysticks." alt="" coords="316,1048,581,2489"/>
+<area shape="rect" id="node3" href="$d1/d37/structsf_1_1Joystick_1_1Identification.html" title="Structure holding a joystick&#39;s identification." alt="" coords="100,827,285,919"/>
+<area shape="rect" id="node4" href="$d4/d76/classsf_1_1String.html" title="Utility string class that automatically handles conversions between types and encodings." alt="" coords="101,5,284,699"/>
+<area shape="rect" id="node5" href="$dd/d2e/structsf_1_1priv_1_1JoystickState.html" title="Structure holding a joystick&#39;s state." alt="" coords="542,820,701,927"/>
+<area shape="rect" id="node6" href="$d4/db0/structDIDEVCAPS.html" title=" " alt="" coords="312,761,510,985"/>
+<area shape="rect" id="node7" href="$d6/d4a/structsf_1_1priv_1_1JoystickCaps.html" title="Structure holding a joystick&#39;s information." alt="" coords="704,1723,860,1815"/>
+</map>

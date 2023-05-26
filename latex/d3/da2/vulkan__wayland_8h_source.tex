@@ -1,0 +1,71 @@
+\hypertarget{vulkan__wayland_8h_source}{}\doxysection{vulkan\+\_\+wayland.\+h}
+\label{vulkan__wayland_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/vulkan/vulkan\_wayland.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/vulkan/vulkan\_wayland.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef VULKAN\_WAYLAND\_H\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define VULKAN\_WAYLAND\_H\_ 1}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{5 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{comment}{/*}}
+\DoxyCodeLine{9 \textcolor{comment}{** Copyright (c) 2015-\/2018 The Khronos Group Inc.}}
+\DoxyCodeLine{10 \textcolor{comment}{**}}
+\DoxyCodeLine{11 \textcolor{comment}{** Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{12 \textcolor{comment}{** you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{13 \textcolor{comment}{** You may obtain a copy of the License at}}
+\DoxyCodeLine{14 \textcolor{comment}{**}}
+\DoxyCodeLine{15 \textcolor{comment}{**     http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{16 \textcolor{comment}{**}}
+\DoxyCodeLine{17 \textcolor{comment}{** Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{18 \textcolor{comment}{** distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{19 \textcolor{comment}{** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{20 \textcolor{comment}{** See the License for the specific language governing permissions and}}
+\DoxyCodeLine{21 \textcolor{comment}{** limitations under the License.}}
+\DoxyCodeLine{22 \textcolor{comment}{*/}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{comment}{/*}}
+\DoxyCodeLine{25 \textcolor{comment}{** This header is generated from the Khronos Vulkan XML API Registry.}}
+\DoxyCodeLine{26 \textcolor{comment}{**}}
+\DoxyCodeLine{27 \textcolor{comment}{*/}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define VK\_KHR\_wayland\_surface 1}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#define VK\_KHR\_WAYLAND\_SURFACE\_SPEC\_VERSION 6}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#define VK\_KHR\_WAYLAND\_SURFACE\_EXTENSION\_NAME "{}VK\_KHR\_wayland\_surface"{}}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{keyword}{typedef} VkFlags VkWaylandSurfaceCreateFlagsKHR;}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structVkWaylandSurfaceCreateInfoKHR}{VkWaylandSurfaceCreateInfoKHR}} \{}
+\DoxyCodeLine{37     VkStructureType                   sType;}
+\DoxyCodeLine{38     \textcolor{keyword}{const} \textcolor{keywordtype}{void}*                       pNext;}
+\DoxyCodeLine{39     VkWaylandSurfaceCreateFlagsKHR    flags;}
+\DoxyCodeLine{40     \textcolor{keyword}{struct }wl\_display*                display;}
+\DoxyCodeLine{41     \textcolor{keyword}{struct }wl\_surface*                surface;}
+\DoxyCodeLine{42 \} \mbox{\hyperlink{structVkWaylandSurfaceCreateInfoKHR}{VkWaylandSurfaceCreateInfoKHR}};}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{keyword}{typedef} VkResult (VKAPI\_PTR *PFN\_vkCreateWaylandSurfaceKHR)(VkInstance instance, \textcolor{keyword}{const} \mbox{\hyperlink{structVkWaylandSurfaceCreateInfoKHR}{VkWaylandSurfaceCreateInfoKHR}}* pCreateInfo, \textcolor{keyword}{const} \mbox{\hyperlink{structVkAllocationCallbacks}{VkAllocationCallbacks}}* pAllocator, VkSurfaceKHR* pSurface);}
+\DoxyCodeLine{46 \textcolor{keyword}{typedef} VkBool32 (VKAPI\_PTR *PFN\_vkGetPhysicalDeviceWaylandPresentationSupportKHR)(VkPhysicalDevice physicalDevice, uint32\_t queueFamilyIndex, \textcolor{keyword}{struct }wl\_display* display);}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#ifndef VK\_NO\_PROTOTYPES}}
+\DoxyCodeLine{49 VKAPI\_ATTR VkResult VKAPI\_CALL vkCreateWaylandSurfaceKHR(}
+\DoxyCodeLine{50     VkInstance                                  instance,}
+\DoxyCodeLine{51     \textcolor{keyword}{const} \mbox{\hyperlink{structVkWaylandSurfaceCreateInfoKHR}{VkWaylandSurfaceCreateInfoKHR}}*        pCreateInfo,}
+\DoxyCodeLine{52     \textcolor{keyword}{const} \mbox{\hyperlink{structVkAllocationCallbacks}{VkAllocationCallbacks}}*                pAllocator,}
+\DoxyCodeLine{53     VkSurfaceKHR*                               pSurface);}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 VKAPI\_ATTR VkBool32 VKAPI\_CALL vkGetPhysicalDeviceWaylandPresentationSupportKHR(}
+\DoxyCodeLine{56     VkPhysicalDevice                            physicalDevice,}
+\DoxyCodeLine{57     uint32\_t                                    queueFamilyIndex,}
+\DoxyCodeLine{58     \textcolor{keyword}{struct} wl\_display*                          display);}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{62 \}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

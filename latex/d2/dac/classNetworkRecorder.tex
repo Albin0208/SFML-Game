@@ -1,0 +1,128 @@
+\hypertarget{classNetworkRecorder}{}\doxysection{Network\+Recorder Class Reference}
+\label{classNetworkRecorder}\index{NetworkRecorder@{NetworkRecorder}}
+
+
+Inheritance diagram for Network\+Recorder\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d2/d01/classNetworkRecorder__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Network\+Recorder\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d49/classNetworkRecorder__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classNetworkRecorder_a30777f6c7a72b29e5230d9eb2033c92b}{Network\+Recorder}} (const \mbox{\hyperlink{classsf_1_1IpAddress}{sf\+::\+Ip\+Address}} \&host, unsigned short port)
+\item 
+\mbox{\hyperlink{classNetworkRecorder_a3df2a0d4bc3576cd8c745d34bf2cdfe2}{$\sim$\+Network\+Recorder}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classNetworkRecorder_aeab34631d5cd58cb42640152b726e1c0}{on\+Start}} ()
+\item 
+virtual bool \mbox{\hyperlink{classNetworkRecorder_aeba28ae4824715c651cf6b2323044fe2}{on\+Process\+Samples}} (const sf\+::\+Int16 $\ast$samples, std\+::size\+\_\+t sample\+Count)
+\item 
+virtual void \mbox{\hyperlink{classNetworkRecorder_a3ae6d62a6b72c7d54ce7b0d45d8291fa}{on\+Stop}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classNetworkRecorder_a4c1fcf67d73d1891676deff267ab8ef1}\label{classNetworkRecorder_a4c1fcf67d73d1891676deff267ab8ef1}} 
+\mbox{\hyperlink{classsf_1_1IpAddress}{sf\+::\+Ip\+Address}} {\bfseries m\+\_\+host}
+\begin{DoxyCompactList}\small\item\em Address of the remote host. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNetworkRecorder_ab30fc2cd0feb15190bae786da926a869}\label{classNetworkRecorder_ab30fc2cd0feb15190bae786da926a869}} 
+unsigned short {\bfseries m\+\_\+port}
+\begin{DoxyCompactList}\small\item\em Remote port. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNetworkRecorder_a74ad89a9fd640f242c817e9e26ba74a8}\label{classNetworkRecorder_a74ad89a9fd640f242c817e9e26ba74a8}} 
+\mbox{\hyperlink{classsf_1_1TcpSocket}{sf\+::\+Tcp\+Socket}} {\bfseries m\+\_\+socket}
+\begin{DoxyCompactList}\small\item\em Socket used to communicate with the server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Specialization of audio recorder for sending recorded audio data through the network 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classNetworkRecorder_a30777f6c7a72b29e5230d9eb2033c92b}\label{classNetworkRecorder_a30777f6c7a72b29e5230d9eb2033c92b}} 
+\index{NetworkRecorder@{NetworkRecorder}!NetworkRecorder@{NetworkRecorder}}
+\index{NetworkRecorder@{NetworkRecorder}!NetworkRecorder@{NetworkRecorder}}
+\doxysubsubsection{\texorpdfstring{NetworkRecorder()}{NetworkRecorder()}}
+{\footnotesize\ttfamily Network\+Recorder\+::\+Network\+Recorder (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsf_1_1IpAddress}{sf\+::\+Ip\+Address}} \&}]{host,  }\item[{unsigned short}]{port }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em host} & Remote host to which send the recording data \\
+\hline
+{\em port} & Port of the remote host \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classNetworkRecorder_a3df2a0d4bc3576cd8c745d34bf2cdfe2}\label{classNetworkRecorder_a3df2a0d4bc3576cd8c745d34bf2cdfe2}} 
+\index{NetworkRecorder@{NetworkRecorder}!````~NetworkRecorder@{$\sim$NetworkRecorder}}
+\index{````~NetworkRecorder@{$\sim$NetworkRecorder}!NetworkRecorder@{NetworkRecorder}}
+\doxysubsubsection{\texorpdfstring{$\sim$NetworkRecorder()}{~NetworkRecorder()}}
+{\footnotesize\ttfamily Network\+Recorder\+::$\sim$\+Network\+Recorder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor
+
+\begin{DoxySeeAlso}{See also}
+Sound\+Recorder\+::$\sim$\+Sound\+Recorder() 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classNetworkRecorder_aeba28ae4824715c651cf6b2323044fe2}\label{classNetworkRecorder_aeba28ae4824715c651cf6b2323044fe2}} 
+\index{NetworkRecorder@{NetworkRecorder}!onProcessSamples@{onProcessSamples}}
+\index{onProcessSamples@{onProcessSamples}!NetworkRecorder@{NetworkRecorder}}
+\doxysubsubsection{\texorpdfstring{onProcessSamples()}{onProcessSamples()}}
+{\footnotesize\ttfamily virtual bool Network\+Recorder\+::on\+Process\+Samples (\begin{DoxyParamCaption}\item[{const sf\+::\+Int16 $\ast$}]{samples,  }\item[{std\+::size\+\_\+t}]{sample\+Count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+\begin{DoxySeeAlso}{See also}
+Sound\+Recorder\+::on\+Process\+Samples 
+\end{DoxySeeAlso}
+
+
+Implements \mbox{\hyperlink{classsf_1_1SoundRecorder_a2670124cbe7a87c7e46b4840807f4fd7}{sf\+::\+Sound\+Recorder}}.
+
+\mbox{\Hypertarget{classNetworkRecorder_aeab34631d5cd58cb42640152b726e1c0}\label{classNetworkRecorder_aeab34631d5cd58cb42640152b726e1c0}} 
+\index{NetworkRecorder@{NetworkRecorder}!onStart@{onStart}}
+\index{onStart@{onStart}!NetworkRecorder@{NetworkRecorder}}
+\doxysubsubsection{\texorpdfstring{onStart()}{onStart()}}
+{\footnotesize\ttfamily virtual bool Network\+Recorder\+::on\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+\begin{DoxySeeAlso}{See also}
+Sound\+Recorder\+::on\+Start 
+\end{DoxySeeAlso}
+
+
+Reimplemented from \mbox{\hyperlink{classsf_1_1SoundRecorder_ace00a2df7d4ff0206f10a27d32ae9da4}{sf\+::\+Sound\+Recorder}}.
+
+\mbox{\Hypertarget{classNetworkRecorder_a3ae6d62a6b72c7d54ce7b0d45d8291fa}\label{classNetworkRecorder_a3ae6d62a6b72c7d54ce7b0d45d8291fa}} 
+\index{NetworkRecorder@{NetworkRecorder}!onStop@{onStop}}
+\index{onStop@{onStop}!NetworkRecorder@{NetworkRecorder}}
+\doxysubsubsection{\texorpdfstring{onStop()}{onStop()}}
+{\footnotesize\ttfamily virtual void Network\+Recorder\+::on\+Stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+\begin{DoxySeeAlso}{See also}
+Sound\+Recorder\+::on\+Stop 
+\end{DoxySeeAlso}
+
+
+Reimplemented from \mbox{\hyperlink{classsf_1_1SoundRecorder_afd03be464ca37d472bfadc114eb70856}{sf\+::\+Sound\+Recorder}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cmake-\/build-\/debug/\+\_\+deps/sfml-\/src/examples/voip/Client.\+cpp\end{DoxyCompactItemize}

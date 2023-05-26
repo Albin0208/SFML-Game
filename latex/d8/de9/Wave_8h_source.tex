@@ -1,0 +1,34 @@
+\hypertarget{Wave_8h_source}{}\doxysection{Wave.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by albin on 2022-\/12-\/07.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef TDP005\_WAVE\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define TDP005\_WAVE\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}utility/common.h"{}}}
+\DoxyCodeLine{10 \textcolor{keyword}{class }\mbox{\hyperlink{classGame__Object}{Game\_Object}};}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{15 \textcolor{keyword}{class }\mbox{\hyperlink{classWave}{Wave}} \{}
+\DoxyCodeLine{16 \textcolor{keyword}{public}:}
+\DoxyCodeLine{21     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classWave_afcbf8399618efaedc0172d5c9e04d6e7}{is\_over}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{28     vector<shared\_ptr<Game\_Object>>\& \mbox{\hyperlink{classWave_aaa40454f7b37eb7d66ca34b18d4ebe1e}{create}}(\mbox{\hyperlink{classsf_1_1Vector2}{sf::Vector2f}} \textcolor{keyword}{const}\& player\_pos);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{33     \textcolor{keywordtype}{void} \mbox{\hyperlink{classWave_a67b1572396807c10872c1df795089624}{enemy\_killed}}();}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{39     \textcolor{keywordtype}{int} \mbox{\hyperlink{classWave_adafce3966b6f56735f956cf1826f3153}{get\_wave}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{keyword}{private}:}
+\DoxyCodeLine{42     \textcolor{keywordtype}{int} enemy\_count\{0\};}
+\DoxyCodeLine{43     \textcolor{keywordtype}{int} wave\_number\{0\};}
+\DoxyCodeLine{44     vector<shared\_ptr<Game\_Object>> enemies;}
+\DoxyCodeLine{45 \};}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//TDP005\_WAVE\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,767 @@
+\hypertarget{efx_8h_source}{}\doxysection{efx.\+h}
+\label{efx_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/AL/efx.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/AL/efx.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AL\_EFX\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AL\_EFX\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}alc.h"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}al.h"{}}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{9 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#define ALC\_EXT\_EFX\_NAME                         "{}ALC\_EXT\_EFX"{}}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#define ALC\_EFX\_MAJOR\_VERSION                    0x20001}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#define ALC\_EFX\_MINOR\_VERSION                    0x20002}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#define ALC\_MAX\_AUXILIARY\_SENDS                  0x20003}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{comment}{/* Listener properties. */}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define AL\_METERS\_PER\_UNIT                       0x20004}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{comment}{/* Source properties. */}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#define AL\_DIRECT\_FILTER                         0x20005}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#define AL\_AUXILIARY\_SEND\_FILTER                 0x20006}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define AL\_AIR\_ABSORPTION\_FACTOR                 0x20007}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define AL\_ROOM\_ROLLOFF\_FACTOR                   0x20008}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define AL\_CONE\_OUTER\_GAINHF                     0x20009}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define AL\_DIRECT\_FILTER\_GAINHF\_AUTO             0x2000A}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define AL\_AUXILIARY\_SEND\_FILTER\_GAIN\_AUTO       0x2000B}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define AL\_AUXILIARY\_SEND\_FILTER\_GAINHF\_AUTO     0x2000C}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{comment}{/* Effect properties. */}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{comment}{/* Reverb effect parameters */}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#define AL\_REVERB\_DENSITY                        0x0001}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define AL\_REVERB\_DIFFUSION                      0x0002}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#define AL\_REVERB\_GAIN                           0x0003}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#define AL\_REVERB\_GAINHF                         0x0004}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#define AL\_REVERB\_DECAY\_TIME                     0x0005}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#define AL\_REVERB\_DECAY\_HFRATIO                  0x0006}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define AL\_REVERB\_REFLECTIONS\_GAIN               0x0007}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#define AL\_REVERB\_REFLECTIONS\_DELAY              0x0008}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#define AL\_REVERB\_LATE\_REVERB\_GAIN               0x0009}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#define AL\_REVERB\_LATE\_REVERB\_DELAY              0x000A}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#define AL\_REVERB\_AIR\_ABSORPTION\_GAINHF          0x000B}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#define AL\_REVERB\_ROOM\_ROLLOFF\_FACTOR            0x000C}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#define AL\_REVERB\_DECAY\_HFLIMIT                  0x000D}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{comment}{/* EAX Reverb effect parameters */}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DENSITY                     0x0001}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DIFFUSION                   0x0002}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_GAIN                        0x0003}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_GAINHF                      0x0004}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_GAINLF                      0x0005}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DECAY\_TIME                  0x0006}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DECAY\_HFRATIO               0x0007}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DECAY\_LFRATIO               0x0008}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_REFLECTIONS\_GAIN            0x0009}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_REFLECTIONS\_DELAY           0x000A}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_REFLECTIONS\_PAN             0x000B}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_LATE\_REVERB\_GAIN            0x000C}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_LATE\_REVERB\_DELAY           0x000D}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_LATE\_REVERB\_PAN             0x000E}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_ECHO\_TIME                   0x000F}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_ECHO\_DEPTH                  0x0010}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MODULATION\_TIME             0x0011}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MODULATION\_DEPTH            0x0012}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_AIR\_ABSORPTION\_GAINHF       0x0013}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_HFREFERENCE                 0x0014}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_LFREFERENCE                 0x0015}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_ROOM\_ROLLOFF\_FACTOR         0x0016}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DECAY\_HFLIMIT               0x0017}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 \textcolor{comment}{/* Chorus effect parameters */}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define AL\_CHORUS\_WAVEFORM                       0x0001}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#define AL\_CHORUS\_PHASE                          0x0002}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#define AL\_CHORUS\_RATE                           0x0003}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#define AL\_CHORUS\_DEPTH                          0x0004}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define AL\_CHORUS\_FEEDBACK                       0x0005}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#define AL\_CHORUS\_DELAY                          0x0006}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 \textcolor{comment}{/* Distortion effect parameters */}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#define AL\_DISTORTION\_EDGE                       0x0001}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#define AL\_DISTORTION\_GAIN                       0x0002}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#define AL\_DISTORTION\_LOWPASS\_CUTOFF             0x0003}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#define AL\_DISTORTION\_EQCENTER                   0x0004}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#define AL\_DISTORTION\_EQBANDWIDTH                0x0005}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 \textcolor{comment}{/* Echo effect parameters */}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#define AL\_ECHO\_DELAY                            0x0001}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#define AL\_ECHO\_LRDELAY                          0x0002}}
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#define AL\_ECHO\_DAMPING                          0x0003}}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#define AL\_ECHO\_FEEDBACK                         0x0004}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#define AL\_ECHO\_SPREAD                           0x0005}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{comment}{/* Flanger effect parameters */}}
+\DoxyCodeLine{98 \textcolor{preprocessor}{\#define AL\_FLANGER\_WAVEFORM                      0x0001}}
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#define AL\_FLANGER\_PHASE                         0x0002}}
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#define AL\_FLANGER\_RATE                          0x0003}}
+\DoxyCodeLine{101 \textcolor{preprocessor}{\#define AL\_FLANGER\_DEPTH                         0x0004}}
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#define AL\_FLANGER\_FEEDBACK                      0x0005}}
+\DoxyCodeLine{103 \textcolor{preprocessor}{\#define AL\_FLANGER\_DELAY                         0x0006}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 \textcolor{comment}{/* Frequency shifter effect parameters */}}
+\DoxyCodeLine{106 \textcolor{preprocessor}{\#define AL\_FREQUENCY\_SHIFTER\_FREQUENCY           0x0001}}
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#define AL\_FREQUENCY\_SHIFTER\_LEFT\_DIRECTION      0x0002}}
+\DoxyCodeLine{108 \textcolor{preprocessor}{\#define AL\_FREQUENCY\_SHIFTER\_RIGHT\_DIRECTION     0x0003}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \textcolor{comment}{/* Vocal morpher effect parameters */}}
+\DoxyCodeLine{111 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEMEA                0x0001}}
+\DoxyCodeLine{112 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEMEA\_COARSE\_TUNING  0x0002}}
+\DoxyCodeLine{113 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEMEB                0x0003}}
+\DoxyCodeLine{114 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEMEB\_COARSE\_TUNING  0x0004}}
+\DoxyCodeLine{115 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_WAVEFORM                0x0005}}
+\DoxyCodeLine{116 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_RATE                    0x0006}}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118 \textcolor{comment}{/* Pitchshifter effect parameters */}}
+\DoxyCodeLine{119 \textcolor{preprocessor}{\#define AL\_PITCH\_SHIFTER\_COARSE\_TUNE             0x0001}}
+\DoxyCodeLine{120 \textcolor{preprocessor}{\#define AL\_PITCH\_SHIFTER\_FINE\_TUNE               0x0002}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122 \textcolor{comment}{/* Ringmodulator effect parameters */}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#define AL\_RING\_MODULATOR\_FREQUENCY              0x0001}}
+\DoxyCodeLine{124 \textcolor{preprocessor}{\#define AL\_RING\_MODULATOR\_HIGHPASS\_CUTOFF        0x0002}}
+\DoxyCodeLine{125 \textcolor{preprocessor}{\#define AL\_RING\_MODULATOR\_WAVEFORM               0x0003}}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 \textcolor{comment}{/* Autowah effect parameters */}}
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#define AL\_AUTOWAH\_ATTACK\_TIME                   0x0001}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{\#define AL\_AUTOWAH\_RELEASE\_TIME                  0x0002}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{\#define AL\_AUTOWAH\_RESONANCE                     0x0003}}
+\DoxyCodeLine{131 \textcolor{preprocessor}{\#define AL\_AUTOWAH\_PEAK\_GAIN                     0x0004}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 \textcolor{comment}{/* Compressor effect parameters */}}
+\DoxyCodeLine{134 \textcolor{preprocessor}{\#define AL\_COMPRESSOR\_ONOFF                      0x0001}}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136 \textcolor{comment}{/* Equalizer effect parameters */}}
+\DoxyCodeLine{137 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_LOW\_GAIN                    0x0001}}
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_LOW\_CUTOFF                  0x0002}}
+\DoxyCodeLine{139 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MID1\_GAIN                   0x0003}}
+\DoxyCodeLine{140 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MID1\_CENTER                 0x0004}}
+\DoxyCodeLine{141 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MID1\_WIDTH                  0x0005}}
+\DoxyCodeLine{142 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MID2\_GAIN                   0x0006}}
+\DoxyCodeLine{143 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MID2\_CENTER                 0x0007}}
+\DoxyCodeLine{144 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MID2\_WIDTH                  0x0008}}
+\DoxyCodeLine{145 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_HIGH\_GAIN                   0x0009}}
+\DoxyCodeLine{146 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_HIGH\_CUTOFF                 0x000A}}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148 \textcolor{comment}{/* Effect type */}}
+\DoxyCodeLine{149 \textcolor{preprocessor}{\#define AL\_EFFECT\_FIRST\_PARAMETER                0x0000}}
+\DoxyCodeLine{150 \textcolor{preprocessor}{\#define AL\_EFFECT\_LAST\_PARAMETER                 0x8000}}
+\DoxyCodeLine{151 \textcolor{preprocessor}{\#define AL\_EFFECT\_TYPE                           0x8001}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 \textcolor{comment}{/* Effect types, used with the AL\_EFFECT\_TYPE property */}}
+\DoxyCodeLine{154 \textcolor{preprocessor}{\#define AL\_EFFECT\_NULL                           0x0000}}
+\DoxyCodeLine{155 \textcolor{preprocessor}{\#define AL\_EFFECT\_REVERB                         0x0001}}
+\DoxyCodeLine{156 \textcolor{preprocessor}{\#define AL\_EFFECT\_CHORUS                         0x0002}}
+\DoxyCodeLine{157 \textcolor{preprocessor}{\#define AL\_EFFECT\_DISTORTION                     0x0003}}
+\DoxyCodeLine{158 \textcolor{preprocessor}{\#define AL\_EFFECT\_ECHO                           0x0004}}
+\DoxyCodeLine{159 \textcolor{preprocessor}{\#define AL\_EFFECT\_FLANGER                        0x0005}}
+\DoxyCodeLine{160 \textcolor{preprocessor}{\#define AL\_EFFECT\_FREQUENCY\_SHIFTER              0x0006}}
+\DoxyCodeLine{161 \textcolor{preprocessor}{\#define AL\_EFFECT\_VOCAL\_MORPHER                  0x0007}}
+\DoxyCodeLine{162 \textcolor{preprocessor}{\#define AL\_EFFECT\_PITCH\_SHIFTER                  0x0008}}
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#define AL\_EFFECT\_RING\_MODULATOR                 0x0009}}
+\DoxyCodeLine{164 \textcolor{preprocessor}{\#define AL\_EFFECT\_AUTOWAH                        0x000A}}
+\DoxyCodeLine{165 \textcolor{preprocessor}{\#define AL\_EFFECT\_COMPRESSOR                     0x000B}}
+\DoxyCodeLine{166 \textcolor{preprocessor}{\#define AL\_EFFECT\_EQUALIZER                      0x000C}}
+\DoxyCodeLine{167 \textcolor{preprocessor}{\#define AL\_EFFECT\_EAXREVERB                      0x8000}}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 \textcolor{comment}{/* Auxiliary Effect Slot properties. */}}
+\DoxyCodeLine{170 \textcolor{preprocessor}{\#define AL\_EFFECTSLOT\_EFFECT                     0x0001}}
+\DoxyCodeLine{171 \textcolor{preprocessor}{\#define AL\_EFFECTSLOT\_GAIN                       0x0002}}
+\DoxyCodeLine{172 \textcolor{preprocessor}{\#define AL\_EFFECTSLOT\_AUXILIARY\_SEND\_AUTO        0x0003}}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174 \textcolor{comment}{/* NULL Auxiliary Slot ID to disable a source send. */}}
+\DoxyCodeLine{175 \textcolor{preprocessor}{\#define AL\_EFFECTSLOT\_NULL                       0x0000}}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178 \textcolor{comment}{/* Filter properties. */}}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180 \textcolor{comment}{/* Lowpass filter parameters */}}
+\DoxyCodeLine{181 \textcolor{preprocessor}{\#define AL\_LOWPASS\_GAIN                          0x0001}}
+\DoxyCodeLine{182 \textcolor{preprocessor}{\#define AL\_LOWPASS\_GAINHF                        0x0002}}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184 \textcolor{comment}{/* Highpass filter parameters */}}
+\DoxyCodeLine{185 \textcolor{preprocessor}{\#define AL\_HIGHPASS\_GAIN                         0x0001}}
+\DoxyCodeLine{186 \textcolor{preprocessor}{\#define AL\_HIGHPASS\_GAINLF                       0x0002}}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188 \textcolor{comment}{/* Bandpass filter parameters */}}
+\DoxyCodeLine{189 \textcolor{preprocessor}{\#define AL\_BANDPASS\_GAIN                         0x0001}}
+\DoxyCodeLine{190 \textcolor{preprocessor}{\#define AL\_BANDPASS\_GAINLF                       0x0002}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{\#define AL\_BANDPASS\_GAINHF                       0x0003}}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193 \textcolor{comment}{/* Filter type */}}
+\DoxyCodeLine{194 \textcolor{preprocessor}{\#define AL\_FILTER\_FIRST\_PARAMETER                0x0000}}
+\DoxyCodeLine{195 \textcolor{preprocessor}{\#define AL\_FILTER\_LAST\_PARAMETER                 0x8000}}
+\DoxyCodeLine{196 \textcolor{preprocessor}{\#define AL\_FILTER\_TYPE                           0x8001}}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198 \textcolor{comment}{/* Filter types, used with the AL\_FILTER\_TYPE property */}}
+\DoxyCodeLine{199 \textcolor{preprocessor}{\#define AL\_FILTER\_NULL                           0x0000}}
+\DoxyCodeLine{200 \textcolor{preprocessor}{\#define AL\_FILTER\_LOWPASS                        0x0001}}
+\DoxyCodeLine{201 \textcolor{preprocessor}{\#define AL\_FILTER\_HIGHPASS                       0x0002}}
+\DoxyCodeLine{202 \textcolor{preprocessor}{\#define AL\_FILTER\_BANDPASS                       0x0003}}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205 \textcolor{comment}{/* Effect object function types. */}}
+\DoxyCodeLine{206 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALGENEFFECTS)(ALsizei, ALuint*);}
+\DoxyCodeLine{207 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALDELETEEFFECTS)(ALsizei, \textcolor{keyword}{const} ALuint*);}
+\DoxyCodeLine{208 \textcolor{keyword}{typedef} ALboolean (AL\_APIENTRY *LPALISEFFECT)(ALuint);}
+\DoxyCodeLine{209 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALEFFECTI)(ALuint, ALenum, ALint);}
+\DoxyCodeLine{210 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALEFFECTIV)(ALuint, ALenum, \textcolor{keyword}{const} ALint*);}
+\DoxyCodeLine{211 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALEFFECTF)(ALuint, ALenum, ALfloat);}
+\DoxyCodeLine{212 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALEFFECTFV)(ALuint, ALenum, \textcolor{keyword}{const} ALfloat*);}
+\DoxyCodeLine{213 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALGETEFFECTI)(ALuint, ALenum, ALint*);}
+\DoxyCodeLine{214 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALGETEFFECTIV)(ALuint, ALenum, ALint*);}
+\DoxyCodeLine{215 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALGETEFFECTF)(ALuint, ALenum, ALfloat*);}
+\DoxyCodeLine{216 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALGETEFFECTFV)(ALuint, ALenum, ALfloat*);}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{218 \textcolor{comment}{/* Filter object function types. */}}
+\DoxyCodeLine{219 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALGENFILTERS)(ALsizei, ALuint*);}
+\DoxyCodeLine{220 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALDELETEFILTERS)(ALsizei, \textcolor{keyword}{const} ALuint*);}
+\DoxyCodeLine{221 \textcolor{keyword}{typedef} ALboolean (AL\_APIENTRY *LPALISFILTER)(ALuint);}
+\DoxyCodeLine{222 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALFILTERI)(ALuint, ALenum, ALint);}
+\DoxyCodeLine{223 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALFILTERIV)(ALuint, ALenum, \textcolor{keyword}{const} ALint*);}
+\DoxyCodeLine{224 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALFILTERF)(ALuint, ALenum, ALfloat);}
+\DoxyCodeLine{225 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALFILTERFV)(ALuint, ALenum, \textcolor{keyword}{const} ALfloat*);}
+\DoxyCodeLine{226 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALGETFILTERI)(ALuint, ALenum, ALint*);}
+\DoxyCodeLine{227 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALGETFILTERIV)(ALuint, ALenum, ALint*);}
+\DoxyCodeLine{228 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALGETFILTERF)(ALuint, ALenum, ALfloat*);}
+\DoxyCodeLine{229 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALGETFILTERFV)(ALuint, ALenum, ALfloat*);}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231 \textcolor{comment}{/* Auxiliary Effect Slot object function types. */}}
+\DoxyCodeLine{232 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALGENAUXILIARYEFFECTSLOTS)(ALsizei, ALuint*);}
+\DoxyCodeLine{233 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALDELETEAUXILIARYEFFECTSLOTS)(ALsizei, \textcolor{keyword}{const} ALuint*);}
+\DoxyCodeLine{234 \textcolor{keyword}{typedef} ALboolean (AL\_APIENTRY *LPALISAUXILIARYEFFECTSLOT)(ALuint);}
+\DoxyCodeLine{235 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALAUXILIARYEFFECTSLOTI)(ALuint, ALenum, ALint);}
+\DoxyCodeLine{236 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALAUXILIARYEFFECTSLOTIV)(ALuint, ALenum, \textcolor{keyword}{const} ALint*);}
+\DoxyCodeLine{237 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALAUXILIARYEFFECTSLOTF)(ALuint, ALenum, ALfloat);}
+\DoxyCodeLine{238 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALAUXILIARYEFFECTSLOTFV)(ALuint, ALenum, \textcolor{keyword}{const} ALfloat*);}
+\DoxyCodeLine{239 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALGETAUXILIARYEFFECTSLOTI)(ALuint, ALenum, ALint*);}
+\DoxyCodeLine{240 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALGETAUXILIARYEFFECTSLOTIV)(ALuint, ALenum, ALint*);}
+\DoxyCodeLine{241 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALGETAUXILIARYEFFECTSLOTF)(ALuint, ALenum, ALfloat*);}
+\DoxyCodeLine{242 \textcolor{keyword}{typedef} void (AL\_APIENTRY *LPALGETAUXILIARYEFFECTSLOTFV)(ALuint, ALenum, ALfloat*);}
+\DoxyCodeLine{243 }
+\DoxyCodeLine{244 \textcolor{preprocessor}{\#ifdef AL\_ALEXT\_PROTOTYPES}}
+\DoxyCodeLine{245 AL\_API ALvoid AL\_APIENTRY alGenEffects(ALsizei n, ALuint *effects);}
+\DoxyCodeLine{246 AL\_API ALvoid AL\_APIENTRY alDeleteEffects(ALsizei n, \textcolor{keyword}{const} ALuint *effects);}
+\DoxyCodeLine{247 AL\_API ALboolean AL\_APIENTRY alIsEffect(ALuint effect);}
+\DoxyCodeLine{248 AL\_API ALvoid AL\_APIENTRY alEffecti(ALuint effect, ALenum param, ALint iValue);}
+\DoxyCodeLine{249 AL\_API ALvoid AL\_APIENTRY alEffectiv(ALuint effect, ALenum param, \textcolor{keyword}{const} ALint *piValues);}
+\DoxyCodeLine{250 AL\_API ALvoid AL\_APIENTRY alEffectf(ALuint effect, ALenum param, ALfloat flValue);}
+\DoxyCodeLine{251 AL\_API ALvoid AL\_APIENTRY alEffectfv(ALuint effect, ALenum param, \textcolor{keyword}{const} ALfloat *pflValues);}
+\DoxyCodeLine{252 AL\_API ALvoid AL\_APIENTRY alGetEffecti(ALuint effect, ALenum param, ALint *piValue);}
+\DoxyCodeLine{253 AL\_API ALvoid AL\_APIENTRY alGetEffectiv(ALuint effect, ALenum param, ALint *piValues);}
+\DoxyCodeLine{254 AL\_API ALvoid AL\_APIENTRY alGetEffectf(ALuint effect, ALenum param, ALfloat *pflValue);}
+\DoxyCodeLine{255 AL\_API ALvoid AL\_APIENTRY alGetEffectfv(ALuint effect, ALenum param, ALfloat *pflValues);}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257 AL\_API ALvoid AL\_APIENTRY alGenFilters(ALsizei n, ALuint *filters);}
+\DoxyCodeLine{258 AL\_API ALvoid AL\_APIENTRY alDeleteFilters(ALsizei n, \textcolor{keyword}{const} ALuint *filters);}
+\DoxyCodeLine{259 AL\_API ALboolean AL\_APIENTRY alIsFilter(ALuint filter);}
+\DoxyCodeLine{260 AL\_API ALvoid AL\_APIENTRY alFilteri(ALuint filter, ALenum param, ALint iValue);}
+\DoxyCodeLine{261 AL\_API ALvoid AL\_APIENTRY alFilteriv(ALuint filter, ALenum param, \textcolor{keyword}{const} ALint *piValues);}
+\DoxyCodeLine{262 AL\_API ALvoid AL\_APIENTRY alFilterf(ALuint filter, ALenum param, ALfloat flValue);}
+\DoxyCodeLine{263 AL\_API ALvoid AL\_APIENTRY alFilterfv(ALuint filter, ALenum param, \textcolor{keyword}{const} ALfloat *pflValues);}
+\DoxyCodeLine{264 AL\_API ALvoid AL\_APIENTRY alGetFilteri(ALuint filter, ALenum param, ALint *piValue);}
+\DoxyCodeLine{265 AL\_API ALvoid AL\_APIENTRY alGetFilteriv(ALuint filter, ALenum param, ALint *piValues);}
+\DoxyCodeLine{266 AL\_API ALvoid AL\_APIENTRY alGetFilterf(ALuint filter, ALenum param, ALfloat *pflValue);}
+\DoxyCodeLine{267 AL\_API ALvoid AL\_APIENTRY alGetFilterfv(ALuint filter, ALenum param, ALfloat *pflValues);}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{269 AL\_API ALvoid AL\_APIENTRY alGenAuxiliaryEffectSlots(ALsizei n, ALuint *effectslots);}
+\DoxyCodeLine{270 AL\_API ALvoid AL\_APIENTRY alDeleteAuxiliaryEffectSlots(ALsizei n, \textcolor{keyword}{const} ALuint *effectslots);}
+\DoxyCodeLine{271 AL\_API ALboolean AL\_APIENTRY alIsAuxiliaryEffectSlot(ALuint effectslot);}
+\DoxyCodeLine{272 AL\_API ALvoid AL\_APIENTRY alAuxiliaryEffectSloti(ALuint effectslot, ALenum param, ALint iValue);}
+\DoxyCodeLine{273 AL\_API ALvoid AL\_APIENTRY alAuxiliaryEffectSlotiv(ALuint effectslot, ALenum param, \textcolor{keyword}{const} ALint *piValues);}
+\DoxyCodeLine{274 AL\_API ALvoid AL\_APIENTRY alAuxiliaryEffectSlotf(ALuint effectslot, ALenum param, ALfloat flValue);}
+\DoxyCodeLine{275 AL\_API ALvoid AL\_APIENTRY alAuxiliaryEffectSlotfv(ALuint effectslot, ALenum param, \textcolor{keyword}{const} ALfloat *pflValues);}
+\DoxyCodeLine{276 AL\_API ALvoid AL\_APIENTRY alGetAuxiliaryEffectSloti(ALuint effectslot, ALenum param, ALint *piValue);}
+\DoxyCodeLine{277 AL\_API ALvoid AL\_APIENTRY alGetAuxiliaryEffectSlotiv(ALuint effectslot, ALenum param, ALint *piValues);}
+\DoxyCodeLine{278 AL\_API ALvoid AL\_APIENTRY alGetAuxiliaryEffectSlotf(ALuint effectslot, ALenum param, ALfloat *pflValue);}
+\DoxyCodeLine{279 AL\_API ALvoid AL\_APIENTRY alGetAuxiliaryEffectSlotfv(ALuint effectslot, ALenum param, ALfloat *pflValues);}
+\DoxyCodeLine{280 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282 \textcolor{comment}{/* Filter ranges and defaults. */}}
+\DoxyCodeLine{283 }
+\DoxyCodeLine{284 \textcolor{comment}{/* Lowpass filter */}}
+\DoxyCodeLine{285 \textcolor{preprocessor}{\#define AL\_LOWPASS\_MIN\_GAIN                      (0.0f)}}
+\DoxyCodeLine{286 \textcolor{preprocessor}{\#define AL\_LOWPASS\_MAX\_GAIN                      (1.0f)}}
+\DoxyCodeLine{287 \textcolor{preprocessor}{\#define AL\_LOWPASS\_DEFAULT\_GAIN                  (1.0f)}}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289 \textcolor{preprocessor}{\#define AL\_LOWPASS\_MIN\_GAINHF                    (0.0f)}}
+\DoxyCodeLine{290 \textcolor{preprocessor}{\#define AL\_LOWPASS\_MAX\_GAINHF                    (1.0f)}}
+\DoxyCodeLine{291 \textcolor{preprocessor}{\#define AL\_LOWPASS\_DEFAULT\_GAINHF                (1.0f)}}
+\DoxyCodeLine{292 }
+\DoxyCodeLine{293 \textcolor{comment}{/* Highpass filter */}}
+\DoxyCodeLine{294 \textcolor{preprocessor}{\#define AL\_HIGHPASS\_MIN\_GAIN                     (0.0f)}}
+\DoxyCodeLine{295 \textcolor{preprocessor}{\#define AL\_HIGHPASS\_MAX\_GAIN                     (1.0f)}}
+\DoxyCodeLine{296 \textcolor{preprocessor}{\#define AL\_HIGHPASS\_DEFAULT\_GAIN                 (1.0f)}}
+\DoxyCodeLine{297 }
+\DoxyCodeLine{298 \textcolor{preprocessor}{\#define AL\_HIGHPASS\_MIN\_GAINLF                   (0.0f)}}
+\DoxyCodeLine{299 \textcolor{preprocessor}{\#define AL\_HIGHPASS\_MAX\_GAINLF                   (1.0f)}}
+\DoxyCodeLine{300 \textcolor{preprocessor}{\#define AL\_HIGHPASS\_DEFAULT\_GAINLF               (1.0f)}}
+\DoxyCodeLine{301 }
+\DoxyCodeLine{302 \textcolor{comment}{/* Bandpass filter */}}
+\DoxyCodeLine{303 \textcolor{preprocessor}{\#define AL\_BANDPASS\_MIN\_GAIN                     (0.0f)}}
+\DoxyCodeLine{304 \textcolor{preprocessor}{\#define AL\_BANDPASS\_MAX\_GAIN                     (1.0f)}}
+\DoxyCodeLine{305 \textcolor{preprocessor}{\#define AL\_BANDPASS\_DEFAULT\_GAIN                 (1.0f)}}
+\DoxyCodeLine{306 }
+\DoxyCodeLine{307 \textcolor{preprocessor}{\#define AL\_BANDPASS\_MIN\_GAINHF                   (0.0f)}}
+\DoxyCodeLine{308 \textcolor{preprocessor}{\#define AL\_BANDPASS\_MAX\_GAINHF                   (1.0f)}}
+\DoxyCodeLine{309 \textcolor{preprocessor}{\#define AL\_BANDPASS\_DEFAULT\_GAINHF               (1.0f)}}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311 \textcolor{preprocessor}{\#define AL\_BANDPASS\_MIN\_GAINLF                   (0.0f)}}
+\DoxyCodeLine{312 \textcolor{preprocessor}{\#define AL\_BANDPASS\_MAX\_GAINLF                   (1.0f)}}
+\DoxyCodeLine{313 \textcolor{preprocessor}{\#define AL\_BANDPASS\_DEFAULT\_GAINLF               (1.0f)}}
+\DoxyCodeLine{314 }
+\DoxyCodeLine{315 }
+\DoxyCodeLine{316 \textcolor{comment}{/* Effect parameter ranges and defaults. */}}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{318 \textcolor{comment}{/* Standard reverb effect */}}
+\DoxyCodeLine{319 \textcolor{preprocessor}{\#define AL\_REVERB\_MIN\_DENSITY                    (0.0f)}}
+\DoxyCodeLine{320 \textcolor{preprocessor}{\#define AL\_REVERB\_MAX\_DENSITY                    (1.0f)}}
+\DoxyCodeLine{321 \textcolor{preprocessor}{\#define AL\_REVERB\_DEFAULT\_DENSITY                (1.0f)}}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{323 \textcolor{preprocessor}{\#define AL\_REVERB\_MIN\_DIFFUSION                  (0.0f)}}
+\DoxyCodeLine{324 \textcolor{preprocessor}{\#define AL\_REVERB\_MAX\_DIFFUSION                  (1.0f)}}
+\DoxyCodeLine{325 \textcolor{preprocessor}{\#define AL\_REVERB\_DEFAULT\_DIFFUSION              (1.0f)}}
+\DoxyCodeLine{326 }
+\DoxyCodeLine{327 \textcolor{preprocessor}{\#define AL\_REVERB\_MIN\_GAIN                       (0.0f)}}
+\DoxyCodeLine{328 \textcolor{preprocessor}{\#define AL\_REVERB\_MAX\_GAIN                       (1.0f)}}
+\DoxyCodeLine{329 \textcolor{preprocessor}{\#define AL\_REVERB\_DEFAULT\_GAIN                   (0.32f)}}
+\DoxyCodeLine{330 }
+\DoxyCodeLine{331 \textcolor{preprocessor}{\#define AL\_REVERB\_MIN\_GAINHF                     (0.0f)}}
+\DoxyCodeLine{332 \textcolor{preprocessor}{\#define AL\_REVERB\_MAX\_GAINHF                     (1.0f)}}
+\DoxyCodeLine{333 \textcolor{preprocessor}{\#define AL\_REVERB\_DEFAULT\_GAINHF                 (0.89f)}}
+\DoxyCodeLine{334 }
+\DoxyCodeLine{335 \textcolor{preprocessor}{\#define AL\_REVERB\_MIN\_DECAY\_TIME                 (0.1f)}}
+\DoxyCodeLine{336 \textcolor{preprocessor}{\#define AL\_REVERB\_MAX\_DECAY\_TIME                 (20.0f)}}
+\DoxyCodeLine{337 \textcolor{preprocessor}{\#define AL\_REVERB\_DEFAULT\_DECAY\_TIME             (1.49f)}}
+\DoxyCodeLine{338 }
+\DoxyCodeLine{339 \textcolor{preprocessor}{\#define AL\_REVERB\_MIN\_DECAY\_HFRATIO              (0.1f)}}
+\DoxyCodeLine{340 \textcolor{preprocessor}{\#define AL\_REVERB\_MAX\_DECAY\_HFRATIO              (2.0f)}}
+\DoxyCodeLine{341 \textcolor{preprocessor}{\#define AL\_REVERB\_DEFAULT\_DECAY\_HFRATIO          (0.83f)}}
+\DoxyCodeLine{342 }
+\DoxyCodeLine{343 \textcolor{preprocessor}{\#define AL\_REVERB\_MIN\_REFLECTIONS\_GAIN           (0.0f)}}
+\DoxyCodeLine{344 \textcolor{preprocessor}{\#define AL\_REVERB\_MAX\_REFLECTIONS\_GAIN           (3.16f)}}
+\DoxyCodeLine{345 \textcolor{preprocessor}{\#define AL\_REVERB\_DEFAULT\_REFLECTIONS\_GAIN       (0.05f)}}
+\DoxyCodeLine{346 }
+\DoxyCodeLine{347 \textcolor{preprocessor}{\#define AL\_REVERB\_MIN\_REFLECTIONS\_DELAY          (0.0f)}}
+\DoxyCodeLine{348 \textcolor{preprocessor}{\#define AL\_REVERB\_MAX\_REFLECTIONS\_DELAY          (0.3f)}}
+\DoxyCodeLine{349 \textcolor{preprocessor}{\#define AL\_REVERB\_DEFAULT\_REFLECTIONS\_DELAY      (0.007f)}}
+\DoxyCodeLine{350 }
+\DoxyCodeLine{351 \textcolor{preprocessor}{\#define AL\_REVERB\_MIN\_LATE\_REVERB\_GAIN           (0.0f)}}
+\DoxyCodeLine{352 \textcolor{preprocessor}{\#define AL\_REVERB\_MAX\_LATE\_REVERB\_GAIN           (10.0f)}}
+\DoxyCodeLine{353 \textcolor{preprocessor}{\#define AL\_REVERB\_DEFAULT\_LATE\_REVERB\_GAIN       (1.26f)}}
+\DoxyCodeLine{354 }
+\DoxyCodeLine{355 \textcolor{preprocessor}{\#define AL\_REVERB\_MIN\_LATE\_REVERB\_DELAY          (0.0f)}}
+\DoxyCodeLine{356 \textcolor{preprocessor}{\#define AL\_REVERB\_MAX\_LATE\_REVERB\_DELAY          (0.1f)}}
+\DoxyCodeLine{357 \textcolor{preprocessor}{\#define AL\_REVERB\_DEFAULT\_LATE\_REVERB\_DELAY      (0.011f)}}
+\DoxyCodeLine{358 }
+\DoxyCodeLine{359 \textcolor{preprocessor}{\#define AL\_REVERB\_MIN\_AIR\_ABSORPTION\_GAINHF      (0.892f)}}
+\DoxyCodeLine{360 \textcolor{preprocessor}{\#define AL\_REVERB\_MAX\_AIR\_ABSORPTION\_GAINHF      (1.0f)}}
+\DoxyCodeLine{361 \textcolor{preprocessor}{\#define AL\_REVERB\_DEFAULT\_AIR\_ABSORPTION\_GAINHF  (0.994f)}}
+\DoxyCodeLine{362 }
+\DoxyCodeLine{363 \textcolor{preprocessor}{\#define AL\_REVERB\_MIN\_ROOM\_ROLLOFF\_FACTOR        (0.0f)}}
+\DoxyCodeLine{364 \textcolor{preprocessor}{\#define AL\_REVERB\_MAX\_ROOM\_ROLLOFF\_FACTOR        (10.0f)}}
+\DoxyCodeLine{365 \textcolor{preprocessor}{\#define AL\_REVERB\_DEFAULT\_ROOM\_ROLLOFF\_FACTOR    (0.0f)}}
+\DoxyCodeLine{366 }
+\DoxyCodeLine{367 \textcolor{preprocessor}{\#define AL\_REVERB\_MIN\_DECAY\_HFLIMIT              AL\_FALSE}}
+\DoxyCodeLine{368 \textcolor{preprocessor}{\#define AL\_REVERB\_MAX\_DECAY\_HFLIMIT              AL\_TRUE}}
+\DoxyCodeLine{369 \textcolor{preprocessor}{\#define AL\_REVERB\_DEFAULT\_DECAY\_HFLIMIT          AL\_TRUE}}
+\DoxyCodeLine{370 }
+\DoxyCodeLine{371 \textcolor{comment}{/* EAX reverb effect */}}
+\DoxyCodeLine{372 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_DENSITY                 (0.0f)}}
+\DoxyCodeLine{373 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_DENSITY                 (1.0f)}}
+\DoxyCodeLine{374 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_DENSITY             (1.0f)}}
+\DoxyCodeLine{375 }
+\DoxyCodeLine{376 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_DIFFUSION               (0.0f)}}
+\DoxyCodeLine{377 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_DIFFUSION               (1.0f)}}
+\DoxyCodeLine{378 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_DIFFUSION           (1.0f)}}
+\DoxyCodeLine{379 }
+\DoxyCodeLine{380 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_GAIN                    (0.0f)}}
+\DoxyCodeLine{381 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_GAIN                    (1.0f)}}
+\DoxyCodeLine{382 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_GAIN                (0.32f)}}
+\DoxyCodeLine{383 }
+\DoxyCodeLine{384 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_GAINHF                  (0.0f)}}
+\DoxyCodeLine{385 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_GAINHF                  (1.0f)}}
+\DoxyCodeLine{386 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_GAINHF              (0.89f)}}
+\DoxyCodeLine{387 }
+\DoxyCodeLine{388 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_GAINLF                  (0.0f)}}
+\DoxyCodeLine{389 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_GAINLF                  (1.0f)}}
+\DoxyCodeLine{390 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_GAINLF              (1.0f)}}
+\DoxyCodeLine{391 }
+\DoxyCodeLine{392 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_DECAY\_TIME              (0.1f)}}
+\DoxyCodeLine{393 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_DECAY\_TIME              (20.0f)}}
+\DoxyCodeLine{394 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_DECAY\_TIME          (1.49f)}}
+\DoxyCodeLine{395 }
+\DoxyCodeLine{396 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_DECAY\_HFRATIO           (0.1f)}}
+\DoxyCodeLine{397 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_DECAY\_HFRATIO           (2.0f)}}
+\DoxyCodeLine{398 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_DECAY\_HFRATIO       (0.83f)}}
+\DoxyCodeLine{399 }
+\DoxyCodeLine{400 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_DECAY\_LFRATIO           (0.1f)}}
+\DoxyCodeLine{401 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_DECAY\_LFRATIO           (2.0f)}}
+\DoxyCodeLine{402 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_DECAY\_LFRATIO       (1.0f)}}
+\DoxyCodeLine{403 }
+\DoxyCodeLine{404 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_REFLECTIONS\_GAIN        (0.0f)}}
+\DoxyCodeLine{405 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_REFLECTIONS\_GAIN        (3.16f)}}
+\DoxyCodeLine{406 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_REFLECTIONS\_GAIN    (0.05f)}}
+\DoxyCodeLine{407 }
+\DoxyCodeLine{408 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_REFLECTIONS\_DELAY       (0.0f)}}
+\DoxyCodeLine{409 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_REFLECTIONS\_DELAY       (0.3f)}}
+\DoxyCodeLine{410 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_REFLECTIONS\_DELAY   (0.007f)}}
+\DoxyCodeLine{411 }
+\DoxyCodeLine{412 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_REFLECTIONS\_PAN\_XYZ (0.0f)}}
+\DoxyCodeLine{413 }
+\DoxyCodeLine{414 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_LATE\_REVERB\_GAIN        (0.0f)}}
+\DoxyCodeLine{415 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_LATE\_REVERB\_GAIN        (10.0f)}}
+\DoxyCodeLine{416 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_LATE\_REVERB\_GAIN    (1.26f)}}
+\DoxyCodeLine{417 }
+\DoxyCodeLine{418 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_LATE\_REVERB\_DELAY       (0.0f)}}
+\DoxyCodeLine{419 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_LATE\_REVERB\_DELAY       (0.1f)}}
+\DoxyCodeLine{420 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_LATE\_REVERB\_DELAY   (0.011f)}}
+\DoxyCodeLine{421 }
+\DoxyCodeLine{422 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_LATE\_REVERB\_PAN\_XYZ (0.0f)}}
+\DoxyCodeLine{423 }
+\DoxyCodeLine{424 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_ECHO\_TIME               (0.075f)}}
+\DoxyCodeLine{425 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_ECHO\_TIME               (0.25f)}}
+\DoxyCodeLine{426 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_ECHO\_TIME           (0.25f)}}
+\DoxyCodeLine{427 }
+\DoxyCodeLine{428 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_ECHO\_DEPTH              (0.0f)}}
+\DoxyCodeLine{429 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_ECHO\_DEPTH              (1.0f)}}
+\DoxyCodeLine{430 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_ECHO\_DEPTH          (0.0f)}}
+\DoxyCodeLine{431 }
+\DoxyCodeLine{432 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_MODULATION\_TIME         (0.04f)}}
+\DoxyCodeLine{433 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_MODULATION\_TIME         (4.0f)}}
+\DoxyCodeLine{434 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_MODULATION\_TIME     (0.25f)}}
+\DoxyCodeLine{435 }
+\DoxyCodeLine{436 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_MODULATION\_DEPTH        (0.0f)}}
+\DoxyCodeLine{437 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_MODULATION\_DEPTH        (1.0f)}}
+\DoxyCodeLine{438 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_MODULATION\_DEPTH    (0.0f)}}
+\DoxyCodeLine{439 }
+\DoxyCodeLine{440 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_AIR\_ABSORPTION\_GAINHF   (0.892f)}}
+\DoxyCodeLine{441 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_AIR\_ABSORPTION\_GAINHF   (1.0f)}}
+\DoxyCodeLine{442 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_AIR\_ABSORPTION\_GAINHF (0.994f)}}
+\DoxyCodeLine{443 }
+\DoxyCodeLine{444 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_HFREFERENCE             (1000.0f)}}
+\DoxyCodeLine{445 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_HFREFERENCE             (20000.0f)}}
+\DoxyCodeLine{446 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_HFREFERENCE         (5000.0f)}}
+\DoxyCodeLine{447 }
+\DoxyCodeLine{448 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_LFREFERENCE             (20.0f)}}
+\DoxyCodeLine{449 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_LFREFERENCE             (1000.0f)}}
+\DoxyCodeLine{450 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_LFREFERENCE         (250.0f)}}
+\DoxyCodeLine{451 }
+\DoxyCodeLine{452 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_ROOM\_ROLLOFF\_FACTOR     (0.0f)}}
+\DoxyCodeLine{453 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_ROOM\_ROLLOFF\_FACTOR     (10.0f)}}
+\DoxyCodeLine{454 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_ROOM\_ROLLOFF\_FACTOR (0.0f)}}
+\DoxyCodeLine{455 }
+\DoxyCodeLine{456 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MIN\_DECAY\_HFLIMIT           AL\_FALSE}}
+\DoxyCodeLine{457 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_MAX\_DECAY\_HFLIMIT           AL\_TRUE}}
+\DoxyCodeLine{458 \textcolor{preprocessor}{\#define AL\_EAXREVERB\_DEFAULT\_DECAY\_HFLIMIT       AL\_TRUE}}
+\DoxyCodeLine{459 }
+\DoxyCodeLine{460 \textcolor{comment}{/* Chorus effect */}}
+\DoxyCodeLine{461 \textcolor{preprocessor}{\#define AL\_CHORUS\_WAVEFORM\_SINUSOID              (0)}}
+\DoxyCodeLine{462 \textcolor{preprocessor}{\#define AL\_CHORUS\_WAVEFORM\_TRIANGLE              (1)}}
+\DoxyCodeLine{463 }
+\DoxyCodeLine{464 \textcolor{preprocessor}{\#define AL\_CHORUS\_MIN\_WAVEFORM                   (0)}}
+\DoxyCodeLine{465 \textcolor{preprocessor}{\#define AL\_CHORUS\_MAX\_WAVEFORM                   (1)}}
+\DoxyCodeLine{466 \textcolor{preprocessor}{\#define AL\_CHORUS\_DEFAULT\_WAVEFORM               (1)}}
+\DoxyCodeLine{467 }
+\DoxyCodeLine{468 \textcolor{preprocessor}{\#define AL\_CHORUS\_MIN\_PHASE                      (-\/180)}}
+\DoxyCodeLine{469 \textcolor{preprocessor}{\#define AL\_CHORUS\_MAX\_PHASE                      (180)}}
+\DoxyCodeLine{470 \textcolor{preprocessor}{\#define AL\_CHORUS\_DEFAULT\_PHASE                  (90)}}
+\DoxyCodeLine{471 }
+\DoxyCodeLine{472 \textcolor{preprocessor}{\#define AL\_CHORUS\_MIN\_RATE                       (0.0f)}}
+\DoxyCodeLine{473 \textcolor{preprocessor}{\#define AL\_CHORUS\_MAX\_RATE                       (10.0f)}}
+\DoxyCodeLine{474 \textcolor{preprocessor}{\#define AL\_CHORUS\_DEFAULT\_RATE                   (1.1f)}}
+\DoxyCodeLine{475 }
+\DoxyCodeLine{476 \textcolor{preprocessor}{\#define AL\_CHORUS\_MIN\_DEPTH                      (0.0f)}}
+\DoxyCodeLine{477 \textcolor{preprocessor}{\#define AL\_CHORUS\_MAX\_DEPTH                      (1.0f)}}
+\DoxyCodeLine{478 \textcolor{preprocessor}{\#define AL\_CHORUS\_DEFAULT\_DEPTH                  (0.1f)}}
+\DoxyCodeLine{479 }
+\DoxyCodeLine{480 \textcolor{preprocessor}{\#define AL\_CHORUS\_MIN\_FEEDBACK                   (-\/1.0f)}}
+\DoxyCodeLine{481 \textcolor{preprocessor}{\#define AL\_CHORUS\_MAX\_FEEDBACK                   (1.0f)}}
+\DoxyCodeLine{482 \textcolor{preprocessor}{\#define AL\_CHORUS\_DEFAULT\_FEEDBACK               (0.25f)}}
+\DoxyCodeLine{483 }
+\DoxyCodeLine{484 \textcolor{preprocessor}{\#define AL\_CHORUS\_MIN\_DELAY                      (0.0f)}}
+\DoxyCodeLine{485 \textcolor{preprocessor}{\#define AL\_CHORUS\_MAX\_DELAY                      (0.016f)}}
+\DoxyCodeLine{486 \textcolor{preprocessor}{\#define AL\_CHORUS\_DEFAULT\_DELAY                  (0.016f)}}
+\DoxyCodeLine{487 }
+\DoxyCodeLine{488 \textcolor{comment}{/* Distortion effect */}}
+\DoxyCodeLine{489 \textcolor{preprocessor}{\#define AL\_DISTORTION\_MIN\_EDGE                   (0.0f)}}
+\DoxyCodeLine{490 \textcolor{preprocessor}{\#define AL\_DISTORTION\_MAX\_EDGE                   (1.0f)}}
+\DoxyCodeLine{491 \textcolor{preprocessor}{\#define AL\_DISTORTION\_DEFAULT\_EDGE               (0.2f)}}
+\DoxyCodeLine{492 }
+\DoxyCodeLine{493 \textcolor{preprocessor}{\#define AL\_DISTORTION\_MIN\_GAIN                   (0.01f)}}
+\DoxyCodeLine{494 \textcolor{preprocessor}{\#define AL\_DISTORTION\_MAX\_GAIN                   (1.0f)}}
+\DoxyCodeLine{495 \textcolor{preprocessor}{\#define AL\_DISTORTION\_DEFAULT\_GAIN               (0.05f)}}
+\DoxyCodeLine{496 }
+\DoxyCodeLine{497 \textcolor{preprocessor}{\#define AL\_DISTORTION\_MIN\_LOWPASS\_CUTOFF         (80.0f)}}
+\DoxyCodeLine{498 \textcolor{preprocessor}{\#define AL\_DISTORTION\_MAX\_LOWPASS\_CUTOFF         (24000.0f)}}
+\DoxyCodeLine{499 \textcolor{preprocessor}{\#define AL\_DISTORTION\_DEFAULT\_LOWPASS\_CUTOFF     (8000.0f)}}
+\DoxyCodeLine{500 }
+\DoxyCodeLine{501 \textcolor{preprocessor}{\#define AL\_DISTORTION\_MIN\_EQCENTER               (80.0f)}}
+\DoxyCodeLine{502 \textcolor{preprocessor}{\#define AL\_DISTORTION\_MAX\_EQCENTER               (24000.0f)}}
+\DoxyCodeLine{503 \textcolor{preprocessor}{\#define AL\_DISTORTION\_DEFAULT\_EQCENTER           (3600.0f)}}
+\DoxyCodeLine{504 }
+\DoxyCodeLine{505 \textcolor{preprocessor}{\#define AL\_DISTORTION\_MIN\_EQBANDWIDTH            (80.0f)}}
+\DoxyCodeLine{506 \textcolor{preprocessor}{\#define AL\_DISTORTION\_MAX\_EQBANDWIDTH            (24000.0f)}}
+\DoxyCodeLine{507 \textcolor{preprocessor}{\#define AL\_DISTORTION\_DEFAULT\_EQBANDWIDTH        (3600.0f)}}
+\DoxyCodeLine{508 }
+\DoxyCodeLine{509 \textcolor{comment}{/* Echo effect */}}
+\DoxyCodeLine{510 \textcolor{preprocessor}{\#define AL\_ECHO\_MIN\_DELAY                        (0.0f)}}
+\DoxyCodeLine{511 \textcolor{preprocessor}{\#define AL\_ECHO\_MAX\_DELAY                        (0.207f)}}
+\DoxyCodeLine{512 \textcolor{preprocessor}{\#define AL\_ECHO\_DEFAULT\_DELAY                    (0.1f)}}
+\DoxyCodeLine{513 }
+\DoxyCodeLine{514 \textcolor{preprocessor}{\#define AL\_ECHO\_MIN\_LRDELAY                      (0.0f)}}
+\DoxyCodeLine{515 \textcolor{preprocessor}{\#define AL\_ECHO\_MAX\_LRDELAY                      (0.404f)}}
+\DoxyCodeLine{516 \textcolor{preprocessor}{\#define AL\_ECHO\_DEFAULT\_LRDELAY                  (0.1f)}}
+\DoxyCodeLine{517 }
+\DoxyCodeLine{518 \textcolor{preprocessor}{\#define AL\_ECHO\_MIN\_DAMPING                      (0.0f)}}
+\DoxyCodeLine{519 \textcolor{preprocessor}{\#define AL\_ECHO\_MAX\_DAMPING                      (0.99f)}}
+\DoxyCodeLine{520 \textcolor{preprocessor}{\#define AL\_ECHO\_DEFAULT\_DAMPING                  (0.5f)}}
+\DoxyCodeLine{521 }
+\DoxyCodeLine{522 \textcolor{preprocessor}{\#define AL\_ECHO\_MIN\_FEEDBACK                     (0.0f)}}
+\DoxyCodeLine{523 \textcolor{preprocessor}{\#define AL\_ECHO\_MAX\_FEEDBACK                     (1.0f)}}
+\DoxyCodeLine{524 \textcolor{preprocessor}{\#define AL\_ECHO\_DEFAULT\_FEEDBACK                 (0.5f)}}
+\DoxyCodeLine{525 }
+\DoxyCodeLine{526 \textcolor{preprocessor}{\#define AL\_ECHO\_MIN\_SPREAD                       (-\/1.0f)}}
+\DoxyCodeLine{527 \textcolor{preprocessor}{\#define AL\_ECHO\_MAX\_SPREAD                       (1.0f)}}
+\DoxyCodeLine{528 \textcolor{preprocessor}{\#define AL\_ECHO\_DEFAULT\_SPREAD                   (-\/1.0f)}}
+\DoxyCodeLine{529 }
+\DoxyCodeLine{530 \textcolor{comment}{/* Flanger effect */}}
+\DoxyCodeLine{531 \textcolor{preprocessor}{\#define AL\_FLANGER\_WAVEFORM\_SINUSOID             (0)}}
+\DoxyCodeLine{532 \textcolor{preprocessor}{\#define AL\_FLANGER\_WAVEFORM\_TRIANGLE             (1)}}
+\DoxyCodeLine{533 }
+\DoxyCodeLine{534 \textcolor{preprocessor}{\#define AL\_FLANGER\_MIN\_WAVEFORM                  (0)}}
+\DoxyCodeLine{535 \textcolor{preprocessor}{\#define AL\_FLANGER\_MAX\_WAVEFORM                  (1)}}
+\DoxyCodeLine{536 \textcolor{preprocessor}{\#define AL\_FLANGER\_DEFAULT\_WAVEFORM              (1)}}
+\DoxyCodeLine{537 }
+\DoxyCodeLine{538 \textcolor{preprocessor}{\#define AL\_FLANGER\_MIN\_PHASE                     (-\/180)}}
+\DoxyCodeLine{539 \textcolor{preprocessor}{\#define AL\_FLANGER\_MAX\_PHASE                     (180)}}
+\DoxyCodeLine{540 \textcolor{preprocessor}{\#define AL\_FLANGER\_DEFAULT\_PHASE                 (0)}}
+\DoxyCodeLine{541 }
+\DoxyCodeLine{542 \textcolor{preprocessor}{\#define AL\_FLANGER\_MIN\_RATE                      (0.0f)}}
+\DoxyCodeLine{543 \textcolor{preprocessor}{\#define AL\_FLANGER\_MAX\_RATE                      (10.0f)}}
+\DoxyCodeLine{544 \textcolor{preprocessor}{\#define AL\_FLANGER\_DEFAULT\_RATE                  (0.27f)}}
+\DoxyCodeLine{545 }
+\DoxyCodeLine{546 \textcolor{preprocessor}{\#define AL\_FLANGER\_MIN\_DEPTH                     (0.0f)}}
+\DoxyCodeLine{547 \textcolor{preprocessor}{\#define AL\_FLANGER\_MAX\_DEPTH                     (1.0f)}}
+\DoxyCodeLine{548 \textcolor{preprocessor}{\#define AL\_FLANGER\_DEFAULT\_DEPTH                 (1.0f)}}
+\DoxyCodeLine{549 }
+\DoxyCodeLine{550 \textcolor{preprocessor}{\#define AL\_FLANGER\_MIN\_FEEDBACK                  (-\/1.0f)}}
+\DoxyCodeLine{551 \textcolor{preprocessor}{\#define AL\_FLANGER\_MAX\_FEEDBACK                  (1.0f)}}
+\DoxyCodeLine{552 \textcolor{preprocessor}{\#define AL\_FLANGER\_DEFAULT\_FEEDBACK              (-\/0.5f)}}
+\DoxyCodeLine{553 }
+\DoxyCodeLine{554 \textcolor{preprocessor}{\#define AL\_FLANGER\_MIN\_DELAY                     (0.0f)}}
+\DoxyCodeLine{555 \textcolor{preprocessor}{\#define AL\_FLANGER\_MAX\_DELAY                     (0.004f)}}
+\DoxyCodeLine{556 \textcolor{preprocessor}{\#define AL\_FLANGER\_DEFAULT\_DELAY                 (0.002f)}}
+\DoxyCodeLine{557 }
+\DoxyCodeLine{558 \textcolor{comment}{/* Frequency shifter effect */}}
+\DoxyCodeLine{559 \textcolor{preprocessor}{\#define AL\_FREQUENCY\_SHIFTER\_MIN\_FREQUENCY       (0.0f)}}
+\DoxyCodeLine{560 \textcolor{preprocessor}{\#define AL\_FREQUENCY\_SHIFTER\_MAX\_FREQUENCY       (24000.0f)}}
+\DoxyCodeLine{561 \textcolor{preprocessor}{\#define AL\_FREQUENCY\_SHIFTER\_DEFAULT\_FREQUENCY   (0.0f)}}
+\DoxyCodeLine{562 }
+\DoxyCodeLine{563 \textcolor{preprocessor}{\#define AL\_FREQUENCY\_SHIFTER\_MIN\_LEFT\_DIRECTION  (0)}}
+\DoxyCodeLine{564 \textcolor{preprocessor}{\#define AL\_FREQUENCY\_SHIFTER\_MAX\_LEFT\_DIRECTION  (2)}}
+\DoxyCodeLine{565 \textcolor{preprocessor}{\#define AL\_FREQUENCY\_SHIFTER\_DEFAULT\_LEFT\_DIRECTION (0)}}
+\DoxyCodeLine{566 }
+\DoxyCodeLine{567 \textcolor{preprocessor}{\#define AL\_FREQUENCY\_SHIFTER\_DIRECTION\_DOWN      (0)}}
+\DoxyCodeLine{568 \textcolor{preprocessor}{\#define AL\_FREQUENCY\_SHIFTER\_DIRECTION\_UP        (1)}}
+\DoxyCodeLine{569 \textcolor{preprocessor}{\#define AL\_FREQUENCY\_SHIFTER\_DIRECTION\_OFF       (2)}}
+\DoxyCodeLine{570 }
+\DoxyCodeLine{571 \textcolor{preprocessor}{\#define AL\_FREQUENCY\_SHIFTER\_MIN\_RIGHT\_DIRECTION (0)}}
+\DoxyCodeLine{572 \textcolor{preprocessor}{\#define AL\_FREQUENCY\_SHIFTER\_MAX\_RIGHT\_DIRECTION (2)}}
+\DoxyCodeLine{573 \textcolor{preprocessor}{\#define AL\_FREQUENCY\_SHIFTER\_DEFAULT\_RIGHT\_DIRECTION (0)}}
+\DoxyCodeLine{574 }
+\DoxyCodeLine{575 \textcolor{comment}{/* Vocal morpher effect */}}
+\DoxyCodeLine{576 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_MIN\_PHONEMEA            (0)}}
+\DoxyCodeLine{577 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_MAX\_PHONEMEA            (29)}}
+\DoxyCodeLine{578 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_DEFAULT\_PHONEMEA        (0)}}
+\DoxyCodeLine{579 }
+\DoxyCodeLine{580 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_MIN\_PHONEMEA\_COARSE\_TUNING (-\/24)}}
+\DoxyCodeLine{581 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_MAX\_PHONEMEA\_COARSE\_TUNING (24)}}
+\DoxyCodeLine{582 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_DEFAULT\_PHONEMEA\_COARSE\_TUNING (0)}}
+\DoxyCodeLine{583 }
+\DoxyCodeLine{584 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_MIN\_PHONEMEB            (0)}}
+\DoxyCodeLine{585 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_MAX\_PHONEMEB            (29)}}
+\DoxyCodeLine{586 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_DEFAULT\_PHONEMEB        (10)}}
+\DoxyCodeLine{587 }
+\DoxyCodeLine{588 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_MIN\_PHONEMEB\_COARSE\_TUNING (-\/24)}}
+\DoxyCodeLine{589 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_MAX\_PHONEMEB\_COARSE\_TUNING (24)}}
+\DoxyCodeLine{590 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_DEFAULT\_PHONEMEB\_COARSE\_TUNING (0)}}
+\DoxyCodeLine{591 }
+\DoxyCodeLine{592 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_A               (0)}}
+\DoxyCodeLine{593 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_E               (1)}}
+\DoxyCodeLine{594 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_I               (2)}}
+\DoxyCodeLine{595 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_O               (3)}}
+\DoxyCodeLine{596 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_U               (4)}}
+\DoxyCodeLine{597 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_AA              (5)}}
+\DoxyCodeLine{598 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_AE              (6)}}
+\DoxyCodeLine{599 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_AH              (7)}}
+\DoxyCodeLine{600 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_AO              (8)}}
+\DoxyCodeLine{601 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_EH              (9)}}
+\DoxyCodeLine{602 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_ER              (10)}}
+\DoxyCodeLine{603 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_IH              (11)}}
+\DoxyCodeLine{604 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_IY              (12)}}
+\DoxyCodeLine{605 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_UH              (13)}}
+\DoxyCodeLine{606 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_UW              (14)}}
+\DoxyCodeLine{607 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_B               (15)}}
+\DoxyCodeLine{608 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_D               (16)}}
+\DoxyCodeLine{609 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_F               (17)}}
+\DoxyCodeLine{610 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_G               (18)}}
+\DoxyCodeLine{611 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_J               (19)}}
+\DoxyCodeLine{612 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_K               (20)}}
+\DoxyCodeLine{613 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_L               (21)}}
+\DoxyCodeLine{614 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_M               (22)}}
+\DoxyCodeLine{615 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_N               (23)}}
+\DoxyCodeLine{616 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_P               (24)}}
+\DoxyCodeLine{617 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_R               (25)}}
+\DoxyCodeLine{618 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_S               (26)}}
+\DoxyCodeLine{619 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_T               (27)}}
+\DoxyCodeLine{620 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_V               (28)}}
+\DoxyCodeLine{621 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_PHONEME\_Z               (29)}}
+\DoxyCodeLine{622 }
+\DoxyCodeLine{623 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_WAVEFORM\_SINUSOID       (0)}}
+\DoxyCodeLine{624 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_WAVEFORM\_TRIANGLE       (1)}}
+\DoxyCodeLine{625 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_WAVEFORM\_SAWTOOTH       (2)}}
+\DoxyCodeLine{626 }
+\DoxyCodeLine{627 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_MIN\_WAVEFORM            (0)}}
+\DoxyCodeLine{628 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_MAX\_WAVEFORM            (2)}}
+\DoxyCodeLine{629 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_DEFAULT\_WAVEFORM        (0)}}
+\DoxyCodeLine{630 }
+\DoxyCodeLine{631 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_MIN\_RATE                (0.0f)}}
+\DoxyCodeLine{632 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_MAX\_RATE                (10.0f)}}
+\DoxyCodeLine{633 \textcolor{preprocessor}{\#define AL\_VOCAL\_MORPHER\_DEFAULT\_RATE            (1.41f)}}
+\DoxyCodeLine{634 }
+\DoxyCodeLine{635 \textcolor{comment}{/* Pitch shifter effect */}}
+\DoxyCodeLine{636 \textcolor{preprocessor}{\#define AL\_PITCH\_SHIFTER\_MIN\_COARSE\_TUNE         (-\/12)}}
+\DoxyCodeLine{637 \textcolor{preprocessor}{\#define AL\_PITCH\_SHIFTER\_MAX\_COARSE\_TUNE         (12)}}
+\DoxyCodeLine{638 \textcolor{preprocessor}{\#define AL\_PITCH\_SHIFTER\_DEFAULT\_COARSE\_TUNE     (12)}}
+\DoxyCodeLine{639 }
+\DoxyCodeLine{640 \textcolor{preprocessor}{\#define AL\_PITCH\_SHIFTER\_MIN\_FINE\_TUNE           (-\/50)}}
+\DoxyCodeLine{641 \textcolor{preprocessor}{\#define AL\_PITCH\_SHIFTER\_MAX\_FINE\_TUNE           (50)}}
+\DoxyCodeLine{642 \textcolor{preprocessor}{\#define AL\_PITCH\_SHIFTER\_DEFAULT\_FINE\_TUNE       (0)}}
+\DoxyCodeLine{643 }
+\DoxyCodeLine{644 \textcolor{comment}{/* Ring modulator effect */}}
+\DoxyCodeLine{645 \textcolor{preprocessor}{\#define AL\_RING\_MODULATOR\_MIN\_FREQUENCY          (0.0f)}}
+\DoxyCodeLine{646 \textcolor{preprocessor}{\#define AL\_RING\_MODULATOR\_MAX\_FREQUENCY          (8000.0f)}}
+\DoxyCodeLine{647 \textcolor{preprocessor}{\#define AL\_RING\_MODULATOR\_DEFAULT\_FREQUENCY      (440.0f)}}
+\DoxyCodeLine{648 }
+\DoxyCodeLine{649 \textcolor{preprocessor}{\#define AL\_RING\_MODULATOR\_MIN\_HIGHPASS\_CUTOFF    (0.0f)}}
+\DoxyCodeLine{650 \textcolor{preprocessor}{\#define AL\_RING\_MODULATOR\_MAX\_HIGHPASS\_CUTOFF    (24000.0f)}}
+\DoxyCodeLine{651 \textcolor{preprocessor}{\#define AL\_RING\_MODULATOR\_DEFAULT\_HIGHPASS\_CUTOFF (800.0f)}}
+\DoxyCodeLine{652 }
+\DoxyCodeLine{653 \textcolor{preprocessor}{\#define AL\_RING\_MODULATOR\_SINUSOID               (0)}}
+\DoxyCodeLine{654 \textcolor{preprocessor}{\#define AL\_RING\_MODULATOR\_SAWTOOTH               (1)}}
+\DoxyCodeLine{655 \textcolor{preprocessor}{\#define AL\_RING\_MODULATOR\_SQUARE                 (2)}}
+\DoxyCodeLine{656 }
+\DoxyCodeLine{657 \textcolor{preprocessor}{\#define AL\_RING\_MODULATOR\_MIN\_WAVEFORM           (0)}}
+\DoxyCodeLine{658 \textcolor{preprocessor}{\#define AL\_RING\_MODULATOR\_MAX\_WAVEFORM           (2)}}
+\DoxyCodeLine{659 \textcolor{preprocessor}{\#define AL\_RING\_MODULATOR\_DEFAULT\_WAVEFORM       (0)}}
+\DoxyCodeLine{660 }
+\DoxyCodeLine{661 \textcolor{comment}{/* Autowah effect */}}
+\DoxyCodeLine{662 \textcolor{preprocessor}{\#define AL\_AUTOWAH\_MIN\_ATTACK\_TIME               (0.0001f)}}
+\DoxyCodeLine{663 \textcolor{preprocessor}{\#define AL\_AUTOWAH\_MAX\_ATTACK\_TIME               (1.0f)}}
+\DoxyCodeLine{664 \textcolor{preprocessor}{\#define AL\_AUTOWAH\_DEFAULT\_ATTACK\_TIME           (0.06f)}}
+\DoxyCodeLine{665 }
+\DoxyCodeLine{666 \textcolor{preprocessor}{\#define AL\_AUTOWAH\_MIN\_RELEASE\_TIME              (0.0001f)}}
+\DoxyCodeLine{667 \textcolor{preprocessor}{\#define AL\_AUTOWAH\_MAX\_RELEASE\_TIME              (1.0f)}}
+\DoxyCodeLine{668 \textcolor{preprocessor}{\#define AL\_AUTOWAH\_DEFAULT\_RELEASE\_TIME          (0.06f)}}
+\DoxyCodeLine{669 }
+\DoxyCodeLine{670 \textcolor{preprocessor}{\#define AL\_AUTOWAH\_MIN\_RESONANCE                 (2.0f)}}
+\DoxyCodeLine{671 \textcolor{preprocessor}{\#define AL\_AUTOWAH\_MAX\_RESONANCE                 (1000.0f)}}
+\DoxyCodeLine{672 \textcolor{preprocessor}{\#define AL\_AUTOWAH\_DEFAULT\_RESONANCE             (1000.0f)}}
+\DoxyCodeLine{673 }
+\DoxyCodeLine{674 \textcolor{preprocessor}{\#define AL\_AUTOWAH\_MIN\_PEAK\_GAIN                 (0.00003f)}}
+\DoxyCodeLine{675 \textcolor{preprocessor}{\#define AL\_AUTOWAH\_MAX\_PEAK\_GAIN                 (31621.0f)}}
+\DoxyCodeLine{676 \textcolor{preprocessor}{\#define AL\_AUTOWAH\_DEFAULT\_PEAK\_GAIN             (11.22f)}}
+\DoxyCodeLine{677 }
+\DoxyCodeLine{678 \textcolor{comment}{/* Compressor effect */}}
+\DoxyCodeLine{679 \textcolor{preprocessor}{\#define AL\_COMPRESSOR\_MIN\_ONOFF                  (0)}}
+\DoxyCodeLine{680 \textcolor{preprocessor}{\#define AL\_COMPRESSOR\_MAX\_ONOFF                  (1)}}
+\DoxyCodeLine{681 \textcolor{preprocessor}{\#define AL\_COMPRESSOR\_DEFAULT\_ONOFF              (1)}}
+\DoxyCodeLine{682 }
+\DoxyCodeLine{683 \textcolor{comment}{/* Equalizer effect */}}
+\DoxyCodeLine{684 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MIN\_LOW\_GAIN                (0.126f)}}
+\DoxyCodeLine{685 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MAX\_LOW\_GAIN                (7.943f)}}
+\DoxyCodeLine{686 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_DEFAULT\_LOW\_GAIN            (1.0f)}}
+\DoxyCodeLine{687 }
+\DoxyCodeLine{688 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MIN\_LOW\_CUTOFF              (50.0f)}}
+\DoxyCodeLine{689 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MAX\_LOW\_CUTOFF              (800.0f)}}
+\DoxyCodeLine{690 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_DEFAULT\_LOW\_CUTOFF          (200.0f)}}
+\DoxyCodeLine{691 }
+\DoxyCodeLine{692 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MIN\_MID1\_GAIN               (0.126f)}}
+\DoxyCodeLine{693 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MAX\_MID1\_GAIN               (7.943f)}}
+\DoxyCodeLine{694 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_DEFAULT\_MID1\_GAIN           (1.0f)}}
+\DoxyCodeLine{695 }
+\DoxyCodeLine{696 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MIN\_MID1\_CENTER             (200.0f)}}
+\DoxyCodeLine{697 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MAX\_MID1\_CENTER             (3000.0f)}}
+\DoxyCodeLine{698 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_DEFAULT\_MID1\_CENTER         (500.0f)}}
+\DoxyCodeLine{699 }
+\DoxyCodeLine{700 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MIN\_MID1\_WIDTH              (0.01f)}}
+\DoxyCodeLine{701 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MAX\_MID1\_WIDTH              (1.0f)}}
+\DoxyCodeLine{702 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_DEFAULT\_MID1\_WIDTH          (1.0f)}}
+\DoxyCodeLine{703 }
+\DoxyCodeLine{704 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MIN\_MID2\_GAIN               (0.126f)}}
+\DoxyCodeLine{705 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MAX\_MID2\_GAIN               (7.943f)}}
+\DoxyCodeLine{706 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_DEFAULT\_MID2\_GAIN           (1.0f)}}
+\DoxyCodeLine{707 }
+\DoxyCodeLine{708 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MIN\_MID2\_CENTER             (1000.0f)}}
+\DoxyCodeLine{709 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MAX\_MID2\_CENTER             (8000.0f)}}
+\DoxyCodeLine{710 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_DEFAULT\_MID2\_CENTER         (3000.0f)}}
+\DoxyCodeLine{711 }
+\DoxyCodeLine{712 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MIN\_MID2\_WIDTH              (0.01f)}}
+\DoxyCodeLine{713 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MAX\_MID2\_WIDTH              (1.0f)}}
+\DoxyCodeLine{714 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_DEFAULT\_MID2\_WIDTH          (1.0f)}}
+\DoxyCodeLine{715 }
+\DoxyCodeLine{716 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MIN\_HIGH\_GAIN               (0.126f)}}
+\DoxyCodeLine{717 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MAX\_HIGH\_GAIN               (7.943f)}}
+\DoxyCodeLine{718 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_DEFAULT\_HIGH\_GAIN           (1.0f)}}
+\DoxyCodeLine{719 }
+\DoxyCodeLine{720 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MIN\_HIGH\_CUTOFF             (4000.0f)}}
+\DoxyCodeLine{721 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_MAX\_HIGH\_CUTOFF             (16000.0f)}}
+\DoxyCodeLine{722 \textcolor{preprocessor}{\#define AL\_EQUALIZER\_DEFAULT\_HIGH\_CUTOFF         (6000.0f)}}
+\DoxyCodeLine{723 }
+\DoxyCodeLine{724 }
+\DoxyCodeLine{725 \textcolor{comment}{/* Source parameter value ranges and defaults. */}}
+\DoxyCodeLine{726 \textcolor{preprocessor}{\#define AL\_MIN\_AIR\_ABSORPTION\_FACTOR             (0.0f)}}
+\DoxyCodeLine{727 \textcolor{preprocessor}{\#define AL\_MAX\_AIR\_ABSORPTION\_FACTOR             (10.0f)}}
+\DoxyCodeLine{728 \textcolor{preprocessor}{\#define AL\_DEFAULT\_AIR\_ABSORPTION\_FACTOR         (0.0f)}}
+\DoxyCodeLine{729 }
+\DoxyCodeLine{730 \textcolor{preprocessor}{\#define AL\_MIN\_ROOM\_ROLLOFF\_FACTOR               (0.0f)}}
+\DoxyCodeLine{731 \textcolor{preprocessor}{\#define AL\_MAX\_ROOM\_ROLLOFF\_FACTOR               (10.0f)}}
+\DoxyCodeLine{732 \textcolor{preprocessor}{\#define AL\_DEFAULT\_ROOM\_ROLLOFF\_FACTOR           (0.0f)}}
+\DoxyCodeLine{733 }
+\DoxyCodeLine{734 \textcolor{preprocessor}{\#define AL\_MIN\_CONE\_OUTER\_GAINHF                 (0.0f)}}
+\DoxyCodeLine{735 \textcolor{preprocessor}{\#define AL\_MAX\_CONE\_OUTER\_GAINHF                 (1.0f)}}
+\DoxyCodeLine{736 \textcolor{preprocessor}{\#define AL\_DEFAULT\_CONE\_OUTER\_GAINHF             (1.0f)}}
+\DoxyCodeLine{737 }
+\DoxyCodeLine{738 \textcolor{preprocessor}{\#define AL\_MIN\_DIRECT\_FILTER\_GAINHF\_AUTO         AL\_FALSE}}
+\DoxyCodeLine{739 \textcolor{preprocessor}{\#define AL\_MAX\_DIRECT\_FILTER\_GAINHF\_AUTO         AL\_TRUE}}
+\DoxyCodeLine{740 \textcolor{preprocessor}{\#define AL\_DEFAULT\_DIRECT\_FILTER\_GAINHF\_AUTO     AL\_TRUE}}
+\DoxyCodeLine{741 }
+\DoxyCodeLine{742 \textcolor{preprocessor}{\#define AL\_MIN\_AUXILIARY\_SEND\_FILTER\_GAIN\_AUTO   AL\_FALSE}}
+\DoxyCodeLine{743 \textcolor{preprocessor}{\#define AL\_MAX\_AUXILIARY\_SEND\_FILTER\_GAIN\_AUTO   AL\_TRUE}}
+\DoxyCodeLine{744 \textcolor{preprocessor}{\#define AL\_DEFAULT\_AUXILIARY\_SEND\_FILTER\_GAIN\_AUTO AL\_TRUE}}
+\DoxyCodeLine{745 }
+\DoxyCodeLine{746 \textcolor{preprocessor}{\#define AL\_MIN\_AUXILIARY\_SEND\_FILTER\_GAINHF\_AUTO AL\_FALSE}}
+\DoxyCodeLine{747 \textcolor{preprocessor}{\#define AL\_MAX\_AUXILIARY\_SEND\_FILTER\_GAINHF\_AUTO AL\_TRUE}}
+\DoxyCodeLine{748 \textcolor{preprocessor}{\#define AL\_DEFAULT\_AUXILIARY\_SEND\_FILTER\_GAINHF\_AUTO AL\_TRUE}}
+\DoxyCodeLine{749 }
+\DoxyCodeLine{750 }
+\DoxyCodeLine{751 \textcolor{comment}{/* Listener parameter value ranges and defaults. */}}
+\DoxyCodeLine{752 \textcolor{preprocessor}{\#define AL\_MIN\_METERS\_PER\_UNIT                   FLT\_MIN}}
+\DoxyCodeLine{753 \textcolor{preprocessor}{\#define AL\_MAX\_METERS\_PER\_UNIT                   FLT\_MAX}}
+\DoxyCodeLine{754 \textcolor{preprocessor}{\#define AL\_DEFAULT\_METERS\_PER\_UNIT               (1.0f)}}
+\DoxyCodeLine{755 }
+\DoxyCodeLine{756 }
+\DoxyCodeLine{757 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{758 \}  \textcolor{comment}{/* extern "{}C"{} */}}
+\DoxyCodeLine{759 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{760 }
+\DoxyCodeLine{761 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AL\_EFX\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

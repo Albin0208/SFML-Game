@@ -1,0 +1,89 @@
+\hypertarget{classEdge}{}\doxysection{Edge Class Reference}
+\label{classEdge}\index{Edge@{Edge}}
+
+
+Inheritance diagram for Edge\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{db/de0/classEdge__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Edge\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/dda/classEdge__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classEdge_a85a432189d48b34f17f154d59814a7ed}{on\+Load}} ()
+\item 
+void \mbox{\hyperlink{classEdge_a7a803416ae1c07a17a7fb1bee8d4821c}{on\+Update}} (float time, float x, float y)
+\item 
+void \mbox{\hyperlink{classEdge_a865269e6bc1bd90d6160b5c38f15757f}{on\+Draw}} (\mbox{\hyperlink{classsf_1_1RenderTarget}{sf\+::\+Render\+Target}} \&target, \mbox{\hyperlink{classsf_1_1RenderStates}{sf\+::\+Render\+States}} states) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEdge_a455e4dd17cc23208dbfb84b781ff407d}\label{classEdge_a455e4dd17cc23208dbfb84b781ff407d}} 
+\mbox{\hyperlink{classsf_1_1RenderTexture}{sf\+::\+Render\+Texture}} {\bfseries m\+\_\+surface}
+\item 
+\mbox{\Hypertarget{classEdge_a49b1f097be3238269d2bcc36bbe8e023}\label{classEdge_a49b1f097be3238269d2bcc36bbe8e023}} 
+\mbox{\hyperlink{classsf_1_1Texture}{sf\+::\+Texture}} {\bfseries m\+\_\+background\+Texture}
+\item 
+\mbox{\Hypertarget{classEdge_a43381dd898ef369ddca2e0e27d36e4ce}\label{classEdge_a43381dd898ef369ddca2e0e27d36e4ce}} 
+\mbox{\hyperlink{classsf_1_1Texture}{sf\+::\+Texture}} {\bfseries m\+\_\+entity\+Texture}
+\item 
+\mbox{\Hypertarget{classEdge_a10f26fdc52458b55e14861beca462642}\label{classEdge_a10f26fdc52458b55e14861beca462642}} 
+\mbox{\hyperlink{classsf_1_1Sprite}{sf\+::\+Sprite}} {\bfseries m\+\_\+background\+Sprite}
+\item 
+\mbox{\Hypertarget{classEdge_a82575028ee4c1e31778343f13e8c24ea}\label{classEdge_a82575028ee4c1e31778343f13e8c24ea}} 
+std\+::vector$<$ \mbox{\hyperlink{classsf_1_1Sprite}{sf\+::\+Sprite}} $>$ {\bfseries m\+\_\+entities}
+\item 
+\mbox{\Hypertarget{classEdge_a9fa208b4768f1765e65f99dde015fc77}\label{classEdge_a9fa208b4768f1765e65f99dde015fc77}} 
+\mbox{\hyperlink{classsf_1_1Shader}{sf\+::\+Shader}} {\bfseries m\+\_\+shader}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEdge_a865269e6bc1bd90d6160b5c38f15757f}\label{classEdge_a865269e6bc1bd90d6160b5c38f15757f}} 
+\index{Edge@{Edge}!onDraw@{onDraw}}
+\index{onDraw@{onDraw}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{onDraw()}{onDraw()}}
+{\footnotesize\ttfamily void Edge\+::on\+Draw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsf_1_1RenderTarget}{sf\+::\+Render\+Target}} \&}]{target,  }\item[{\mbox{\hyperlink{classsf_1_1RenderStates}{sf\+::\+Render\+States}}}]{states }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classEffect}{Effect}}.
+
+\mbox{\Hypertarget{classEdge_a85a432189d48b34f17f154d59814a7ed}\label{classEdge_a85a432189d48b34f17f154d59814a7ed}} 
+\index{Edge@{Edge}!onLoad@{onLoad}}
+\index{onLoad@{onLoad}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{onLoad()}{onLoad()}}
+{\footnotesize\ttfamily bool Edge\+::on\+Load (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classEffect}{Effect}}.
+
+\mbox{\Hypertarget{classEdge_a7a803416ae1c07a17a7fb1bee8d4821c}\label{classEdge_a7a803416ae1c07a17a7fb1bee8d4821c}} 
+\index{Edge@{Edge}!onUpdate@{onUpdate}}
+\index{onUpdate@{onUpdate}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{onUpdate()}{onUpdate()}}
+{\footnotesize\ttfamily void Edge\+::on\+Update (\begin{DoxyParamCaption}\item[{float}]{time,  }\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classEffect}{Effect}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cmake-\/build-\/debug/\+\_\+deps/sfml-\/src/examples/shader/Shader.\+cpp\end{DoxyCompactItemize}

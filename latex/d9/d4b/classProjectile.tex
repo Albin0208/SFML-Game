@@ -1,0 +1,126 @@
+\hypertarget{classProjectile}{}\doxysection{Projectile Class Reference}
+\label{classProjectile}\index{Projectile@{Projectile}}
+
+
+{\ttfamily \#include $<$Projectile.\+h$>$}
+
+
+
+Inheritance diagram for Projectile\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d9/d36/classProjectile__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Projectile\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d5/d9b/classProjectile__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classProjectile_a3f6f8febd54991e6cf88ea6324cc360b}{Projectile}} (\mbox{\hyperlink{classsf_1_1Vector2}{sf\+::\+Vector2f}} const \&position, float speed, \mbox{\hyperlink{classsf_1_1Vector2}{sf\+::\+Vector2f}} const \&direction, int damage, Objects\+\_\+to\+\_\+hit what\+\_\+to\+\_\+hit)
+\item 
+void \mbox{\hyperlink{classProjectile_a235cfa9328d52a3cc59700003530abad}{update}} (const \mbox{\hyperlink{classsf_1_1Time}{sf\+::\+Time}} \&time, \mbox{\hyperlink{classGame}{Game}} \&game) override
+\item 
+int \mbox{\hyperlink{classProjectile_a0d445efd3dacf2a11565e7f33f6e7b69}{attack}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classProjectile_ae2f1da518aeddc72babc2824db367374}{set\+\_\+animations}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classProjectile_addbaa4638c4a0fa5d15166b74b6e2435}\label{classProjectile_addbaa4638c4a0fa5d15166b74b6e2435}} 
+\mbox{\hyperlink{classsf_1_1Vector2}{sf\+::\+Vector2f}} {\bfseries direction}
+\item 
+\mbox{\Hypertarget{classProjectile_a90f5793efb184c30d6c74544a6b91bb4}\label{classProjectile_a90f5793efb184c30d6c74544a6b91bb4}} 
+int {\bfseries damage}
+\item 
+\mbox{\Hypertarget{classProjectile_ace9124d36a38d22fdb23ced88e03173a}\label{classProjectile_ace9124d36a38d22fdb23ced88e03173a}} 
+Objects\+\_\+to\+\_\+hit {\bfseries what\+\_\+to\+\_\+hit}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A object to represent a projectile int the game 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classProjectile_a3f6f8febd54991e6cf88ea6324cc360b}\label{classProjectile_a3f6f8febd54991e6cf88ea6324cc360b}} 
+\index{Projectile@{Projectile}!Projectile@{Projectile}}
+\index{Projectile@{Projectile}!Projectile@{Projectile}}
+\doxysubsubsection{\texorpdfstring{Projectile()}{Projectile()}}
+{\footnotesize\ttfamily Projectile\+::\+Projectile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsf_1_1Vector2}{sf\+::\+Vector2f}} const \&}]{position,  }\item[{float}]{speed,  }\item[{\mbox{\hyperlink{classsf_1_1Vector2}{sf\+::\+Vector2f}} const \&}]{direction,  }\item[{int}]{damage,  }\item[{Objects\+\_\+to\+\_\+hit}]{what\+\_\+to\+\_\+hit }\end{DoxyParamCaption})}
+
+Create a projectile 
+\begin{DoxyParams}{Parameters}
+{\em position} & Where the projectile should spawn \\
+\hline
+{\em speed} & What speed the projectile is fired with \\
+\hline
+{\em direction} & The direction the projectile should move in \\
+\hline
+{\em damage} & How much damage the projectile does \\
+\hline
+{\em what\+\_\+to\+\_\+hit} & What object the projectile should hit \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classProjectile_a0d445efd3dacf2a11565e7f33f6e7b69}\label{classProjectile_a0d445efd3dacf2a11565e7f33f6e7b69}} 
+\index{Projectile@{Projectile}!attack@{attack}}
+\index{attack@{attack}!Projectile@{Projectile}}
+\doxysubsubsection{\texorpdfstring{attack()}{attack()}}
+{\footnotesize\ttfamily int Projectile\+::attack (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Make the object attack
+
+\begin{DoxyReturn}{Returns}
+How much damage the attack did 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classMovable__Object_acdb8de8a1eb331cc19da5adc10b35667}{Movable\+\_\+\+Object}}.
+
+\mbox{\Hypertarget{classProjectile_ae2f1da518aeddc72babc2824db367374}\label{classProjectile_ae2f1da518aeddc72babc2824db367374}} 
+\index{Projectile@{Projectile}!set\_animations@{set\_animations}}
+\index{set\_animations@{set\_animations}!Projectile@{Projectile}}
+\doxysubsubsection{\texorpdfstring{set\_animations()}{set\_animations()}}
+{\footnotesize\ttfamily void Projectile\+::set\+\_\+animations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Load and set the animations for the projectile 
+
+Implements \mbox{\hyperlink{classMovable__Object_ac40d5ebc5182297620ca5b078aa6e350}{Movable\+\_\+\+Object}}.
+
+\mbox{\Hypertarget{classProjectile_a235cfa9328d52a3cc59700003530abad}\label{classProjectile_a235cfa9328d52a3cc59700003530abad}} 
+\index{Projectile@{Projectile}!update@{update}}
+\index{update@{update}!Projectile@{Projectile}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Projectile\+::update (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsf_1_1Time}{sf\+::\+Time}} \&}]{time,  }\item[{\mbox{\hyperlink{classGame}{Game}} \&}]{game }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Update the projectile 
+\begin{DoxyParams}{Parameters}
+{\em time} & The time since last update \\
+\hline
+{\em game} & A reference to the game \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classMovable__Object_a05751f47a751f849ae22b7e879803ed9}{Movable\+\_\+\+Object}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+entities/Projectile.\+h\item 
+entities/Projectile.\+cpp\end{DoxyCompactItemize}

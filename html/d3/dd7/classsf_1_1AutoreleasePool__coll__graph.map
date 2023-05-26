@@ -1,0 +1,3 @@
+<map id="sf::AutoreleasePool" name="sf::AutoreleasePool">
+<area shape="rect" id="node1" title="Wraps an NSAutoreleasePool that is created when the object is constructed and is drained when the obj..." alt="" coords="5,5,169,97"/>
+</map>

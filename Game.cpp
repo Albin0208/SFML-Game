@@ -1,0 +1,142 @@
+//
+// Created by albin on 2022-12-01.
+//
+
+#include <iostream>
+#include "Game.h"
+#include "entities/Player.h"
+#include "utility/Texture_Manager.h"
+#include "entities/Obstacle.h"
+#include "utility/Random.h"
+
+Game::Game() : window{nullptr}, points{0} {
+    font.loadFromFile(FONT_PATH);
+
+    player = std::make_shared<Player>(sf::Vector2f{50, 50}, 300.f);
+    add(player);
+
+    back.setSize({300, 25});
+    back.setFillColor(sf::Color::Red);
+    back.setPosition({ 90.f, HEIGHT - 40});
+    back.setOutlineThickness(2.f);
+    back.setOutlineColor(sf::Color::White),
+    bar = back;
+    bar.setFillColor(sf::Color::Green);
+
+    sf::Sprite sprite{*Texture_Manager::get("player_angel2.png"), sf::IntRect{0, 0, 135, 135}};
+    sprite.setScale({0.66f, 0.66f});
+    sprite.setPosition(back.getPosition());
+    sprite.move({-sprite.getGlobalBounds().width, -sprite.getGlobalBounds().height / 2});
+    player_img = sprite;
+
+    spawn_obstacles();
+
+    // Restart the survived clock to get time from after loading is done
+    survived_clock.restart();
+}
+
+void Game::update(sf::Time const& time) {
+    if (wave.is_over()) {
+        vector<shared_ptr<Game_Object>>& tmp{wave.create(player->get_pos())};
+
+        objects.reserve(tmp.size());
+        // Move all the enemies to the object vector
+        std::move(tmp.begin(), tmp.end(), std::back_inserter(objects));
+    }
+
+    for (size_t i{}; i < objects.size(); ++i) {
+        if (objects[i] != nullptr) {
+            objects[i]->update(time, *this);
+
+            // If object is dead remove it
+            if (!objects[i]->is_alive()) {
+                objects.erase(objects.begin() + i);
+                --i;
+            }
+        }
+    }
+}
+
+void Game::render(sf::RenderWindow& target) {
+    for (auto const& o : objects) {
+        if (o != nullptr)
+            o->render(target);
+    }
+
+    sf::Text point_text{"Points: " + std::to_string(points), font, 40};
+    point_text.setPosition(15.f, 0.f);
+    time_survived = survived_clock.getElapsedTime();
+    target.draw(point_text);
+    int minutes{static_cast<int>(time_survived.asSeconds() / 60)};
+    int seconds{static_cast<int>(time_survived.asSeconds()) - minutes * 60};
+
+    point_text.setString("Wave: " + std::to_string(wave.get_wave()));
+    point_text.setPosition((WIDTH) - point_text.getGlobalBounds().width - 15.f, 0.f);
+    target.draw(point_text);
+
+    point_text.setString(std::to_string(minutes) + ":" + std::to_string(seconds));
+    point_text.setOrigin(point_text.getGlobalBounds().width / 2, 0.f);
+    point_text.setPosition((WIDTH / 2), 0.f);
+    target.draw(point_text);
+
+
+    bar.setScale({static_cast<float>(player->get_hp()) / 100.f, 1.f});
+
+    target.draw(player_img);
+    target.draw(back);
+    target.draw(bar);
+
+}
+
+void Game::add(std::shared_ptr<Game_Object> const& object) {
+    objects.push_back(object);
+}
+
+std::vector<std::shared_ptr<Game_Object>> Game::collides_with(Game_Object& obj) const{
+    std::vector<std::shared_ptr<Game_Object>> collided_with{};
+
+    for (auto const& o : objects) {
+        // Check for self collision
+        if (o == nullptr || o.get() == &obj)
+            continue;
+
+        // Check obj collides with any object
+        if (obj.checkCollision(*o))
+            collided_with.push_back(o);
+    }
+
+    return collided_with;
+}
+
+void Game::enemy_killed() {
+    wave.enemy_killed();
+}
+
+int Game::get_points() const {
+    return points;
+}
+
+void Game::add_points(int points_to_add) {
+    points += points_to_add;
+}
+
+sf::RenderWindow const* Game::get_window() const {
+    return window;
+}
+
+void Game::set_window(sf::RenderWindow& window) {
+    this->window = &window;
+}
+
+void Game::spawn_obstacles() {
+    for (int i{}; i < 8; ++i) {
+        shared_ptr<Obstacle> obstacle = std::make_shared<Obstacle>(
+                sf::Vector2f{
+                    static_cast<float>(random_int(70, WIDTH - 70)),
+                    static_cast<float>(random_int(70, HEIGHT- 70))},
+                Texture_Manager::get("obstacle_sheet.png"), random_int(0, 2));
+
+        add(obstacle);
+    }
+
+}

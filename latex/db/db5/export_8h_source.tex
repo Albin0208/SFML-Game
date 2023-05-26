@@ -1,0 +1,75 @@
+\hypertarget{export_8h_source}{}\doxysection{export.\+h}
+\label{export_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/FLAC/export.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/FLAC/export.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* libFLAC -\/ Free Lossless Audio Codec library}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (C) 2000-\/2009  Josh Coalson}}
+\DoxyCodeLine{3 \textcolor{comment}{ * Copyright (C) 2011-\/2013  Xiph.Org Foundation}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * Redistribution and use in source and binary forms, with or without}}
+\DoxyCodeLine{6 \textcolor{comment}{ * modification, are permitted provided that the following conditions}}
+\DoxyCodeLine{7 \textcolor{comment}{ * are met:}}
+\DoxyCodeLine{8 \textcolor{comment}{ *}}
+\DoxyCodeLine{9 \textcolor{comment}{ * -\/ Redistributions of source code must retain the above copyright}}
+\DoxyCodeLine{10 \textcolor{comment}{ * notice, this list of conditions and the following disclaimer.}}
+\DoxyCodeLine{11 \textcolor{comment}{ *}}
+\DoxyCodeLine{12 \textcolor{comment}{ * -\/ Redistributions in binary form must reproduce the above copyright}}
+\DoxyCodeLine{13 \textcolor{comment}{ * notice, this list of conditions and the following disclaimer in the}}
+\DoxyCodeLine{14 \textcolor{comment}{ * documentation and/or other materials provided with the distribution.}}
+\DoxyCodeLine{15 \textcolor{comment}{ *}}
+\DoxyCodeLine{16 \textcolor{comment}{ * -\/ Neither the name of the Xiph.org Foundation nor the names of its}}
+\DoxyCodeLine{17 \textcolor{comment}{ * contributors may be used to endorse or promote products derived from}}
+\DoxyCodeLine{18 \textcolor{comment}{ * this software without specific prior written permission.}}
+\DoxyCodeLine{19 \textcolor{comment}{ *}}
+\DoxyCodeLine{20 \textcolor{comment}{ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS}}
+\DoxyCodeLine{21 \textcolor{comment}{ * ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT}}
+\DoxyCodeLine{22 \textcolor{comment}{ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR}}
+\DoxyCodeLine{23 \textcolor{comment}{ * A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR}}
+\DoxyCodeLine{24 \textcolor{comment}{ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,}}
+\DoxyCodeLine{25 \textcolor{comment}{ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,}}
+\DoxyCodeLine{26 \textcolor{comment}{ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR}}
+\DoxyCodeLine{27 \textcolor{comment}{ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF}}
+\DoxyCodeLine{28 \textcolor{comment}{ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING}}
+\DoxyCodeLine{29 \textcolor{comment}{ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS}}
+\DoxyCodeLine{30 \textcolor{comment}{ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.}}
+\DoxyCodeLine{31 \textcolor{comment}{ */}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#ifndef FLAC\_\_EXPORT\_H}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define FLAC\_\_EXPORT\_H}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#if defined(FLAC\_\_NO\_DLL)}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#define FLAC\_API}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#elif defined(\_MSC\_VER)}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#ifdef FLAC\_API\_EXPORTS}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define FLAC\_API    \_declspec(dllexport)}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define FLAC\_API    \_declspec(dllimport)}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#elif defined(FLAC\_\_USE\_VISIBILITY\_ATTR)}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define FLAC\_API \_\_attribute\_\_ ((visibility ("{}default"{}})))}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#define FLAC\_API}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define FLAC\_API\_VERSION\_CURRENT 11}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#define FLAC\_API\_VERSION\_REVISION 0 }}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#define FLAC\_API\_VERSION\_AGE 3 }}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{85 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{89 \textcolor{keyword}{extern} FLAC\_API \textcolor{keywordtype}{int} \mbox{\hyperlink{group__flac__export_gaf762876dd61fbf2da1bef49762900533}{FLAC\_API\_SUPPORTS\_OGG\_FLAC}};}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{92 \}}
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \textcolor{comment}{/* \(\backslash\)\} */}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

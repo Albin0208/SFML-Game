@@ -1,0 +1,905 @@
+\hypertarget{ftoption_8h_source}{}\doxysection{ftoption.\+h}
+\label{ftoption_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/config/ftoption.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/config/ftoption.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftoption.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    User-\/selectable configuration macros (specification only).           */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2014 by                                                 */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FTOPTION\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FTOPTION\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{29   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{30   \textcolor{comment}{/*                 USER-\/SELECTABLE CONFIGURATION MACROS                  */}}
+\DoxyCodeLine{31   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{32   \textcolor{comment}{/* This file contains the default configuration macro definitions for    */}}
+\DoxyCodeLine{33   \textcolor{comment}{/* a standard build of the FreeType library.  There are three ways to    */}}
+\DoxyCodeLine{34   \textcolor{comment}{/* use this file to build project-\/specific versions of the library:      */}}
+\DoxyCodeLine{35   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{36   \textcolor{comment}{/*  -\/ You can modify this file by hand, but this is not recommended in   */}}
+\DoxyCodeLine{37   \textcolor{comment}{/*    cases where you would like to build several versions of the        */}}
+\DoxyCodeLine{38   \textcolor{comment}{/*    library from a single source directory.                            */}}
+\DoxyCodeLine{39   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*  -\/ You can put a copy of this file in your build directory, more      */}}
+\DoxyCodeLine{41   \textcolor{comment}{/*    precisely in `\$BUILD/config/ftoption.h', where `\$BUILD' is the     */}}
+\DoxyCodeLine{42   \textcolor{comment}{/*    name of a directory that is included \_before\_ the FreeType include */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*    path during compilation.                                           */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{45   \textcolor{comment}{/*    The default FreeType Makefiles and Jamfiles use the build          */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*    directory `builds/<system>' by default, but you can easily change  */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*    that for your own projects.                                        */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*  -\/ Copy the file <ft2build.h> to `\$BUILD/ft2build.h' and modify it    */}}
+\DoxyCodeLine{50   \textcolor{comment}{/*    slightly to pre-\/define the macro FT\_CONFIG\_OPTIONS\_H used to       */}}
+\DoxyCodeLine{51   \textcolor{comment}{/*    locate this file during the build.  For example,                   */}}
+\DoxyCodeLine{52   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{53   \textcolor{comment}{/*      \#define FT\_CONFIG\_OPTIONS\_H  <myftoptions.h>                     */}}
+\DoxyCodeLine{54   \textcolor{comment}{/*      \#include <config/ftheader.h>                                     */}}
+\DoxyCodeLine{55   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{56   \textcolor{comment}{/*    will use `\$BUILD/myftoptions.h' instead of this file for macro     */}}
+\DoxyCodeLine{57   \textcolor{comment}{/*    definitions.                                                       */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{59   \textcolor{comment}{/*    Note also that you can similarly pre-\/define the macro              */}}
+\DoxyCodeLine{60   \textcolor{comment}{/*    FT\_CONFIG\_MODULES\_H used to locate the file listing of the modules */}}
+\DoxyCodeLine{61   \textcolor{comment}{/*    that are statically linked to the library at compile time.  By     */}}
+\DoxyCodeLine{62   \textcolor{comment}{/*    default, this file is <config/ftmodule.h>.                         */}}
+\DoxyCodeLine{63   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{64   \textcolor{comment}{/* We highly recommend using the third method whenever possible.         */}}
+\DoxyCodeLine{65   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{66 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{70 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{71 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{72 \textcolor{comment}{  /**** G E N E R A L   F R E E T Y P E   2   C O N F I G U R A T I O N ****/}}
+\DoxyCodeLine{73 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{74 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{75 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{79   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{80   \textcolor{comment}{/* Uncomment the line below if you want to activate sub-\/pixel rendering  */}}
+\DoxyCodeLine{81   \textcolor{comment}{/* (a.k.a. LCD rendering, or ClearType) in this build of the library.    */}}
+\DoxyCodeLine{82   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{83   \textcolor{comment}{/* Note that this feature is covered by several Microsoft patents        */}}
+\DoxyCodeLine{84   \textcolor{comment}{/* and should not be activated in any default build of the library.      */}}
+\DoxyCodeLine{85   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{86   \textcolor{comment}{/* This macro has no impact on the FreeType API, only on its             */}}
+\DoxyCodeLine{87   \textcolor{comment}{/* \_implementation\_.  For example, using FT\_RENDER\_MODE\_LCD when calling */}}
+\DoxyCodeLine{88   \textcolor{comment}{/* FT\_Render\_Glyph still generates a bitmap that is 3 times wider than   */}}
+\DoxyCodeLine{89   \textcolor{comment}{/* the original size in case this macro isn't defined; however, each     */}}
+\DoxyCodeLine{90   \textcolor{comment}{/* triplet of subpixels has R=G=B.                                       */}}
+\DoxyCodeLine{91   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{92   \textcolor{comment}{/* This is done to allow FreeType clients to run unmodified, forcing     */}}
+\DoxyCodeLine{93   \textcolor{comment}{/* them to display normal gray-\/level anti-\/aliased glyphs.                */}}
+\DoxyCodeLine{94   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{95 \textcolor{comment}{/* \#define FT\_CONFIG\_OPTION\_SUBPIXEL\_RENDERING */}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{99   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{100   \textcolor{comment}{/* Many compilers provide a non-\/ANSI 64-\/bit data type that can be used   */}}
+\DoxyCodeLine{101   \textcolor{comment}{/* by FreeType to speed up some computations.  However, this will create */}}
+\DoxyCodeLine{102   \textcolor{comment}{/* some problems when compiling the library in strict ANSI mode.         */}}
+\DoxyCodeLine{103   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{104   \textcolor{comment}{/* For this reason, the use of 64-\/bit integers is normally disabled when */}}
+\DoxyCodeLine{105   \textcolor{comment}{/* the \_\_STDC\_\_ macro is defined.  You can however disable this by       */}}
+\DoxyCodeLine{106   \textcolor{comment}{/* defining the macro FT\_CONFIG\_OPTION\_FORCE\_INT64 here.                 */}}
+\DoxyCodeLine{107   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{108   \textcolor{comment}{/* For most compilers, this will only create compilation warnings when   */}}
+\DoxyCodeLine{109   \textcolor{comment}{/* building the library.                                                 */}}
+\DoxyCodeLine{110   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{111   \textcolor{comment}{/* ObNote: The compiler-\/specific 64-\/bit integers are detected in the     */}}
+\DoxyCodeLine{112   \textcolor{comment}{/*         file `ftconfig.h' either statically or through the            */}}
+\DoxyCodeLine{113   \textcolor{comment}{/*         `configure' script on supported platforms.                    */}}
+\DoxyCodeLine{114   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{115 \textcolor{preprocessor}{\#undef FT\_CONFIG\_OPTION\_FORCE\_INT64}}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{119   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{120   \textcolor{comment}{/* If this macro is defined, do not try to use an assembler version of   */}}
+\DoxyCodeLine{121   \textcolor{comment}{/* performance-\/critical functions (e.g. FT\_MulFix).  You should only do  */}}
+\DoxyCodeLine{122   \textcolor{comment}{/* that to verify that the assembler function works properly, or to      */}}
+\DoxyCodeLine{123   \textcolor{comment}{/* execute benchmark tests of the various implementations.               */}}
+\DoxyCodeLine{124 \textcolor{comment}{/* \#define FT\_CONFIG\_OPTION\_NO\_ASSEMBLER */}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{128   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{129   \textcolor{comment}{/* If this macro is defined, try to use an inlined assembler version of  */}}
+\DoxyCodeLine{130   \textcolor{comment}{/* the `FT\_MulFix' function, which is a `hotspot' when loading and       */}}
+\DoxyCodeLine{131   \textcolor{comment}{/* hinting glyphs, and which should be executed as fast as possible.     */}}
+\DoxyCodeLine{132   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{133   \textcolor{comment}{/* Note that if your compiler or CPU is not supported, this will default */}}
+\DoxyCodeLine{134   \textcolor{comment}{/* to the standard and portable implementation found in `ftcalc.c'.      */}}
+\DoxyCodeLine{135   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#define FT\_CONFIG\_OPTION\_INLINE\_MULFIX}}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{140   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{141   \textcolor{comment}{/* LZW-\/compressed file support.                                          */}}
+\DoxyCodeLine{142   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{143   \textcolor{comment}{/*   FreeType now handles font files that have been compressed with the  */}}
+\DoxyCodeLine{144   \textcolor{comment}{/*   `compress' program.  This is mostly used to parse many of the PCF   */}}
+\DoxyCodeLine{145   \textcolor{comment}{/*   files that come with various X11 distributions.  The implementation */}}
+\DoxyCodeLine{146   \textcolor{comment}{/*   uses NetBSD's `zopen' to partially uncompress the file on the fly   */}}
+\DoxyCodeLine{147   \textcolor{comment}{/*   (see src/lzw/ftgzip.c).                                             */}}
+\DoxyCodeLine{148   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{149   \textcolor{comment}{/*   Define this macro if you want to enable this `feature'.             */}}
+\DoxyCodeLine{150   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{151 \textcolor{preprocessor}{\#define FT\_CONFIG\_OPTION\_USE\_LZW}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{155   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{156   \textcolor{comment}{/* Gzip-\/compressed file support.                                         */}}
+\DoxyCodeLine{157   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{158   \textcolor{comment}{/*   FreeType now handles font files that have been compressed with the  */}}
+\DoxyCodeLine{159   \textcolor{comment}{/*   `gzip' program.  This is mostly used to parse many of the PCF files */}}
+\DoxyCodeLine{160   \textcolor{comment}{/*   that come with XFree86.  The implementation uses `zlib' to          */}}
+\DoxyCodeLine{161   \textcolor{comment}{/*   partially uncompress the file on the fly (see src/gzip/ftgzip.c).   */}}
+\DoxyCodeLine{162   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{163   \textcolor{comment}{/*   Define this macro if you want to enable this `feature'.  See also   */}}
+\DoxyCodeLine{164   \textcolor{comment}{/*   the macro FT\_CONFIG\_OPTION\_SYSTEM\_ZLIB below.                       */}}
+\DoxyCodeLine{165   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{166 \textcolor{preprocessor}{\#define FT\_CONFIG\_OPTION\_USE\_ZLIB}}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{170   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{171   \textcolor{comment}{/* ZLib library selection                                                */}}
+\DoxyCodeLine{172   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{173   \textcolor{comment}{/*   This macro is only used when FT\_CONFIG\_OPTION\_USE\_ZLIB is defined.  */}}
+\DoxyCodeLine{174   \textcolor{comment}{/*   It allows FreeType's `ftgzip' component to link to the system's     */}}
+\DoxyCodeLine{175   \textcolor{comment}{/*   installation of the ZLib library.  This is useful on systems like   */}}
+\DoxyCodeLine{176   \textcolor{comment}{/*   Unix or VMS where it generally is already available.                */}}
+\DoxyCodeLine{177   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{178   \textcolor{comment}{/*   If you let it undefined, the component will use its own copy        */}}
+\DoxyCodeLine{179   \textcolor{comment}{/*   of the zlib sources instead.  These have been modified to be        */}}
+\DoxyCodeLine{180   \textcolor{comment}{/*   included directly within the component and *not* export external    */}}
+\DoxyCodeLine{181   \textcolor{comment}{/*   function names.  This allows you to link any program with FreeType  */}}
+\DoxyCodeLine{182   \textcolor{comment}{/*   \_and\_ ZLib without linking conflicts.                               */}}
+\DoxyCodeLine{183   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{184   \textcolor{comment}{/*   Do not \#undef this macro here since the build system might define   */}}
+\DoxyCodeLine{185   \textcolor{comment}{/*   it for certain configurations only.                                 */}}
+\DoxyCodeLine{186   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{187 \textcolor{comment}{/* \#define FT\_CONFIG\_OPTION\_SYSTEM\_ZLIB */}}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{191   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{192   \textcolor{comment}{/* Bzip2-\/compressed file support.                                        */}}
+\DoxyCodeLine{193   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{194   \textcolor{comment}{/*   FreeType now handles font files that have been compressed with the  */}}
+\DoxyCodeLine{195   \textcolor{comment}{/*   `bzip2' program.  This is mostly used to parse many of the PCF      */}}
+\DoxyCodeLine{196   \textcolor{comment}{/*   files that come with XFree86.  The implementation uses `libbz2' to  */}}
+\DoxyCodeLine{197   \textcolor{comment}{/*   partially uncompress the file on the fly (see src/bzip2/ftbzip2.c). */}}
+\DoxyCodeLine{198   \textcolor{comment}{/*   Contrary to gzip, bzip2 currently is not included and need to use   */}}
+\DoxyCodeLine{199   \textcolor{comment}{/*   the system available bzip2 implementation.                          */}}
+\DoxyCodeLine{200   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{201   \textcolor{comment}{/*   Define this macro if you want to enable this `feature'.             */}}
+\DoxyCodeLine{202   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{203 \textcolor{comment}{/* \#define FT\_CONFIG\_OPTION\_USE\_BZIP2 */}}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{207   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{208   \textcolor{comment}{/* Define to disable the use of file stream functions and types, FILE,   */}}
+\DoxyCodeLine{209   \textcolor{comment}{/* fopen() etc.  Enables the use of smaller system libraries on embedded */}}
+\DoxyCodeLine{210   \textcolor{comment}{/* systems that have multiple system libraries, some with or without     */}}
+\DoxyCodeLine{211   \textcolor{comment}{/* file stream support, in the cases where file stream support is not    */}}
+\DoxyCodeLine{212   \textcolor{comment}{/* necessary such as memory loading of font files.                       */}}
+\DoxyCodeLine{213   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{214 \textcolor{comment}{/* \#define FT\_CONFIG\_OPTION\_DISABLE\_STREAM\_SUPPORT */}}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{218   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{219   \textcolor{comment}{/* PNG bitmap support.                                                   */}}
+\DoxyCodeLine{220   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{221   \textcolor{comment}{/*   FreeType now handles loading color bitmap glyphs in the PNG format. */}}
+\DoxyCodeLine{222   \textcolor{comment}{/*   This requires help from the external libpng library.  Uncompressed  */}}
+\DoxyCodeLine{223   \textcolor{comment}{/*   color bitmaps do not need any external libraries and will be        */}}
+\DoxyCodeLine{224   \textcolor{comment}{/*   supported regardless of this configuration.                         */}}
+\DoxyCodeLine{225   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{226   \textcolor{comment}{/*   Define this macro if you want to enable this `feature'.             */}}
+\DoxyCodeLine{227   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{228 \textcolor{comment}{/* \#define FT\_CONFIG\_OPTION\_USE\_PNG */}}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{232   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{233   \textcolor{comment}{/* HarfBuzz support.                                                     */}}
+\DoxyCodeLine{234   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{235   \textcolor{comment}{/*   FreeType uses the HarfBuzz library to improve auto-\/hinting of       */}}
+\DoxyCodeLine{236   \textcolor{comment}{/*   OpenType fonts.  If available, many glyphs not directly addressable */}}
+\DoxyCodeLine{237   \textcolor{comment}{/*   by a font's character map will be hinted also.                      */}}
+\DoxyCodeLine{238   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{239   \textcolor{comment}{/*   Define this macro if you want to enable this `feature'.             */}}
+\DoxyCodeLine{240   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{241 \textcolor{comment}{/* \#define FT\_CONFIG\_OPTION\_USE\_HARFBUZZ */}}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243 }
+\DoxyCodeLine{244 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{245   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{246   \textcolor{comment}{/* DLL export compilation                                                */}}
+\DoxyCodeLine{247   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{248   \textcolor{comment}{/*   When compiling FreeType as a DLL, some systems/compilers need a     */}}
+\DoxyCodeLine{249   \textcolor{comment}{/*   special keyword in front OR after the return type of function       */}}
+\DoxyCodeLine{250   \textcolor{comment}{/*   declarations.                                                       */}}
+\DoxyCodeLine{251   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{252   \textcolor{comment}{/*   Two macros are used within the FreeType source code to define       */}}
+\DoxyCodeLine{253   \textcolor{comment}{/*   exported library functions: FT\_EXPORT and FT\_EXPORT\_DEF.            */}}
+\DoxyCodeLine{254   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{255   \textcolor{comment}{/*     FT\_EXPORT( return\_type )                                          */}}
+\DoxyCodeLine{256   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{257   \textcolor{comment}{/*       is used in a function declaration, as in                        */}}
+\DoxyCodeLine{258   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{259   \textcolor{comment}{/*         FT\_EXPORT( FT\_Error )                                         */}}
+\DoxyCodeLine{260   \textcolor{comment}{/*         FT\_Init\_FreeType( FT\_Library*  alibrary );                    */}}
+\DoxyCodeLine{261   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{262   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{263   \textcolor{comment}{/*     FT\_EXPORT\_DEF( return\_type )                                      */}}
+\DoxyCodeLine{264   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{265   \textcolor{comment}{/*       is used in a function definition, as in                         */}}
+\DoxyCodeLine{266   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{267   \textcolor{comment}{/*         FT\_EXPORT\_DEF( FT\_Error )                                     */}}
+\DoxyCodeLine{268   \textcolor{comment}{/*         FT\_Init\_FreeType( FT\_Library*  alibrary )                     */}}
+\DoxyCodeLine{269   \textcolor{comment}{/*         \{                                                             */}}
+\DoxyCodeLine{270   \textcolor{comment}{/*           ... some code ...                                           */}}
+\DoxyCodeLine{271   \textcolor{comment}{/*           return FT\_Err\_Ok;                                           */}}
+\DoxyCodeLine{272   \textcolor{comment}{/*         \}                                                             */}}
+\DoxyCodeLine{273   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{274   \textcolor{comment}{/*   You can provide your own implementation of FT\_EXPORT and            */}}
+\DoxyCodeLine{275   \textcolor{comment}{/*   FT\_EXPORT\_DEF here if you want.  If you leave them undefined, they  */}}
+\DoxyCodeLine{276   \textcolor{comment}{/*   will be later automatically defined as `extern return\_type' to      */}}
+\DoxyCodeLine{277   \textcolor{comment}{/*   allow normal compilation.                                           */}}
+\DoxyCodeLine{278   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{279   \textcolor{comment}{/*   Do not \#undef these macros here since the build system might define */}}
+\DoxyCodeLine{280   \textcolor{comment}{/*   them for certain configurations only.                               */}}
+\DoxyCodeLine{281   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{282 \textcolor{comment}{/* \#define FT\_EXPORT(x)      extern x */}}
+\DoxyCodeLine{283 \textcolor{comment}{/* \#define FT\_EXPORT\_DEF(x)  x */}}
+\DoxyCodeLine{284 }
+\DoxyCodeLine{285 }
+\DoxyCodeLine{286 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{287   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{288   \textcolor{comment}{/* Glyph Postscript Names handling                                       */}}
+\DoxyCodeLine{289   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{290   \textcolor{comment}{/*   By default, FreeType 2 is compiled with the `psnames' module.  This */}}
+\DoxyCodeLine{291   \textcolor{comment}{/*   module is in charge of converting a glyph name string into a        */}}
+\DoxyCodeLine{292   \textcolor{comment}{/*   Unicode value, or return a Macintosh standard glyph name for the    */}}
+\DoxyCodeLine{293   \textcolor{comment}{/*   use with the TrueType `post' table.                                 */}}
+\DoxyCodeLine{294   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{295   \textcolor{comment}{/*   Undefine this macro if you do not want `psnames' compiled in your   */}}
+\DoxyCodeLine{296   \textcolor{comment}{/*   build of FreeType.  This has the following effects:                 */}}
+\DoxyCodeLine{297   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{298   \textcolor{comment}{/*   -\/ The TrueType driver will provide its own set of glyph names,      */}}
+\DoxyCodeLine{299   \textcolor{comment}{/*     if you build it to support postscript names in the TrueType       */}}
+\DoxyCodeLine{300   \textcolor{comment}{/*     `post' table.                                                     */}}
+\DoxyCodeLine{301   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{302   \textcolor{comment}{/*   -\/ The Type 1 driver will not be able to synthesize a Unicode        */}}
+\DoxyCodeLine{303   \textcolor{comment}{/*     charmap out of the glyphs found in the fonts.                     */}}
+\DoxyCodeLine{304   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{305   \textcolor{comment}{/*   You would normally undefine this configuration macro when building  */}}
+\DoxyCodeLine{306   \textcolor{comment}{/*   a version of FreeType that doesn't contain a Type 1 or CFF driver.  */}}
+\DoxyCodeLine{307   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{308 \textcolor{preprocessor}{\#define FT\_CONFIG\_OPTION\_POSTSCRIPT\_NAMES}}
+\DoxyCodeLine{309 }
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{312   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{313   \textcolor{comment}{/* Postscript Names to Unicode Values support                            */}}
+\DoxyCodeLine{314   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{315   \textcolor{comment}{/*   By default, FreeType 2 is built with the `PSNames' module compiled  */}}
+\DoxyCodeLine{316   \textcolor{comment}{/*   in.  Among other things, the module is used to convert a glyph name */}}
+\DoxyCodeLine{317   \textcolor{comment}{/*   into a Unicode value.  This is especially useful in order to        */}}
+\DoxyCodeLine{318   \textcolor{comment}{/*   synthesize on the fly a Unicode charmap from the CFF/Type 1 driver  */}}
+\DoxyCodeLine{319   \textcolor{comment}{/*   through a big table named the `Adobe Glyph List' (AGL).             */}}
+\DoxyCodeLine{320   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{321   \textcolor{comment}{/*   Undefine this macro if you do not want the Adobe Glyph List         */}}
+\DoxyCodeLine{322   \textcolor{comment}{/*   compiled in your `PSNames' module.  The Type 1 driver will not be   */}}
+\DoxyCodeLine{323   \textcolor{comment}{/*   able to synthesize a Unicode charmap out of the glyphs found in the */}}
+\DoxyCodeLine{324   \textcolor{comment}{/*   fonts.                                                              */}}
+\DoxyCodeLine{325   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{326 \textcolor{preprocessor}{\#define FT\_CONFIG\_OPTION\_ADOBE\_GLYPH\_LIST}}
+\DoxyCodeLine{327 }
+\DoxyCodeLine{328 }
+\DoxyCodeLine{329 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{330   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{331   \textcolor{comment}{/* Support for Mac fonts                                                 */}}
+\DoxyCodeLine{332   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{333   \textcolor{comment}{/*   Define this macro if you want support for outline fonts in Mac      */}}
+\DoxyCodeLine{334   \textcolor{comment}{/*   format (mac dfont, mac resource, macbinary containing a mac         */}}
+\DoxyCodeLine{335   \textcolor{comment}{/*   resource) on non-\/Mac platforms.                                     */}}
+\DoxyCodeLine{336   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{337   \textcolor{comment}{/*   Note that the `FOND' resource isn't checked.                        */}}
+\DoxyCodeLine{338   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{339 \textcolor{preprocessor}{\#define FT\_CONFIG\_OPTION\_MAC\_FONTS}}
+\DoxyCodeLine{340 }
+\DoxyCodeLine{341 }
+\DoxyCodeLine{342 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{343   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{344   \textcolor{comment}{/* Guessing methods to access embedded resource forks                    */}}
+\DoxyCodeLine{345   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{346   \textcolor{comment}{/*   Enable extra Mac fonts support on non-\/Mac platforms (e.g.           */}}
+\DoxyCodeLine{347   \textcolor{comment}{/*   GNU/Linux).                                                         */}}
+\DoxyCodeLine{348   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{349   \textcolor{comment}{/*   Resource forks which include fonts data are stored sometimes in     */}}
+\DoxyCodeLine{350   \textcolor{comment}{/*   locations which users or developers don't expected.  In some cases, */}}
+\DoxyCodeLine{351   \textcolor{comment}{/*   resource forks start with some offset from the head of a file.  In  */}}
+\DoxyCodeLine{352   \textcolor{comment}{/*   other cases, the actual resource fork is stored in file different   */}}
+\DoxyCodeLine{353   \textcolor{comment}{/*   from what the user specifies.  If this option is activated,         */}}
+\DoxyCodeLine{354   \textcolor{comment}{/*   FreeType tries to guess whether such offsets or different file      */}}
+\DoxyCodeLine{355   \textcolor{comment}{/*   names must be used.                                                 */}}
+\DoxyCodeLine{356   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{357   \textcolor{comment}{/*   Note that normal, direct access of resource forks is controlled via */}}
+\DoxyCodeLine{358   \textcolor{comment}{/*   the FT\_CONFIG\_OPTION\_MAC\_FONTS option.                              */}}
+\DoxyCodeLine{359   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{360 \textcolor{preprocessor}{\#ifdef FT\_CONFIG\_OPTION\_MAC\_FONTS}}
+\DoxyCodeLine{361 \textcolor{preprocessor}{\#define FT\_CONFIG\_OPTION\_GUESSING\_EMBEDDED\_RFORK}}
+\DoxyCodeLine{362 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{363 }
+\DoxyCodeLine{364 }
+\DoxyCodeLine{365 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{366   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{367   \textcolor{comment}{/* Allow the use of FT\_Incremental\_Interface to load typefaces that      */}}
+\DoxyCodeLine{368   \textcolor{comment}{/* contain no glyph data, but supply it via a callback function.         */}}
+\DoxyCodeLine{369   \textcolor{comment}{/* This is required by clients supporting document formats which         */}}
+\DoxyCodeLine{370   \textcolor{comment}{/* supply font data incrementally as the document is parsed, such        */}}
+\DoxyCodeLine{371   \textcolor{comment}{/* as the Ghostscript interpreter for the PostScript language.           */}}
+\DoxyCodeLine{372   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{373 \textcolor{preprocessor}{\#define FT\_CONFIG\_OPTION\_INCREMENTAL}}
+\DoxyCodeLine{374 }
+\DoxyCodeLine{375 }
+\DoxyCodeLine{376 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{377   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{378   \textcolor{comment}{/* The size in bytes of the render pool used by the scan-\/line converter  */}}
+\DoxyCodeLine{379   \textcolor{comment}{/* to do all of its work.                                                */}}
+\DoxyCodeLine{380   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{381   \textcolor{comment}{/* This must be greater than 4KByte if you use FreeType to rasterize     */}}
+\DoxyCodeLine{382   \textcolor{comment}{/* glyphs; otherwise, you may set it to zero to avoid unnecessary        */}}
+\DoxyCodeLine{383   \textcolor{comment}{/* allocation of the render pool.                                        */}}
+\DoxyCodeLine{384   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{385 \textcolor{preprocessor}{\#define FT\_RENDER\_POOL\_SIZE  16384L}}
+\DoxyCodeLine{386 }
+\DoxyCodeLine{387 }
+\DoxyCodeLine{388 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{389   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{390   \textcolor{comment}{/* FT\_MAX\_MODULES                                                        */}}
+\DoxyCodeLine{391   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{392   \textcolor{comment}{/*   The maximum number of modules that can be registered in a single    */}}
+\DoxyCodeLine{393   \textcolor{comment}{/*   FreeType library object.  32 is the default.                        */}}
+\DoxyCodeLine{394   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{395 \textcolor{preprocessor}{\#define FT\_MAX\_MODULES  32}}
+\DoxyCodeLine{396 }
+\DoxyCodeLine{397 }
+\DoxyCodeLine{398 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{399   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{400   \textcolor{comment}{/* Debug level                                                           */}}
+\DoxyCodeLine{401   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{402   \textcolor{comment}{/*   FreeType can be compiled in debug or trace mode.  In debug mode,    */}}
+\DoxyCodeLine{403   \textcolor{comment}{/*   errors are reported through the `ftdebug' component.  In trace      */}}
+\DoxyCodeLine{404   \textcolor{comment}{/*   mode, additional messages are sent to the standard output during    */}}
+\DoxyCodeLine{405   \textcolor{comment}{/*   execution.                                                          */}}
+\DoxyCodeLine{406   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{407   \textcolor{comment}{/*   Define FT\_DEBUG\_LEVEL\_ERROR to build the library in debug mode.     */}}
+\DoxyCodeLine{408   \textcolor{comment}{/*   Define FT\_DEBUG\_LEVEL\_TRACE to build it in trace mode.              */}}
+\DoxyCodeLine{409   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{410   \textcolor{comment}{/*   Don't define any of these macros to compile in `release' mode!      */}}
+\DoxyCodeLine{411   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{412   \textcolor{comment}{/*   Do not \#undef these macros here since the build system might define */}}
+\DoxyCodeLine{413   \textcolor{comment}{/*   them for certain configurations only.                               */}}
+\DoxyCodeLine{414   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{415 \textcolor{comment}{/* \#define FT\_DEBUG\_LEVEL\_ERROR */}}
+\DoxyCodeLine{416 \textcolor{comment}{/* \#define FT\_DEBUG\_LEVEL\_TRACE */}}
+\DoxyCodeLine{417 }
+\DoxyCodeLine{418 }
+\DoxyCodeLine{419 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{420   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{421   \textcolor{comment}{/* Autofitter debugging                                                  */}}
+\DoxyCodeLine{422   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{423   \textcolor{comment}{/*   If FT\_DEBUG\_AUTOFIT is defined, FreeType provides some means to     */}}
+\DoxyCodeLine{424   \textcolor{comment}{/*   control the autofitter behaviour for debugging purposes with global */}}
+\DoxyCodeLine{425   \textcolor{comment}{/*   boolean variables (consequently, you should *never* enable this     */}}
+\DoxyCodeLine{426   \textcolor{comment}{/*   while compiling in `release' mode):                                 */}}
+\DoxyCodeLine{427   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{428   \textcolor{comment}{/*     \_af\_debug\_disable\_horz\_hints                                      */}}
+\DoxyCodeLine{429   \textcolor{comment}{/*     \_af\_debug\_disable\_vert\_hints                                      */}}
+\DoxyCodeLine{430   \textcolor{comment}{/*     \_af\_debug\_disable\_blue\_hints                                      */}}
+\DoxyCodeLine{431   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{432   \textcolor{comment}{/*   Additionally, the following functions provide dumps of various      */}}
+\DoxyCodeLine{433   \textcolor{comment}{/*   internal autofit structures to stdout (using `printf'):             */}}
+\DoxyCodeLine{434   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{435   \textcolor{comment}{/*     af\_glyph\_hints\_dump\_points                                        */}}
+\DoxyCodeLine{436   \textcolor{comment}{/*     af\_glyph\_hints\_dump\_segments                                      */}}
+\DoxyCodeLine{437   \textcolor{comment}{/*     af\_glyph\_hints\_dump\_edges                                         */}}
+\DoxyCodeLine{438   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{439   \textcolor{comment}{/*   As an argument, they use another global variable:                   */}}
+\DoxyCodeLine{440   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{441   \textcolor{comment}{/*     \_af\_debug\_hints                                                   */}}
+\DoxyCodeLine{442   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{443   \textcolor{comment}{/*   Please have a look at the `ftgrid' demo program to see how those    */}}
+\DoxyCodeLine{444   \textcolor{comment}{/*   variables and macros should be used.                                */}}
+\DoxyCodeLine{445   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{446   \textcolor{comment}{/*   Do not \#undef these macros here since the build system might define */}}
+\DoxyCodeLine{447   \textcolor{comment}{/*   them for certain configurations only.                               */}}
+\DoxyCodeLine{448   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{449 \textcolor{comment}{/* \#define FT\_DEBUG\_AUTOFIT */}}
+\DoxyCodeLine{450 }
+\DoxyCodeLine{451 }
+\DoxyCodeLine{452 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{453   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{454   \textcolor{comment}{/* Memory Debugging                                                      */}}
+\DoxyCodeLine{455   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{456   \textcolor{comment}{/*   FreeType now comes with an integrated memory debugger that is       */}}
+\DoxyCodeLine{457   \textcolor{comment}{/*   capable of detecting simple errors like memory leaks or double      */}}
+\DoxyCodeLine{458   \textcolor{comment}{/*   deletes.  To compile it within your build of the library, you       */}}
+\DoxyCodeLine{459   \textcolor{comment}{/*   should define FT\_DEBUG\_MEMORY here.                                 */}}
+\DoxyCodeLine{460   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{461   \textcolor{comment}{/*   Note that the memory debugger is only activated at runtime when     */}}
+\DoxyCodeLine{462   \textcolor{comment}{/*   when the \_environment\_ variable `FT2\_DEBUG\_MEMORY' is defined also! */}}
+\DoxyCodeLine{463   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{464   \textcolor{comment}{/*   Do not \#undef this macro here since the build system might define   */}}
+\DoxyCodeLine{465   \textcolor{comment}{/*   it for certain configurations only.                                 */}}
+\DoxyCodeLine{466   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{467 \textcolor{comment}{/* \#define FT\_DEBUG\_MEMORY */}}
+\DoxyCodeLine{468 }
+\DoxyCodeLine{469 }
+\DoxyCodeLine{470 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{471   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{472   \textcolor{comment}{/* Module errors                                                         */}}
+\DoxyCodeLine{473   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{474   \textcolor{comment}{/*   If this macro is set (which is \_not\_ the default), the higher byte  */}}
+\DoxyCodeLine{475   \textcolor{comment}{/*   of an error code gives the module in which the error has occurred,  */}}
+\DoxyCodeLine{476   \textcolor{comment}{/*   while the lower byte is the real error code.                        */}}
+\DoxyCodeLine{477   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{478   \textcolor{comment}{/*   Setting this macro makes sense for debugging purposes only, since   */}}
+\DoxyCodeLine{479   \textcolor{comment}{/*   it would break source compatibility of certain programs that use    */}}
+\DoxyCodeLine{480   \textcolor{comment}{/*   FreeType 2.                                                         */}}
+\DoxyCodeLine{481   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{482   \textcolor{comment}{/*   More details can be found in the files ftmoderr.h and fterrors.h.   */}}
+\DoxyCodeLine{483   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{484 \textcolor{preprocessor}{\#undef FT\_CONFIG\_OPTION\_USE\_MODULE\_ERRORS}}
+\DoxyCodeLine{485 }
+\DoxyCodeLine{486 }
+\DoxyCodeLine{487 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{488   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{489   \textcolor{comment}{/* Position Independent Code                                             */}}
+\DoxyCodeLine{490   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{491   \textcolor{comment}{/*   If this macro is set (which is \_not\_ the default), FreeType2 will   */}}
+\DoxyCodeLine{492   \textcolor{comment}{/*   avoid creating constants that require address fixups.  Instead the  */}}
+\DoxyCodeLine{493   \textcolor{comment}{/*   constants will be moved into a struct and additional intialization  */}}
+\DoxyCodeLine{494   \textcolor{comment}{/*   code will be used.                                                  */}}
+\DoxyCodeLine{495   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{496   \textcolor{comment}{/*   Setting this macro is needed for systems that prohibit address      */}}
+\DoxyCodeLine{497   \textcolor{comment}{/*   fixups, such as BREW.                                               */}}
+\DoxyCodeLine{498   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{499 \textcolor{comment}{/* \#define FT\_CONFIG\_OPTION\_PIC */}}
+\DoxyCodeLine{500 }
+\DoxyCodeLine{501 }
+\DoxyCodeLine{502 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{503 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{504 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{505 \textcolor{comment}{  /****        S F N T   D R I V E R    C O N F I G U R A T I O N       ****/}}
+\DoxyCodeLine{506 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{507 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{508 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{509 }
+\DoxyCodeLine{510 }
+\DoxyCodeLine{511 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{512   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{513   \textcolor{comment}{/* Define TT\_CONFIG\_OPTION\_EMBEDDED\_BITMAPS if you want to support       */}}
+\DoxyCodeLine{514   \textcolor{comment}{/* embedded bitmaps in all formats using the SFNT module (namely         */}}
+\DoxyCodeLine{515   \textcolor{comment}{/* TrueType \& OpenType).                                                 */}}
+\DoxyCodeLine{516   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{517 \textcolor{preprocessor}{\#define TT\_CONFIG\_OPTION\_EMBEDDED\_BITMAPS}}
+\DoxyCodeLine{518 }
+\DoxyCodeLine{519 }
+\DoxyCodeLine{520 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{521   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{522   \textcolor{comment}{/* Define TT\_CONFIG\_OPTION\_POSTSCRIPT\_NAMES if you want to be able to    */}}
+\DoxyCodeLine{523   \textcolor{comment}{/* load and enumerate the glyph Postscript names in a TrueType or        */}}
+\DoxyCodeLine{524   \textcolor{comment}{/* OpenType file.                                                        */}}
+\DoxyCodeLine{525   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{526   \textcolor{comment}{/* Note that when you do not compile the `PSNames' module by undefining  */}}
+\DoxyCodeLine{527   \textcolor{comment}{/* the above FT\_CONFIG\_OPTION\_POSTSCRIPT\_NAMES, the `sfnt' module will   */}}
+\DoxyCodeLine{528   \textcolor{comment}{/* contain additional code used to read the PS Names table from a font.  */}}
+\DoxyCodeLine{529   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{530   \textcolor{comment}{/* (By default, the module uses `PSNames' to extract glyph names.)       */}}
+\DoxyCodeLine{531   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{532 \textcolor{preprocessor}{\#define TT\_CONFIG\_OPTION\_POSTSCRIPT\_NAMES}}
+\DoxyCodeLine{533 }
+\DoxyCodeLine{534 }
+\DoxyCodeLine{535 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{536   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{537   \textcolor{comment}{/* Define TT\_CONFIG\_OPTION\_SFNT\_NAMES if your applications need to       */}}
+\DoxyCodeLine{538   \textcolor{comment}{/* access the internal name table in a SFNT-\/based format like TrueType   */}}
+\DoxyCodeLine{539   \textcolor{comment}{/* or OpenType.  The name table contains various strings used to         */}}
+\DoxyCodeLine{540   \textcolor{comment}{/* describe the font, like family name, copyright, version, etc.  It     */}}
+\DoxyCodeLine{541   \textcolor{comment}{/* does not contain any glyph name though.                               */}}
+\DoxyCodeLine{542   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{543   \textcolor{comment}{/* Accessing SFNT names is done through the functions declared in        */}}
+\DoxyCodeLine{544   \textcolor{comment}{/* `ftsnames.h'.                                                         */}}
+\DoxyCodeLine{545   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{546 \textcolor{preprocessor}{\#define TT\_CONFIG\_OPTION\_SFNT\_NAMES}}
+\DoxyCodeLine{547 }
+\DoxyCodeLine{548 }
+\DoxyCodeLine{549 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{550   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{551   \textcolor{comment}{/* TrueType CMap support                                                 */}}
+\DoxyCodeLine{552   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{553   \textcolor{comment}{/*   Here you can fine-\/tune which TrueType CMap table format shall be    */}}
+\DoxyCodeLine{554   \textcolor{comment}{/*   supported.                                                          */}}
+\DoxyCodeLine{555 \textcolor{preprocessor}{\#define TT\_CONFIG\_CMAP\_FORMAT\_0}}
+\DoxyCodeLine{556 \textcolor{preprocessor}{\#define TT\_CONFIG\_CMAP\_FORMAT\_2}}
+\DoxyCodeLine{557 \textcolor{preprocessor}{\#define TT\_CONFIG\_CMAP\_FORMAT\_4}}
+\DoxyCodeLine{558 \textcolor{preprocessor}{\#define TT\_CONFIG\_CMAP\_FORMAT\_6}}
+\DoxyCodeLine{559 \textcolor{preprocessor}{\#define TT\_CONFIG\_CMAP\_FORMAT\_8}}
+\DoxyCodeLine{560 \textcolor{preprocessor}{\#define TT\_CONFIG\_CMAP\_FORMAT\_10}}
+\DoxyCodeLine{561 \textcolor{preprocessor}{\#define TT\_CONFIG\_CMAP\_FORMAT\_12}}
+\DoxyCodeLine{562 \textcolor{preprocessor}{\#define TT\_CONFIG\_CMAP\_FORMAT\_13}}
+\DoxyCodeLine{563 \textcolor{preprocessor}{\#define TT\_CONFIG\_CMAP\_FORMAT\_14}}
+\DoxyCodeLine{564 }
+\DoxyCodeLine{565 }
+\DoxyCodeLine{566 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{567 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{568 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{569 \textcolor{comment}{  /****    T R U E T Y P E   D R I V E R    C O N F I G U R A T I O N   ****/}}
+\DoxyCodeLine{570 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{571 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{572 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{573 }
+\DoxyCodeLine{574 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{575   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{576   \textcolor{comment}{/* Define TT\_CONFIG\_OPTION\_BYTECODE\_INTERPRETER if you want to compile   */}}
+\DoxyCodeLine{577   \textcolor{comment}{/* a bytecode interpreter in the TrueType driver.                        */}}
+\DoxyCodeLine{578   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{579   \textcolor{comment}{/* By undefining this, you will only compile the code necessary to load  */}}
+\DoxyCodeLine{580   \textcolor{comment}{/* TrueType glyphs without hinting.                                      */}}
+\DoxyCodeLine{581   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{582   \textcolor{comment}{/*   Do not \#undef this macro here, since the build system might         */}}
+\DoxyCodeLine{583   \textcolor{comment}{/*   define it for certain configurations only.                          */}}
+\DoxyCodeLine{584   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{585 \textcolor{preprocessor}{\#define TT\_CONFIG\_OPTION\_BYTECODE\_INTERPRETER}}
+\DoxyCodeLine{586 }
+\DoxyCodeLine{587 }
+\DoxyCodeLine{588 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{589   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{590   \textcolor{comment}{/* Define TT\_CONFIG\_OPTION\_SUBPIXEL\_HINTING if you want to compile       */}}
+\DoxyCodeLine{591   \textcolor{comment}{/* EXPERIMENTAL subpixel hinting support into the TrueType driver.  This */}}
+\DoxyCodeLine{592   \textcolor{comment}{/* replaces the native TrueType hinting mechanism when anything but      */}}
+\DoxyCodeLine{593   \textcolor{comment}{/* FT\_RENDER\_MODE\_MONO is requested.                                     */}}
+\DoxyCodeLine{594   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{595   \textcolor{comment}{/* Enabling this causes the TrueType driver to ignore instructions under */}}
+\DoxyCodeLine{596   \textcolor{comment}{/* certain conditions.  This is done in accordance with the guide here,  */}}
+\DoxyCodeLine{597   \textcolor{comment}{/* with some minor differences:                                          */}}
+\DoxyCodeLine{598   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{599   \textcolor{comment}{/*  http://www.microsoft.com/typography/cleartype/truetypecleartype.aspx */}}
+\DoxyCodeLine{600   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{601   \textcolor{comment}{/* By undefining this, you only compile the code necessary to hint       */}}
+\DoxyCodeLine{602   \textcolor{comment}{/* TrueType glyphs with native TT hinting.                               */}}
+\DoxyCodeLine{603   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{604   \textcolor{comment}{/*   This option requires TT\_CONFIG\_OPTION\_BYTECODE\_INTERPRETER to be    */}}
+\DoxyCodeLine{605   \textcolor{comment}{/*   defined.                                                            */}}
+\DoxyCodeLine{606   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{607 \textcolor{comment}{/* \#define TT\_CONFIG\_OPTION\_SUBPIXEL\_HINTING */}}
+\DoxyCodeLine{608 }
+\DoxyCodeLine{609 }
+\DoxyCodeLine{610 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{611   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{612   \textcolor{comment}{/* If you define TT\_CONFIG\_OPTION\_UNPATENTED\_HINTING, a special version  */}}
+\DoxyCodeLine{613   \textcolor{comment}{/* of the TrueType bytecode interpreter is used that doesn't implement   */}}
+\DoxyCodeLine{614   \textcolor{comment}{/* any of the patented opcodes and algorithms.  The patents related to   */}}
+\DoxyCodeLine{615   \textcolor{comment}{/* TrueType hinting have expired worldwide since May 2010; this option   */}}
+\DoxyCodeLine{616   \textcolor{comment}{/* is now deprecated.                                                    */}}
+\DoxyCodeLine{617   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{618   \textcolor{comment}{/* Note that the TT\_CONFIG\_OPTION\_UNPATENTED\_HINTING macro is *ignored*  */}}
+\DoxyCodeLine{619   \textcolor{comment}{/* if you define TT\_CONFIG\_OPTION\_BYTECODE\_INTERPRETER; in other words,  */}}
+\DoxyCodeLine{620   \textcolor{comment}{/* either define TT\_CONFIG\_OPTION\_BYTECODE\_INTERPRETER or                */}}
+\DoxyCodeLine{621   \textcolor{comment}{/* TT\_CONFIG\_OPTION\_UNPATENTED\_HINTING but not both at the same time.    */}}
+\DoxyCodeLine{622   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{623   \textcolor{comment}{/* This macro is only useful for a small number of font files (mostly    */}}
+\DoxyCodeLine{624   \textcolor{comment}{/* for Asian scripts) that require bytecode interpretation to properly   */}}
+\DoxyCodeLine{625   \textcolor{comment}{/* load glyphs.  For all other fonts, this produces unpleasant results,  */}}
+\DoxyCodeLine{626   \textcolor{comment}{/* thus the unpatented interpreter is never used to load glyphs from     */}}
+\DoxyCodeLine{627   \textcolor{comment}{/* TrueType fonts unless one of the following two options is used.       */}}
+\DoxyCodeLine{628   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{629   \textcolor{comment}{/*   -\/ The unpatented interpreter is explicitly activated by the user    */}}
+\DoxyCodeLine{630   \textcolor{comment}{/*     through the FT\_PARAM\_TAG\_UNPATENTED\_HINTING parameter tag         */}}
+\DoxyCodeLine{631   \textcolor{comment}{/*     when opening the FT\_Face.                                         */}}
+\DoxyCodeLine{632   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{633   \textcolor{comment}{/*   -\/ FreeType detects that the FT\_Face corresponds to one of the       */}}
+\DoxyCodeLine{634   \textcolor{comment}{/*     `trick' fonts (e.g., `Mingliu') it knows about.  The font engine  */}}
+\DoxyCodeLine{635   \textcolor{comment}{/*     contains a hard-\/coded list of font names and other matching       */}}
+\DoxyCodeLine{636   \textcolor{comment}{/*     parameters (see function `tt\_face\_init' in file                   */}}
+\DoxyCodeLine{637   \textcolor{comment}{/*     `src/truetype/ttobjs.c').                                         */}}
+\DoxyCodeLine{638   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{639   \textcolor{comment}{/* Here a sample code snippet for using FT\_PARAM\_TAG\_UNPATENTED\_HINTING. */}}
+\DoxyCodeLine{640   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{641   \textcolor{comment}{/*   \{                                                                   */}}
+\DoxyCodeLine{642   \textcolor{comment}{/*     FT\_Parameter  parameter;                                          */}}
+\DoxyCodeLine{643   \textcolor{comment}{/*     FT\_Open\_Args  open\_args;                                          */}}
+\DoxyCodeLine{644   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{645   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{646   \textcolor{comment}{/*     parameter.tag = FT\_PARAM\_TAG\_UNPATENTED\_HINTING;                  */}}
+\DoxyCodeLine{647   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{648   \textcolor{comment}{/*     open\_args.flags      = FT\_OPEN\_PATHNAME | FT\_OPEN\_PARAMS;         */}}
+\DoxyCodeLine{649   \textcolor{comment}{/*     open\_args.pathname   = my\_font\_pathname;                          */}}
+\DoxyCodeLine{650   \textcolor{comment}{/*     open\_args.num\_params = 1;                                         */}}
+\DoxyCodeLine{651   \textcolor{comment}{/*     open\_args.params     = \&parameter;                                */}}
+\DoxyCodeLine{652   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{653   \textcolor{comment}{/*     error = FT\_Open\_Face( library, \&open\_args, index, \&face );        */}}
+\DoxyCodeLine{654   \textcolor{comment}{/*     ...                                                               */}}
+\DoxyCodeLine{655   \textcolor{comment}{/*   \}                                                                   */}}
+\DoxyCodeLine{656   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{657 \textcolor{comment}{/* \#define TT\_CONFIG\_OPTION\_UNPATENTED\_HINTING */}}
+\DoxyCodeLine{658 }
+\DoxyCodeLine{659 }
+\DoxyCodeLine{660 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{661   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{662   \textcolor{comment}{/* Define TT\_CONFIG\_OPTION\_INTERPRETER\_SWITCH to compile the TrueType    */}}
+\DoxyCodeLine{663   \textcolor{comment}{/* bytecode interpreter with a huge switch statement, rather than a call */}}
+\DoxyCodeLine{664   \textcolor{comment}{/* table.  This results in smaller and faster code for a number of       */}}
+\DoxyCodeLine{665   \textcolor{comment}{/* architectures.                                                        */}}
+\DoxyCodeLine{666   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{667   \textcolor{comment}{/* Note however that on some compiler/processor combinations, undefining */}}
+\DoxyCodeLine{668   \textcolor{comment}{/* this macro will generate faster, though larger, code.                 */}}
+\DoxyCodeLine{669   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{670 \textcolor{preprocessor}{\#define TT\_CONFIG\_OPTION\_INTERPRETER\_SWITCH}}
+\DoxyCodeLine{671 }
+\DoxyCodeLine{672 }
+\DoxyCodeLine{673 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{674   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{675   \textcolor{comment}{/* Define TT\_CONFIG\_OPTION\_COMPONENT\_OFFSET\_SCALED to compile the        */}}
+\DoxyCodeLine{676   \textcolor{comment}{/* TrueType glyph loader to use Apple's definition of how to handle      */}}
+\DoxyCodeLine{677   \textcolor{comment}{/* component offsets in composite glyphs.                                */}}
+\DoxyCodeLine{678   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{679   \textcolor{comment}{/* Apple and MS disagree on the default behavior of component offsets    */}}
+\DoxyCodeLine{680   \textcolor{comment}{/* in composites.  Apple says that they should be scaled by the scaling  */}}
+\DoxyCodeLine{681   \textcolor{comment}{/* factors in the transformation matrix (roughly, it's more complex)     */}}
+\DoxyCodeLine{682   \textcolor{comment}{/* while MS says they should not.  OpenType defines two bits in the      */}}
+\DoxyCodeLine{683   \textcolor{comment}{/* composite flags array which can be used to disambiguate, but old      */}}
+\DoxyCodeLine{684   \textcolor{comment}{/* fonts will not have them.                                             */}}
+\DoxyCodeLine{685   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{686   \textcolor{comment}{/*   http://www.microsoft.com/typography/otspec/glyf.htm                 */}}
+\DoxyCodeLine{687   \textcolor{comment}{/*   http://fonts.apple.com/TTRefMan/RM06/Chap6glyf.html                 */}}
+\DoxyCodeLine{688   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{689 \textcolor{preprocessor}{\#undef TT\_CONFIG\_OPTION\_COMPONENT\_OFFSET\_SCALED}}
+\DoxyCodeLine{690 }
+\DoxyCodeLine{691 }
+\DoxyCodeLine{692 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{693   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{694   \textcolor{comment}{/* Define TT\_CONFIG\_OPTION\_GX\_VAR\_SUPPORT if you want to include         */}}
+\DoxyCodeLine{695   \textcolor{comment}{/* support for Apple's distortable font technology (fvar, gvar, cvar,    */}}
+\DoxyCodeLine{696   \textcolor{comment}{/* and avar tables).  This has many similarities to Type 1 Multiple      */}}
+\DoxyCodeLine{697   \textcolor{comment}{/* Masters support.                                                      */}}
+\DoxyCodeLine{698   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{699 \textcolor{preprocessor}{\#define TT\_CONFIG\_OPTION\_GX\_VAR\_SUPPORT}}
+\DoxyCodeLine{700 }
+\DoxyCodeLine{701 }
+\DoxyCodeLine{702 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{703   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{704   \textcolor{comment}{/* Define TT\_CONFIG\_OPTION\_BDF if you want to include support for        */}}
+\DoxyCodeLine{705   \textcolor{comment}{/* an embedded `BDF ' table within SFNT-\/based bitmap formats.            */}}
+\DoxyCodeLine{706   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{707 \textcolor{preprocessor}{\#define TT\_CONFIG\_OPTION\_BDF}}
+\DoxyCodeLine{708 }
+\DoxyCodeLine{709 }
+\DoxyCodeLine{710 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{711 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{712 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{713 \textcolor{comment}{  /****      T Y P E 1   D R I V E R    C O N F I G U R A T I O N       ****/}}
+\DoxyCodeLine{714 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{715 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{716 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{717 }
+\DoxyCodeLine{718 }
+\DoxyCodeLine{719 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{720   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{721   \textcolor{comment}{/* T1\_MAX\_DICT\_DEPTH is the maximum depth of nest dictionaries and       */}}
+\DoxyCodeLine{722   \textcolor{comment}{/* arrays in the Type 1 stream (see t1load.c).  A minimum of 4 is        */}}
+\DoxyCodeLine{723   \textcolor{comment}{/* required.                                                             */}}
+\DoxyCodeLine{724   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{725 \textcolor{preprocessor}{\#define T1\_MAX\_DICT\_DEPTH  5}}
+\DoxyCodeLine{726 }
+\DoxyCodeLine{727 }
+\DoxyCodeLine{728 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{729   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{730   \textcolor{comment}{/* T1\_MAX\_SUBRS\_CALLS details the maximum number of nested sub-\/routine   */}}
+\DoxyCodeLine{731   \textcolor{comment}{/* calls during glyph loading.                                           */}}
+\DoxyCodeLine{732   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{733 \textcolor{preprocessor}{\#define T1\_MAX\_SUBRS\_CALLS  16}}
+\DoxyCodeLine{734 }
+\DoxyCodeLine{735 }
+\DoxyCodeLine{736 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{737   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{738   \textcolor{comment}{/* T1\_MAX\_CHARSTRING\_OPERANDS is the charstring stack's capacity.  A     */}}
+\DoxyCodeLine{739   \textcolor{comment}{/* minimum of 16 is required.                                            */}}
+\DoxyCodeLine{740   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{741   \textcolor{comment}{/* The Chinese font MingTiEG-\/Medium (CNS 11643 character set) needs 256. */}}
+\DoxyCodeLine{742   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{743 \textcolor{preprocessor}{\#define T1\_MAX\_CHARSTRINGS\_OPERANDS  256}}
+\DoxyCodeLine{744 }
+\DoxyCodeLine{745 }
+\DoxyCodeLine{746 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{747   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{748   \textcolor{comment}{/* Define this configuration macro if you want to prevent the            */}}
+\DoxyCodeLine{749   \textcolor{comment}{/* compilation of `t1afm', which is in charge of reading Type 1 AFM      */}}
+\DoxyCodeLine{750   \textcolor{comment}{/* files into an existing face.  Note that if set, the T1 driver will be */}}
+\DoxyCodeLine{751   \textcolor{comment}{/* unable to produce kerning distances.                                  */}}
+\DoxyCodeLine{752   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{753 \textcolor{preprocessor}{\#undef T1\_CONFIG\_OPTION\_NO\_AFM}}
+\DoxyCodeLine{754 }
+\DoxyCodeLine{755 }
+\DoxyCodeLine{756 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{757   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{758   \textcolor{comment}{/* Define this configuration macro if you want to prevent the            */}}
+\DoxyCodeLine{759   \textcolor{comment}{/* compilation of the Multiple Masters font support in the Type 1        */}}
+\DoxyCodeLine{760   \textcolor{comment}{/* driver.                                                               */}}
+\DoxyCodeLine{761   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{762 \textcolor{preprocessor}{\#undef T1\_CONFIG\_OPTION\_NO\_MM\_SUPPORT}}
+\DoxyCodeLine{763 }
+\DoxyCodeLine{764 }
+\DoxyCodeLine{765 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{766 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{767 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{768 \textcolor{comment}{  /****         C F F   D R I V E R    C O N F I G U R A T I O N        ****/}}
+\DoxyCodeLine{769 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{770 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{771 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{772 }
+\DoxyCodeLine{773 }
+\DoxyCodeLine{774 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{775   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{776   \textcolor{comment}{/* Using CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_\{X,Y\}\{1,2,3,4\} it is      */}}
+\DoxyCodeLine{777   \textcolor{comment}{/* possible to set up the default values of the four control points that */}}
+\DoxyCodeLine{778   \textcolor{comment}{/* define the stem darkening behaviour of the (new) CFF engine.  For     */}}
+\DoxyCodeLine{779   \textcolor{comment}{/* more details please read the documentation of the                     */}}
+\DoxyCodeLine{780   \textcolor{comment}{/* `darkening-\/parameters' property of the cff driver module (file        */}}
+\DoxyCodeLine{781   \textcolor{comment}{/* `ftcffdrv.h'), which allows the control at run-\/time.                  */}}
+\DoxyCodeLine{782   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{783   \textcolor{comment}{/* Do *not* undefine these macros!                                       */}}
+\DoxyCodeLine{784   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{785 \textcolor{preprocessor}{\#define CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_X1   500}}
+\DoxyCodeLine{786 \textcolor{preprocessor}{\#define CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_Y1   400}}
+\DoxyCodeLine{787 }
+\DoxyCodeLine{788 \textcolor{preprocessor}{\#define CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_X2  1000}}
+\DoxyCodeLine{789 \textcolor{preprocessor}{\#define CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_Y2   275}}
+\DoxyCodeLine{790 }
+\DoxyCodeLine{791 \textcolor{preprocessor}{\#define CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_X3  1667}}
+\DoxyCodeLine{792 \textcolor{preprocessor}{\#define CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_Y3   275}}
+\DoxyCodeLine{793 }
+\DoxyCodeLine{794 \textcolor{preprocessor}{\#define CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_X4  2333}}
+\DoxyCodeLine{795 \textcolor{preprocessor}{\#define CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_Y4     0}}
+\DoxyCodeLine{796 }
+\DoxyCodeLine{797 }
+\DoxyCodeLine{798 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{799   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{800   \textcolor{comment}{/* CFF\_CONFIG\_OPTION\_OLD\_ENGINE controls whether the pre-\/Adobe CFF       */}}
+\DoxyCodeLine{801   \textcolor{comment}{/* engine gets compiled into FreeType.  If defined, it is possible to    */}}
+\DoxyCodeLine{802   \textcolor{comment}{/* switch between the two engines using the `hinting-\/engine' property of */}}
+\DoxyCodeLine{803   \textcolor{comment}{/* the cff driver module.                                                */}}
+\DoxyCodeLine{804   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{805 \textcolor{comment}{/* \#define CFF\_CONFIG\_OPTION\_OLD\_ENGINE */}}
+\DoxyCodeLine{806 }
+\DoxyCodeLine{807 }
+\DoxyCodeLine{808 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{809 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{810 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{811 \textcolor{comment}{  /****    A U T O F I T   M O D U L E    C O N F I G U R A T I O N     ****/}}
+\DoxyCodeLine{812 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{813 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{814 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{815 }
+\DoxyCodeLine{816 }
+\DoxyCodeLine{817 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{818   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{819   \textcolor{comment}{/* Compile autofit module with CJK (Chinese, Japanese, Korean) script    */}}
+\DoxyCodeLine{820   \textcolor{comment}{/* support.                                                              */}}
+\DoxyCodeLine{821   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{822 \textcolor{preprocessor}{\#define AF\_CONFIG\_OPTION\_CJK}}
+\DoxyCodeLine{823 }
+\DoxyCodeLine{824 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{825   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{826   \textcolor{comment}{/* Compile autofit module with Indic script support.                     */}}
+\DoxyCodeLine{827   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{828 \textcolor{preprocessor}{\#define AF\_CONFIG\_OPTION\_INDIC}}
+\DoxyCodeLine{829 }
+\DoxyCodeLine{830 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{831   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{832   \textcolor{comment}{/* Compile autofit module with warp hinting.  The idea of the warping    */}}
+\DoxyCodeLine{833   \textcolor{comment}{/* code is to slightly scale and shift a glyph within a single dimension */}}
+\DoxyCodeLine{834   \textcolor{comment}{/* so that as much of its segments are aligned (more or less) on the     */}}
+\DoxyCodeLine{835   \textcolor{comment}{/* grid.  To find out the optimal scaling and shifting value, various    */}}
+\DoxyCodeLine{836   \textcolor{comment}{/* parameter combinations are tried and scored.                          */}}
+\DoxyCodeLine{837   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{838   \textcolor{comment}{/* This experimental option is only active if the render mode is         */}}
+\DoxyCodeLine{839   \textcolor{comment}{/* FT\_RENDER\_MODE\_LIGHT.                                                 */}}
+\DoxyCodeLine{840   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{841 \textcolor{comment}{/* \#define AF\_CONFIG\_OPTION\_USE\_WARPER */}}
+\DoxyCodeLine{842 }
+\DoxyCodeLine{843   \textcolor{comment}{/* */}}
+\DoxyCodeLine{844 }
+\DoxyCodeLine{845 }
+\DoxyCodeLine{846   \textcolor{comment}{/*}}
+\DoxyCodeLine{847 \textcolor{comment}{   * This macro is obsolete.  Support has been removed in FreeType}}
+\DoxyCodeLine{848 \textcolor{comment}{   * version 2.5.}}
+\DoxyCodeLine{849 \textcolor{comment}{   */}}
+\DoxyCodeLine{850 \textcolor{comment}{/* \#define FT\_CONFIG\_OPTION\_OLD\_INTERNALS */}}
+\DoxyCodeLine{851 }
+\DoxyCodeLine{852 }
+\DoxyCodeLine{853   \textcolor{comment}{/*}}
+\DoxyCodeLine{854 \textcolor{comment}{   * This macro is defined if either unpatented or native TrueType}}
+\DoxyCodeLine{855 \textcolor{comment}{   * hinting is requested by the definitions above.}}
+\DoxyCodeLine{856 \textcolor{comment}{   */}}
+\DoxyCodeLine{857 \textcolor{preprocessor}{\#ifdef TT\_CONFIG\_OPTION\_BYTECODE\_INTERPRETER}}
+\DoxyCodeLine{858 \textcolor{preprocessor}{\#define  TT\_USE\_BYTECODE\_INTERPRETER}}
+\DoxyCodeLine{859 \textcolor{preprocessor}{\#undef   TT\_CONFIG\_OPTION\_UNPATENTED\_HINTING}}
+\DoxyCodeLine{860 \textcolor{preprocessor}{\#elif defined TT\_CONFIG\_OPTION\_UNPATENTED\_HINTING}}
+\DoxyCodeLine{861 \textcolor{preprocessor}{\#define  TT\_USE\_BYTECODE\_INTERPRETER}}
+\DoxyCodeLine{862 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{863 }
+\DoxyCodeLine{864 }
+\DoxyCodeLine{865   \textcolor{comment}{/*}}
+\DoxyCodeLine{866 \textcolor{comment}{   * Check CFF darkening parameters.  The checks are the same as in function}}
+\DoxyCodeLine{867 \textcolor{comment}{   * `cff\_property\_set' in file `cffdrivr.c'.}}
+\DoxyCodeLine{868 \textcolor{comment}{   */}}
+\DoxyCodeLine{869 \textcolor{preprocessor}{\#if CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_X1 < 0   || \(\backslash\)}}
+\DoxyCodeLine{870 \textcolor{preprocessor}{    CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_X2 < 0   || \(\backslash\)}}
+\DoxyCodeLine{871 \textcolor{preprocessor}{    CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_X3 < 0   || \(\backslash\)}}
+\DoxyCodeLine{872 \textcolor{preprocessor}{    CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_X4 < 0   || \(\backslash\)}}
+\DoxyCodeLine{873 \textcolor{preprocessor}{                                                      \(\backslash\)}}
+\DoxyCodeLine{874 \textcolor{preprocessor}{    CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_Y1 < 0   || \(\backslash\)}}
+\DoxyCodeLine{875 \textcolor{preprocessor}{    CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_Y2 < 0   || \(\backslash\)}}
+\DoxyCodeLine{876 \textcolor{preprocessor}{    CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_Y3 < 0   || \(\backslash\)}}
+\DoxyCodeLine{877 \textcolor{preprocessor}{    CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_Y4 < 0   || \(\backslash\)}}
+\DoxyCodeLine{878 \textcolor{preprocessor}{                                                      \(\backslash\)}}
+\DoxyCodeLine{879 \textcolor{preprocessor}{    CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_X1 >        \(\backslash\)}}
+\DoxyCodeLine{880 \textcolor{preprocessor}{      CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_X2     || \(\backslash\)}}
+\DoxyCodeLine{881 \textcolor{preprocessor}{    CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_X2 >        \(\backslash\)}}
+\DoxyCodeLine{882 \textcolor{preprocessor}{      CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_X3     || \(\backslash\)}}
+\DoxyCodeLine{883 \textcolor{preprocessor}{    CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_X3 >        \(\backslash\)}}
+\DoxyCodeLine{884 \textcolor{preprocessor}{      CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_X4     || \(\backslash\)}}
+\DoxyCodeLine{885 \textcolor{preprocessor}{                                                      \(\backslash\)}}
+\DoxyCodeLine{886 \textcolor{preprocessor}{    CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_Y1 > 500 || \(\backslash\)}}
+\DoxyCodeLine{887 \textcolor{preprocessor}{    CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_Y2 > 500 || \(\backslash\)}}
+\DoxyCodeLine{888 \textcolor{preprocessor}{    CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_Y3 > 500 || \(\backslash\)}}
+\DoxyCodeLine{889 \textcolor{preprocessor}{    CFF\_CONFIG\_OPTION\_DARKENING\_PARAMETER\_Y4 > 500}}
+\DoxyCodeLine{890 \textcolor{preprocessor}{\#error "{}Invalid CFF darkening parameters!"{}}}
+\DoxyCodeLine{891 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{892 }
+\DoxyCodeLine{893 FT\_END\_HEADER}
+\DoxyCodeLine{894 }
+\DoxyCodeLine{895 }
+\DoxyCodeLine{896 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTOPTION\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{897 }
+\DoxyCodeLine{898 }
+\DoxyCodeLine{899 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

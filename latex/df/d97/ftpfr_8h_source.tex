@@ -1,0 +1,178 @@
+\hypertarget{ftpfr_8h_source}{}\doxysection{ftpfr.\+h}
+\label{ftpfr_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/ftpfr.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/ftpfr.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftpfr.h                                                                */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType API for accessing PFR-\/specific data (specification only).   */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2002, 2003, 2004, 2006, 2008, 2009 by                        */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FTPFR\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FTPFR\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifdef FREETYPE\_H}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#error "{}freetype.h of FreeType 1 has been loaded!"{}}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#error "{}Please fix the directory search order for header files"{}}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#error "{}so that freetype.h of FreeType 2 is found first."{}}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{36   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{37   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{38   \textcolor{comment}{/*    pfr\_fonts                                                          */}}
+\DoxyCodeLine{39   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{40   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{41   \textcolor{comment}{/*    PFR Fonts                                                          */}}
+\DoxyCodeLine{42   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{43   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*    PFR/TrueDoc specific API.                                          */}}
+\DoxyCodeLine{45   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{46   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*    This section contains the declaration of PFR-\/specific functions.   */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{49 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{comment}{ /**********************************************************************}}
+\DoxyCodeLine{53 \textcolor{comment}{  *}}
+\DoxyCodeLine{54 \textcolor{comment}{  * @function:}}
+\DoxyCodeLine{55 \textcolor{comment}{  *    FT\_Get\_PFR\_Metrics}}
+\DoxyCodeLine{56 \textcolor{comment}{  *}}
+\DoxyCodeLine{57 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{58 \textcolor{comment}{  *    Return the outline and metrics resolutions of a given PFR face.}}
+\DoxyCodeLine{59 \textcolor{comment}{  *}}
+\DoxyCodeLine{60 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{61 \textcolor{comment}{  *    face :: Handle to the input face.  It can be a non-\/PFR face.}}
+\DoxyCodeLine{62 \textcolor{comment}{  *}}
+\DoxyCodeLine{63 \textcolor{comment}{  * @output:}}
+\DoxyCodeLine{64 \textcolor{comment}{  *    aoutline\_resolution ::}}
+\DoxyCodeLine{65 \textcolor{comment}{  *      Outline resolution.  This is equivalent to `face-\/>units\_per\_EM'}}
+\DoxyCodeLine{66 \textcolor{comment}{  *      for non-\/PFR fonts.  Optional (parameter can be NULL).}}
+\DoxyCodeLine{67 \textcolor{comment}{  *}}
+\DoxyCodeLine{68 \textcolor{comment}{  *    ametrics\_resolution ::}}
+\DoxyCodeLine{69 \textcolor{comment}{  *      Metrics resolution.  This is equivalent to `outline\_resolution'}}
+\DoxyCodeLine{70 \textcolor{comment}{  *      for non-\/PFR fonts.  Optional (parameter can be NULL).}}
+\DoxyCodeLine{71 \textcolor{comment}{  *}}
+\DoxyCodeLine{72 \textcolor{comment}{  *    ametrics\_x\_scale ::}}
+\DoxyCodeLine{73 \textcolor{comment}{  *      A 16.16 fixed-\/point number used to scale distance expressed}}
+\DoxyCodeLine{74 \textcolor{comment}{  *      in metrics units to device sub-\/pixels.  This is equivalent to}}
+\DoxyCodeLine{75 \textcolor{comment}{  *      `face-\/>size-\/>x\_scale', but for metrics only.  Optional (parameter}}
+\DoxyCodeLine{76 \textcolor{comment}{  *      can be NULL).}}
+\DoxyCodeLine{77 \textcolor{comment}{  *}}
+\DoxyCodeLine{78 \textcolor{comment}{  *    ametrics\_y\_scale ::}}
+\DoxyCodeLine{79 \textcolor{comment}{  *      Same as `ametrics\_x\_scale' but for the vertical direction.}}
+\DoxyCodeLine{80 \textcolor{comment}{  *      optional (parameter can be NULL).}}
+\DoxyCodeLine{81 \textcolor{comment}{  *}}
+\DoxyCodeLine{82 \textcolor{comment}{  * @return:}}
+\DoxyCodeLine{83 \textcolor{comment}{  *    FreeType error code.  0\string~means success.}}
+\DoxyCodeLine{84 \textcolor{comment}{  *}}
+\DoxyCodeLine{85 \textcolor{comment}{  * @note:}}
+\DoxyCodeLine{86 \textcolor{comment}{  *   If the input face is not a PFR, this function will return an error.}}
+\DoxyCodeLine{87 \textcolor{comment}{  *   However, in all cases, it will return valid values.}}
+\DoxyCodeLine{88 \textcolor{comment}{  */}}
+\DoxyCodeLine{89   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{90   FT\_Get\_PFR\_Metrics( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}    face,}
+\DoxyCodeLine{91                       FT\_UInt   *aoutline\_resolution,}
+\DoxyCodeLine{92                       FT\_UInt   *ametrics\_resolution,}
+\DoxyCodeLine{93                       FT\_Fixed  *ametrics\_x\_scale,}
+\DoxyCodeLine{94                       FT\_Fixed  *ametrics\_y\_scale );}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{comment}{ /**********************************************************************}}
+\DoxyCodeLine{98 \textcolor{comment}{  *}}
+\DoxyCodeLine{99 \textcolor{comment}{  * @function:}}
+\DoxyCodeLine{100 \textcolor{comment}{  *    FT\_Get\_PFR\_Kerning}}
+\DoxyCodeLine{101 \textcolor{comment}{  *}}
+\DoxyCodeLine{102 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{103 \textcolor{comment}{  *    Return the kerning pair corresponding to two glyphs in a PFR face.}}
+\DoxyCodeLine{104 \textcolor{comment}{  *    The distance is expressed in metrics units, unlike the result of}}
+\DoxyCodeLine{105 \textcolor{comment}{  *    @FT\_Get\_Kerning.}}
+\DoxyCodeLine{106 \textcolor{comment}{  *}}
+\DoxyCodeLine{107 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{108 \textcolor{comment}{  *    face  :: A handle to the input face.}}
+\DoxyCodeLine{109 \textcolor{comment}{  *}}
+\DoxyCodeLine{110 \textcolor{comment}{  *    left  :: Index of the left glyph.}}
+\DoxyCodeLine{111 \textcolor{comment}{  *}}
+\DoxyCodeLine{112 \textcolor{comment}{  *    right :: Index of the right glyph.}}
+\DoxyCodeLine{113 \textcolor{comment}{  *}}
+\DoxyCodeLine{114 \textcolor{comment}{  * @output:}}
+\DoxyCodeLine{115 \textcolor{comment}{  *    avector :: A kerning vector.}}
+\DoxyCodeLine{116 \textcolor{comment}{  *}}
+\DoxyCodeLine{117 \textcolor{comment}{  * @return:}}
+\DoxyCodeLine{118 \textcolor{comment}{  *    FreeType error code.  0\string~means success.}}
+\DoxyCodeLine{119 \textcolor{comment}{  *}}
+\DoxyCodeLine{120 \textcolor{comment}{  * @note:}}
+\DoxyCodeLine{121 \textcolor{comment}{  *    This function always return distances in original PFR metrics}}
+\DoxyCodeLine{122 \textcolor{comment}{  *    units.  This is unlike @FT\_Get\_Kerning with the @FT\_KERNING\_UNSCALED}}
+\DoxyCodeLine{123 \textcolor{comment}{  *    mode, which always returns distances converted to outline units.}}
+\DoxyCodeLine{124 \textcolor{comment}{  *}}
+\DoxyCodeLine{125 \textcolor{comment}{  *    You can use the value of the `x\_scale' and `y\_scale' parameters}}
+\DoxyCodeLine{126 \textcolor{comment}{  *    returned by @FT\_Get\_PFR\_Metrics to scale these to device sub-\/pixels.}}
+\DoxyCodeLine{127 \textcolor{comment}{  */}}
+\DoxyCodeLine{128   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{129   FT\_Get\_PFR\_Kerning( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}     face,}
+\DoxyCodeLine{130                       FT\_UInt     left,}
+\DoxyCodeLine{131                       FT\_UInt     right,}
+\DoxyCodeLine{132                       \mbox{\hyperlink{structFT__Vector__}{FT\_Vector}}  *avector );}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135 \textcolor{comment}{ /**********************************************************************}}
+\DoxyCodeLine{136 \textcolor{comment}{  *}}
+\DoxyCodeLine{137 \textcolor{comment}{  * @function:}}
+\DoxyCodeLine{138 \textcolor{comment}{  *    FT\_Get\_PFR\_Advance}}
+\DoxyCodeLine{139 \textcolor{comment}{  *}}
+\DoxyCodeLine{140 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{141 \textcolor{comment}{  *    Return a given glyph advance, expressed in original metrics units,}}
+\DoxyCodeLine{142 \textcolor{comment}{  *    from a PFR font.}}
+\DoxyCodeLine{143 \textcolor{comment}{  *}}
+\DoxyCodeLine{144 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{145 \textcolor{comment}{  *    face   :: A handle to the input face.}}
+\DoxyCodeLine{146 \textcolor{comment}{  *}}
+\DoxyCodeLine{147 \textcolor{comment}{  *    gindex :: The glyph index.}}
+\DoxyCodeLine{148 \textcolor{comment}{  *}}
+\DoxyCodeLine{149 \textcolor{comment}{  * @output:}}
+\DoxyCodeLine{150 \textcolor{comment}{  *    aadvance :: The glyph advance in metrics units.}}
+\DoxyCodeLine{151 \textcolor{comment}{  *}}
+\DoxyCodeLine{152 \textcolor{comment}{  * @return:}}
+\DoxyCodeLine{153 \textcolor{comment}{  *    FreeType error code.  0\string~means success.}}
+\DoxyCodeLine{154 \textcolor{comment}{  *}}
+\DoxyCodeLine{155 \textcolor{comment}{  * @note:}}
+\DoxyCodeLine{156 \textcolor{comment}{  *    You can use the `x\_scale' or `y\_scale' results of @FT\_Get\_PFR\_Metrics}}
+\DoxyCodeLine{157 \textcolor{comment}{  *    to convert the advance to device sub-\/pixels (i.e., 1/64th of pixels).}}
+\DoxyCodeLine{158 \textcolor{comment}{  */}}
+\DoxyCodeLine{159   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{160   FT\_Get\_PFR\_Advance( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}   face,}
+\DoxyCodeLine{161                       FT\_UInt   gindex,}
+\DoxyCodeLine{162                       FT\_Pos   *aadvance );}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164   \textcolor{comment}{/* */}}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167 FT\_END\_HEADER}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTPFR\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

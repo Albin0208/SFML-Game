@@ -1,0 +1,131 @@
+\hypertarget{classPlayer}{}\doxysection{Player Class Reference}
+\label{classPlayer}\index{Player@{Player}}
+
+
+{\ttfamily \#include $<$Player.\+h$>$}
+
+
+
+Inheritance diagram for Player\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{df/da4/classPlayer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Player\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dc/d25/classPlayer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPlayer_ac937068b0508b2554a677f9da7e8c5d2}{Player}} (\mbox{\hyperlink{classsf_1_1Vector2}{sf\+::\+Vector2f}} const \&position, float speed)
+\item 
+void \mbox{\hyperlink{classPlayer_a12e6aec41678cb48eba51f5433334ee9}{update}} (\mbox{\hyperlink{classsf_1_1Time}{sf\+::\+Time}} const \&time, \mbox{\hyperlink{classGame}{Game}} \&game) override
+\item 
+int \mbox{\hyperlink{classPlayer_aff04d12a9b69cb732fc80c49bdbe8576}{attack}} () override
+\item 
+\mbox{\hyperlink{classsf_1_1Vector2}{sf\+::\+Vector2f}} const \& \mbox{\hyperlink{classPlayer_adc15bb6c0af8cfc281030d88a382b4b2}{get\+\_\+pos}} ()
+\item 
+int \mbox{\hyperlink{classPlayer_ad160329edfeac4cbc165344fc86c5bb2}{get\+\_\+hp}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classPlayer_a0955f2951d96f8f766696560aea17a47}{set\+\_\+animations}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Represent a player 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPlayer_ac937068b0508b2554a677f9da7e8c5d2}\label{classPlayer_ac937068b0508b2554a677f9da7e8c5d2}} 
+\index{Player@{Player}!Player@{Player}}
+\index{Player@{Player}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{Player()}{Player()}}
+{\footnotesize\ttfamily Player\+::\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsf_1_1Vector2}{sf\+::\+Vector2f}} const \&}]{position,  }\item[{float}]{speed }\end{DoxyParamCaption})}
+
+Create the player 
+\begin{DoxyParams}{Parameters}
+{\em position} & The position the player should spawn at \\
+\hline
+{\em speed} & The speed the player move by \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPlayer_aff04d12a9b69cb732fc80c49bdbe8576}\label{classPlayer_aff04d12a9b69cb732fc80c49bdbe8576}} 
+\index{Player@{Player}!attack@{attack}}
+\index{attack@{attack}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{attack()}{attack()}}
+{\footnotesize\ttfamily int Player\+::attack (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Make the object attack
+
+\begin{DoxyReturn}{Returns}
+How much damage the attack did 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classMovable__Object_acdb8de8a1eb331cc19da5adc10b35667}{Movable\+\_\+\+Object}}.
+
+\mbox{\Hypertarget{classPlayer_ad160329edfeac4cbc165344fc86c5bb2}\label{classPlayer_ad160329edfeac4cbc165344fc86c5bb2}} 
+\index{Player@{Player}!get\_hp@{get\_hp}}
+\index{get\_hp@{get\_hp}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{get\_hp()}{get\_hp()}}
+{\footnotesize\ttfamily int Player\+::get\+\_\+hp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Get the current hp of the player \begin{DoxyReturn}{Returns}
+The amount of hp 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPlayer_adc15bb6c0af8cfc281030d88a382b4b2}\label{classPlayer_adc15bb6c0af8cfc281030d88a382b4b2}} 
+\index{Player@{Player}!get\_pos@{get\_pos}}
+\index{get\_pos@{get\_pos}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{get\_pos()}{get\_pos()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsf_1_1Vector2}{sf\+::\+Vector2f}} const  \& Player\+::get\+\_\+pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Get the position of the player \begin{DoxyReturn}{Returns}
+The position of the player 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPlayer_a0955f2951d96f8f766696560aea17a47}\label{classPlayer_a0955f2951d96f8f766696560aea17a47}} 
+\index{Player@{Player}!set\_animations@{set\_animations}}
+\index{set\_animations@{set\_animations}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{set\_animations()}{set\_animations()}}
+{\footnotesize\ttfamily void Player\+::set\+\_\+animations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Load and set the animations for the player 
+
+Implements \mbox{\hyperlink{classMovable__Object_ac40d5ebc5182297620ca5b078aa6e350}{Movable\+\_\+\+Object}}.
+
+\mbox{\Hypertarget{classPlayer_a12e6aec41678cb48eba51f5433334ee9}\label{classPlayer_a12e6aec41678cb48eba51f5433334ee9}} 
+\index{Player@{Player}!update@{update}}
+\index{update@{update}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Player\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsf_1_1Time}{sf\+::\+Time}} const \&}]{time,  }\item[{\mbox{\hyperlink{classGame}{Game}} \&}]{game }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Update the player 
+\begin{DoxyParams}{Parameters}
+{\em time} & The time since the last update \\
+\hline
+{\em game} & A reference to the game \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classMovable__Object_a05751f47a751f849ae22b7e879803ed9}{Movable\+\_\+\+Object}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+entities/Player.\+h\item 
+entities/Player.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,39 @@
+\hypertarget{WindowUtil_8hpp_source}{}\doxysection{Window\+Util.\+hpp}
+\label{WindowUtil_8hpp_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/test/src/TestUtilities/WindowUtil.hpp@{cmake-\/build-\/debug/\_deps/sfml-\/src/test/src/TestUtilities/WindowUtil.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// Header for SFML unit tests.}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{// For a new window module test case, include this header and not <catch.hpp> directly.}}
+\DoxyCodeLine{4 \textcolor{comment}{// This ensures that string conversions are visible and can be used by Catch for debug output.}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#ifndef SFML\_TESTUTILITIES\_WINDOW\_HPP}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#define SFML\_TESTUTILITIES\_WINDOW\_HPP}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}SystemUtil.hpp"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <SFML/Graphics/Rect.hpp>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{comment}{// Forward declarations for non-\/template types}}
+\DoxyCodeLine{14 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacesf}{sf}}}
+\DoxyCodeLine{15 \{}
+\DoxyCodeLine{16     \textcolor{keyword}{class }VideoMode;}
+\DoxyCodeLine{17 \}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{comment}{// String conversions for Catch framework}}
+\DoxyCodeLine{20 \textcolor{keyword}{namespace }Catch}
+\DoxyCodeLine{21 \{}
+\DoxyCodeLine{22     std::string toString(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1VideoMode}{sf::VideoMode}}\& videoMode);}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{25     std::string toString(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Rect}{sf::Rect<T>}}\& rect)}
+\DoxyCodeLine{26     \{}
+\DoxyCodeLine{27         std::ostringstream stream;}
+\DoxyCodeLine{28         stream << \textcolor{stringliteral}{"{}(left="{}} << rect.\mbox{\hyperlink{classsf_1_1Rect_aa49960fa465103d9cb7069ceb25c7c32}{left}} << \textcolor{stringliteral}{"{}, top="{}} << rect.\mbox{\hyperlink{classsf_1_1Rect_abd3d3a2d0ad211ef0082bd0aa1a5c0e3}{top}} << \textcolor{stringliteral}{"{}, width="{}} << rect.\mbox{\hyperlink{classsf_1_1Rect_a4dd5b9d4333bebbc51bd309298fd500f}{width}} << \textcolor{stringliteral}{"{}, height="{}} << rect.\mbox{\hyperlink{classsf_1_1Rect_a6fa0fc7de1636d78cae1a1b54eef95cd}{height}} << \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{29         \textcolor{keywordflow}{return} stream.str();}
+\DoxyCodeLine{30     \}}
+\DoxyCodeLine{31 \}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SFML\_TESTUTILITIES\_WINDOW\_HPP}}
+
+\end{DoxyCode}

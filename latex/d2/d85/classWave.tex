@@ -1,0 +1,88 @@
+\hypertarget{classWave}{}\doxysection{Wave Class Reference}
+\label{classWave}\index{Wave@{Wave}}
+
+
+{\ttfamily \#include $<$Wave.\+h$>$}
+
+
+
+Collaboration diagram for Wave\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{d6/d53/classWave__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classWave_afcbf8399618efaedc0172d5c9e04d6e7}{is\+\_\+over}} () const
+\item 
+vector$<$ shared\+\_\+ptr$<$ \mbox{\hyperlink{classGame__Object}{Game\+\_\+\+Object}} $>$ $>$ \& \mbox{\hyperlink{classWave_aaa40454f7b37eb7d66ca34b18d4ebe1e}{create}} (\mbox{\hyperlink{classsf_1_1Vector2}{sf\+::\+Vector2f}} const \&player\+\_\+pos)
+\item 
+void \mbox{\hyperlink{classWave_a67b1572396807c10872c1df795089624}{enemy\+\_\+killed}} ()
+\item 
+int \mbox{\hyperlink{classWave_adafce3966b6f56735f956cf1826f3153}{get\+\_\+wave}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classWave_a11cb3a5a203cc7ce5445a5022e1e34e9}\label{classWave_a11cb3a5a203cc7ce5445a5022e1e34e9}} 
+int {\bfseries enemy\+\_\+count} \{0\}
+\item 
+\mbox{\Hypertarget{classWave_a89f7ad717f5997b1525598f67e29a79c}\label{classWave_a89f7ad717f5997b1525598f67e29a79c}} 
+int {\bfseries wave\+\_\+number} \{0\}
+\item 
+\mbox{\Hypertarget{classWave_a91e2d6c897baeee8c79fabf4b555b61f}\label{classWave_a91e2d6c897baeee8c79fabf4b555b61f}} 
+vector$<$ shared\+\_\+ptr$<$ \mbox{\hyperlink{classGame__Object}{Game\+\_\+\+Object}} $>$ $>$ {\bfseries enemies}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classWave}{Wave}} class to handle waves 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classWave_aaa40454f7b37eb7d66ca34b18d4ebe1e}\label{classWave_aaa40454f7b37eb7d66ca34b18d4ebe1e}} 
+\index{Wave@{Wave}!create@{create}}
+\index{create@{create}!Wave@{Wave}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily vector$<$ shared\+\_\+ptr$<$ \mbox{\hyperlink{classGame__Object}{Game\+\_\+\+Object}} $>$ $>$ \& Wave\+::create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsf_1_1Vector2}{sf\+::\+Vector2f}} const \&}]{player\+\_\+pos }\end{DoxyParamCaption})}
+
+Create a new wave 
+\begin{DoxyParams}{Parameters}
+{\em player\+\_\+pos} & The position of the player \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of all the enemies 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWave_a67b1572396807c10872c1df795089624}\label{classWave_a67b1572396807c10872c1df795089624}} 
+\index{Wave@{Wave}!enemy\_killed@{enemy\_killed}}
+\index{enemy\_killed@{enemy\_killed}!Wave@{Wave}}
+\doxysubsubsection{\texorpdfstring{enemy\_killed()}{enemy\_killed()}}
+{\footnotesize\ttfamily void Wave\+::enemy\+\_\+killed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Tell the wave an enemy has been killed \mbox{\Hypertarget{classWave_adafce3966b6f56735f956cf1826f3153}\label{classWave_adafce3966b6f56735f956cf1826f3153}} 
+\index{Wave@{Wave}!get\_wave@{get\_wave}}
+\index{get\_wave@{get\_wave}!Wave@{Wave}}
+\doxysubsubsection{\texorpdfstring{get\_wave()}{get\_wave()}}
+{\footnotesize\ttfamily int Wave\+::get\+\_\+wave (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Get the current wave number \begin{DoxyReturn}{Returns}
+The wave number 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWave_afcbf8399618efaedc0172d5c9e04d6e7}\label{classWave_afcbf8399618efaedc0172d5c9e04d6e7}} 
+\index{Wave@{Wave}!is\_over@{is\_over}}
+\index{is\_over@{is\_over}!Wave@{Wave}}
+\doxysubsubsection{\texorpdfstring{is\_over()}{is\_over()}}
+{\footnotesize\ttfamily bool Wave\+::is\+\_\+over (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Check if the wave is over \begin{DoxyReturn}{Returns}
+If the wave is over 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Wave.\+h\item 
+Wave.\+cpp\end{DoxyCompactItemize}

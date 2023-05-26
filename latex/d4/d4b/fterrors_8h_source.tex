@@ -1,0 +1,204 @@
+\hypertarget{fterrors_8h_source}{}\doxysection{fterrors.\+h}
+\label{fterrors_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/fterrors.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/fterrors.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  fterrors.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType error code handling (specification).                        */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2002, 2004, 2007, 2013 by                               */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{20   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{21   \textcolor{comment}{/* This special header file is used to define the handling of FT2        */}}
+\DoxyCodeLine{22   \textcolor{comment}{/* enumeration constants.  It can also be used to generate error message */}}
+\DoxyCodeLine{23   \textcolor{comment}{/* strings with a small macro trick explained below.                     */}}
+\DoxyCodeLine{24   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{25   \textcolor{comment}{/* I -\/ Error Formats                                                     */}}
+\DoxyCodeLine{26   \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/                                                     */}}
+\DoxyCodeLine{27   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{28   \textcolor{comment}{/*   The configuration macro FT\_CONFIG\_OPTION\_USE\_MODULE\_ERRORS can be   */}}
+\DoxyCodeLine{29   \textcolor{comment}{/*   defined in ftoption.h in order to make the higher byte indicate     */}}
+\DoxyCodeLine{30   \textcolor{comment}{/*   the module where the error has happened (this is not compatible     */}}
+\DoxyCodeLine{31   \textcolor{comment}{/*   with standard builds of FreeType 2).  See the file `ftmoderr.h' for */}}
+\DoxyCodeLine{32   \textcolor{comment}{/*   more details.                                                       */}}
+\DoxyCodeLine{33   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{34   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{35   \textcolor{comment}{/* II -\/ Error Message strings                                            */}}
+\DoxyCodeLine{36   \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/                                            */}}
+\DoxyCodeLine{37   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{38   \textcolor{comment}{/*   The error definitions below are made through special macros that    */}}
+\DoxyCodeLine{39   \textcolor{comment}{/*   allow client applications to build a table of error message strings */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*   if they need it.  The strings are not included in a normal build of */}}
+\DoxyCodeLine{41   \textcolor{comment}{/*   FreeType 2 to save space (most client applications do not use       */}}
+\DoxyCodeLine{42   \textcolor{comment}{/*   them).                                                              */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*   To do so, you have to define the following macros before including  */}}
+\DoxyCodeLine{45   \textcolor{comment}{/*   this file:                                                          */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*   FT\_ERROR\_START\_LIST ::                                              */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*     This macro is called before anything else to define the start of  */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*     the error list.  It is followed by several FT\_ERROR\_DEF calls     */}}
+\DoxyCodeLine{50   \textcolor{comment}{/*     (see below).                                                      */}}
+\DoxyCodeLine{51   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{52   \textcolor{comment}{/*   FT\_ERROR\_DEF( e, v, s ) ::                                          */}}
+\DoxyCodeLine{53   \textcolor{comment}{/*     This macro is called to define one single error.                  */}}
+\DoxyCodeLine{54   \textcolor{comment}{/*     `e' is the error code identifier (e.g. FT\_Err\_Invalid\_Argument).  */}}
+\DoxyCodeLine{55   \textcolor{comment}{/*     `v' is the error numerical value.                                 */}}
+\DoxyCodeLine{56   \textcolor{comment}{/*     `s' is the corresponding error string.                            */}}
+\DoxyCodeLine{57   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*   FT\_ERROR\_END\_LIST ::                                                */}}
+\DoxyCodeLine{59   \textcolor{comment}{/*     This macro ends the list.                                         */}}
+\DoxyCodeLine{60   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{61   \textcolor{comment}{/*   Additionally, you have to undefine \_\_FTERRORS\_H\_\_ before \#including */}}
+\DoxyCodeLine{62   \textcolor{comment}{/*   this file.                                                          */}}
+\DoxyCodeLine{63   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{64   \textcolor{comment}{/*   Here is a simple example:                                           */}}
+\DoxyCodeLine{65   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{66   \textcolor{comment}{/*     \{                                                                 */}}
+\DoxyCodeLine{67   \textcolor{comment}{/*       \#undef \_\_FTERRORS\_H\_\_                                           */}}
+\DoxyCodeLine{68   \textcolor{comment}{/*       \#define FT\_ERRORDEF( e, v, s )  \{ e, s \},                       */}}
+\DoxyCodeLine{69   \textcolor{comment}{/*       \#define FT\_ERROR\_START\_LIST     \{                               */}}
+\DoxyCodeLine{70   \textcolor{comment}{/*       \#define FT\_ERROR\_END\_LIST       \{ 0, 0 \} \};                     */}}
+\DoxyCodeLine{71   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{72   \textcolor{comment}{/*       const struct                                                    */}}
+\DoxyCodeLine{73   \textcolor{comment}{/*       \{                                                               */}}
+\DoxyCodeLine{74   \textcolor{comment}{/*         int          err\_code;                                        */}}
+\DoxyCodeLine{75   \textcolor{comment}{/*         const char*  err\_msg;                                         */}}
+\DoxyCodeLine{76   \textcolor{comment}{/*       \} ft\_errors[] =                                                 */}}
+\DoxyCodeLine{77   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{78   \textcolor{comment}{/*       \#include FT\_ERRORS\_H                                            */}}
+\DoxyCodeLine{79   \textcolor{comment}{/*     \}                                                                 */}}
+\DoxyCodeLine{80   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{81 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#ifndef \_\_FTERRORS\_H\_\_}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#define \_\_FTERRORS\_H\_\_}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88   \textcolor{comment}{/* include module base error codes */}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#include FT\_MODULE\_ERRORS\_H}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{93 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{94 \textcolor{comment}{  /*****                                                         *****/}}
+\DoxyCodeLine{95 \textcolor{comment}{  /*****                       SETUP MACROS                      *****/}}
+\DoxyCodeLine{96 \textcolor{comment}{  /*****                                                         *****/}}
+\DoxyCodeLine{97 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{98 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 \textcolor{preprocessor}{\#undef  FT\_NEED\_EXTERN\_C}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104   \textcolor{comment}{/* FT\_ERR\_PREFIX is used as a prefix for error identifiers. */}}
+\DoxyCodeLine{105   \textcolor{comment}{/* By default, we use `FT\_Err\_'.                            */}}
+\DoxyCodeLine{106   \textcolor{comment}{/*                                                          */}}
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#ifndef FT\_ERR\_PREFIX}}
+\DoxyCodeLine{108 \textcolor{preprocessor}{\#define FT\_ERR\_PREFIX  FT\_Err\_}}
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112   \textcolor{comment}{/* FT\_ERR\_BASE is used as the base for module-\/specific errors. */}}
+\DoxyCodeLine{113   \textcolor{comment}{/*                                                             */}}
+\DoxyCodeLine{114 \textcolor{preprocessor}{\#ifdef FT\_CONFIG\_OPTION\_USE\_MODULE\_ERRORS}}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116 \textcolor{preprocessor}{\#ifndef FT\_ERR\_BASE}}
+\DoxyCodeLine{117 \textcolor{preprocessor}{\#define FT\_ERR\_BASE  FT\_Mod\_Err\_Base}}
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#undef FT\_ERR\_BASE}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#define FT\_ERR\_BASE  0}}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* FT\_CONFIG\_OPTION\_USE\_MODULE\_ERRORS */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128   \textcolor{comment}{/* If FT\_ERRORDEF is not defined, we need to define a simple */}}
+\DoxyCodeLine{129   \textcolor{comment}{/* enumeration type.                                         */}}
+\DoxyCodeLine{130   \textcolor{comment}{/*                                                           */}}
+\DoxyCodeLine{131 \textcolor{preprocessor}{\#ifndef FT\_ERRORDEF}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 \textcolor{preprocessor}{\#define FT\_ERRORDEF( e, v, s )  e = v,}}
+\DoxyCodeLine{134 \textcolor{preprocessor}{\#define FT\_ERROR\_START\_LIST     enum \{}}
+\DoxyCodeLine{135 \textcolor{preprocessor}{\#define FT\_ERROR\_END\_LIST       FT\_ERR\_CAT( FT\_ERR\_PREFIX, Max ) \};}}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#define FT\_NEED\_EXTERN\_C}}
+\DoxyCodeLine{139   \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{140 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !FT\_ERRORDEF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145   \textcolor{comment}{/* this macro is used to define an error */}}
+\DoxyCodeLine{146 \textcolor{preprocessor}{\#define FT\_ERRORDEF\_( e, v, s )                                             \(\backslash\)}}
+\DoxyCodeLine{147 \textcolor{preprocessor}{          FT\_ERRORDEF( FT\_ERR\_CAT( FT\_ERR\_PREFIX, e ), v + FT\_ERR\_BASE, s )}}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149   \textcolor{comment}{/* this is only used for <module>\_Err\_Ok, which must be 0! */}}
+\DoxyCodeLine{150 \textcolor{preprocessor}{\#define FT\_NOERRORDEF\_( e, v, s )                             \(\backslash\)}}
+\DoxyCodeLine{151 \textcolor{preprocessor}{          FT\_ERRORDEF( FT\_ERR\_CAT( FT\_ERR\_PREFIX, e ), v, s )}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 \textcolor{preprocessor}{\#ifdef FT\_ERROR\_START\_LIST}}
+\DoxyCodeLine{155   FT\_ERROR\_START\_LIST}
+\DoxyCodeLine{156 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159   \textcolor{comment}{/* now include the error codes */}}
+\DoxyCodeLine{160 \textcolor{preprocessor}{\#include FT\_ERROR\_DEFINITIONS\_H}}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#ifdef FT\_ERROR\_END\_LIST}}
+\DoxyCodeLine{164   FT\_ERROR\_END\_LIST}
+\DoxyCodeLine{165 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{169 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{170 \textcolor{comment}{  /*****                                                         *****/}}
+\DoxyCodeLine{171 \textcolor{comment}{  /*****                      SIMPLE CLEANUP                     *****/}}
+\DoxyCodeLine{172 \textcolor{comment}{  /*****                                                         *****/}}
+\DoxyCodeLine{173 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{174 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176 \textcolor{preprocessor}{\#ifdef FT\_NEED\_EXTERN\_C}}
+\DoxyCodeLine{177   \}}
+\DoxyCodeLine{178 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180 \textcolor{preprocessor}{\#undef FT\_ERROR\_START\_LIST}}
+\DoxyCodeLine{181 \textcolor{preprocessor}{\#undef FT\_ERROR\_END\_LIST}}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183 \textcolor{preprocessor}{\#undef FT\_ERRORDEF}}
+\DoxyCodeLine{184 \textcolor{preprocessor}{\#undef FT\_ERRORDEF\_}}
+\DoxyCodeLine{185 \textcolor{preprocessor}{\#undef FT\_NOERRORDEF\_}}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187 \textcolor{preprocessor}{\#undef FT\_NEED\_EXTERN\_C}}
+\DoxyCodeLine{188 \textcolor{preprocessor}{\#undef FT\_ERR\_BASE}}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190   \textcolor{comment}{/* FT\_ERR\_PREFIX is needed internally */}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{\#ifndef FT2\_BUILD\_LIBRARY}}
+\DoxyCodeLine{192 \textcolor{preprocessor}{\#undef FT\_ERR\_PREFIX}}
+\DoxyCodeLine{193 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTERRORS\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

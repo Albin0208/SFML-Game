@@ -1,0 +1,186 @@
+\hypertarget{classMovable__Object}{}\doxysection{Movable\+\_\+\+Object Class Reference}
+\label{classMovable__Object}\index{Movable\_Object@{Movable\_Object}}
+
+
+Inheritance diagram for Movable\+\_\+\+Object\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d1/d1d/classMovable__Object__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Movable\+\_\+\+Object\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d9/d4a/classMovable__Object__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMovable__Object_aaf40139f723adef2cbe02a7b15425275}{Movable\+\_\+\+Object}} (const \mbox{\hyperlink{classsf_1_1Vector2}{sf\+::\+Vector2f}} \&position, float speed, float single\+\_\+sprite\+\_\+width=0)
+\item 
+void \mbox{\hyperlink{classMovable__Object_a05751f47a751f849ae22b7e879803ed9}{update}} (const \mbox{\hyperlink{classsf_1_1Time}{sf\+::\+Time}} \&time, \mbox{\hyperlink{classGame}{Game}} \&game) override=0
+\item 
+void \mbox{\hyperlink{classMovable__Object_ac6cf4990ec3f34926312c9f55e315ffb}{render}} (\mbox{\hyperlink{classsf_1_1RenderWindow}{sf\+::\+Render\+Window}} \&window) override
+\item 
+virtual int \mbox{\hyperlink{classMovable__Object_acdb8de8a1eb331cc19da5adc10b35667}{attack}} ()=0
+\item 
+void \mbox{\hyperlink{classMovable__Object_ae5873ee8b9cf22030d0ff3515bd724ad}{take\+\_\+damage}} (int damage)
+\item 
+void \mbox{\hyperlink{classMovable__Object_a4e3453038c33b758fbd792934a622159}{obstacle\+\_\+collision}} (\mbox{\hyperlink{classObstacle}{Obstacle}} $\ast$obstacle)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classMovable__Object_ac40d5ebc5182297620ca5b078aa6e350}{set\+\_\+animations}} ()=0
+\item 
+\mbox{\Hypertarget{classMovable__Object_abcdf71712cdce3d1404be14fcbcab8d0}\label{classMovable__Object_abcdf71712cdce3d1404be14fcbcab8d0}} 
+void {\bfseries handle\+\_\+animation} (\mbox{\hyperlink{classsf_1_1Vector2}{sf\+::\+Vector2f}} \&dir)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMovable__Object_a8c823c10a385f096b2ea3eeb42f43cc4}\label{classMovable__Object_a8c823c10a385f096b2ea3eeb42f43cc4}} 
+\mbox{\hyperlink{classsf_1_1Clock}{sf\+::\+Clock}} {\bfseries attack\+\_\+timer}
+\item 
+\mbox{\Hypertarget{classMovable__Object_a917d1cdfc912186e6f18838b4afd28a3}\label{classMovable__Object_a917d1cdfc912186e6f18838b4afd28a3}} 
+int32\+\_\+t {\bfseries attack\+\_\+timer\+\_\+max} \{\}
+\item 
+\mbox{\Hypertarget{classMovable__Object_abb28e92a4f6ecbcbd263ec7af036e162}\label{classMovable__Object_abb28e92a4f6ecbcbd263ec7af036e162}} 
+bool {\bfseries face\+\_\+right}
+\item 
+\mbox{\Hypertarget{classMovable__Object_af3fa1cb4271c46e350dd2541825f1c6c}\label{classMovable__Object_af3fa1cb4271c46e350dd2541825f1c6c}} 
+float {\bfseries speed}
+\item 
+\mbox{\Hypertarget{classMovable__Object_a0bbfc6692d825dfd6c426cddb69ba82f}\label{classMovable__Object_a0bbfc6692d825dfd6c426cddb69ba82f}} 
+bool {\bfseries attacking}
+\item 
+\mbox{\Hypertarget{classMovable__Object_a878a74ee48667b47f8d93f1106959515}\label{classMovable__Object_a878a74ee48667b47f8d93f1106959515}} 
+int {\bfseries health}
+\item 
+\mbox{\Hypertarget{classMovable__Object_a71ec940111933ec5cebb1445e3943463}\label{classMovable__Object_a71ec940111933ec5cebb1445e3943463}} 
+float {\bfseries single\+\_\+sprite\+\_\+width}
+\item 
+\mbox{\Hypertarget{classMovable__Object_a6fcacf6887bf5e71f4bd6cccb90d24cf}\label{classMovable__Object_a6fcacf6887bf5e71f4bd6cccb90d24cf}} 
+\mbox{\hyperlink{classsf_1_1Clock}{sf\+::\+Clock}} {\bfseries dmg\+\_\+clock}
+\item 
+\mbox{\Hypertarget{classMovable__Object_aeff09138f659447af46ea64e8e81ddd6}\label{classMovable__Object_aeff09138f659447af46ea64e8e81ddd6}} 
+std\+::string {\bfseries type}
+\item 
+\mbox{\Hypertarget{classMovable__Object_a7ee3e3cfa51c1f4c12e0f1d7b6720bb5}\label{classMovable__Object_a7ee3e3cfa51c1f4c12e0f1d7b6720bb5}} 
+\mbox{\hyperlink{classAnimation__Manager}{Animation\+\_\+\+Manager}} {\bfseries animation\+\_\+manager}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMovable__Object_aaf40139f723adef2cbe02a7b15425275}\label{classMovable__Object_aaf40139f723adef2cbe02a7b15425275}} 
+\index{Movable\_Object@{Movable\_Object}!Movable\_Object@{Movable\_Object}}
+\index{Movable\_Object@{Movable\_Object}!Movable\_Object@{Movable\_Object}}
+\doxysubsubsection{\texorpdfstring{Movable\_Object()}{Movable\_Object()}}
+{\footnotesize\ttfamily Movable\+\_\+\+Object\+::\+Movable\+\_\+\+Object (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsf_1_1Vector2}{sf\+::\+Vector2f}} \&}]{position,  }\item[{float}]{speed,  }\item[{float}]{single\+\_\+sprite\+\_\+width = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+Create a movable object 
+\begin{DoxyParams}{Parameters}
+{\em position} & The position to spawn at \\
+\hline
+{\em speed} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMovable__Object_acdb8de8a1eb331cc19da5adc10b35667}\label{classMovable__Object_acdb8de8a1eb331cc19da5adc10b35667}} 
+\index{Movable\_Object@{Movable\_Object}!attack@{attack}}
+\index{attack@{attack}!Movable\_Object@{Movable\_Object}}
+\doxysubsubsection{\texorpdfstring{attack()}{attack()}}
+{\footnotesize\ttfamily virtual int Movable\+\_\+\+Object\+::attack (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Make the object attack
+
+\begin{DoxyReturn}{Returns}
+How much damage the attack did 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classRanged__Enemy_a6a9995fd16522a44e79e3385204e33ac}{Ranged\+\_\+\+Enemy}}, \mbox{\hyperlink{classSlow__Enemy_aaf5872044f1ac495102a3f56568aaa2a}{Slow\+\_\+\+Enemy}}, \mbox{\hyperlink{classPlayer_aff04d12a9b69cb732fc80c49bdbe8576}{Player}}, \mbox{\hyperlink{classProjectile_a0d445efd3dacf2a11565e7f33f6e7b69}{Projectile}}, and \mbox{\hyperlink{classEnemy_a5c622332b9b44ec06ff288580810312b}{Enemy}}.
+
+\mbox{\Hypertarget{classMovable__Object_a4e3453038c33b758fbd792934a622159}\label{classMovable__Object_a4e3453038c33b758fbd792934a622159}} 
+\index{Movable\_Object@{Movable\_Object}!obstacle\_collision@{obstacle\_collision}}
+\index{obstacle\_collision@{obstacle\_collision}!Movable\_Object@{Movable\_Object}}
+\doxysubsubsection{\texorpdfstring{obstacle\_collision()}{obstacle\_collision()}}
+{\footnotesize\ttfamily void Movable\+\_\+\+Object\+::obstacle\+\_\+collision (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classObstacle}{Obstacle}} $\ast$}]{obstacle }\end{DoxyParamCaption})}
+
+Handle collision with an obstacle 
+\begin{DoxyParams}{Parameters}
+{\em obstacle} & The obstacle we are colliding with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMovable__Object_ac6cf4990ec3f34926312c9f55e315ffb}\label{classMovable__Object_ac6cf4990ec3f34926312c9f55e315ffb}} 
+\index{Movable\_Object@{Movable\_Object}!render@{render}}
+\index{render@{render}!Movable\_Object@{Movable\_Object}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Movable\+\_\+\+Object\+::render (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsf_1_1RenderWindow}{sf\+::\+Render\+Window}} \&}]{window }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Render the game object
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The window to render to \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classGame__Object_a7a5b475a903f4cda5d5452119135690c}{Game\+\_\+\+Object}}.
+
+\mbox{\Hypertarget{classMovable__Object_ac40d5ebc5182297620ca5b078aa6e350}\label{classMovable__Object_ac40d5ebc5182297620ca5b078aa6e350}} 
+\index{Movable\_Object@{Movable\_Object}!set\_animations@{set\_animations}}
+\index{set\_animations@{set\_animations}!Movable\_Object@{Movable\_Object}}
+\doxysubsubsection{\texorpdfstring{set\_animations()}{set\_animations()}}
+{\footnotesize\ttfamily virtual void Movable\+\_\+\+Object\+::set\+\_\+animations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+Set up all the animation for the movable object 
+
+Implemented in \mbox{\hyperlink{classRanged__Enemy_a4154cb75dfe27ac412e1b8013ae8458f}{Ranged\+\_\+\+Enemy}}, \mbox{\hyperlink{classSlow__Enemy_a0344a08cdef7a7c6c6ddf21abc697e8d}{Slow\+\_\+\+Enemy}}, \mbox{\hyperlink{classPlayer_a0955f2951d96f8f766696560aea17a47}{Player}}, \mbox{\hyperlink{classProjectile_ae2f1da518aeddc72babc2824db367374}{Projectile}}, and \mbox{\hyperlink{classEnemy_ac11d3ee40ebd70aaf6a7d46deb0e6c98}{Enemy}}.
+
+\mbox{\Hypertarget{classMovable__Object_ae5873ee8b9cf22030d0ff3515bd724ad}\label{classMovable__Object_ae5873ee8b9cf22030d0ff3515bd724ad}} 
+\index{Movable\_Object@{Movable\_Object}!take\_damage@{take\_damage}}
+\index{take\_damage@{take\_damage}!Movable\_Object@{Movable\_Object}}
+\doxysubsubsection{\texorpdfstring{take\_damage()}{take\_damage()}}
+{\footnotesize\ttfamily void Movable\+\_\+\+Object\+::take\+\_\+damage (\begin{DoxyParamCaption}\item[{int}]{damage }\end{DoxyParamCaption})}
+
+Make the object take damage 
+\begin{DoxyParams}{Parameters}
+{\em damage} & The amount to take damage by \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMovable__Object_a05751f47a751f849ae22b7e879803ed9}\label{classMovable__Object_a05751f47a751f849ae22b7e879803ed9}} 
+\index{Movable\_Object@{Movable\_Object}!update@{update}}
+\index{update@{update}!Movable\_Object@{Movable\_Object}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Movable\+\_\+\+Object\+::update (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsf_1_1Time}{sf\+::\+Time}} \&}]{time,  }\item[{\mbox{\hyperlink{classGame}{Game}} \&}]{game }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [pure virtual]}}
+
+Update the gameobject 
+\begin{DoxyParams}{Parameters}
+{\em time} & The time since last update \\
+\hline
+{\em game} & A reference to the game world \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classGame__Object_aa9363207d43d038b43a47ef799f17dca}{Game\+\_\+\+Object}}.
+
+
+
+Implemented in \mbox{\hyperlink{classRanged__Enemy_a9e67088168626cc2a41485804872ad69}{Ranged\+\_\+\+Enemy}}, \mbox{\hyperlink{classSlow__Enemy_af08b0e1e9ba23ead9bf469b648a35e8e}{Slow\+\_\+\+Enemy}}, \mbox{\hyperlink{classProjectile_a235cfa9328d52a3cc59700003530abad}{Projectile}}, \mbox{\hyperlink{classEnemy_a85dfaf519227462d503f0504a5367ac6}{Enemy}}, and \mbox{\hyperlink{classPlayer_a12e6aec41678cb48eba51f5433334ee9}{Player}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+entities/Movable\+\_\+\+Object.\+h\item 
+entities/Movable\+\_\+\+Object.\+cpp\end{DoxyCompactItemize}

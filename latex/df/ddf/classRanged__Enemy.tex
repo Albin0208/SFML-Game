@@ -1,0 +1,87 @@
+\hypertarget{classRanged__Enemy}{}\doxysection{Ranged\+\_\+\+Enemy Class Reference}
+\label{classRanged__Enemy}\index{Ranged\_Enemy@{Ranged\_Enemy}}
+
+
+Inheritance diagram for Ranged\+\_\+\+Enemy\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{db/d62/classRanged__Enemy__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Ranged\+\_\+\+Enemy\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d9f/classRanged__Enemy__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classRanged__Enemy_a74c7b280d9d88084f648cbe4cb013bde}\label{classRanged__Enemy_a74c7b280d9d88084f648cbe4cb013bde}} 
+{\bfseries Ranged\+\_\+\+Enemy} (\mbox{\hyperlink{classsf_1_1Vector2}{sf\+::\+Vector2f}} const \&position1, float speed1, \mbox{\hyperlink{classsf_1_1Vector2}{sf\+::\+Vector2f}} const \&player\+Pos)
+\item 
+void \mbox{\hyperlink{classRanged__Enemy_a9e67088168626cc2a41485804872ad69}{update}} (const \mbox{\hyperlink{classsf_1_1Time}{sf\+::\+Time}} \&time, \mbox{\hyperlink{classGame}{Game}} \&game) override
+\item 
+int \mbox{\hyperlink{classRanged__Enemy_a6a9995fd16522a44e79e3385204e33ac}{attack}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classRanged__Enemy_a4154cb75dfe27ac412e1b8013ae8458f}{set\+\_\+animations}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRanged__Enemy_a6a9995fd16522a44e79e3385204e33ac}\label{classRanged__Enemy_a6a9995fd16522a44e79e3385204e33ac}} 
+\index{Ranged\_Enemy@{Ranged\_Enemy}!attack@{attack}}
+\index{attack@{attack}!Ranged\_Enemy@{Ranged\_Enemy}}
+\doxysubsubsection{\texorpdfstring{attack()}{attack()}}
+{\footnotesize\ttfamily int Ranged\+\_\+\+Enemy\+::attack (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Make the object attack
+
+\begin{DoxyReturn}{Returns}
+How much damage the attack did 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classEnemy_a5c622332b9b44ec06ff288580810312b}{Enemy}}.
+
+\mbox{\Hypertarget{classRanged__Enemy_a4154cb75dfe27ac412e1b8013ae8458f}\label{classRanged__Enemy_a4154cb75dfe27ac412e1b8013ae8458f}} 
+\index{Ranged\_Enemy@{Ranged\_Enemy}!set\_animations@{set\_animations}}
+\index{set\_animations@{set\_animations}!Ranged\_Enemy@{Ranged\_Enemy}}
+\doxysubsubsection{\texorpdfstring{set\_animations()}{set\_animations()}}
+{\footnotesize\ttfamily void Ranged\+\_\+\+Enemy\+::set\+\_\+animations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Set up all the animation for the movable object 
+
+Implements \mbox{\hyperlink{classEnemy_ac11d3ee40ebd70aaf6a7d46deb0e6c98}{Enemy}}.
+
+\mbox{\Hypertarget{classRanged__Enemy_a9e67088168626cc2a41485804872ad69}\label{classRanged__Enemy_a9e67088168626cc2a41485804872ad69}} 
+\index{Ranged\_Enemy@{Ranged\_Enemy}!update@{update}}
+\index{update@{update}!Ranged\_Enemy@{Ranged\_Enemy}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Ranged\+\_\+\+Enemy\+::update (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsf_1_1Time}{sf\+::\+Time}} \&}]{time,  }\item[{\mbox{\hyperlink{classGame}{Game}} \&}]{game }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Update the gameobject 
+\begin{DoxyParams}{Parameters}
+{\em time} & The time since last update \\
+\hline
+{\em game} & A reference to the game world \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classEnemy_a85dfaf519227462d503f0504a5367ac6}{Enemy}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+entities/enemies/Ranged\+\_\+\+Enemy.\+h\item 
+entities/enemies/Ranged\+\_\+\+Enemy.\+cpp\end{DoxyCompactItemize}

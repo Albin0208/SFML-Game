@@ -1,0 +1,12 @@
+<map id="sf::priv::ActivityStates" name="sf::priv::ActivityStates">
+<area shape="rect" id="node1" title=" " alt="" coords="379,1071,543,1383"/>
+<area shape="rect" id="node2" href="$d8/dbc/classsf_1_1priv_1_1EglContext.html" title=" " alt="" coords="218,696,416,993"/>
+<area shape="rect" id="node3" href="$dd/d38/classsf_1_1priv_1_1GlContext.html" title="Abstract class representing an OpenGL context." alt="" coords="215,233,470,633"/>
+<area shape="rect" id="node4" href="$d0/da7/classsf_1_1NonCopyable.html" title="Utility class that makes any derived class non&#45;copyable." alt="" coords="47,27,192,149"/>
+<area shape="rect" id="node6" href="$d5/d61/classsf_1_1Mutex.html" title="Blocks concurrent access to shared resources from multiple threads." alt="" coords="70,784,169,905"/>
+<area shape="rect" id="node7" href="$df/d1e/classsf_1_1priv_1_1MutexImpl.html" title="Unix implementation of mutexes." alt="" coords="48,336,191,531"/>
+<area shape="rect" id="node5" href="$de/db9/structsf_1_1ContextSettings.html" title="Structure defining the settings of the OpenGL context attached to a window." alt="" coords="267,5,418,171"/>
+<area shape="rect" id="node8" href="$d8/d57/classsf_1_1Vector2.html" title=" " alt="" coords="440,762,578,927"/>
+<area shape="rect" id="node9" href="$d6/d96/classLogcatStream.html" title=" " alt="" coords="602,799,739,891"/>
+<area shape="rect" id="node10" title=" " alt="" coords="612,395,729,472"/>
+</map>

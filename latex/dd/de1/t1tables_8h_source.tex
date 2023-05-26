@@ -1,0 +1,766 @@
+\hypertarget{t1tables_8h_source}{}\doxysection{t1tables.\+h}
+\label{t1tables_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/t1tables.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/t1tables.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  t1tables.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Basic Type 1/Type 2 tables definitions and interface (specification  */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*    only).                                                               */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  Copyright 1996-\/2004, 2006, 2008, 2009, 2011, 2014 by                   */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{16 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{17 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#ifndef \_\_T1TABLES\_H\_\_}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#define \_\_T1TABLES\_H\_\_}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#ifdef FREETYPE\_H}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#error "{}freetype.h of FreeType 1 has been loaded!"{}}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#error "{}Please fix the directory search order for header files"{}}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#error "{}so that freetype.h of FreeType 2 is found first."{}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{38   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{39   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*    type1\_tables                                                       */}}
+\DoxyCodeLine{41   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{42   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*    Type 1 Tables                                                      */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{45   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*    Type\string~1 (PostScript) specific font tables.                          */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{48   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*    This section contains the definition of Type 1-\/specific tables,    */}}
+\DoxyCodeLine{50   \textcolor{comment}{/*    including structures related to other PostScript font formats.     */}}
+\DoxyCodeLine{51   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{52   \textcolor{comment}{/* <Order>                                                               */}}
+\DoxyCodeLine{53   \textcolor{comment}{/*    PS\_FontInfoRec                                                     */}}
+\DoxyCodeLine{54   \textcolor{comment}{/*    PS\_FontInfo                                                        */}}
+\DoxyCodeLine{55   \textcolor{comment}{/*    PS\_PrivateRec                                                      */}}
+\DoxyCodeLine{56   \textcolor{comment}{/*    PS\_Private                                                         */}}
+\DoxyCodeLine{57   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*    CID\_FaceDictRec                                                    */}}
+\DoxyCodeLine{59   \textcolor{comment}{/*    CID\_FaceDict                                                       */}}
+\DoxyCodeLine{60   \textcolor{comment}{/*    CID\_FaceInfoRec                                                    */}}
+\DoxyCodeLine{61   \textcolor{comment}{/*    CID\_FaceInfo                                                       */}}
+\DoxyCodeLine{62   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{63   \textcolor{comment}{/*    FT\_Has\_PS\_Glyph\_Names                                              */}}
+\DoxyCodeLine{64   \textcolor{comment}{/*    FT\_Get\_PS\_Font\_Info                                                */}}
+\DoxyCodeLine{65   \textcolor{comment}{/*    FT\_Get\_PS\_Font\_Private                                             */}}
+\DoxyCodeLine{66   \textcolor{comment}{/*    FT\_Get\_PS\_Font\_Value                                               */}}
+\DoxyCodeLine{67   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{68   \textcolor{comment}{/*    T1\_Blend\_Flags                                                     */}}
+\DoxyCodeLine{69   \textcolor{comment}{/*    T1\_EncodingType                                                    */}}
+\DoxyCodeLine{70   \textcolor{comment}{/*    PS\_Dict\_Keys                                                       */}}
+\DoxyCodeLine{71   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{72 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75   \textcolor{comment}{/* Note that we separate font data in PS\_FontInfoRec and PS\_PrivateRec */}}
+\DoxyCodeLine{76   \textcolor{comment}{/* structures in order to support Multiple Master fonts.               */}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{80   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{81   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{82   \textcolor{comment}{/*    PS\_FontInfoRec                                                     */}}
+\DoxyCodeLine{83   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{84   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{85   \textcolor{comment}{/*    A structure used to model a Type\string~1 or Type\string~2 FontInfo dictionary.  */}}
+\DoxyCodeLine{86   \textcolor{comment}{/*    Note that for Multiple Master fonts, each instance has its own     */}}
+\DoxyCodeLine{87   \textcolor{comment}{/*    FontInfo dictionary.                                               */}}
+\DoxyCodeLine{88   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{89   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structPS__FontInfoRec__}{PS\_FontInfoRec\_}}}
+\DoxyCodeLine{90   \{}
+\DoxyCodeLine{91     FT\_String*  version;}
+\DoxyCodeLine{92     FT\_String*  notice;}
+\DoxyCodeLine{93     FT\_String*  full\_name;}
+\DoxyCodeLine{94     FT\_String*  family\_name;}
+\DoxyCodeLine{95     FT\_String*  weight;}
+\DoxyCodeLine{96     FT\_Long     italic\_angle;}
+\DoxyCodeLine{97     FT\_Bool     is\_fixed\_pitch;}
+\DoxyCodeLine{98     FT\_Short    underline\_position;}
+\DoxyCodeLine{99     FT\_UShort   underline\_thickness;}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101   \} PS\_FontInfoRec;}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{105   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{106   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{107   \textcolor{comment}{/*    PS\_FontInfo                                                        */}}
+\DoxyCodeLine{108   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{109   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{110   \textcolor{comment}{/*    A handle to a @PS\_FontInfoRec structure.                           */}}
+\DoxyCodeLine{111   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{112   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structPS__FontInfoRec__}{PS\_FontInfoRec\_}}*  \mbox{\hyperlink{structPS__FontInfoRec__}{PS\_FontInfo}};}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{116   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{117   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{118   \textcolor{comment}{/*    T1\_FontInfo                                                        */}}
+\DoxyCodeLine{119   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{120   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{121   \textcolor{comment}{/*    This type is equivalent to @PS\_FontInfoRec.  It is deprecated but  */}}
+\DoxyCodeLine{122   \textcolor{comment}{/*    kept to maintain source compatibility between various versions of  */}}
+\DoxyCodeLine{123   \textcolor{comment}{/*    FreeType.                                                          */}}
+\DoxyCodeLine{124   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{125   \textcolor{keyword}{typedef} PS\_FontInfoRec  T1\_FontInfo;}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{129   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{130   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{131   \textcolor{comment}{/*    PS\_PrivateRec                                                      */}}
+\DoxyCodeLine{132   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{133   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{134   \textcolor{comment}{/*    A structure used to model a Type\string~1 or Type\string~2 private dictionary.   */}}
+\DoxyCodeLine{135   \textcolor{comment}{/*    Note that for Multiple Master fonts, each instance has its own     */}}
+\DoxyCodeLine{136   \textcolor{comment}{/*    Private dictionary.                                                */}}
+\DoxyCodeLine{137   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{138   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structPS__PrivateRec__}{PS\_PrivateRec\_}}}
+\DoxyCodeLine{139   \{}
+\DoxyCodeLine{140     FT\_Int     unique\_id;}
+\DoxyCodeLine{141     FT\_Int     lenIV;}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143     FT\_Byte    num\_blue\_values;}
+\DoxyCodeLine{144     FT\_Byte    num\_other\_blues;}
+\DoxyCodeLine{145     FT\_Byte    num\_family\_blues;}
+\DoxyCodeLine{146     FT\_Byte    num\_family\_other\_blues;}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148     FT\_Short   blue\_values[14];}
+\DoxyCodeLine{149     FT\_Short   other\_blues[10];}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151     FT\_Short   family\_blues      [14];}
+\DoxyCodeLine{152     FT\_Short   family\_other\_blues[10];}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154     FT\_Fixed   blue\_scale;}
+\DoxyCodeLine{155     FT\_Int     blue\_shift;}
+\DoxyCodeLine{156     FT\_Int     blue\_fuzz;}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158     FT\_UShort  standard\_width[1];}
+\DoxyCodeLine{159     FT\_UShort  standard\_height[1];}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161     FT\_Byte    num\_snap\_widths;}
+\DoxyCodeLine{162     FT\_Byte    num\_snap\_heights;}
+\DoxyCodeLine{163     FT\_Bool    force\_bold;}
+\DoxyCodeLine{164     FT\_Bool    round\_stem\_up;}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166     FT\_Short   snap\_widths [13];  \textcolor{comment}{/* including std width  */}}
+\DoxyCodeLine{167     FT\_Short   snap\_heights[13];  \textcolor{comment}{/* including std height */}}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169     FT\_Fixed   expansion\_factor;}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171     FT\_Long    language\_group;}
+\DoxyCodeLine{172     FT\_Long    password;}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174     FT\_Short   min\_feature[2];}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176   \} \mbox{\hyperlink{structPS__PrivateRec__}{PS\_PrivateRec}};}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{180   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{181   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{182   \textcolor{comment}{/*    PS\_Private                                                         */}}
+\DoxyCodeLine{183   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{184   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{185   \textcolor{comment}{/*    A handle to a @PS\_PrivateRec structure.                            */}}
+\DoxyCodeLine{186   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{187   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structPS__PrivateRec__}{PS\_PrivateRec\_}}*  \mbox{\hyperlink{structPS__PrivateRec__}{PS\_Private}};}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{191   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{192   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{193   \textcolor{comment}{/*    T1\_Private                                                         */}}
+\DoxyCodeLine{194   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{195   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{196   \textcolor{comment}{/*   This type is equivalent to @PS\_PrivateRec.  It is deprecated but    */}}
+\DoxyCodeLine{197   \textcolor{comment}{/*   kept to maintain source compatibility between various versions of   */}}
+\DoxyCodeLine{198   \textcolor{comment}{/*   FreeType.                                                           */}}
+\DoxyCodeLine{199   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{200   \textcolor{keyword}{typedef} \mbox{\hyperlink{structPS__PrivateRec__}{PS\_PrivateRec}}  \mbox{\hyperlink{structPS__PrivateRec__}{T1\_Private}};}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{204   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{205   \textcolor{comment}{/* <Enum>                                                                */}}
+\DoxyCodeLine{206   \textcolor{comment}{/*    T1\_Blend\_Flags                                                     */}}
+\DoxyCodeLine{207   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{208   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{209   \textcolor{comment}{/*    A set of flags used to indicate which fields are present in a      */}}
+\DoxyCodeLine{210   \textcolor{comment}{/*    given blend dictionary (font info or private).  Used to support    */}}
+\DoxyCodeLine{211   \textcolor{comment}{/*    Multiple Masters fonts.                                            */}}
+\DoxyCodeLine{212   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{213   \textcolor{comment}{/* <Values>                                                              */}}
+\DoxyCodeLine{214   \textcolor{comment}{/*    T1\_BLEND\_UNDERLINE\_POSITION ::                                     */}}
+\DoxyCodeLine{215   \textcolor{comment}{/*    T1\_BLEND\_UNDERLINE\_THICKNESS ::                                    */}}
+\DoxyCodeLine{216   \textcolor{comment}{/*    T1\_BLEND\_ITALIC\_ANGLE ::                                           */}}
+\DoxyCodeLine{217   \textcolor{comment}{/*    T1\_BLEND\_BLUE\_VALUES ::                                            */}}
+\DoxyCodeLine{218   \textcolor{comment}{/*    T1\_BLEND\_OTHER\_BLUES ::                                            */}}
+\DoxyCodeLine{219   \textcolor{comment}{/*    T1\_BLEND\_STANDARD\_WIDTH ::                                         */}}
+\DoxyCodeLine{220   \textcolor{comment}{/*    T1\_BLEND\_STANDARD\_HEIGHT ::                                        */}}
+\DoxyCodeLine{221   \textcolor{comment}{/*    T1\_BLEND\_STEM\_SNAP\_WIDTHS ::                                       */}}
+\DoxyCodeLine{222   \textcolor{comment}{/*    T1\_BLEND\_STEM\_SNAP\_HEIGHTS ::                                      */}}
+\DoxyCodeLine{223   \textcolor{comment}{/*    T1\_BLEND\_BLUE\_SCALE ::                                             */}}
+\DoxyCodeLine{224   \textcolor{comment}{/*    T1\_BLEND\_BLUE\_SHIFT ::                                             */}}
+\DoxyCodeLine{225   \textcolor{comment}{/*    T1\_BLEND\_FAMILY\_BLUES ::                                           */}}
+\DoxyCodeLine{226   \textcolor{comment}{/*    T1\_BLEND\_FAMILY\_OTHER\_BLUES ::                                     */}}
+\DoxyCodeLine{227   \textcolor{comment}{/*    T1\_BLEND\_FORCE\_BOLD ::                                             */}}
+\DoxyCodeLine{228   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{229   \textcolor{keyword}{typedef} \textcolor{keyword}{enum}  T1\_Blend\_Flags\_}
+\DoxyCodeLine{230   \{}
+\DoxyCodeLine{231     \textcolor{comment}{/* required fields in a FontInfo blend dictionary */}}
+\DoxyCodeLine{232     T1\_BLEND\_UNDERLINE\_POSITION = 0,}
+\DoxyCodeLine{233     T1\_BLEND\_UNDERLINE\_THICKNESS,}
+\DoxyCodeLine{234     T1\_BLEND\_ITALIC\_ANGLE,}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236     \textcolor{comment}{/* required fields in a Private blend dictionary */}}
+\DoxyCodeLine{237     T1\_BLEND\_BLUE\_VALUES,}
+\DoxyCodeLine{238     T1\_BLEND\_OTHER\_BLUES,}
+\DoxyCodeLine{239     T1\_BLEND\_STANDARD\_WIDTH,}
+\DoxyCodeLine{240     T1\_BLEND\_STANDARD\_HEIGHT,}
+\DoxyCodeLine{241     T1\_BLEND\_STEM\_SNAP\_WIDTHS,}
+\DoxyCodeLine{242     T1\_BLEND\_STEM\_SNAP\_HEIGHTS,}
+\DoxyCodeLine{243     T1\_BLEND\_BLUE\_SCALE,}
+\DoxyCodeLine{244     T1\_BLEND\_BLUE\_SHIFT,}
+\DoxyCodeLine{245     T1\_BLEND\_FAMILY\_BLUES,}
+\DoxyCodeLine{246     T1\_BLEND\_FAMILY\_OTHER\_BLUES,}
+\DoxyCodeLine{247     T1\_BLEND\_FORCE\_BOLD,}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{249     T1\_BLEND\_MAX    \textcolor{comment}{/* do not remove */}}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251   \} T1\_Blend\_Flags;}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{253 }
+\DoxyCodeLine{254   \textcolor{comment}{/* these constants are deprecated; use the corresponding */}}
+\DoxyCodeLine{255   \textcolor{comment}{/* `T1\_Blend\_Flags' values instead                       */}}
+\DoxyCodeLine{256 \textcolor{preprocessor}{\#define t1\_blend\_underline\_position   T1\_BLEND\_UNDERLINE\_POSITION}}
+\DoxyCodeLine{257 \textcolor{preprocessor}{\#define t1\_blend\_underline\_thickness  T1\_BLEND\_UNDERLINE\_THICKNESS}}
+\DoxyCodeLine{258 \textcolor{preprocessor}{\#define t1\_blend\_italic\_angle         T1\_BLEND\_ITALIC\_ANGLE}}
+\DoxyCodeLine{259 \textcolor{preprocessor}{\#define t1\_blend\_blue\_values          T1\_BLEND\_BLUE\_VALUES}}
+\DoxyCodeLine{260 \textcolor{preprocessor}{\#define t1\_blend\_other\_blues          T1\_BLEND\_OTHER\_BLUES}}
+\DoxyCodeLine{261 \textcolor{preprocessor}{\#define t1\_blend\_standard\_widths      T1\_BLEND\_STANDARD\_WIDTH}}
+\DoxyCodeLine{262 \textcolor{preprocessor}{\#define t1\_blend\_standard\_height      T1\_BLEND\_STANDARD\_HEIGHT}}
+\DoxyCodeLine{263 \textcolor{preprocessor}{\#define t1\_blend\_stem\_snap\_widths     T1\_BLEND\_STEM\_SNAP\_WIDTHS}}
+\DoxyCodeLine{264 \textcolor{preprocessor}{\#define t1\_blend\_stem\_snap\_heights    T1\_BLEND\_STEM\_SNAP\_HEIGHTS}}
+\DoxyCodeLine{265 \textcolor{preprocessor}{\#define t1\_blend\_blue\_scale           T1\_BLEND\_BLUE\_SCALE}}
+\DoxyCodeLine{266 \textcolor{preprocessor}{\#define t1\_blend\_blue\_shift           T1\_BLEND\_BLUE\_SHIFT}}
+\DoxyCodeLine{267 \textcolor{preprocessor}{\#define t1\_blend\_family\_blues         T1\_BLEND\_FAMILY\_BLUES}}
+\DoxyCodeLine{268 \textcolor{preprocessor}{\#define t1\_blend\_family\_other\_blues   T1\_BLEND\_FAMILY\_OTHER\_BLUES}}
+\DoxyCodeLine{269 \textcolor{preprocessor}{\#define t1\_blend\_force\_bold           T1\_BLEND\_FORCE\_BOLD}}
+\DoxyCodeLine{270 \textcolor{preprocessor}{\#define t1\_blend\_max                  T1\_BLEND\_MAX}}
+\DoxyCodeLine{271 }
+\DoxyCodeLine{272   \textcolor{comment}{/* */}}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275   \textcolor{comment}{/* maximum number of Multiple Masters designs, as defined in the spec */}}
+\DoxyCodeLine{276 \textcolor{preprocessor}{\#define T1\_MAX\_MM\_DESIGNS     16}}
+\DoxyCodeLine{277 }
+\DoxyCodeLine{278   \textcolor{comment}{/* maximum number of Multiple Masters axes, as defined in the spec */}}
+\DoxyCodeLine{279 \textcolor{preprocessor}{\#define T1\_MAX\_MM\_AXIS        4}}
+\DoxyCodeLine{280 }
+\DoxyCodeLine{281   \textcolor{comment}{/* maximum number of elements in a design map */}}
+\DoxyCodeLine{282 \textcolor{preprocessor}{\#define T1\_MAX\_MM\_MAP\_POINTS  20}}
+\DoxyCodeLine{283 }
+\DoxyCodeLine{284 }
+\DoxyCodeLine{285   \textcolor{comment}{/* this structure is used to store the BlendDesignMap entry for an axis */}}
+\DoxyCodeLine{286   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structPS__DesignMap__}{PS\_DesignMap\_}}}
+\DoxyCodeLine{287   \{}
+\DoxyCodeLine{288     FT\_Byte    num\_points;}
+\DoxyCodeLine{289     FT\_Long*   design\_points;}
+\DoxyCodeLine{290     FT\_Fixed*  blend\_points;}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{292   \} \mbox{\hyperlink{structPS__DesignMap__}{PS\_DesignMapRec}}, *\mbox{\hyperlink{structPS__DesignMap__}{PS\_DesignMap}};}
+\DoxyCodeLine{293 }
+\DoxyCodeLine{294   \textcolor{comment}{/* backwards-\/compatible definition */}}
+\DoxyCodeLine{295   \textcolor{keyword}{typedef} \mbox{\hyperlink{structPS__DesignMap__}{PS\_DesignMapRec}}  \mbox{\hyperlink{structPS__DesignMap__}{T1\_DesignMap}};}
+\DoxyCodeLine{296 }
+\DoxyCodeLine{297 }
+\DoxyCodeLine{298   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structPS__BlendRec__}{PS\_BlendRec\_}}}
+\DoxyCodeLine{299   \{}
+\DoxyCodeLine{300     FT\_UInt          num\_designs;}
+\DoxyCodeLine{301     FT\_UInt          num\_axis;}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{303     FT\_String*       axis\_names[T1\_MAX\_MM\_AXIS];}
+\DoxyCodeLine{304     FT\_Fixed*        design\_pos[T1\_MAX\_MM\_DESIGNS];}
+\DoxyCodeLine{305     \mbox{\hyperlink{structPS__DesignMap__}{PS\_DesignMapRec}}  design\_map[T1\_MAX\_MM\_AXIS];}
+\DoxyCodeLine{306 }
+\DoxyCodeLine{307     FT\_Fixed*        weight\_vector;}
+\DoxyCodeLine{308     FT\_Fixed*        default\_weight\_vector;}
+\DoxyCodeLine{309 }
+\DoxyCodeLine{310     \mbox{\hyperlink{structPS__FontInfoRec__}{PS\_FontInfo}}      font\_infos[T1\_MAX\_MM\_DESIGNS + 1];}
+\DoxyCodeLine{311     \mbox{\hyperlink{structPS__PrivateRec__}{PS\_Private}}       privates  [T1\_MAX\_MM\_DESIGNS + 1];}
+\DoxyCodeLine{312 }
+\DoxyCodeLine{313     FT\_ULong         blend\_bitflags;}
+\DoxyCodeLine{314 }
+\DoxyCodeLine{315     \mbox{\hyperlink{structFT__BBox__}{FT\_BBox}}*         bboxes    [T1\_MAX\_MM\_DESIGNS + 1];}
+\DoxyCodeLine{316 }
+\DoxyCodeLine{317     \textcolor{comment}{/* since 2.3.0 */}}
+\DoxyCodeLine{318 }
+\DoxyCodeLine{319     \textcolor{comment}{/* undocumented, optional: the default design instance;   */}}
+\DoxyCodeLine{320     \textcolor{comment}{/* corresponds to default\_weight\_vector -\/-\/                */}}
+\DoxyCodeLine{321     \textcolor{comment}{/* num\_default\_design\_vector == 0 means it is not present */}}
+\DoxyCodeLine{322     \textcolor{comment}{/* in the font and associated metrics files               */}}
+\DoxyCodeLine{323     FT\_UInt          default\_design\_vector[T1\_MAX\_MM\_DESIGNS];}
+\DoxyCodeLine{324     FT\_UInt          num\_default\_design\_vector;}
+\DoxyCodeLine{325 }
+\DoxyCodeLine{326   \} \mbox{\hyperlink{structPS__BlendRec__}{PS\_BlendRec}}, *\mbox{\hyperlink{structPS__BlendRec__}{PS\_Blend}};}
+\DoxyCodeLine{327 }
+\DoxyCodeLine{328 }
+\DoxyCodeLine{329   \textcolor{comment}{/* backwards-\/compatible definition */}}
+\DoxyCodeLine{330   \textcolor{keyword}{typedef} \mbox{\hyperlink{structPS__BlendRec__}{PS\_BlendRec}}  \mbox{\hyperlink{structPS__BlendRec__}{T1\_Blend}};}
+\DoxyCodeLine{331 }
+\DoxyCodeLine{332 }
+\DoxyCodeLine{333 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{334   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{335   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{336   \textcolor{comment}{/*    CID\_FaceDictRec                                                    */}}
+\DoxyCodeLine{337   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{338   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{339   \textcolor{comment}{/*    A structure used to represent data in a CID top-\/level dictionary.  */}}
+\DoxyCodeLine{340   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{341   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structCID__FaceDictRec__}{CID\_FaceDictRec\_}}}
+\DoxyCodeLine{342   \{}
+\DoxyCodeLine{343     \mbox{\hyperlink{structPS__PrivateRec__}{PS\_PrivateRec}}  private\_dict;}
+\DoxyCodeLine{344 }
+\DoxyCodeLine{345     FT\_UInt        len\_buildchar;}
+\DoxyCodeLine{346     FT\_Fixed       forcebold\_threshold;}
+\DoxyCodeLine{347     FT\_Pos         stroke\_width;}
+\DoxyCodeLine{348     FT\_Fixed       expansion\_factor;}
+\DoxyCodeLine{349 }
+\DoxyCodeLine{350     FT\_Byte        paint\_type;}
+\DoxyCodeLine{351     FT\_Byte        font\_type;}
+\DoxyCodeLine{352     \mbox{\hyperlink{structFT__Matrix__}{FT\_Matrix}}      font\_matrix;}
+\DoxyCodeLine{353     \mbox{\hyperlink{structFT__Vector__}{FT\_Vector}}      font\_offset;}
+\DoxyCodeLine{354 }
+\DoxyCodeLine{355     FT\_UInt        num\_subrs;}
+\DoxyCodeLine{356     FT\_ULong       subrmap\_offset;}
+\DoxyCodeLine{357     FT\_Int         sd\_bytes;}
+\DoxyCodeLine{358 }
+\DoxyCodeLine{359   \} \mbox{\hyperlink{structCID__FaceDictRec__}{CID\_FaceDictRec}};}
+\DoxyCodeLine{360 }
+\DoxyCodeLine{361 }
+\DoxyCodeLine{362 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{363   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{364   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{365   \textcolor{comment}{/*    CID\_FaceDict                                                       */}}
+\DoxyCodeLine{366   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{367   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{368   \textcolor{comment}{/*    A handle to a @CID\_FaceDictRec structure.                          */}}
+\DoxyCodeLine{369   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{370   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structCID__FaceDictRec__}{CID\_FaceDictRec\_}}*  \mbox{\hyperlink{structCID__FaceDictRec__}{CID\_FaceDict}};}
+\DoxyCodeLine{371 }
+\DoxyCodeLine{372 }
+\DoxyCodeLine{373 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{374   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{375   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{376   \textcolor{comment}{/*    CID\_FontDict                                                       */}}
+\DoxyCodeLine{377   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{378   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{379   \textcolor{comment}{/*    This type is equivalent to @CID\_FaceDictRec.  It is deprecated but */}}
+\DoxyCodeLine{380   \textcolor{comment}{/*    kept to maintain source compatibility between various versions of  */}}
+\DoxyCodeLine{381   \textcolor{comment}{/*    FreeType.                                                          */}}
+\DoxyCodeLine{382   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{383   \textcolor{keyword}{typedef} \mbox{\hyperlink{structCID__FaceDictRec__}{CID\_FaceDictRec}}  \mbox{\hyperlink{structCID__FaceDictRec__}{CID\_FontDict}};}
+\DoxyCodeLine{384 }
+\DoxyCodeLine{385 }
+\DoxyCodeLine{386 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{387   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{388   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{389   \textcolor{comment}{/*    CID\_FaceInfoRec                                                    */}}
+\DoxyCodeLine{390   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{391   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{392   \textcolor{comment}{/*    A structure used to represent CID Face information.                */}}
+\DoxyCodeLine{393   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{394   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{structCID__FaceInfoRec__}{CID\_FaceInfoRec\_}}}
+\DoxyCodeLine{395   \{}
+\DoxyCodeLine{396     FT\_String*      cid\_font\_name;}
+\DoxyCodeLine{397     FT\_Fixed        cid\_version;}
+\DoxyCodeLine{398     FT\_Int          cid\_font\_type;}
+\DoxyCodeLine{399 }
+\DoxyCodeLine{400     FT\_String*      registry;}
+\DoxyCodeLine{401     FT\_String*      ordering;}
+\DoxyCodeLine{402     FT\_Int          supplement;}
+\DoxyCodeLine{403 }
+\DoxyCodeLine{404     PS\_FontInfoRec  font\_info;}
+\DoxyCodeLine{405     \mbox{\hyperlink{structFT__BBox__}{FT\_BBox}}         font\_bbox;}
+\DoxyCodeLine{406     FT\_ULong        uid\_base;}
+\DoxyCodeLine{407 }
+\DoxyCodeLine{408     FT\_Int          num\_xuid;}
+\DoxyCodeLine{409     FT\_ULong        xuid[16];}
+\DoxyCodeLine{410 }
+\DoxyCodeLine{411     FT\_ULong        cidmap\_offset;}
+\DoxyCodeLine{412     FT\_Int          fd\_bytes;}
+\DoxyCodeLine{413     FT\_Int          gd\_bytes;}
+\DoxyCodeLine{414     FT\_ULong        cid\_count;}
+\DoxyCodeLine{415 }
+\DoxyCodeLine{416     FT\_Int          num\_dicts;}
+\DoxyCodeLine{417     \mbox{\hyperlink{structCID__FaceDictRec__}{CID\_FaceDict}}    font\_dicts;}
+\DoxyCodeLine{418 }
+\DoxyCodeLine{419     FT\_ULong        data\_offset;}
+\DoxyCodeLine{420 }
+\DoxyCodeLine{421   \} \mbox{\hyperlink{structCID__FaceInfoRec__}{CID\_FaceInfoRec}};}
+\DoxyCodeLine{422 }
+\DoxyCodeLine{423 }
+\DoxyCodeLine{424 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{425   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{426   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{427   \textcolor{comment}{/*    CID\_FaceInfo                                                       */}}
+\DoxyCodeLine{428   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{429   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{430   \textcolor{comment}{/*    A handle to a @CID\_FaceInfoRec structure.                          */}}
+\DoxyCodeLine{431   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{432   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structCID__FaceInfoRec__}{CID\_FaceInfoRec\_}}*  \mbox{\hyperlink{structCID__FaceInfoRec__}{CID\_FaceInfo}};}
+\DoxyCodeLine{433 }
+\DoxyCodeLine{434 }
+\DoxyCodeLine{435 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{436   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{437   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{438   \textcolor{comment}{/*    CID\_Info                                                           */}}
+\DoxyCodeLine{439   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{440   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{441   \textcolor{comment}{/*   This type is equivalent to @CID\_FaceInfoRec.  It is deprecated but  */}}
+\DoxyCodeLine{442   \textcolor{comment}{/*   kept to maintain source compatibility between various versions of   */}}
+\DoxyCodeLine{443   \textcolor{comment}{/*   FreeType.                                                           */}}
+\DoxyCodeLine{444   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{445   \textcolor{keyword}{typedef} \mbox{\hyperlink{structCID__FaceInfoRec__}{CID\_FaceInfoRec}}  \mbox{\hyperlink{structCID__FaceInfoRec__}{CID\_Info}};}
+\DoxyCodeLine{446 }
+\DoxyCodeLine{447 }
+\DoxyCodeLine{448 \textcolor{comment}{  /************************************************************************}}
+\DoxyCodeLine{449 \textcolor{comment}{   *}}
+\DoxyCodeLine{450 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{451 \textcolor{comment}{   *    FT\_Has\_PS\_Glyph\_Names}}
+\DoxyCodeLine{452 \textcolor{comment}{   *}}
+\DoxyCodeLine{453 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{454 \textcolor{comment}{   *    Return true if a given face provides reliable PostScript glyph}}
+\DoxyCodeLine{455 \textcolor{comment}{   *    names.  This is similar to using the @FT\_HAS\_GLYPH\_NAMES macro,}}
+\DoxyCodeLine{456 \textcolor{comment}{   *    except that certain fonts (mostly TrueType) contain incorrect}}
+\DoxyCodeLine{457 \textcolor{comment}{   *    glyph name tables.}}
+\DoxyCodeLine{458 \textcolor{comment}{   *}}
+\DoxyCodeLine{459 \textcolor{comment}{   *    When this function returns true, the caller is sure that the glyph}}
+\DoxyCodeLine{460 \textcolor{comment}{   *    names returned by @FT\_Get\_Glyph\_Name are reliable.}}
+\DoxyCodeLine{461 \textcolor{comment}{   *}}
+\DoxyCodeLine{462 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{463 \textcolor{comment}{   *    face ::}}
+\DoxyCodeLine{464 \textcolor{comment}{   *       face handle}}
+\DoxyCodeLine{465 \textcolor{comment}{   *}}
+\DoxyCodeLine{466 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{467 \textcolor{comment}{   *    Boolean.  True if glyph names are reliable.}}
+\DoxyCodeLine{468 \textcolor{comment}{   *}}
+\DoxyCodeLine{469 \textcolor{comment}{   */}}
+\DoxyCodeLine{470   FT\_EXPORT( FT\_Int )}
+\DoxyCodeLine{471   FT\_Has\_PS\_Glyph\_Names( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}  face );}
+\DoxyCodeLine{472 }
+\DoxyCodeLine{473 }
+\DoxyCodeLine{474 \textcolor{comment}{  /************************************************************************}}
+\DoxyCodeLine{475 \textcolor{comment}{   *}}
+\DoxyCodeLine{476 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{477 \textcolor{comment}{   *    FT\_Get\_PS\_Font\_Info}}
+\DoxyCodeLine{478 \textcolor{comment}{   *}}
+\DoxyCodeLine{479 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{480 \textcolor{comment}{   *    Retrieve the @PS\_FontInfoRec structure corresponding to a given}}
+\DoxyCodeLine{481 \textcolor{comment}{   *    PostScript font.}}
+\DoxyCodeLine{482 \textcolor{comment}{   *}}
+\DoxyCodeLine{483 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{484 \textcolor{comment}{   *    face ::}}
+\DoxyCodeLine{485 \textcolor{comment}{   *       PostScript face handle.}}
+\DoxyCodeLine{486 \textcolor{comment}{   *}}
+\DoxyCodeLine{487 \textcolor{comment}{   * @output:}}
+\DoxyCodeLine{488 \textcolor{comment}{   *    afont\_info ::}}
+\DoxyCodeLine{489 \textcolor{comment}{   *       Output font info structure pointer.}}
+\DoxyCodeLine{490 \textcolor{comment}{   *}}
+\DoxyCodeLine{491 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{492 \textcolor{comment}{   *    FreeType error code.  0\string~means success.}}
+\DoxyCodeLine{493 \textcolor{comment}{   *}}
+\DoxyCodeLine{494 \textcolor{comment}{   * @note:}}
+\DoxyCodeLine{495 \textcolor{comment}{   *    The string pointers within the font info structure are owned by}}
+\DoxyCodeLine{496 \textcolor{comment}{   *    the face and don't need to be freed by the caller.}}
+\DoxyCodeLine{497 \textcolor{comment}{   *}}
+\DoxyCodeLine{498 \textcolor{comment}{   *    If the font's format is not PostScript-\/based, this function will}}
+\DoxyCodeLine{499 \textcolor{comment}{   *    return the `FT\_Err\_Invalid\_Argument' error code.}}
+\DoxyCodeLine{500 \textcolor{comment}{   *}}
+\DoxyCodeLine{501 \textcolor{comment}{   */}}
+\DoxyCodeLine{502   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{503   FT\_Get\_PS\_Font\_Info( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}      face,}
+\DoxyCodeLine{504                        \mbox{\hyperlink{structPS__FontInfoRec__}{PS\_FontInfo}}  afont\_info );}
+\DoxyCodeLine{505 }
+\DoxyCodeLine{506 }
+\DoxyCodeLine{507 \textcolor{comment}{  /************************************************************************}}
+\DoxyCodeLine{508 \textcolor{comment}{   *}}
+\DoxyCodeLine{509 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{510 \textcolor{comment}{   *    FT\_Get\_PS\_Font\_Private}}
+\DoxyCodeLine{511 \textcolor{comment}{   *}}
+\DoxyCodeLine{512 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{513 \textcolor{comment}{   *    Retrieve the @PS\_PrivateRec structure corresponding to a given}}
+\DoxyCodeLine{514 \textcolor{comment}{   *    PostScript font.}}
+\DoxyCodeLine{515 \textcolor{comment}{   *}}
+\DoxyCodeLine{516 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{517 \textcolor{comment}{   *    face ::}}
+\DoxyCodeLine{518 \textcolor{comment}{   *       PostScript face handle.}}
+\DoxyCodeLine{519 \textcolor{comment}{   *}}
+\DoxyCodeLine{520 \textcolor{comment}{   * @output:}}
+\DoxyCodeLine{521 \textcolor{comment}{   *    afont\_private ::}}
+\DoxyCodeLine{522 \textcolor{comment}{   *       Output private dictionary structure pointer.}}
+\DoxyCodeLine{523 \textcolor{comment}{   *}}
+\DoxyCodeLine{524 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{525 \textcolor{comment}{   *    FreeType error code.  0\string~means success.}}
+\DoxyCodeLine{526 \textcolor{comment}{   *}}
+\DoxyCodeLine{527 \textcolor{comment}{   * @note:}}
+\DoxyCodeLine{528 \textcolor{comment}{   *    The string pointers within the @PS\_PrivateRec structure are owned by}}
+\DoxyCodeLine{529 \textcolor{comment}{   *    the face and don't need to be freed by the caller.}}
+\DoxyCodeLine{530 \textcolor{comment}{   *}}
+\DoxyCodeLine{531 \textcolor{comment}{   *    If the font's format is not PostScript-\/based, this function returns}}
+\DoxyCodeLine{532 \textcolor{comment}{   *    the `FT\_Err\_Invalid\_Argument' error code.}}
+\DoxyCodeLine{533 \textcolor{comment}{   *}}
+\DoxyCodeLine{534 \textcolor{comment}{   */}}
+\DoxyCodeLine{535   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{536   FT\_Get\_PS\_Font\_Private( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}     face,}
+\DoxyCodeLine{537                           \mbox{\hyperlink{structPS__PrivateRec__}{PS\_Private}}  afont\_private );}
+\DoxyCodeLine{538 }
+\DoxyCodeLine{539 }
+\DoxyCodeLine{540 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{541   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{542   \textcolor{comment}{/* <Enum>                                                                */}}
+\DoxyCodeLine{543   \textcolor{comment}{/*    T1\_EncodingType                                                    */}}
+\DoxyCodeLine{544   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{545   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{546   \textcolor{comment}{/*    An enumeration describing the `Encoding' entry in a Type 1         */}}
+\DoxyCodeLine{547   \textcolor{comment}{/*    dictionary.                                                        */}}
+\DoxyCodeLine{548   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{549   \textcolor{comment}{/* <Values>                                                              */}}
+\DoxyCodeLine{550   \textcolor{comment}{/*    T1\_ENCODING\_TYPE\_NONE ::                                           */}}
+\DoxyCodeLine{551   \textcolor{comment}{/*    T1\_ENCODING\_TYPE\_ARRAY ::                                          */}}
+\DoxyCodeLine{552   \textcolor{comment}{/*    T1\_ENCODING\_TYPE\_STANDARD ::                                       */}}
+\DoxyCodeLine{553   \textcolor{comment}{/*    T1\_ENCODING\_TYPE\_ISOLATIN1 ::                                      */}}
+\DoxyCodeLine{554   \textcolor{comment}{/*    T1\_ENCODING\_TYPE\_EXPERT ::                                         */}}
+\DoxyCodeLine{555   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{556   \textcolor{keyword}{typedef} \textcolor{keyword}{enum}  T1\_EncodingType\_}
+\DoxyCodeLine{557   \{}
+\DoxyCodeLine{558     T1\_ENCODING\_TYPE\_NONE = 0,}
+\DoxyCodeLine{559     T1\_ENCODING\_TYPE\_ARRAY,}
+\DoxyCodeLine{560     T1\_ENCODING\_TYPE\_STANDARD,}
+\DoxyCodeLine{561     T1\_ENCODING\_TYPE\_ISOLATIN1,}
+\DoxyCodeLine{562     T1\_ENCODING\_TYPE\_EXPERT}
+\DoxyCodeLine{563 }
+\DoxyCodeLine{564   \} T1\_EncodingType;}
+\DoxyCodeLine{565 }
+\DoxyCodeLine{566 }
+\DoxyCodeLine{567 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{568   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{569   \textcolor{comment}{/* <Enum>                                                                */}}
+\DoxyCodeLine{570   \textcolor{comment}{/*    PS\_Dict\_Keys                                                       */}}
+\DoxyCodeLine{571   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{572   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{573   \textcolor{comment}{/*    An enumeration used in calls to @FT\_Get\_PS\_Font\_Value to identify  */}}
+\DoxyCodeLine{574   \textcolor{comment}{/*    the Type\string~1 dictionary entry to retrieve.                           */}}
+\DoxyCodeLine{575   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{576   \textcolor{comment}{/* <Values>                                                              */}}
+\DoxyCodeLine{577   \textcolor{comment}{/*    PS\_DICT\_FONT\_TYPE ::                                               */}}
+\DoxyCodeLine{578   \textcolor{comment}{/*    PS\_DICT\_FONT\_MATRIX ::                                             */}}
+\DoxyCodeLine{579   \textcolor{comment}{/*    PS\_DICT\_FONT\_BBOX ::                                               */}}
+\DoxyCodeLine{580   \textcolor{comment}{/*    PS\_DICT\_PAINT\_TYPE ::                                              */}}
+\DoxyCodeLine{581   \textcolor{comment}{/*    PS\_DICT\_FONT\_NAME ::                                               */}}
+\DoxyCodeLine{582   \textcolor{comment}{/*    PS\_DICT\_UNIQUE\_ID ::                                               */}}
+\DoxyCodeLine{583   \textcolor{comment}{/*    PS\_DICT\_NUM\_CHAR\_STRINGS ::                                        */}}
+\DoxyCodeLine{584   \textcolor{comment}{/*    PS\_DICT\_CHAR\_STRING\_KEY ::                                         */}}
+\DoxyCodeLine{585   \textcolor{comment}{/*    PS\_DICT\_CHAR\_STRING ::                                             */}}
+\DoxyCodeLine{586   \textcolor{comment}{/*    PS\_DICT\_ENCODING\_TYPE ::                                           */}}
+\DoxyCodeLine{587   \textcolor{comment}{/*    PS\_DICT\_ENCODING\_ENTRY ::                                          */}}
+\DoxyCodeLine{588   \textcolor{comment}{/*    PS\_DICT\_NUM\_SUBRS ::                                               */}}
+\DoxyCodeLine{589   \textcolor{comment}{/*    PS\_DICT\_SUBR ::                                                    */}}
+\DoxyCodeLine{590   \textcolor{comment}{/*    PS\_DICT\_STD\_HW ::                                                  */}}
+\DoxyCodeLine{591   \textcolor{comment}{/*    PS\_DICT\_STD\_VW ::                                                  */}}
+\DoxyCodeLine{592   \textcolor{comment}{/*    PS\_DICT\_NUM\_BLUE\_VALUES ::                                         */}}
+\DoxyCodeLine{593   \textcolor{comment}{/*    PS\_DICT\_BLUE\_VALUE ::                                              */}}
+\DoxyCodeLine{594   \textcolor{comment}{/*    PS\_DICT\_BLUE\_FUZZ ::                                               */}}
+\DoxyCodeLine{595   \textcolor{comment}{/*    PS\_DICT\_NUM\_OTHER\_BLUES ::                                         */}}
+\DoxyCodeLine{596   \textcolor{comment}{/*    PS\_DICT\_OTHER\_BLUE ::                                              */}}
+\DoxyCodeLine{597   \textcolor{comment}{/*    PS\_DICT\_NUM\_FAMILY\_BLUES ::                                        */}}
+\DoxyCodeLine{598   \textcolor{comment}{/*    PS\_DICT\_FAMILY\_BLUE ::                                             */}}
+\DoxyCodeLine{599   \textcolor{comment}{/*    PS\_DICT\_NUM\_FAMILY\_OTHER\_BLUES ::                                  */}}
+\DoxyCodeLine{600   \textcolor{comment}{/*    PS\_DICT\_FAMILY\_OTHER\_BLUE ::                                       */}}
+\DoxyCodeLine{601   \textcolor{comment}{/*    PS\_DICT\_BLUE\_SCALE ::                                              */}}
+\DoxyCodeLine{602   \textcolor{comment}{/*    PS\_DICT\_BLUE\_SHIFT ::                                              */}}
+\DoxyCodeLine{603   \textcolor{comment}{/*    PS\_DICT\_NUM\_STEM\_SNAP\_H ::                                         */}}
+\DoxyCodeLine{604   \textcolor{comment}{/*    PS\_DICT\_STEM\_SNAP\_H ::                                             */}}
+\DoxyCodeLine{605   \textcolor{comment}{/*    PS\_DICT\_NUM\_STEM\_SNAP\_V ::                                         */}}
+\DoxyCodeLine{606   \textcolor{comment}{/*    PS\_DICT\_STEM\_SNAP\_V ::                                             */}}
+\DoxyCodeLine{607   \textcolor{comment}{/*    PS\_DICT\_FORCE\_BOLD ::                                              */}}
+\DoxyCodeLine{608   \textcolor{comment}{/*    PS\_DICT\_RND\_STEM\_UP ::                                             */}}
+\DoxyCodeLine{609   \textcolor{comment}{/*    PS\_DICT\_MIN\_FEATURE ::                                             */}}
+\DoxyCodeLine{610   \textcolor{comment}{/*    PS\_DICT\_LEN\_IV ::                                                  */}}
+\DoxyCodeLine{611   \textcolor{comment}{/*    PS\_DICT\_PASSWORD ::                                                */}}
+\DoxyCodeLine{612   \textcolor{comment}{/*    PS\_DICT\_LANGUAGE\_GROUP ::                                          */}}
+\DoxyCodeLine{613   \textcolor{comment}{/*    PS\_DICT\_VERSION ::                                                 */}}
+\DoxyCodeLine{614   \textcolor{comment}{/*    PS\_DICT\_NOTICE ::                                                  */}}
+\DoxyCodeLine{615   \textcolor{comment}{/*    PS\_DICT\_FULL\_NAME ::                                               */}}
+\DoxyCodeLine{616   \textcolor{comment}{/*    PS\_DICT\_FAMILY\_NAME ::                                             */}}
+\DoxyCodeLine{617   \textcolor{comment}{/*    PS\_DICT\_WEIGHT ::                                                  */}}
+\DoxyCodeLine{618   \textcolor{comment}{/*    PS\_DICT\_IS\_FIXED\_PITCH ::                                          */}}
+\DoxyCodeLine{619   \textcolor{comment}{/*    PS\_DICT\_UNDERLINE\_POSITION ::                                      */}}
+\DoxyCodeLine{620   \textcolor{comment}{/*    PS\_DICT\_UNDERLINE\_THICKNESS ::                                     */}}
+\DoxyCodeLine{621   \textcolor{comment}{/*    PS\_DICT\_FS\_TYPE ::                                                 */}}
+\DoxyCodeLine{622   \textcolor{comment}{/*    PS\_DICT\_ITALIC\_ANGLE ::                                            */}}
+\DoxyCodeLine{623   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{624   \textcolor{keyword}{typedef} \textcolor{keyword}{enum}  PS\_Dict\_Keys\_}
+\DoxyCodeLine{625   \{}
+\DoxyCodeLine{626     \textcolor{comment}{/* conventionally in the font dictionary */}}
+\DoxyCodeLine{627     PS\_DICT\_FONT\_TYPE,              \textcolor{comment}{/* FT\_Byte         */}}
+\DoxyCodeLine{628     PS\_DICT\_FONT\_MATRIX,            \textcolor{comment}{/* FT\_Fixed        */}}
+\DoxyCodeLine{629     PS\_DICT\_FONT\_BBOX,              \textcolor{comment}{/* FT\_Fixed        */}}
+\DoxyCodeLine{630     PS\_DICT\_PAINT\_TYPE,             \textcolor{comment}{/* FT\_Byte         */}}
+\DoxyCodeLine{631     PS\_DICT\_FONT\_NAME,              \textcolor{comment}{/* FT\_String*      */}}
+\DoxyCodeLine{632     PS\_DICT\_UNIQUE\_ID,              \textcolor{comment}{/* FT\_Int          */}}
+\DoxyCodeLine{633     PS\_DICT\_NUM\_CHAR\_STRINGS,       \textcolor{comment}{/* FT\_Int          */}}
+\DoxyCodeLine{634     PS\_DICT\_CHAR\_STRING\_KEY,        \textcolor{comment}{/* FT\_String*      */}}
+\DoxyCodeLine{635     PS\_DICT\_CHAR\_STRING,            \textcolor{comment}{/* FT\_String*      */}}
+\DoxyCodeLine{636     PS\_DICT\_ENCODING\_TYPE,          \textcolor{comment}{/* T1\_EncodingType */}}
+\DoxyCodeLine{637     PS\_DICT\_ENCODING\_ENTRY,         \textcolor{comment}{/* FT\_String*      */}}
+\DoxyCodeLine{638 }
+\DoxyCodeLine{639     \textcolor{comment}{/* conventionally in the font Private dictionary */}}
+\DoxyCodeLine{640     PS\_DICT\_NUM\_SUBRS,              \textcolor{comment}{/* FT\_Int     */}}
+\DoxyCodeLine{641     PS\_DICT\_SUBR,                   \textcolor{comment}{/* FT\_String* */}}
+\DoxyCodeLine{642     PS\_DICT\_STD\_HW,                 \textcolor{comment}{/* FT\_UShort  */}}
+\DoxyCodeLine{643     PS\_DICT\_STD\_VW,                 \textcolor{comment}{/* FT\_UShort  */}}
+\DoxyCodeLine{644     PS\_DICT\_NUM\_BLUE\_VALUES,        \textcolor{comment}{/* FT\_Byte    */}}
+\DoxyCodeLine{645     PS\_DICT\_BLUE\_VALUE,             \textcolor{comment}{/* FT\_Short   */}}
+\DoxyCodeLine{646     PS\_DICT\_BLUE\_FUZZ,              \textcolor{comment}{/* FT\_Int     */}}
+\DoxyCodeLine{647     PS\_DICT\_NUM\_OTHER\_BLUES,        \textcolor{comment}{/* FT\_Byte    */}}
+\DoxyCodeLine{648     PS\_DICT\_OTHER\_BLUE,             \textcolor{comment}{/* FT\_Short   */}}
+\DoxyCodeLine{649     PS\_DICT\_NUM\_FAMILY\_BLUES,       \textcolor{comment}{/* FT\_Byte    */}}
+\DoxyCodeLine{650     PS\_DICT\_FAMILY\_BLUE,            \textcolor{comment}{/* FT\_Short   */}}
+\DoxyCodeLine{651     PS\_DICT\_NUM\_FAMILY\_OTHER\_BLUES, \textcolor{comment}{/* FT\_Byte    */}}
+\DoxyCodeLine{652     PS\_DICT\_FAMILY\_OTHER\_BLUE,      \textcolor{comment}{/* FT\_Short   */}}
+\DoxyCodeLine{653     PS\_DICT\_BLUE\_SCALE,             \textcolor{comment}{/* FT\_Fixed   */}}
+\DoxyCodeLine{654     PS\_DICT\_BLUE\_SHIFT,             \textcolor{comment}{/* FT\_Int     */}}
+\DoxyCodeLine{655     PS\_DICT\_NUM\_STEM\_SNAP\_H,        \textcolor{comment}{/* FT\_Byte    */}}
+\DoxyCodeLine{656     PS\_DICT\_STEM\_SNAP\_H,            \textcolor{comment}{/* FT\_Short   */}}
+\DoxyCodeLine{657     PS\_DICT\_NUM\_STEM\_SNAP\_V,        \textcolor{comment}{/* FT\_Byte    */}}
+\DoxyCodeLine{658     PS\_DICT\_STEM\_SNAP\_V,            \textcolor{comment}{/* FT\_Short   */}}
+\DoxyCodeLine{659     PS\_DICT\_FORCE\_BOLD,             \textcolor{comment}{/* FT\_Bool    */}}
+\DoxyCodeLine{660     PS\_DICT\_RND\_STEM\_UP,            \textcolor{comment}{/* FT\_Bool    */}}
+\DoxyCodeLine{661     PS\_DICT\_MIN\_FEATURE,            \textcolor{comment}{/* FT\_Short   */}}
+\DoxyCodeLine{662     PS\_DICT\_LEN\_IV,                 \textcolor{comment}{/* FT\_Int     */}}
+\DoxyCodeLine{663     PS\_DICT\_PASSWORD,               \textcolor{comment}{/* FT\_Long    */}}
+\DoxyCodeLine{664     PS\_DICT\_LANGUAGE\_GROUP,         \textcolor{comment}{/* FT\_Long    */}}
+\DoxyCodeLine{665 }
+\DoxyCodeLine{666     \textcolor{comment}{/* conventionally in the font FontInfo dictionary */}}
+\DoxyCodeLine{667     PS\_DICT\_VERSION,                \textcolor{comment}{/* FT\_String* */}}
+\DoxyCodeLine{668     PS\_DICT\_NOTICE,                 \textcolor{comment}{/* FT\_String* */}}
+\DoxyCodeLine{669     PS\_DICT\_FULL\_NAME,              \textcolor{comment}{/* FT\_String* */}}
+\DoxyCodeLine{670     PS\_DICT\_FAMILY\_NAME,            \textcolor{comment}{/* FT\_String* */}}
+\DoxyCodeLine{671     PS\_DICT\_WEIGHT,                 \textcolor{comment}{/* FT\_String* */}}
+\DoxyCodeLine{672     PS\_DICT\_IS\_FIXED\_PITCH,         \textcolor{comment}{/* FT\_Bool    */}}
+\DoxyCodeLine{673     PS\_DICT\_UNDERLINE\_POSITION,     \textcolor{comment}{/* FT\_Short   */}}
+\DoxyCodeLine{674     PS\_DICT\_UNDERLINE\_THICKNESS,    \textcolor{comment}{/* FT\_UShort  */}}
+\DoxyCodeLine{675     PS\_DICT\_FS\_TYPE,                \textcolor{comment}{/* FT\_UShort  */}}
+\DoxyCodeLine{676     PS\_DICT\_ITALIC\_ANGLE,           \textcolor{comment}{/* FT\_Long    */}}
+\DoxyCodeLine{677 }
+\DoxyCodeLine{678     PS\_DICT\_MAX = PS\_DICT\_ITALIC\_ANGLE}
+\DoxyCodeLine{679 }
+\DoxyCodeLine{680   \} PS\_Dict\_Keys;}
+\DoxyCodeLine{681 }
+\DoxyCodeLine{682 }
+\DoxyCodeLine{683 \textcolor{comment}{  /************************************************************************}}
+\DoxyCodeLine{684 \textcolor{comment}{   *}}
+\DoxyCodeLine{685 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{686 \textcolor{comment}{   *    FT\_Get\_PS\_Font\_Value}}
+\DoxyCodeLine{687 \textcolor{comment}{   *}}
+\DoxyCodeLine{688 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{689 \textcolor{comment}{   *    Retrieve the value for the supplied key from a PostScript font.}}
+\DoxyCodeLine{690 \textcolor{comment}{   *}}
+\DoxyCodeLine{691 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{692 \textcolor{comment}{   *    face ::}}
+\DoxyCodeLine{693 \textcolor{comment}{   *       PostScript face handle.}}
+\DoxyCodeLine{694 \textcolor{comment}{   *}}
+\DoxyCodeLine{695 \textcolor{comment}{   *    key ::}}
+\DoxyCodeLine{696 \textcolor{comment}{   *       An enumeration value representing the dictionary key to retrieve.}}
+\DoxyCodeLine{697 \textcolor{comment}{   *}}
+\DoxyCodeLine{698 \textcolor{comment}{   *    idx ::}}
+\DoxyCodeLine{699 \textcolor{comment}{   *       For array values, this specifies the index to be returned.}}
+\DoxyCodeLine{700 \textcolor{comment}{   *}}
+\DoxyCodeLine{701 \textcolor{comment}{   *    value ::}}
+\DoxyCodeLine{702 \textcolor{comment}{   *       A pointer to memory into which to write the value.}}
+\DoxyCodeLine{703 \textcolor{comment}{   *}}
+\DoxyCodeLine{704 \textcolor{comment}{   *    valen\_len ::}}
+\DoxyCodeLine{705 \textcolor{comment}{   *       The size, in bytes, of the memory supplied for the value.}}
+\DoxyCodeLine{706 \textcolor{comment}{   *}}
+\DoxyCodeLine{707 \textcolor{comment}{   * @output:}}
+\DoxyCodeLine{708 \textcolor{comment}{   *    value ::}}
+\DoxyCodeLine{709 \textcolor{comment}{   *       The value matching the above key, if it exists.}}
+\DoxyCodeLine{710 \textcolor{comment}{   *}}
+\DoxyCodeLine{711 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{712 \textcolor{comment}{   *    The amount of memory (in bytes) required to hold the requested}}
+\DoxyCodeLine{713 \textcolor{comment}{   *    value (if it exists, -\/1 otherwise).}}
+\DoxyCodeLine{714 \textcolor{comment}{   *}}
+\DoxyCodeLine{715 \textcolor{comment}{   * @note:}}
+\DoxyCodeLine{716 \textcolor{comment}{   *    The values returned are not pointers into the internal structures of}}
+\DoxyCodeLine{717 \textcolor{comment}{   *    the face, but are `fresh' copies, so that the memory containing them}}
+\DoxyCodeLine{718 \textcolor{comment}{   *    belongs to the calling application.  This also enforces the}}
+\DoxyCodeLine{719 \textcolor{comment}{   *    `read-\/only' nature of these values, i.e., this function cannot be}}
+\DoxyCodeLine{720 \textcolor{comment}{   *    used to manipulate the face.}}
+\DoxyCodeLine{721 \textcolor{comment}{   *}}
+\DoxyCodeLine{722 \textcolor{comment}{   *    `value' is a void pointer because the values returned can be of}}
+\DoxyCodeLine{723 \textcolor{comment}{   *    various types.}}
+\DoxyCodeLine{724 \textcolor{comment}{   *}}
+\DoxyCodeLine{725 \textcolor{comment}{   *    If either `value' is NULL or `value\_len' is too small, just the}}
+\DoxyCodeLine{726 \textcolor{comment}{   *    required memory size for the requested entry is returned.}}
+\DoxyCodeLine{727 \textcolor{comment}{   *}}
+\DoxyCodeLine{728 \textcolor{comment}{   *    The `idx' parameter is used, not only to retrieve elements of, for}}
+\DoxyCodeLine{729 \textcolor{comment}{   *    example, the FontMatrix or FontBBox, but also to retrieve name keys}}
+\DoxyCodeLine{730 \textcolor{comment}{   *    from the CharStrings dictionary, and the charstrings themselves.  It}}
+\DoxyCodeLine{731 \textcolor{comment}{   *    is ignored for atomic values.}}
+\DoxyCodeLine{732 \textcolor{comment}{   *}}
+\DoxyCodeLine{733 \textcolor{comment}{   *    PS\_DICT\_BLUE\_SCALE returns a value that is scaled up by 1000.  To}}
+\DoxyCodeLine{734 \textcolor{comment}{   *    get the value as in the font stream, you need to divide by}}
+\DoxyCodeLine{735 \textcolor{comment}{   *    65536000.0 (to remove the FT\_Fixed scale, and the x1000 scale).}}
+\DoxyCodeLine{736 \textcolor{comment}{   *}}
+\DoxyCodeLine{737 \textcolor{comment}{   *    IMPORTANT: Only key/value pairs read by the FreeType interpreter can}}
+\DoxyCodeLine{738 \textcolor{comment}{   *    be retrieved.  So, for example, PostScript procedures such as NP,}}
+\DoxyCodeLine{739 \textcolor{comment}{   *    ND, and RD are not available.  Arbitrary keys are, obviously, not be}}
+\DoxyCodeLine{740 \textcolor{comment}{   *    available either.}}
+\DoxyCodeLine{741 \textcolor{comment}{   *}}
+\DoxyCodeLine{742 \textcolor{comment}{   *    If the font's format is not PostScript-\/based, this function returns}}
+\DoxyCodeLine{743 \textcolor{comment}{   *    the `FT\_Err\_Invalid\_Argument' error code.}}
+\DoxyCodeLine{744 \textcolor{comment}{   *}}
+\DoxyCodeLine{745 \textcolor{comment}{   */}}
+\DoxyCodeLine{746   FT\_EXPORT( FT\_Long )}
+\DoxyCodeLine{747   FT\_Get\_PS\_Font\_Value( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}       face,}
+\DoxyCodeLine{748                         PS\_Dict\_Keys  key,}
+\DoxyCodeLine{749                         FT\_UInt       idx,}
+\DoxyCodeLine{750                         \textcolor{keywordtype}{void}         *value,}
+\DoxyCodeLine{751                         FT\_Long       value\_len );}
+\DoxyCodeLine{752 }
+\DoxyCodeLine{753   \textcolor{comment}{/* */}}
+\DoxyCodeLine{754 }
+\DoxyCodeLine{755 FT\_END\_HEADER}
+\DoxyCodeLine{756 }
+\DoxyCodeLine{757 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_T1TABLES\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{758 }
+\DoxyCodeLine{759 }
+\DoxyCodeLine{760 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

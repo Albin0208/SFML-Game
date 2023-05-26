@@ -1,0 +1,114 @@
+\hypertarget{VertexBuffer_8hpp_source}{}\doxysection{Vertex\+Buffer.\+hpp}
+\label{VertexBuffer_8hpp_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/include/SFML/Graphics/VertexBuffer.hpp@{cmake-\/build-\/debug/\_deps/sfml-\/src/include/SFML/Graphics/VertexBuffer.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{// SFML -\/ Simple and Fast Multimedia Library}}
+\DoxyCodeLine{4 \textcolor{comment}{// Copyright (C) 2007-\/2022 Laurent Gomila (laurent@sfml-\/dev.org)}}
+\DoxyCodeLine{5 \textcolor{comment}{//}}
+\DoxyCodeLine{6 \textcolor{comment}{// This software is provided 'as-\/is', without any express or implied warranty.}}
+\DoxyCodeLine{7 \textcolor{comment}{// In no event will the authors be held liable for any damages arising from the use of this software.}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{// Permission is granted to anyone to use this software for any purpose,}}
+\DoxyCodeLine{10 \textcolor{comment}{// including commercial applications, and to alter it and redistribute it freely,}}
+\DoxyCodeLine{11 \textcolor{comment}{// subject to the following restrictions:}}
+\DoxyCodeLine{12 \textcolor{comment}{//}}
+\DoxyCodeLine{13 \textcolor{comment}{// 1. The origin of this software must not be misrepresented;}}
+\DoxyCodeLine{14 \textcolor{comment}{//    you must not claim that you wrote the original software.}}
+\DoxyCodeLine{15 \textcolor{comment}{//    If you use this software in a product, an acknowledgment}}
+\DoxyCodeLine{16 \textcolor{comment}{//    in the product documentation would be appreciated but is not required.}}
+\DoxyCodeLine{17 \textcolor{comment}{//}}
+\DoxyCodeLine{18 \textcolor{comment}{// 2. Altered source versions must be plainly marked as such,}}
+\DoxyCodeLine{19 \textcolor{comment}{//    and must not be misrepresented as being the original software.}}
+\DoxyCodeLine{20 \textcolor{comment}{//}}
+\DoxyCodeLine{21 \textcolor{comment}{// 3. This notice may not be removed or altered from any source distribution.}}
+\DoxyCodeLine{22 \textcolor{comment}{//}}
+\DoxyCodeLine{24 \textcolor{comment}{}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifndef SFML\_VERTEXBUFFER\_HPP}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define SFML\_VERTEXBUFFER\_HPP}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{29 \textcolor{comment}{// Headers}}
+\DoxyCodeLine{31 \textcolor{comment}{}\textcolor{preprocessor}{\#include <SFML/Graphics/Export.hpp>}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <SFML/Graphics/PrimitiveType.hpp>}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include <SFML/Graphics/Drawable.hpp>}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <SFML/Window/GlResource.hpp>}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacesf}{sf}}}
+\DoxyCodeLine{38 \{}
+\DoxyCodeLine{39 \textcolor{keyword}{class }RenderTarget;}
+\DoxyCodeLine{40 \textcolor{keyword}{class }Vertex;}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{46 \textcolor{keyword}{class }SFML\_GRAPHICS\_API \mbox{\hyperlink{classsf_1_1VertexBuffer}{VertexBuffer}} : \textcolor{keyword}{public} \mbox{\hyperlink{classsf_1_1Drawable}{Drawable}}, \textcolor{keyword}{private} \mbox{\hyperlink{classsf_1_1GlResource}{GlResource}}}
+\DoxyCodeLine{47 \{}
+\DoxyCodeLine{48 \textcolor{keyword}{public}:}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{60     \textcolor{keyword}{enum} \mbox{\hyperlink{classsf_1_1VertexBuffer_a3a531528684e63ecb45edd51282f5cb7}{Usage}}}
+\DoxyCodeLine{61     \{}
+\DoxyCodeLine{62         \mbox{\hyperlink{classsf_1_1VertexBuffer_a3a531528684e63ecb45edd51282f5cb7aeed06a391698772af58a9cfdff77deaf}{Stream}},  }
+\DoxyCodeLine{63         \mbox{\hyperlink{classsf_1_1VertexBuffer_a3a531528684e63ecb45edd51282f5cb7a13365282a5933ecd9cc6a3ef39ba58f7}{Dynamic}}, }
+\DoxyCodeLine{64         Static   }
+\DoxyCodeLine{65     \};}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{73     \mbox{\hyperlink{classsf_1_1VertexBuffer}{VertexBuffer}}();}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{83     \textcolor{keyword}{explicit} \mbox{\hyperlink{classsf_1_1VertexBuffer}{VertexBuffer}}(\mbox{\hyperlink{group__graphics_ga5ee56ac1339984909610713096283b1b}{PrimitiveType}} type);}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{93     \textcolor{keyword}{explicit} \mbox{\hyperlink{classsf_1_1VertexBuffer}{VertexBuffer}}(Usage usage);}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{105     \mbox{\hyperlink{classsf_1_1VertexBuffer}{VertexBuffer}}(\mbox{\hyperlink{group__graphics_ga5ee56ac1339984909610713096283b1b}{PrimitiveType}} type, Usage usage);}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{113     \mbox{\hyperlink{classsf_1_1VertexBuffer}{VertexBuffer}}(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1VertexBuffer}{VertexBuffer}}\& copy);}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{119     \mbox{\hyperlink{classsf_1_1VertexBuffer}{\string~VertexBuffer}}();}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{137     \textcolor{keywordtype}{bool} create(std::size\_t vertexCount);}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{145     std::size\_t getVertexCount() \textcolor{keyword}{const};}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{165     \textcolor{keywordtype}{bool} update(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Vertex}{Vertex}}* vertices);}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{198     \textcolor{keywordtype}{bool} update(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Vertex}{Vertex}}* vertices, std::size\_t vertexCount, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} offset);}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{208     \textcolor{keywordtype}{bool} update(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1VertexBuffer}{VertexBuffer}}\& vertexBuffer);}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{218     \mbox{\hyperlink{classsf_1_1VertexBuffer}{VertexBuffer}}\& operator =(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1VertexBuffer}{VertexBuffer}}\& right);}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{226     \textcolor{keywordtype}{void} swap(\mbox{\hyperlink{classsf_1_1VertexBuffer}{VertexBuffer}}\& right);}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{238     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} getNativeHandle() \textcolor{keyword}{const};}
+\DoxyCodeLine{239 }
+\DoxyCodeLine{251     \textcolor{keywordtype}{void} setPrimitiveType(\mbox{\hyperlink{group__graphics_ga5ee56ac1339984909610713096283b1b}{PrimitiveType}} type);}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{259     \mbox{\hyperlink{group__graphics_ga5ee56ac1339984909610713096283b1b}{PrimitiveType}} getPrimitiveType() \textcolor{keyword}{const};}
+\DoxyCodeLine{260 }
+\DoxyCodeLine{276     \textcolor{keywordtype}{void} setUsage(Usage usage);}
+\DoxyCodeLine{277 }
+\DoxyCodeLine{284     Usage getUsage() \textcolor{keyword}{const};}
+\DoxyCodeLine{285 }
+\DoxyCodeLine{307     \textcolor{keyword}{static} \textcolor{keywordtype}{void} bind(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1VertexBuffer}{VertexBuffer}}* vertexBuffer);}
+\DoxyCodeLine{308 }
+\DoxyCodeLine{319     \textcolor{keyword}{static} \textcolor{keywordtype}{bool} isAvailable();}
+\DoxyCodeLine{320 }
+\DoxyCodeLine{321 \textcolor{keyword}{private}:}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{330     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} draw(\mbox{\hyperlink{classsf_1_1RenderTarget}{RenderTarget}}\& target, \mbox{\hyperlink{classsf_1_1RenderStates}{RenderStates}} states) \textcolor{keyword}{const};}
+\DoxyCodeLine{331 }
+\DoxyCodeLine{332 \textcolor{keyword}{private}:}
+\DoxyCodeLine{333 }
+\DoxyCodeLine{335     \textcolor{comment}{// Member data}}
+\DoxyCodeLine{337 \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}  \mbox{\hyperlink{classsf_1_1VertexBuffer_aab0082f19be0290bcbaf308379e5d60a}{m\_buffer}};        }
+\DoxyCodeLine{338     std::size\_t   \mbox{\hyperlink{classsf_1_1VertexBuffer_a962780c0687af7aeb1d0555fd1baa445}{m\_size}};          }
+\DoxyCodeLine{339     \mbox{\hyperlink{group__graphics_ga5ee56ac1339984909610713096283b1b}{PrimitiveType}} \mbox{\hyperlink{classsf_1_1VertexBuffer_a958cf85fc5426b5b5490a201087046ac}{m\_primitiveType}}; }
+\DoxyCodeLine{340     \mbox{\hyperlink{classsf_1_1VertexBuffer_a3a531528684e63ecb45edd51282f5cb7}{Usage}}         \mbox{\hyperlink{classsf_1_1VertexBuffer_ab056efbd5d04372e9054a0e41bd9acfe}{m\_usage}};         }
+\DoxyCodeLine{341 \};}
+\DoxyCodeLine{342 }
+\DoxyCodeLine{343 \} \textcolor{comment}{// namespace sf}}
+\DoxyCodeLine{344 }
+\DoxyCodeLine{345 }
+\DoxyCodeLine{346 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SFML\_VERTEXBUFFER\_HPP}}
+\DoxyCodeLine{347 }
+\DoxyCodeLine{348 }
+
+\end{DoxyCode}

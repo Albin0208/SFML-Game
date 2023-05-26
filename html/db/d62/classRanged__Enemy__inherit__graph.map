@@ -1,0 +1,6 @@
+<map id="Ranged_Enemy" name="Ranged_Enemy">
+<area shape="rect" id="node1" title=" " alt="" coords="23,909,171,1031"/>
+<area shape="rect" id="node2" href="$da/d4a/classEnemy.html" title=" " alt="" coords="5,637,188,861"/>
+<area shape="rect" id="node3" href="$d3/d12/classMovable__Object.html" title=" " alt="" coords="13,263,181,589"/>
+<area shape="rect" id="node4" href="$d8/dfe/classGame__Object.html" title=" " alt="" coords="23,5,170,215"/>
+</map>

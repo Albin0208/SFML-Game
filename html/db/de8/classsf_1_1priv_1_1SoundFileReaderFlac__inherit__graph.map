@@ -1,0 +1,4 @@
+<map id="sf::priv::SoundFileReaderFlac" name="sf::priv::SoundFileReaderFlac">
+<area shape="rect" id="node1" title="Implementation of sound file reader that handles FLAC files." alt="" coords="5,175,215,355"/>
+<area shape="rect" id="node2" href="$de/dad/classsf_1_1SoundFileReader.html" title="Abstract base class for sound file decoding." alt="" coords="27,5,193,127"/>
+</map>

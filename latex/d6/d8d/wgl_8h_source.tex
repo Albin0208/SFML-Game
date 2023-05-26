@@ -1,0 +1,552 @@
+\hypertarget{wgl_8h_source}{}\doxysection{wgl.\+h}
+\label{wgl_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/glad/include/glad/wgl.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/glad/include/glad/wgl.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#ifndef SF\_GLAD\_WGL\_H\_}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define SF\_GLAD\_WGL\_H\_}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include <windows.h>}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <glad/gl.h>}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define SF\_GLAD\_WGL}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define GLAD\_OPTION\_WGL\_LOADER}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#define GLAD\_OPTION\_WGL\_ALIAS}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define GLAD\_OPTION\_WGL\_HEADER\_ONLY}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{40 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#ifndef GLAD\_PLATFORM\_H\_}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#define GLAD\_PLATFORM\_H\_}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#ifndef GLAD\_PLATFORM\_WIN32}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{  \#if defined(\_WIN32) || defined(\_\_WIN32\_\_) || defined(WIN32) || defined(\_\_MINGW32\_\_)}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{    \#define GLAD\_PLATFORM\_WIN32 1}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{  \#else}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{    \#define GLAD\_PLATFORM\_WIN32 0}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#ifndef GLAD\_PLATFORM\_APPLE}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{  \#ifdef \_\_APPLE\_\_}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{    \#define GLAD\_PLATFORM\_APPLE 1}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{  \#else}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{    \#define GLAD\_PLATFORM\_APPLE 0}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#ifndef GLAD\_PLATFORM\_EMSCRIPTEN}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{  \#ifdef \_\_EMSCRIPTEN\_\_}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{    \#define GLAD\_PLATFORM\_EMSCRIPTEN 1}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{  \#else}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{    \#define GLAD\_PLATFORM\_EMSCRIPTEN 0}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#ifndef GLAD\_PLATFORM\_UWP}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{  \#if defined(\_MSC\_VER) \&\& !defined(GLAD\_INTERNAL\_HAVE\_WINAPIFAMILY)}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{    \#ifdef \_\_has\_include}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{      \#if \_\_has\_include(<winapifamily.h>)}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{        \#define GLAD\_INTERNAL\_HAVE\_WINAPIFAMILY 1}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{      \#endif}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{    \#elif \_MSC\_VER >= 1700 \&\& !\_USING\_V110\_SDK71\_}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{      \#define GLAD\_INTERNAL\_HAVE\_WINAPIFAMILY 1}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \textcolor{preprocessor}{  \#ifdef GLAD\_INTERNAL\_HAVE\_WINAPIFAMILY}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{    \#include <winapifamily.h>}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{    \#if !WINAPI\_FAMILY\_PARTITION(WINAPI\_PARTITION\_DESKTOP) \&\& WINAPI\_FAMILY\_PARTITION(WINAPI\_PARTITION\_APP)}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{      \#define GLAD\_PLATFORM\_UWP 1}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 \textcolor{preprocessor}{  \#ifndef GLAD\_PLATFORM\_UWP}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{    \#define GLAD\_PLATFORM\_UWP 0}}
+\DoxyCodeLine{90 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#ifdef \_\_GNUC\_\_}}
+\DoxyCodeLine{94 \textcolor{preprocessor}{  \#define GLAD\_GNUC\_EXTENSION \_\_extension\_\_}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{96 \textcolor{preprocessor}{  \#define GLAD\_GNUC\_EXTENSION}}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#ifndef GLAD\_API\_CALL}}
+\DoxyCodeLine{100 \textcolor{preprocessor}{  \#if defined(GLAD\_API\_CALL\_EXPORT)}}
+\DoxyCodeLine{101 \textcolor{preprocessor}{    \#if GLAD\_PLATFORM\_WIN32 || defined(\_\_CYGWIN\_\_)}}
+\DoxyCodeLine{102 \textcolor{preprocessor}{      \#if defined(GLAD\_API\_CALL\_EXPORT\_BUILD)}}
+\DoxyCodeLine{103 \textcolor{preprocessor}{        \#if defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{104 \textcolor{preprocessor}{          \#define GLAD\_API\_CALL \_\_attribute\_\_ ((dllexport)) extern}}
+\DoxyCodeLine{105 \textcolor{preprocessor}{        \#else}}
+\DoxyCodeLine{106 \textcolor{preprocessor}{          \#define GLAD\_API\_CALL \_\_declspec(dllexport) extern}}
+\DoxyCodeLine{107 \textcolor{preprocessor}{        \#endif}}
+\DoxyCodeLine{108 \textcolor{preprocessor}{      \#else}}
+\DoxyCodeLine{109 \textcolor{preprocessor}{        \#if defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{110 \textcolor{preprocessor}{          \#define GLAD\_API\_CALL \_\_attribute\_\_ ((dllimport)) extern}}
+\DoxyCodeLine{111 \textcolor{preprocessor}{        \#else}}
+\DoxyCodeLine{112 \textcolor{preprocessor}{          \#define GLAD\_API\_CALL \_\_declspec(dllimport) extern}}
+\DoxyCodeLine{113 \textcolor{preprocessor}{        \#endif}}
+\DoxyCodeLine{114 \textcolor{preprocessor}{      \#endif}}
+\DoxyCodeLine{115 \textcolor{preprocessor}{    \#elif defined(\_\_GNUC\_\_) \&\& defined(GLAD\_API\_CALL\_EXPORT\_BUILD)}}
+\DoxyCodeLine{116 \textcolor{preprocessor}{      \#define GLAD\_API\_CALL \_\_attribute\_\_ ((visibility ("{}default"{}}))) extern}
+\DoxyCodeLine{117 \textcolor{preprocessor}{    \#else}}
+\DoxyCodeLine{118 \textcolor{preprocessor}{      \#define GLAD\_API\_CALL extern}}
+\DoxyCodeLine{119 \textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{120 \textcolor{preprocessor}{  \#else}}
+\DoxyCodeLine{121 \textcolor{preprocessor}{    \#define GLAD\_API\_CALL extern}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125 \textcolor{preprocessor}{\#ifdef APIENTRY}}
+\DoxyCodeLine{126 \textcolor{preprocessor}{  \#define GLAD\_API\_PTR APIENTRY}}
+\DoxyCodeLine{127 \textcolor{preprocessor}{\#elif GLAD\_PLATFORM\_WIN32}}
+\DoxyCodeLine{128 \textcolor{preprocessor}{  \#define GLAD\_API\_PTR \_\_stdcall}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{  \#define GLAD\_API\_PTR}}
+\DoxyCodeLine{131 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 \textcolor{preprocessor}{\#ifndef GLAPI}}
+\DoxyCodeLine{134 \textcolor{preprocessor}{\#define GLAPI GLAD\_API\_CALL}}
+\DoxyCodeLine{135 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137 \textcolor{preprocessor}{\#ifndef GLAPIENTRY}}
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#define GLAPIENTRY GLAD\_API\_PTR}}
+\DoxyCodeLine{139 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141 \textcolor{preprocessor}{\#define GLAD\_MAKE\_VERSION(major, minor) (major * 10000 + minor)}}
+\DoxyCodeLine{142 \textcolor{preprocessor}{\#define GLAD\_VERSION\_MAJOR(version) (version / 10000)}}
+\DoxyCodeLine{143 \textcolor{preprocessor}{\#define GLAD\_VERSION\_MINOR(version) (version \% 10000)}}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145 \textcolor{preprocessor}{\#define GLAD\_GENERATOR\_VERSION "{}2.0.0-\/beta"{}}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147 \textcolor{keyword}{typedef} void (*GLADapiproc)(void);}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149 \textcolor{keyword}{typedef} GLADapiproc (*GLADloadfunc)(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{150 \textcolor{keyword}{typedef} GLADapiproc (*GLADuserptrloadfunc)(\textcolor{keywordtype}{void} *userptr, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152 \textcolor{keyword}{typedef} void (*GLADprecallback)(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *name, GLADapiproc apiproc, \textcolor{keywordtype}{int} len\_args, ...);}
+\DoxyCodeLine{153 \textcolor{keyword}{typedef} void (*GLADpostcallback)(\textcolor{keywordtype}{void} *ret, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name, GLADapiproc apiproc, \textcolor{keywordtype}{int} len\_args, ...);}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* GLAD\_PLATFORM\_H\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157 \textcolor{preprocessor}{\#define ERROR\_INVALID\_PROFILE\_ARB 0x2096}}
+\DoxyCodeLine{158 \textcolor{preprocessor}{\#define ERROR\_INVALID\_VERSION\_ARB 0x2095}}
+\DoxyCodeLine{159 \textcolor{preprocessor}{\#define WGL\_ACCELERATION\_ARB 0x2003}}
+\DoxyCodeLine{160 \textcolor{preprocessor}{\#define WGL\_ACCUM\_ALPHA\_BITS\_ARB 0x2021}}
+\DoxyCodeLine{161 \textcolor{preprocessor}{\#define WGL\_ACCUM\_BITS\_ARB 0x201D}}
+\DoxyCodeLine{162 \textcolor{preprocessor}{\#define WGL\_ACCUM\_BLUE\_BITS\_ARB 0x2020}}
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#define WGL\_ACCUM\_GREEN\_BITS\_ARB 0x201F}}
+\DoxyCodeLine{164 \textcolor{preprocessor}{\#define WGL\_ACCUM\_RED\_BITS\_ARB 0x201E}}
+\DoxyCodeLine{165 \textcolor{preprocessor}{\#define WGL\_ALPHA\_BITS\_ARB 0x201B}}
+\DoxyCodeLine{166 \textcolor{preprocessor}{\#define WGL\_ALPHA\_SHIFT\_ARB 0x201C}}
+\DoxyCodeLine{167 \textcolor{preprocessor}{\#define WGL\_AUX\_BUFFERS\_ARB 0x2024}}
+\DoxyCodeLine{168 \textcolor{preprocessor}{\#define WGL\_BLUE\_BITS\_ARB 0x2019}}
+\DoxyCodeLine{169 \textcolor{preprocessor}{\#define WGL\_BLUE\_SHIFT\_ARB 0x201A}}
+\DoxyCodeLine{170 \textcolor{preprocessor}{\#define WGL\_COLOR\_BITS\_ARB 0x2014}}
+\DoxyCodeLine{171 \textcolor{preprocessor}{\#define WGL\_CONTEXT\_COMPATIBILITY\_PROFILE\_BIT\_ARB 0x00000002}}
+\DoxyCodeLine{172 \textcolor{preprocessor}{\#define WGL\_CONTEXT\_CORE\_PROFILE\_BIT\_ARB 0x00000001}}
+\DoxyCodeLine{173 \textcolor{preprocessor}{\#define WGL\_CONTEXT\_DEBUG\_BIT\_ARB 0x00000001}}
+\DoxyCodeLine{174 \textcolor{preprocessor}{\#define WGL\_CONTEXT\_FLAGS\_ARB 0x2094}}
+\DoxyCodeLine{175 \textcolor{preprocessor}{\#define WGL\_CONTEXT\_FORWARD\_COMPATIBLE\_BIT\_ARB 0x00000002}}
+\DoxyCodeLine{176 \textcolor{preprocessor}{\#define WGL\_CONTEXT\_LAYER\_PLANE\_ARB 0x2093}}
+\DoxyCodeLine{177 \textcolor{preprocessor}{\#define WGL\_CONTEXT\_MAJOR\_VERSION\_ARB 0x2091}}
+\DoxyCodeLine{178 \textcolor{preprocessor}{\#define WGL\_CONTEXT\_MINOR\_VERSION\_ARB 0x2092}}
+\DoxyCodeLine{179 \textcolor{preprocessor}{\#define WGL\_CONTEXT\_PROFILE\_MASK\_ARB 0x9126}}
+\DoxyCodeLine{180 \textcolor{preprocessor}{\#define WGL\_DEPTH\_BITS\_ARB 0x2022}}
+\DoxyCodeLine{181 \textcolor{preprocessor}{\#define WGL\_DOUBLE\_BUFFER\_ARB 0x2011}}
+\DoxyCodeLine{182 \textcolor{preprocessor}{\#define WGL\_DRAW\_TO\_BITMAP\_ARB 0x2002}}
+\DoxyCodeLine{183 \textcolor{preprocessor}{\#define WGL\_DRAW\_TO\_PBUFFER\_ARB 0x202D}}
+\DoxyCodeLine{184 \textcolor{preprocessor}{\#define WGL\_DRAW\_TO\_WINDOW\_ARB 0x2001}}
+\DoxyCodeLine{185 \textcolor{preprocessor}{\#define WGL\_FONT\_LINES 0}}
+\DoxyCodeLine{186 \textcolor{preprocessor}{\#define WGL\_FONT\_POLYGONS 1}}
+\DoxyCodeLine{187 \textcolor{preprocessor}{\#define WGL\_FRAMEBUFFER\_SRGB\_CAPABLE\_ARB 0x20A9}}
+\DoxyCodeLine{188 \textcolor{preprocessor}{\#define WGL\_FRAMEBUFFER\_SRGB\_CAPABLE\_EXT 0x20A9}}
+\DoxyCodeLine{189 \textcolor{preprocessor}{\#define WGL\_FULL\_ACCELERATION\_ARB 0x2027}}
+\DoxyCodeLine{190 \textcolor{preprocessor}{\#define WGL\_GENERIC\_ACCELERATION\_ARB 0x2026}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{\#define WGL\_GREEN\_BITS\_ARB 0x2017}}
+\DoxyCodeLine{192 \textcolor{preprocessor}{\#define WGL\_GREEN\_SHIFT\_ARB 0x2018}}
+\DoxyCodeLine{193 \textcolor{preprocessor}{\#define WGL\_MAX\_PBUFFER\_HEIGHT\_ARB 0x2030}}
+\DoxyCodeLine{194 \textcolor{preprocessor}{\#define WGL\_MAX\_PBUFFER\_PIXELS\_ARB 0x202E}}
+\DoxyCodeLine{195 \textcolor{preprocessor}{\#define WGL\_MAX\_PBUFFER\_WIDTH\_ARB 0x202F}}
+\DoxyCodeLine{196 \textcolor{preprocessor}{\#define WGL\_NEED\_PALETTE\_ARB 0x2004}}
+\DoxyCodeLine{197 \textcolor{preprocessor}{\#define WGL\_NEED\_SYSTEM\_PALETTE\_ARB 0x2005}}
+\DoxyCodeLine{198 \textcolor{preprocessor}{\#define WGL\_NO\_ACCELERATION\_ARB 0x2025}}
+\DoxyCodeLine{199 \textcolor{preprocessor}{\#define WGL\_NUMBER\_OVERLAYS\_ARB 0x2008}}
+\DoxyCodeLine{200 \textcolor{preprocessor}{\#define WGL\_NUMBER\_PIXEL\_FORMATS\_ARB 0x2000}}
+\DoxyCodeLine{201 \textcolor{preprocessor}{\#define WGL\_NUMBER\_UNDERLAYS\_ARB 0x2009}}
+\DoxyCodeLine{202 \textcolor{preprocessor}{\#define WGL\_PBUFFER\_HEIGHT\_ARB 0x2035}}
+\DoxyCodeLine{203 \textcolor{preprocessor}{\#define WGL\_PBUFFER\_LARGEST\_ARB 0x2033}}
+\DoxyCodeLine{204 \textcolor{preprocessor}{\#define WGL\_PBUFFER\_LOST\_ARB 0x2036}}
+\DoxyCodeLine{205 \textcolor{preprocessor}{\#define WGL\_PBUFFER\_WIDTH\_ARB 0x2034}}
+\DoxyCodeLine{206 \textcolor{preprocessor}{\#define WGL\_PIXEL\_TYPE\_ARB 0x2013}}
+\DoxyCodeLine{207 \textcolor{preprocessor}{\#define WGL\_RED\_BITS\_ARB 0x2015}}
+\DoxyCodeLine{208 \textcolor{preprocessor}{\#define WGL\_RED\_SHIFT\_ARB 0x2016}}
+\DoxyCodeLine{209 \textcolor{preprocessor}{\#define WGL\_SAMPLES\_ARB 0x2042}}
+\DoxyCodeLine{210 \textcolor{preprocessor}{\#define WGL\_SAMPLE\_BUFFERS\_ARB 0x2041}}
+\DoxyCodeLine{211 \textcolor{preprocessor}{\#define WGL\_SHARE\_ACCUM\_ARB 0x200E}}
+\DoxyCodeLine{212 \textcolor{preprocessor}{\#define WGL\_SHARE\_DEPTH\_ARB 0x200C}}
+\DoxyCodeLine{213 \textcolor{preprocessor}{\#define WGL\_SHARE\_STENCIL\_ARB 0x200D}}
+\DoxyCodeLine{214 \textcolor{preprocessor}{\#define WGL\_STENCIL\_BITS\_ARB 0x2023}}
+\DoxyCodeLine{215 \textcolor{preprocessor}{\#define WGL\_STEREO\_ARB 0x2012}}
+\DoxyCodeLine{216 \textcolor{preprocessor}{\#define WGL\_SUPPORT\_GDI\_ARB 0x200F}}
+\DoxyCodeLine{217 \textcolor{preprocessor}{\#define WGL\_SUPPORT\_OPENGL\_ARB 0x2010}}
+\DoxyCodeLine{218 \textcolor{preprocessor}{\#define WGL\_SWAP\_COPY\_ARB 0x2029}}
+\DoxyCodeLine{219 \textcolor{preprocessor}{\#define WGL\_SWAP\_EXCHANGE\_ARB 0x2028}}
+\DoxyCodeLine{220 \textcolor{preprocessor}{\#define WGL\_SWAP\_LAYER\_BUFFERS\_ARB 0x2006}}
+\DoxyCodeLine{221 \textcolor{preprocessor}{\#define WGL\_SWAP\_MAIN\_PLANE 0x00000001}}
+\DoxyCodeLine{222 \textcolor{preprocessor}{\#define WGL\_SWAP\_METHOD\_ARB 0x2007}}
+\DoxyCodeLine{223 \textcolor{preprocessor}{\#define WGL\_SWAP\_OVERLAY1 0x00000002}}
+\DoxyCodeLine{224 \textcolor{preprocessor}{\#define WGL\_SWAP\_OVERLAY10 0x00000400}}
+\DoxyCodeLine{225 \textcolor{preprocessor}{\#define WGL\_SWAP\_OVERLAY11 0x00000800}}
+\DoxyCodeLine{226 \textcolor{preprocessor}{\#define WGL\_SWAP\_OVERLAY12 0x00001000}}
+\DoxyCodeLine{227 \textcolor{preprocessor}{\#define WGL\_SWAP\_OVERLAY13 0x00002000}}
+\DoxyCodeLine{228 \textcolor{preprocessor}{\#define WGL\_SWAP\_OVERLAY14 0x00004000}}
+\DoxyCodeLine{229 \textcolor{preprocessor}{\#define WGL\_SWAP\_OVERLAY15 0x00008000}}
+\DoxyCodeLine{230 \textcolor{preprocessor}{\#define WGL\_SWAP\_OVERLAY2 0x00000004}}
+\DoxyCodeLine{231 \textcolor{preprocessor}{\#define WGL\_SWAP\_OVERLAY3 0x00000008}}
+\DoxyCodeLine{232 \textcolor{preprocessor}{\#define WGL\_SWAP\_OVERLAY4 0x00000010}}
+\DoxyCodeLine{233 \textcolor{preprocessor}{\#define WGL\_SWAP\_OVERLAY5 0x00000020}}
+\DoxyCodeLine{234 \textcolor{preprocessor}{\#define WGL\_SWAP\_OVERLAY6 0x00000040}}
+\DoxyCodeLine{235 \textcolor{preprocessor}{\#define WGL\_SWAP\_OVERLAY7 0x00000080}}
+\DoxyCodeLine{236 \textcolor{preprocessor}{\#define WGL\_SWAP\_OVERLAY8 0x00000100}}
+\DoxyCodeLine{237 \textcolor{preprocessor}{\#define WGL\_SWAP\_OVERLAY9 0x00000200}}
+\DoxyCodeLine{238 \textcolor{preprocessor}{\#define WGL\_SWAP\_UNDEFINED\_ARB 0x202A}}
+\DoxyCodeLine{239 \textcolor{preprocessor}{\#define WGL\_SWAP\_UNDERLAY1 0x00010000}}
+\DoxyCodeLine{240 \textcolor{preprocessor}{\#define WGL\_SWAP\_UNDERLAY10 0x02000000}}
+\DoxyCodeLine{241 \textcolor{preprocessor}{\#define WGL\_SWAP\_UNDERLAY11 0x04000000}}
+\DoxyCodeLine{242 \textcolor{preprocessor}{\#define WGL\_SWAP\_UNDERLAY12 0x08000000}}
+\DoxyCodeLine{243 \textcolor{preprocessor}{\#define WGL\_SWAP\_UNDERLAY13 0x10000000}}
+\DoxyCodeLine{244 \textcolor{preprocessor}{\#define WGL\_SWAP\_UNDERLAY14 0x20000000}}
+\DoxyCodeLine{245 \textcolor{preprocessor}{\#define WGL\_SWAP\_UNDERLAY15 0x40000000}}
+\DoxyCodeLine{246 \textcolor{preprocessor}{\#define WGL\_SWAP\_UNDERLAY2 0x00020000}}
+\DoxyCodeLine{247 \textcolor{preprocessor}{\#define WGL\_SWAP\_UNDERLAY3 0x00040000}}
+\DoxyCodeLine{248 \textcolor{preprocessor}{\#define WGL\_SWAP\_UNDERLAY4 0x00080000}}
+\DoxyCodeLine{249 \textcolor{preprocessor}{\#define WGL\_SWAP\_UNDERLAY5 0x00100000}}
+\DoxyCodeLine{250 \textcolor{preprocessor}{\#define WGL\_SWAP\_UNDERLAY6 0x00200000}}
+\DoxyCodeLine{251 \textcolor{preprocessor}{\#define WGL\_SWAP\_UNDERLAY7 0x00400000}}
+\DoxyCodeLine{252 \textcolor{preprocessor}{\#define WGL\_SWAP\_UNDERLAY8 0x00800000}}
+\DoxyCodeLine{253 \textcolor{preprocessor}{\#define WGL\_SWAP\_UNDERLAY9 0x01000000}}
+\DoxyCodeLine{254 \textcolor{preprocessor}{\#define WGL\_TRANSPARENT\_ALPHA\_VALUE\_ARB 0x203A}}
+\DoxyCodeLine{255 \textcolor{preprocessor}{\#define WGL\_TRANSPARENT\_ARB 0x200A}}
+\DoxyCodeLine{256 \textcolor{preprocessor}{\#define WGL\_TRANSPARENT\_BLUE\_VALUE\_ARB 0x2039}}
+\DoxyCodeLine{257 \textcolor{preprocessor}{\#define WGL\_TRANSPARENT\_GREEN\_VALUE\_ARB 0x2038}}
+\DoxyCodeLine{258 \textcolor{preprocessor}{\#define WGL\_TRANSPARENT\_INDEX\_VALUE\_ARB 0x203B}}
+\DoxyCodeLine{259 \textcolor{preprocessor}{\#define WGL\_TRANSPARENT\_RED\_VALUE\_ARB 0x2037}}
+\DoxyCodeLine{260 \textcolor{preprocessor}{\#define WGL\_TYPE\_COLORINDEX\_ARB 0x202C}}
+\DoxyCodeLine{261 \textcolor{preprocessor}{\#define WGL\_TYPE\_RGBA\_ARB 0x202B}}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{263 }
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265 }
+\DoxyCodeLine{266 }
+\DoxyCodeLine{267 }
+\DoxyCodeLine{268 }
+\DoxyCodeLine{269 }
+\DoxyCodeLine{270 }
+\DoxyCodeLine{271 }
+\DoxyCodeLine{272 }
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275 }
+\DoxyCodeLine{276 }
+\DoxyCodeLine{277 }
+\DoxyCodeLine{278 }
+\DoxyCodeLine{279 }
+\DoxyCodeLine{280 }
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283 }
+\DoxyCodeLine{284 }
+\DoxyCodeLine{285 }
+\DoxyCodeLine{286 }
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289 }
+\DoxyCodeLine{290 }
+\DoxyCodeLine{291 }
+\DoxyCodeLine{292 }
+\DoxyCodeLine{293 }
+\DoxyCodeLine{294 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__GPU__DEVICE}{\_GPU\_DEVICE}} \{}
+\DoxyCodeLine{295     DWORD  cb;}
+\DoxyCodeLine{296     CHAR   DeviceName[32];}
+\DoxyCodeLine{297     CHAR   DeviceString[128];}
+\DoxyCodeLine{298     DWORD  Flags;}
+\DoxyCodeLine{299     RECT   rcVirtualScreen;}
+\DoxyCodeLine{300 \};}
+\DoxyCodeLine{301 DECLARE\_HANDLE(HPBUFFERARB);}
+\DoxyCodeLine{302 DECLARE\_HANDLE(HPBUFFEREXT);}
+\DoxyCodeLine{303 DECLARE\_HANDLE(HVIDEOOUTPUTDEVICENV);}
+\DoxyCodeLine{304 DECLARE\_HANDLE(HPVIDEODEV);}
+\DoxyCodeLine{305 DECLARE\_HANDLE(HPGPUNV);}
+\DoxyCodeLine{306 DECLARE\_HANDLE(HGPUNV);}
+\DoxyCodeLine{307 DECLARE\_HANDLE(HVIDEOINPUTDEVICENV);}
+\DoxyCodeLine{308 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__GPU__DEVICE}{\_GPU\_DEVICE}} \mbox{\hyperlink{struct__GPU__DEVICE}{GPU\_DEVICE}};}
+\DoxyCodeLine{309 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__GPU__DEVICE}{\_GPU\_DEVICE}} *\mbox{\hyperlink{struct__GPU__DEVICE}{PGPU\_DEVICE}};}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311 }
+\DoxyCodeLine{312 \textcolor{preprocessor}{\#define WGL\_VERSION\_1\_0 1}}
+\DoxyCodeLine{313 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_VERSION\_1\_0;}
+\DoxyCodeLine{314 \textcolor{preprocessor}{\#define WGL\_ARB\_create\_context 1}}
+\DoxyCodeLine{315 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_ARB\_create\_context;}
+\DoxyCodeLine{316 \textcolor{preprocessor}{\#define WGL\_ARB\_create\_context\_profile 1}}
+\DoxyCodeLine{317 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_ARB\_create\_context\_profile;}
+\DoxyCodeLine{318 \textcolor{preprocessor}{\#define WGL\_ARB\_extensions\_string 1}}
+\DoxyCodeLine{319 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_ARB\_extensions\_string;}
+\DoxyCodeLine{320 \textcolor{preprocessor}{\#define WGL\_ARB\_framebuffer\_sRGB 1}}
+\DoxyCodeLine{321 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_ARB\_framebuffer\_sRGB;}
+\DoxyCodeLine{322 \textcolor{preprocessor}{\#define WGL\_ARB\_multisample 1}}
+\DoxyCodeLine{323 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_ARB\_multisample;}
+\DoxyCodeLine{324 \textcolor{preprocessor}{\#define WGL\_ARB\_pbuffer 1}}
+\DoxyCodeLine{325 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_ARB\_pbuffer;}
+\DoxyCodeLine{326 \textcolor{preprocessor}{\#define WGL\_ARB\_pixel\_format 1}}
+\DoxyCodeLine{327 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_ARB\_pixel\_format;}
+\DoxyCodeLine{328 \textcolor{preprocessor}{\#define WGL\_EXT\_extensions\_string 1}}
+\DoxyCodeLine{329 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_EXT\_extensions\_string;}
+\DoxyCodeLine{330 \textcolor{preprocessor}{\#define WGL\_EXT\_framebuffer\_sRGB 1}}
+\DoxyCodeLine{331 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_EXT\_framebuffer\_sRGB;}
+\DoxyCodeLine{332 \textcolor{preprocessor}{\#define WGL\_EXT\_swap\_control 1}}
+\DoxyCodeLine{333 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_EXT\_swap\_control;}
+\DoxyCodeLine{334 }
+\DoxyCodeLine{335 }
+\DoxyCodeLine{336 \textcolor{keyword}{typedef} int (GLAD\_API\_PTR *PFNCHOOSEPIXELFORMATPROC)(HDC hDc, \textcolor{keyword}{const} PIXELFORMATDESCRIPTOR * pPfd);}
+\DoxyCodeLine{337 \textcolor{keyword}{typedef} int (GLAD\_API\_PTR *PFNDESCRIBEPIXELFORMATPROC)(HDC hdc, \textcolor{keywordtype}{int} ipfd, UINT cjpfd, \textcolor{keyword}{const} PIXELFORMATDESCRIPTOR * ppfd);}
+\DoxyCodeLine{338 \textcolor{keyword}{typedef} UINT (GLAD\_API\_PTR *PFNGETENHMETAFILEPIXELFORMATPROC)(HENHMETAFILE hemf, \textcolor{keyword}{const} PIXELFORMATDESCRIPTOR * ppfd);}
+\DoxyCodeLine{339 \textcolor{keyword}{typedef} int (GLAD\_API\_PTR *PFNGETPIXELFORMATPROC)(HDC hdc);}
+\DoxyCodeLine{340 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNSETPIXELFORMATPROC)(HDC hdc, \textcolor{keywordtype}{int} ipfd, \textcolor{keyword}{const} PIXELFORMATDESCRIPTOR * ppfd);}
+\DoxyCodeLine{341 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNSWAPBUFFERSPROC)(HDC hdc);}
+\DoxyCodeLine{342 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNWGLCHOOSEPIXELFORMATARBPROC)(HDC hdc, \textcolor{keyword}{const} \textcolor{keywordtype}{int} * piAttribIList, \textcolor{keyword}{const} FLOAT * pfAttribFList, UINT nMaxFormats, \textcolor{keywordtype}{int} * piFormats, UINT * nNumFormats);}
+\DoxyCodeLine{343 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNWGLCOPYCONTEXTPROC)(HGLRC hglrcSrc, HGLRC hglrcDst, UINT mask);}
+\DoxyCodeLine{344 \textcolor{keyword}{typedef} HGLRC (GLAD\_API\_PTR *PFNWGLCREATECONTEXTPROC)(HDC hDc);}
+\DoxyCodeLine{345 \textcolor{keyword}{typedef} HGLRC (GLAD\_API\_PTR *PFNWGLCREATECONTEXTATTRIBSARBPROC)(HDC hDC, HGLRC hShareContext, \textcolor{keyword}{const} \textcolor{keywordtype}{int} * attribList);}
+\DoxyCodeLine{346 \textcolor{keyword}{typedef} HGLRC (GLAD\_API\_PTR *PFNWGLCREATELAYERCONTEXTPROC)(HDC hDc, \textcolor{keywordtype}{int} level);}
+\DoxyCodeLine{347 \textcolor{keyword}{typedef} HPBUFFERARB (GLAD\_API\_PTR *PFNWGLCREATEPBUFFERARBPROC)(HDC hDC, \textcolor{keywordtype}{int} iPixelFormat, \textcolor{keywordtype}{int} iWidth, \textcolor{keywordtype}{int} iHeight, \textcolor{keyword}{const} \textcolor{keywordtype}{int} * piAttribList);}
+\DoxyCodeLine{348 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNWGLDELETECONTEXTPROC)(HGLRC oldContext);}
+\DoxyCodeLine{349 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNWGLDESCRIBELAYERPLANEPROC)(HDC hDc, \textcolor{keywordtype}{int} pixelFormat, \textcolor{keywordtype}{int} layerPlane, UINT nBytes, \textcolor{keyword}{const} LAYERPLANEDESCRIPTOR * plpd);}
+\DoxyCodeLine{350 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNWGLDESTROYPBUFFERARBPROC)(HPBUFFERARB hPbuffer);}
+\DoxyCodeLine{351 \textcolor{keyword}{typedef} HGLRC (GLAD\_API\_PTR *PFNWGLGETCURRENTCONTEXTPROC)(void);}
+\DoxyCodeLine{352 \textcolor{keyword}{typedef} HDC (GLAD\_API\_PTR *PFNWGLGETCURRENTDCPROC)(void);}
+\DoxyCodeLine{353 \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keywordtype}{char} * (GLAD\_API\_PTR *PFNWGLGETEXTENSIONSSTRINGARBPROC)(HDC hdc);}
+\DoxyCodeLine{354 \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keywordtype}{char} * (GLAD\_API\_PTR *PFNWGLGETEXTENSIONSSTRINGEXTPROC)(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{355 \textcolor{keyword}{typedef} int (GLAD\_API\_PTR *PFNWGLGETLAYERPALETTEENTRIESPROC)(HDC hdc, \textcolor{keywordtype}{int} iLayerPlane, \textcolor{keywordtype}{int} iStart, \textcolor{keywordtype}{int} cEntries, \textcolor{keyword}{const} COLORREF * pcr);}
+\DoxyCodeLine{356 \textcolor{keyword}{typedef} HDC (GLAD\_API\_PTR *PFNWGLGETPBUFFERDCARBPROC)(HPBUFFERARB hPbuffer);}
+\DoxyCodeLine{357 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNWGLGETPIXELFORMATATTRIBFVARBPROC)(HDC hdc, \textcolor{keywordtype}{int} iPixelFormat, \textcolor{keywordtype}{int} iLayerPlane, UINT nAttributes, \textcolor{keyword}{const} \textcolor{keywordtype}{int} * piAttributes, FLOAT * pfValues);}
+\DoxyCodeLine{358 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNWGLGETPIXELFORMATATTRIBIVARBPROC)(HDC hdc, \textcolor{keywordtype}{int} iPixelFormat, \textcolor{keywordtype}{int} iLayerPlane, UINT nAttributes, \textcolor{keyword}{const} \textcolor{keywordtype}{int} * piAttributes, \textcolor{keywordtype}{int} * piValues);}
+\DoxyCodeLine{359 \textcolor{keyword}{typedef} PROC (GLAD\_API\_PTR *PFNWGLGETPROCADDRESSPROC)(LPCSTR lpszProc);}
+\DoxyCodeLine{360 \textcolor{keyword}{typedef} int (GLAD\_API\_PTR *PFNWGLGETSWAPINTERVALEXTPROC)(void);}
+\DoxyCodeLine{361 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNWGLMAKECURRENTPROC)(HDC hDc, HGLRC newContext);}
+\DoxyCodeLine{362 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNWGLQUERYPBUFFERARBPROC)(HPBUFFERARB hPbuffer, \textcolor{keywordtype}{int} iAttribute, \textcolor{keywordtype}{int} * piValue);}
+\DoxyCodeLine{363 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNWGLREALIZELAYERPALETTEPROC)(HDC hdc, \textcolor{keywordtype}{int} iLayerPlane, BOOL bRealize);}
+\DoxyCodeLine{364 \textcolor{keyword}{typedef} int (GLAD\_API\_PTR *PFNWGLRELEASEPBUFFERDCARBPROC)(HPBUFFERARB hPbuffer, HDC hDC);}
+\DoxyCodeLine{365 \textcolor{keyword}{typedef} int (GLAD\_API\_PTR *PFNWGLSETLAYERPALETTEENTRIESPROC)(HDC hdc, \textcolor{keywordtype}{int} iLayerPlane, \textcolor{keywordtype}{int} iStart, \textcolor{keywordtype}{int} cEntries, \textcolor{keyword}{const} COLORREF * pcr);}
+\DoxyCodeLine{366 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNWGLSHARELISTSPROC)(HGLRC hrcSrvShare, HGLRC hrcSrvSource);}
+\DoxyCodeLine{367 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNWGLSWAPINTERVALEXTPROC)(\textcolor{keywordtype}{int} interval);}
+\DoxyCodeLine{368 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNWGLSWAPLAYERBUFFERSPROC)(HDC hdc, UINT fuFlags);}
+\DoxyCodeLine{369 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNWGLUSEFONTBITMAPSPROC)(HDC hDC, DWORD first, DWORD count, DWORD listBase);}
+\DoxyCodeLine{370 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNWGLUSEFONTBITMAPSAPROC)(HDC hDC, DWORD first, DWORD count, DWORD listBase);}
+\DoxyCodeLine{371 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNWGLUSEFONTBITMAPSWPROC)(HDC hDC, DWORD first, DWORD count, DWORD listBase);}
+\DoxyCodeLine{372 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNWGLUSEFONTOUTLINESPROC)(HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, \textcolor{keywordtype}{int} format, LPGLYPHMETRICSFLOAT lpgmf);}
+\DoxyCodeLine{373 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNWGLUSEFONTOUTLINESAPROC)(HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, \textcolor{keywordtype}{int} format, LPGLYPHMETRICSFLOAT lpgmf);}
+\DoxyCodeLine{374 \textcolor{keyword}{typedef} BOOL (GLAD\_API\_PTR *PFNWGLUSEFONTOUTLINESWPROC)(HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, \textcolor{keywordtype}{int} format, LPGLYPHMETRICSFLOAT lpgmf);}
+\DoxyCodeLine{375 }
+\DoxyCodeLine{376 GLAD\_API\_CALL PFNWGLCHOOSEPIXELFORMATARBPROC sf\_glad\_wglChoosePixelFormatARB;}
+\DoxyCodeLine{377 \textcolor{preprocessor}{\#define wglChoosePixelFormatARB sf\_glad\_wglChoosePixelFormatARB}}
+\DoxyCodeLine{378 GLAD\_API\_CALL PFNWGLCREATECONTEXTATTRIBSARBPROC sf\_glad\_wglCreateContextAttribsARB;}
+\DoxyCodeLine{379 \textcolor{preprocessor}{\#define wglCreateContextAttribsARB sf\_glad\_wglCreateContextAttribsARB}}
+\DoxyCodeLine{380 GLAD\_API\_CALL PFNWGLCREATEPBUFFERARBPROC sf\_glad\_wglCreatePbufferARB;}
+\DoxyCodeLine{381 \textcolor{preprocessor}{\#define wglCreatePbufferARB sf\_glad\_wglCreatePbufferARB}}
+\DoxyCodeLine{382 GLAD\_API\_CALL PFNWGLDESTROYPBUFFERARBPROC sf\_glad\_wglDestroyPbufferARB;}
+\DoxyCodeLine{383 \textcolor{preprocessor}{\#define wglDestroyPbufferARB sf\_glad\_wglDestroyPbufferARB}}
+\DoxyCodeLine{384 GLAD\_API\_CALL PFNWGLGETEXTENSIONSSTRINGARBPROC sf\_glad\_wglGetExtensionsStringARB;}
+\DoxyCodeLine{385 \textcolor{preprocessor}{\#define wglGetExtensionsStringARB sf\_glad\_wglGetExtensionsStringARB}}
+\DoxyCodeLine{386 GLAD\_API\_CALL PFNWGLGETEXTENSIONSSTRINGEXTPROC sf\_glad\_wglGetExtensionsStringEXT;}
+\DoxyCodeLine{387 \textcolor{preprocessor}{\#define wglGetExtensionsStringEXT sf\_glad\_wglGetExtensionsStringEXT}}
+\DoxyCodeLine{388 GLAD\_API\_CALL PFNWGLGETPBUFFERDCARBPROC sf\_glad\_wglGetPbufferDCARB;}
+\DoxyCodeLine{389 \textcolor{preprocessor}{\#define wglGetPbufferDCARB sf\_glad\_wglGetPbufferDCARB}}
+\DoxyCodeLine{390 GLAD\_API\_CALL PFNWGLGETPIXELFORMATATTRIBFVARBPROC sf\_glad\_wglGetPixelFormatAttribfvARB;}
+\DoxyCodeLine{391 \textcolor{preprocessor}{\#define wglGetPixelFormatAttribfvARB sf\_glad\_wglGetPixelFormatAttribfvARB}}
+\DoxyCodeLine{392 GLAD\_API\_CALL PFNWGLGETPIXELFORMATATTRIBIVARBPROC sf\_glad\_wglGetPixelFormatAttribivARB;}
+\DoxyCodeLine{393 \textcolor{preprocessor}{\#define wglGetPixelFormatAttribivARB sf\_glad\_wglGetPixelFormatAttribivARB}}
+\DoxyCodeLine{394 GLAD\_API\_CALL PFNWGLGETSWAPINTERVALEXTPROC sf\_glad\_wglGetSwapIntervalEXT;}
+\DoxyCodeLine{395 \textcolor{preprocessor}{\#define wglGetSwapIntervalEXT sf\_glad\_wglGetSwapIntervalEXT}}
+\DoxyCodeLine{396 GLAD\_API\_CALL PFNWGLQUERYPBUFFERARBPROC sf\_glad\_wglQueryPbufferARB;}
+\DoxyCodeLine{397 \textcolor{preprocessor}{\#define wglQueryPbufferARB sf\_glad\_wglQueryPbufferARB}}
+\DoxyCodeLine{398 GLAD\_API\_CALL PFNWGLRELEASEPBUFFERDCARBPROC sf\_glad\_wglReleasePbufferDCARB;}
+\DoxyCodeLine{399 \textcolor{preprocessor}{\#define wglReleasePbufferDCARB sf\_glad\_wglReleasePbufferDCARB}}
+\DoxyCodeLine{400 GLAD\_API\_CALL PFNWGLSWAPINTERVALEXTPROC sf\_glad\_wglSwapIntervalEXT;}
+\DoxyCodeLine{401 \textcolor{preprocessor}{\#define wglSwapIntervalEXT sf\_glad\_wglSwapIntervalEXT}}
+\DoxyCodeLine{402 }
+\DoxyCodeLine{403 }
+\DoxyCodeLine{404 }
+\DoxyCodeLine{405 }
+\DoxyCodeLine{406 }
+\DoxyCodeLine{407 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{408 \}}
+\DoxyCodeLine{409 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{410 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{411 }
+\DoxyCodeLine{412 \textcolor{comment}{/* Source */}}
+\DoxyCodeLine{413 \textcolor{preprocessor}{\#ifdef SF\_GLAD\_WGL\_IMPLEMENTATION}}
+\DoxyCodeLine{414 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{415 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{416 \textcolor{preprocessor}{\#include <string.h>}}
+\DoxyCodeLine{417 }
+\DoxyCodeLine{418 \textcolor{preprocessor}{\#ifndef GLAD\_IMPL\_UTIL\_C\_}}
+\DoxyCodeLine{419 \textcolor{preprocessor}{\#define GLAD\_IMPL\_UTIL\_C\_}}
+\DoxyCodeLine{420 }
+\DoxyCodeLine{421 \textcolor{preprocessor}{\#ifdef \_MSC\_VER}}
+\DoxyCodeLine{422 \textcolor{preprocessor}{\#define GLAD\_IMPL\_UTIL\_SSCANF sscanf\_s}}
+\DoxyCodeLine{423 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{424 \textcolor{preprocessor}{\#define GLAD\_IMPL\_UTIL\_SSCANF sscanf}}
+\DoxyCodeLine{425 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{426 }
+\DoxyCodeLine{427 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* GLAD\_IMPL\_UTIL\_C\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{428 }
+\DoxyCodeLine{429 }
+\DoxyCodeLine{430 \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_VERSION\_1\_0 = 0;}
+\DoxyCodeLine{431 \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_ARB\_create\_context = 0;}
+\DoxyCodeLine{432 \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_ARB\_create\_context\_profile = 0;}
+\DoxyCodeLine{433 \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_ARB\_extensions\_string = 0;}
+\DoxyCodeLine{434 \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_ARB\_framebuffer\_sRGB = 0;}
+\DoxyCodeLine{435 \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_ARB\_multisample = 0;}
+\DoxyCodeLine{436 \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_ARB\_pbuffer = 0;}
+\DoxyCodeLine{437 \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_ARB\_pixel\_format = 0;}
+\DoxyCodeLine{438 \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_EXT\_extensions\_string = 0;}
+\DoxyCodeLine{439 \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_EXT\_framebuffer\_sRGB = 0;}
+\DoxyCodeLine{440 \textcolor{keywordtype}{int} SF\_GLAD\_WGL\_EXT\_swap\_control = 0;}
+\DoxyCodeLine{441 }
+\DoxyCodeLine{442 }
+\DoxyCodeLine{443 }
+\DoxyCodeLine{444 PFNWGLCHOOSEPIXELFORMATARBPROC sf\_glad\_wglChoosePixelFormatARB = NULL;}
+\DoxyCodeLine{445 PFNWGLCREATECONTEXTATTRIBSARBPROC sf\_glad\_wglCreateContextAttribsARB = NULL;}
+\DoxyCodeLine{446 PFNWGLCREATEPBUFFERARBPROC sf\_glad\_wglCreatePbufferARB = NULL;}
+\DoxyCodeLine{447 PFNWGLDESTROYPBUFFERARBPROC sf\_glad\_wglDestroyPbufferARB = NULL;}
+\DoxyCodeLine{448 PFNWGLGETEXTENSIONSSTRINGARBPROC sf\_glad\_wglGetExtensionsStringARB = NULL;}
+\DoxyCodeLine{449 PFNWGLGETEXTENSIONSSTRINGEXTPROC sf\_glad\_wglGetExtensionsStringEXT = NULL;}
+\DoxyCodeLine{450 PFNWGLGETPBUFFERDCARBPROC sf\_glad\_wglGetPbufferDCARB = NULL;}
+\DoxyCodeLine{451 PFNWGLGETPIXELFORMATATTRIBFVARBPROC sf\_glad\_wglGetPixelFormatAttribfvARB = NULL;}
+\DoxyCodeLine{452 PFNWGLGETPIXELFORMATATTRIBIVARBPROC sf\_glad\_wglGetPixelFormatAttribivARB = NULL;}
+\DoxyCodeLine{453 PFNWGLGETSWAPINTERVALEXTPROC sf\_glad\_wglGetSwapIntervalEXT = NULL;}
+\DoxyCodeLine{454 PFNWGLQUERYPBUFFERARBPROC sf\_glad\_wglQueryPbufferARB = NULL;}
+\DoxyCodeLine{455 PFNWGLRELEASEPBUFFERDCARBPROC sf\_glad\_wglReleasePbufferDCARB = NULL;}
+\DoxyCodeLine{456 PFNWGLSWAPINTERVALEXTPROC sf\_glad\_wglSwapIntervalEXT = NULL;}
+\DoxyCodeLine{457 }
+\DoxyCodeLine{458 }
+\DoxyCodeLine{459 \textcolor{keyword}{static} \textcolor{keywordtype}{void} sf\_glad\_wgl\_load\_WGL\_ARB\_create\_context(GLADuserptrloadfunc load, \textcolor{keywordtype}{void} *userptr) \{}
+\DoxyCodeLine{460     \textcolor{keywordflow}{if}(!SF\_GLAD\_WGL\_ARB\_create\_context) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{461     sf\_glad\_wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC) load(userptr, \textcolor{stringliteral}{"{}wglCreateContextAttribsARB"{}});}
+\DoxyCodeLine{462 \}}
+\DoxyCodeLine{463 \textcolor{keyword}{static} \textcolor{keywordtype}{void} sf\_glad\_wgl\_load\_WGL\_ARB\_extensions\_string(GLADuserptrloadfunc load, \textcolor{keywordtype}{void} *userptr) \{}
+\DoxyCodeLine{464     \textcolor{keywordflow}{if}(!SF\_GLAD\_WGL\_ARB\_extensions\_string) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{465     sf\_glad\_wglGetExtensionsStringARB = (PFNWGLGETEXTENSIONSSTRINGARBPROC) load(userptr, \textcolor{stringliteral}{"{}wglGetExtensionsStringARB"{}});}
+\DoxyCodeLine{466 \}}
+\DoxyCodeLine{467 \textcolor{keyword}{static} \textcolor{keywordtype}{void} sf\_glad\_wgl\_load\_WGL\_ARB\_pbuffer(GLADuserptrloadfunc load, \textcolor{keywordtype}{void} *userptr) \{}
+\DoxyCodeLine{468     \textcolor{keywordflow}{if}(!SF\_GLAD\_WGL\_ARB\_pbuffer) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{469     sf\_glad\_wglCreatePbufferARB = (PFNWGLCREATEPBUFFERARBPROC) load(userptr, \textcolor{stringliteral}{"{}wglCreatePbufferARB"{}});}
+\DoxyCodeLine{470     sf\_glad\_wglDestroyPbufferARB = (PFNWGLDESTROYPBUFFERARBPROC) load(userptr, \textcolor{stringliteral}{"{}wglDestroyPbufferARB"{}});}
+\DoxyCodeLine{471     sf\_glad\_wglGetPbufferDCARB = (PFNWGLGETPBUFFERDCARBPROC) load(userptr, \textcolor{stringliteral}{"{}wglGetPbufferDCARB"{}});}
+\DoxyCodeLine{472     sf\_glad\_wglQueryPbufferARB = (PFNWGLQUERYPBUFFERARBPROC) load(userptr, \textcolor{stringliteral}{"{}wglQueryPbufferARB"{}});}
+\DoxyCodeLine{473     sf\_glad\_wglReleasePbufferDCARB = (PFNWGLRELEASEPBUFFERDCARBPROC) load(userptr, \textcolor{stringliteral}{"{}wglReleasePbufferDCARB"{}});}
+\DoxyCodeLine{474 \}}
+\DoxyCodeLine{475 \textcolor{keyword}{static} \textcolor{keywordtype}{void} sf\_glad\_wgl\_load\_WGL\_ARB\_pixel\_format(GLADuserptrloadfunc load, \textcolor{keywordtype}{void} *userptr) \{}
+\DoxyCodeLine{476     \textcolor{keywordflow}{if}(!SF\_GLAD\_WGL\_ARB\_pixel\_format) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{477     sf\_glad\_wglChoosePixelFormatARB = (PFNWGLCHOOSEPIXELFORMATARBPROC) load(userptr, \textcolor{stringliteral}{"{}wglChoosePixelFormatARB"{}});}
+\DoxyCodeLine{478     sf\_glad\_wglGetPixelFormatAttribfvARB = (PFNWGLGETPIXELFORMATATTRIBFVARBPROC) load(userptr, \textcolor{stringliteral}{"{}wglGetPixelFormatAttribfvARB"{}});}
+\DoxyCodeLine{479     sf\_glad\_wglGetPixelFormatAttribivARB = (PFNWGLGETPIXELFORMATATTRIBIVARBPROC) load(userptr, \textcolor{stringliteral}{"{}wglGetPixelFormatAttribivARB"{}});}
+\DoxyCodeLine{480 \}}
+\DoxyCodeLine{481 \textcolor{keyword}{static} \textcolor{keywordtype}{void} sf\_glad\_wgl\_load\_WGL\_EXT\_extensions\_string(GLADuserptrloadfunc load, \textcolor{keywordtype}{void} *userptr) \{}
+\DoxyCodeLine{482     \textcolor{keywordflow}{if}(!SF\_GLAD\_WGL\_EXT\_extensions\_string) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{483     sf\_glad\_wglGetExtensionsStringEXT = (PFNWGLGETEXTENSIONSSTRINGEXTPROC) load(userptr, \textcolor{stringliteral}{"{}wglGetExtensionsStringEXT"{}});}
+\DoxyCodeLine{484 \}}
+\DoxyCodeLine{485 \textcolor{keyword}{static} \textcolor{keywordtype}{void} sf\_glad\_wgl\_load\_WGL\_EXT\_swap\_control(GLADuserptrloadfunc load, \textcolor{keywordtype}{void} *userptr) \{}
+\DoxyCodeLine{486     \textcolor{keywordflow}{if}(!SF\_GLAD\_WGL\_EXT\_swap\_control) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{487     sf\_glad\_wglGetSwapIntervalEXT = (PFNWGLGETSWAPINTERVALEXTPROC) load(userptr, \textcolor{stringliteral}{"{}wglGetSwapIntervalEXT"{}});}
+\DoxyCodeLine{488     sf\_glad\_wglSwapIntervalEXT = (PFNWGLSWAPINTERVALEXTPROC) load(userptr, \textcolor{stringliteral}{"{}wglSwapIntervalEXT"{}});}
+\DoxyCodeLine{489 \}}
+\DoxyCodeLine{490 }
+\DoxyCodeLine{491 \textcolor{keyword}{static} \textcolor{keywordtype}{int} sf\_glad\_wgl\_has\_extension(HDC hdc, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *ext) \{}
+\DoxyCodeLine{492     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *terminator;}
+\DoxyCodeLine{493     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *loc;}
+\DoxyCodeLine{494     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *extensions;}
+\DoxyCodeLine{495 }
+\DoxyCodeLine{496     \textcolor{keywordflow}{if}(wglGetExtensionsStringEXT == NULL \&\& wglGetExtensionsStringARB == NULL)}
+\DoxyCodeLine{497         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{498 }
+\DoxyCodeLine{499     \textcolor{keywordflow}{if}(wglGetExtensionsStringARB == NULL || hdc == INVALID\_HANDLE\_VALUE)}
+\DoxyCodeLine{500         extensions = wglGetExtensionsStringEXT();}
+\DoxyCodeLine{501     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{502         extensions = wglGetExtensionsStringARB(hdc);}
+\DoxyCodeLine{503 }
+\DoxyCodeLine{504     \textcolor{keywordflow}{if}(extensions == NULL || ext == NULL)}
+\DoxyCodeLine{505         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{506 }
+\DoxyCodeLine{507     \textcolor{keywordflow}{while}(1) \{}
+\DoxyCodeLine{508         loc = strstr(extensions, ext);}
+\DoxyCodeLine{509         \textcolor{keywordflow}{if}(loc == NULL)}
+\DoxyCodeLine{510             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{511 }
+\DoxyCodeLine{512         terminator = loc + strlen(ext);}
+\DoxyCodeLine{513         \textcolor{keywordflow}{if}((loc == extensions || *(loc -\/ 1) == \textcolor{charliteral}{' '}) \&\&}
+\DoxyCodeLine{514             (*terminator == \textcolor{charliteral}{' '} || *terminator == \textcolor{charliteral}{'\(\backslash\)0'}))}
+\DoxyCodeLine{515         \{}
+\DoxyCodeLine{516             \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{517         \}}
+\DoxyCodeLine{518         extensions = terminator;}
+\DoxyCodeLine{519     \}}
+\DoxyCodeLine{520 }
+\DoxyCodeLine{521     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{522 \}}
+\DoxyCodeLine{523 }
+\DoxyCodeLine{524 \textcolor{keyword}{static} GLADapiproc sf\_glad\_wgl\_get\_proc\_from\_userptr(\textcolor{keywordtype}{void} *userptr, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name) \{}
+\DoxyCodeLine{525     \textcolor{keywordflow}{return} (GLAD\_GNUC\_EXTENSION (GLADapiproc (*)(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *name)) userptr)(name);}
+\DoxyCodeLine{526 \}}
+\DoxyCodeLine{527 }
+\DoxyCodeLine{528 \textcolor{keyword}{static} \textcolor{keywordtype}{int} sf\_glad\_wgl\_find\_extensions\_wgl(HDC hdc) \{}
+\DoxyCodeLine{529     SF\_GLAD\_WGL\_ARB\_create\_context = sf\_glad\_wgl\_has\_extension(hdc, \textcolor{stringliteral}{"{}WGL\_ARB\_create\_context"{}});}
+\DoxyCodeLine{530     SF\_GLAD\_WGL\_ARB\_create\_context\_profile = sf\_glad\_wgl\_has\_extension(hdc, \textcolor{stringliteral}{"{}WGL\_ARB\_create\_context\_profile"{}});}
+\DoxyCodeLine{531     SF\_GLAD\_WGL\_ARB\_extensions\_string = sf\_glad\_wgl\_has\_extension(hdc, \textcolor{stringliteral}{"{}WGL\_ARB\_extensions\_string"{}});}
+\DoxyCodeLine{532     SF\_GLAD\_WGL\_ARB\_framebuffer\_sRGB = sf\_glad\_wgl\_has\_extension(hdc, \textcolor{stringliteral}{"{}WGL\_ARB\_framebuffer\_sRGB"{}});}
+\DoxyCodeLine{533     SF\_GLAD\_WGL\_ARB\_multisample = sf\_glad\_wgl\_has\_extension(hdc, \textcolor{stringliteral}{"{}WGL\_ARB\_multisample"{}});}
+\DoxyCodeLine{534     SF\_GLAD\_WGL\_ARB\_pbuffer = sf\_glad\_wgl\_has\_extension(hdc, \textcolor{stringliteral}{"{}WGL\_ARB\_pbuffer"{}});}
+\DoxyCodeLine{535     SF\_GLAD\_WGL\_ARB\_pixel\_format = sf\_glad\_wgl\_has\_extension(hdc, \textcolor{stringliteral}{"{}WGL\_ARB\_pixel\_format"{}});}
+\DoxyCodeLine{536     SF\_GLAD\_WGL\_EXT\_extensions\_string = sf\_glad\_wgl\_has\_extension(hdc, \textcolor{stringliteral}{"{}WGL\_EXT\_extensions\_string"{}});}
+\DoxyCodeLine{537     SF\_GLAD\_WGL\_EXT\_framebuffer\_sRGB = sf\_glad\_wgl\_has\_extension(hdc, \textcolor{stringliteral}{"{}WGL\_EXT\_framebuffer\_sRGB"{}});}
+\DoxyCodeLine{538     SF\_GLAD\_WGL\_EXT\_swap\_control = sf\_glad\_wgl\_has\_extension(hdc, \textcolor{stringliteral}{"{}WGL\_EXT\_swap\_control"{}});}
+\DoxyCodeLine{539     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{540 \}}
+\DoxyCodeLine{541 }
+\DoxyCodeLine{542 \textcolor{keyword}{static} \textcolor{keywordtype}{int} sf\_glad\_wgl\_find\_core\_wgl(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{543     \textcolor{keywordtype}{int} major = 1, minor = 0;}
+\DoxyCodeLine{544     SF\_GLAD\_WGL\_VERSION\_1\_0 = (major == 1 \&\& minor >= 0) || major > 1;}
+\DoxyCodeLine{545     \textcolor{keywordflow}{return} GLAD\_MAKE\_VERSION(major, minor);}
+\DoxyCodeLine{546 \}}
+\DoxyCodeLine{547 }
+\DoxyCodeLine{548 \textcolor{keyword}{static} \textcolor{keywordtype}{int} gladLoadWGLUserPtr(HDC hdc, GLADuserptrloadfunc load, \textcolor{keywordtype}{void} *userptr) \{}
+\DoxyCodeLine{549     \textcolor{keywordtype}{int} version;}
+\DoxyCodeLine{550     wglGetExtensionsStringARB = (PFNWGLGETEXTENSIONSSTRINGARBPROC) load(userptr, \textcolor{stringliteral}{"{}wglGetExtensionsStringARB"{}});}
+\DoxyCodeLine{551     wglGetExtensionsStringEXT = (PFNWGLGETEXTENSIONSSTRINGEXTPROC) load(userptr, \textcolor{stringliteral}{"{}wglGetExtensionsStringEXT"{}});}
+\DoxyCodeLine{552     \textcolor{keywordflow}{if}(wglGetExtensionsStringARB == NULL \&\& wglGetExtensionsStringEXT == NULL) \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{553     version = sf\_glad\_wgl\_find\_core\_wgl();}
+\DoxyCodeLine{554 }
+\DoxyCodeLine{555 }
+\DoxyCodeLine{556     \textcolor{keywordflow}{if} (!sf\_glad\_wgl\_find\_extensions\_wgl(hdc)) \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{557     sf\_glad\_wgl\_load\_WGL\_ARB\_create\_context(load, userptr);}
+\DoxyCodeLine{558     sf\_glad\_wgl\_load\_WGL\_ARB\_extensions\_string(load, userptr);}
+\DoxyCodeLine{559     sf\_glad\_wgl\_load\_WGL\_ARB\_pbuffer(load, userptr);}
+\DoxyCodeLine{560     sf\_glad\_wgl\_load\_WGL\_ARB\_pixel\_format(load, userptr);}
+\DoxyCodeLine{561     sf\_glad\_wgl\_load\_WGL\_EXT\_extensions\_string(load, userptr);}
+\DoxyCodeLine{562     sf\_glad\_wgl\_load\_WGL\_EXT\_swap\_control(load, userptr);}
+\DoxyCodeLine{563 }
+\DoxyCodeLine{564     \textcolor{keywordflow}{return} version;}
+\DoxyCodeLine{565 \}}
+\DoxyCodeLine{566 }
+\DoxyCodeLine{567 \textcolor{keyword}{static} \textcolor{keywordtype}{int} gladLoadWGL(HDC hdc, GLADloadfunc load) \{}
+\DoxyCodeLine{568     \textcolor{keywordflow}{return} gladLoadWGLUserPtr(hdc, sf\_glad\_wgl\_get\_proc\_from\_userptr, GLAD\_GNUC\_EXTENSION (\textcolor{keywordtype}{void}*) load);}
+\DoxyCodeLine{569 \}}
+\DoxyCodeLine{570 }
+\DoxyCodeLine{571 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* SF\_GLAD\_WGL\_IMPLEMENTATION */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{572 }
+
+\end{DoxyCode}

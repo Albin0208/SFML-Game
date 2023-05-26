@@ -1,0 +1,363 @@
+\hypertarget{ftgxval_8h_source}{}\doxysection{ftgxval.\+h}
+\label{ftgxval_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/ftgxval.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/ftgxval.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftgxval.h                                                              */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType API for validating TrueTypeGX/AAT tables (specification).   */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2004-\/2006, 2013 by                                           */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  Masatake YAMATO, Redhat K.K,                                           */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{16 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{17 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{20 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{21 \textcolor{comment}{/* gxvalid is derived from both gxlayout module and otvalid module.        */}}
+\DoxyCodeLine{22 \textcolor{comment}{/* Development of gxlayout is supported by the Information-\/technology      */}}
+\DoxyCodeLine{23 \textcolor{comment}{/* Promotion Agency(IPA), Japan.                                           */}}
+\DoxyCodeLine{24 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{25 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#ifndef \_\_FTGXVAL\_H\_\_}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define \_\_FTGXVAL\_H\_\_}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#ifdef FREETYPE\_H}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#error "{}freetype.h of FreeType 1 has been loaded!"{}}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#error "{}Please fix the directory search order for header files"{}}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#error "{}so that freetype.h of FreeType 2 is found first."{}}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{45   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{46   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*    gx\_validation                                                      */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{49   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{50   \textcolor{comment}{/*    TrueTypeGX/AAT Validation                                          */}}
+\DoxyCodeLine{51   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{52   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{53   \textcolor{comment}{/*    An API to validate TrueTypeGX/AAT tables.                          */}}
+\DoxyCodeLine{54   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{55   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{56   \textcolor{comment}{/*    This section contains the declaration of functions to validate     */}}
+\DoxyCodeLine{57   \textcolor{comment}{/*    some TrueTypeGX tables (feat, mort, morx, bsln, just, kern, opbd,  */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*    trak, prop, lcar).                                                 */}}
+\DoxyCodeLine{59   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{60   \textcolor{comment}{/* <Order>                                                               */}}
+\DoxyCodeLine{61   \textcolor{comment}{/*    FT\_TrueTypeGX\_Validate                                             */}}
+\DoxyCodeLine{62   \textcolor{comment}{/*    FT\_TrueTypeGX\_Free                                                 */}}
+\DoxyCodeLine{63   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{64   \textcolor{comment}{/*    FT\_ClassicKern\_Validate                                            */}}
+\DoxyCodeLine{65   \textcolor{comment}{/*    FT\_ClassicKern\_Free                                                */}}
+\DoxyCodeLine{66   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{67   \textcolor{comment}{/*    FT\_VALIDATE\_GX\_LENGTH                                              */}}
+\DoxyCodeLine{68   \textcolor{comment}{/*    FT\_VALIDATE\_GXXXX                                                  */}}
+\DoxyCodeLine{69   \textcolor{comment}{/*    FT\_VALIDATE\_CKERNXXX                                               */}}
+\DoxyCodeLine{70   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{71 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{74   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{75   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{76   \textcolor{comment}{/* Warning: Use FT\_VALIDATE\_XXX to validate a table.                     */}}
+\DoxyCodeLine{77   \textcolor{comment}{/*          Following definitions are for gxvalid developers.            */}}
+\DoxyCodeLine{78   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{79   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{80 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#define FT\_VALIDATE\_feat\_INDEX     0}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#define FT\_VALIDATE\_mort\_INDEX     1}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#define FT\_VALIDATE\_morx\_INDEX     2}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#define FT\_VALIDATE\_bsln\_INDEX     3}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#define FT\_VALIDATE\_just\_INDEX     4}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#define FT\_VALIDATE\_kern\_INDEX     5}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#define FT\_VALIDATE\_opbd\_INDEX     6}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#define FT\_VALIDATE\_trak\_INDEX     7}}
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#define FT\_VALIDATE\_prop\_INDEX     8}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#define FT\_VALIDATE\_lcar\_INDEX     9}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#define FT\_VALIDATE\_GX\_LAST\_INDEX  FT\_VALIDATE\_lcar\_INDEX}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \textcolor{comment}{  /*************************************************************************}}
+\DoxyCodeLine{96 \textcolor{comment}{   *}}
+\DoxyCodeLine{97 \textcolor{comment}{   * @macro:}}
+\DoxyCodeLine{98 \textcolor{comment}{   *   FT\_VALIDATE\_GX\_LENGTH}}
+\DoxyCodeLine{99 \textcolor{comment}{   *}}
+\DoxyCodeLine{100 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{101 \textcolor{comment}{   *   The number of tables checked in this module.  Use it as a parameter}}
+\DoxyCodeLine{102 \textcolor{comment}{   *   for the `table-\/length' argument of function @FT\_TrueTypeGX\_Validate.}}
+\DoxyCodeLine{103 \textcolor{comment}{   */}}
+\DoxyCodeLine{104 \textcolor{preprocessor}{\#define FT\_VALIDATE\_GX\_LENGTH     (FT\_VALIDATE\_GX\_LAST\_INDEX + 1)}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106   \textcolor{comment}{/* */}}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108   \textcolor{comment}{/* Up to 0x1000 is used by otvalid.}}
+\DoxyCodeLine{109 \textcolor{comment}{     Ox2xxx is reserved for feature OT extension. */}}
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#define FT\_VALIDATE\_GX\_START 0x4000}}
+\DoxyCodeLine{111 \textcolor{preprocessor}{\#define FT\_VALIDATE\_GX\_BITFIELD( tag )                  \(\backslash\)}}
+\DoxyCodeLine{112 \textcolor{preprocessor}{  ( FT\_VALIDATE\_GX\_START << FT\_VALIDATE\_\#\#tag\#\#\_INDEX )}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115 \textcolor{comment}{ /**********************************************************************}}
+\DoxyCodeLine{116 \textcolor{comment}{  *}}
+\DoxyCodeLine{117 \textcolor{comment}{  * @enum:}}
+\DoxyCodeLine{118 \textcolor{comment}{  *    FT\_VALIDATE\_GXXXX}}
+\DoxyCodeLine{119 \textcolor{comment}{  *}}
+\DoxyCodeLine{120 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{121 \textcolor{comment}{  *    A list of bit-\/field constants used with @FT\_TrueTypeGX\_Validate to}}
+\DoxyCodeLine{122 \textcolor{comment}{  *    indicate which TrueTypeGX/AAT Type tables should be validated.}}
+\DoxyCodeLine{123 \textcolor{comment}{  *}}
+\DoxyCodeLine{124 \textcolor{comment}{  * @values:}}
+\DoxyCodeLine{125 \textcolor{comment}{  *    FT\_VALIDATE\_feat ::}}
+\DoxyCodeLine{126 \textcolor{comment}{  *      Validate `feat' table.}}
+\DoxyCodeLine{127 \textcolor{comment}{  *}}
+\DoxyCodeLine{128 \textcolor{comment}{  *    FT\_VALIDATE\_mort ::}}
+\DoxyCodeLine{129 \textcolor{comment}{  *      Validate `mort' table.}}
+\DoxyCodeLine{130 \textcolor{comment}{  *}}
+\DoxyCodeLine{131 \textcolor{comment}{  *    FT\_VALIDATE\_morx ::}}
+\DoxyCodeLine{132 \textcolor{comment}{  *      Validate `morx' table.}}
+\DoxyCodeLine{133 \textcolor{comment}{  *}}
+\DoxyCodeLine{134 \textcolor{comment}{  *    FT\_VALIDATE\_bsln ::}}
+\DoxyCodeLine{135 \textcolor{comment}{  *      Validate `bsln' table.}}
+\DoxyCodeLine{136 \textcolor{comment}{  *}}
+\DoxyCodeLine{137 \textcolor{comment}{  *    FT\_VALIDATE\_just ::}}
+\DoxyCodeLine{138 \textcolor{comment}{  *      Validate `just' table.}}
+\DoxyCodeLine{139 \textcolor{comment}{  *}}
+\DoxyCodeLine{140 \textcolor{comment}{  *    FT\_VALIDATE\_kern ::}}
+\DoxyCodeLine{141 \textcolor{comment}{  *      Validate `kern' table.}}
+\DoxyCodeLine{142 \textcolor{comment}{  *}}
+\DoxyCodeLine{143 \textcolor{comment}{  *    FT\_VALIDATE\_opbd ::}}
+\DoxyCodeLine{144 \textcolor{comment}{  *      Validate `opbd' table.}}
+\DoxyCodeLine{145 \textcolor{comment}{  *}}
+\DoxyCodeLine{146 \textcolor{comment}{  *    FT\_VALIDATE\_trak ::}}
+\DoxyCodeLine{147 \textcolor{comment}{  *      Validate `trak' table.}}
+\DoxyCodeLine{148 \textcolor{comment}{  *}}
+\DoxyCodeLine{149 \textcolor{comment}{  *    FT\_VALIDATE\_prop ::}}
+\DoxyCodeLine{150 \textcolor{comment}{  *      Validate `prop' table.}}
+\DoxyCodeLine{151 \textcolor{comment}{  *}}
+\DoxyCodeLine{152 \textcolor{comment}{  *    FT\_VALIDATE\_lcar ::}}
+\DoxyCodeLine{153 \textcolor{comment}{  *      Validate `lcar' table.}}
+\DoxyCodeLine{154 \textcolor{comment}{  *}}
+\DoxyCodeLine{155 \textcolor{comment}{  *    FT\_VALIDATE\_GX ::}}
+\DoxyCodeLine{156 \textcolor{comment}{  *      Validate all TrueTypeGX tables (feat, mort, morx, bsln, just, kern,}}
+\DoxyCodeLine{157 \textcolor{comment}{  *      opbd, trak, prop and lcar).}}
+\DoxyCodeLine{158 \textcolor{comment}{  *}}
+\DoxyCodeLine{159 \textcolor{comment}{  */}}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161 \textcolor{preprocessor}{\#define FT\_VALIDATE\_feat  FT\_VALIDATE\_GX\_BITFIELD( feat )}}
+\DoxyCodeLine{162 \textcolor{preprocessor}{\#define FT\_VALIDATE\_mort  FT\_VALIDATE\_GX\_BITFIELD( mort )}}
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#define FT\_VALIDATE\_morx  FT\_VALIDATE\_GX\_BITFIELD( morx )}}
+\DoxyCodeLine{164 \textcolor{preprocessor}{\#define FT\_VALIDATE\_bsln  FT\_VALIDATE\_GX\_BITFIELD( bsln )}}
+\DoxyCodeLine{165 \textcolor{preprocessor}{\#define FT\_VALIDATE\_just  FT\_VALIDATE\_GX\_BITFIELD( just )}}
+\DoxyCodeLine{166 \textcolor{preprocessor}{\#define FT\_VALIDATE\_kern  FT\_VALIDATE\_GX\_BITFIELD( kern )}}
+\DoxyCodeLine{167 \textcolor{preprocessor}{\#define FT\_VALIDATE\_opbd  FT\_VALIDATE\_GX\_BITFIELD( opbd )}}
+\DoxyCodeLine{168 \textcolor{preprocessor}{\#define FT\_VALIDATE\_trak  FT\_VALIDATE\_GX\_BITFIELD( trak )}}
+\DoxyCodeLine{169 \textcolor{preprocessor}{\#define FT\_VALIDATE\_prop  FT\_VALIDATE\_GX\_BITFIELD( prop )}}
+\DoxyCodeLine{170 \textcolor{preprocessor}{\#define FT\_VALIDATE\_lcar  FT\_VALIDATE\_GX\_BITFIELD( lcar )}}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172 \textcolor{preprocessor}{\#define FT\_VALIDATE\_GX  ( FT\_VALIDATE\_feat | \(\backslash\)}}
+\DoxyCodeLine{173 \textcolor{preprocessor}{                          FT\_VALIDATE\_mort | \(\backslash\)}}
+\DoxyCodeLine{174 \textcolor{preprocessor}{                          FT\_VALIDATE\_morx | \(\backslash\)}}
+\DoxyCodeLine{175 \textcolor{preprocessor}{                          FT\_VALIDATE\_bsln | \(\backslash\)}}
+\DoxyCodeLine{176 \textcolor{preprocessor}{                          FT\_VALIDATE\_just | \(\backslash\)}}
+\DoxyCodeLine{177 \textcolor{preprocessor}{                          FT\_VALIDATE\_kern | \(\backslash\)}}
+\DoxyCodeLine{178 \textcolor{preprocessor}{                          FT\_VALIDATE\_opbd | \(\backslash\)}}
+\DoxyCodeLine{179 \textcolor{preprocessor}{                          FT\_VALIDATE\_trak | \(\backslash\)}}
+\DoxyCodeLine{180 \textcolor{preprocessor}{                          FT\_VALIDATE\_prop | \(\backslash\)}}
+\DoxyCodeLine{181 \textcolor{preprocessor}{                          FT\_VALIDATE\_lcar )}}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184 \textcolor{comment}{ /**********************************************************************}}
+\DoxyCodeLine{185 \textcolor{comment}{  *}}
+\DoxyCodeLine{186 \textcolor{comment}{  * @function:}}
+\DoxyCodeLine{187 \textcolor{comment}{  *    FT\_TrueTypeGX\_Validate}}
+\DoxyCodeLine{188 \textcolor{comment}{  *}}
+\DoxyCodeLine{189 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{190 \textcolor{comment}{  *    Validate various TrueTypeGX tables to assure that all offsets and}}
+\DoxyCodeLine{191 \textcolor{comment}{  *    indices are valid.  The idea is that a higher-\/level library that}}
+\DoxyCodeLine{192 \textcolor{comment}{  *    actually does the text layout can access those tables without}}
+\DoxyCodeLine{193 \textcolor{comment}{  *    error checking (which can be quite time consuming).}}
+\DoxyCodeLine{194 \textcolor{comment}{  *}}
+\DoxyCodeLine{195 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{196 \textcolor{comment}{  *    face ::}}
+\DoxyCodeLine{197 \textcolor{comment}{  *       A handle to the input face.}}
+\DoxyCodeLine{198 \textcolor{comment}{  *}}
+\DoxyCodeLine{199 \textcolor{comment}{  *    validation\_flags ::}}
+\DoxyCodeLine{200 \textcolor{comment}{  *       A bit field that specifies the tables to be validated.  See}}
+\DoxyCodeLine{201 \textcolor{comment}{  *       @FT\_VALIDATE\_GXXXX for possible values.}}
+\DoxyCodeLine{202 \textcolor{comment}{  *}}
+\DoxyCodeLine{203 \textcolor{comment}{  *    table\_length ::}}
+\DoxyCodeLine{204 \textcolor{comment}{  *       The size of the `tables' array.  Normally, @FT\_VALIDATE\_GX\_LENGTH}}
+\DoxyCodeLine{205 \textcolor{comment}{  *       should be passed.}}
+\DoxyCodeLine{206 \textcolor{comment}{  *}}
+\DoxyCodeLine{207 \textcolor{comment}{  * @output:}}
+\DoxyCodeLine{208 \textcolor{comment}{  *    tables ::}}
+\DoxyCodeLine{209 \textcolor{comment}{  *       The array where all validated sfnt tables are stored.}}
+\DoxyCodeLine{210 \textcolor{comment}{  *       The array itself must be allocated by a client.}}
+\DoxyCodeLine{211 \textcolor{comment}{  *}}
+\DoxyCodeLine{212 \textcolor{comment}{  * @return:}}
+\DoxyCodeLine{213 \textcolor{comment}{  *   FreeType error code.  0\string~means success.}}
+\DoxyCodeLine{214 \textcolor{comment}{  *}}
+\DoxyCodeLine{215 \textcolor{comment}{  * @note:}}
+\DoxyCodeLine{216 \textcolor{comment}{  *   This function only works with TrueTypeGX fonts, returning an error}}
+\DoxyCodeLine{217 \textcolor{comment}{  *   otherwise.}}
+\DoxyCodeLine{218 \textcolor{comment}{  *}}
+\DoxyCodeLine{219 \textcolor{comment}{  *   After use, the application should deallocate the buffers pointed to by}}
+\DoxyCodeLine{220 \textcolor{comment}{  *   each `tables' element, by calling @FT\_TrueTypeGX\_Free.  A NULL value}}
+\DoxyCodeLine{221 \textcolor{comment}{  *   indicates that the table either doesn't exist in the font, the}}
+\DoxyCodeLine{222 \textcolor{comment}{  *   application hasn't asked for validation, or the validator doesn't have}}
+\DoxyCodeLine{223 \textcolor{comment}{  *   the ability to validate the sfnt table.}}
+\DoxyCodeLine{224 \textcolor{comment}{  */}}
+\DoxyCodeLine{225   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{226   FT\_TrueTypeGX\_Validate( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}   face,}
+\DoxyCodeLine{227                           FT\_UInt   validation\_flags,}
+\DoxyCodeLine{228                           FT\_Bytes  tables[FT\_VALIDATE\_GX\_LENGTH],}
+\DoxyCodeLine{229                           FT\_UInt   table\_length );}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231 }
+\DoxyCodeLine{232 \textcolor{comment}{ /**********************************************************************}}
+\DoxyCodeLine{233 \textcolor{comment}{  *}}
+\DoxyCodeLine{234 \textcolor{comment}{  * @function:}}
+\DoxyCodeLine{235 \textcolor{comment}{  *    FT\_TrueTypeGX\_Free}}
+\DoxyCodeLine{236 \textcolor{comment}{  *}}
+\DoxyCodeLine{237 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{238 \textcolor{comment}{  *    Free the buffer allocated by TrueTypeGX validator.}}
+\DoxyCodeLine{239 \textcolor{comment}{  *}}
+\DoxyCodeLine{240 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{241 \textcolor{comment}{  *    face ::}}
+\DoxyCodeLine{242 \textcolor{comment}{  *       A handle to the input face.}}
+\DoxyCodeLine{243 \textcolor{comment}{  *}}
+\DoxyCodeLine{244 \textcolor{comment}{  *    table ::}}
+\DoxyCodeLine{245 \textcolor{comment}{  *       The pointer to the buffer allocated by}}
+\DoxyCodeLine{246 \textcolor{comment}{  *       @FT\_TrueTypeGX\_Validate.}}
+\DoxyCodeLine{247 \textcolor{comment}{  *}}
+\DoxyCodeLine{248 \textcolor{comment}{  * @note:}}
+\DoxyCodeLine{249 \textcolor{comment}{  *   This function must be used to free the buffer allocated by}}
+\DoxyCodeLine{250 \textcolor{comment}{  *   @FT\_TrueTypeGX\_Validate only.}}
+\DoxyCodeLine{251 \textcolor{comment}{  */}}
+\DoxyCodeLine{252   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{253   FT\_TrueTypeGX\_Free( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}   face,}
+\DoxyCodeLine{254                       FT\_Bytes  table );}
+\DoxyCodeLine{255 }
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257 \textcolor{comment}{ /**********************************************************************}}
+\DoxyCodeLine{258 \textcolor{comment}{  *}}
+\DoxyCodeLine{259 \textcolor{comment}{  * @enum:}}
+\DoxyCodeLine{260 \textcolor{comment}{  *    FT\_VALIDATE\_CKERNXXX}}
+\DoxyCodeLine{261 \textcolor{comment}{  *}}
+\DoxyCodeLine{262 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{263 \textcolor{comment}{  *    A list of bit-\/field constants used with @FT\_ClassicKern\_Validate}}
+\DoxyCodeLine{264 \textcolor{comment}{  *    to indicate the classic kern dialect or dialects.  If the selected}}
+\DoxyCodeLine{265 \textcolor{comment}{  *    type doesn't fit, @FT\_ClassicKern\_Validate regards the table as}}
+\DoxyCodeLine{266 \textcolor{comment}{  *    invalid.}}
+\DoxyCodeLine{267 \textcolor{comment}{  *}}
+\DoxyCodeLine{268 \textcolor{comment}{  * @values:}}
+\DoxyCodeLine{269 \textcolor{comment}{  *    FT\_VALIDATE\_MS ::}}
+\DoxyCodeLine{270 \textcolor{comment}{  *      Handle the `kern' table as a classic Microsoft kern table.}}
+\DoxyCodeLine{271 \textcolor{comment}{  *}}
+\DoxyCodeLine{272 \textcolor{comment}{  *    FT\_VALIDATE\_APPLE ::}}
+\DoxyCodeLine{273 \textcolor{comment}{  *      Handle the `kern' table as a classic Apple kern table.}}
+\DoxyCodeLine{274 \textcolor{comment}{  *}}
+\DoxyCodeLine{275 \textcolor{comment}{  *    FT\_VALIDATE\_CKERN ::}}
+\DoxyCodeLine{276 \textcolor{comment}{  *      Handle the `kern' as either classic Apple or Microsoft kern table.}}
+\DoxyCodeLine{277 \textcolor{comment}{  */}}
+\DoxyCodeLine{278 \textcolor{preprocessor}{\#define FT\_VALIDATE\_MS     ( FT\_VALIDATE\_GX\_START << 0 )}}
+\DoxyCodeLine{279 \textcolor{preprocessor}{\#define FT\_VALIDATE\_APPLE  ( FT\_VALIDATE\_GX\_START << 1 )}}
+\DoxyCodeLine{280 }
+\DoxyCodeLine{281 \textcolor{preprocessor}{\#define FT\_VALIDATE\_CKERN  ( FT\_VALIDATE\_MS | FT\_VALIDATE\_APPLE )}}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283 }
+\DoxyCodeLine{284 \textcolor{comment}{ /**********************************************************************}}
+\DoxyCodeLine{285 \textcolor{comment}{  *}}
+\DoxyCodeLine{286 \textcolor{comment}{  * @function:}}
+\DoxyCodeLine{287 \textcolor{comment}{  *    FT\_ClassicKern\_Validate}}
+\DoxyCodeLine{288 \textcolor{comment}{  *}}
+\DoxyCodeLine{289 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{290 \textcolor{comment}{  *    Validate classic (16-\/bit format) kern table to assure that the offsets}}
+\DoxyCodeLine{291 \textcolor{comment}{  *    and indices are valid.  The idea is that a higher-\/level library that}}
+\DoxyCodeLine{292 \textcolor{comment}{  *    actually does the text layout can access those tables without error}}
+\DoxyCodeLine{293 \textcolor{comment}{  *    checking (which can be quite time consuming).}}
+\DoxyCodeLine{294 \textcolor{comment}{  *}}
+\DoxyCodeLine{295 \textcolor{comment}{  *    The `kern' table validator in @FT\_TrueTypeGX\_Validate deals with both}}
+\DoxyCodeLine{296 \textcolor{comment}{  *    the new 32-\/bit format and the classic 16-\/bit format, while}}
+\DoxyCodeLine{297 \textcolor{comment}{  *    FT\_ClassicKern\_Validate only supports the classic 16-\/bit format.}}
+\DoxyCodeLine{298 \textcolor{comment}{  *}}
+\DoxyCodeLine{299 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{300 \textcolor{comment}{  *    face ::}}
+\DoxyCodeLine{301 \textcolor{comment}{  *       A handle to the input face.}}
+\DoxyCodeLine{302 \textcolor{comment}{  *}}
+\DoxyCodeLine{303 \textcolor{comment}{  *    validation\_flags ::}}
+\DoxyCodeLine{304 \textcolor{comment}{  *       A bit field that specifies the dialect to be validated.  See}}
+\DoxyCodeLine{305 \textcolor{comment}{  *       @FT\_VALIDATE\_CKERNXXX for possible values.}}
+\DoxyCodeLine{306 \textcolor{comment}{  *}}
+\DoxyCodeLine{307 \textcolor{comment}{  * @output:}}
+\DoxyCodeLine{308 \textcolor{comment}{  *    ckern\_table ::}}
+\DoxyCodeLine{309 \textcolor{comment}{  *       A pointer to the kern table.}}
+\DoxyCodeLine{310 \textcolor{comment}{  *}}
+\DoxyCodeLine{311 \textcolor{comment}{  * @return:}}
+\DoxyCodeLine{312 \textcolor{comment}{  *   FreeType error code.  0\string~means success.}}
+\DoxyCodeLine{313 \textcolor{comment}{  *}}
+\DoxyCodeLine{314 \textcolor{comment}{  * @note:}}
+\DoxyCodeLine{315 \textcolor{comment}{  *   After use, the application should deallocate the buffers pointed to by}}
+\DoxyCodeLine{316 \textcolor{comment}{  *   `ckern\_table', by calling @FT\_ClassicKern\_Free.  A NULL value}}
+\DoxyCodeLine{317 \textcolor{comment}{  *   indicates that the table doesn't exist in the font.}}
+\DoxyCodeLine{318 \textcolor{comment}{  */}}
+\DoxyCodeLine{319   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{320   FT\_ClassicKern\_Validate( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}    face,}
+\DoxyCodeLine{321                            FT\_UInt    validation\_flags,}
+\DoxyCodeLine{322                            FT\_Bytes  *ckern\_table );}
+\DoxyCodeLine{323 }
+\DoxyCodeLine{324 }
+\DoxyCodeLine{325 \textcolor{comment}{ /**********************************************************************}}
+\DoxyCodeLine{326 \textcolor{comment}{  *}}
+\DoxyCodeLine{327 \textcolor{comment}{  * @function:}}
+\DoxyCodeLine{328 \textcolor{comment}{  *    FT\_ClassicKern\_Free}}
+\DoxyCodeLine{329 \textcolor{comment}{  *}}
+\DoxyCodeLine{330 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{331 \textcolor{comment}{  *    Free the buffer allocated by classic Kern validator.}}
+\DoxyCodeLine{332 \textcolor{comment}{  *}}
+\DoxyCodeLine{333 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{334 \textcolor{comment}{  *    face ::}}
+\DoxyCodeLine{335 \textcolor{comment}{  *       A handle to the input face.}}
+\DoxyCodeLine{336 \textcolor{comment}{  *}}
+\DoxyCodeLine{337 \textcolor{comment}{  *    table ::}}
+\DoxyCodeLine{338 \textcolor{comment}{  *       The pointer to the buffer that is allocated by}}
+\DoxyCodeLine{339 \textcolor{comment}{  *       @FT\_ClassicKern\_Validate.}}
+\DoxyCodeLine{340 \textcolor{comment}{  *}}
+\DoxyCodeLine{341 \textcolor{comment}{  * @note:}}
+\DoxyCodeLine{342 \textcolor{comment}{  *   This function must be used to free the buffer allocated by}}
+\DoxyCodeLine{343 \textcolor{comment}{  *   @FT\_ClassicKern\_Validate only.}}
+\DoxyCodeLine{344 \textcolor{comment}{  */}}
+\DoxyCodeLine{345   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{346   FT\_ClassicKern\_Free( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}   face,}
+\DoxyCodeLine{347                        FT\_Bytes  table );}
+\DoxyCodeLine{348 }
+\DoxyCodeLine{349   \textcolor{comment}{/* */}}
+\DoxyCodeLine{350 }
+\DoxyCodeLine{351 }
+\DoxyCodeLine{352 FT\_END\_HEADER}
+\DoxyCodeLine{353 }
+\DoxyCodeLine{354 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTGXVAL\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{355 }
+\DoxyCodeLine{356 }
+\DoxyCodeLine{357 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

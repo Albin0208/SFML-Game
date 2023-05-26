@@ -1,0 +1,50 @@
+\hypertarget{Game__Over__State_8h_source}{}\doxysection{Game\+\_\+\+Over\+\_\+\+State.\+h}
+\label{Game__Over__State_8h_source}\index{states/Game\_Over\_State.h@{states/Game\_Over\_State.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by albin on 2022-\/12-\/05.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef TDP005\_GAME\_OVER\_STATE\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define TDP005\_GAME\_OVER\_STATE\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}State.h"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}../Game.h"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}Menu\_State.h"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{classGame__Over__State}{Game\_Over\_State}} : \textcolor{keyword}{public} \mbox{\hyperlink{classState}{State}} \{}
+\DoxyCodeLine{14 \textcolor{keyword}{public}:}
+\DoxyCodeLine{15     \textcolor{keyword}{explicit} \mbox{\hyperlink{classGame__Over__State}{Game\_Over\_State}}(\mbox{\hyperlink{classGame}{Game}} \textcolor{keyword}{const}\& game);}
+\DoxyCodeLine{16     \mbox{\hyperlink{classGame__Over__State}{\string~Game\_Over\_State}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{23     \textcolor{keywordtype}{void} \mbox{\hyperlink{classGame__Over__State_a7f06953837a9b7a90aa4ab48bafca5d9}{on\_key\_press}}(\mbox{\hyperlink{classsf_1_1Keyboard_acb4cacd7cc5802dec45724cf3314a142}{sf::Keyboard::Key}} key) \textcolor{keyword}{override};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{31     std::shared\_ptr<State> \mbox{\hyperlink{classGame__Over__State_a4aa17a916890f79ae599f44e9b400a3d}{update}}(\mbox{\hyperlink{classsf_1_1Time}{sf::Time}} \textcolor{keyword}{const}\& time, \mbox{\hyperlink{classsf_1_1RenderWindow}{sf::RenderWindow}}\&) \textcolor{keyword}{override};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{38     \textcolor{keywordtype}{void} \mbox{\hyperlink{classGame__Over__State_a7434f58b30949b6a4f08dedd8a40b5f6}{render}}(\mbox{\hyperlink{classsf_1_1RenderWindow}{sf::RenderWindow}} \&target) \textcolor{keyword}{override};}
+\DoxyCodeLine{39 \textcolor{keyword}{private}:}
+\DoxyCodeLine{40     \mbox{\hyperlink{classsf_1_1Font}{sf::Font}} font; \textcolor{comment}{// The menu text font;}}
+\DoxyCodeLine{41     \textcolor{keywordtype}{bool} enter\_pressed; \textcolor{comment}{// Is enter pressed aka a menu option has been chosen}}
+\DoxyCodeLine{42     \mbox{\hyperlink{classsf_1_1RectangleShape}{sf::RectangleShape}} background;}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \textcolor{comment}{// The number for the selected menu options}}
+\DoxyCodeLine{45     \textcolor{keywordtype}{int} selected;}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     \textcolor{keyword}{struct }\mbox{\hyperlink{structGame__Over__State_1_1Option}{Option}} \{}
+\DoxyCodeLine{48         \mbox{\hyperlink{classsf_1_1Text}{sf::Text}} text;}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50         \textcolor{keywordtype}{bool} not\_selected;}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52         std::function<std::shared\_ptr<State>()> action;}
+\DoxyCodeLine{53     \};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     std::vector<Option> options;}
+\DoxyCodeLine{56     \mbox{\hyperlink{classGame}{Game}} game;}
+\DoxyCodeLine{57 \};}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//TDP005\_GAME\_OVER\_STATE\_H}}
+
+\end{DoxyCode}

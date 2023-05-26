@@ -1,0 +1,105 @@
+\hypertarget{Activity_8hpp_source}{}\doxysection{Activity.\+hpp}
+\label{Activity_8hpp_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/src/SFML/System/Android/Activity.hpp@{cmake-\/build-\/debug/\_deps/sfml-\/src/src/SFML/System/Android/Activity.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{// SFML -\/ Simple and Fast Multimedia Library}}
+\DoxyCodeLine{4 \textcolor{comment}{// Copyright (C) 2013 Jonathan De Wachter (dewachter.jonathan@gmail.com)}}
+\DoxyCodeLine{5 \textcolor{comment}{//}}
+\DoxyCodeLine{6 \textcolor{comment}{// This software is provided 'as-\/is', without any express or implied warranty.}}
+\DoxyCodeLine{7 \textcolor{comment}{// In no event will the authors be held liable for any damages arising from the use of this software.}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{// Permission is granted to anyone to use this software for any purpose,}}
+\DoxyCodeLine{10 \textcolor{comment}{// including commercial applications, and to alter it and redistribute it freely,}}
+\DoxyCodeLine{11 \textcolor{comment}{// subject to the following restrictions:}}
+\DoxyCodeLine{12 \textcolor{comment}{//}}
+\DoxyCodeLine{13 \textcolor{comment}{// 1. The origin of this software must not be misrepresented;}}
+\DoxyCodeLine{14 \textcolor{comment}{//    you must not claim that you wrote the original software.}}
+\DoxyCodeLine{15 \textcolor{comment}{//    If you use this software in a product, an acknowledgment}}
+\DoxyCodeLine{16 \textcolor{comment}{//    in the product documentation would be appreciated but is not required.}}
+\DoxyCodeLine{17 \textcolor{comment}{//}}
+\DoxyCodeLine{18 \textcolor{comment}{// 2. Altered source versions must be plainly marked as such,}}
+\DoxyCodeLine{19 \textcolor{comment}{//    and must not be misrepresented as being the original software.}}
+\DoxyCodeLine{20 \textcolor{comment}{//}}
+\DoxyCodeLine{21 \textcolor{comment}{// 3. This notice may not be removed or altered from any source distribution.}}
+\DoxyCodeLine{22 \textcolor{comment}{//}}
+\DoxyCodeLine{24 \textcolor{comment}{}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifndef SFML\_ACTIVITY\_HPP}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define SFML\_ACTIVITY\_HPP}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{29 \textcolor{comment}{// Headers}}
+\DoxyCodeLine{31 \textcolor{comment}{}\textcolor{preprocessor}{\#include <SFML/Window/Event.hpp>}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <SFML/Window/EglContext.hpp>}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include <SFML/System/Mutex.hpp>}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <android/native\_activity.h>}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include <android/configuration.h>}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{keyword}{class }SFML\_SYSTEM\_API \mbox{\hyperlink{classLogcatStream}{LogcatStream}} : \textcolor{keyword}{public} std::streambuf}
+\DoxyCodeLine{42 \{}
+\DoxyCodeLine{43 \textcolor{keyword}{public}:}
+\DoxyCodeLine{44     \mbox{\hyperlink{classLogcatStream}{LogcatStream}}();}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     std::streambuf::int\_type overflow (std::streambuf::int\_type c);}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{keyword}{private}:}
+\DoxyCodeLine{49     std::string m\_message;}
+\DoxyCodeLine{50 \};}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacesf}{sf}}}
+\DoxyCodeLine{53 \{}
+\DoxyCodeLine{54 \textcolor{keyword}{namespace }priv}
+\DoxyCodeLine{55 \{}
+\DoxyCodeLine{56 \textcolor{keyword}{struct }\mbox{\hyperlink{structsf_1_1priv_1_1ActivityStates}{ActivityStates}}}
+\DoxyCodeLine{57 \{}
+\DoxyCodeLine{58     ANativeActivity* activity;}
+\DoxyCodeLine{59     ANativeWindow* window;}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61     ALooper*        looper;}
+\DoxyCodeLine{62     AInputQueue*    inputQueue;}
+\DoxyCodeLine{63     AConfiguration* config;}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65     EGLDisplay display;}
+\DoxyCodeLine{66     \mbox{\hyperlink{classsf_1_1priv_1_1EglContext}{EglContext}}* context;}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68     \textcolor{keywordtype}{void}* savedState;}
+\DoxyCodeLine{69     \textcolor{keywordtype}{size\_t} savedStateSize;}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71     \mbox{\hyperlink{classsf_1_1Mutex}{Mutex}} mutex;}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73     void (*forwardEvent)(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Event}{Event}}\& event);}
+\DoxyCodeLine{74     int (*processEvent)(\textcolor{keywordtype}{int} fd, \textcolor{keywordtype}{int} events, \textcolor{keywordtype}{void}* data);}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     std::map<int, Vector2i> touchEvents;}
+\DoxyCodeLine{77     \mbox{\hyperlink{classsf_1_1Vector2}{Vector2i}} mousePosition;}
+\DoxyCodeLine{78     \textcolor{keywordtype}{bool} isButtonPressed[\mbox{\hyperlink{classsf_1_1Mouse_a4fb128be433f9aafe66bc0c605daaa90a52a1d434289774240ddaa22496762402}{Mouse::ButtonCount}}];}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80     \textcolor{keywordtype}{bool} mainOver;}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82     \mbox{\hyperlink{classsf_1_1Vector2}{Vector2i}} screenSize;}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84     \textcolor{keywordtype}{bool} initialized;}
+\DoxyCodeLine{85     \textcolor{keywordtype}{bool} terminated;}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87     \textcolor{keywordtype}{bool} fullscreen;}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89     \textcolor{keywordtype}{bool} updated;}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91     \mbox{\hyperlink{classLogcatStream}{LogcatStream}} logcat;}
+\DoxyCodeLine{92 \};}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 SFML\_SYSTEM\_API \mbox{\hyperlink{structsf_1_1priv_1_1ActivityStates}{ActivityStates}}*\& getActivityStatesPtr();}
+\DoxyCodeLine{95 SFML\_SYSTEM\_API \textcolor{keywordtype}{void} resetActivity(\mbox{\hyperlink{structsf_1_1priv_1_1ActivityStates}{ActivityStates}}* initializedStates);}
+\DoxyCodeLine{96 SFML\_SYSTEM\_API \mbox{\hyperlink{structsf_1_1priv_1_1ActivityStates}{ActivityStates}}\& getActivity();}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 \} \textcolor{comment}{// namespace priv}}
+\DoxyCodeLine{99 \} \textcolor{comment}{// namespace sf}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SFML\_ACTIVITY\_HPP}}
+
+\end{DoxyCode}

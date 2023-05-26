@@ -1,0 +1,93 @@
+\hypertarget{classAnimation__Manager_1_1Animation}{}\doxysection{Animation\+\_\+\+Manager\+::Animation Class Reference}
+\label{classAnimation__Manager_1_1Animation}\index{Animation\_Manager::Animation@{Animation\_Manager::Animation}}
+
+
+Collaboration diagram for Animation\+\_\+\+Manager\+::Animation\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d0/d04/classAnimation__Manager_1_1Animation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAnimation__Manager_1_1Animation_af33919d8a91426f59828442bbf1aa672}{Animation}} (\mbox{\hyperlink{classsf_1_1Texture}{sf\+::\+Texture}} $\ast$texture, int image\+\_\+count, float total\+\_\+time)
+\item 
+bool const \& \mbox{\hyperlink{classAnimation__Manager_1_1Animation_a22d179ce4f1e693f71549cf8375d9150}{update}} (\mbox{\hyperlink{classsf_1_1Sprite}{sf\+::\+Sprite}} \&sprite)
+\item 
+void \mbox{\hyperlink{classAnimation__Manager_1_1Animation_a6098218e84f080de4ab572cb87533da0}{reset}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classAnimation__Manager_1_1Animation_a5fb243c497db46e34e6c85c000b6ec95}\label{classAnimation__Manager_1_1Animation_a5fb243c497db46e34e6c85c000b6ec95}} 
+\mbox{\hyperlink{classsf_1_1Texture}{sf\+::\+Texture}} $\ast$ {\bfseries texture}
+\item 
+\mbox{\Hypertarget{classAnimation__Manager_1_1Animation_a9ae48caf933ab146bec773b45fe962b7}\label{classAnimation__Manager_1_1Animation_a9ae48caf933ab146bec773b45fe962b7}} 
+std\+::vector$<$ \mbox{\hyperlink{classsf_1_1Rect}{sf\+::\+Int\+Rect}} $>$ {\bfseries frames}
+\item 
+\mbox{\Hypertarget{classAnimation__Manager_1_1Animation_a8cdc7a93306d333437f559f7829d9f87}\label{classAnimation__Manager_1_1Animation_a8cdc7a93306d333437f559f7829d9f87}} 
+int {\bfseries current\+\_\+frame}
+\item 
+\mbox{\Hypertarget{classAnimation__Manager_1_1Animation_a4bb7d084f45bc59184942bd3ef9ed96f}\label{classAnimation__Manager_1_1Animation_a4bb7d084f45bc59184942bd3ef9ed96f}} 
+float {\bfseries current\+\_\+time}
+\item 
+\mbox{\Hypertarget{classAnimation__Manager_1_1Animation_a2f190f4e9770d04786c8a4f4eb1e54d2}\label{classAnimation__Manager_1_1Animation_a2f190f4e9770d04786c8a4f4eb1e54d2}} 
+bool {\bfseries done}
+\item 
+\mbox{\Hypertarget{classAnimation__Manager_1_1Animation_a544ffb7ff66de92d6f99a0712136596c}\label{classAnimation__Manager_1_1Animation_a544ffb7ff66de92d6f99a0712136596c}} 
+\mbox{\hyperlink{classsf_1_1Clock}{sf\+::\+Clock}} {\bfseries clock}
+\item 
+\mbox{\Hypertarget{classAnimation__Manager_1_1Animation_aa390e543f6caafcc0e5f15a983330780}\label{classAnimation__Manager_1_1Animation_aa390e543f6caafcc0e5f15a983330780}} 
+float {\bfseries TOTAL\+\_\+\+TIME}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles an animation 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classAnimation__Manager_1_1Animation_af33919d8a91426f59828442bbf1aa672}\label{classAnimation__Manager_1_1Animation_af33919d8a91426f59828442bbf1aa672}} 
+\index{Animation\_Manager::Animation@{Animation\_Manager::Animation}!Animation@{Animation}}
+\index{Animation@{Animation}!Animation\_Manager::Animation@{Animation\_Manager::Animation}}
+\doxysubsubsection{\texorpdfstring{Animation()}{Animation()}}
+{\footnotesize\ttfamily Animation\+\_\+\+Manager\+::\+Animation\+::\+Animation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsf_1_1Texture}{sf\+::\+Texture}} $\ast$}]{texture,  }\item[{int}]{image\+\_\+count,  }\item[{float}]{total\+\_\+time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create a new animation 
+\begin{DoxyParams}{Parameters}
+{\em texture} & The texture to use \\
+\hline
+{\em image\+\_\+count} & How many images the texture contains \\
+\hline
+{\em total\+\_\+time} & How long the animation should play for \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classAnimation__Manager_1_1Animation_a6098218e84f080de4ab572cb87533da0}\label{classAnimation__Manager_1_1Animation_a6098218e84f080de4ab572cb87533da0}} 
+\index{Animation\_Manager::Animation@{Animation\_Manager::Animation}!reset@{reset}}
+\index{reset@{reset}!Animation\_Manager::Animation@{Animation\_Manager::Animation}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Animation\+\_\+\+Manager\+::\+Animation\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Reset the animation to the beginning \mbox{\Hypertarget{classAnimation__Manager_1_1Animation_a22d179ce4f1e693f71549cf8375d9150}\label{classAnimation__Manager_1_1Animation_a22d179ce4f1e693f71549cf8375d9150}} 
+\index{Animation\_Manager::Animation@{Animation\_Manager::Animation}!update@{update}}
+\index{update@{update}!Animation\_Manager::Animation@{Animation\_Manager::Animation}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily bool const  \& Animation\+\_\+\+Manager\+::\+Animation\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsf_1_1Sprite}{sf\+::\+Sprite}} \&}]{sprite }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Update the animation 
+\begin{DoxyParams}{Parameters}
+{\em sprite} & The sprite to apply it to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns if the animation is done 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+utility/Animation\+\_\+\+Manager.\+h\end{DoxyCompactItemize}

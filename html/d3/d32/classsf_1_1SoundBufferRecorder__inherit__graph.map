@@ -1,0 +1,5 @@
+<map id="sf::SoundBufferRecorder" name="sf::SoundBufferRecorder">
+<area shape="rect" id="node1" title="Specialized SoundRecorder which stores the captured audio data into a sound buffer." alt="" coords="11,623,206,773"/>
+<area shape="rect" id="node2" href="$de/ddc/classsf_1_1SoundRecorder.html" title="Abstract base class for capturing sound data." alt="" coords="5,145,212,575"/>
+<area shape="rect" id="node3" href="$d9/d23/classsf_1_1AlResource.html" title="Base class for classes that require an OpenAL context." alt="" coords="43,5,174,97"/>
+</map>

@@ -1,0 +1,134 @@
+\hypertarget{classMenu__State}{}\doxysection{Menu\+\_\+\+State Class Reference}
+\label{classMenu__State}\index{Menu\_State@{Menu\_State}}
+
+
+Inheritance diagram for Menu\+\_\+\+State\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{dc/d76/classMenu__State__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Menu\+\_\+\+State\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{de/d33/classMenu__State__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structMenu__State_1_1Option}{Option}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMenu__State_a77c9d5c9a0bb771af9de186025286788}{Menu\+\_\+\+State}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classState}{State}} $>$ const \&resume)
+\item 
+void \mbox{\hyperlink{classMenu__State_afb74b81dc3611cf35fdaad633342d5ad}{on\+\_\+key\+\_\+press}} (\mbox{\hyperlink{classsf_1_1Keyboard_acb4cacd7cc5802dec45724cf3314a142}{sf\+::\+Keyboard\+::\+Key}} key) override
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classState}{State}} $>$ \mbox{\hyperlink{classMenu__State_a65de93ea8cac4cd49ffdf8ce43437bf9}{update}} (\mbox{\hyperlink{classsf_1_1Time}{sf\+::\+Time}} const \&time, \mbox{\hyperlink{classsf_1_1RenderWindow}{sf\+::\+Render\+Window}} \&) override
+\item 
+void \mbox{\hyperlink{classMenu__State_a16f1de9859b8e05b96f085cbc74e5eb5}{render}} (\mbox{\hyperlink{classsf_1_1RenderWindow}{sf\+::\+Render\+Window}} \&target) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMenu__State_ac24d84715868e4d4794389ed9422561c}\label{classMenu__State_ac24d84715868e4d4794389ed9422561c}} 
+\mbox{\hyperlink{classsf_1_1Font}{sf\+::\+Font}} {\bfseries font}
+\item 
+\mbox{\Hypertarget{classMenu__State_aee55d47dc3686c8326826f3ae5f7a21f}\label{classMenu__State_aee55d47dc3686c8326826f3ae5f7a21f}} 
+bool {\bfseries enter\+\_\+pressed}
+\item 
+\mbox{\Hypertarget{classMenu__State_a25f6e57fb8bada465d3c02e246ca0519}\label{classMenu__State_a25f6e57fb8bada465d3c02e246ca0519}} 
+\mbox{\hyperlink{classsf_1_1RectangleShape}{sf\+::\+Rectangle\+Shape}} {\bfseries background}
+\item 
+\mbox{\Hypertarget{classMenu__State_ab03229ff5b355bc964d4b3ab0efc9077}\label{classMenu__State_ab03229ff5b355bc964d4b3ab0efc9077}} 
+int {\bfseries selected}
+\item 
+\mbox{\Hypertarget{classMenu__State_a8afb10cc960d94c57260cc36c11f7bdd}\label{classMenu__State_a8afb10cc960d94c57260cc36c11f7bdd}} 
+std\+::vector$<$ \mbox{\hyperlink{structMenu__State_1_1Option}{Option}} $>$ {\bfseries options}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMenu__State_a77c9d5c9a0bb771af9de186025286788}\label{classMenu__State_a77c9d5c9a0bb771af9de186025286788}} 
+\index{Menu\_State@{Menu\_State}!Menu\_State@{Menu\_State}}
+\index{Menu\_State@{Menu\_State}!Menu\_State@{Menu\_State}}
+\doxysubsubsection{\texorpdfstring{Menu\_State()}{Menu\_State()}}
+{\footnotesize\ttfamily Menu\+\_\+\+State\+::\+Menu\+\_\+\+State (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classState}{State}} $>$ const \&}]{resume }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Create a menu
+
+
+\begin{DoxyParams}{Parameters}
+{\em resume} & The state to resume to \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMenu__State_afb74b81dc3611cf35fdaad633342d5ad}\label{classMenu__State_afb74b81dc3611cf35fdaad633342d5ad}} 
+\index{Menu\_State@{Menu\_State}!on\_key\_press@{on\_key\_press}}
+\index{on\_key\_press@{on\_key\_press}!Menu\_State@{Menu\_State}}
+\doxysubsubsection{\texorpdfstring{on\_key\_press()}{on\_key\_press()}}
+{\footnotesize\ttfamily void Menu\+\_\+\+State\+::on\+\_\+key\+\_\+press (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsf_1_1Keyboard_acb4cacd7cc5802dec45724cf3314a142}{sf\+::\+Keyboard\+::\+Key}}}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Handle a keypress
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key pressed \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classState_aca14caa60edacd925d093d1b070aa966}{State}}.
+
+\mbox{\Hypertarget{classMenu__State_a16f1de9859b8e05b96f085cbc74e5eb5}\label{classMenu__State_a16f1de9859b8e05b96f085cbc74e5eb5}} 
+\index{Menu\_State@{Menu\_State}!render@{render}}
+\index{render@{render}!Menu\_State@{Menu\_State}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Menu\+\_\+\+State\+::render (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsf_1_1RenderWindow}{sf\+::\+Render\+Window}} \&}]{target }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Render the menu
+
+
+\begin{DoxyParams}{Parameters}
+{\em target} & The target of the render \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classState_a1e490fff2e160d9dcb1931e5dddd257d}{State}}.
+
+\mbox{\Hypertarget{classMenu__State_a65de93ea8cac4cd49ffdf8ce43437bf9}\label{classMenu__State_a65de93ea8cac4cd49ffdf8ce43437bf9}} 
+\index{Menu\_State@{Menu\_State}!update@{update}}
+\index{update@{update}!Menu\_State@{Menu\_State}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classState}{State}} $>$ Menu\+\_\+\+State\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsf_1_1Time}{sf\+::\+Time}} const \&}]{time,  }\item[{\mbox{\hyperlink{classsf_1_1RenderWindow}{sf\+::\+Render\+Window}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Update the menu
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & Time since last update \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to a state 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classState_a84c08cf631bde9572b59e7efd58cdd6d}{State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+states/Menu\+\_\+\+State.\+h\item 
+states/Menu\+\_\+\+State.\+cpp\end{DoxyCompactItemize}

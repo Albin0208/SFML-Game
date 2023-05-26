@@ -1,0 +1,29 @@
+\hypertarget{Texture__Manager_8h_source}{}\doxysection{Texture\+\_\+\+Manager.\+h}
+\label{Texture__Manager_8h_source}\index{utility/Texture\_Manager.h@{utility/Texture\_Manager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by albin on 2022-\/12-\/05.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef TDP005\_TEXTURE\_MANAGER\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define TDP005\_TEXTURE\_MANAGER\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}common.h"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{classTexture__Manager}{Texture\_Manager}} \{}
+\DoxyCodeLine{15 \textcolor{keyword}{public}:}
+\DoxyCodeLine{21     \textcolor{keyword}{static} \mbox{\hyperlink{classsf_1_1Texture}{sf::Texture}}* \mbox{\hyperlink{classTexture__Manager_ac28d05feffba8c7238cd2fd54d927d19}{get}}(std::string \textcolor{keyword}{const}\& name);}
+\DoxyCodeLine{22 \textcolor{keyword}{private}:}
+\DoxyCodeLine{23     \mbox{\hyperlink{classTexture__Manager}{Texture\_Manager}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25     \textcolor{keyword}{static} \mbox{\hyperlink{classTexture__Manager}{Texture\_Manager}} instance;}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     std::map<std::string, std::unique\_ptr<sf::Texture>> textures;}
+\DoxyCodeLine{28 \};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//TDP005\_TEXTURE\_MANAGER\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,1861 @@
+\hypertarget{minimp3_8h_source}{}\doxysection{minimp3.\+h}
+\label{minimp3_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/minimp3/minimp3.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/minimp3/minimp3.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef MINIMP3\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define MINIMP3\_H}}
+\DoxyCodeLine{3 \textcolor{comment}{/*}}
+\DoxyCodeLine{4 \textcolor{comment}{    https://github.com/lieff/minimp3}}
+\DoxyCodeLine{5 \textcolor{comment}{    To the extent possible under law, the author(s) have dedicated all copyright and related and neighboring rights to this software to the public domain worldwide.}}
+\DoxyCodeLine{6 \textcolor{comment}{    This software is distributed without any warranty.}}
+\DoxyCodeLine{7 \textcolor{comment}{    See <http://creativecommons.org/publicdomain/zero/1.0/>.}}
+\DoxyCodeLine{8 \textcolor{comment}{*/}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#define MINIMP3\_MAX\_SAMPLES\_PER\_FRAME (1152*2)}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{typedef} \textcolor{keyword}{struct}}
+\DoxyCodeLine{14 \{}
+\DoxyCodeLine{15     \textcolor{keywordtype}{int} frame\_bytes, frame\_offset, channels, hz, layer, bitrate\_kbps;}
+\DoxyCodeLine{16 \} \mbox{\hyperlink{structmp3dec__frame__info__t}{mp3dec\_frame\_info\_t}};}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keyword}{typedef} \textcolor{keyword}{struct}}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20     \textcolor{keywordtype}{float} mdct\_overlap[2][9*32], qmf\_state[15*2*32];}
+\DoxyCodeLine{21     \textcolor{keywordtype}{int} reserv, free\_format\_bytes;}
+\DoxyCodeLine{22     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} header[4], reserv\_buf[511];}
+\DoxyCodeLine{23 \} \mbox{\hyperlink{structmp3dec__t}{mp3dec\_t}};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{26 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_cplusplus */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keywordtype}{void} mp3dec\_init(\mbox{\hyperlink{structmp3dec__t}{mp3dec\_t}} *dec);}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#ifndef MINIMP3\_FLOAT\_OUTPUT}}
+\DoxyCodeLine{31 \textcolor{keyword}{typedef} int16\_t mp3d\_sample\_t;}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* MINIMP3\_FLOAT\_OUTPUT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{33 \textcolor{keyword}{typedef} \textcolor{keywordtype}{float} mp3d\_sample\_t;}
+\DoxyCodeLine{34 \textcolor{keywordtype}{void} mp3dec\_f32\_to\_s16(\textcolor{keyword}{const} \textcolor{keywordtype}{float} *in, int16\_t *out, \textcolor{keywordtype}{int} num\_samples);}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MINIMP3\_FLOAT\_OUTPUT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{36 \textcolor{keywordtype}{int} mp3dec\_decode\_frame(\mbox{\hyperlink{structmp3dec__t}{mp3dec\_t}} *dec, \textcolor{keyword}{const} uint8\_t *mp3, \textcolor{keywordtype}{int} mp3\_bytes, mp3d\_sample\_t *pcm, \mbox{\hyperlink{structmp3dec__frame__info__t}{mp3dec\_frame\_info\_t}} *info);}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{39 \}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_cplusplus */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MINIMP3\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#if defined(MINIMP3\_IMPLEMENTATION) \&\& !defined(\_MINIMP3\_IMPLEMENTATION\_GUARD)}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#define \_MINIMP3\_IMPLEMENTATION\_GUARD}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#include <string.h>}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#define MAX\_FREE\_FORMAT\_FRAME\_SIZE  2304    }\textcolor{comment}{/* more than ISO spec's */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#ifndef MAX\_FRAME\_SYNC\_MATCHES}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#define MAX\_FRAME\_SYNC\_MATCHES      10}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MAX\_FRAME\_SYNC\_MATCHES */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#define MAX\_L3\_FRAME\_PAYLOAD\_BYTES  MAX\_FREE\_FORMAT\_FRAME\_SIZE }\textcolor{comment}{/* MUST be >= 320000/8/32000*1152 = 1440 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#define MAX\_BITRESERVOIR\_BYTES      511}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#define SHORT\_BLOCK\_TYPE            2}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#define STOP\_BLOCK\_TYPE             3}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#define MODE\_MONO                   3}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#define MODE\_JOINT\_STEREO           1}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#define HDR\_SIZE                    4}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#define HDR\_IS\_MONO(h)              (((h[3]) \& 0xC0) == 0xC0)}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#define HDR\_IS\_MS\_STEREO(h)         (((h[3]) \& 0xE0) == 0x60)}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define HDR\_IS\_FREE\_FORMAT(h)       (((h[2]) \& 0xF0) == 0)}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#define HDR\_IS\_CRC(h)               (!((h[1]) \& 1))}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define HDR\_TEST\_PADDING(h)         ((h[2]) \& 0x2)}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define HDR\_TEST\_MPEG1(h)           ((h[1]) \& 0x8)}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#define HDR\_TEST\_NOT\_MPEG25(h)      ((h[1]) \& 0x10)}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define HDR\_TEST\_I\_STEREO(h)        ((h[3]) \& 0x10)}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define HDR\_TEST\_MS\_STEREO(h)       ((h[3]) \& 0x20)}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define HDR\_GET\_STEREO\_MODE(h)      (((h[3]) >> 6) \& 3)}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#define HDR\_GET\_STEREO\_MODE\_EXT(h)  (((h[3]) >> 4) \& 3)}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#define HDR\_GET\_LAYER(h)            (((h[1]) >> 1) \& 3)}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#define HDR\_GET\_BITRATE(h)          ((h[2]) >> 4)}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#define HDR\_GET\_SAMPLE\_RATE(h)      (((h[2]) >> 2) \& 3)}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define HDR\_GET\_MY\_SAMPLE\_RATE(h)   (HDR\_GET\_SAMPLE\_RATE(h) + (((h[1] >> 3) \& 1) + ((h[1] >> 4) \& 1))*3)}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#define HDR\_IS\_FRAME\_576(h)         ((h[1] \& 14) == 2)}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#define HDR\_IS\_LAYER\_1(h)           ((h[1] \& 6) == 6)}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define BITS\_DEQUANTIZER\_OUT        -\/1}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#define MAX\_SCF                     (255 + BITS\_DEQUANTIZER\_OUT*4 -\/ 210)}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#define MAX\_SCFI                    ((MAX\_SCF + 3) \& \string~3)}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#define MINIMP3\_MIN(a, b)           ((a) > (b) ? (b) : (a))}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#define MINIMP3\_MAX(a, b)           ((a) < (b) ? (b) : (a))}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#if !defined(MINIMP3\_NO\_SIMD)}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#if !defined(MINIMP3\_ONLY\_SIMD) \&\& (defined(\_M\_X64) || defined(\_\_x86\_64\_\_) || defined(\_\_aarch64\_\_) || defined(\_M\_ARM64))}}
+\DoxyCodeLine{90 \textcolor{comment}{/* x64 always have SSE2, arm64 always have neon, no need for generic code */}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#define MINIMP3\_ONLY\_SIMD}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* SIMD checks... */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#if (defined(\_MSC\_VER) \&\& (defined(\_M\_IX86) || defined(\_M\_X64))) || ((defined(\_\_i386\_\_) || defined(\_\_x86\_64\_\_)) \&\& defined(\_\_SSE2\_\_))}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#if defined(\_MSC\_VER)}}
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#include <intrin.h>}}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* defined(\_MSC\_VER) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{98 \textcolor{preprocessor}{\#include <immintrin.h>}}
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#define HAVE\_SSE 1}}
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#define HAVE\_SIMD 1}}
+\DoxyCodeLine{101 \textcolor{preprocessor}{\#define VSTORE \_mm\_storeu\_ps}}
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#define VLD \_mm\_loadu\_ps}}
+\DoxyCodeLine{103 \textcolor{preprocessor}{\#define VSET \_mm\_set1\_ps}}
+\DoxyCodeLine{104 \textcolor{preprocessor}{\#define VADD \_mm\_add\_ps}}
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#define VSUB \_mm\_sub\_ps}}
+\DoxyCodeLine{106 \textcolor{preprocessor}{\#define VMUL \_mm\_mul\_ps}}
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#define VMAC(a, x, y) \_mm\_add\_ps(a, \_mm\_mul\_ps(x, y))}}
+\DoxyCodeLine{108 \textcolor{preprocessor}{\#define VMSB(a, x, y) \_mm\_sub\_ps(a, \_mm\_mul\_ps(x, y))}}
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#define VMUL\_S(x, s)  \_mm\_mul\_ps(x, \_mm\_set1\_ps(s))}}
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#define VREV(x) \_mm\_shuffle\_ps(x, x, \_MM\_SHUFFLE(0, 1, 2, 3))}}
+\DoxyCodeLine{111 \textcolor{keyword}{typedef} \_\_m128 f4;}
+\DoxyCodeLine{112 \textcolor{preprocessor}{\#if defined(\_MSC\_VER) || defined(MINIMP3\_ONLY\_SIMD)}}
+\DoxyCodeLine{113 \textcolor{preprocessor}{\#define minimp3\_cpuid \_\_cpuid}}
+\DoxyCodeLine{114 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* defined(\_MSC\_VER) || defined(MINIMP3\_ONLY\_SIMD) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{115 \textcolor{keyword}{static} \_\_inline\_\_ \_\_attribute\_\_((always\_inline)) \textcolor{keywordtype}{void} minimp3\_cpuid(\textcolor{keywordtype}{int} CPUInfo[], \textcolor{keyword}{const} \textcolor{keywordtype}{int} InfoType)}
+\DoxyCodeLine{116 \{}
+\DoxyCodeLine{117 \textcolor{preprocessor}{\#if defined(\_\_PIC\_\_)}}
+\DoxyCodeLine{118     \_\_asm\_\_ \_\_volatile\_\_(}
+\DoxyCodeLine{119 \#\textcolor{keywordflow}{if} defined(\_\_x86\_64\_\_)}
+\DoxyCodeLine{120         \textcolor{stringliteral}{"{}push \%\%rbx\(\backslash\)n"{}}}
+\DoxyCodeLine{121         \textcolor{stringliteral}{"{}cpuid\(\backslash\)n"{}}}
+\DoxyCodeLine{122         \textcolor{stringliteral}{"{}xchgl \%\%ebx, \%1\(\backslash\)n"{}}}
+\DoxyCodeLine{123         \textcolor{stringliteral}{"{}pop  \%\%rbx\(\backslash\)n"{}}}
+\DoxyCodeLine{124 \#\textcolor{keywordflow}{else} \textcolor{comment}{/* defined(\_\_x86\_64\_\_) */}}
+\DoxyCodeLine{125         \textcolor{stringliteral}{"{}xchgl \%\%ebx, \%1\(\backslash\)n"{}}}
+\DoxyCodeLine{126         \textcolor{stringliteral}{"{}cpuid\(\backslash\)n"{}}}
+\DoxyCodeLine{127         \textcolor{stringliteral}{"{}xchgl \%\%ebx, \%1\(\backslash\)n"{}}}
+\DoxyCodeLine{128 \#endif \textcolor{comment}{/* defined(\_\_x86\_64\_\_) */}}
+\DoxyCodeLine{129         : \textcolor{stringliteral}{"{}=a"{}} (CPUInfo[0]), \textcolor{stringliteral}{"{}=r"{}} (CPUInfo[1]), \textcolor{stringliteral}{"{}=c"{}} (CPUInfo[2]), \textcolor{stringliteral}{"{}=d"{}} (CPUInfo[3])}
+\DoxyCodeLine{130         : \textcolor{stringliteral}{"{}a"{}} (InfoType));}
+\DoxyCodeLine{131 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* defined(\_\_PIC\_\_) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{132     \_\_asm\_\_ \_\_volatile\_\_(}
+\DoxyCodeLine{133         \textcolor{stringliteral}{"{}cpuid"{}}}
+\DoxyCodeLine{134         : \textcolor{stringliteral}{"{}=a"{}} (CPUInfo[0]), \textcolor{stringliteral}{"{}=b"{}} (CPUInfo[1]), \textcolor{stringliteral}{"{}=c"{}} (CPUInfo[2]), \textcolor{stringliteral}{"{}=d"{}} (CPUInfo[3])}
+\DoxyCodeLine{135         : \textcolor{stringliteral}{"{}a"{}} (InfoType));}
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* defined(\_\_PIC\_\_)*/}\textcolor{preprocessor}{}}
+\DoxyCodeLine{137 \}}
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* defined(\_MSC\_VER) || defined(MINIMP3\_ONLY\_SIMD) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{139 \textcolor{keyword}{static} \textcolor{keywordtype}{int} have\_simd(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{140 \{}
+\DoxyCodeLine{141 \textcolor{preprocessor}{\#ifdef MINIMP3\_ONLY\_SIMD}}
+\DoxyCodeLine{142     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{143 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* MINIMP3\_ONLY\_SIMD */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{144     \textcolor{keyword}{static} \textcolor{keywordtype}{int} g\_have\_simd;}
+\DoxyCodeLine{145     \textcolor{keywordtype}{int} CPUInfo[4];}
+\DoxyCodeLine{146 \textcolor{preprocessor}{\#ifdef MINIMP3\_TEST}}
+\DoxyCodeLine{147     \textcolor{keyword}{static} \textcolor{keywordtype}{int} g\_counter;}
+\DoxyCodeLine{148     \textcolor{keywordflow}{if} (g\_counter++ > 100)}
+\DoxyCodeLine{149         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{150 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MINIMP3\_TEST */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{151     \textcolor{keywordflow}{if} (g\_have\_simd)}
+\DoxyCodeLine{152         \textcolor{keywordflow}{goto} end;}
+\DoxyCodeLine{153     minimp3\_cpuid(CPUInfo, 0);}
+\DoxyCodeLine{154     g\_have\_simd = 1;}
+\DoxyCodeLine{155     \textcolor{keywordflow}{if} (CPUInfo[0] > 0)}
+\DoxyCodeLine{156     \{}
+\DoxyCodeLine{157         minimp3\_cpuid(CPUInfo, 1);}
+\DoxyCodeLine{158         g\_have\_simd = (CPUInfo[3] \& (1 << 26)) + 1; \textcolor{comment}{/* SSE2 */}}
+\DoxyCodeLine{159     \}}
+\DoxyCodeLine{160 end:}
+\DoxyCodeLine{161     \textcolor{keywordflow}{return} g\_have\_simd -\/ 1;}
+\DoxyCodeLine{162 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MINIMP3\_ONLY\_SIMD */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{163 \}}
+\DoxyCodeLine{164 \textcolor{preprocessor}{\#elif defined(\_\_ARM\_NEON) || defined(\_\_aarch64\_\_) || defined(\_M\_ARM64)}}
+\DoxyCodeLine{165 \textcolor{preprocessor}{\#include <arm\_neon.h>}}
+\DoxyCodeLine{166 \textcolor{preprocessor}{\#define HAVE\_SSE 0}}
+\DoxyCodeLine{167 \textcolor{preprocessor}{\#define HAVE\_SIMD 1}}
+\DoxyCodeLine{168 \textcolor{preprocessor}{\#define VSTORE vst1q\_f32}}
+\DoxyCodeLine{169 \textcolor{preprocessor}{\#define VLD vld1q\_f32}}
+\DoxyCodeLine{170 \textcolor{preprocessor}{\#define VSET vmovq\_n\_f32}}
+\DoxyCodeLine{171 \textcolor{preprocessor}{\#define VADD vaddq\_f32}}
+\DoxyCodeLine{172 \textcolor{preprocessor}{\#define VSUB vsubq\_f32}}
+\DoxyCodeLine{173 \textcolor{preprocessor}{\#define VMUL vmulq\_f32}}
+\DoxyCodeLine{174 \textcolor{preprocessor}{\#define VMAC(a, x, y) vmlaq\_f32(a, x, y)}}
+\DoxyCodeLine{175 \textcolor{preprocessor}{\#define VMSB(a, x, y) vmlsq\_f32(a, x, y)}}
+\DoxyCodeLine{176 \textcolor{preprocessor}{\#define VMUL\_S(x, s)  vmulq\_f32(x, vmovq\_n\_f32(s))}}
+\DoxyCodeLine{177 \textcolor{preprocessor}{\#define VREV(x) vcombine\_f32(vget\_high\_f32(vrev64q\_f32(x)), vget\_low\_f32(vrev64q\_f32(x)))}}
+\DoxyCodeLine{178 \textcolor{keyword}{typedef} float32x4\_t f4;}
+\DoxyCodeLine{179 \textcolor{keyword}{static} \textcolor{keywordtype}{int} have\_simd()}
+\DoxyCodeLine{180 \{   \textcolor{comment}{/* TODO: detect neon for !MINIMP3\_ONLY\_SIMD */}}
+\DoxyCodeLine{181     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{182 \}}
+\DoxyCodeLine{183 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* SIMD checks... */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{184 \textcolor{preprocessor}{\#define HAVE\_SSE 0}}
+\DoxyCodeLine{185 \textcolor{preprocessor}{\#define HAVE\_SIMD 0}}
+\DoxyCodeLine{186 \textcolor{preprocessor}{\#ifdef MINIMP3\_ONLY\_SIMD}}
+\DoxyCodeLine{187 \textcolor{preprocessor}{\#error MINIMP3\_ONLY\_SIMD used, but SSE/NEON not enabled}}
+\DoxyCodeLine{188 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MINIMP3\_ONLY\_SIMD */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{189 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* SIMD checks... */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{190 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* !defined(MINIMP3\_NO\_SIMD) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{\#define HAVE\_SIMD 0}}
+\DoxyCodeLine{192 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !defined(MINIMP3\_NO\_SIMD) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{194 \textcolor{preprocessor}{\#if defined(\_\_ARM\_ARCH) \&\& (\_\_ARM\_ARCH >= 6) \&\& !defined(\_\_aarch64\_\_) \&\& !defined(\_M\_ARM64)}}
+\DoxyCodeLine{195 \textcolor{preprocessor}{\#define HAVE\_ARMV6 1}}
+\DoxyCodeLine{196 \textcolor{keyword}{static} \_\_inline\_\_ \_\_attribute\_\_((always\_inline)) int32\_t minimp3\_clip\_int16\_arm(int32\_t a)}
+\DoxyCodeLine{197 \{}
+\DoxyCodeLine{198     int32\_t x = 0;}
+\DoxyCodeLine{199     \_\_asm\_\_ (\textcolor{stringliteral}{"{}ssat \%0, \#16, \%1"{}} : \textcolor{stringliteral}{"{}=r"{}}(x) : \textcolor{stringliteral}{"{}r"{}}(a));}
+\DoxyCodeLine{200     \textcolor{keywordflow}{return} x;}
+\DoxyCodeLine{201 \}}
+\DoxyCodeLine{202 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{203 \textcolor{preprocessor}{\#define HAVE\_ARMV6 0}}
+\DoxyCodeLine{204 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206 \textcolor{keyword}{typedef} \textcolor{keyword}{struct}}
+\DoxyCodeLine{207 \{}
+\DoxyCodeLine{208     \textcolor{keyword}{const} uint8\_t *buf;}
+\DoxyCodeLine{209     \textcolor{keywordtype}{int} pos, limit;}
+\DoxyCodeLine{210 \} bs\_t;}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{212 \textcolor{keyword}{typedef} \textcolor{keyword}{struct}}
+\DoxyCodeLine{213 \{}
+\DoxyCodeLine{214     \textcolor{keywordtype}{float} scf[3*64];}
+\DoxyCodeLine{215     uint8\_t total\_bands, stereo\_bands, bitalloc[64], scfcod[64];}
+\DoxyCodeLine{216 \} L12\_scale\_info;}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{218 \textcolor{keyword}{typedef} \textcolor{keyword}{struct}}
+\DoxyCodeLine{219 \{}
+\DoxyCodeLine{220     uint8\_t tab\_offset, code\_tab\_width, band\_count;}
+\DoxyCodeLine{221 \} L12\_subband\_alloc\_t;}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223 \textcolor{keyword}{typedef} \textcolor{keyword}{struct}}
+\DoxyCodeLine{224 \{}
+\DoxyCodeLine{225     \textcolor{keyword}{const} uint8\_t *sfbtab;}
+\DoxyCodeLine{226     uint16\_t part\_23\_length, big\_values, scalefac\_compress;}
+\DoxyCodeLine{227     uint8\_t global\_gain, block\_type, mixed\_block\_flag, n\_long\_sfb, n\_short\_sfb;}
+\DoxyCodeLine{228     uint8\_t table\_select[3], region\_count[3], subblock\_gain[3];}
+\DoxyCodeLine{229     uint8\_t preflag, scalefac\_scale, count1\_table, scfsi;}
+\DoxyCodeLine{230 \} L3\_gr\_info\_t;}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{232 \textcolor{keyword}{typedef} \textcolor{keyword}{struct}}
+\DoxyCodeLine{233 \{}
+\DoxyCodeLine{234     bs\_t bs;}
+\DoxyCodeLine{235     uint8\_t maindata[MAX\_BITRESERVOIR\_BYTES + MAX\_L3\_FRAME\_PAYLOAD\_BYTES];}
+\DoxyCodeLine{236     L3\_gr\_info\_t gr\_info[4];}
+\DoxyCodeLine{237     \textcolor{keywordtype}{float} grbuf[2][576], scf[40], syn[18 + 15][2*32];}
+\DoxyCodeLine{238     uint8\_t ist\_pos[2][39];}
+\DoxyCodeLine{239 \} mp3dec\_scratch\_t;}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{241 \textcolor{keyword}{static} \textcolor{keywordtype}{void} bs\_init(bs\_t *bs, \textcolor{keyword}{const} uint8\_t *data, \textcolor{keywordtype}{int} bytes)}
+\DoxyCodeLine{242 \{}
+\DoxyCodeLine{243     bs-\/>buf   = data;}
+\DoxyCodeLine{244     bs-\/>pos   = 0;}
+\DoxyCodeLine{245     bs-\/>limit = bytes*8;}
+\DoxyCodeLine{246 \}}
+\DoxyCodeLine{247 }
+\DoxyCodeLine{248 \textcolor{keyword}{static} uint32\_t get\_bits(bs\_t *bs, \textcolor{keywordtype}{int} n)}
+\DoxyCodeLine{249 \{}
+\DoxyCodeLine{250     uint32\_t next, cache = 0, s = bs-\/>pos \& 7;}
+\DoxyCodeLine{251     \textcolor{keywordtype}{int} shl = n + s;}
+\DoxyCodeLine{252     \textcolor{keyword}{const} uint8\_t *p = bs-\/>buf + (bs-\/>pos >> 3);}
+\DoxyCodeLine{253     \textcolor{keywordflow}{if} ((bs-\/>pos += n) > bs-\/>limit)}
+\DoxyCodeLine{254         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{255     next = *p++ \& (255 >> s);}
+\DoxyCodeLine{256     \textcolor{keywordflow}{while} ((shl -\/= 8) > 0)}
+\DoxyCodeLine{257     \{}
+\DoxyCodeLine{258         cache |= next << shl;}
+\DoxyCodeLine{259         next = *p++;}
+\DoxyCodeLine{260     \}}
+\DoxyCodeLine{261     \textcolor{keywordflow}{return} cache | (next >> -\/shl);}
+\DoxyCodeLine{262 \}}
+\DoxyCodeLine{263 }
+\DoxyCodeLine{264 \textcolor{keyword}{static} \textcolor{keywordtype}{int} hdr\_valid(\textcolor{keyword}{const} uint8\_t *h)}
+\DoxyCodeLine{265 \{}
+\DoxyCodeLine{266     \textcolor{keywordflow}{return} h[0] == 0xff \&\&}
+\DoxyCodeLine{267         ((h[1] \& 0xF0) == 0xf0 || (h[1] \& 0xFE) == 0xe2) \&\&}
+\DoxyCodeLine{268         (HDR\_GET\_LAYER(h) != 0) \&\&}
+\DoxyCodeLine{269         (HDR\_GET\_BITRATE(h) != 15) \&\&}
+\DoxyCodeLine{270         (HDR\_GET\_SAMPLE\_RATE(h) != 3);}
+\DoxyCodeLine{271 \}}
+\DoxyCodeLine{272 }
+\DoxyCodeLine{273 \textcolor{keyword}{static} \textcolor{keywordtype}{int} hdr\_compare(\textcolor{keyword}{const} uint8\_t *h1, \textcolor{keyword}{const} uint8\_t *h2)}
+\DoxyCodeLine{274 \{}
+\DoxyCodeLine{275     \textcolor{keywordflow}{return} hdr\_valid(h2) \&\&}
+\DoxyCodeLine{276         ((h1[1] \string^ h2[1]) \& 0xFE) == 0 \&\&}
+\DoxyCodeLine{277         ((h1[2] \string^ h2[2]) \& 0x0C) == 0 \&\&}
+\DoxyCodeLine{278         !(HDR\_IS\_FREE\_FORMAT(h1) \string^ HDR\_IS\_FREE\_FORMAT(h2));}
+\DoxyCodeLine{279 \}}
+\DoxyCodeLine{280 }
+\DoxyCodeLine{281 \textcolor{keyword}{static} \textcolor{keywordtype}{unsigned} hdr\_bitrate\_kbps(\textcolor{keyword}{const} uint8\_t *h)}
+\DoxyCodeLine{282 \{}
+\DoxyCodeLine{283     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t halfrate[2][3][15] = \{}
+\DoxyCodeLine{284         \{ \{ 0,4,8,12,16,20,24,28,32,40,48,56,64,72,80 \}, \{ 0,4,8,12,16,20,24,28,32,40,48,56,64,72,80 \}, \{ 0,16,24,28,32,40,48,56,64,72,80,88,96,112,128 \} \},}
+\DoxyCodeLine{285         \{ \{ 0,16,20,24,28,32,40,48,56,64,80,96,112,128,160 \}, \{ 0,16,24,28,32,40,48,56,64,80,96,112,128,160,192 \}, \{ 0,16,32,48,64,80,96,112,128,144,160,176,192,208,224 \} \},}
+\DoxyCodeLine{286     \};}
+\DoxyCodeLine{287     \textcolor{keywordflow}{return} 2*halfrate[!!HDR\_TEST\_MPEG1(h)][HDR\_GET\_LAYER(h) -\/ 1][HDR\_GET\_BITRATE(h)];}
+\DoxyCodeLine{288 \}}
+\DoxyCodeLine{289 }
+\DoxyCodeLine{290 \textcolor{keyword}{static} \textcolor{keywordtype}{unsigned} hdr\_sample\_rate\_hz(\textcolor{keyword}{const} uint8\_t *h)}
+\DoxyCodeLine{291 \{}
+\DoxyCodeLine{292     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} g\_hz[3] = \{ 44100, 48000, 32000 \};}
+\DoxyCodeLine{293     \textcolor{keywordflow}{return} g\_hz[HDR\_GET\_SAMPLE\_RATE(h)] >> (int)!HDR\_TEST\_MPEG1(h) >> (int)!HDR\_TEST\_NOT\_MPEG25(h);}
+\DoxyCodeLine{294 \}}
+\DoxyCodeLine{295 }
+\DoxyCodeLine{296 \textcolor{keyword}{static} \textcolor{keywordtype}{unsigned} hdr\_frame\_samples(\textcolor{keyword}{const} uint8\_t *h)}
+\DoxyCodeLine{297 \{}
+\DoxyCodeLine{298     \textcolor{keywordflow}{return} HDR\_IS\_LAYER\_1(h) ? 384 : (1152 >> (int)HDR\_IS\_FRAME\_576(h));}
+\DoxyCodeLine{299 \}}
+\DoxyCodeLine{300 }
+\DoxyCodeLine{301 \textcolor{keyword}{static} \textcolor{keywordtype}{int} hdr\_frame\_bytes(\textcolor{keyword}{const} uint8\_t *h, \textcolor{keywordtype}{int} free\_format\_size)}
+\DoxyCodeLine{302 \{}
+\DoxyCodeLine{303     \textcolor{keywordtype}{int} frame\_bytes = hdr\_frame\_samples(h)*hdr\_bitrate\_kbps(h)*125/hdr\_sample\_rate\_hz(h);}
+\DoxyCodeLine{304     \textcolor{keywordflow}{if} (HDR\_IS\_LAYER\_1(h))}
+\DoxyCodeLine{305     \{}
+\DoxyCodeLine{306         frame\_bytes \&= \string~3; \textcolor{comment}{/* slot align */}}
+\DoxyCodeLine{307     \}}
+\DoxyCodeLine{308     \textcolor{keywordflow}{return} frame\_bytes ? frame\_bytes : free\_format\_size;}
+\DoxyCodeLine{309 \}}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311 \textcolor{keyword}{static} \textcolor{keywordtype}{int} hdr\_padding(\textcolor{keyword}{const} uint8\_t *h)}
+\DoxyCodeLine{312 \{}
+\DoxyCodeLine{313     \textcolor{keywordflow}{return} HDR\_TEST\_PADDING(h) ? (HDR\_IS\_LAYER\_1(h) ? 4 : 1) : 0;}
+\DoxyCodeLine{314 \}}
+\DoxyCodeLine{315 }
+\DoxyCodeLine{316 \textcolor{preprocessor}{\#ifndef MINIMP3\_ONLY\_MP3}}
+\DoxyCodeLine{317 \textcolor{keyword}{static} \textcolor{keyword}{const} L12\_subband\_alloc\_t *L12\_subband\_alloc\_table(\textcolor{keyword}{const} uint8\_t *hdr, L12\_scale\_info *sci)}
+\DoxyCodeLine{318 \{}
+\DoxyCodeLine{319     \textcolor{keyword}{const} L12\_subband\_alloc\_t *alloc;}
+\DoxyCodeLine{320     \textcolor{keywordtype}{int} mode = HDR\_GET\_STEREO\_MODE(hdr);}
+\DoxyCodeLine{321     \textcolor{keywordtype}{int} nbands, stereo\_bands = (mode == MODE\_MONO) ? 0 : (mode == MODE\_JOINT\_STEREO) ? (HDR\_GET\_STEREO\_MODE\_EXT(hdr) << 2) + 4 : 32;}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{323     \textcolor{keywordflow}{if} (HDR\_IS\_LAYER\_1(hdr))}
+\DoxyCodeLine{324     \{}
+\DoxyCodeLine{325         \textcolor{keyword}{static} \textcolor{keyword}{const} L12\_subband\_alloc\_t g\_alloc\_L1[] = \{ \{ 76, 4, 32 \} \};}
+\DoxyCodeLine{326         alloc = g\_alloc\_L1;}
+\DoxyCodeLine{327         nbands = 32;}
+\DoxyCodeLine{328     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!HDR\_TEST\_MPEG1(hdr))}
+\DoxyCodeLine{329     \{}
+\DoxyCodeLine{330         \textcolor{keyword}{static} \textcolor{keyword}{const} L12\_subband\_alloc\_t g\_alloc\_L2M2[] = \{ \{ 60, 4, 4 \}, \{ 44, 3, 7 \}, \{ 44, 2, 19 \} \};}
+\DoxyCodeLine{331         alloc = g\_alloc\_L2M2;}
+\DoxyCodeLine{332         nbands = 30;}
+\DoxyCodeLine{333     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{334     \{}
+\DoxyCodeLine{335         \textcolor{keyword}{static} \textcolor{keyword}{const} L12\_subband\_alloc\_t g\_alloc\_L2M1[] = \{ \{ 0, 4, 3 \}, \{ 16, 4, 8 \}, \{ 32, 3, 12 \}, \{ 40, 2, 7 \} \};}
+\DoxyCodeLine{336         \textcolor{keywordtype}{int} sample\_rate\_idx = HDR\_GET\_SAMPLE\_RATE(hdr);}
+\DoxyCodeLine{337         \textcolor{keywordtype}{unsigned} kbps = hdr\_bitrate\_kbps(hdr) >> (int)(mode != MODE\_MONO);}
+\DoxyCodeLine{338         \textcolor{keywordflow}{if} (!kbps) \textcolor{comment}{/* free-\/format */}}
+\DoxyCodeLine{339         \{}
+\DoxyCodeLine{340             kbps = 192;}
+\DoxyCodeLine{341         \}}
+\DoxyCodeLine{342 }
+\DoxyCodeLine{343         alloc = g\_alloc\_L2M1;}
+\DoxyCodeLine{344         nbands = 27;}
+\DoxyCodeLine{345         \textcolor{keywordflow}{if} (kbps < 56)}
+\DoxyCodeLine{346         \{}
+\DoxyCodeLine{347             \textcolor{keyword}{static} \textcolor{keyword}{const} L12\_subband\_alloc\_t g\_alloc\_L2M1\_lowrate[] = \{ \{ 44, 4, 2 \}, \{ 44, 3, 10 \} \};}
+\DoxyCodeLine{348             alloc = g\_alloc\_L2M1\_lowrate;}
+\DoxyCodeLine{349             nbands = sample\_rate\_idx == 2 ? 12 : 8;}
+\DoxyCodeLine{350         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (kbps >= 96 \&\& sample\_rate\_idx != 1)}
+\DoxyCodeLine{351         \{}
+\DoxyCodeLine{352             nbands = 30;}
+\DoxyCodeLine{353         \}}
+\DoxyCodeLine{354     \}}
+\DoxyCodeLine{355 }
+\DoxyCodeLine{356     sci-\/>total\_bands = (uint8\_t)nbands;}
+\DoxyCodeLine{357     sci-\/>stereo\_bands = (uint8\_t)MINIMP3\_MIN(stereo\_bands, nbands);}
+\DoxyCodeLine{358 }
+\DoxyCodeLine{359     \textcolor{keywordflow}{return} alloc;}
+\DoxyCodeLine{360 \}}
+\DoxyCodeLine{361 }
+\DoxyCodeLine{362 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L12\_read\_scalefactors(bs\_t *bs, uint8\_t *pba, uint8\_t *scfcod, \textcolor{keywordtype}{int} bands, \textcolor{keywordtype}{float} *scf)}
+\DoxyCodeLine{363 \{}
+\DoxyCodeLine{364     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{float} g\_deq\_L12[18*3] = \{}
+\DoxyCodeLine{365 \textcolor{preprocessor}{\#define DQ(x) 9.53674316e-\/07f/x, 7.56931807e-\/07f/x, 6.00777173e-\/07f/x}}
+\DoxyCodeLine{366         DQ(3),DQ(7),DQ(15),DQ(31),DQ(63),DQ(127),DQ(255),DQ(511),DQ(1023),DQ(2047),DQ(4095),DQ(8191),DQ(16383),DQ(32767),DQ(65535),DQ(3),DQ(5),DQ(9)}
+\DoxyCodeLine{367     \};}
+\DoxyCodeLine{368     \textcolor{keywordtype}{int} i, m;}
+\DoxyCodeLine{369     \textcolor{keywordflow}{for} (i = 0; i < bands; i++)}
+\DoxyCodeLine{370     \{}
+\DoxyCodeLine{371         \textcolor{keywordtype}{float} s = 0;}
+\DoxyCodeLine{372         \textcolor{keywordtype}{int} ba = *pba++;}
+\DoxyCodeLine{373         \textcolor{keywordtype}{int} mask = ba ? 4 + ((19 >> scfcod[i]) \& 3) : 0;}
+\DoxyCodeLine{374         \textcolor{keywordflow}{for} (m = 4; m; m >>= 1)}
+\DoxyCodeLine{375         \{}
+\DoxyCodeLine{376             \textcolor{keywordflow}{if} (mask \& m)}
+\DoxyCodeLine{377             \{}
+\DoxyCodeLine{378                 \textcolor{keywordtype}{int} b = get\_bits(bs, 6);}
+\DoxyCodeLine{379                 s = g\_deq\_L12[ba*3 -\/ 6 + b \% 3]*(1 << 21 >> b/3);}
+\DoxyCodeLine{380             \}}
+\DoxyCodeLine{381             *scf++ = s;}
+\DoxyCodeLine{382         \}}
+\DoxyCodeLine{383     \}}
+\DoxyCodeLine{384 \}}
+\DoxyCodeLine{385 }
+\DoxyCodeLine{386 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L12\_read\_scale\_info(\textcolor{keyword}{const} uint8\_t *hdr, bs\_t *bs, L12\_scale\_info *sci)}
+\DoxyCodeLine{387 \{}
+\DoxyCodeLine{388     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t g\_bitalloc\_code\_tab[] = \{}
+\DoxyCodeLine{389         0,17, 3, 4, 5,6,7, 8,9,10,11,12,13,14,15,16,}
+\DoxyCodeLine{390         0,17,18, 3,19,4,5, 6,7, 8, 9,10,11,12,13,16,}
+\DoxyCodeLine{391         0,17,18, 3,19,4,5,16,}
+\DoxyCodeLine{392         0,17,18,16,}
+\DoxyCodeLine{393         0,17,18,19, 4,5,6, 7,8, 9,10,11,12,13,14,15,}
+\DoxyCodeLine{394         0,17,18, 3,19,4,5, 6,7, 8, 9,10,11,12,13,14,}
+\DoxyCodeLine{395         0, 2, 3, 4, 5,6,7, 8,9,10,11,12,13,14,15,16}
+\DoxyCodeLine{396     \};}
+\DoxyCodeLine{397     \textcolor{keyword}{const} L12\_subband\_alloc\_t *subband\_alloc = L12\_subband\_alloc\_table(hdr, sci);}
+\DoxyCodeLine{398 }
+\DoxyCodeLine{399     \textcolor{keywordtype}{int} i, k = 0, ba\_bits = 0;}
+\DoxyCodeLine{400     \textcolor{keyword}{const} uint8\_t *ba\_code\_tab = g\_bitalloc\_code\_tab;}
+\DoxyCodeLine{401 }
+\DoxyCodeLine{402     \textcolor{keywordflow}{for} (i = 0; i < sci-\/>total\_bands; i++)}
+\DoxyCodeLine{403     \{}
+\DoxyCodeLine{404         uint8\_t ba;}
+\DoxyCodeLine{405         \textcolor{keywordflow}{if} (i == k)}
+\DoxyCodeLine{406         \{}
+\DoxyCodeLine{407             k += subband\_alloc-\/>band\_count;}
+\DoxyCodeLine{408             ba\_bits = subband\_alloc-\/>code\_tab\_width;}
+\DoxyCodeLine{409             ba\_code\_tab = g\_bitalloc\_code\_tab + subband\_alloc-\/>tab\_offset;}
+\DoxyCodeLine{410             subband\_alloc++;}
+\DoxyCodeLine{411         \}}
+\DoxyCodeLine{412         ba = ba\_code\_tab[get\_bits(bs, ba\_bits)];}
+\DoxyCodeLine{413         sci-\/>bitalloc[2*i] = ba;}
+\DoxyCodeLine{414         \textcolor{keywordflow}{if} (i < sci-\/>stereo\_bands)}
+\DoxyCodeLine{415         \{}
+\DoxyCodeLine{416             ba = ba\_code\_tab[get\_bits(bs, ba\_bits)];}
+\DoxyCodeLine{417         \}}
+\DoxyCodeLine{418         sci-\/>bitalloc[2*i + 1] = sci-\/>stereo\_bands ? ba : 0;}
+\DoxyCodeLine{419     \}}
+\DoxyCodeLine{420 }
+\DoxyCodeLine{421     \textcolor{keywordflow}{for} (i = 0; i < 2*sci-\/>total\_bands; i++)}
+\DoxyCodeLine{422     \{}
+\DoxyCodeLine{423         sci-\/>scfcod[i] = sci-\/>bitalloc[i] ? HDR\_IS\_LAYER\_1(hdr) ? 2 : get\_bits(bs, 2) : 6;}
+\DoxyCodeLine{424     \}}
+\DoxyCodeLine{425 }
+\DoxyCodeLine{426     L12\_read\_scalefactors(bs, sci-\/>bitalloc, sci-\/>scfcod, sci-\/>total\_bands*2, sci-\/>scf);}
+\DoxyCodeLine{427 }
+\DoxyCodeLine{428     \textcolor{keywordflow}{for} (i = sci-\/>stereo\_bands; i < sci-\/>total\_bands; i++)}
+\DoxyCodeLine{429     \{}
+\DoxyCodeLine{430         sci-\/>bitalloc[2*i + 1] = 0;}
+\DoxyCodeLine{431     \}}
+\DoxyCodeLine{432 \}}
+\DoxyCodeLine{433 }
+\DoxyCodeLine{434 \textcolor{keyword}{static} \textcolor{keywordtype}{int} L12\_dequantize\_granule(\textcolor{keywordtype}{float} *grbuf, bs\_t *bs, L12\_scale\_info *sci, \textcolor{keywordtype}{int} group\_size)}
+\DoxyCodeLine{435 \{}
+\DoxyCodeLine{436     \textcolor{keywordtype}{int} i, j, k, choff = 576;}
+\DoxyCodeLine{437     \textcolor{keywordflow}{for} (j = 0; j < 4; j++)}
+\DoxyCodeLine{438     \{}
+\DoxyCodeLine{439         \textcolor{keywordtype}{float} *dst = grbuf + group\_size*j;}
+\DoxyCodeLine{440         \textcolor{keywordflow}{for} (i = 0; i < 2*sci-\/>total\_bands; i++)}
+\DoxyCodeLine{441         \{}
+\DoxyCodeLine{442             \textcolor{keywordtype}{int} ba = sci-\/>bitalloc[i];}
+\DoxyCodeLine{443             \textcolor{keywordflow}{if} (ba != 0)}
+\DoxyCodeLine{444             \{}
+\DoxyCodeLine{445                 \textcolor{keywordflow}{if} (ba < 17)}
+\DoxyCodeLine{446                 \{}
+\DoxyCodeLine{447                     \textcolor{keywordtype}{int} half = (1 << (ba -\/ 1)) -\/ 1;}
+\DoxyCodeLine{448                     \textcolor{keywordflow}{for} (k = 0; k < group\_size; k++)}
+\DoxyCodeLine{449                     \{}
+\DoxyCodeLine{450                         dst[k] = (float)((\textcolor{keywordtype}{int})get\_bits(bs, ba) -\/ half);}
+\DoxyCodeLine{451                     \}}
+\DoxyCodeLine{452                 \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{453                 \{}
+\DoxyCodeLine{454                     \textcolor{keywordtype}{unsigned} mod = (2 << (ba -\/ 17)) + 1;    \textcolor{comment}{/* 3, 5, 9 */}}
+\DoxyCodeLine{455                     \textcolor{keywordtype}{unsigned} code = get\_bits(bs, mod + 2 -\/ (mod >> 3));  \textcolor{comment}{/* 5, 7, 10 */}}
+\DoxyCodeLine{456                     \textcolor{keywordflow}{for} (k = 0; k < group\_size; k++, code /= mod)}
+\DoxyCodeLine{457                     \{}
+\DoxyCodeLine{458                         dst[k] = (float)((\textcolor{keywordtype}{int})(code \% mod -\/ mod/2));}
+\DoxyCodeLine{459                     \}}
+\DoxyCodeLine{460                 \}}
+\DoxyCodeLine{461             \}}
+\DoxyCodeLine{462             dst += choff;}
+\DoxyCodeLine{463             choff = 18 -\/ choff;}
+\DoxyCodeLine{464         \}}
+\DoxyCodeLine{465     \}}
+\DoxyCodeLine{466     \textcolor{keywordflow}{return} group\_size*4;}
+\DoxyCodeLine{467 \}}
+\DoxyCodeLine{468 }
+\DoxyCodeLine{469 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L12\_apply\_scf\_384(L12\_scale\_info *sci, \textcolor{keyword}{const} \textcolor{keywordtype}{float} *scf, \textcolor{keywordtype}{float} *dst)}
+\DoxyCodeLine{470 \{}
+\DoxyCodeLine{471     \textcolor{keywordtype}{int} i, k;}
+\DoxyCodeLine{472     memcpy(dst + 576 + sci-\/>stereo\_bands*18, dst + sci-\/>stereo\_bands*18, (sci-\/>total\_bands -\/ sci-\/>stereo\_bands)*18*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{float}));}
+\DoxyCodeLine{473     \textcolor{keywordflow}{for} (i = 0; i < sci-\/>total\_bands; i++, dst += 18, scf += 6)}
+\DoxyCodeLine{474     \{}
+\DoxyCodeLine{475         \textcolor{keywordflow}{for} (k = 0; k < 12; k++)}
+\DoxyCodeLine{476         \{}
+\DoxyCodeLine{477             dst[k + 0]   *= scf[0];}
+\DoxyCodeLine{478             dst[k + 576] *= scf[3];}
+\DoxyCodeLine{479         \}}
+\DoxyCodeLine{480     \}}
+\DoxyCodeLine{481 \}}
+\DoxyCodeLine{482 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MINIMP3\_ONLY\_MP3 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{483 }
+\DoxyCodeLine{484 \textcolor{keyword}{static} \textcolor{keywordtype}{int} L3\_read\_side\_info(bs\_t *bs, L3\_gr\_info\_t *gr, \textcolor{keyword}{const} uint8\_t *hdr)}
+\DoxyCodeLine{485 \{}
+\DoxyCodeLine{486     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t g\_scf\_long[8][23] = \{}
+\DoxyCodeLine{487         \{ 6,6,6,6,6,6,8,10,12,14,16,20,24,28,32,38,46,52,60,68,58,54,0 \},}
+\DoxyCodeLine{488         \{ 12,12,12,12,12,12,16,20,24,28,32,40,48,56,64,76,90,2,2,2,2,2,0 \},}
+\DoxyCodeLine{489         \{ 6,6,6,6,6,6,8,10,12,14,16,20,24,28,32,38,46,52,60,68,58,54,0 \},}
+\DoxyCodeLine{490         \{ 6,6,6,6,6,6,8,10,12,14,16,18,22,26,32,38,46,54,62,70,76,36,0 \},}
+\DoxyCodeLine{491         \{ 6,6,6,6,6,6,8,10,12,14,16,20,24,28,32,38,46,52,60,68,58,54,0 \},}
+\DoxyCodeLine{492         \{ 4,4,4,4,4,4,6,6,8,8,10,12,16,20,24,28,34,42,50,54,76,158,0 \},}
+\DoxyCodeLine{493         \{ 4,4,4,4,4,4,6,6,6,8,10,12,16,18,22,28,34,40,46,54,54,192,0 \},}
+\DoxyCodeLine{494         \{ 4,4,4,4,4,4,6,6,8,10,12,16,20,24,30,38,46,56,68,84,102,26,0 \}}
+\DoxyCodeLine{495     \};}
+\DoxyCodeLine{496     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t g\_scf\_short[8][40] = \{}
+\DoxyCodeLine{497         \{ 4,4,4,4,4,4,4,4,4,6,6,6,8,8,8,10,10,10,12,12,12,14,14,14,18,18,18,24,24,24,30,30,30,40,40,40,18,18,18,0 \},}
+\DoxyCodeLine{498         \{ 8,8,8,8,8,8,8,8,8,12,12,12,16,16,16,20,20,20,24,24,24,28,28,28,36,36,36,2,2,2,2,2,2,2,2,2,26,26,26,0 \},}
+\DoxyCodeLine{499         \{ 4,4,4,4,4,4,4,4,4,6,6,6,6,6,6,8,8,8,10,10,10,14,14,14,18,18,18,26,26,26,32,32,32,42,42,42,18,18,18,0 \},}
+\DoxyCodeLine{500         \{ 4,4,4,4,4,4,4,4,4,6,6,6,8,8,8,10,10,10,12,12,12,14,14,14,18,18,18,24,24,24,32,32,32,44,44,44,12,12,12,0 \},}
+\DoxyCodeLine{501         \{ 4,4,4,4,4,4,4,4,4,6,6,6,8,8,8,10,10,10,12,12,12,14,14,14,18,18,18,24,24,24,30,30,30,40,40,40,18,18,18,0 \},}
+\DoxyCodeLine{502         \{ 4,4,4,4,4,4,4,4,4,4,4,4,6,6,6,8,8,8,10,10,10,12,12,12,14,14,14,18,18,18,22,22,22,30,30,30,56,56,56,0 \},}
+\DoxyCodeLine{503         \{ 4,4,4,4,4,4,4,4,4,4,4,4,6,6,6,6,6,6,10,10,10,12,12,12,14,14,14,16,16,16,20,20,20,26,26,26,66,66,66,0 \},}
+\DoxyCodeLine{504         \{ 4,4,4,4,4,4,4,4,4,4,4,4,6,6,6,8,8,8,12,12,12,16,16,16,20,20,20,26,26,26,34,34,34,42,42,42,12,12,12,0 \}}
+\DoxyCodeLine{505     \};}
+\DoxyCodeLine{506     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t g\_scf\_mixed[8][40] = \{}
+\DoxyCodeLine{507         \{ 6,6,6,6,6,6,6,6,6,8,8,8,10,10,10,12,12,12,14,14,14,18,18,18,24,24,24,30,30,30,40,40,40,18,18,18,0 \},}
+\DoxyCodeLine{508         \{ 12,12,12,4,4,4,8,8,8,12,12,12,16,16,16,20,20,20,24,24,24,28,28,28,36,36,36,2,2,2,2,2,2,2,2,2,26,26,26,0 \},}
+\DoxyCodeLine{509         \{ 6,6,6,6,6,6,6,6,6,6,6,6,8,8,8,10,10,10,14,14,14,18,18,18,26,26,26,32,32,32,42,42,42,18,18,18,0 \},}
+\DoxyCodeLine{510         \{ 6,6,6,6,6,6,6,6,6,8,8,8,10,10,10,12,12,12,14,14,14,18,18,18,24,24,24,32,32,32,44,44,44,12,12,12,0 \},}
+\DoxyCodeLine{511         \{ 6,6,6,6,6,6,6,6,6,8,8,8,10,10,10,12,12,12,14,14,14,18,18,18,24,24,24,30,30,30,40,40,40,18,18,18,0 \},}
+\DoxyCodeLine{512         \{ 4,4,4,4,4,4,6,6,4,4,4,6,6,6,8,8,8,10,10,10,12,12,12,14,14,14,18,18,18,22,22,22,30,30,30,56,56,56,0 \},}
+\DoxyCodeLine{513         \{ 4,4,4,4,4,4,6,6,4,4,4,6,6,6,6,6,6,10,10,10,12,12,12,14,14,14,16,16,16,20,20,20,26,26,26,66,66,66,0 \},}
+\DoxyCodeLine{514         \{ 4,4,4,4,4,4,6,6,4,4,4,6,6,6,8,8,8,12,12,12,16,16,16,20,20,20,26,26,26,34,34,34,42,42,42,12,12,12,0 \}}
+\DoxyCodeLine{515     \};}
+\DoxyCodeLine{516 }
+\DoxyCodeLine{517     \textcolor{keywordtype}{unsigned} tables, scfsi = 0;}
+\DoxyCodeLine{518     \textcolor{keywordtype}{int} main\_data\_begin, part\_23\_sum = 0;}
+\DoxyCodeLine{519     \textcolor{keywordtype}{int} sr\_idx = HDR\_GET\_MY\_SAMPLE\_RATE(hdr); sr\_idx -\/= (sr\_idx != 0);}
+\DoxyCodeLine{520     \textcolor{keywordtype}{int} gr\_count = HDR\_IS\_MONO(hdr) ? 1 : 2;}
+\DoxyCodeLine{521 }
+\DoxyCodeLine{522     \textcolor{keywordflow}{if} (HDR\_TEST\_MPEG1(hdr))}
+\DoxyCodeLine{523     \{}
+\DoxyCodeLine{524         gr\_count *= 2;}
+\DoxyCodeLine{525         main\_data\_begin = get\_bits(bs, 9);}
+\DoxyCodeLine{526         scfsi = get\_bits(bs, 7 + gr\_count);}
+\DoxyCodeLine{527     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{528     \{}
+\DoxyCodeLine{529         main\_data\_begin = get\_bits(bs, 8 + gr\_count) >> gr\_count;}
+\DoxyCodeLine{530     \}}
+\DoxyCodeLine{531 }
+\DoxyCodeLine{532     \textcolor{keywordflow}{do}}
+\DoxyCodeLine{533     \{}
+\DoxyCodeLine{534         \textcolor{keywordflow}{if} (HDR\_IS\_MONO(hdr))}
+\DoxyCodeLine{535         \{}
+\DoxyCodeLine{536             scfsi <<= 4;}
+\DoxyCodeLine{537         \}}
+\DoxyCodeLine{538         gr-\/>part\_23\_length = (uint16\_t)get\_bits(bs, 12);}
+\DoxyCodeLine{539         part\_23\_sum += gr-\/>part\_23\_length;}
+\DoxyCodeLine{540         gr-\/>big\_values = (uint16\_t)get\_bits(bs,  9);}
+\DoxyCodeLine{541         \textcolor{keywordflow}{if} (gr-\/>big\_values > 288)}
+\DoxyCodeLine{542         \{}
+\DoxyCodeLine{543             \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{544         \}}
+\DoxyCodeLine{545         gr-\/>global\_gain = (uint8\_t)get\_bits(bs, 8);}
+\DoxyCodeLine{546         gr-\/>scalefac\_compress = (uint16\_t)get\_bits(bs, HDR\_TEST\_MPEG1(hdr) ? 4 : 9);}
+\DoxyCodeLine{547         gr-\/>sfbtab = g\_scf\_long[sr\_idx];}
+\DoxyCodeLine{548         gr-\/>n\_long\_sfb  = 22;}
+\DoxyCodeLine{549         gr-\/>n\_short\_sfb = 0;}
+\DoxyCodeLine{550         \textcolor{keywordflow}{if} (get\_bits(bs, 1))}
+\DoxyCodeLine{551         \{}
+\DoxyCodeLine{552             gr-\/>block\_type = (uint8\_t)get\_bits(bs, 2);}
+\DoxyCodeLine{553             \textcolor{keywordflow}{if} (!gr-\/>block\_type)}
+\DoxyCodeLine{554             \{}
+\DoxyCodeLine{555                 \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{556             \}}
+\DoxyCodeLine{557             gr-\/>mixed\_block\_flag = (uint8\_t)get\_bits(bs, 1);}
+\DoxyCodeLine{558             gr-\/>region\_count[0] = 7;}
+\DoxyCodeLine{559             gr-\/>region\_count[1] = 255;}
+\DoxyCodeLine{560             \textcolor{keywordflow}{if} (gr-\/>block\_type == SHORT\_BLOCK\_TYPE)}
+\DoxyCodeLine{561             \{}
+\DoxyCodeLine{562                 scfsi \&= 0x0F0F;}
+\DoxyCodeLine{563                 \textcolor{keywordflow}{if} (!gr-\/>mixed\_block\_flag)}
+\DoxyCodeLine{564                 \{}
+\DoxyCodeLine{565                     gr-\/>region\_count[0] = 8;}
+\DoxyCodeLine{566                     gr-\/>sfbtab = g\_scf\_short[sr\_idx];}
+\DoxyCodeLine{567                     gr-\/>n\_long\_sfb = 0;}
+\DoxyCodeLine{568                     gr-\/>n\_short\_sfb = 39;}
+\DoxyCodeLine{569                 \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{570                 \{}
+\DoxyCodeLine{571                     gr-\/>sfbtab = g\_scf\_mixed[sr\_idx];}
+\DoxyCodeLine{572                     gr-\/>n\_long\_sfb = HDR\_TEST\_MPEG1(hdr) ? 8 : 6;}
+\DoxyCodeLine{573                     gr-\/>n\_short\_sfb = 30;}
+\DoxyCodeLine{574                 \}}
+\DoxyCodeLine{575             \}}
+\DoxyCodeLine{576             tables = get\_bits(bs, 10);}
+\DoxyCodeLine{577             tables <<= 5;}
+\DoxyCodeLine{578             gr-\/>subblock\_gain[0] = (uint8\_t)get\_bits(bs, 3);}
+\DoxyCodeLine{579             gr-\/>subblock\_gain[1] = (uint8\_t)get\_bits(bs, 3);}
+\DoxyCodeLine{580             gr-\/>subblock\_gain[2] = (uint8\_t)get\_bits(bs, 3);}
+\DoxyCodeLine{581         \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{582         \{}
+\DoxyCodeLine{583             gr-\/>block\_type = 0;}
+\DoxyCodeLine{584             gr-\/>mixed\_block\_flag = 0;}
+\DoxyCodeLine{585             tables = get\_bits(bs, 15);}
+\DoxyCodeLine{586             gr-\/>region\_count[0] = (uint8\_t)get\_bits(bs, 4);}
+\DoxyCodeLine{587             gr-\/>region\_count[1] = (uint8\_t)get\_bits(bs, 3);}
+\DoxyCodeLine{588             gr-\/>region\_count[2] = 255;}
+\DoxyCodeLine{589         \}}
+\DoxyCodeLine{590         gr-\/>table\_select[0] = (uint8\_t)(tables >> 10);}
+\DoxyCodeLine{591         gr-\/>table\_select[1] = (uint8\_t)((tables >> 5) \& 31);}
+\DoxyCodeLine{592         gr-\/>table\_select[2] = (uint8\_t)((tables) \& 31);}
+\DoxyCodeLine{593         gr-\/>preflag = HDR\_TEST\_MPEG1(hdr) ? get\_bits(bs, 1) : (gr-\/>scalefac\_compress >= 500);}
+\DoxyCodeLine{594         gr-\/>scalefac\_scale = (uint8\_t)get\_bits(bs, 1);}
+\DoxyCodeLine{595         gr-\/>count1\_table = (uint8\_t)get\_bits(bs, 1);}
+\DoxyCodeLine{596         gr-\/>scfsi = (uint8\_t)((scfsi >> 12) \& 15);}
+\DoxyCodeLine{597         scfsi <<= 4;}
+\DoxyCodeLine{598         gr++;}
+\DoxyCodeLine{599     \} \textcolor{keywordflow}{while}(-\/-\/gr\_count);}
+\DoxyCodeLine{600 }
+\DoxyCodeLine{601     \textcolor{keywordflow}{if} (part\_23\_sum + bs-\/>pos > bs-\/>limit + main\_data\_begin*8)}
+\DoxyCodeLine{602     \{}
+\DoxyCodeLine{603         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{604     \}}
+\DoxyCodeLine{605 }
+\DoxyCodeLine{606     \textcolor{keywordflow}{return} main\_data\_begin;}
+\DoxyCodeLine{607 \}}
+\DoxyCodeLine{608 }
+\DoxyCodeLine{609 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L3\_read\_scalefactors(uint8\_t *scf, uint8\_t *ist\_pos, \textcolor{keyword}{const} uint8\_t *scf\_size, \textcolor{keyword}{const} uint8\_t *scf\_count, bs\_t *bitbuf, \textcolor{keywordtype}{int} scfsi)}
+\DoxyCodeLine{610 \{}
+\DoxyCodeLine{611     \textcolor{keywordtype}{int} i, k;}
+\DoxyCodeLine{612     \textcolor{keywordflow}{for} (i = 0; i < 4 \&\& scf\_count[i]; i++, scfsi *= 2)}
+\DoxyCodeLine{613     \{}
+\DoxyCodeLine{614         \textcolor{keywordtype}{int} cnt = scf\_count[i];}
+\DoxyCodeLine{615         \textcolor{keywordflow}{if} (scfsi \& 8)}
+\DoxyCodeLine{616         \{}
+\DoxyCodeLine{617             memcpy(scf, ist\_pos, cnt);}
+\DoxyCodeLine{618         \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{619         \{}
+\DoxyCodeLine{620             \textcolor{keywordtype}{int} bits = scf\_size[i];}
+\DoxyCodeLine{621             \textcolor{keywordflow}{if} (!bits)}
+\DoxyCodeLine{622             \{}
+\DoxyCodeLine{623                 memset(scf, 0, cnt);}
+\DoxyCodeLine{624                 memset(ist\_pos, 0, cnt);}
+\DoxyCodeLine{625             \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{626             \{}
+\DoxyCodeLine{627                 \textcolor{keywordtype}{int} max\_scf = (scfsi < 0) ? (1 << bits) -\/ 1 : -\/1;}
+\DoxyCodeLine{628                 \textcolor{keywordflow}{for} (k = 0; k < cnt; k++)}
+\DoxyCodeLine{629                 \{}
+\DoxyCodeLine{630                     \textcolor{keywordtype}{int} s = get\_bits(bitbuf, bits);}
+\DoxyCodeLine{631                     ist\_pos[k] = (s == max\_scf ? -\/1 : s);}
+\DoxyCodeLine{632                     scf[k] = s;}
+\DoxyCodeLine{633                 \}}
+\DoxyCodeLine{634             \}}
+\DoxyCodeLine{635         \}}
+\DoxyCodeLine{636         ist\_pos += cnt;}
+\DoxyCodeLine{637         scf += cnt;}
+\DoxyCodeLine{638     \}}
+\DoxyCodeLine{639     scf[0] = scf[1] = scf[2] = 0;}
+\DoxyCodeLine{640 \}}
+\DoxyCodeLine{641 }
+\DoxyCodeLine{642 \textcolor{keyword}{static} \textcolor{keywordtype}{float} L3\_ldexp\_q2(\textcolor{keywordtype}{float} y, \textcolor{keywordtype}{int} exp\_q2)}
+\DoxyCodeLine{643 \{}
+\DoxyCodeLine{644     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{float} g\_expfrac[4] = \{ 9.31322575e-\/10f,7.83145814e-\/10f,6.58544508e-\/10f,5.53767716e-\/10f \};}
+\DoxyCodeLine{645     \textcolor{keywordtype}{int} e;}
+\DoxyCodeLine{646     \textcolor{keywordflow}{do}}
+\DoxyCodeLine{647     \{}
+\DoxyCodeLine{648         e = MINIMP3\_MIN(30*4, exp\_q2);}
+\DoxyCodeLine{649         y *= g\_expfrac[e \& 3]*(1 << 30 >> (e >> 2));}
+\DoxyCodeLine{650     \} \textcolor{keywordflow}{while} ((exp\_q2 -\/= e) > 0);}
+\DoxyCodeLine{651     \textcolor{keywordflow}{return} y;}
+\DoxyCodeLine{652 \}}
+\DoxyCodeLine{653 }
+\DoxyCodeLine{654 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L3\_decode\_scalefactors(\textcolor{keyword}{const} uint8\_t *hdr, uint8\_t *ist\_pos, bs\_t *bs, \textcolor{keyword}{const} L3\_gr\_info\_t *gr, \textcolor{keywordtype}{float} *scf, \textcolor{keywordtype}{int} ch)}
+\DoxyCodeLine{655 \{}
+\DoxyCodeLine{656     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t g\_scf\_partitions[3][28] = \{}
+\DoxyCodeLine{657         \{ 6,5,5, 5,6,5,5,5,6,5, 7,3,11,10,0,0, 7, 7, 7,0, 6, 6,6,3, 8, 8,5,0 \},}
+\DoxyCodeLine{658         \{ 8,9,6,12,6,9,9,9,6,9,12,6,15,18,0,0, 6,15,12,0, 6,12,9,6, 6,18,9,0 \},}
+\DoxyCodeLine{659         \{ 9,9,6,12,9,9,9,9,9,9,12,6,18,18,0,0,12,12,12,0,12, 9,9,6,15,12,9,0 \}}
+\DoxyCodeLine{660     \};}
+\DoxyCodeLine{661     \textcolor{keyword}{const} uint8\_t *scf\_partition = g\_scf\_partitions[!!gr-\/>n\_short\_sfb + !gr-\/>n\_long\_sfb];}
+\DoxyCodeLine{662     uint8\_t scf\_size[4], iscf[40];}
+\DoxyCodeLine{663     \textcolor{keywordtype}{int} i, scf\_shift = gr-\/>scalefac\_scale + 1, gain\_exp, scfsi = gr-\/>scfsi;}
+\DoxyCodeLine{664     \textcolor{keywordtype}{float} gain;}
+\DoxyCodeLine{665 }
+\DoxyCodeLine{666     \textcolor{keywordflow}{if} (HDR\_TEST\_MPEG1(hdr))}
+\DoxyCodeLine{667     \{}
+\DoxyCodeLine{668         \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t g\_scfc\_decode[16] = \{ 0,1,2,3, 12,5,6,7, 9,10,11,13, 14,15,18,19 \};}
+\DoxyCodeLine{669         \textcolor{keywordtype}{int} part = g\_scfc\_decode[gr-\/>scalefac\_compress];}
+\DoxyCodeLine{670         scf\_size[1] = scf\_size[0] = (uint8\_t)(part >> 2);}
+\DoxyCodeLine{671         scf\_size[3] = scf\_size[2] = (uint8\_t)(part \& 3);}
+\DoxyCodeLine{672     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{673     \{}
+\DoxyCodeLine{674         \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t g\_mod[6*4] = \{ 5,5,4,4,5,5,4,1,4,3,1,1,5,6,6,1,4,4,4,1,4,3,1,1 \};}
+\DoxyCodeLine{675         \textcolor{keywordtype}{int} k, modprod, sfc, ist = HDR\_TEST\_I\_STEREO(hdr) \&\& ch;}
+\DoxyCodeLine{676         sfc = gr-\/>scalefac\_compress >> ist;}
+\DoxyCodeLine{677         \textcolor{keywordflow}{for} (k = ist*3*4; sfc >= 0; sfc -\/= modprod, k += 4)}
+\DoxyCodeLine{678         \{}
+\DoxyCodeLine{679             \textcolor{keywordflow}{for} (modprod = 1, i = 3; i >= 0; i-\/-\/)}
+\DoxyCodeLine{680             \{}
+\DoxyCodeLine{681                 scf\_size[i] = (uint8\_t)(sfc / modprod \% g\_mod[k + i]);}
+\DoxyCodeLine{682                 modprod *= g\_mod[k + i];}
+\DoxyCodeLine{683             \}}
+\DoxyCodeLine{684         \}}
+\DoxyCodeLine{685         scf\_partition += k;}
+\DoxyCodeLine{686         scfsi = -\/16;}
+\DoxyCodeLine{687     \}}
+\DoxyCodeLine{688     L3\_read\_scalefactors(iscf, ist\_pos, scf\_size, scf\_partition, bs, scfsi);}
+\DoxyCodeLine{689 }
+\DoxyCodeLine{690     \textcolor{keywordflow}{if} (gr-\/>n\_short\_sfb)}
+\DoxyCodeLine{691     \{}
+\DoxyCodeLine{692         \textcolor{keywordtype}{int} sh = 3 -\/ scf\_shift;}
+\DoxyCodeLine{693         \textcolor{keywordflow}{for} (i = 0; i < gr-\/>n\_short\_sfb; i += 3)}
+\DoxyCodeLine{694         \{}
+\DoxyCodeLine{695             iscf[gr-\/>n\_long\_sfb + i + 0] += gr-\/>subblock\_gain[0] << sh;}
+\DoxyCodeLine{696             iscf[gr-\/>n\_long\_sfb + i + 1] += gr-\/>subblock\_gain[1] << sh;}
+\DoxyCodeLine{697             iscf[gr-\/>n\_long\_sfb + i + 2] += gr-\/>subblock\_gain[2] << sh;}
+\DoxyCodeLine{698         \}}
+\DoxyCodeLine{699     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (gr-\/>preflag)}
+\DoxyCodeLine{700     \{}
+\DoxyCodeLine{701         \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t g\_preamp[10] = \{ 1,1,1,1,2,2,3,3,3,2 \};}
+\DoxyCodeLine{702         \textcolor{keywordflow}{for} (i = 0; i < 10; i++)}
+\DoxyCodeLine{703         \{}
+\DoxyCodeLine{704             iscf[11 + i] += g\_preamp[i];}
+\DoxyCodeLine{705         \}}
+\DoxyCodeLine{706     \}}
+\DoxyCodeLine{707 }
+\DoxyCodeLine{708     gain\_exp = gr-\/>global\_gain + BITS\_DEQUANTIZER\_OUT*4 -\/ 210 -\/ (HDR\_IS\_MS\_STEREO(hdr) ? 2 : 0);}
+\DoxyCodeLine{709     gain = L3\_ldexp\_q2(1 << (MAX\_SCFI/4),  MAX\_SCFI -\/ gain\_exp);}
+\DoxyCodeLine{710     \textcolor{keywordflow}{for} (i = 0; i < (int)(gr-\/>n\_long\_sfb + gr-\/>n\_short\_sfb); i++)}
+\DoxyCodeLine{711     \{}
+\DoxyCodeLine{712         scf[i] = L3\_ldexp\_q2(gain, iscf[i] << scf\_shift);}
+\DoxyCodeLine{713     \}}
+\DoxyCodeLine{714 \}}
+\DoxyCodeLine{715 }
+\DoxyCodeLine{716 \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{float} g\_pow43[129 + 16] = \{}
+\DoxyCodeLine{717     0,-\/1,-\/2.519842f,-\/4.326749f,-\/6.349604f,-\/8.549880f,-\/10.902724f,-\/13.390518f,-\/16.000000f,-\/18.720754f,-\/21.544347f,-\/24.463781f,-\/27.473142f,-\/30.567351f,-\/33.741992f,-\/36.993181f,}
+\DoxyCodeLine{718     0,1,2.519842f,4.326749f,6.349604f,8.549880f,10.902724f,13.390518f,16.000000f,18.720754f,21.544347f,24.463781f,27.473142f,30.567351f,33.741992f,36.993181f,40.317474f,43.711787f,47.173345f,50.699631f,54.288352f,57.937408f,61.644865f,65.408941f,69.227979f,73.100443f,77.024898f,81.000000f,85.024491f,89.097188f,93.216975f,97.382800f,101.593667f,105.848633f,110.146801f,114.487321f,118.869381f,123.292209f,127.755065f,132.257246f,136.798076f,141.376907f,145.993119f,150.646117f,155.335327f,160.060199f,164.820202f,169.614826f,174.443577f,179.305980f,184.201575f,189.129918f,194.090580f,199.083145f,204.107210f,209.162385f,214.248292f,219.364564f,224.510845f,229.686789f,234.892058f,240.126328f,245.389280f,250.680604f,256.000000f,261.347174f,266.721841f,272.123723f,277.552547f,283.008049f,288.489971f,293.998060f,299.532071f,305.091761f,310.676898f,316.287249f,321.922592f,327.582707f,333.267377f,338.976394f,344.709550f,350.466646f,356.247482f,362.051866f,367.879608f,373.730522f,379.604427f,385.501143f,391.420496f,397.362314f,403.326427f,409.312672f,415.320884f,421.350905f,427.402579f,433.475750f,439.570269f,445.685987f,451.822757f,457.980436f,464.158883f,470.357960f,476.577530f,482.817459f,489.077615f,495.357868f,501.658090f,507.978156f,514.317941f,520.677324f,527.056184f,533.454404f,539.871867f,546.308458f,552.764065f,559.238575f,565.731879f,572.243870f,578.774440f,585.323483f,591.890898f,598.476581f,605.080431f,611.702349f,618.342238f,625.000000f,631.675540f,638.368763f,645.079578f}
+\DoxyCodeLine{719 \};}
+\DoxyCodeLine{720 }
+\DoxyCodeLine{721 \textcolor{keyword}{static} \textcolor{keywordtype}{float} L3\_pow\_43(\textcolor{keywordtype}{int} x)}
+\DoxyCodeLine{722 \{}
+\DoxyCodeLine{723     \textcolor{keywordtype}{float} frac;}
+\DoxyCodeLine{724     \textcolor{keywordtype}{int} sign, mult = 256;}
+\DoxyCodeLine{725 }
+\DoxyCodeLine{726     \textcolor{keywordflow}{if} (x < 129)}
+\DoxyCodeLine{727     \{}
+\DoxyCodeLine{728         \textcolor{keywordflow}{return} g\_pow43[16 + x];}
+\DoxyCodeLine{729     \}}
+\DoxyCodeLine{730 }
+\DoxyCodeLine{731     \textcolor{keywordflow}{if} (x < 1024)}
+\DoxyCodeLine{732     \{}
+\DoxyCodeLine{733         mult = 16;}
+\DoxyCodeLine{734         x <<= 3;}
+\DoxyCodeLine{735     \}}
+\DoxyCodeLine{736 }
+\DoxyCodeLine{737     sign = 2*x \& 64;}
+\DoxyCodeLine{738     frac = (float)((x \& 63) -\/ sign) / ((x \& \string~63) + sign);}
+\DoxyCodeLine{739     \textcolor{keywordflow}{return} g\_pow43[16 + ((x + sign) >> 6)]*(1.f + frac*((4.f/3) + frac*(2.f/9)))*mult;}
+\DoxyCodeLine{740 \}}
+\DoxyCodeLine{741 }
+\DoxyCodeLine{742 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L3\_huffman(\textcolor{keywordtype}{float} *dst, bs\_t *bs, \textcolor{keyword}{const} L3\_gr\_info\_t *gr\_info, \textcolor{keyword}{const} \textcolor{keywordtype}{float} *scf, \textcolor{keywordtype}{int} layer3gr\_limit)}
+\DoxyCodeLine{743 \{}
+\DoxyCodeLine{744     \textcolor{keyword}{static} \textcolor{keyword}{const} int16\_t tabs[] = \{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,}
+\DoxyCodeLine{745         785,785,785,785,784,784,784,784,513,513,513,513,513,513,513,513,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,}
+\DoxyCodeLine{746         -\/255,1313,1298,1282,785,785,785,785,784,784,784,784,769,769,769,769,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,290,288,}
+\DoxyCodeLine{747         -\/255,1313,1298,1282,769,769,769,769,529,529,529,529,529,529,529,529,528,528,528,528,528,528,528,528,512,512,512,512,512,512,512,512,290,288,}
+\DoxyCodeLine{748         -\/253,-\/318,-\/351,-\/367,785,785,785,785,784,784,784,784,769,769,769,769,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,819,818,547,547,275,275,275,275,561,560,515,546,289,274,288,258,}
+\DoxyCodeLine{749         -\/254,-\/287,1329,1299,1314,1312,1057,1057,1042,1042,1026,1026,784,784,784,784,529,529,529,529,529,529,529,529,769,769,769,769,768,768,768,768,563,560,306,306,291,259,}
+\DoxyCodeLine{750         -\/252,-\/413,-\/477,-\/542,1298,-\/575,1041,1041,784,784,784,784,769,769,769,769,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,-\/383,-\/399,1107,1092,1106,1061,849,849,789,789,1104,1091,773,773,1076,1075,341,340,325,309,834,804,577,577,532,532,516,516,832,818,803,816,561,561,531,531,515,546,289,289,288,258,}
+\DoxyCodeLine{751         -\/252,-\/429,-\/493,-\/559,1057,1057,1042,1042,529,529,529,529,529,529,529,529,784,784,784,784,769,769,769,769,512,512,512,512,512,512,512,512,-\/382,1077,-\/415,1106,1061,1104,849,849,789,789,1091,1076,1029,1075,834,834,597,581,340,340,339,324,804,833,532,532,832,772,818,803,817,787,816,771,290,290,290,290,288,258,}
+\DoxyCodeLine{752         -\/253,-\/349,-\/414,-\/447,-\/463,1329,1299,-\/479,1314,1312,1057,1057,1042,1042,1026,1026,785,785,785,785,784,784,784,784,769,769,769,769,768,768,768,768,-\/319,851,821,-\/335,836,850,805,849,341,340,325,336,533,533,579,579,564,564,773,832,578,548,563,516,321,276,306,291,304,259,}
+\DoxyCodeLine{753         -\/251,-\/572,-\/733,-\/830,-\/863,-\/879,1041,1041,784,784,784,784,769,769,769,769,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,-\/511,-\/527,-\/543,1396,1351,1381,1366,1395,1335,1380,-\/559,1334,1138,1138,1063,1063,1350,1392,1031,1031,1062,1062,1364,1363,1120,1120,1333,1348,881,881,881,881,375,374,359,373,343,358,341,325,791,791,1123,1122,-\/703,1105,1045,-\/719,865,865,790,790,774,774,1104,1029,338,293,323,308,-\/799,-\/815,833,788,772,818,803,816,322,292,307,320,561,531,515,546,289,274,288,258,}
+\DoxyCodeLine{754         -\/251,-\/525,-\/605,-\/685,-\/765,-\/831,-\/846,1298,1057,1057,1312,1282,785,785,785,785,784,784,784,784,769,769,769,769,512,512,512,512,512,512,512,512,1399,1398,1383,1367,1382,1396,1351,-\/511,1381,1366,1139,1139,1079,1079,1124,1124,1364,1349,1363,1333,882,882,882,882,807,807,807,807,1094,1094,1136,1136,373,341,535,535,881,775,867,822,774,-\/591,324,338,-\/671,849,550,550,866,864,609,609,293,336,534,534,789,835,773,-\/751,834,804,308,307,833,788,832,772,562,562,547,547,305,275,560,515,290,290,}
+\DoxyCodeLine{755         -\/252,-\/397,-\/477,-\/557,-\/622,-\/653,-\/719,-\/735,-\/750,1329,1299,1314,1057,1057,1042,1042,1312,1282,1024,1024,785,785,785,785,784,784,784,784,769,769,769,769,-\/383,1127,1141,1111,1126,1140,1095,1110,869,869,883,883,1079,1109,882,882,375,374,807,868,838,881,791,-\/463,867,822,368,263,852,837,836,-\/543,610,610,550,550,352,336,534,534,865,774,851,821,850,805,593,533,579,564,773,832,578,578,548,548,577,577,307,276,306,291,516,560,259,259,}
+\DoxyCodeLine{756         -\/250,-\/2107,-\/2507,-\/2764,-\/2909,-\/2974,-\/3007,-\/3023,1041,1041,1040,1040,769,769,769,769,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,-\/767,-\/1052,-\/1213,-\/1277,-\/1358,-\/1405,-\/1469,-\/1535,-\/1550,-\/1582,-\/1614,-\/1647,-\/1662,-\/1694,-\/1726,-\/1759,-\/1774,-\/1807,-\/1822,-\/1854,-\/1886,1565,-\/1919,-\/1935,-\/1951,-\/1967,1731,1730,1580,1717,-\/1983,1729,1564,-\/1999,1548,-\/2015,-\/2031,1715,1595,-\/2047,1714,-\/2063,1610,-\/2079,1609,-\/2095,1323,1323,1457,1457,1307,1307,1712,1547,1641,1700,1699,1594,1685,1625,1442,1442,1322,1322,-\/780,-\/973,-\/910,1279,1278,1277,1262,1276,1261,1275,1215,1260,1229,-\/959,974,974,989,989,-\/943,735,478,478,495,463,506,414,-\/1039,1003,958,1017,927,942,987,957,431,476,1272,1167,1228,-\/1183,1256,-\/1199,895,895,941,941,1242,1227,1212,1135,1014,1014,490,489,503,487,910,1013,985,925,863,894,970,955,1012,847,-\/1343,831,755,755,984,909,428,366,754,559,-\/1391,752,486,457,924,997,698,698,983,893,740,740,908,877,739,739,667,667,953,938,497,287,271,271,683,606,590,712,726,574,302,302,738,736,481,286,526,725,605,711,636,724,696,651,589,681,666,710,364,467,573,695,466,466,301,465,379,379,709,604,665,679,316,316,634,633,436,436,464,269,424,394,452,332,438,363,347,408,393,448,331,422,362,407,392,421,346,406,391,376,375,359,1441,1306,-\/2367,1290,-\/2383,1337,-\/2399,-\/2415,1426,1321,-\/2431,1411,1336,-\/2447,-\/2463,-\/2479,1169,1169,1049,1049,1424,1289,1412,1352,1319,-\/2495,1154,1154,1064,1064,1153,1153,416,390,360,404,403,389,344,374,373,343,358,372,327,357,342,311,356,326,1395,1394,1137,1137,1047,1047,1365,1392,1287,1379,1334,1364,1349,1378,1318,1363,792,792,792,792,1152,1152,1032,1032,1121,1121,1046,1046,1120,1120,1030,1030,-\/2895,1106,1061,1104,849,849,789,789,1091,1076,1029,1090,1060,1075,833,833,309,324,532,532,832,772,818,803,561,561,531,560,515,546,289,274,288,258,}
+\DoxyCodeLine{757         -\/250,-\/1179,-\/1579,-\/1836,-\/1996,-\/2124,-\/2253,-\/2333,-\/2413,-\/2477,-\/2542,-\/2574,-\/2607,-\/2622,-\/2655,1314,1313,1298,1312,1282,785,785,785,785,1040,1040,1025,1025,768,768,768,768,-\/766,-\/798,-\/830,-\/862,-\/895,-\/911,-\/927,-\/943,-\/959,-\/975,-\/991,-\/1007,-\/1023,-\/1039,-\/1055,-\/1070,1724,1647,-\/1103,-\/1119,1631,1767,1662,1738,1708,1723,-\/1135,1780,1615,1779,1599,1677,1646,1778,1583,-\/1151,1777,1567,1737,1692,1765,1722,1707,1630,1751,1661,1764,1614,1736,1676,1763,1750,1645,1598,1721,1691,1762,1706,1582,1761,1566,-\/1167,1749,1629,767,766,751,765,494,494,735,764,719,749,734,763,447,447,748,718,477,506,431,491,446,476,461,505,415,430,475,445,504,399,460,489,414,503,383,474,429,459,502,502,746,752,488,398,501,473,413,472,486,271,480,270,-\/1439,-\/1455,1357,-\/1471,-\/1487,-\/1503,1341,1325,-\/1519,1489,1463,1403,1309,-\/1535,1372,1448,1418,1476,1356,1462,1387,-\/1551,1475,1340,1447,1402,1386,-\/1567,1068,1068,1474,1461,455,380,468,440,395,425,410,454,364,467,466,464,453,269,409,448,268,432,1371,1473,1432,1417,1308,1460,1355,1446,1459,1431,1083,1083,1401,1416,1458,1445,1067,1067,1370,1457,1051,1051,1291,1430,1385,1444,1354,1415,1400,1443,1082,1082,1173,1113,1186,1066,1185,1050,-\/1967,1158,1128,1172,1097,1171,1081,-\/1983,1157,1112,416,266,375,400,1170,1142,1127,1065,793,793,1169,1033,1156,1096,1141,1111,1155,1080,1126,1140,898,898,808,808,897,897,792,792,1095,1152,1032,1125,1110,1139,1079,1124,882,807,838,881,853,791,-\/2319,867,368,263,822,852,837,866,806,865,-\/2399,851,352,262,534,534,821,836,594,594,549,549,593,593,533,533,848,773,579,579,564,578,548,563,276,276,577,576,306,291,516,560,305,305,275,259,}
+\DoxyCodeLine{758         -\/251,-\/892,-\/2058,-\/2620,-\/2828,-\/2957,-\/3023,-\/3039,1041,1041,1040,1040,769,769,769,769,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,256,-\/511,-\/527,-\/543,-\/559,1530,-\/575,-\/591,1528,1527,1407,1526,1391,1023,1023,1023,1023,1525,1375,1268,1268,1103,1103,1087,1087,1039,1039,1523,-\/604,815,815,815,815,510,495,509,479,508,463,507,447,431,505,415,399,-\/734,-\/782,1262,-\/815,1259,1244,-\/831,1258,1228,-\/847,-\/863,1196,-\/879,1253,987,987,748,-\/767,493,493,462,477,414,414,686,669,478,446,461,445,474,429,487,458,412,471,1266,1264,1009,1009,799,799,-\/1019,-\/1276,-\/1452,-\/1581,-\/1677,-\/1757,-\/1821,-\/1886,-\/1933,-\/1997,1257,1257,1483,1468,1512,1422,1497,1406,1467,1496,1421,1510,1134,1134,1225,1225,1466,1451,1374,1405,1252,1252,1358,1480,1164,1164,1251,1251,1238,1238,1389,1465,-\/1407,1054,1101,-\/1423,1207,-\/1439,830,830,1248,1038,1237,1117,1223,1148,1236,1208,411,426,395,410,379,269,1193,1222,1132,1235,1221,1116,976,976,1192,1162,1177,1220,1131,1191,963,963,-\/1647,961,780,-\/1663,558,558,994,993,437,408,393,407,829,978,813,797,947,-\/1743,721,721,377,392,844,950,828,890,706,706,812,859,796,960,948,843,934,874,571,571,-\/1919,690,555,689,421,346,539,539,944,779,918,873,932,842,903,888,570,570,931,917,674,674,-\/2575,1562,-\/2591,1609,-\/2607,1654,1322,1322,1441,1441,1696,1546,1683,1593,1669,1624,1426,1426,1321,1321,1639,1680,1425,1425,1305,1305,1545,1668,1608,1623,1667,1592,1638,1666,1320,1320,1652,1607,1409,1409,1304,1304,1288,1288,1664,1637,1395,1395,1335,1335,1622,1636,1394,1394,1319,1319,1606,1621,1392,1392,1137,1137,1137,1137,345,390,360,375,404,373,1047,-\/2751,-\/2767,-\/2783,1062,1121,1046,-\/2799,1077,-\/2815,1106,1061,789,789,1105,1104,263,355,310,340,325,354,352,262,339,324,1091,1076,1029,1090,1060,1075,833,833,788,788,1088,1028,818,818,803,803,561,561,531,531,816,771,546,546,289,274,288,258,}
+\DoxyCodeLine{759         -\/253,-\/317,-\/381,-\/446,-\/478,-\/509,1279,1279,-\/811,-\/1179,-\/1451,-\/1756,-\/1900,-\/2028,-\/2189,-\/2253,-\/2333,-\/2414,-\/2445,-\/2511,-\/2526,1313,1298,-\/2559,1041,1041,1040,1040,1025,1025,1024,1024,1022,1007,1021,991,1020,975,1019,959,687,687,1018,1017,671,671,655,655,1016,1015,639,639,758,758,623,623,757,607,756,591,755,575,754,559,543,543,1009,783,-\/575,-\/621,-\/685,-\/749,496,-\/590,750,749,734,748,974,989,1003,958,988,973,1002,942,987,957,972,1001,926,986,941,971,956,1000,910,985,925,999,894,970,-\/1071,-\/1087,-\/1102,1390,-\/1135,1436,1509,1451,1374,-\/1151,1405,1358,1480,1420,-\/1167,1507,1494,1389,1342,1465,1435,1450,1326,1505,1310,1493,1373,1479,1404,1492,1464,1419,428,443,472,397,736,526,464,464,486,457,442,471,484,482,1357,1449,1434,1478,1388,1491,1341,1490,1325,1489,1463,1403,1309,1477,1372,1448,1418,1433,1476,1356,1462,1387,-\/1439,1475,1340,1447,1402,1474,1324,1461,1371,1473,269,448,1432,1417,1308,1460,-\/1711,1459,-\/1727,1441,1099,1099,1446,1386,1431,1401,-\/1743,1289,1083,1083,1160,1160,1458,1445,1067,1067,1370,1457,1307,1430,1129,1129,1098,1098,268,432,267,416,266,400,-\/1887,1144,1187,1082,1173,1113,1186,1066,1050,1158,1128,1143,1172,1097,1171,1081,420,391,1157,1112,1170,1142,1127,1065,1169,1049,1156,1096,1141,1111,1155,1080,1126,1154,1064,1153,1140,1095,1048,-\/2159,1125,1110,1137,-\/2175,823,823,1139,1138,807,807,384,264,368,263,868,838,853,791,867,822,852,837,866,806,865,790,-\/2319,851,821,836,352,262,850,805,849,-\/2399,533,533,835,820,336,261,578,548,563,577,532,532,832,772,562,562,547,547,305,275,560,515,290,290,288,258 \};}
+\DoxyCodeLine{760     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t tab32[] = \{ 130,162,193,209,44,28,76,140,9,9,9,9,9,9,9,9,190,254,222,238,126,94,157,157,109,61,173,205 \};}
+\DoxyCodeLine{761     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t tab33[] = \{ 252,236,220,204,188,172,156,140,124,108,92,76,60,44,28,12 \};}
+\DoxyCodeLine{762     \textcolor{keyword}{static} \textcolor{keyword}{const} int16\_t tabindex[2*16] = \{ 0,32,64,98,0,132,180,218,292,364,426,538,648,746,0,1126,1460,1460,1460,1460,1460,1460,1460,1460,1842,1842,1842,1842,1842,1842,1842,1842 \};}
+\DoxyCodeLine{763     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t g\_linbits[] =  \{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,6,8,10,13,4,5,6,7,8,9,11,13 \};}
+\DoxyCodeLine{764 }
+\DoxyCodeLine{765 \textcolor{preprocessor}{\#define PEEK\_BITS(n)  (bs\_cache >> (32 -\/ n))}}
+\DoxyCodeLine{766 \textcolor{preprocessor}{\#define FLUSH\_BITS(n) \{ bs\_cache <<= (n); bs\_sh += (n); \}}}
+\DoxyCodeLine{767 \textcolor{preprocessor}{\#define CHECK\_BITS    while (bs\_sh >= 0) \{ bs\_cache |= (uint32\_t)*bs\_next\_ptr++ << bs\_sh; bs\_sh -\/= 8; \}}}
+\DoxyCodeLine{768 \textcolor{preprocessor}{\#define BSPOS         ((bs\_next\_ptr -\/ bs-\/>buf)*8 -\/ 24 + bs\_sh)}}
+\DoxyCodeLine{769 }
+\DoxyCodeLine{770     \textcolor{keywordtype}{float} one = 0.0f;}
+\DoxyCodeLine{771     \textcolor{keywordtype}{int} ireg = 0, big\_val\_cnt = gr\_info-\/>big\_values;}
+\DoxyCodeLine{772     \textcolor{keyword}{const} uint8\_t *sfb = gr\_info-\/>sfbtab;}
+\DoxyCodeLine{773     \textcolor{keyword}{const} uint8\_t *bs\_next\_ptr = bs-\/>buf + bs-\/>pos/8;}
+\DoxyCodeLine{774     uint32\_t bs\_cache = (((bs\_next\_ptr[0]*256u + bs\_next\_ptr[1])*256u + bs\_next\_ptr[2])*256u + bs\_next\_ptr[3]) << (bs-\/>pos \& 7);}
+\DoxyCodeLine{775     \textcolor{keywordtype}{int} pairs\_to\_decode, np, bs\_sh = (bs-\/>pos \& 7) -\/ 8;}
+\DoxyCodeLine{776     bs\_next\_ptr += 4;}
+\DoxyCodeLine{777 }
+\DoxyCodeLine{778     \textcolor{keywordflow}{while} (big\_val\_cnt > 0)}
+\DoxyCodeLine{779     \{}
+\DoxyCodeLine{780         \textcolor{keywordtype}{int} tab\_num = gr\_info-\/>table\_select[ireg];}
+\DoxyCodeLine{781         \textcolor{keywordtype}{int} sfb\_cnt = gr\_info-\/>region\_count[ireg++];}
+\DoxyCodeLine{782         \textcolor{keyword}{const} int16\_t *codebook = tabs + tabindex[tab\_num];}
+\DoxyCodeLine{783         \textcolor{keywordtype}{int} linbits = g\_linbits[tab\_num];}
+\DoxyCodeLine{784         \textcolor{keywordflow}{if} (linbits)}
+\DoxyCodeLine{785         \{}
+\DoxyCodeLine{786             \textcolor{keywordflow}{do}}
+\DoxyCodeLine{787             \{}
+\DoxyCodeLine{788                 np = *sfb++ / 2;}
+\DoxyCodeLine{789                 pairs\_to\_decode = MINIMP3\_MIN(big\_val\_cnt, np);}
+\DoxyCodeLine{790                 one = *scf++;}
+\DoxyCodeLine{791                 \textcolor{keywordflow}{do}}
+\DoxyCodeLine{792                 \{}
+\DoxyCodeLine{793                     \textcolor{keywordtype}{int} j, w = 5;}
+\DoxyCodeLine{794                     \textcolor{keywordtype}{int} leaf = codebook[PEEK\_BITS(w)];}
+\DoxyCodeLine{795                     \textcolor{keywordflow}{while} (leaf < 0)}
+\DoxyCodeLine{796                     \{}
+\DoxyCodeLine{797                         FLUSH\_BITS(w);}
+\DoxyCodeLine{798                         w = leaf \& 7;}
+\DoxyCodeLine{799                         leaf = codebook[PEEK\_BITS(w) -\/ (leaf >> 3)];}
+\DoxyCodeLine{800                     \}}
+\DoxyCodeLine{801                     FLUSH\_BITS(leaf >> 8);}
+\DoxyCodeLine{802 }
+\DoxyCodeLine{803                     \textcolor{keywordflow}{for} (j = 0; j < 2; j++, dst++, leaf >>= 4)}
+\DoxyCodeLine{804                     \{}
+\DoxyCodeLine{805                         \textcolor{keywordtype}{int} lsb = leaf \& 0x0F;}
+\DoxyCodeLine{806                         \textcolor{keywordflow}{if} (lsb == 15)}
+\DoxyCodeLine{807                         \{}
+\DoxyCodeLine{808                             lsb += PEEK\_BITS(linbits);}
+\DoxyCodeLine{809                             FLUSH\_BITS(linbits);}
+\DoxyCodeLine{810                             CHECK\_BITS;}
+\DoxyCodeLine{811                             *dst = one*L3\_pow\_43(lsb)*((int32\_t)bs\_cache < 0 ? -\/1: 1);}
+\DoxyCodeLine{812                         \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{813                         \{}
+\DoxyCodeLine{814                             *dst = g\_pow43[16 + lsb -\/ 16*(bs\_cache >> 31)]*one;}
+\DoxyCodeLine{815                         \}}
+\DoxyCodeLine{816                         FLUSH\_BITS(lsb ? 1 : 0);}
+\DoxyCodeLine{817                     \}}
+\DoxyCodeLine{818                     CHECK\_BITS;}
+\DoxyCodeLine{819                 \} \textcolor{keywordflow}{while} (-\/-\/pairs\_to\_decode);}
+\DoxyCodeLine{820             \} \textcolor{keywordflow}{while} ((big\_val\_cnt -\/= np) > 0 \&\& -\/-\/sfb\_cnt >= 0);}
+\DoxyCodeLine{821         \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{822         \{}
+\DoxyCodeLine{823             \textcolor{keywordflow}{do}}
+\DoxyCodeLine{824             \{}
+\DoxyCodeLine{825                 np = *sfb++ / 2;}
+\DoxyCodeLine{826                 pairs\_to\_decode = MINIMP3\_MIN(big\_val\_cnt, np);}
+\DoxyCodeLine{827                 one = *scf++;}
+\DoxyCodeLine{828                 \textcolor{keywordflow}{do}}
+\DoxyCodeLine{829                 \{}
+\DoxyCodeLine{830                     \textcolor{keywordtype}{int} j, w = 5;}
+\DoxyCodeLine{831                     \textcolor{keywordtype}{int} leaf = codebook[PEEK\_BITS(w)];}
+\DoxyCodeLine{832                     \textcolor{keywordflow}{while} (leaf < 0)}
+\DoxyCodeLine{833                     \{}
+\DoxyCodeLine{834                         FLUSH\_BITS(w);}
+\DoxyCodeLine{835                         w = leaf \& 7;}
+\DoxyCodeLine{836                         leaf = codebook[PEEK\_BITS(w) -\/ (leaf >> 3)];}
+\DoxyCodeLine{837                     \}}
+\DoxyCodeLine{838                     FLUSH\_BITS(leaf >> 8);}
+\DoxyCodeLine{839 }
+\DoxyCodeLine{840                     \textcolor{keywordflow}{for} (j = 0; j < 2; j++, dst++, leaf >>= 4)}
+\DoxyCodeLine{841                     \{}
+\DoxyCodeLine{842                         \textcolor{keywordtype}{int} lsb = leaf \& 0x0F;}
+\DoxyCodeLine{843                         *dst = g\_pow43[16 + lsb -\/ 16*(bs\_cache >> 31)]*one;}
+\DoxyCodeLine{844                         FLUSH\_BITS(lsb ? 1 : 0);}
+\DoxyCodeLine{845                     \}}
+\DoxyCodeLine{846                     CHECK\_BITS;}
+\DoxyCodeLine{847                 \} \textcolor{keywordflow}{while} (-\/-\/pairs\_to\_decode);}
+\DoxyCodeLine{848             \} \textcolor{keywordflow}{while} ((big\_val\_cnt -\/= np) > 0 \&\& -\/-\/sfb\_cnt >= 0);}
+\DoxyCodeLine{849         \}}
+\DoxyCodeLine{850     \}}
+\DoxyCodeLine{851 }
+\DoxyCodeLine{852     \textcolor{keywordflow}{for} (np = 1 -\/ big\_val\_cnt;; dst += 4)}
+\DoxyCodeLine{853     \{}
+\DoxyCodeLine{854         \textcolor{keyword}{const} uint8\_t *codebook\_count1 = (gr\_info-\/>count1\_table) ? tab33 : tab32;}
+\DoxyCodeLine{855         \textcolor{keywordtype}{int} leaf = codebook\_count1[PEEK\_BITS(4)];}
+\DoxyCodeLine{856         \textcolor{keywordflow}{if} (!(leaf \& 8))}
+\DoxyCodeLine{857         \{}
+\DoxyCodeLine{858             leaf = codebook\_count1[(leaf >> 3) + (bs\_cache << 4 >> (32 -\/ (leaf \& 3)))];}
+\DoxyCodeLine{859         \}}
+\DoxyCodeLine{860         FLUSH\_BITS(leaf \& 7);}
+\DoxyCodeLine{861         \textcolor{keywordflow}{if} (BSPOS > layer3gr\_limit)}
+\DoxyCodeLine{862         \{}
+\DoxyCodeLine{863             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{864         \}}
+\DoxyCodeLine{865 \textcolor{preprocessor}{\#define RELOAD\_SCALEFACTOR  if (!-\/-\/np) \{ np = *sfb++/2; if (!np) break; one = *scf++; \}}}
+\DoxyCodeLine{866 \textcolor{preprocessor}{\#define DEQ\_COUNT1(s) if (leaf \& (128 >> s)) \{ dst[s] = ((int32\_t)bs\_cache < 0) ? -\/one : one; FLUSH\_BITS(1) \}}}
+\DoxyCodeLine{867         RELOAD\_SCALEFACTOR;}
+\DoxyCodeLine{868         DEQ\_COUNT1(0);}
+\DoxyCodeLine{869         DEQ\_COUNT1(1);}
+\DoxyCodeLine{870         RELOAD\_SCALEFACTOR;}
+\DoxyCodeLine{871         DEQ\_COUNT1(2);}
+\DoxyCodeLine{872         DEQ\_COUNT1(3);}
+\DoxyCodeLine{873         CHECK\_BITS;}
+\DoxyCodeLine{874     \}}
+\DoxyCodeLine{875 }
+\DoxyCodeLine{876     bs-\/>pos = layer3gr\_limit;}
+\DoxyCodeLine{877 \}}
+\DoxyCodeLine{878 }
+\DoxyCodeLine{879 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L3\_midside\_stereo(\textcolor{keywordtype}{float} *left, \textcolor{keywordtype}{int} n)}
+\DoxyCodeLine{880 \{}
+\DoxyCodeLine{881     \textcolor{keywordtype}{int} i = 0;}
+\DoxyCodeLine{882     \textcolor{keywordtype}{float} *right = left + 576;}
+\DoxyCodeLine{883 \textcolor{preprocessor}{\#if HAVE\_SIMD}}
+\DoxyCodeLine{884     \textcolor{keywordflow}{if} (have\_simd()) \textcolor{keywordflow}{for} (; i < n -\/ 3; i += 4)}
+\DoxyCodeLine{885     \{}
+\DoxyCodeLine{886         f4 vl = VLD(left + i);}
+\DoxyCodeLine{887         f4 vr = VLD(right + i);}
+\DoxyCodeLine{888         VSTORE(left + i, VADD(vl, vr));}
+\DoxyCodeLine{889         VSTORE(right + i, VSUB(vl, vr));}
+\DoxyCodeLine{890     \}}
+\DoxyCodeLine{891 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* HAVE\_SIMD */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{892     \textcolor{keywordflow}{for} (; i < n; i++)}
+\DoxyCodeLine{893     \{}
+\DoxyCodeLine{894         \textcolor{keywordtype}{float} a = left[i];}
+\DoxyCodeLine{895         \textcolor{keywordtype}{float} b = right[i];}
+\DoxyCodeLine{896         left[i] = a + b;}
+\DoxyCodeLine{897         right[i] = a -\/ b;}
+\DoxyCodeLine{898     \}}
+\DoxyCodeLine{899 \}}
+\DoxyCodeLine{900 }
+\DoxyCodeLine{901 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L3\_intensity\_stereo\_band(\textcolor{keywordtype}{float} *left, \textcolor{keywordtype}{int} n, \textcolor{keywordtype}{float} kl, \textcolor{keywordtype}{float} kr)}
+\DoxyCodeLine{902 \{}
+\DoxyCodeLine{903     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{904     \textcolor{keywordflow}{for} (i = 0; i < n; i++)}
+\DoxyCodeLine{905     \{}
+\DoxyCodeLine{906         left[i + 576] = left[i]*kr;}
+\DoxyCodeLine{907         left[i] = left[i]*kl;}
+\DoxyCodeLine{908     \}}
+\DoxyCodeLine{909 \}}
+\DoxyCodeLine{910 }
+\DoxyCodeLine{911 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L3\_stereo\_top\_band(\textcolor{keyword}{const} \textcolor{keywordtype}{float} *right, \textcolor{keyword}{const} uint8\_t *sfb, \textcolor{keywordtype}{int} nbands, \textcolor{keywordtype}{int} max\_band[3])}
+\DoxyCodeLine{912 \{}
+\DoxyCodeLine{913     \textcolor{keywordtype}{int} i, k;}
+\DoxyCodeLine{914 }
+\DoxyCodeLine{915     max\_band[0] = max\_band[1] = max\_band[2] = -\/1;}
+\DoxyCodeLine{916 }
+\DoxyCodeLine{917     \textcolor{keywordflow}{for} (i = 0; i < nbands; i++)}
+\DoxyCodeLine{918     \{}
+\DoxyCodeLine{919         \textcolor{keywordflow}{for} (k = 0; k < sfb[i]; k += 2)}
+\DoxyCodeLine{920         \{}
+\DoxyCodeLine{921             \textcolor{keywordflow}{if} (right[k] != 0 || right[k + 1] != 0)}
+\DoxyCodeLine{922             \{}
+\DoxyCodeLine{923                 max\_band[i \% 3] = i;}
+\DoxyCodeLine{924                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{925             \}}
+\DoxyCodeLine{926         \}}
+\DoxyCodeLine{927         right += sfb[i];}
+\DoxyCodeLine{928     \}}
+\DoxyCodeLine{929 \}}
+\DoxyCodeLine{930 }
+\DoxyCodeLine{931 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L3\_stereo\_process(\textcolor{keywordtype}{float} *left, \textcolor{keyword}{const} uint8\_t *ist\_pos, \textcolor{keyword}{const} uint8\_t *sfb, \textcolor{keyword}{const} uint8\_t *hdr, \textcolor{keywordtype}{int} max\_band[3], \textcolor{keywordtype}{int} mpeg2\_sh)}
+\DoxyCodeLine{932 \{}
+\DoxyCodeLine{933     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{float} g\_pan[7*2] = \{ 0,1,0.21132487f,0.78867513f,0.36602540f,0.63397460f,0.5f,0.5f,0.63397460f,0.36602540f,0.78867513f,0.21132487f,1,0 \};}
+\DoxyCodeLine{934     \textcolor{keywordtype}{unsigned} i, max\_pos = HDR\_TEST\_MPEG1(hdr) ? 7 : 64;}
+\DoxyCodeLine{935 }
+\DoxyCodeLine{936     \textcolor{keywordflow}{for} (i = 0; sfb[i]; i++)}
+\DoxyCodeLine{937     \{}
+\DoxyCodeLine{938         \textcolor{keywordtype}{unsigned} ipos = ist\_pos[i];}
+\DoxyCodeLine{939         \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{int})i > max\_band[i \% 3] \&\& ipos < max\_pos)}
+\DoxyCodeLine{940         \{}
+\DoxyCodeLine{941             \textcolor{keywordtype}{float} kl, kr, s = HDR\_TEST\_MS\_STEREO(hdr) ? 1.41421356f : 1;}
+\DoxyCodeLine{942             \textcolor{keywordflow}{if} (HDR\_TEST\_MPEG1(hdr))}
+\DoxyCodeLine{943             \{}
+\DoxyCodeLine{944                 kl = g\_pan[2*ipos];}
+\DoxyCodeLine{945                 kr = g\_pan[2*ipos + 1];}
+\DoxyCodeLine{946             \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{947             \{}
+\DoxyCodeLine{948                 kl = 1;}
+\DoxyCodeLine{949                 kr = L3\_ldexp\_q2(1, (ipos + 1) >> 1 << mpeg2\_sh);}
+\DoxyCodeLine{950                 \textcolor{keywordflow}{if} (ipos \& 1)}
+\DoxyCodeLine{951                 \{}
+\DoxyCodeLine{952                     kl = kr;}
+\DoxyCodeLine{953                     kr = 1;}
+\DoxyCodeLine{954                 \}}
+\DoxyCodeLine{955             \}}
+\DoxyCodeLine{956             L3\_intensity\_stereo\_band(left, sfb[i], kl*s, kr*s);}
+\DoxyCodeLine{957         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (HDR\_TEST\_MS\_STEREO(hdr))}
+\DoxyCodeLine{958         \{}
+\DoxyCodeLine{959             L3\_midside\_stereo(left, sfb[i]);}
+\DoxyCodeLine{960         \}}
+\DoxyCodeLine{961         left += sfb[i];}
+\DoxyCodeLine{962     \}}
+\DoxyCodeLine{963 \}}
+\DoxyCodeLine{964 }
+\DoxyCodeLine{965 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L3\_intensity\_stereo(\textcolor{keywordtype}{float} *left, uint8\_t *ist\_pos, \textcolor{keyword}{const} L3\_gr\_info\_t *gr, \textcolor{keyword}{const} uint8\_t *hdr)}
+\DoxyCodeLine{966 \{}
+\DoxyCodeLine{967     \textcolor{keywordtype}{int} max\_band[3], n\_sfb = gr-\/>n\_long\_sfb + gr-\/>n\_short\_sfb;}
+\DoxyCodeLine{968     \textcolor{keywordtype}{int} i, max\_blocks = gr-\/>n\_short\_sfb ? 3 : 1;}
+\DoxyCodeLine{969 }
+\DoxyCodeLine{970     L3\_stereo\_top\_band(left + 576, gr-\/>sfbtab, n\_sfb, max\_band);}
+\DoxyCodeLine{971     \textcolor{keywordflow}{if} (gr-\/>n\_long\_sfb)}
+\DoxyCodeLine{972     \{}
+\DoxyCodeLine{973         max\_band[0] = max\_band[1] = max\_band[2] = MINIMP3\_MAX(MINIMP3\_MAX(max\_band[0], max\_band[1]), max\_band[2]);}
+\DoxyCodeLine{974     \}}
+\DoxyCodeLine{975     \textcolor{keywordflow}{for} (i = 0; i < max\_blocks; i++)}
+\DoxyCodeLine{976     \{}
+\DoxyCodeLine{977         \textcolor{keywordtype}{int} default\_pos = HDR\_TEST\_MPEG1(hdr) ? 3 : 0;}
+\DoxyCodeLine{978         \textcolor{keywordtype}{int} itop = n\_sfb -\/ max\_blocks + i;}
+\DoxyCodeLine{979         \textcolor{keywordtype}{int} prev = itop -\/ max\_blocks;}
+\DoxyCodeLine{980         ist\_pos[itop] = max\_band[i] >= prev ? default\_pos : ist\_pos[prev];}
+\DoxyCodeLine{981     \}}
+\DoxyCodeLine{982     L3\_stereo\_process(left, ist\_pos, gr-\/>sfbtab, hdr, max\_band, gr[1].scalefac\_compress \& 1);}
+\DoxyCodeLine{983 \}}
+\DoxyCodeLine{984 }
+\DoxyCodeLine{985 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L3\_reorder(\textcolor{keywordtype}{float} *grbuf, \textcolor{keywordtype}{float} *scratch, \textcolor{keyword}{const} uint8\_t *sfb)}
+\DoxyCodeLine{986 \{}
+\DoxyCodeLine{987     \textcolor{keywordtype}{int} i, len;}
+\DoxyCodeLine{988     \textcolor{keywordtype}{float} *src = grbuf, *dst = scratch;}
+\DoxyCodeLine{989 }
+\DoxyCodeLine{990     \textcolor{keywordflow}{for} (;0 != (len = *sfb); sfb += 3, src += 2*len)}
+\DoxyCodeLine{991     \{}
+\DoxyCodeLine{992         \textcolor{keywordflow}{for} (i = 0; i < len; i++, src++)}
+\DoxyCodeLine{993         \{}
+\DoxyCodeLine{994             *dst++ = src[0*len];}
+\DoxyCodeLine{995             *dst++ = src[1*len];}
+\DoxyCodeLine{996             *dst++ = src[2*len];}
+\DoxyCodeLine{997         \}}
+\DoxyCodeLine{998     \}}
+\DoxyCodeLine{999     memcpy(grbuf, scratch, (dst -\/ scratch)*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{float}));}
+\DoxyCodeLine{1000 \}}
+\DoxyCodeLine{1001 }
+\DoxyCodeLine{1002 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L3\_antialias(\textcolor{keywordtype}{float} *grbuf, \textcolor{keywordtype}{int} nbands)}
+\DoxyCodeLine{1003 \{}
+\DoxyCodeLine{1004     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{float} g\_aa[2][8] = \{}
+\DoxyCodeLine{1005         \{0.85749293f,0.88174200f,0.94962865f,0.98331459f,0.99551782f,0.99916056f,0.99989920f,0.99999316f\},}
+\DoxyCodeLine{1006         \{0.51449576f,0.47173197f,0.31337745f,0.18191320f,0.09457419f,0.04096558f,0.01419856f,0.00369997f\}}
+\DoxyCodeLine{1007     \};}
+\DoxyCodeLine{1008 }
+\DoxyCodeLine{1009     \textcolor{keywordflow}{for} (; nbands > 0; nbands-\/-\/, grbuf += 18)}
+\DoxyCodeLine{1010     \{}
+\DoxyCodeLine{1011         \textcolor{keywordtype}{int} i = 0;}
+\DoxyCodeLine{1012 \textcolor{preprocessor}{\#if HAVE\_SIMD}}
+\DoxyCodeLine{1013         \textcolor{keywordflow}{if} (have\_simd()) \textcolor{keywordflow}{for} (; i < 8; i += 4)}
+\DoxyCodeLine{1014         \{}
+\DoxyCodeLine{1015             f4 vu = VLD(grbuf + 18 + i);}
+\DoxyCodeLine{1016             f4 vd = VLD(grbuf + 14 -\/ i);}
+\DoxyCodeLine{1017             f4 vc0 = VLD(g\_aa[0] + i);}
+\DoxyCodeLine{1018             f4 vc1 = VLD(g\_aa[1] + i);}
+\DoxyCodeLine{1019             vd = VREV(vd);}
+\DoxyCodeLine{1020             VSTORE(grbuf + 18 + i, VSUB(VMUL(vu, vc0), VMUL(vd, vc1)));}
+\DoxyCodeLine{1021             vd = VADD(VMUL(vu, vc1), VMUL(vd, vc0));}
+\DoxyCodeLine{1022             VSTORE(grbuf + 14 -\/ i, VREV(vd));}
+\DoxyCodeLine{1023         \}}
+\DoxyCodeLine{1024 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* HAVE\_SIMD */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1025 \textcolor{preprocessor}{\#ifndef MINIMP3\_ONLY\_SIMD}}
+\DoxyCodeLine{1026         \textcolor{keywordflow}{for}(; i < 8; i++)}
+\DoxyCodeLine{1027         \{}
+\DoxyCodeLine{1028             \textcolor{keywordtype}{float} u = grbuf[18 + i];}
+\DoxyCodeLine{1029             \textcolor{keywordtype}{float} d = grbuf[17 -\/ i];}
+\DoxyCodeLine{1030             grbuf[18 + i] = u*g\_aa[0][i] -\/ d*g\_aa[1][i];}
+\DoxyCodeLine{1031             grbuf[17 -\/ i] = u*g\_aa[1][i] + d*g\_aa[0][i];}
+\DoxyCodeLine{1032         \}}
+\DoxyCodeLine{1033 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MINIMP3\_ONLY\_SIMD */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1034     \}}
+\DoxyCodeLine{1035 \}}
+\DoxyCodeLine{1036 }
+\DoxyCodeLine{1037 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L3\_dct3\_9(\textcolor{keywordtype}{float} *y)}
+\DoxyCodeLine{1038 \{}
+\DoxyCodeLine{1039     \textcolor{keywordtype}{float} s0, s1, s2, s3, s4, s5, s6, s7, s8, t0, t2, t4;}
+\DoxyCodeLine{1040 }
+\DoxyCodeLine{1041     s0 = y[0]; s2 = y[2]; s4 = y[4]; s6 = y[6]; s8 = y[8];}
+\DoxyCodeLine{1042     t0 = s0 + s6*0.5f;}
+\DoxyCodeLine{1043     s0 -\/= s6;}
+\DoxyCodeLine{1044     t4 = (s4 + s2)*0.93969262f;}
+\DoxyCodeLine{1045     t2 = (s8 + s2)*0.76604444f;}
+\DoxyCodeLine{1046     s6 = (s4 -\/ s8)*0.17364818f;}
+\DoxyCodeLine{1047     s4 += s8 -\/ s2;}
+\DoxyCodeLine{1048 }
+\DoxyCodeLine{1049     s2 = s0 -\/ s4*0.5f;}
+\DoxyCodeLine{1050     y[4] = s4 + s0;}
+\DoxyCodeLine{1051     s8 = t0 -\/ t2 + s6;}
+\DoxyCodeLine{1052     s0 = t0 -\/ t4 + t2;}
+\DoxyCodeLine{1053     s4 = t0 + t4 -\/ s6;}
+\DoxyCodeLine{1054 }
+\DoxyCodeLine{1055     s1 = y[1]; s3 = y[3]; s5 = y[5]; s7 = y[7];}
+\DoxyCodeLine{1056 }
+\DoxyCodeLine{1057     s3 *= 0.86602540f;}
+\DoxyCodeLine{1058     t0 = (s5 + s1)*0.98480775f;}
+\DoxyCodeLine{1059     t4 = (s5 -\/ s7)*0.34202014f;}
+\DoxyCodeLine{1060     t2 = (s1 + s7)*0.64278761f;}
+\DoxyCodeLine{1061     s1 = (s1 -\/ s5 -\/ s7)*0.86602540f;}
+\DoxyCodeLine{1062 }
+\DoxyCodeLine{1063     s5 = t0 -\/ s3 -\/ t2;}
+\DoxyCodeLine{1064     s7 = t4 -\/ s3 -\/ t0;}
+\DoxyCodeLine{1065     s3 = t4 + s3 -\/ t2;}
+\DoxyCodeLine{1066 }
+\DoxyCodeLine{1067     y[0] = s4 -\/ s7;}
+\DoxyCodeLine{1068     y[1] = s2 + s1;}
+\DoxyCodeLine{1069     y[2] = s0 -\/ s3;}
+\DoxyCodeLine{1070     y[3] = s8 + s5;}
+\DoxyCodeLine{1071     y[5] = s8 -\/ s5;}
+\DoxyCodeLine{1072     y[6] = s0 + s3;}
+\DoxyCodeLine{1073     y[7] = s2 -\/ s1;}
+\DoxyCodeLine{1074     y[8] = s4 + s7;}
+\DoxyCodeLine{1075 \}}
+\DoxyCodeLine{1076 }
+\DoxyCodeLine{1077 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L3\_imdct36(\textcolor{keywordtype}{float} *grbuf, \textcolor{keywordtype}{float} *overlap, \textcolor{keyword}{const} \textcolor{keywordtype}{float} *window, \textcolor{keywordtype}{int} nbands)}
+\DoxyCodeLine{1078 \{}
+\DoxyCodeLine{1079     \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{1080     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{float} g\_twid9[18] = \{}
+\DoxyCodeLine{1081         0.73727734f,0.79335334f,0.84339145f,0.88701083f,0.92387953f,0.95371695f,0.97629601f,0.99144486f,0.99904822f,0.67559021f,0.60876143f,0.53729961f,0.46174861f,0.38268343f,0.30070580f,0.21643961f,0.13052619f,0.04361938f}
+\DoxyCodeLine{1082     \};}
+\DoxyCodeLine{1083 }
+\DoxyCodeLine{1084     \textcolor{keywordflow}{for} (j = 0; j < nbands; j++, grbuf += 18, overlap += 9)}
+\DoxyCodeLine{1085     \{}
+\DoxyCodeLine{1086         \textcolor{keywordtype}{float} co[9], si[9];}
+\DoxyCodeLine{1087         co[0] = -\/grbuf[0];}
+\DoxyCodeLine{1088         si[0] = grbuf[17];}
+\DoxyCodeLine{1089         \textcolor{keywordflow}{for} (i = 0; i < 4; i++)}
+\DoxyCodeLine{1090         \{}
+\DoxyCodeLine{1091             si[8 -\/ 2*i] =   grbuf[4*i + 1] -\/ grbuf[4*i + 2];}
+\DoxyCodeLine{1092             co[1 + 2*i] =   grbuf[4*i + 1] + grbuf[4*i + 2];}
+\DoxyCodeLine{1093             si[7 -\/ 2*i] =   grbuf[4*i + 4] -\/ grbuf[4*i + 3];}
+\DoxyCodeLine{1094             co[2 + 2*i] = -\/(grbuf[4*i + 3] + grbuf[4*i + 4]);}
+\DoxyCodeLine{1095         \}}
+\DoxyCodeLine{1096         L3\_dct3\_9(co);}
+\DoxyCodeLine{1097         L3\_dct3\_9(si);}
+\DoxyCodeLine{1098 }
+\DoxyCodeLine{1099         si[1] = -\/si[1];}
+\DoxyCodeLine{1100         si[3] = -\/si[3];}
+\DoxyCodeLine{1101         si[5] = -\/si[5];}
+\DoxyCodeLine{1102         si[7] = -\/si[7];}
+\DoxyCodeLine{1103 }
+\DoxyCodeLine{1104         i = 0;}
+\DoxyCodeLine{1105 }
+\DoxyCodeLine{1106 \textcolor{preprocessor}{\#if HAVE\_SIMD}}
+\DoxyCodeLine{1107         \textcolor{keywordflow}{if} (have\_simd()) \textcolor{keywordflow}{for} (; i < 8; i += 4)}
+\DoxyCodeLine{1108         \{}
+\DoxyCodeLine{1109             f4 vovl = VLD(overlap + i);}
+\DoxyCodeLine{1110             f4 vc = VLD(co + i);}
+\DoxyCodeLine{1111             f4 vs = VLD(si + i);}
+\DoxyCodeLine{1112             f4 vr0 = VLD(g\_twid9 + i);}
+\DoxyCodeLine{1113             f4 vr1 = VLD(g\_twid9 + 9 + i);}
+\DoxyCodeLine{1114             f4 vw0 = VLD(window + i);}
+\DoxyCodeLine{1115             f4 vw1 = VLD(window + 9 + i);}
+\DoxyCodeLine{1116             f4 vsum = VADD(VMUL(vc, vr1), VMUL(vs, vr0));}
+\DoxyCodeLine{1117             VSTORE(overlap + i, VSUB(VMUL(vc, vr0), VMUL(vs, vr1)));}
+\DoxyCodeLine{1118             VSTORE(grbuf + i, VSUB(VMUL(vovl, vw0), VMUL(vsum, vw1)));}
+\DoxyCodeLine{1119             vsum = VADD(VMUL(vovl, vw1), VMUL(vsum, vw0));}
+\DoxyCodeLine{1120             VSTORE(grbuf + 14 -\/ i, VREV(vsum));}
+\DoxyCodeLine{1121         \}}
+\DoxyCodeLine{1122 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* HAVE\_SIMD */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1123         \textcolor{keywordflow}{for} (; i < 9; i++)}
+\DoxyCodeLine{1124         \{}
+\DoxyCodeLine{1125             \textcolor{keywordtype}{float} ovl  = overlap[i];}
+\DoxyCodeLine{1126             \textcolor{keywordtype}{float} sum  = co[i]*g\_twid9[9 + i] + si[i]*g\_twid9[0 + i];}
+\DoxyCodeLine{1127             overlap[i] = co[i]*g\_twid9[0 + i] -\/ si[i]*g\_twid9[9 + i];}
+\DoxyCodeLine{1128             grbuf[i]      = ovl*window[0 + i] -\/ sum*window[9 + i];}
+\DoxyCodeLine{1129             grbuf[17 -\/ i] = ovl*window[9 + i] + sum*window[0 + i];}
+\DoxyCodeLine{1130         \}}
+\DoxyCodeLine{1131     \}}
+\DoxyCodeLine{1132 \}}
+\DoxyCodeLine{1133 }
+\DoxyCodeLine{1134 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L3\_idct3(\textcolor{keywordtype}{float} x0, \textcolor{keywordtype}{float} x1, \textcolor{keywordtype}{float} x2, \textcolor{keywordtype}{float} *dst)}
+\DoxyCodeLine{1135 \{}
+\DoxyCodeLine{1136     \textcolor{keywordtype}{float} m1 = x1*0.86602540f;}
+\DoxyCodeLine{1137     \textcolor{keywordtype}{float} a1 = x0 -\/ x2*0.5f;}
+\DoxyCodeLine{1138     dst[1] = x0 + x2;}
+\DoxyCodeLine{1139     dst[0] = a1 + m1;}
+\DoxyCodeLine{1140     dst[2] = a1 -\/ m1;}
+\DoxyCodeLine{1141 \}}
+\DoxyCodeLine{1142 }
+\DoxyCodeLine{1143 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L3\_imdct12(\textcolor{keywordtype}{float} *x, \textcolor{keywordtype}{float} *dst, \textcolor{keywordtype}{float} *overlap)}
+\DoxyCodeLine{1144 \{}
+\DoxyCodeLine{1145     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{float} g\_twid3[6] = \{ 0.79335334f,0.92387953f,0.99144486f, 0.60876143f,0.38268343f,0.13052619f \};}
+\DoxyCodeLine{1146     \textcolor{keywordtype}{float} co[3], si[3];}
+\DoxyCodeLine{1147     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{1148 }
+\DoxyCodeLine{1149     L3\_idct3(-\/x[0], x[6] + x[3], x[12] + x[9], co);}
+\DoxyCodeLine{1150     L3\_idct3(x[15], x[12] -\/ x[9], x[6] -\/ x[3], si);}
+\DoxyCodeLine{1151     si[1] = -\/si[1];}
+\DoxyCodeLine{1152 }
+\DoxyCodeLine{1153     \textcolor{keywordflow}{for} (i = 0; i < 3; i++)}
+\DoxyCodeLine{1154     \{}
+\DoxyCodeLine{1155         \textcolor{keywordtype}{float} ovl  = overlap[i];}
+\DoxyCodeLine{1156         \textcolor{keywordtype}{float} sum  = co[i]*g\_twid3[3 + i] + si[i]*g\_twid3[0 + i];}
+\DoxyCodeLine{1157         overlap[i] = co[i]*g\_twid3[0 + i] -\/ si[i]*g\_twid3[3 + i];}
+\DoxyCodeLine{1158         dst[i]     = ovl*g\_twid3[2 -\/ i] -\/ sum*g\_twid3[5 -\/ i];}
+\DoxyCodeLine{1159         dst[5 -\/ i] = ovl*g\_twid3[5 -\/ i] + sum*g\_twid3[2 -\/ i];}
+\DoxyCodeLine{1160     \}}
+\DoxyCodeLine{1161 \}}
+\DoxyCodeLine{1162 }
+\DoxyCodeLine{1163 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L3\_imdct\_short(\textcolor{keywordtype}{float} *grbuf, \textcolor{keywordtype}{float} *overlap, \textcolor{keywordtype}{int} nbands)}
+\DoxyCodeLine{1164 \{}
+\DoxyCodeLine{1165     \textcolor{keywordflow}{for} (;nbands > 0; nbands-\/-\/, overlap += 9, grbuf += 18)}
+\DoxyCodeLine{1166     \{}
+\DoxyCodeLine{1167         \textcolor{keywordtype}{float} tmp[18];}
+\DoxyCodeLine{1168         memcpy(tmp, grbuf, \textcolor{keyword}{sizeof}(tmp));}
+\DoxyCodeLine{1169         memcpy(grbuf, overlap, 6*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{float}));}
+\DoxyCodeLine{1170         L3\_imdct12(tmp, grbuf + 6, overlap + 6);}
+\DoxyCodeLine{1171         L3\_imdct12(tmp + 1, grbuf + 12, overlap + 6);}
+\DoxyCodeLine{1172         L3\_imdct12(tmp + 2, overlap, overlap + 6);}
+\DoxyCodeLine{1173     \}}
+\DoxyCodeLine{1174 \}}
+\DoxyCodeLine{1175 }
+\DoxyCodeLine{1176 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L3\_change\_sign(\textcolor{keywordtype}{float} *grbuf)}
+\DoxyCodeLine{1177 \{}
+\DoxyCodeLine{1178     \textcolor{keywordtype}{int} b, i;}
+\DoxyCodeLine{1179     \textcolor{keywordflow}{for} (b = 0, grbuf += 18; b < 32; b += 2, grbuf += 36)}
+\DoxyCodeLine{1180         \textcolor{keywordflow}{for} (i = 1; i < 18; i += 2)}
+\DoxyCodeLine{1181             grbuf[i] = -\/grbuf[i];}
+\DoxyCodeLine{1182 \}}
+\DoxyCodeLine{1183 }
+\DoxyCodeLine{1184 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L3\_imdct\_gr(\textcolor{keywordtype}{float} *grbuf, \textcolor{keywordtype}{float} *overlap, \textcolor{keywordtype}{unsigned} block\_type, \textcolor{keywordtype}{unsigned} n\_long\_bands)}
+\DoxyCodeLine{1185 \{}
+\DoxyCodeLine{1186     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{float} g\_mdct\_window[2][18] = \{}
+\DoxyCodeLine{1187         \{ 0.99904822f,0.99144486f,0.97629601f,0.95371695f,0.92387953f,0.88701083f,0.84339145f,0.79335334f,0.73727734f,0.04361938f,0.13052619f,0.21643961f,0.30070580f,0.38268343f,0.46174861f,0.53729961f,0.60876143f,0.67559021f \},}
+\DoxyCodeLine{1188         \{ 1,1,1,1,1,1,0.99144486f,0.92387953f,0.79335334f,0,0,0,0,0,0,0.13052619f,0.38268343f,0.60876143f \}}
+\DoxyCodeLine{1189     \};}
+\DoxyCodeLine{1190     \textcolor{keywordflow}{if} (n\_long\_bands)}
+\DoxyCodeLine{1191     \{}
+\DoxyCodeLine{1192         L3\_imdct36(grbuf, overlap, g\_mdct\_window[0], n\_long\_bands);}
+\DoxyCodeLine{1193         grbuf += 18*n\_long\_bands;}
+\DoxyCodeLine{1194         overlap += 9*n\_long\_bands;}
+\DoxyCodeLine{1195     \}}
+\DoxyCodeLine{1196     \textcolor{keywordflow}{if} (block\_type == SHORT\_BLOCK\_TYPE)}
+\DoxyCodeLine{1197         L3\_imdct\_short(grbuf, overlap, 32 -\/ n\_long\_bands);}
+\DoxyCodeLine{1198     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{1199         L3\_imdct36(grbuf, overlap, g\_mdct\_window[block\_type == STOP\_BLOCK\_TYPE], 32 -\/ n\_long\_bands);}
+\DoxyCodeLine{1200 \}}
+\DoxyCodeLine{1201 }
+\DoxyCodeLine{1202 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L3\_save\_reservoir(\mbox{\hyperlink{structmp3dec__t}{mp3dec\_t}} *h, mp3dec\_scratch\_t *s)}
+\DoxyCodeLine{1203 \{}
+\DoxyCodeLine{1204     \textcolor{keywordtype}{int} pos = (s-\/>bs.pos + 7)/8u;}
+\DoxyCodeLine{1205     \textcolor{keywordtype}{int} remains = s-\/>bs.limit/8u -\/ pos;}
+\DoxyCodeLine{1206     \textcolor{keywordflow}{if} (remains > MAX\_BITRESERVOIR\_BYTES)}
+\DoxyCodeLine{1207     \{}
+\DoxyCodeLine{1208         pos += remains -\/ MAX\_BITRESERVOIR\_BYTES;}
+\DoxyCodeLine{1209         remains = MAX\_BITRESERVOIR\_BYTES;}
+\DoxyCodeLine{1210     \}}
+\DoxyCodeLine{1211     \textcolor{keywordflow}{if} (remains > 0)}
+\DoxyCodeLine{1212     \{}
+\DoxyCodeLine{1213         memmove(h-\/>reserv\_buf, s-\/>maindata + pos, remains);}
+\DoxyCodeLine{1214     \}}
+\DoxyCodeLine{1215     h-\/>reserv = remains;}
+\DoxyCodeLine{1216 \}}
+\DoxyCodeLine{1217 }
+\DoxyCodeLine{1218 \textcolor{keyword}{static} \textcolor{keywordtype}{int} L3\_restore\_reservoir(\mbox{\hyperlink{structmp3dec__t}{mp3dec\_t}} *h, bs\_t *bs, mp3dec\_scratch\_t *s, \textcolor{keywordtype}{int} main\_data\_begin)}
+\DoxyCodeLine{1219 \{}
+\DoxyCodeLine{1220     \textcolor{keywordtype}{int} frame\_bytes = (bs-\/>limit -\/ bs-\/>pos)/8;}
+\DoxyCodeLine{1221     \textcolor{keywordtype}{int} bytes\_have = MINIMP3\_MIN(h-\/>reserv, main\_data\_begin);}
+\DoxyCodeLine{1222     memcpy(s-\/>maindata, h-\/>reserv\_buf + MINIMP3\_MAX(0, h-\/>reserv -\/ main\_data\_begin), MINIMP3\_MIN(h-\/>reserv, main\_data\_begin));}
+\DoxyCodeLine{1223     memcpy(s-\/>maindata + bytes\_have, bs-\/>buf + bs-\/>pos/8, frame\_bytes);}
+\DoxyCodeLine{1224     bs\_init(\&s-\/>bs, s-\/>maindata, bytes\_have + frame\_bytes);}
+\DoxyCodeLine{1225     \textcolor{keywordflow}{return} h-\/>reserv >= main\_data\_begin;}
+\DoxyCodeLine{1226 \}}
+\DoxyCodeLine{1227 }
+\DoxyCodeLine{1228 \textcolor{keyword}{static} \textcolor{keywordtype}{void} L3\_decode(\mbox{\hyperlink{structmp3dec__t}{mp3dec\_t}} *h, mp3dec\_scratch\_t *s, L3\_gr\_info\_t *gr\_info, \textcolor{keywordtype}{int} nch)}
+\DoxyCodeLine{1229 \{}
+\DoxyCodeLine{1230     \textcolor{keywordtype}{int} ch;}
+\DoxyCodeLine{1231 }
+\DoxyCodeLine{1232     \textcolor{keywordflow}{for} (ch = 0; ch < nch; ch++)}
+\DoxyCodeLine{1233     \{}
+\DoxyCodeLine{1234         \textcolor{keywordtype}{int} layer3gr\_limit = s-\/>bs.pos + gr\_info[ch].part\_23\_length;}
+\DoxyCodeLine{1235         L3\_decode\_scalefactors(h-\/>header, s-\/>ist\_pos[ch], \&s-\/>bs, gr\_info + ch, s-\/>scf, ch);}
+\DoxyCodeLine{1236         L3\_huffman(s-\/>grbuf[ch], \&s-\/>bs, gr\_info + ch, s-\/>scf, layer3gr\_limit);}
+\DoxyCodeLine{1237     \}}
+\DoxyCodeLine{1238 }
+\DoxyCodeLine{1239     \textcolor{keywordflow}{if} (HDR\_TEST\_I\_STEREO(h-\/>header))}
+\DoxyCodeLine{1240     \{}
+\DoxyCodeLine{1241         L3\_intensity\_stereo(s-\/>grbuf[0], s-\/>ist\_pos[1], gr\_info, h-\/>header);}
+\DoxyCodeLine{1242     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (HDR\_IS\_MS\_STEREO(h-\/>header))}
+\DoxyCodeLine{1243     \{}
+\DoxyCodeLine{1244         L3\_midside\_stereo(s-\/>grbuf[0], 576);}
+\DoxyCodeLine{1245     \}}
+\DoxyCodeLine{1246 }
+\DoxyCodeLine{1247     \textcolor{keywordflow}{for} (ch = 0; ch < nch; ch++, gr\_info++)}
+\DoxyCodeLine{1248     \{}
+\DoxyCodeLine{1249         \textcolor{keywordtype}{int} aa\_bands = 31;}
+\DoxyCodeLine{1250         \textcolor{keywordtype}{int} n\_long\_bands = (gr\_info-\/>mixed\_block\_flag ? 2 : 0) << (\textcolor{keywordtype}{int})(HDR\_GET\_MY\_SAMPLE\_RATE(h-\/>header) == 2);}
+\DoxyCodeLine{1251 }
+\DoxyCodeLine{1252         \textcolor{keywordflow}{if} (gr\_info-\/>n\_short\_sfb)}
+\DoxyCodeLine{1253         \{}
+\DoxyCodeLine{1254             aa\_bands = n\_long\_bands -\/ 1;}
+\DoxyCodeLine{1255             L3\_reorder(s-\/>grbuf[ch] + n\_long\_bands*18, s-\/>syn[0], gr\_info-\/>sfbtab + gr\_info-\/>n\_long\_sfb);}
+\DoxyCodeLine{1256         \}}
+\DoxyCodeLine{1257 }
+\DoxyCodeLine{1258         L3\_antialias(s-\/>grbuf[ch], aa\_bands);}
+\DoxyCodeLine{1259         L3\_imdct\_gr(s-\/>grbuf[ch], h-\/>mdct\_overlap[ch], gr\_info-\/>block\_type, n\_long\_bands);}
+\DoxyCodeLine{1260         L3\_change\_sign(s-\/>grbuf[ch]);}
+\DoxyCodeLine{1261     \}}
+\DoxyCodeLine{1262 \}}
+\DoxyCodeLine{1263 }
+\DoxyCodeLine{1264 \textcolor{keyword}{static} \textcolor{keywordtype}{void} mp3d\_DCT\_II(\textcolor{keywordtype}{float} *grbuf, \textcolor{keywordtype}{int} n)}
+\DoxyCodeLine{1265 \{}
+\DoxyCodeLine{1266     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{float} g\_sec[24] = \{}
+\DoxyCodeLine{1267         10.19000816f,0.50060302f,0.50241929f,3.40760851f,0.50547093f,0.52249861f,2.05778098f,0.51544732f,0.56694406f,1.48416460f,0.53104258f,0.64682180f,1.16943991f,0.55310392f,0.78815460f,0.97256821f,0.58293498f,1.06067765f,0.83934963f,0.62250412f,1.72244716f,0.74453628f,0.67480832f,5.10114861f}
+\DoxyCodeLine{1268     \};}
+\DoxyCodeLine{1269     \textcolor{keywordtype}{int} i, k = 0;}
+\DoxyCodeLine{1270 \textcolor{preprocessor}{\#if HAVE\_SIMD}}
+\DoxyCodeLine{1271     \textcolor{keywordflow}{if} (have\_simd()) \textcolor{keywordflow}{for} (; k < n; k += 4)}
+\DoxyCodeLine{1272     \{}
+\DoxyCodeLine{1273         f4 t[4][8], *x;}
+\DoxyCodeLine{1274         \textcolor{keywordtype}{float} *y = grbuf + k;}
+\DoxyCodeLine{1275 }
+\DoxyCodeLine{1276         \textcolor{keywordflow}{for} (x = t[0], i = 0; i < 8; i++, x++)}
+\DoxyCodeLine{1277         \{}
+\DoxyCodeLine{1278             f4 x0 = VLD(\&y[i*18]);}
+\DoxyCodeLine{1279             f4 x1 = VLD(\&y[(15 -\/ i)*18]);}
+\DoxyCodeLine{1280             f4 x2 = VLD(\&y[(16 + i)*18]);}
+\DoxyCodeLine{1281             f4 x3 = VLD(\&y[(31 -\/ i)*18]);}
+\DoxyCodeLine{1282             f4 t0 = VADD(x0, x3);}
+\DoxyCodeLine{1283             f4 t1 = VADD(x1, x2);}
+\DoxyCodeLine{1284             f4 t2 = VMUL\_S(VSUB(x1, x2), g\_sec[3*i + 0]);}
+\DoxyCodeLine{1285             f4 t3 = VMUL\_S(VSUB(x0, x3), g\_sec[3*i + 1]);}
+\DoxyCodeLine{1286             x[0] = VADD(t0, t1);}
+\DoxyCodeLine{1287             x[8] = VMUL\_S(VSUB(t0, t1), g\_sec[3*i + 2]);}
+\DoxyCodeLine{1288             x[16] = VADD(t3, t2);}
+\DoxyCodeLine{1289             x[24] = VMUL\_S(VSUB(t3, t2), g\_sec[3*i + 2]);}
+\DoxyCodeLine{1290         \}}
+\DoxyCodeLine{1291         \textcolor{keywordflow}{for} (x = t[0], i = 0; i < 4; i++, x += 8)}
+\DoxyCodeLine{1292         \{}
+\DoxyCodeLine{1293             f4 x0 = x[0], x1 = x[1], x2 = x[2], x3 = x[3], x4 = x[4], x5 = x[5], x6 = x[6], x7 = x[7], xt;}
+\DoxyCodeLine{1294             xt = VSUB(x0, x7); x0 = VADD(x0, x7);}
+\DoxyCodeLine{1295             x7 = VSUB(x1, x6); x1 = VADD(x1, x6);}
+\DoxyCodeLine{1296             x6 = VSUB(x2, x5); x2 = VADD(x2, x5);}
+\DoxyCodeLine{1297             x5 = VSUB(x3, x4); x3 = VADD(x3, x4);}
+\DoxyCodeLine{1298             x4 = VSUB(x0, x3); x0 = VADD(x0, x3);}
+\DoxyCodeLine{1299             x3 = VSUB(x1, x2); x1 = VADD(x1, x2);}
+\DoxyCodeLine{1300             x[0] = VADD(x0, x1);}
+\DoxyCodeLine{1301             x[4] = VMUL\_S(VSUB(x0, x1), 0.70710677f);}
+\DoxyCodeLine{1302             x5 = VADD(x5, x6);}
+\DoxyCodeLine{1303             x6 = VMUL\_S(VADD(x6, x7), 0.70710677f);}
+\DoxyCodeLine{1304             x7 = VADD(x7, xt);}
+\DoxyCodeLine{1305             x3 = VMUL\_S(VADD(x3, x4), 0.70710677f);}
+\DoxyCodeLine{1306             x5 = VSUB(x5, VMUL\_S(x7, 0.198912367f)); \textcolor{comment}{/* rotate by PI/8 */}}
+\DoxyCodeLine{1307             x7 = VADD(x7, VMUL\_S(x5, 0.382683432f));}
+\DoxyCodeLine{1308             x5 = VSUB(x5, VMUL\_S(x7, 0.198912367f));}
+\DoxyCodeLine{1309             x0 = VSUB(xt, x6); xt = VADD(xt, x6);}
+\DoxyCodeLine{1310             x[1] = VMUL\_S(VADD(xt, x7), 0.50979561f);}
+\DoxyCodeLine{1311             x[2] = VMUL\_S(VADD(x4, x3), 0.54119611f);}
+\DoxyCodeLine{1312             x[3] = VMUL\_S(VSUB(x0, x5), 0.60134488f);}
+\DoxyCodeLine{1313             x[5] = VMUL\_S(VADD(x0, x5), 0.89997619f);}
+\DoxyCodeLine{1314             x[6] = VMUL\_S(VSUB(x4, x3), 1.30656302f);}
+\DoxyCodeLine{1315             x[7] = VMUL\_S(VSUB(xt, x7), 2.56291556f);}
+\DoxyCodeLine{1316         \}}
+\DoxyCodeLine{1317 }
+\DoxyCodeLine{1318         \textcolor{keywordflow}{if} (k > n -\/ 3)}
+\DoxyCodeLine{1319         \{}
+\DoxyCodeLine{1320 \textcolor{preprocessor}{\#if HAVE\_SSE}}
+\DoxyCodeLine{1321 \textcolor{preprocessor}{\#define VSAVE2(i, v) \_mm\_storel\_pi((\_\_m64 *)(void*)\&y[i*18], v)}}
+\DoxyCodeLine{1322 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* HAVE\_SSE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1323 \textcolor{preprocessor}{\#define VSAVE2(i, v) vst1\_f32((float32\_t *)\&y[i*18],  vget\_low\_f32(v))}}
+\DoxyCodeLine{1324 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* HAVE\_SSE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1325             \textcolor{keywordflow}{for} (i = 0; i < 7; i++, y += 4*18)}
+\DoxyCodeLine{1326             \{}
+\DoxyCodeLine{1327                 f4 s = VADD(t[3][i], t[3][i + 1]);}
+\DoxyCodeLine{1328                 VSAVE2(0, t[0][i]);}
+\DoxyCodeLine{1329                 VSAVE2(1, VADD(t[2][i], s));}
+\DoxyCodeLine{1330                 VSAVE2(2, VADD(t[1][i], t[1][i + 1]));}
+\DoxyCodeLine{1331                 VSAVE2(3, VADD(t[2][1 + i], s));}
+\DoxyCodeLine{1332             \}}
+\DoxyCodeLine{1333             VSAVE2(0, t[0][7]);}
+\DoxyCodeLine{1334             VSAVE2(1, VADD(t[2][7], t[3][7]));}
+\DoxyCodeLine{1335             VSAVE2(2, t[1][7]);}
+\DoxyCodeLine{1336             VSAVE2(3, t[3][7]);}
+\DoxyCodeLine{1337         \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{1338         \{}
+\DoxyCodeLine{1339 \textcolor{preprocessor}{\#define VSAVE4(i, v) VSTORE(\&y[i*18], v)}}
+\DoxyCodeLine{1340             \textcolor{keywordflow}{for} (i = 0; i < 7; i++, y += 4*18)}
+\DoxyCodeLine{1341             \{}
+\DoxyCodeLine{1342                 f4 s = VADD(t[3][i], t[3][i + 1]);}
+\DoxyCodeLine{1343                 VSAVE4(0, t[0][i]);}
+\DoxyCodeLine{1344                 VSAVE4(1, VADD(t[2][i], s));}
+\DoxyCodeLine{1345                 VSAVE4(2, VADD(t[1][i], t[1][i + 1]));}
+\DoxyCodeLine{1346                 VSAVE4(3, VADD(t[2][1 + i], s));}
+\DoxyCodeLine{1347             \}}
+\DoxyCodeLine{1348             VSAVE4(0, t[0][7]);}
+\DoxyCodeLine{1349             VSAVE4(1, VADD(t[2][7], t[3][7]));}
+\DoxyCodeLine{1350             VSAVE4(2, t[1][7]);}
+\DoxyCodeLine{1351             VSAVE4(3, t[3][7]);}
+\DoxyCodeLine{1352         \}}
+\DoxyCodeLine{1353     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{1354 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* HAVE\_SIMD */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1355 \textcolor{preprocessor}{\#ifdef MINIMP3\_ONLY\_SIMD}}
+\DoxyCodeLine{1356     \{\} \textcolor{comment}{/* for HAVE\_SIMD=1, MINIMP3\_ONLY\_SIMD=1 case we do not need non-\/intrinsic "{}else"{} branch */}}
+\DoxyCodeLine{1357 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* MINIMP3\_ONLY\_SIMD */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1358     \textcolor{keywordflow}{for} (; k < n; k++)}
+\DoxyCodeLine{1359     \{}
+\DoxyCodeLine{1360         \textcolor{keywordtype}{float} t[4][8], *x, *y = grbuf + k;}
+\DoxyCodeLine{1361 }
+\DoxyCodeLine{1362         \textcolor{keywordflow}{for} (x = t[0], i = 0; i < 8; i++, x++)}
+\DoxyCodeLine{1363         \{}
+\DoxyCodeLine{1364             \textcolor{keywordtype}{float} x0 = y[i*18];}
+\DoxyCodeLine{1365             \textcolor{keywordtype}{float} x1 = y[(15 -\/ i)*18];}
+\DoxyCodeLine{1366             \textcolor{keywordtype}{float} x2 = y[(16 + i)*18];}
+\DoxyCodeLine{1367             \textcolor{keywordtype}{float} x3 = y[(31 -\/ i)*18];}
+\DoxyCodeLine{1368             \textcolor{keywordtype}{float} t0 = x0 + x3;}
+\DoxyCodeLine{1369             \textcolor{keywordtype}{float} t1 = x1 + x2;}
+\DoxyCodeLine{1370             \textcolor{keywordtype}{float} t2 = (x1 -\/ x2)*g\_sec[3*i + 0];}
+\DoxyCodeLine{1371             \textcolor{keywordtype}{float} t3 = (x0 -\/ x3)*g\_sec[3*i + 1];}
+\DoxyCodeLine{1372             x[0] = t0 + t1;}
+\DoxyCodeLine{1373             x[8] = (t0 -\/ t1)*g\_sec[3*i + 2];}
+\DoxyCodeLine{1374             x[16] = t3 + t2;}
+\DoxyCodeLine{1375             x[24] = (t3 -\/ t2)*g\_sec[3*i + 2];}
+\DoxyCodeLine{1376         \}}
+\DoxyCodeLine{1377         \textcolor{keywordflow}{for} (x = t[0], i = 0; i < 4; i++, x += 8)}
+\DoxyCodeLine{1378         \{}
+\DoxyCodeLine{1379             \textcolor{keywordtype}{float} x0 = x[0], x1 = x[1], x2 = x[2], x3 = x[3], x4 = x[4], x5 = x[5], x6 = x[6], x7 = x[7], xt;}
+\DoxyCodeLine{1380             xt = x0 -\/ x7; x0 += x7;}
+\DoxyCodeLine{1381             x7 = x1 -\/ x6; x1 += x6;}
+\DoxyCodeLine{1382             x6 = x2 -\/ x5; x2 += x5;}
+\DoxyCodeLine{1383             x5 = x3 -\/ x4; x3 += x4;}
+\DoxyCodeLine{1384             x4 = x0 -\/ x3; x0 += x3;}
+\DoxyCodeLine{1385             x3 = x1 -\/ x2; x1 += x2;}
+\DoxyCodeLine{1386             x[0] = x0 + x1;}
+\DoxyCodeLine{1387             x[4] = (x0 -\/ x1)*0.70710677f;}
+\DoxyCodeLine{1388             x5 =  x5 + x6;}
+\DoxyCodeLine{1389             x6 = (x6 + x7)*0.70710677f;}
+\DoxyCodeLine{1390             x7 =  x7 + xt;}
+\DoxyCodeLine{1391             x3 = (x3 + x4)*0.70710677f;}
+\DoxyCodeLine{1392             x5 -\/= x7*0.198912367f;  \textcolor{comment}{/* rotate by PI/8 */}}
+\DoxyCodeLine{1393             x7 += x5*0.382683432f;}
+\DoxyCodeLine{1394             x5 -\/= x7*0.198912367f;}
+\DoxyCodeLine{1395             x0 = xt -\/ x6; xt += x6;}
+\DoxyCodeLine{1396             x[1] = (xt + x7)*0.50979561f;}
+\DoxyCodeLine{1397             x[2] = (x4 + x3)*0.54119611f;}
+\DoxyCodeLine{1398             x[3] = (x0 -\/ x5)*0.60134488f;}
+\DoxyCodeLine{1399             x[5] = (x0 + x5)*0.89997619f;}
+\DoxyCodeLine{1400             x[6] = (x4 -\/ x3)*1.30656302f;}
+\DoxyCodeLine{1401             x[7] = (xt -\/ x7)*2.56291556f;}
+\DoxyCodeLine{1402 }
+\DoxyCodeLine{1403         \}}
+\DoxyCodeLine{1404         \textcolor{keywordflow}{for} (i = 0; i < 7; i++, y += 4*18)}
+\DoxyCodeLine{1405         \{}
+\DoxyCodeLine{1406             y[0*18] = t[0][i];}
+\DoxyCodeLine{1407             y[1*18] = t[2][i] + t[3][i] + t[3][i + 1];}
+\DoxyCodeLine{1408             y[2*18] = t[1][i] + t[1][i + 1];}
+\DoxyCodeLine{1409             y[3*18] = t[2][i + 1] + t[3][i] + t[3][i + 1];}
+\DoxyCodeLine{1410         \}}
+\DoxyCodeLine{1411         y[0*18] = t[0][7];}
+\DoxyCodeLine{1412         y[1*18] = t[2][7] + t[3][7];}
+\DoxyCodeLine{1413         y[2*18] = t[1][7];}
+\DoxyCodeLine{1414         y[3*18] = t[3][7];}
+\DoxyCodeLine{1415     \}}
+\DoxyCodeLine{1416 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MINIMP3\_ONLY\_SIMD */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1417 \}}
+\DoxyCodeLine{1418 }
+\DoxyCodeLine{1419 \textcolor{preprocessor}{\#ifndef MINIMP3\_FLOAT\_OUTPUT}}
+\DoxyCodeLine{1420 \textcolor{keyword}{static} int16\_t mp3d\_scale\_pcm(\textcolor{keywordtype}{float} sample)}
+\DoxyCodeLine{1421 \{}
+\DoxyCodeLine{1422 \textcolor{preprocessor}{\#if HAVE\_ARMV6}}
+\DoxyCodeLine{1423     int32\_t s32 = (int32\_t)(sample + .5f);}
+\DoxyCodeLine{1424     s32 -\/= (s32 < 0);}
+\DoxyCodeLine{1425     int16\_t s = (int16\_t)minimp3\_clip\_int16\_arm(s32);}
+\DoxyCodeLine{1426 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{1427     \textcolor{keywordflow}{if} (sample >=  32766.5) \textcolor{keywordflow}{return} (int16\_t) 32767;}
+\DoxyCodeLine{1428     \textcolor{keywordflow}{if} (sample <= -\/32767.5) \textcolor{keywordflow}{return} (int16\_t)-\/32768;}
+\DoxyCodeLine{1429     int16\_t s = (int16\_t)(sample + .5f);}
+\DoxyCodeLine{1430     s -\/= (s < 0);   \textcolor{comment}{/* away from zero, to be compliant */}}
+\DoxyCodeLine{1431 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{1432     \textcolor{keywordflow}{return} s;}
+\DoxyCodeLine{1433 \}}
+\DoxyCodeLine{1434 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* MINIMP3\_FLOAT\_OUTPUT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1435 \textcolor{keyword}{static} \textcolor{keywordtype}{float} mp3d\_scale\_pcm(\textcolor{keywordtype}{float} sample)}
+\DoxyCodeLine{1436 \{}
+\DoxyCodeLine{1437     \textcolor{keywordflow}{return} sample*(1.f/32768.f);}
+\DoxyCodeLine{1438 \}}
+\DoxyCodeLine{1439 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MINIMP3\_FLOAT\_OUTPUT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1440 }
+\DoxyCodeLine{1441 \textcolor{keyword}{static} \textcolor{keywordtype}{void} mp3d\_synth\_pair(mp3d\_sample\_t *pcm, \textcolor{keywordtype}{int} nch, \textcolor{keyword}{const} \textcolor{keywordtype}{float} *z)}
+\DoxyCodeLine{1442 \{}
+\DoxyCodeLine{1443     \textcolor{keywordtype}{float} a;}
+\DoxyCodeLine{1444     a  = (z[14*64] -\/ z[    0]) * 29;}
+\DoxyCodeLine{1445     a += (z[ 1*64] + z[13*64]) * 213;}
+\DoxyCodeLine{1446     a += (z[12*64] -\/ z[ 2*64]) * 459;}
+\DoxyCodeLine{1447     a += (z[ 3*64] + z[11*64]) * 2037;}
+\DoxyCodeLine{1448     a += (z[10*64] -\/ z[ 4*64]) * 5153;}
+\DoxyCodeLine{1449     a += (z[ 5*64] + z[ 9*64]) * 6574;}
+\DoxyCodeLine{1450     a += (z[ 8*64] -\/ z[ 6*64]) * 37489;}
+\DoxyCodeLine{1451     a +=  z[ 7*64]             * 75038;}
+\DoxyCodeLine{1452     pcm[0] = mp3d\_scale\_pcm(a);}
+\DoxyCodeLine{1453 }
+\DoxyCodeLine{1454     z += 2;}
+\DoxyCodeLine{1455     a  = z[14*64] * 104;}
+\DoxyCodeLine{1456     a += z[12*64] * 1567;}
+\DoxyCodeLine{1457     a += z[10*64] * 9727;}
+\DoxyCodeLine{1458     a += z[ 8*64] * 64019;}
+\DoxyCodeLine{1459     a += z[ 6*64] * -\/9975;}
+\DoxyCodeLine{1460     a += z[ 4*64] * -\/45;}
+\DoxyCodeLine{1461     a += z[ 2*64] * 146;}
+\DoxyCodeLine{1462     a += z[ 0*64] * -\/5;}
+\DoxyCodeLine{1463     pcm[16*nch] = mp3d\_scale\_pcm(a);}
+\DoxyCodeLine{1464 \}}
+\DoxyCodeLine{1465 }
+\DoxyCodeLine{1466 \textcolor{keyword}{static} \textcolor{keywordtype}{void} mp3d\_synth(\textcolor{keywordtype}{float} *xl, mp3d\_sample\_t *dstl, \textcolor{keywordtype}{int} nch, \textcolor{keywordtype}{float} *lins)}
+\DoxyCodeLine{1467 \{}
+\DoxyCodeLine{1468     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{1469     \textcolor{keywordtype}{float} *xr = xl + 576*(nch -\/ 1);}
+\DoxyCodeLine{1470     mp3d\_sample\_t *dstr = dstl + (nch -\/ 1);}
+\DoxyCodeLine{1471 }
+\DoxyCodeLine{1472     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{float} g\_win[] = \{}
+\DoxyCodeLine{1473         -\/1,26,-\/31,208,218,401,-\/519,2063,2000,4788,-\/5517,7134,5959,35640,-\/39336,74992,}
+\DoxyCodeLine{1474         -\/1,24,-\/35,202,222,347,-\/581,2080,1952,4425,-\/5879,7640,5288,33791,-\/41176,74856,}
+\DoxyCodeLine{1475         -\/1,21,-\/38,196,225,294,-\/645,2087,1893,4063,-\/6237,8092,4561,31947,-\/43006,74630,}
+\DoxyCodeLine{1476         -\/1,19,-\/41,190,227,244,-\/711,2085,1822,3705,-\/6589,8492,3776,30112,-\/44821,74313,}
+\DoxyCodeLine{1477         -\/1,17,-\/45,183,228,197,-\/779,2075,1739,3351,-\/6935,8840,2935,28289,-\/46617,73908,}
+\DoxyCodeLine{1478         -\/1,16,-\/49,176,228,153,-\/848,2057,1644,3004,-\/7271,9139,2037,26482,-\/48390,73415,}
+\DoxyCodeLine{1479         -\/2,14,-\/53,169,227,111,-\/919,2032,1535,2663,-\/7597,9389,1082,24694,-\/50137,72835,}
+\DoxyCodeLine{1480         -\/2,13,-\/58,161,224,72,-\/991,2001,1414,2330,-\/7910,9592,70,22929,-\/51853,72169,}
+\DoxyCodeLine{1481         -\/2,11,-\/63,154,221,36,-\/1064,1962,1280,2006,-\/8209,9750,-\/998,21189,-\/53534,71420,}
+\DoxyCodeLine{1482         -\/2,10,-\/68,147,215,2,-\/1137,1919,1131,1692,-\/8491,9863,-\/2122,19478,-\/55178,70590,}
+\DoxyCodeLine{1483         -\/3,9,-\/73,139,208,-\/29,-\/1210,1870,970,1388,-\/8755,9935,-\/3300,17799,-\/56778,69679,}
+\DoxyCodeLine{1484         -\/3,8,-\/79,132,200,-\/57,-\/1283,1817,794,1095,-\/8998,9966,-\/4533,16155,-\/58333,68692,}
+\DoxyCodeLine{1485         -\/4,7,-\/85,125,189,-\/83,-\/1356,1759,605,814,-\/9219,9959,-\/5818,14548,-\/59838,67629,}
+\DoxyCodeLine{1486         -\/4,7,-\/91,117,177,-\/106,-\/1428,1698,402,545,-\/9416,9916,-\/7154,12980,-\/61289,66494,}
+\DoxyCodeLine{1487         -\/5,6,-\/97,111,163,-\/127,-\/1498,1634,185,288,-\/9585,9838,-\/8540,11455,-\/62684,65290}
+\DoxyCodeLine{1488     \};}
+\DoxyCodeLine{1489     \textcolor{keywordtype}{float} *zlin = lins + 15*64;}
+\DoxyCodeLine{1490     \textcolor{keyword}{const} \textcolor{keywordtype}{float} *w = g\_win;}
+\DoxyCodeLine{1491 }
+\DoxyCodeLine{1492     zlin[4*15]     = xl[18*16];}
+\DoxyCodeLine{1493     zlin[4*15 + 1] = xr[18*16];}
+\DoxyCodeLine{1494     zlin[4*15 + 2] = xl[0];}
+\DoxyCodeLine{1495     zlin[4*15 + 3] = xr[0];}
+\DoxyCodeLine{1496 }
+\DoxyCodeLine{1497     zlin[4*31]     = xl[1 + 18*16];}
+\DoxyCodeLine{1498     zlin[4*31 + 1] = xr[1 + 18*16];}
+\DoxyCodeLine{1499     zlin[4*31 + 2] = xl[1];}
+\DoxyCodeLine{1500     zlin[4*31 + 3] = xr[1];}
+\DoxyCodeLine{1501 }
+\DoxyCodeLine{1502     mp3d\_synth\_pair(dstr, nch, lins + 4*15 + 1);}
+\DoxyCodeLine{1503     mp3d\_synth\_pair(dstr + 32*nch, nch, lins + 4*15 + 64 + 1);}
+\DoxyCodeLine{1504     mp3d\_synth\_pair(dstl, nch, lins + 4*15);}
+\DoxyCodeLine{1505     mp3d\_synth\_pair(dstl + 32*nch, nch, lins + 4*15 + 64);}
+\DoxyCodeLine{1506 }
+\DoxyCodeLine{1507 \textcolor{preprocessor}{\#if HAVE\_SIMD}}
+\DoxyCodeLine{1508     \textcolor{keywordflow}{if} (have\_simd()) \textcolor{keywordflow}{for} (i = 14; i >= 0; i-\/-\/)}
+\DoxyCodeLine{1509     \{}
+\DoxyCodeLine{1510 \textcolor{preprocessor}{\#define VLOAD(k) f4 w0 = VSET(*w++); f4 w1 = VSET(*w++); f4 vz = VLD(\&zlin[4*i -\/ 64*k]); f4 vy = VLD(\&zlin[4*i -\/ 64*(15 -\/ k)]);}}
+\DoxyCodeLine{1511 \textcolor{preprocessor}{\#define V0(k) \{ VLOAD(k) b =         VADD(VMUL(vz, w1), VMUL(vy, w0)) ; a =         VSUB(VMUL(vz, w0), VMUL(vy, w1));  \}}}
+\DoxyCodeLine{1512 \textcolor{preprocessor}{\#define V1(k) \{ VLOAD(k) b = VADD(b, VADD(VMUL(vz, w1), VMUL(vy, w0))); a = VADD(a, VSUB(VMUL(vz, w0), VMUL(vy, w1))); \}}}
+\DoxyCodeLine{1513 \textcolor{preprocessor}{\#define V2(k) \{ VLOAD(k) b = VADD(b, VADD(VMUL(vz, w1), VMUL(vy, w0))); a = VADD(a, VSUB(VMUL(vy, w1), VMUL(vz, w0))); \}}}
+\DoxyCodeLine{1514         f4 a, b;}
+\DoxyCodeLine{1515         zlin[4*i]     = xl[18*(31 -\/ i)];}
+\DoxyCodeLine{1516         zlin[4*i + 1] = xr[18*(31 -\/ i)];}
+\DoxyCodeLine{1517         zlin[4*i + 2] = xl[1 + 18*(31 -\/ i)];}
+\DoxyCodeLine{1518         zlin[4*i + 3] = xr[1 + 18*(31 -\/ i)];}
+\DoxyCodeLine{1519         zlin[4*i + 64] = xl[1 + 18*(1 + i)];}
+\DoxyCodeLine{1520         zlin[4*i + 64 + 1] = xr[1 + 18*(1 + i)];}
+\DoxyCodeLine{1521         zlin[4*i -\/ 64 + 2] = xl[18*(1 + i)];}
+\DoxyCodeLine{1522         zlin[4*i -\/ 64 + 3] = xr[18*(1 + i)];}
+\DoxyCodeLine{1523 }
+\DoxyCodeLine{1524         V0(0) V2(1) V1(2) V2(3) V1(4) V2(5) V1(6) V2(7)}
+\DoxyCodeLine{1525 }
+\DoxyCodeLine{1526         \{}
+\DoxyCodeLine{1527 \textcolor{preprocessor}{\#ifndef MINIMP3\_FLOAT\_OUTPUT}}
+\DoxyCodeLine{1528 \textcolor{preprocessor}{\#if HAVE\_SSE}}
+\DoxyCodeLine{1529             \textcolor{keyword}{static} \textcolor{keyword}{const} f4 g\_max = \{ 32767.0f, 32767.0f, 32767.0f, 32767.0f \};}
+\DoxyCodeLine{1530             \textcolor{keyword}{static} \textcolor{keyword}{const} f4 g\_min = \{ -\/32768.0f, -\/32768.0f, -\/32768.0f, -\/32768.0f \};}
+\DoxyCodeLine{1531             \_\_m128i pcm8 = \_mm\_packs\_epi32(\_mm\_cvtps\_epi32(\_mm\_max\_ps(\_mm\_min\_ps(a, g\_max), g\_min)),}
+\DoxyCodeLine{1532                                            \_mm\_cvtps\_epi32(\_mm\_max\_ps(\_mm\_min\_ps(b, g\_max), g\_min)));}
+\DoxyCodeLine{1533             dstr[(15 -\/ i)*nch] = \_mm\_extract\_epi16(pcm8, 1);}
+\DoxyCodeLine{1534             dstr[(17 + i)*nch] = \_mm\_extract\_epi16(pcm8, 5);}
+\DoxyCodeLine{1535             dstl[(15 -\/ i)*nch] = \_mm\_extract\_epi16(pcm8, 0);}
+\DoxyCodeLine{1536             dstl[(17 + i)*nch] = \_mm\_extract\_epi16(pcm8, 4);}
+\DoxyCodeLine{1537             dstr[(47 -\/ i)*nch] = \_mm\_extract\_epi16(pcm8, 3);}
+\DoxyCodeLine{1538             dstr[(49 + i)*nch] = \_mm\_extract\_epi16(pcm8, 7);}
+\DoxyCodeLine{1539             dstl[(47 -\/ i)*nch] = \_mm\_extract\_epi16(pcm8, 2);}
+\DoxyCodeLine{1540             dstl[(49 + i)*nch] = \_mm\_extract\_epi16(pcm8, 6);}
+\DoxyCodeLine{1541 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* HAVE\_SSE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1542             int16x4\_t pcma, pcmb;}
+\DoxyCodeLine{1543             a = VADD(a, VSET(0.5f));}
+\DoxyCodeLine{1544             b = VADD(b, VSET(0.5f));}
+\DoxyCodeLine{1545             pcma = vqmovn\_s32(vqaddq\_s32(vcvtq\_s32\_f32(a), vreinterpretq\_s32\_u32(vcltq\_f32(a, VSET(0)))));}
+\DoxyCodeLine{1546             pcmb = vqmovn\_s32(vqaddq\_s32(vcvtq\_s32\_f32(b), vreinterpretq\_s32\_u32(vcltq\_f32(b, VSET(0)))));}
+\DoxyCodeLine{1547             vst1\_lane\_s16(dstr + (15 -\/ i)*nch, pcma, 1);}
+\DoxyCodeLine{1548             vst1\_lane\_s16(dstr + (17 + i)*nch, pcmb, 1);}
+\DoxyCodeLine{1549             vst1\_lane\_s16(dstl + (15 -\/ i)*nch, pcma, 0);}
+\DoxyCodeLine{1550             vst1\_lane\_s16(dstl + (17 + i)*nch, pcmb, 0);}
+\DoxyCodeLine{1551             vst1\_lane\_s16(dstr + (47 -\/ i)*nch, pcma, 3);}
+\DoxyCodeLine{1552             vst1\_lane\_s16(dstr + (49 + i)*nch, pcmb, 3);}
+\DoxyCodeLine{1553             vst1\_lane\_s16(dstl + (47 -\/ i)*nch, pcma, 2);}
+\DoxyCodeLine{1554             vst1\_lane\_s16(dstl + (49 + i)*nch, pcmb, 2);}
+\DoxyCodeLine{1555 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* HAVE\_SSE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1556 }
+\DoxyCodeLine{1557 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* MINIMP3\_FLOAT\_OUTPUT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1558 }
+\DoxyCodeLine{1559             \textcolor{keyword}{static} \textcolor{keyword}{const} f4 g\_scale = \{ 1.0f/32768.0f, 1.0f/32768.0f, 1.0f/32768.0f, 1.0f/32768.0f \};}
+\DoxyCodeLine{1560             a = VMUL(a, g\_scale);}
+\DoxyCodeLine{1561             b = VMUL(b, g\_scale);}
+\DoxyCodeLine{1562 \textcolor{preprocessor}{\#if HAVE\_SSE}}
+\DoxyCodeLine{1563             \_mm\_store\_ss(dstr + (15 -\/ i)*nch, \_mm\_shuffle\_ps(a, a, \_MM\_SHUFFLE(1, 1, 1, 1)));}
+\DoxyCodeLine{1564             \_mm\_store\_ss(dstr + (17 + i)*nch, \_mm\_shuffle\_ps(b, b, \_MM\_SHUFFLE(1, 1, 1, 1)));}
+\DoxyCodeLine{1565             \_mm\_store\_ss(dstl + (15 -\/ i)*nch, \_mm\_shuffle\_ps(a, a, \_MM\_SHUFFLE(0, 0, 0, 0)));}
+\DoxyCodeLine{1566             \_mm\_store\_ss(dstl + (17 + i)*nch, \_mm\_shuffle\_ps(b, b, \_MM\_SHUFFLE(0, 0, 0, 0)));}
+\DoxyCodeLine{1567             \_mm\_store\_ss(dstr + (47 -\/ i)*nch, \_mm\_shuffle\_ps(a, a, \_MM\_SHUFFLE(3, 3, 3, 3)));}
+\DoxyCodeLine{1568             \_mm\_store\_ss(dstr + (49 + i)*nch, \_mm\_shuffle\_ps(b, b, \_MM\_SHUFFLE(3, 3, 3, 3)));}
+\DoxyCodeLine{1569             \_mm\_store\_ss(dstl + (47 -\/ i)*nch, \_mm\_shuffle\_ps(a, a, \_MM\_SHUFFLE(2, 2, 2, 2)));}
+\DoxyCodeLine{1570             \_mm\_store\_ss(dstl + (49 + i)*nch, \_mm\_shuffle\_ps(b, b, \_MM\_SHUFFLE(2, 2, 2, 2)));}
+\DoxyCodeLine{1571 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* HAVE\_SSE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1572             vst1q\_lane\_f32(dstr + (15 -\/ i)*nch, a, 1);}
+\DoxyCodeLine{1573             vst1q\_lane\_f32(dstr + (17 + i)*nch, b, 1);}
+\DoxyCodeLine{1574             vst1q\_lane\_f32(dstl + (15 -\/ i)*nch, a, 0);}
+\DoxyCodeLine{1575             vst1q\_lane\_f32(dstl + (17 + i)*nch, b, 0);}
+\DoxyCodeLine{1576             vst1q\_lane\_f32(dstr + (47 -\/ i)*nch, a, 3);}
+\DoxyCodeLine{1577             vst1q\_lane\_f32(dstr + (49 + i)*nch, b, 3);}
+\DoxyCodeLine{1578             vst1q\_lane\_f32(dstl + (47 -\/ i)*nch, a, 2);}
+\DoxyCodeLine{1579             vst1q\_lane\_f32(dstl + (49 + i)*nch, b, 2);}
+\DoxyCodeLine{1580 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* HAVE\_SSE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1581 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MINIMP3\_FLOAT\_OUTPUT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1582         \}}
+\DoxyCodeLine{1583     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{1584 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* HAVE\_SIMD */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1585 \textcolor{preprocessor}{\#ifdef MINIMP3\_ONLY\_SIMD}}
+\DoxyCodeLine{1586     \{\} \textcolor{comment}{/* for HAVE\_SIMD=1, MINIMP3\_ONLY\_SIMD=1 case we do not need non-\/intrinsic "{}else"{} branch */}}
+\DoxyCodeLine{1587 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* MINIMP3\_ONLY\_SIMD */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1588     \textcolor{keywordflow}{for} (i = 14; i >= 0; i-\/-\/)}
+\DoxyCodeLine{1589     \{}
+\DoxyCodeLine{1590 \textcolor{preprocessor}{\#define LOAD(k) float w0 = *w++; float w1 = *w++; float *vz = \&zlin[4*i -\/ k*64]; float *vy = \&zlin[4*i -\/ (15 -\/ k)*64];}}
+\DoxyCodeLine{1591 \textcolor{preprocessor}{\#define S0(k) \{ int j; LOAD(k); for (j = 0; j < 4; j++) b[j]  = vz[j]*w1 + vy[j]*w0, a[j]  = vz[j]*w0 -\/ vy[j]*w1; \}}}
+\DoxyCodeLine{1592 \textcolor{preprocessor}{\#define S1(k) \{ int j; LOAD(k); for (j = 0; j < 4; j++) b[j] += vz[j]*w1 + vy[j]*w0, a[j] += vz[j]*w0 -\/ vy[j]*w1; \}}}
+\DoxyCodeLine{1593 \textcolor{preprocessor}{\#define S2(k) \{ int j; LOAD(k); for (j = 0; j < 4; j++) b[j] += vz[j]*w1 + vy[j]*w0, a[j] += vy[j]*w1 -\/ vz[j]*w0; \}}}
+\DoxyCodeLine{1594         \textcolor{keywordtype}{float} a[4], b[4];}
+\DoxyCodeLine{1595 }
+\DoxyCodeLine{1596         zlin[4*i]     = xl[18*(31 -\/ i)];}
+\DoxyCodeLine{1597         zlin[4*i + 1] = xr[18*(31 -\/ i)];}
+\DoxyCodeLine{1598         zlin[4*i + 2] = xl[1 + 18*(31 -\/ i)];}
+\DoxyCodeLine{1599         zlin[4*i + 3] = xr[1 + 18*(31 -\/ i)];}
+\DoxyCodeLine{1600         zlin[4*(i + 16)]   = xl[1 + 18*(1 + i)];}
+\DoxyCodeLine{1601         zlin[4*(i + 16) + 1] = xr[1 + 18*(1 + i)];}
+\DoxyCodeLine{1602         zlin[4*(i -\/ 16) + 2] = xl[18*(1 + i)];}
+\DoxyCodeLine{1603         zlin[4*(i -\/ 16) + 3] = xr[18*(1 + i)];}
+\DoxyCodeLine{1604 }
+\DoxyCodeLine{1605         S0(0) S2(1) S1(2) S2(3) S1(4) S2(5) S1(6) S2(7)}
+\DoxyCodeLine{1606 }
+\DoxyCodeLine{1607         dstr[(15 -\/ i)*nch] = mp3d\_scale\_pcm(a[1]);}
+\DoxyCodeLine{1608         dstr[(17 + i)*nch] = mp3d\_scale\_pcm(b[1]);}
+\DoxyCodeLine{1609         dstl[(15 -\/ i)*nch] = mp3d\_scale\_pcm(a[0]);}
+\DoxyCodeLine{1610         dstl[(17 + i)*nch] = mp3d\_scale\_pcm(b[0]);}
+\DoxyCodeLine{1611         dstr[(47 -\/ i)*nch] = mp3d\_scale\_pcm(a[3]);}
+\DoxyCodeLine{1612         dstr[(49 + i)*nch] = mp3d\_scale\_pcm(b[3]);}
+\DoxyCodeLine{1613         dstl[(47 -\/ i)*nch] = mp3d\_scale\_pcm(a[2]);}
+\DoxyCodeLine{1614         dstl[(49 + i)*nch] = mp3d\_scale\_pcm(b[2]);}
+\DoxyCodeLine{1615     \}}
+\DoxyCodeLine{1616 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MINIMP3\_ONLY\_SIMD */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1617 \}}
+\DoxyCodeLine{1618 }
+\DoxyCodeLine{1619 \textcolor{keyword}{static} \textcolor{keywordtype}{void} mp3d\_synth\_granule(\textcolor{keywordtype}{float} *qmf\_state, \textcolor{keywordtype}{float} *grbuf, \textcolor{keywordtype}{int} nbands, \textcolor{keywordtype}{int} nch, mp3d\_sample\_t *pcm, \textcolor{keywordtype}{float} *lins)}
+\DoxyCodeLine{1620 \{}
+\DoxyCodeLine{1621     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{1622     \textcolor{keywordflow}{for} (i = 0; i < nch; i++)}
+\DoxyCodeLine{1623     \{}
+\DoxyCodeLine{1624         mp3d\_DCT\_II(grbuf + 576*i, nbands);}
+\DoxyCodeLine{1625     \}}
+\DoxyCodeLine{1626 }
+\DoxyCodeLine{1627     memcpy(lins, qmf\_state, \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{float})*15*64);}
+\DoxyCodeLine{1628 }
+\DoxyCodeLine{1629     \textcolor{keywordflow}{for} (i = 0; i < nbands; i += 2)}
+\DoxyCodeLine{1630     \{}
+\DoxyCodeLine{1631         mp3d\_synth(grbuf + i, pcm + 32*nch*i, nch, lins + i*64);}
+\DoxyCodeLine{1632     \}}
+\DoxyCodeLine{1633 \textcolor{preprocessor}{\#ifndef MINIMP3\_NONSTANDARD\_BUT\_LOGICAL}}
+\DoxyCodeLine{1634     \textcolor{keywordflow}{if} (nch == 1)}
+\DoxyCodeLine{1635     \{}
+\DoxyCodeLine{1636         \textcolor{keywordflow}{for} (i = 0; i < 15*64; i += 2)}
+\DoxyCodeLine{1637         \{}
+\DoxyCodeLine{1638             qmf\_state[i] = lins[nbands*64 + i];}
+\DoxyCodeLine{1639         \}}
+\DoxyCodeLine{1640     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{1641 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MINIMP3\_NONSTANDARD\_BUT\_LOGICAL */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1642     \{}
+\DoxyCodeLine{1643         memcpy(qmf\_state, lins + nbands*64, \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{float})*15*64);}
+\DoxyCodeLine{1644     \}}
+\DoxyCodeLine{1645 \}}
+\DoxyCodeLine{1646 }
+\DoxyCodeLine{1647 \textcolor{keyword}{static} \textcolor{keywordtype}{int} mp3d\_match\_frame(\textcolor{keyword}{const} uint8\_t *hdr, \textcolor{keywordtype}{int} mp3\_bytes, \textcolor{keywordtype}{int} frame\_bytes)}
+\DoxyCodeLine{1648 \{}
+\DoxyCodeLine{1649     \textcolor{keywordtype}{int} i, nmatch;}
+\DoxyCodeLine{1650     \textcolor{keywordflow}{for} (i = 0, nmatch = 0; nmatch < MAX\_FRAME\_SYNC\_MATCHES; nmatch++)}
+\DoxyCodeLine{1651     \{}
+\DoxyCodeLine{1652         i += hdr\_frame\_bytes(hdr + i, frame\_bytes) + hdr\_padding(hdr + i);}
+\DoxyCodeLine{1653         \textcolor{keywordflow}{if} (i + HDR\_SIZE > mp3\_bytes)}
+\DoxyCodeLine{1654             \textcolor{keywordflow}{return} nmatch > 0;}
+\DoxyCodeLine{1655         \textcolor{keywordflow}{if} (!hdr\_compare(hdr, hdr + i))}
+\DoxyCodeLine{1656             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{1657     \}}
+\DoxyCodeLine{1658     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{1659 \}}
+\DoxyCodeLine{1660 }
+\DoxyCodeLine{1661 \textcolor{keyword}{static} \textcolor{keywordtype}{int} mp3d\_find\_frame(\textcolor{keyword}{const} uint8\_t *mp3, \textcolor{keywordtype}{int} mp3\_bytes, \textcolor{keywordtype}{int} *free\_format\_bytes, \textcolor{keywordtype}{int} *ptr\_frame\_bytes)}
+\DoxyCodeLine{1662 \{}
+\DoxyCodeLine{1663     \textcolor{keywordtype}{int} i, k;}
+\DoxyCodeLine{1664     \textcolor{keywordflow}{for} (i = 0; i < mp3\_bytes -\/ HDR\_SIZE; i++, mp3++)}
+\DoxyCodeLine{1665     \{}
+\DoxyCodeLine{1666         \textcolor{keywordflow}{if} (hdr\_valid(mp3))}
+\DoxyCodeLine{1667         \{}
+\DoxyCodeLine{1668             \textcolor{keywordtype}{int} frame\_bytes = hdr\_frame\_bytes(mp3, *free\_format\_bytes);}
+\DoxyCodeLine{1669             \textcolor{keywordtype}{int} frame\_and\_padding = frame\_bytes + hdr\_padding(mp3);}
+\DoxyCodeLine{1670 }
+\DoxyCodeLine{1671             \textcolor{keywordflow}{for} (k = HDR\_SIZE; !frame\_bytes \&\& k < MAX\_FREE\_FORMAT\_FRAME\_SIZE \&\& i + 2*k < mp3\_bytes -\/ HDR\_SIZE; k++)}
+\DoxyCodeLine{1672             \{}
+\DoxyCodeLine{1673                 \textcolor{keywordflow}{if} (hdr\_compare(mp3, mp3 + k))}
+\DoxyCodeLine{1674                 \{}
+\DoxyCodeLine{1675                     \textcolor{keywordtype}{int} fb = k -\/ hdr\_padding(mp3);}
+\DoxyCodeLine{1676                     \textcolor{keywordtype}{int} nextfb = fb + hdr\_padding(mp3 + k);}
+\DoxyCodeLine{1677                     \textcolor{keywordflow}{if} (i + k + nextfb + HDR\_SIZE > mp3\_bytes || !hdr\_compare(mp3, mp3 + k + nextfb))}
+\DoxyCodeLine{1678                         \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{1679                     frame\_and\_padding = k;}
+\DoxyCodeLine{1680                     frame\_bytes = fb;}
+\DoxyCodeLine{1681                     *free\_format\_bytes = fb;}
+\DoxyCodeLine{1682                 \}}
+\DoxyCodeLine{1683             \}}
+\DoxyCodeLine{1684             \textcolor{keywordflow}{if} ((frame\_bytes \&\& i + frame\_and\_padding <= mp3\_bytes \&\&}
+\DoxyCodeLine{1685                 mp3d\_match\_frame(mp3, mp3\_bytes -\/ i, frame\_bytes)) ||}
+\DoxyCodeLine{1686                 (!i \&\& frame\_and\_padding == mp3\_bytes))}
+\DoxyCodeLine{1687             \{}
+\DoxyCodeLine{1688                 *ptr\_frame\_bytes = frame\_and\_padding;}
+\DoxyCodeLine{1689                 \textcolor{keywordflow}{return} i;}
+\DoxyCodeLine{1690             \}}
+\DoxyCodeLine{1691             *free\_format\_bytes = 0;}
+\DoxyCodeLine{1692         \}}
+\DoxyCodeLine{1693     \}}
+\DoxyCodeLine{1694     *ptr\_frame\_bytes = 0;}
+\DoxyCodeLine{1695     \textcolor{keywordflow}{return} mp3\_bytes;}
+\DoxyCodeLine{1696 \}}
+\DoxyCodeLine{1697 }
+\DoxyCodeLine{1698 \textcolor{keywordtype}{void} mp3dec\_init(\mbox{\hyperlink{structmp3dec__t}{mp3dec\_t}} *dec)}
+\DoxyCodeLine{1699 \{}
+\DoxyCodeLine{1700     dec-\/>header[0] = 0;}
+\DoxyCodeLine{1701 \}}
+\DoxyCodeLine{1702 }
+\DoxyCodeLine{1703 \textcolor{keywordtype}{int} mp3dec\_decode\_frame(\mbox{\hyperlink{structmp3dec__t}{mp3dec\_t}} *dec, \textcolor{keyword}{const} uint8\_t *mp3, \textcolor{keywordtype}{int} mp3\_bytes, mp3d\_sample\_t *pcm, \mbox{\hyperlink{structmp3dec__frame__info__t}{mp3dec\_frame\_info\_t}} *info)}
+\DoxyCodeLine{1704 \{}
+\DoxyCodeLine{1705     \textcolor{keywordtype}{int} i = 0, igr, frame\_size = 0, success = 1;}
+\DoxyCodeLine{1706     \textcolor{keyword}{const} uint8\_t *hdr;}
+\DoxyCodeLine{1707     bs\_t bs\_frame[1];}
+\DoxyCodeLine{1708     mp3dec\_scratch\_t scratch;}
+\DoxyCodeLine{1709 }
+\DoxyCodeLine{1710     \textcolor{keywordflow}{if} (mp3\_bytes > 4 \&\& dec-\/>header[0] == 0xff \&\& hdr\_compare(dec-\/>header, mp3))}
+\DoxyCodeLine{1711     \{}
+\DoxyCodeLine{1712         frame\_size = hdr\_frame\_bytes(mp3, dec-\/>free\_format\_bytes) + hdr\_padding(mp3);}
+\DoxyCodeLine{1713         \textcolor{keywordflow}{if} (frame\_size != mp3\_bytes \&\& (frame\_size + HDR\_SIZE > mp3\_bytes || !hdr\_compare(mp3, mp3 + frame\_size)))}
+\DoxyCodeLine{1714         \{}
+\DoxyCodeLine{1715             frame\_size = 0;}
+\DoxyCodeLine{1716         \}}
+\DoxyCodeLine{1717     \}}
+\DoxyCodeLine{1718     \textcolor{keywordflow}{if} (!frame\_size)}
+\DoxyCodeLine{1719     \{}
+\DoxyCodeLine{1720         memset(dec, 0, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmp3dec__t}{mp3dec\_t}}));}
+\DoxyCodeLine{1721         i = mp3d\_find\_frame(mp3, mp3\_bytes, \&dec-\/>free\_format\_bytes, \&frame\_size);}
+\DoxyCodeLine{1722         \textcolor{keywordflow}{if} (!frame\_size || i + frame\_size > mp3\_bytes)}
+\DoxyCodeLine{1723         \{}
+\DoxyCodeLine{1724             info-\/>frame\_bytes = i;}
+\DoxyCodeLine{1725             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{1726         \}}
+\DoxyCodeLine{1727     \}}
+\DoxyCodeLine{1728 }
+\DoxyCodeLine{1729     hdr = mp3 + i;}
+\DoxyCodeLine{1730     memcpy(dec-\/>header, hdr, HDR\_SIZE);}
+\DoxyCodeLine{1731     info-\/>frame\_bytes = i + frame\_size;}
+\DoxyCodeLine{1732     info-\/>frame\_offset = i;}
+\DoxyCodeLine{1733     info-\/>channels = HDR\_IS\_MONO(hdr) ? 1 : 2;}
+\DoxyCodeLine{1734     info-\/>hz = hdr\_sample\_rate\_hz(hdr);}
+\DoxyCodeLine{1735     info-\/>layer = 4 -\/ HDR\_GET\_LAYER(hdr);}
+\DoxyCodeLine{1736     info-\/>bitrate\_kbps = hdr\_bitrate\_kbps(hdr);}
+\DoxyCodeLine{1737 }
+\DoxyCodeLine{1738     \textcolor{keywordflow}{if} (!pcm)}
+\DoxyCodeLine{1739     \{}
+\DoxyCodeLine{1740         \textcolor{keywordflow}{return} hdr\_frame\_samples(hdr);}
+\DoxyCodeLine{1741     \}}
+\DoxyCodeLine{1742 }
+\DoxyCodeLine{1743     bs\_init(bs\_frame, hdr + HDR\_SIZE, frame\_size -\/ HDR\_SIZE);}
+\DoxyCodeLine{1744     \textcolor{keywordflow}{if} (HDR\_IS\_CRC(hdr))}
+\DoxyCodeLine{1745     \{}
+\DoxyCodeLine{1746         get\_bits(bs\_frame, 16);}
+\DoxyCodeLine{1747     \}}
+\DoxyCodeLine{1748 }
+\DoxyCodeLine{1749     \textcolor{keywordflow}{if} (info-\/>layer == 3)}
+\DoxyCodeLine{1750     \{}
+\DoxyCodeLine{1751         \textcolor{keywordtype}{int} main\_data\_begin = L3\_read\_side\_info(bs\_frame, scratch.gr\_info, hdr);}
+\DoxyCodeLine{1752         \textcolor{keywordflow}{if} (main\_data\_begin < 0 || bs\_frame-\/>pos > bs\_frame-\/>limit)}
+\DoxyCodeLine{1753         \{}
+\DoxyCodeLine{1754             mp3dec\_init(dec);}
+\DoxyCodeLine{1755             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{1756         \}}
+\DoxyCodeLine{1757         success = L3\_restore\_reservoir(dec, bs\_frame, \&scratch, main\_data\_begin);}
+\DoxyCodeLine{1758         \textcolor{keywordflow}{if} (success)}
+\DoxyCodeLine{1759         \{}
+\DoxyCodeLine{1760             \textcolor{keywordflow}{for} (igr = 0; igr < (HDR\_TEST\_MPEG1(hdr) ? 2 : 1); igr++, pcm += 576*info-\/>channels)}
+\DoxyCodeLine{1761             \{}
+\DoxyCodeLine{1762                 memset(scratch.grbuf[0], 0, 576*2*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{float}));}
+\DoxyCodeLine{1763                 L3\_decode(dec, \&scratch, scratch.gr\_info + igr*info-\/>channels, info-\/>channels);}
+\DoxyCodeLine{1764                 mp3d\_synth\_granule(dec-\/>qmf\_state, scratch.grbuf[0], 18, info-\/>channels, pcm, scratch.syn[0]);}
+\DoxyCodeLine{1765             \}}
+\DoxyCodeLine{1766         \}}
+\DoxyCodeLine{1767         L3\_save\_reservoir(dec, \&scratch);}
+\DoxyCodeLine{1768     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{1769     \{}
+\DoxyCodeLine{1770 \textcolor{preprocessor}{\#ifdef MINIMP3\_ONLY\_MP3}}
+\DoxyCodeLine{1771         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{1772 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* MINIMP3\_ONLY\_MP3 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1773         L12\_scale\_info sci[1];}
+\DoxyCodeLine{1774         L12\_read\_scale\_info(hdr, bs\_frame, sci);}
+\DoxyCodeLine{1775 }
+\DoxyCodeLine{1776         memset(scratch.grbuf[0], 0, 576*2*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{float}));}
+\DoxyCodeLine{1777         \textcolor{keywordflow}{for} (i = 0, igr = 0; igr < 3; igr++)}
+\DoxyCodeLine{1778         \{}
+\DoxyCodeLine{1779             \textcolor{keywordflow}{if} (12 == (i += L12\_dequantize\_granule(scratch.grbuf[0] + i, bs\_frame, sci, info-\/>layer | 1)))}
+\DoxyCodeLine{1780             \{}
+\DoxyCodeLine{1781                 i = 0;}
+\DoxyCodeLine{1782                 L12\_apply\_scf\_384(sci, sci-\/>scf + igr, scratch.grbuf[0]);}
+\DoxyCodeLine{1783                 mp3d\_synth\_granule(dec-\/>qmf\_state, scratch.grbuf[0], 12, info-\/>channels, pcm, scratch.syn[0]);}
+\DoxyCodeLine{1784                 memset(scratch.grbuf[0], 0, 576*2*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{float}));}
+\DoxyCodeLine{1785                 pcm += 384*info-\/>channels;}
+\DoxyCodeLine{1786             \}}
+\DoxyCodeLine{1787             \textcolor{keywordflow}{if} (bs\_frame-\/>pos > bs\_frame-\/>limit)}
+\DoxyCodeLine{1788             \{}
+\DoxyCodeLine{1789                 mp3dec\_init(dec);}
+\DoxyCodeLine{1790                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{1791             \}}
+\DoxyCodeLine{1792         \}}
+\DoxyCodeLine{1793 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MINIMP3\_ONLY\_MP3 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1794     \}}
+\DoxyCodeLine{1795     \textcolor{keywordflow}{return} success*hdr\_frame\_samples(dec-\/>header);}
+\DoxyCodeLine{1796 \}}
+\DoxyCodeLine{1797 }
+\DoxyCodeLine{1798 \textcolor{preprocessor}{\#ifdef MINIMP3\_FLOAT\_OUTPUT}}
+\DoxyCodeLine{1799 \textcolor{keywordtype}{void} mp3dec\_f32\_to\_s16(\textcolor{keyword}{const} \textcolor{keywordtype}{float} *in, int16\_t *out, \textcolor{keywordtype}{int} num\_samples)}
+\DoxyCodeLine{1800 \{}
+\DoxyCodeLine{1801     \textcolor{keywordtype}{int} i = 0;}
+\DoxyCodeLine{1802 \textcolor{preprocessor}{\#if HAVE\_SIMD}}
+\DoxyCodeLine{1803     \textcolor{keywordtype}{int} aligned\_count = num\_samples \& \string~7;}
+\DoxyCodeLine{1804     \textcolor{keywordflow}{for}(; i < aligned\_count; i += 8)}
+\DoxyCodeLine{1805     \{}
+\DoxyCodeLine{1806         \textcolor{keyword}{static} \textcolor{keyword}{const} f4 g\_scale = \{ 32768.0f, 32768.0f, 32768.0f, 32768.0f \};}
+\DoxyCodeLine{1807         f4 a = VMUL(VLD(\&in[i  ]), g\_scale);}
+\DoxyCodeLine{1808         f4 b = VMUL(VLD(\&in[i+4]), g\_scale);}
+\DoxyCodeLine{1809 \textcolor{preprocessor}{\#if HAVE\_SSE}}
+\DoxyCodeLine{1810         \textcolor{keyword}{static} \textcolor{keyword}{const} f4 g\_max = \{ 32767.0f, 32767.0f, 32767.0f, 32767.0f \};}
+\DoxyCodeLine{1811         \textcolor{keyword}{static} \textcolor{keyword}{const} f4 g\_min = \{ -\/32768.0f, -\/32768.0f, -\/32768.0f, -\/32768.0f \};}
+\DoxyCodeLine{1812         \_\_m128i pcm8 = \_mm\_packs\_epi32(\_mm\_cvtps\_epi32(\_mm\_max\_ps(\_mm\_min\_ps(a, g\_max), g\_min)),}
+\DoxyCodeLine{1813                                        \_mm\_cvtps\_epi32(\_mm\_max\_ps(\_mm\_min\_ps(b, g\_max), g\_min)));}
+\DoxyCodeLine{1814         out[i  ] = \_mm\_extract\_epi16(pcm8, 0);}
+\DoxyCodeLine{1815         out[i+1] = \_mm\_extract\_epi16(pcm8, 1);}
+\DoxyCodeLine{1816         out[i+2] = \_mm\_extract\_epi16(pcm8, 2);}
+\DoxyCodeLine{1817         out[i+3] = \_mm\_extract\_epi16(pcm8, 3);}
+\DoxyCodeLine{1818         out[i+4] = \_mm\_extract\_epi16(pcm8, 4);}
+\DoxyCodeLine{1819         out[i+5] = \_mm\_extract\_epi16(pcm8, 5);}
+\DoxyCodeLine{1820         out[i+6] = \_mm\_extract\_epi16(pcm8, 6);}
+\DoxyCodeLine{1821         out[i+7] = \_mm\_extract\_epi16(pcm8, 7);}
+\DoxyCodeLine{1822 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* HAVE\_SSE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1823         int16x4\_t pcma, pcmb;}
+\DoxyCodeLine{1824         a = VADD(a, VSET(0.5f));}
+\DoxyCodeLine{1825         b = VADD(b, VSET(0.5f));}
+\DoxyCodeLine{1826         pcma = vqmovn\_s32(vqaddq\_s32(vcvtq\_s32\_f32(a), vreinterpretq\_s32\_u32(vcltq\_f32(a, VSET(0)))));}
+\DoxyCodeLine{1827         pcmb = vqmovn\_s32(vqaddq\_s32(vcvtq\_s32\_f32(b), vreinterpretq\_s32\_u32(vcltq\_f32(b, VSET(0)))));}
+\DoxyCodeLine{1828         vst1\_lane\_s16(out+i  , pcma, 0);}
+\DoxyCodeLine{1829         vst1\_lane\_s16(out+i+1, pcma, 1);}
+\DoxyCodeLine{1830         vst1\_lane\_s16(out+i+2, pcma, 2);}
+\DoxyCodeLine{1831         vst1\_lane\_s16(out+i+3, pcma, 3);}
+\DoxyCodeLine{1832         vst1\_lane\_s16(out+i+4, pcmb, 0);}
+\DoxyCodeLine{1833         vst1\_lane\_s16(out+i+5, pcmb, 1);}
+\DoxyCodeLine{1834         vst1\_lane\_s16(out+i+6, pcmb, 2);}
+\DoxyCodeLine{1835         vst1\_lane\_s16(out+i+7, pcmb, 3);}
+\DoxyCodeLine{1836 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* HAVE\_SSE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1837     \}}
+\DoxyCodeLine{1838 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* HAVE\_SIMD */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1839     \textcolor{keywordflow}{for}(; i < num\_samples; i++)}
+\DoxyCodeLine{1840     \{}
+\DoxyCodeLine{1841         \textcolor{keywordtype}{float} sample = in[i] * 32768.0f;}
+\DoxyCodeLine{1842         \textcolor{keywordflow}{if} (sample >=  32766.5)}
+\DoxyCodeLine{1843             out[i] = (int16\_t) 32767;}
+\DoxyCodeLine{1844         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sample <= -\/32767.5)}
+\DoxyCodeLine{1845             out[i] = (int16\_t)-\/32768;}
+\DoxyCodeLine{1846         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{1847         \{}
+\DoxyCodeLine{1848             int16\_t s = (int16\_t)(sample + .5f);}
+\DoxyCodeLine{1849             s -\/= (s < 0);   \textcolor{comment}{/* away from zero, to be compliant */}}
+\DoxyCodeLine{1850             out[i] = s;}
+\DoxyCodeLine{1851         \}}
+\DoxyCodeLine{1852     \}}
+\DoxyCodeLine{1853 \}}
+\DoxyCodeLine{1854 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MINIMP3\_FLOAT\_OUTPUT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1855 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MINIMP3\_IMPLEMENTATION \&\& !\_MINIMP3\_IMPLEMENTATION\_GUARD */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

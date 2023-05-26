@@ -1,0 +1,7 @@
+<map id="sf::Window" name="sf::Window">
+<area shape="rect" id="node1" title="Window that serves as a target for OpenGL rendering." alt="" coords="136,769,335,1096"/>
+<area shape="rect" id="node5" href="$dd/dd0/classsf_1_1RenderWindow.html" title="Window that can serve as a target for 2D drawing." alt="" coords="147,1144,324,1353"/>
+<area shape="rect" id="node2" href="$d2/d1d/classsf_1_1WindowBase.html" title="Window that serves as a base for other windows." alt="" coords="5,175,212,721"/>
+<area shape="rect" id="node3" href="$d0/da7/classsf_1_1NonCopyable.html" title="Utility class that makes any derived class non&#45;copyable." alt="" coords="36,5,181,127"/>
+<area shape="rect" id="node4" href="$d7/db6/classsf_1_1GlResource.html" title="Base class for classes that require an OpenGL context." alt="" coords="236,395,491,501"/>
+</map>

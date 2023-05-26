@@ -1,0 +1,139 @@
+\hypertarget{WindowBase_8hpp_source}{}\doxysection{Window\+Base.\+hpp}
+\label{WindowBase_8hpp_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/include/SFML/Window/WindowBase.hpp@{cmake-\/build-\/debug/\_deps/sfml-\/src/include/SFML/Window/WindowBase.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{// SFML -\/ Simple and Fast Multimedia Library}}
+\DoxyCodeLine{4 \textcolor{comment}{// Copyright (C) 2007-\/2022 Laurent Gomila (laurent@sfml-\/dev.org)}}
+\DoxyCodeLine{5 \textcolor{comment}{//}}
+\DoxyCodeLine{6 \textcolor{comment}{// This software is provided 'as-\/is', without any express or implied warranty.}}
+\DoxyCodeLine{7 \textcolor{comment}{// In no event will the authors be held liable for any damages arising from the use of this software.}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{// Permission is granted to anyone to use this software for any purpose,}}
+\DoxyCodeLine{10 \textcolor{comment}{// including commercial applications, and to alter it and redistribute it freely,}}
+\DoxyCodeLine{11 \textcolor{comment}{// subject to the following restrictions:}}
+\DoxyCodeLine{12 \textcolor{comment}{//}}
+\DoxyCodeLine{13 \textcolor{comment}{// 1. The origin of this software must not be misrepresented;}}
+\DoxyCodeLine{14 \textcolor{comment}{//    you must not claim that you wrote the original software.}}
+\DoxyCodeLine{15 \textcolor{comment}{//    If you use this software in a product, an acknowledgment}}
+\DoxyCodeLine{16 \textcolor{comment}{//    in the product documentation would be appreciated but is not required.}}
+\DoxyCodeLine{17 \textcolor{comment}{//}}
+\DoxyCodeLine{18 \textcolor{comment}{// 2. Altered source versions must be plainly marked as such,}}
+\DoxyCodeLine{19 \textcolor{comment}{//    and must not be misrepresented as being the original software.}}
+\DoxyCodeLine{20 \textcolor{comment}{//}}
+\DoxyCodeLine{21 \textcolor{comment}{// 3. This notice may not be removed or altered from any source distribution.}}
+\DoxyCodeLine{22 \textcolor{comment}{//}}
+\DoxyCodeLine{24 \textcolor{comment}{}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifndef SFML\_WINDOWBASE\_HPP}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define SFML\_WINDOWBASE\_HPP}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{29 \textcolor{comment}{// Headers}}
+\DoxyCodeLine{31 \textcolor{comment}{}\textcolor{preprocessor}{\#include <SFML/Window/Cursor.hpp>}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <SFML/Window/Export.hpp>}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include <SFML/Window/VideoMode.hpp>}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <SFML/Window/Vulkan.hpp>}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include <SFML/Window/WindowHandle.hpp>}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#include <SFML/Window/WindowStyle.hpp>}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#include <SFML/System/Clock.hpp>}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#include <SFML/System/NonCopyable.hpp>}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#include <SFML/System/String.hpp>}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#include <SFML/System/Vector2.hpp>}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacesf}{sf}}}
+\DoxyCodeLine{44 \{}
+\DoxyCodeLine{45 \textcolor{keyword}{namespace }priv}
+\DoxyCodeLine{46 \{}
+\DoxyCodeLine{47     \textcolor{keyword}{class }WindowImpl;}
+\DoxyCodeLine{48 \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{keyword}{class }Event;}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{56 \textcolor{keyword}{class }SFML\_WINDOW\_API \mbox{\hyperlink{classsf_1_1WindowBase}{WindowBase}} : \mbox{\hyperlink{classsf_1_1NonCopyable}{NonCopyable}}}
+\DoxyCodeLine{57 \{}
+\DoxyCodeLine{58 \textcolor{keyword}{public}:}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{67     \mbox{\hyperlink{classsf_1_1WindowBase}{WindowBase}}();}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{83     \mbox{\hyperlink{classsf_1_1WindowBase}{WindowBase}}(\mbox{\hyperlink{classsf_1_1VideoMode}{VideoMode}} mode, \textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1String}{String}}\& title, Uint32 style = Style::Default);}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{91     \textcolor{keyword}{explicit} \mbox{\hyperlink{classsf_1_1WindowBase}{WindowBase}}(WindowHandle handle);}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{99     \textcolor{keyword}{virtual} \mbox{\hyperlink{classsf_1_1WindowBase}{\string~WindowBase}}();}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{113     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} create(\mbox{\hyperlink{classsf_1_1VideoMode}{VideoMode}} mode, \textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1String}{String}}\& title, Uint32 style = Style::Default);}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{121     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} create(WindowHandle handle);}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{133     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} close();}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{145     \textcolor{keywordtype}{bool} isOpen() \textcolor{keyword}{const};}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{170     \textcolor{keywordtype}{bool} pollEvent(\mbox{\hyperlink{classsf_1_1Event}{Event}}\& event);}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{197     \textcolor{keywordtype}{bool} waitEvent(\mbox{\hyperlink{classsf_1_1Event}{Event}}\& event);}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{207     \mbox{\hyperlink{classsf_1_1Vector2}{Vector2i}} getPosition() \textcolor{keyword}{const};}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{221     \textcolor{keywordtype}{void} setPosition(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Vector2}{Vector2i}}\& position);}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{234     \mbox{\hyperlink{classsf_1_1Vector2}{Vector2u}} getSize() \textcolor{keyword}{const};}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{244     \textcolor{keywordtype}{void} setSize(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Vector2}{Vector2u}}\& size);}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{254     \textcolor{keywordtype}{void} setTitle(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1String}{String}}\& title);}
+\DoxyCodeLine{255 }
+\DoxyCodeLine{273     \textcolor{keywordtype}{void} setIcon(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} width, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} height, \textcolor{keyword}{const} Uint8* pixels);}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{283     \textcolor{keywordtype}{void} setVisible(\textcolor{keywordtype}{bool} visible);}
+\DoxyCodeLine{284 }
+\DoxyCodeLine{293     \textcolor{keywordtype}{void} setMouseCursorVisible(\textcolor{keywordtype}{bool} visible);}
+\DoxyCodeLine{294 }
+\DoxyCodeLine{306     \textcolor{keywordtype}{void} setMouseCursorGrabbed(\textcolor{keywordtype}{bool} grabbed);}
+\DoxyCodeLine{307 }
+\DoxyCodeLine{325     \textcolor{keywordtype}{void} setMouseCursor(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Cursor}{Cursor}}\& cursor);}
+\DoxyCodeLine{326 }
+\DoxyCodeLine{339     \textcolor{keywordtype}{void} setKeyRepeatEnabled(\textcolor{keywordtype}{bool} enabled);}
+\DoxyCodeLine{340 }
+\DoxyCodeLine{352     \textcolor{keywordtype}{void} setJoystickThreshold(\textcolor{keywordtype}{float} threshold);}
+\DoxyCodeLine{353 }
+\DoxyCodeLine{368     \textcolor{keywordtype}{void} requestFocus();}
+\DoxyCodeLine{369 }
+\DoxyCodeLine{381     \textcolor{keywordtype}{bool} hasFocus() \textcolor{keyword}{const};}
+\DoxyCodeLine{382 }
+\DoxyCodeLine{395     WindowHandle getSystemHandle() \textcolor{keyword}{const};}
+\DoxyCodeLine{396 }
+\DoxyCodeLine{407     \textcolor{keywordtype}{bool} createVulkanSurface(\textcolor{keyword}{const} VkInstance\& instance, VkSurfaceKHR\& surface, \textcolor{keyword}{const} \mbox{\hyperlink{structVkAllocationCallbacks}{VkAllocationCallbacks}}* allocator = 0);}
+\DoxyCodeLine{408 }
+\DoxyCodeLine{409 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{410 }
+\DoxyCodeLine{419     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} onCreate();}
+\DoxyCodeLine{420 }
+\DoxyCodeLine{428     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} onResize();}
+\DoxyCodeLine{429 }
+\DoxyCodeLine{430 \textcolor{keyword}{private}:}
+\DoxyCodeLine{431 }
+\DoxyCodeLine{432     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classsf_1_1Window}{Window}};}
+\DoxyCodeLine{433 }
+\DoxyCodeLine{446     \textcolor{keywordtype}{bool} filterEvent(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Event}{Event}}\& event);}
+\DoxyCodeLine{447 }
+\DoxyCodeLine{452     \textcolor{keywordtype}{void} initialize();}
+\DoxyCodeLine{453 }
+\DoxyCodeLine{460     \textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1WindowBase}{WindowBase}}* getFullscreenWindow();}
+\DoxyCodeLine{461 }
+\DoxyCodeLine{468     \textcolor{keywordtype}{void} setFullscreenWindow(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1WindowBase}{WindowBase}}* window);}
+\DoxyCodeLine{469 }
+\DoxyCodeLine{471     \textcolor{comment}{// Member data}}
+\DoxyCodeLine{473 \textcolor{comment}{}    \mbox{\hyperlink{classsf_1_1priv_1_1WindowImpl}{priv::WindowImpl}}* \mbox{\hyperlink{classsf_1_1WindowBase_a24b46189d481ad6068ee51835cf69322}{m\_impl}};           }
+\DoxyCodeLine{474     \mbox{\hyperlink{classsf_1_1Vector2}{Vector2u}}          \mbox{\hyperlink{classsf_1_1WindowBase_a29e79d2f230006a6c84d90d2426d685d}{m\_size}};           }
+\DoxyCodeLine{475 \};}
+\DoxyCodeLine{476 }
+\DoxyCodeLine{477 \} \textcolor{comment}{// namespace sf}}
+\DoxyCodeLine{478 }
+\DoxyCodeLine{479 }
+\DoxyCodeLine{480 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SFML\_WINDOWBASE\_HPP}}
+\DoxyCodeLine{481 }
+\DoxyCodeLine{482 }
+
+\end{DoxyCode}

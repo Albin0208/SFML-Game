@@ -1,0 +1,7 @@
+<map id="sf::priv::WindowImplCocoa" name="sf::priv::WindowImplCocoa">
+<area shape="rect" id="node1" title="Mac OS X (Cocoa) implementation of WindowImpl." alt="" coords="151,756,357,1317"/>
+<area shape="rect" id="node2" href="$df/df8/classsf_1_1priv_1_1WindowImpl.html" title="Abstract base class for OS&#45;specific window implementation." alt="" coords="151,248,357,707"/>
+<area shape="rect" id="node3" href="$d0/da7/classsf_1_1NonCopyable.html" title="Utility class that makes any derived class non&#45;copyable." alt="" coords="5,35,151,156"/>
+<area shape="rect" id="node4" href="$dd/d2e/structsf_1_1priv_1_1JoystickState.html" title="Structure holding a joystick&#39;s state." alt="" coords="175,42,333,149"/>
+<area shape="rect" id="node5" href="$db/d2c/classsf_1_1Vector3.html" title=" " alt="" coords="358,5,507,185"/>
+</map>

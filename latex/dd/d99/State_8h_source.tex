@@ -1,0 +1,41 @@
+\hypertarget{State_8h_source}{}\doxysection{State.\+h}
+\label{State_8h_source}\index{states/State.h@{states/State.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by albin on 2022-\/12-\/01.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef TDP005\_STATE\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define TDP005\_STATE\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}../utility/common.h"{}}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}SFML/System.hpp"{}}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{classState}{State}} : \textcolor{keyword}{public} std::enable\_shared\_from\_this<State> \{}
+\DoxyCodeLine{15 \textcolor{keyword}{public}:}
+\DoxyCodeLine{16     \mbox{\hyperlink{classState}{State}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{17     \textcolor{keyword}{virtual} \mbox{\hyperlink{classState}{\string~State}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{22     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classState_aca14caa60edacd925d093d1b070aa966}{on\_key\_press}}(\mbox{\hyperlink{classsf_1_1Keyboard_acb4cacd7cc5802dec45724cf3314a142}{sf::Keyboard::Key}});}
+\DoxyCodeLine{26     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classState_a80d4908d8531f8caef2c25803bf6d0b0}{on\_key\_release}}(\mbox{\hyperlink{classsf_1_1Keyboard_acb4cacd7cc5802dec45724cf3314a142}{sf::Keyboard::Key}});}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{35     \textcolor{keyword}{virtual} shared\_ptr<State> \mbox{\hyperlink{classState_a84c08cf631bde9572b59e7efd58cdd6d}{update}}(\mbox{\hyperlink{classsf_1_1Time}{sf::Time}} \textcolor{keyword}{const}\& time, \mbox{\hyperlink{classsf_1_1RenderWindow}{sf::RenderWindow}}\& window) = 0;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{42     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classState_a1e490fff2e160d9dcb1931e5dddd257d}{render}}(\mbox{\hyperlink{classsf_1_1RenderWindow}{sf::RenderWindow}}\& target) = 0;}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{49     \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{classState_a67d4de790284868eacdc2ab96609f454}{run}}(shared\_ptr<State> state);}
+\DoxyCodeLine{50 \};}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{keyword}{class }\mbox{\hyperlink{classExit__State}{Exit\_State}} : \textcolor{keyword}{public} \mbox{\hyperlink{classState}{State}} \{}
+\DoxyCodeLine{53 \textcolor{keyword}{public}:}
+\DoxyCodeLine{58     std::shared\_ptr<State> \mbox{\hyperlink{classExit__State_aa456ec2dbfe62c039bf3c61fc0504041}{update}}(\mbox{\hyperlink{classsf_1_1Time}{sf::Time}} \textcolor{keyword}{const}\&, \mbox{\hyperlink{classsf_1_1RenderWindow}{sf::RenderWindow}}\&)\textcolor{keyword}{ override }\{ \textcolor{keywordflow}{return} \textcolor{keyword}{nullptr}; \}}
+\DoxyCodeLine{62     \textcolor{keywordtype}{void} \mbox{\hyperlink{classExit__State_ad96690218f456ff4ca046612a56be188}{render}}(\mbox{\hyperlink{classsf_1_1RenderWindow}{sf::RenderWindow}}\&)\textcolor{keyword}{ override }\{\}}
+\DoxyCodeLine{63 \};}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//TDP005\_STATE\_H}}
+
+\end{DoxyCode}

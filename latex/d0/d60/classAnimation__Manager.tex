@@ -1,0 +1,122 @@
+\hypertarget{classAnimation__Manager}{}\doxysection{Animation\+\_\+\+Manager Class Reference}
+\label{classAnimation__Manager}\index{Animation\_Manager@{Animation\_Manager}}
+
+
+{\ttfamily \#include $<$Animation\+\_\+\+Manager.\+h$>$}
+
+
+
+Collaboration diagram for Animation\+\_\+\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{db/dae/classAnimation__Manager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classAnimation__Manager_1_1Animation}{Animation}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classAnimation__Manager_a2f6e8a90fcee3a11c0ee243722fcf6de}{play}} (std\+::string const \&key, \mbox{\hyperlink{classsf_1_1Sprite}{sf\+::\+Sprite}} \&sprite, bool priority=false)
+\item 
+void \mbox{\hyperlink{classAnimation__Manager_afb1459c5692613daf5c03c18ecea160e}{add\+\_\+animation}} (std\+::string const \&key, \mbox{\hyperlink{classsf_1_1Texture}{sf\+::\+Texture}} $\ast$texture, int image\+\_\+count, float total\+\_\+time)
+\item 
+bool const \& \mbox{\hyperlink{classAnimation__Manager_a327fde1467aad47f67cc8e2ae7a92f0b}{is\+\_\+done}} (std\+::string const \&key)
+\item 
+void \mbox{\hyperlink{classAnimation__Manager_ab66873eb73625d0780156eff9e7eb414}{kill}} ()
+\item 
+void \mbox{\hyperlink{classAnimation__Manager_a49b4f760b370bec9bdfdd5debbba89f7}{force\+\_\+play}} (std\+::string const \&key, \mbox{\hyperlink{classsf_1_1Sprite}{sf\+::\+Sprite}} \&sprite)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classAnimation__Manager_ae57052cafa508268b295ba242d93c48e}\label{classAnimation__Manager_ae57052cafa508268b295ba242d93c48e}} 
+std\+::map$<$ std\+::string, \mbox{\hyperlink{classAnimation__Manager_1_1Animation}{Animation}} $\ast$ $>$ {\bfseries animations}
+\item 
+\mbox{\Hypertarget{classAnimation__Manager_a309f8a9e81f5b3c3c6bc98d1d3b100b4}\label{classAnimation__Manager_a309f8a9e81f5b3c3c6bc98d1d3b100b4}} 
+\mbox{\hyperlink{classAnimation__Manager_1_1Animation}{Animation}} $\ast$ {\bfseries last\+\_\+animation}
+\item 
+\mbox{\Hypertarget{classAnimation__Manager_aba6b4823393dccab5fd7300ef541d517}\label{classAnimation__Manager_aba6b4823393dccab5fd7300ef541d517}} 
+\mbox{\hyperlink{classAnimation__Manager_1_1Animation}{Animation}} $\ast$ {\bfseries priority\+\_\+animation}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handle all the animations connected to a object 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classAnimation__Manager_afb1459c5692613daf5c03c18ecea160e}\label{classAnimation__Manager_afb1459c5692613daf5c03c18ecea160e}} 
+\index{Animation\_Manager@{Animation\_Manager}!add\_animation@{add\_animation}}
+\index{add\_animation@{add\_animation}!Animation\_Manager@{Animation\_Manager}}
+\doxysubsubsection{\texorpdfstring{add\_animation()}{add\_animation()}}
+{\footnotesize\ttfamily void Animation\+\_\+\+Manager\+::add\+\_\+animation (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{key,  }\item[{\mbox{\hyperlink{classsf_1_1Texture}{sf\+::\+Texture}} $\ast$}]{texture,  }\item[{int}]{image\+\_\+count,  }\item[{float}]{total\+\_\+time }\end{DoxyParamCaption})}
+
+Add a new animation to the manager 
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to identify the animation by \\
+\hline
+{\em texture} & The texture to use \\
+\hline
+{\em image\+\_\+count} & How many images the texture contains \\
+\hline
+{\em total\+\_\+time} & How long the animation should take \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classAnimation__Manager_a49b4f760b370bec9bdfdd5debbba89f7}\label{classAnimation__Manager_a49b4f760b370bec9bdfdd5debbba89f7}} 
+\index{Animation\_Manager@{Animation\_Manager}!force\_play@{force\_play}}
+\index{force\_play@{force\_play}!Animation\_Manager@{Animation\_Manager}}
+\doxysubsubsection{\texorpdfstring{force\_play()}{force\_play()}}
+{\footnotesize\ttfamily void Animation\+\_\+\+Manager\+::force\+\_\+play (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{key,  }\item[{\mbox{\hyperlink{classsf_1_1Sprite}{sf\+::\+Sprite}} \&}]{sprite }\end{DoxyParamCaption})}
+
+Force a animation to play no mather what 
+\begin{DoxyParams}{Parameters}
+{\em key} & The animation key \\
+\hline
+{\em sprite} & The sprite to apply it to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classAnimation__Manager_a327fde1467aad47f67cc8e2ae7a92f0b}\label{classAnimation__Manager_a327fde1467aad47f67cc8e2ae7a92f0b}} 
+\index{Animation\_Manager@{Animation\_Manager}!is\_done@{is\_done}}
+\index{is\_done@{is\_done}!Animation\_Manager@{Animation\_Manager}}
+\doxysubsubsection{\texorpdfstring{is\_done()}{is\_done()}}
+{\footnotesize\ttfamily bool const  \& Animation\+\_\+\+Manager\+::is\+\_\+done (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{key }\end{DoxyParamCaption})}
+
+Get if a animation is done 
+\begin{DoxyParams}{Parameters}
+{\em key} & The Name of the animation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If the animation is done playing 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAnimation__Manager_ab66873eb73625d0780156eff9e7eb414}\label{classAnimation__Manager_ab66873eb73625d0780156eff9e7eb414}} 
+\index{Animation\_Manager@{Animation\_Manager}!kill@{kill}}
+\index{kill@{kill}!Animation\_Manager@{Animation\_Manager}}
+\doxysubsubsection{\texorpdfstring{kill()}{kill()}}
+{\footnotesize\ttfamily void Animation\+\_\+\+Manager\+::kill (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Kill the animation \mbox{\Hypertarget{classAnimation__Manager_a2f6e8a90fcee3a11c0ee243722fcf6de}\label{classAnimation__Manager_a2f6e8a90fcee3a11c0ee243722fcf6de}} 
+\index{Animation\_Manager@{Animation\_Manager}!play@{play}}
+\index{play@{play}!Animation\_Manager@{Animation\_Manager}}
+\doxysubsubsection{\texorpdfstring{play()}{play()}}
+{\footnotesize\ttfamily void Animation\+\_\+\+Manager\+::play (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{key,  }\item[{\mbox{\hyperlink{classsf_1_1Sprite}{sf\+::\+Sprite}} \&}]{sprite,  }\item[{bool}]{priority = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Play the animation 
+\begin{DoxyParams}{Parameters}
+{\em key} & -\/ The key of the animation \\
+\hline
+{\em sprite} & To what sprite it should be applied to \\
+\hline
+{\em priority} & If it is a priority animation \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+utility/Animation\+\_\+\+Manager.\+h\item 
+utility/Animation\+\_\+\+Manager.\+cpp\end{DoxyCompactItemize}

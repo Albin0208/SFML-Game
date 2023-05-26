@@ -1,0 +1,7 @@
+<map id="sf::SoundFileReader" name="sf::SoundFileReader">
+<area shape="rect" id="node1" title="Abstract base class for sound file decoding." alt="" coords="377,5,544,127"/>
+<area shape="rect" id="node2" href="$d6/d08/classsf_1_1priv_1_1SoundFileReaderFlac.html" title="Implementation of sound file reader that handles FLAC files." alt="" coords="5,182,215,362"/>
+<area shape="rect" id="node3" href="$da/d00/classsf_1_1priv_1_1SoundFileReaderMp3.html" title="Implementation of sound file reader that handles MP3 files." alt="" coords="239,175,450,369"/>
+<area shape="rect" id="node4" href="$d0/d25/classsf_1_1priv_1_1SoundFileReaderOgg.html" title="Implementation of sound file reader that handles OGG/Vorbis files." alt="" coords="474,182,682,362"/>
+<area shape="rect" id="node5" href="$d5/dbe/classsf_1_1priv_1_1SoundFileReaderWav.html" title="Implementation of sound file reader that handles wav files." alt="" coords="706,175,917,369"/>
+</map>

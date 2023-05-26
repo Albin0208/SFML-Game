@@ -1,0 +1,102 @@
+\hypertarget{Transformable_8hpp_source}{}\doxysection{Transformable.\+hpp}
+\label{Transformable_8hpp_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/include/SFML/Graphics/Transformable.hpp@{cmake-\/build-\/debug/\_deps/sfml-\/src/include/SFML/Graphics/Transformable.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{// SFML -\/ Simple and Fast Multimedia Library}}
+\DoxyCodeLine{4 \textcolor{comment}{// Copyright (C) 2007-\/2022 Laurent Gomila (laurent@sfml-\/dev.org)}}
+\DoxyCodeLine{5 \textcolor{comment}{//}}
+\DoxyCodeLine{6 \textcolor{comment}{// This software is provided 'as-\/is', without any express or implied warranty.}}
+\DoxyCodeLine{7 \textcolor{comment}{// In no event will the authors be held liable for any damages arising from the use of this software.}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{// Permission is granted to anyone to use this software for any purpose,}}
+\DoxyCodeLine{10 \textcolor{comment}{// including commercial applications, and to alter it and redistribute it freely,}}
+\DoxyCodeLine{11 \textcolor{comment}{// subject to the following restrictions:}}
+\DoxyCodeLine{12 \textcolor{comment}{//}}
+\DoxyCodeLine{13 \textcolor{comment}{// 1. The origin of this software must not be misrepresented;}}
+\DoxyCodeLine{14 \textcolor{comment}{//    you must not claim that you wrote the original software.}}
+\DoxyCodeLine{15 \textcolor{comment}{//    If you use this software in a product, an acknowledgment}}
+\DoxyCodeLine{16 \textcolor{comment}{//    in the product documentation would be appreciated but is not required.}}
+\DoxyCodeLine{17 \textcolor{comment}{//}}
+\DoxyCodeLine{18 \textcolor{comment}{// 2. Altered source versions must be plainly marked as such,}}
+\DoxyCodeLine{19 \textcolor{comment}{//    and must not be misrepresented as being the original software.}}
+\DoxyCodeLine{20 \textcolor{comment}{//}}
+\DoxyCodeLine{21 \textcolor{comment}{// 3. This notice may not be removed or altered from any source distribution.}}
+\DoxyCodeLine{22 \textcolor{comment}{//}}
+\DoxyCodeLine{24 \textcolor{comment}{}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifndef SFML\_TRANSFORMABLE\_HPP}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define SFML\_TRANSFORMABLE\_HPP}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{29 \textcolor{comment}{// Headers}}
+\DoxyCodeLine{31 \textcolor{comment}{}\textcolor{preprocessor}{\#include <SFML/Graphics/Export.hpp>}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <SFML/Graphics/Transform.hpp>}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacesf}{sf}}}
+\DoxyCodeLine{36 \{}
+\DoxyCodeLine{41 \textcolor{keyword}{class }SFML\_GRAPHICS\_API \mbox{\hyperlink{classsf_1_1Transformable}{Transformable}}}
+\DoxyCodeLine{42 \{}
+\DoxyCodeLine{43 \textcolor{keyword}{public}:}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{49     \mbox{\hyperlink{classsf_1_1Transformable}{Transformable}}();}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{55     \textcolor{keyword}{virtual} \mbox{\hyperlink{classsf_1_1Transformable}{\string~Transformable}}();}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{70     \textcolor{keywordtype}{void} setPosition(\textcolor{keywordtype}{float} x, \textcolor{keywordtype}{float} y);}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{84     \textcolor{keywordtype}{void} setPosition(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Vector2}{Vector2f}}\& position);}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{98     \textcolor{keywordtype}{void} setRotation(\textcolor{keywordtype}{float} angle);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{113     \textcolor{keywordtype}{void} setScale(\textcolor{keywordtype}{float} factorX, \textcolor{keywordtype}{float} factorY);}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{127     \textcolor{keywordtype}{void} setScale(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Vector2}{Vector2f}}\& factors);}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{145     \textcolor{keywordtype}{void} setOrigin(\textcolor{keywordtype}{float} x, \textcolor{keywordtype}{float} y);}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{162     \textcolor{keywordtype}{void} setOrigin(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Vector2}{Vector2f}}\& origin);}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{172     \textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Vector2}{Vector2f}}\& getPosition() \textcolor{keyword}{const};}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{184     \textcolor{keywordtype}{float} getRotation() \textcolor{keyword}{const};}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{194     \textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Vector2}{Vector2f}}\& getScale() \textcolor{keyword}{const};}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{204     \textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Vector2}{Vector2f}}\& getOrigin() \textcolor{keyword}{const};}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{223     \textcolor{keywordtype}{void} move(\textcolor{keywordtype}{float} offsetX, \textcolor{keywordtype}{float} offsetY);}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{240     \textcolor{keywordtype}{void} move(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Vector2}{Vector2f}}\& offset);}
+\DoxyCodeLine{241 }
+\DoxyCodeLine{255     \textcolor{keywordtype}{void} rotate(\textcolor{keywordtype}{float} angle);}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{274     \textcolor{keywordtype}{void} scale(\textcolor{keywordtype}{float} factorX, \textcolor{keywordtype}{float} factorY);}
+\DoxyCodeLine{275 }
+\DoxyCodeLine{292     \textcolor{keywordtype}{void} scale(\textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Vector2}{Vector2f}}\& factor);}
+\DoxyCodeLine{293 }
+\DoxyCodeLine{302     \textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Transform}{Transform}}\& getTransform() \textcolor{keyword}{const};}
+\DoxyCodeLine{303 }
+\DoxyCodeLine{312     \textcolor{keyword}{const} \mbox{\hyperlink{classsf_1_1Transform}{Transform}}\& getInverseTransform() \textcolor{keyword}{const};}
+\DoxyCodeLine{313 }
+\DoxyCodeLine{314 \textcolor{keyword}{private}:}
+\DoxyCodeLine{315 }
+\DoxyCodeLine{317     \textcolor{comment}{// Member data}}
+\DoxyCodeLine{319 \textcolor{comment}{}    \mbox{\hyperlink{classsf_1_1Vector2}{Vector2f}}          \mbox{\hyperlink{classsf_1_1Transformable_ad52a72593cb43a30a0cac33737a3a60c}{m\_origin}};                     }
+\DoxyCodeLine{320     \mbox{\hyperlink{classsf_1_1Vector2}{Vector2f}}          \mbox{\hyperlink{classsf_1_1Transformable_a7081bf508f612cb63e9ce3b149758217}{m\_position}};                   }
+\DoxyCodeLine{321     \textcolor{keywordtype}{float}             \mbox{\hyperlink{classsf_1_1Transformable_a206c593d926ee30a3c79520c2fae448b}{m\_rotation}};                   }
+\DoxyCodeLine{322     \mbox{\hyperlink{classsf_1_1Vector2}{Vector2f}}          \mbox{\hyperlink{classsf_1_1Transformable_adf2c5e463aefb41c6d43a140c0ad151f}{m\_scale}};                      }
+\DoxyCodeLine{323     \textcolor{keyword}{mutable} \mbox{\hyperlink{classsf_1_1Transform}{Transform}} \mbox{\hyperlink{classsf_1_1Transformable_ae7451ed9c4d1065fc050ce3e5ad7b34c}{m\_transform}};                  }
+\DoxyCodeLine{324     \textcolor{keyword}{mutable} \textcolor{keywordtype}{bool}      \mbox{\hyperlink{classsf_1_1Transformable_a394b22bfe9e9e44c672244e4da0b3c58}{m\_transformNeedUpdate}};        }
+\DoxyCodeLine{325     \textcolor{keyword}{mutable} \mbox{\hyperlink{classsf_1_1Transform}{Transform}} \mbox{\hyperlink{classsf_1_1Transformable_a6538c7efb49ad3a430d45c8a52368f36}{m\_inverseTransform}};           }
+\DoxyCodeLine{326     \textcolor{keyword}{mutable} \textcolor{keywordtype}{bool}      \mbox{\hyperlink{classsf_1_1Transformable_afbb99d25b4ea10943e883d45a7594761}{m\_inverseTransformNeedUpdate}}; }
+\DoxyCodeLine{327 \};}
+\DoxyCodeLine{328 }
+\DoxyCodeLine{329 \} \textcolor{comment}{// namespace sf}}
+\DoxyCodeLine{330 }
+\DoxyCodeLine{331 }
+\DoxyCodeLine{332 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SFML\_TRANSFORMABLE\_HPP}}
+\DoxyCodeLine{333 }
+\DoxyCodeLine{334 }
+
+\end{DoxyCode}

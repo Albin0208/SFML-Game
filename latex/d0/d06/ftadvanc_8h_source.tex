@@ -1,0 +1,193 @@
+\hypertarget{ftadvanc_8h_source}{}\doxysection{ftadvanc.\+h}
+\label{ftadvanc_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/ftadvanc.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/freetype2/ftadvanc.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftadvanc.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Quick computation of advance widths (specification only).            */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2008, 2013, 2014 by                                          */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FTADVANC\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FTADVANC\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifdef FREETYPE\_H}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#error "{}freetype.h of FreeType 1 has been loaded!"{}}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#error "{}Please fix the directory search order for header files"{}}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#error "{}so that freetype.h of FreeType 2 is found first."{}}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{comment}{  /**************************************************************************}}
+\DoxyCodeLine{37 \textcolor{comment}{   *}}
+\DoxyCodeLine{38 \textcolor{comment}{   * @section:}}
+\DoxyCodeLine{39 \textcolor{comment}{   *   quick\_advance}}
+\DoxyCodeLine{40 \textcolor{comment}{   *}}
+\DoxyCodeLine{41 \textcolor{comment}{   * @title:}}
+\DoxyCodeLine{42 \textcolor{comment}{   *   Quick retrieval of advance values}}
+\DoxyCodeLine{43 \textcolor{comment}{   *}}
+\DoxyCodeLine{44 \textcolor{comment}{   * @abstract:}}
+\DoxyCodeLine{45 \textcolor{comment}{   *   Retrieve horizontal and vertical advance values without processing}}
+\DoxyCodeLine{46 \textcolor{comment}{   *   glyph outlines, if possible.}}
+\DoxyCodeLine{47 \textcolor{comment}{   *}}
+\DoxyCodeLine{48 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{49 \textcolor{comment}{   *   This section contains functions to quickly extract advance values}}
+\DoxyCodeLine{50 \textcolor{comment}{   *   without handling glyph outlines, if possible.}}
+\DoxyCodeLine{51 \textcolor{comment}{   *}}
+\DoxyCodeLine{52 \textcolor{comment}{   * @order:}}
+\DoxyCodeLine{53 \textcolor{comment}{   *   FT\_Get\_Advance}}
+\DoxyCodeLine{54 \textcolor{comment}{   *   FT\_Get\_Advances}}
+\DoxyCodeLine{55 \textcolor{comment}{   *}}
+\DoxyCodeLine{56 \textcolor{comment}{   */}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{60   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{61   \textcolor{comment}{/* <Const>                                                               */}}
+\DoxyCodeLine{62   \textcolor{comment}{/*    FT\_ADVANCE\_FLAG\_FAST\_ONLY                                          */}}
+\DoxyCodeLine{63   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{64   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{65   \textcolor{comment}{/*    A bit-\/flag to be OR-\/ed with the `flags' parameter of the           */}}
+\DoxyCodeLine{66   \textcolor{comment}{/*    @FT\_Get\_Advance and @FT\_Get\_Advances functions.                    */}}
+\DoxyCodeLine{67   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{68   \textcolor{comment}{/*    If set, it indicates that you want these functions to fail if the  */}}
+\DoxyCodeLine{69   \textcolor{comment}{/*    corresponding hinting mode or font driver doesn't allow for very   */}}
+\DoxyCodeLine{70   \textcolor{comment}{/*    quick advance computation.                                         */}}
+\DoxyCodeLine{71   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{72   \textcolor{comment}{/*    Typically, glyphs that are either unscaled, unhinted, bitmapped,   */}}
+\DoxyCodeLine{73   \textcolor{comment}{/*    or light-\/hinted can have their advance width computed very         */}}
+\DoxyCodeLine{74   \textcolor{comment}{/*    quickly.                                                           */}}
+\DoxyCodeLine{75   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{76   \textcolor{comment}{/*    Normal and bytecode hinted modes that require loading, scaling,    */}}
+\DoxyCodeLine{77   \textcolor{comment}{/*    and hinting of the glyph outline, are extremely slow by            */}}
+\DoxyCodeLine{78   \textcolor{comment}{/*    comparison.                                                        */}}
+\DoxyCodeLine{79   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define FT\_ADVANCE\_FLAG\_FAST\_ONLY  0x20000000UL}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{84   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{85   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{86   \textcolor{comment}{/*    FT\_Get\_Advance                                                     */}}
+\DoxyCodeLine{87   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{88   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{89   \textcolor{comment}{/*    Retrieve the advance value of a given glyph outline in an          */}}
+\DoxyCodeLine{90   \textcolor{comment}{/*    @FT\_Face.                                                          */}}
+\DoxyCodeLine{91   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{92   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{93   \textcolor{comment}{/*    face       :: The source @FT\_Face handle.                          */}}
+\DoxyCodeLine{94   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{95   \textcolor{comment}{/*    gindex     :: The glyph index.                                     */}}
+\DoxyCodeLine{96   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{97   \textcolor{comment}{/*    load\_flags :: A set of bit flags similar to those used when        */}}
+\DoxyCodeLine{98   \textcolor{comment}{/*                  calling @FT\_Load\_Glyph, used to determine what kind  */}}
+\DoxyCodeLine{99   \textcolor{comment}{/*                  of advances you need.                                */}}
+\DoxyCodeLine{100   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{101   \textcolor{comment}{/*    padvance :: The advance value.  If scaling is performed (based on  */}}
+\DoxyCodeLine{102   \textcolor{comment}{/*                the value of `load\_flags'), the advance value is in    */}}
+\DoxyCodeLine{103   \textcolor{comment}{/*                16.16 format.  Otherwise, it is in font units.         */}}
+\DoxyCodeLine{104   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{105   \textcolor{comment}{/*                If @FT\_LOAD\_VERTICAL\_LAYOUT is set, this is the        */}}
+\DoxyCodeLine{106   \textcolor{comment}{/*                vertical advance corresponding to a vertical layout.   */}}
+\DoxyCodeLine{107   \textcolor{comment}{/*                Otherwise, it is the horizontal advance in a           */}}
+\DoxyCodeLine{108   \textcolor{comment}{/*                horizontal layout.                                     */}}
+\DoxyCodeLine{109   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{110   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{111   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{112   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{113   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{114   \textcolor{comment}{/*    This function may fail if you use @FT\_ADVANCE\_FLAG\_FAST\_ONLY and   */}}
+\DoxyCodeLine{115   \textcolor{comment}{/*    if the corresponding font backend doesn't have a quick way to      */}}
+\DoxyCodeLine{116   \textcolor{comment}{/*    retrieve the advances.                                             */}}
+\DoxyCodeLine{117   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{118   \textcolor{comment}{/*    A scaled advance is returned in 16.16 format but isn't transformed */}}
+\DoxyCodeLine{119   \textcolor{comment}{/*    by the affine transformation specified by @FT\_Set\_Transform.       */}}
+\DoxyCodeLine{120   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{121   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{122   FT\_Get\_Advance( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}    face,}
+\DoxyCodeLine{123                   FT\_UInt    gindex,}
+\DoxyCodeLine{124                   FT\_Int32   load\_flags,}
+\DoxyCodeLine{125                   FT\_Fixed  *padvance );}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{129   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{130   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{131   \textcolor{comment}{/*    FT\_Get\_Advances                                                    */}}
+\DoxyCodeLine{132   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{133   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{134   \textcolor{comment}{/*    Retrieve the advance values of several glyph outlines in an        */}}
+\DoxyCodeLine{135   \textcolor{comment}{/*    @FT\_Face.                                                          */}}
+\DoxyCodeLine{136   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{137   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{138   \textcolor{comment}{/*    face        :: The source @FT\_Face handle.                         */}}
+\DoxyCodeLine{139   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{140   \textcolor{comment}{/*    start       :: The first glyph index.                              */}}
+\DoxyCodeLine{141   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{142   \textcolor{comment}{/*    count       :: The number of advance values you want to retrieve.  */}}
+\DoxyCodeLine{143   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{144   \textcolor{comment}{/*    load\_flags  :: A set of bit flags similar to those used when       */}}
+\DoxyCodeLine{145   \textcolor{comment}{/*                   calling @FT\_Load\_Glyph.                             */}}
+\DoxyCodeLine{146   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{147   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{148   \textcolor{comment}{/*    padvance :: The advance values.  This array, to be provided by the */}}
+\DoxyCodeLine{149   \textcolor{comment}{/*                caller, must contain at least `count' elements.        */}}
+\DoxyCodeLine{150   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{151   \textcolor{comment}{/*                If scaling is performed (based on the value of         */}}
+\DoxyCodeLine{152   \textcolor{comment}{/*                `load\_flags'), the advance values are in 16.16 format. */}}
+\DoxyCodeLine{153   \textcolor{comment}{/*                Otherwise, they are in font units.                     */}}
+\DoxyCodeLine{154   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{155   \textcolor{comment}{/*                If @FT\_LOAD\_VERTICAL\_LAYOUT is set, these are the      */}}
+\DoxyCodeLine{156   \textcolor{comment}{/*                vertical advances corresponding to a vertical layout.  */}}
+\DoxyCodeLine{157   \textcolor{comment}{/*                Otherwise, they are the horizontal advances in a       */}}
+\DoxyCodeLine{158   \textcolor{comment}{/*                horizontal layout.                                     */}}
+\DoxyCodeLine{159   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{160   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{161   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{162   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{163   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{164   \textcolor{comment}{/*    This function may fail if you use @FT\_ADVANCE\_FLAG\_FAST\_ONLY and   */}}
+\DoxyCodeLine{165   \textcolor{comment}{/*    if the corresponding font backend doesn't have a quick way to      */}}
+\DoxyCodeLine{166   \textcolor{comment}{/*    retrieve the advances.                                             */}}
+\DoxyCodeLine{167   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{168   \textcolor{comment}{/*    Scaled advances are returned in 16.16 format but aren't            */}}
+\DoxyCodeLine{169   \textcolor{comment}{/*    transformed by the affine transformation specified by              */}}
+\DoxyCodeLine{170   \textcolor{comment}{/*    @FT\_Set\_Transform.                                                 */}}
+\DoxyCodeLine{171   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{172   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{173   FT\_Get\_Advances( \mbox{\hyperlink{structFT__FaceRec__}{FT\_Face}}    face,}
+\DoxyCodeLine{174                    FT\_UInt    start,}
+\DoxyCodeLine{175                    FT\_UInt    count,}
+\DoxyCodeLine{176                    FT\_Int32   load\_flags,}
+\DoxyCodeLine{177                    FT\_Fixed  *padvances );}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179   \textcolor{comment}{/* */}}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182 FT\_END\_HEADER}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTADVANC\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

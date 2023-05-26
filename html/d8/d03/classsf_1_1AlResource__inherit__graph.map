@@ -1,0 +1,12 @@
+<map id="sf::AlResource" name="sf::AlResource">
+<area shape="rect" id="node1" title="Base class for classes that require an OpenAL context." alt="" coords="231,5,362,97"/>
+<area shape="rect" id="node2" href="$dd/d7d/classsf_1_1SoundBuffer.html" title="Storage for audio samples defining a sound." alt="" coords="5,175,169,545"/>
+<area shape="rect" id="node3" href="$de/ddc/classsf_1_1SoundRecorder.html" title="Abstract base class for capturing sound data." alt="" coords="193,145,400,575"/>
+<area shape="rect" id="node6" href="$d0/dbb/classsf_1_1SoundSource.html" title="Base class defining a sound&#39;s properties." alt="" coords="425,175,611,545"/>
+<area shape="rect" id="node4" href="$d2/dac/classNetworkRecorder.html" title=" " alt="" coords="10,806,181,971"/>
+<area shape="rect" id="node5" href="$d2/d7c/classsf_1_1SoundBufferRecorder.html" title="Specialized SoundRecorder which stores the captured audio data into a sound buffer." alt="" coords="205,813,399,964"/>
+<area shape="rect" id="node7" href="$d0/d7b/classsf_1_1Sound.html" title="Regular sound that can be played in the audio environment." alt="" coords="434,740,589,1037"/>
+<area shape="rect" id="node8" href="$de/d47/classsf_1_1SoundStream.html" title="Abstract base class for streamed audio sources." alt="" coords="613,623,799,1155"/>
+<area shape="rect" id="node9" href="$d5/dfd/classNetworkAudioStream.html" title=" " alt="" coords="511,1247,698,1471"/>
+<area shape="rect" id="node10" href="$d4/df9/classsf_1_1Music.html" title="Streamed music played from an audio file." alt="" coords="723,1203,889,1515"/>
+</map>

@@ -1,0 +1,1023 @@
+\hypertarget{glx_8h_source}{}\doxysection{glx.\+h}
+\label{glx_8h_source}\index{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/glad/include/glad/glx.h@{cmake-\/build-\/debug/\_deps/sfml-\/src/extlibs/headers/glad/include/glad/glx.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#ifndef SF\_GLAD\_GLX\_H\_}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define SF\_GLAD\_GLX\_H\_}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#ifdef GLX\_H}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{    \#error GLX header already included (API: glx), remove previous include!}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define GLX\_H 1}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#include <X11/X.h>}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#include <X11/Xlib.h>}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#include <X11/Xutil.h>}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#include <glad/gl.h>}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#define SF\_GLAD\_GLX}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#define GLAD\_OPTION\_GLX\_LOADER}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#define GLAD\_OPTION\_GLX\_ALIAS}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#define GLAD\_OPTION\_GLX\_HEADER\_ONLY}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{49 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#ifndef GLAD\_PLATFORM\_H\_}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#define GLAD\_PLATFORM\_H\_}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#ifndef GLAD\_PLATFORM\_WIN32}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{  \#if defined(\_WIN32) || defined(\_\_WIN32\_\_) || defined(WIN32) || defined(\_\_MINGW32\_\_)}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{    \#define GLAD\_PLATFORM\_WIN32 1}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{  \#else}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{    \#define GLAD\_PLATFORM\_WIN32 0}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#ifndef GLAD\_PLATFORM\_APPLE}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{  \#ifdef \_\_APPLE\_\_}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{    \#define GLAD\_PLATFORM\_APPLE 1}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{  \#else}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{    \#define GLAD\_PLATFORM\_APPLE 0}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#ifndef GLAD\_PLATFORM\_EMSCRIPTEN}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{  \#ifdef \_\_EMSCRIPTEN\_\_}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{    \#define GLAD\_PLATFORM\_EMSCRIPTEN 1}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{  \#else}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{    \#define GLAD\_PLATFORM\_EMSCRIPTEN 0}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#ifndef GLAD\_PLATFORM\_UWP}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{  \#if defined(\_MSC\_VER) \&\& !defined(GLAD\_INTERNAL\_HAVE\_WINAPIFAMILY)}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{    \#ifdef \_\_has\_include}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{      \#if \_\_has\_include(<winapifamily.h>)}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{        \#define GLAD\_INTERNAL\_HAVE\_WINAPIFAMILY 1}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{      \#endif}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{    \#elif \_MSC\_VER >= 1700 \&\& !\_USING\_V110\_SDK71\_}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{      \#define GLAD\_INTERNAL\_HAVE\_WINAPIFAMILY 1}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 \textcolor{preprocessor}{  \#ifdef GLAD\_INTERNAL\_HAVE\_WINAPIFAMILY}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{    \#include <winapifamily.h>}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{    \#if !WINAPI\_FAMILY\_PARTITION(WINAPI\_PARTITION\_DESKTOP) \&\& WINAPI\_FAMILY\_PARTITION(WINAPI\_PARTITION\_APP)}}
+\DoxyCodeLine{93 \textcolor{preprocessor}{      \#define GLAD\_PLATFORM\_UWP 1}}
+\DoxyCodeLine{94 \textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{preprocessor}{  \#ifndef GLAD\_PLATFORM\_UWP}}
+\DoxyCodeLine{98 \textcolor{preprocessor}{    \#define GLAD\_PLATFORM\_UWP 0}}
+\DoxyCodeLine{99 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#ifdef \_\_GNUC\_\_}}
+\DoxyCodeLine{103 \textcolor{preprocessor}{  \#define GLAD\_GNUC\_EXTENSION \_\_extension\_\_}}
+\DoxyCodeLine{104 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{105 \textcolor{preprocessor}{  \#define GLAD\_GNUC\_EXTENSION}}
+\DoxyCodeLine{106 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108 \textcolor{preprocessor}{\#ifndef GLAD\_API\_CALL}}
+\DoxyCodeLine{109 \textcolor{preprocessor}{  \#if defined(GLAD\_API\_CALL\_EXPORT)}}
+\DoxyCodeLine{110 \textcolor{preprocessor}{    \#if GLAD\_PLATFORM\_WIN32 || defined(\_\_CYGWIN\_\_)}}
+\DoxyCodeLine{111 \textcolor{preprocessor}{      \#if defined(GLAD\_API\_CALL\_EXPORT\_BUILD)}}
+\DoxyCodeLine{112 \textcolor{preprocessor}{        \#if defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{113 \textcolor{preprocessor}{          \#define GLAD\_API\_CALL \_\_attribute\_\_ ((dllexport)) extern}}
+\DoxyCodeLine{114 \textcolor{preprocessor}{        \#else}}
+\DoxyCodeLine{115 \textcolor{preprocessor}{          \#define GLAD\_API\_CALL \_\_declspec(dllexport) extern}}
+\DoxyCodeLine{116 \textcolor{preprocessor}{        \#endif}}
+\DoxyCodeLine{117 \textcolor{preprocessor}{      \#else}}
+\DoxyCodeLine{118 \textcolor{preprocessor}{        \#if defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{119 \textcolor{preprocessor}{          \#define GLAD\_API\_CALL \_\_attribute\_\_ ((dllimport)) extern}}
+\DoxyCodeLine{120 \textcolor{preprocessor}{        \#else}}
+\DoxyCodeLine{121 \textcolor{preprocessor}{          \#define GLAD\_API\_CALL \_\_declspec(dllimport) extern}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{        \#endif}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{      \#endif}}
+\DoxyCodeLine{124 \textcolor{preprocessor}{    \#elif defined(\_\_GNUC\_\_) \&\& defined(GLAD\_API\_CALL\_EXPORT\_BUILD)}}
+\DoxyCodeLine{125 \textcolor{preprocessor}{      \#define GLAD\_API\_CALL \_\_attribute\_\_ ((visibility ("{}default"{}}))) extern}
+\DoxyCodeLine{126 \textcolor{preprocessor}{    \#else}}
+\DoxyCodeLine{127 \textcolor{preprocessor}{      \#define GLAD\_API\_CALL extern}}
+\DoxyCodeLine{128 \textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{  \#else}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{    \#define GLAD\_API\_CALL extern}}
+\DoxyCodeLine{131 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{132 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134 \textcolor{preprocessor}{\#ifdef APIENTRY}}
+\DoxyCodeLine{135 \textcolor{preprocessor}{  \#define GLAD\_API\_PTR APIENTRY}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#elif GLAD\_PLATFORM\_WIN32}}
+\DoxyCodeLine{137 \textcolor{preprocessor}{  \#define GLAD\_API\_PTR \_\_stdcall}}
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{139 \textcolor{preprocessor}{  \#define GLAD\_API\_PTR}}
+\DoxyCodeLine{140 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142 \textcolor{preprocessor}{\#ifndef GLAPI}}
+\DoxyCodeLine{143 \textcolor{preprocessor}{\#define GLAPI GLAD\_API\_CALL}}
+\DoxyCodeLine{144 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146 \textcolor{preprocessor}{\#ifndef GLAPIENTRY}}
+\DoxyCodeLine{147 \textcolor{preprocessor}{\#define GLAPIENTRY GLAD\_API\_PTR}}
+\DoxyCodeLine{148 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150 \textcolor{preprocessor}{\#define GLAD\_MAKE\_VERSION(major, minor) (major * 10000 + minor)}}
+\DoxyCodeLine{151 \textcolor{preprocessor}{\#define GLAD\_VERSION\_MAJOR(version) (version / 10000)}}
+\DoxyCodeLine{152 \textcolor{preprocessor}{\#define GLAD\_VERSION\_MINOR(version) (version \% 10000)}}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 \textcolor{preprocessor}{\#define GLAD\_GENERATOR\_VERSION "{}2.0.0-\/beta"{}}}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156 \textcolor{keyword}{typedef} void (*GLADapiproc)(void);}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158 \textcolor{keyword}{typedef} GLADapiproc (*GLADloadfunc)(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{159 \textcolor{keyword}{typedef} GLADapiproc (*GLADuserptrloadfunc)(\textcolor{keywordtype}{void} *userptr, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161 \textcolor{keyword}{typedef} void (*GLADprecallback)(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *name, GLADapiproc apiproc, \textcolor{keywordtype}{int} len\_args, ...);}
+\DoxyCodeLine{162 \textcolor{keyword}{typedef} void (*GLADpostcallback)(\textcolor{keywordtype}{void} *ret, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name, GLADapiproc apiproc, \textcolor{keywordtype}{int} len\_args, ...);}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* GLAD\_PLATFORM\_H\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 \textcolor{preprocessor}{\#define GLX\_ACCUM\_ALPHA\_SIZE 17}}
+\DoxyCodeLine{167 \textcolor{preprocessor}{\#define GLX\_ACCUM\_BLUE\_SIZE 16}}
+\DoxyCodeLine{168 \textcolor{preprocessor}{\#define GLX\_ACCUM\_BUFFER\_BIT 0x00000080}}
+\DoxyCodeLine{169 \textcolor{preprocessor}{\#define GLX\_ACCUM\_BUFFER\_BIT\_SGIX 0x00000080}}
+\DoxyCodeLine{170 \textcolor{preprocessor}{\#define GLX\_ACCUM\_GREEN\_SIZE 15}}
+\DoxyCodeLine{171 \textcolor{preprocessor}{\#define GLX\_ACCUM\_RED\_SIZE 14}}
+\DoxyCodeLine{172 \textcolor{preprocessor}{\#define GLX\_ALPHA\_SIZE 11}}
+\DoxyCodeLine{173 \textcolor{preprocessor}{\#define GLX\_AUX\_BUFFERS 7}}
+\DoxyCodeLine{174 \textcolor{preprocessor}{\#define GLX\_AUX\_BUFFERS\_BIT 0x00000010}}
+\DoxyCodeLine{175 \textcolor{preprocessor}{\#define GLX\_AUX\_BUFFERS\_BIT\_SGIX 0x00000010}}
+\DoxyCodeLine{176 \textcolor{preprocessor}{\#define GLX\_BACK\_LEFT\_BUFFER\_BIT 0x00000004}}
+\DoxyCodeLine{177 \textcolor{preprocessor}{\#define GLX\_BACK\_LEFT\_BUFFER\_BIT\_SGIX 0x00000004}}
+\DoxyCodeLine{178 \textcolor{preprocessor}{\#define GLX\_BACK\_RIGHT\_BUFFER\_BIT 0x00000008}}
+\DoxyCodeLine{179 \textcolor{preprocessor}{\#define GLX\_BACK\_RIGHT\_BUFFER\_BIT\_SGIX 0x00000008}}
+\DoxyCodeLine{180 \textcolor{preprocessor}{\#define GLX\_BAD\_ATTRIBUTE 2}}
+\DoxyCodeLine{181 \textcolor{preprocessor}{\#define GLX\_BAD\_CONTEXT 5}}
+\DoxyCodeLine{182 \textcolor{preprocessor}{\#define GLX\_BAD\_ENUM 7}}
+\DoxyCodeLine{183 \textcolor{preprocessor}{\#define GLX\_BAD\_SCREEN 1}}
+\DoxyCodeLine{184 \textcolor{preprocessor}{\#define GLX\_BAD\_VALUE 6}}
+\DoxyCodeLine{185 \textcolor{preprocessor}{\#define GLX\_BAD\_VISUAL 4}}
+\DoxyCodeLine{186 \textcolor{preprocessor}{\#define GLX\_BLUE\_SIZE 10}}
+\DoxyCodeLine{187 \textcolor{preprocessor}{\#define GLX\_BUFFER\_CLOBBER\_MASK\_SGIX 0x08000000}}
+\DoxyCodeLine{188 \textcolor{preprocessor}{\#define GLX\_BUFFER\_SIZE 2}}
+\DoxyCodeLine{189 \textcolor{preprocessor}{\#define GLX\_BufferSwapComplete 1}}
+\DoxyCodeLine{190 \textcolor{preprocessor}{\#define GLX\_COLOR\_INDEX\_BIT 0x00000002}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{\#define GLX\_COLOR\_INDEX\_TYPE 0x8015}}
+\DoxyCodeLine{192 \textcolor{preprocessor}{\#define GLX\_CONFIG\_CAVEAT 0x20}}
+\DoxyCodeLine{193 \textcolor{preprocessor}{\#define GLX\_CONTEXT\_COMPATIBILITY\_PROFILE\_BIT\_ARB 0x00000002}}
+\DoxyCodeLine{194 \textcolor{preprocessor}{\#define GLX\_CONTEXT\_CORE\_PROFILE\_BIT\_ARB 0x00000001}}
+\DoxyCodeLine{195 \textcolor{preprocessor}{\#define GLX\_CONTEXT\_DEBUG\_BIT\_ARB 0x00000001}}
+\DoxyCodeLine{196 \textcolor{preprocessor}{\#define GLX\_CONTEXT\_FLAGS\_ARB 0x2094}}
+\DoxyCodeLine{197 \textcolor{preprocessor}{\#define GLX\_CONTEXT\_FORWARD\_COMPATIBLE\_BIT\_ARB 0x00000002}}
+\DoxyCodeLine{198 \textcolor{preprocessor}{\#define GLX\_CONTEXT\_MAJOR\_VERSION\_ARB 0x2091}}
+\DoxyCodeLine{199 \textcolor{preprocessor}{\#define GLX\_CONTEXT\_MINOR\_VERSION\_ARB 0x2092}}
+\DoxyCodeLine{200 \textcolor{preprocessor}{\#define GLX\_CONTEXT\_PROFILE\_MASK\_ARB 0x9126}}
+\DoxyCodeLine{201 \textcolor{preprocessor}{\#define GLX\_DAMAGED 0x8020}}
+\DoxyCodeLine{202 \textcolor{preprocessor}{\#define GLX\_DAMAGED\_SGIX 0x8020}}
+\DoxyCodeLine{203 \textcolor{preprocessor}{\#define GLX\_DEPTH\_BUFFER\_BIT 0x00000020}}
+\DoxyCodeLine{204 \textcolor{preprocessor}{\#define GLX\_DEPTH\_BUFFER\_BIT\_SGIX 0x00000020}}
+\DoxyCodeLine{205 \textcolor{preprocessor}{\#define GLX\_DEPTH\_SIZE 12}}
+\DoxyCodeLine{206 \textcolor{preprocessor}{\#define GLX\_DIRECT\_COLOR 0x8003}}
+\DoxyCodeLine{207 \textcolor{preprocessor}{\#define GLX\_DONT\_CARE 0xFFFFFFFF}}
+\DoxyCodeLine{208 \textcolor{preprocessor}{\#define GLX\_DOUBLEBUFFER 5}}
+\DoxyCodeLine{209 \textcolor{preprocessor}{\#define GLX\_DRAWABLE\_TYPE 0x8010}}
+\DoxyCodeLine{210 \textcolor{preprocessor}{\#define GLX\_EVENT\_MASK 0x801F}}
+\DoxyCodeLine{211 \textcolor{preprocessor}{\#define GLX\_EVENT\_MASK\_SGIX 0x801F}}
+\DoxyCodeLine{212 \textcolor{preprocessor}{\#define GLX\_EXTENSIONS 0x3}}
+\DoxyCodeLine{213 \textcolor{preprocessor}{\#define GLX\_EXTENSION\_NAME "{}GLX"{}}}
+\DoxyCodeLine{214 \textcolor{preprocessor}{\#define GLX\_FBCONFIG\_ID 0x8013}}
+\DoxyCodeLine{215 \textcolor{preprocessor}{\#define GLX\_FRAMEBUFFER\_SRGB\_CAPABLE\_ARB 0x20B2}}
+\DoxyCodeLine{216 \textcolor{preprocessor}{\#define GLX\_FRAMEBUFFER\_SRGB\_CAPABLE\_EXT 0x20B2}}
+\DoxyCodeLine{217 \textcolor{preprocessor}{\#define GLX\_FRONT\_LEFT\_BUFFER\_BIT 0x00000001}}
+\DoxyCodeLine{218 \textcolor{preprocessor}{\#define GLX\_FRONT\_LEFT\_BUFFER\_BIT\_SGIX 0x00000001}}
+\DoxyCodeLine{219 \textcolor{preprocessor}{\#define GLX\_FRONT\_RIGHT\_BUFFER\_BIT 0x00000002}}
+\DoxyCodeLine{220 \textcolor{preprocessor}{\#define GLX\_FRONT\_RIGHT\_BUFFER\_BIT\_SGIX 0x00000002}}
+\DoxyCodeLine{221 \textcolor{preprocessor}{\#define GLX\_GRAY\_SCALE 0x8006}}
+\DoxyCodeLine{222 \textcolor{preprocessor}{\#define GLX\_GREEN\_SIZE 9}}
+\DoxyCodeLine{223 \textcolor{preprocessor}{\#define GLX\_HEIGHT 0x801E}}
+\DoxyCodeLine{224 \textcolor{preprocessor}{\#define GLX\_HEIGHT\_SGIX 0x801E}}
+\DoxyCodeLine{225 \textcolor{preprocessor}{\#define GLX\_LARGEST\_PBUFFER 0x801C}}
+\DoxyCodeLine{226 \textcolor{preprocessor}{\#define GLX\_LARGEST\_PBUFFER\_SGIX 0x801C}}
+\DoxyCodeLine{227 \textcolor{preprocessor}{\#define GLX\_LEVEL 3}}
+\DoxyCodeLine{228 \textcolor{preprocessor}{\#define GLX\_MAX\_PBUFFER\_HEIGHT 0x8017}}
+\DoxyCodeLine{229 \textcolor{preprocessor}{\#define GLX\_MAX\_PBUFFER\_HEIGHT\_SGIX 0x8017}}
+\DoxyCodeLine{230 \textcolor{preprocessor}{\#define GLX\_MAX\_PBUFFER\_PIXELS 0x8018}}
+\DoxyCodeLine{231 \textcolor{preprocessor}{\#define GLX\_MAX\_PBUFFER\_PIXELS\_SGIX 0x8018}}
+\DoxyCodeLine{232 \textcolor{preprocessor}{\#define GLX\_MAX\_PBUFFER\_WIDTH 0x8016}}
+\DoxyCodeLine{233 \textcolor{preprocessor}{\#define GLX\_MAX\_PBUFFER\_WIDTH\_SGIX 0x8016}}
+\DoxyCodeLine{234 \textcolor{preprocessor}{\#define GLX\_MAX\_SWAP\_INTERVAL\_EXT 0x20F2}}
+\DoxyCodeLine{235 \textcolor{preprocessor}{\#define GLX\_NONE 0x8000}}
+\DoxyCodeLine{236 \textcolor{preprocessor}{\#define GLX\_NON\_CONFORMANT\_CONFIG 0x800D}}
+\DoxyCodeLine{237 \textcolor{preprocessor}{\#define GLX\_NO\_EXTENSION 3}}
+\DoxyCodeLine{238 \textcolor{preprocessor}{\#define GLX\_OPTIMAL\_PBUFFER\_HEIGHT\_SGIX 0x801A}}
+\DoxyCodeLine{239 \textcolor{preprocessor}{\#define GLX\_OPTIMAL\_PBUFFER\_WIDTH\_SGIX 0x8019}}
+\DoxyCodeLine{240 \textcolor{preprocessor}{\#define GLX\_PBUFFER 0x8023}}
+\DoxyCodeLine{241 \textcolor{preprocessor}{\#define GLX\_PBUFFER\_BIT 0x00000004}}
+\DoxyCodeLine{242 \textcolor{preprocessor}{\#define GLX\_PBUFFER\_BIT\_SGIX 0x00000004}}
+\DoxyCodeLine{243 \textcolor{preprocessor}{\#define GLX\_PBUFFER\_CLOBBER\_MASK 0x08000000}}
+\DoxyCodeLine{244 \textcolor{preprocessor}{\#define GLX\_PBUFFER\_HEIGHT 0x8040}}
+\DoxyCodeLine{245 \textcolor{preprocessor}{\#define GLX\_PBUFFER\_SGIX 0x8023}}
+\DoxyCodeLine{246 \textcolor{preprocessor}{\#define GLX\_PBUFFER\_WIDTH 0x8041}}
+\DoxyCodeLine{247 \textcolor{preprocessor}{\#define GLX\_PIXMAP\_BIT 0x00000002}}
+\DoxyCodeLine{248 \textcolor{preprocessor}{\#define GLX\_PRESERVED\_CONTENTS 0x801B}}
+\DoxyCodeLine{249 \textcolor{preprocessor}{\#define GLX\_PRESERVED\_CONTENTS\_SGIX 0x801B}}
+\DoxyCodeLine{250 \textcolor{preprocessor}{\#define GLX\_PSEUDO\_COLOR 0x8004}}
+\DoxyCodeLine{251 \textcolor{preprocessor}{\#define GLX\_PbufferClobber 0}}
+\DoxyCodeLine{252 \textcolor{preprocessor}{\#define GLX\_RED\_SIZE 8}}
+\DoxyCodeLine{253 \textcolor{preprocessor}{\#define GLX\_RENDER\_TYPE 0x8011}}
+\DoxyCodeLine{254 \textcolor{preprocessor}{\#define GLX\_RGBA 4}}
+\DoxyCodeLine{255 \textcolor{preprocessor}{\#define GLX\_RGBA\_BIT 0x00000001}}
+\DoxyCodeLine{256 \textcolor{preprocessor}{\#define GLX\_RGBA\_TYPE 0x8014}}
+\DoxyCodeLine{257 \textcolor{preprocessor}{\#define GLX\_SAMPLES 100001}}
+\DoxyCodeLine{258 \textcolor{preprocessor}{\#define GLX\_SAMPLES\_ARB 100001}}
+\DoxyCodeLine{259 \textcolor{preprocessor}{\#define GLX\_SAMPLE\_BUFFERS 100000}}
+\DoxyCodeLine{260 \textcolor{preprocessor}{\#define GLX\_SAMPLE\_BUFFERS\_ARB 100000}}
+\DoxyCodeLine{261 \textcolor{preprocessor}{\#define GLX\_SAMPLE\_BUFFERS\_BIT\_SGIX 0x00000100}}
+\DoxyCodeLine{262 \textcolor{preprocessor}{\#define GLX\_SAVED 0x8021}}
+\DoxyCodeLine{263 \textcolor{preprocessor}{\#define GLX\_SAVED\_SGIX 0x8021}}
+\DoxyCodeLine{264 \textcolor{preprocessor}{\#define GLX\_SCREEN 0x800C}}
+\DoxyCodeLine{265 \textcolor{preprocessor}{\#define GLX\_SLOW\_CONFIG 0x8001}}
+\DoxyCodeLine{266 \textcolor{preprocessor}{\#define GLX\_STATIC\_COLOR 0x8005}}
+\DoxyCodeLine{267 \textcolor{preprocessor}{\#define GLX\_STATIC\_GRAY 0x8007}}
+\DoxyCodeLine{268 \textcolor{preprocessor}{\#define GLX\_STENCIL\_BUFFER\_BIT 0x00000040}}
+\DoxyCodeLine{269 \textcolor{preprocessor}{\#define GLX\_STENCIL\_BUFFER\_BIT\_SGIX 0x00000040}}
+\DoxyCodeLine{270 \textcolor{preprocessor}{\#define GLX\_STENCIL\_SIZE 13}}
+\DoxyCodeLine{271 \textcolor{preprocessor}{\#define GLX\_STEREO 6}}
+\DoxyCodeLine{272 \textcolor{preprocessor}{\#define GLX\_SWAP\_INTERVAL\_EXT 0x20F1}}
+\DoxyCodeLine{273 \textcolor{preprocessor}{\#define GLX\_TRANSPARENT\_ALPHA\_VALUE 0x28}}
+\DoxyCodeLine{274 \textcolor{preprocessor}{\#define GLX\_TRANSPARENT\_BLUE\_VALUE 0x27}}
+\DoxyCodeLine{275 \textcolor{preprocessor}{\#define GLX\_TRANSPARENT\_GREEN\_VALUE 0x26}}
+\DoxyCodeLine{276 \textcolor{preprocessor}{\#define GLX\_TRANSPARENT\_INDEX 0x8009}}
+\DoxyCodeLine{277 \textcolor{preprocessor}{\#define GLX\_TRANSPARENT\_INDEX\_VALUE 0x24}}
+\DoxyCodeLine{278 \textcolor{preprocessor}{\#define GLX\_TRANSPARENT\_RED\_VALUE 0x25}}
+\DoxyCodeLine{279 \textcolor{preprocessor}{\#define GLX\_TRANSPARENT\_RGB 0x8008}}
+\DoxyCodeLine{280 \textcolor{preprocessor}{\#define GLX\_TRANSPARENT\_TYPE 0x23}}
+\DoxyCodeLine{281 \textcolor{preprocessor}{\#define GLX\_TRUE\_COLOR 0x8002}}
+\DoxyCodeLine{282 \textcolor{preprocessor}{\#define GLX\_USE\_GL 1}}
+\DoxyCodeLine{283 \textcolor{preprocessor}{\#define GLX\_VENDOR 0x1}}
+\DoxyCodeLine{284 \textcolor{preprocessor}{\#define GLX\_VERSION 0x2}}
+\DoxyCodeLine{285 \textcolor{preprocessor}{\#define GLX\_VISUAL\_ID 0x800B}}
+\DoxyCodeLine{286 \textcolor{preprocessor}{\#define GLX\_WIDTH 0x801D}}
+\DoxyCodeLine{287 \textcolor{preprocessor}{\#define GLX\_WIDTH\_SGIX 0x801D}}
+\DoxyCodeLine{288 \textcolor{preprocessor}{\#define GLX\_WINDOW 0x8022}}
+\DoxyCodeLine{289 \textcolor{preprocessor}{\#define GLX\_WINDOW\_BIT 0x00000001}}
+\DoxyCodeLine{290 \textcolor{preprocessor}{\#define GLX\_WINDOW\_SGIX 0x8022}}
+\DoxyCodeLine{291 \textcolor{preprocessor}{\#define GLX\_X\_RENDERABLE 0x8012}}
+\DoxyCodeLine{292 \textcolor{preprocessor}{\#define GLX\_X\_VISUAL\_TYPE 0x22}}
+\DoxyCodeLine{293 \textcolor{preprocessor}{\#define \_\_GLX\_NUMBER\_EVENTS 17}}
+\DoxyCodeLine{294 }
+\DoxyCodeLine{295 }
+\DoxyCodeLine{296 \textcolor{preprocessor}{\#ifndef GLEXT\_64\_TYPES\_DEFINED}}
+\DoxyCodeLine{297 \textcolor{comment}{/* This code block is duplicated in glext.h, so must be protected */}}
+\DoxyCodeLine{298 \textcolor{preprocessor}{\#define GLEXT\_64\_TYPES\_DEFINED}}
+\DoxyCodeLine{299 \textcolor{comment}{/* Define int32\_t, int64\_t, and uint64\_t types for UST/MSC */}}
+\DoxyCodeLine{300 \textcolor{comment}{/* (as used in the GLX\_OML\_sync\_control extension). */}}
+\DoxyCodeLine{301 \textcolor{preprocessor}{\#if defined(\_\_STDC\_VERSION\_\_) \&\& \_\_STDC\_VERSION\_\_ >= 199901L}}
+\DoxyCodeLine{302 \textcolor{preprocessor}{\#include <inttypes.h>}}
+\DoxyCodeLine{303 \textcolor{preprocessor}{\#elif defined(\_\_sun\_\_) || defined(\_\_digital\_\_)}}
+\DoxyCodeLine{304 \textcolor{preprocessor}{\#include <inttypes.h>}}
+\DoxyCodeLine{305 \textcolor{preprocessor}{\#if defined(\_\_STDC\_\_)}}
+\DoxyCodeLine{306 \textcolor{preprocessor}{\#if defined(\_\_arch64\_\_) || defined(\_LP64)}}
+\DoxyCodeLine{307 \textcolor{keyword}{typedef} \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} int64\_t;}
+\DoxyCodeLine{308 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} uint64\_t;}
+\DoxyCodeLine{309 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{310 \textcolor{keyword}{typedef} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} int64\_t;}
+\DoxyCodeLine{311 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} uint64\_t;}
+\DoxyCodeLine{312 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_arch64\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{313 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_STDC\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{314 \textcolor{preprocessor}{\#elif defined( \_\_VMS ) || defined(\_\_sgi)}}
+\DoxyCodeLine{315 \textcolor{preprocessor}{\#include <inttypes.h>}}
+\DoxyCodeLine{316 \textcolor{preprocessor}{\#elif defined(\_\_SCO\_\_) || defined(\_\_USLC\_\_)}}
+\DoxyCodeLine{317 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{318 \textcolor{preprocessor}{\#elif defined(\_\_UNIXOS2\_\_) || defined(\_\_SOL64\_\_)}}
+\DoxyCodeLine{319 \textcolor{keyword}{typedef} \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} int32\_t;}
+\DoxyCodeLine{320 \textcolor{keyword}{typedef} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} int64\_t;}
+\DoxyCodeLine{321 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} uint64\_t;}
+\DoxyCodeLine{322 \textcolor{preprocessor}{\#elif defined(\_WIN32) \&\& defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{323 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{324 \textcolor{preprocessor}{\#elif defined(\_WIN32)}}
+\DoxyCodeLine{325 \textcolor{keyword}{typedef} \_\_int32 int32\_t;}
+\DoxyCodeLine{326 \textcolor{keyword}{typedef} \_\_int64 int64\_t;}
+\DoxyCodeLine{327 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \_\_int64 uint64\_t;}
+\DoxyCodeLine{328 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{329 \textcolor{comment}{/* Fallback if nothing above works */}}
+\DoxyCodeLine{330 \textcolor{preprocessor}{\#include <inttypes.h>}}
+\DoxyCodeLine{331 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{332 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{333 }
+\DoxyCodeLine{334 }
+\DoxyCodeLine{335 }
+\DoxyCodeLine{336 }
+\DoxyCodeLine{337 }
+\DoxyCodeLine{338 }
+\DoxyCodeLine{339 }
+\DoxyCodeLine{340 }
+\DoxyCodeLine{341 }
+\DoxyCodeLine{342 }
+\DoxyCodeLine{343 }
+\DoxyCodeLine{344 }
+\DoxyCodeLine{345 }
+\DoxyCodeLine{346 }
+\DoxyCodeLine{347 }
+\DoxyCodeLine{348 }
+\DoxyCodeLine{349 \textcolor{preprocessor}{\#if defined(\_\_ENVIRONMENT\_MAC\_OS\_X\_VERSION\_MIN\_REQUIRED\_\_) \&\& (\_\_ENVIRONMENT\_MAC\_OS\_X\_VERSION\_MIN\_REQUIRED\_\_ > 1060)}}
+\DoxyCodeLine{350 }
+\DoxyCodeLine{351 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{352 }
+\DoxyCodeLine{353 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{354 }
+\DoxyCodeLine{355 \textcolor{preprocessor}{\#if defined(\_\_ENVIRONMENT\_MAC\_OS\_X\_VERSION\_MIN\_REQUIRED\_\_) \&\& (\_\_ENVIRONMENT\_MAC\_OS\_X\_VERSION\_MIN\_REQUIRED\_\_ > 1060)}}
+\DoxyCodeLine{356 }
+\DoxyCodeLine{357 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{358 }
+\DoxyCodeLine{359 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{360 }
+\DoxyCodeLine{361 }
+\DoxyCodeLine{362 }
+\DoxyCodeLine{363 }
+\DoxyCodeLine{364 }
+\DoxyCodeLine{365 }
+\DoxyCodeLine{366 }
+\DoxyCodeLine{367 \textcolor{keyword}{typedef} XID GLXFBConfigID;}
+\DoxyCodeLine{368 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\_\_GLXFBConfigRec *GLXFBConfig;}
+\DoxyCodeLine{369 \textcolor{keyword}{typedef} XID GLXContextID;}
+\DoxyCodeLine{370 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\_\_GLXcontextRec *GLXContext;}
+\DoxyCodeLine{371 \textcolor{keyword}{typedef} XID GLXPixmap;}
+\DoxyCodeLine{372 \textcolor{keyword}{typedef} XID GLXDrawable;}
+\DoxyCodeLine{373 \textcolor{keyword}{typedef} XID GLXWindow;}
+\DoxyCodeLine{374 \textcolor{keyword}{typedef} XID GLXPbuffer;}
+\DoxyCodeLine{375 \textcolor{keyword}{typedef} void ( *\_\_GLXextFuncPtr)(void);}
+\DoxyCodeLine{376 \textcolor{keyword}{typedef} XID GLXVideoCaptureDeviceNV;}
+\DoxyCodeLine{377 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} GLXVideoDeviceNV;}
+\DoxyCodeLine{378 \textcolor{keyword}{typedef} XID GLXVideoSourceSGIX;}
+\DoxyCodeLine{379 \textcolor{keyword}{typedef} XID GLXFBConfigIDSGIX;}
+\DoxyCodeLine{380 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\_\_GLXFBConfigRec *GLXFBConfigSGIX;}
+\DoxyCodeLine{381 \textcolor{keyword}{typedef} XID GLXPbufferSGIX;}
+\DoxyCodeLine{382 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{383     \textcolor{keywordtype}{int} event\_type;             \textcolor{comment}{/* GLX\_DAMAGED or GLX\_SAVED */}}
+\DoxyCodeLine{384     \textcolor{keywordtype}{int} draw\_type;              \textcolor{comment}{/* GLX\_WINDOW or GLX\_PBUFFER */}}
+\DoxyCodeLine{385     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} serial;       \textcolor{comment}{/* \# of last request processed by server */}}
+\DoxyCodeLine{386     Bool send\_event;            \textcolor{comment}{/* true if this came for SendEvent request */}}
+\DoxyCodeLine{387     Display *display;           \textcolor{comment}{/* display the event was read from */}}
+\DoxyCodeLine{388     GLXDrawable drawable;       \textcolor{comment}{/* XID of Drawable */}}
+\DoxyCodeLine{389     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} buffer\_mask;   \textcolor{comment}{/* mask indicating which buffers are affected */}}
+\DoxyCodeLine{390     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aux\_buffer;    \textcolor{comment}{/* which aux buffer was affected */}}
+\DoxyCodeLine{391     \textcolor{keywordtype}{int} x, y;}
+\DoxyCodeLine{392     \textcolor{keywordtype}{int} width, height;}
+\DoxyCodeLine{393     \textcolor{keywordtype}{int} count;                  \textcolor{comment}{/* if nonzero, at least this many more */}}
+\DoxyCodeLine{394 \} \mbox{\hyperlink{structGLXPbufferClobberEvent}{GLXPbufferClobberEvent}};}
+\DoxyCodeLine{395 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{396     \textcolor{keywordtype}{int} type;}
+\DoxyCodeLine{397     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} serial;       \textcolor{comment}{/* \# of last request processed by server */}}
+\DoxyCodeLine{398     Bool send\_event;            \textcolor{comment}{/* true if this came from a SendEvent request */}}
+\DoxyCodeLine{399     Display *display;           \textcolor{comment}{/* Display the event was read from */}}
+\DoxyCodeLine{400     GLXDrawable drawable;       \textcolor{comment}{/* drawable on which event was requested in event mask */}}
+\DoxyCodeLine{401     \textcolor{keywordtype}{int} event\_type;}
+\DoxyCodeLine{402     int64\_t ust;}
+\DoxyCodeLine{403     int64\_t msc;}
+\DoxyCodeLine{404     int64\_t sbc;}
+\DoxyCodeLine{405 \} \mbox{\hyperlink{structGLXBufferSwapComplete}{GLXBufferSwapComplete}};}
+\DoxyCodeLine{406 \textcolor{keyword}{typedef} \textcolor{keyword}{union }\mbox{\hyperlink{union____GLXEvent}{\_\_GLXEvent}} \{}
+\DoxyCodeLine{407     \mbox{\hyperlink{structGLXPbufferClobberEvent}{GLXPbufferClobberEvent}} glxpbufferclobber;}
+\DoxyCodeLine{408     \mbox{\hyperlink{structGLXBufferSwapComplete}{GLXBufferSwapComplete}} glxbufferswapcomplete;}
+\DoxyCodeLine{409     \textcolor{keywordtype}{long} pad[24];}
+\DoxyCodeLine{410 \} \mbox{\hyperlink{union____GLXEvent}{GLXEvent}};}
+\DoxyCodeLine{411 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{412     \textcolor{keywordtype}{int} type;}
+\DoxyCodeLine{413     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} serial;}
+\DoxyCodeLine{414     Bool send\_event;}
+\DoxyCodeLine{415     Display *display;}
+\DoxyCodeLine{416     \textcolor{keywordtype}{int} extension;}
+\DoxyCodeLine{417     \textcolor{keywordtype}{int} evtype;}
+\DoxyCodeLine{418     GLXDrawable window;}
+\DoxyCodeLine{419     Bool stereo\_tree;}
+\DoxyCodeLine{420 \} \mbox{\hyperlink{structGLXStereoNotifyEventEXT}{GLXStereoNotifyEventEXT}};}
+\DoxyCodeLine{421 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{422     \textcolor{keywordtype}{int} type;}
+\DoxyCodeLine{423     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} serial;   \textcolor{comment}{/* \# of last request processed by server */}}
+\DoxyCodeLine{424     Bool send\_event;        \textcolor{comment}{/* true if this came for SendEvent request */}}
+\DoxyCodeLine{425     Display *display;       \textcolor{comment}{/* display the event was read from */}}
+\DoxyCodeLine{426     GLXDrawable drawable;   \textcolor{comment}{/* i.d. of Drawable */}}
+\DoxyCodeLine{427     \textcolor{keywordtype}{int} event\_type;         \textcolor{comment}{/* GLX\_DAMAGED\_SGIX or GLX\_SAVED\_SGIX */}}
+\DoxyCodeLine{428     \textcolor{keywordtype}{int} draw\_type;          \textcolor{comment}{/* GLX\_WINDOW\_SGIX or GLX\_PBUFFER\_SGIX */}}
+\DoxyCodeLine{429     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} mask;      \textcolor{comment}{/* mask indicating which buffers are affected*/}}
+\DoxyCodeLine{430     \textcolor{keywordtype}{int} x, y;}
+\DoxyCodeLine{431     \textcolor{keywordtype}{int} width, height;}
+\DoxyCodeLine{432     \textcolor{keywordtype}{int} count;              \textcolor{comment}{/* if nonzero, at least this many more */}}
+\DoxyCodeLine{433 \} \mbox{\hyperlink{structGLXBufferClobberEventSGIX}{GLXBufferClobberEventSGIX}};}
+\DoxyCodeLine{434 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{435     \textcolor{keywordtype}{char}    pipeName[80]; \textcolor{comment}{/* Should be [GLX\_HYPERPIPE\_PIPE\_NAME\_LENGTH\_SGIX] */}}
+\DoxyCodeLine{436     \textcolor{keywordtype}{int}     networkId;}
+\DoxyCodeLine{437 \} \mbox{\hyperlink{structGLXHyperpipeNetworkSGIX}{GLXHyperpipeNetworkSGIX}};}
+\DoxyCodeLine{438 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{439     \textcolor{keywordtype}{char}    pipeName[80]; \textcolor{comment}{/* Should be [GLX\_HYPERPIPE\_PIPE\_NAME\_LENGTH\_SGIX] */}}
+\DoxyCodeLine{440     \textcolor{keywordtype}{int}     channel;}
+\DoxyCodeLine{441     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} participationType;}
+\DoxyCodeLine{442     \textcolor{keywordtype}{int}     timeSlice;}
+\DoxyCodeLine{443 \} \mbox{\hyperlink{structGLXHyperpipeConfigSGIX}{GLXHyperpipeConfigSGIX}};}
+\DoxyCodeLine{444 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{445     \textcolor{keywordtype}{char} pipeName[80]; \textcolor{comment}{/* Should be [GLX\_HYPERPIPE\_PIPE\_NAME\_LENGTH\_SGIX] */}}
+\DoxyCodeLine{446     \textcolor{keywordtype}{int} srcXOrigin, srcYOrigin, srcWidth, srcHeight;}
+\DoxyCodeLine{447     \textcolor{keywordtype}{int} destXOrigin, destYOrigin, destWidth, destHeight;}
+\DoxyCodeLine{448 \} \mbox{\hyperlink{structGLXPipeRect}{GLXPipeRect}};}
+\DoxyCodeLine{449 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{450     \textcolor{keywordtype}{char} pipeName[80]; \textcolor{comment}{/* Should be [GLX\_HYPERPIPE\_PIPE\_NAME\_LENGTH\_SGIX] */}}
+\DoxyCodeLine{451     \textcolor{keywordtype}{int} XOrigin, YOrigin, maxHeight, maxWidth;}
+\DoxyCodeLine{452 \} \mbox{\hyperlink{structGLXPipeRectLimits}{GLXPipeRectLimits}};}
+\DoxyCodeLine{453 }
+\DoxyCodeLine{454 }
+\DoxyCodeLine{455 \textcolor{preprocessor}{\#define GLX\_VERSION\_1\_0 1}}
+\DoxyCodeLine{456 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_VERSION\_1\_0;}
+\DoxyCodeLine{457 \textcolor{preprocessor}{\#define GLX\_VERSION\_1\_1 1}}
+\DoxyCodeLine{458 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_VERSION\_1\_1;}
+\DoxyCodeLine{459 \textcolor{preprocessor}{\#define GLX\_VERSION\_1\_2 1}}
+\DoxyCodeLine{460 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_VERSION\_1\_2;}
+\DoxyCodeLine{461 \textcolor{preprocessor}{\#define GLX\_VERSION\_1\_3 1}}
+\DoxyCodeLine{462 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_VERSION\_1\_3;}
+\DoxyCodeLine{463 \textcolor{preprocessor}{\#define GLX\_VERSION\_1\_4 1}}
+\DoxyCodeLine{464 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_VERSION\_1\_4;}
+\DoxyCodeLine{465 \textcolor{preprocessor}{\#define GLX\_ARB\_create\_context 1}}
+\DoxyCodeLine{466 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_ARB\_create\_context;}
+\DoxyCodeLine{467 \textcolor{preprocessor}{\#define GLX\_ARB\_create\_context\_profile 1}}
+\DoxyCodeLine{468 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_ARB\_create\_context\_profile;}
+\DoxyCodeLine{469 \textcolor{preprocessor}{\#define GLX\_ARB\_framebuffer\_sRGB 1}}
+\DoxyCodeLine{470 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_ARB\_framebuffer\_sRGB;}
+\DoxyCodeLine{471 \textcolor{preprocessor}{\#define GLX\_ARB\_multisample 1}}
+\DoxyCodeLine{472 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_ARB\_multisample;}
+\DoxyCodeLine{473 \textcolor{preprocessor}{\#define GLX\_EXT\_framebuffer\_sRGB 1}}
+\DoxyCodeLine{474 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_EXT\_framebuffer\_sRGB;}
+\DoxyCodeLine{475 \textcolor{preprocessor}{\#define GLX\_EXT\_swap\_control 1}}
+\DoxyCodeLine{476 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_EXT\_swap\_control;}
+\DoxyCodeLine{477 \textcolor{preprocessor}{\#define GLX\_MESA\_swap\_control 1}}
+\DoxyCodeLine{478 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_MESA\_swap\_control;}
+\DoxyCodeLine{479 \textcolor{preprocessor}{\#define GLX\_SGIX\_pbuffer 1}}
+\DoxyCodeLine{480 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_SGIX\_pbuffer;}
+\DoxyCodeLine{481 \textcolor{preprocessor}{\#define GLX\_SGI\_swap\_control 1}}
+\DoxyCodeLine{482 GLAD\_API\_CALL \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_SGI\_swap\_control;}
+\DoxyCodeLine{483 }
+\DoxyCodeLine{484 }
+\DoxyCodeLine{485 \textcolor{keyword}{typedef} GLXFBConfig * (GLAD\_API\_PTR *PFNGLXCHOOSEFBCONFIGPROC)(Display * dpy, \textcolor{keywordtype}{int} screen, \textcolor{keyword}{const} \textcolor{keywordtype}{int} * attrib\_list, \textcolor{keywordtype}{int} * nelements);}
+\DoxyCodeLine{486 \textcolor{keyword}{typedef} XVisualInfo * (GLAD\_API\_PTR *PFNGLXCHOOSEVISUALPROC)(Display * dpy, \textcolor{keywordtype}{int} screen, \textcolor{keywordtype}{int} * attribList);}
+\DoxyCodeLine{487 \textcolor{keyword}{typedef} void (GLAD\_API\_PTR *PFNGLXCOPYCONTEXTPROC)(Display * dpy, GLXContext src, GLXContext dst, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} mask);}
+\DoxyCodeLine{488 \textcolor{keyword}{typedef} GLXContext (GLAD\_API\_PTR *PFNGLXCREATECONTEXTPROC)(Display * dpy, XVisualInfo * vis, GLXContext shareList, Bool direct);}
+\DoxyCodeLine{489 \textcolor{keyword}{typedef} GLXContext (GLAD\_API\_PTR *PFNGLXCREATECONTEXTATTRIBSARBPROC)(Display * dpy, GLXFBConfig config, GLXContext share\_context, Bool direct, \textcolor{keyword}{const} \textcolor{keywordtype}{int} * attrib\_list);}
+\DoxyCodeLine{490 \textcolor{keyword}{typedef} GLXPbufferSGIX (GLAD\_API\_PTR *PFNGLXCREATEGLXPBUFFERSGIXPROC)(Display * dpy, GLXFBConfigSGIX config, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} width, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} height, \textcolor{keywordtype}{int} * attrib\_list);}
+\DoxyCodeLine{491 \textcolor{keyword}{typedef} GLXPixmap (GLAD\_API\_PTR *PFNGLXCREATEGLXPIXMAPPROC)(Display * dpy, XVisualInfo * visual, Pixmap pixmap);}
+\DoxyCodeLine{492 \textcolor{keyword}{typedef} GLXContext (GLAD\_API\_PTR *PFNGLXCREATENEWCONTEXTPROC)(Display * dpy, GLXFBConfig config, \textcolor{keywordtype}{int} render\_type, GLXContext share\_list, Bool direct);}
+\DoxyCodeLine{493 \textcolor{keyword}{typedef} GLXPbuffer (GLAD\_API\_PTR *PFNGLXCREATEPBUFFERPROC)(Display * dpy, GLXFBConfig config, \textcolor{keyword}{const} \textcolor{keywordtype}{int} * attrib\_list);}
+\DoxyCodeLine{494 \textcolor{keyword}{typedef} GLXPixmap (GLAD\_API\_PTR *PFNGLXCREATEPIXMAPPROC)(Display * dpy, GLXFBConfig config, Pixmap pixmap, \textcolor{keyword}{const} \textcolor{keywordtype}{int} * attrib\_list);}
+\DoxyCodeLine{495 \textcolor{keyword}{typedef} GLXWindow (GLAD\_API\_PTR *PFNGLXCREATEWINDOWPROC)(Display * dpy, GLXFBConfig config, Window win, \textcolor{keyword}{const} \textcolor{keywordtype}{int} * attrib\_list);}
+\DoxyCodeLine{496 \textcolor{keyword}{typedef} void (GLAD\_API\_PTR *PFNGLXDESTROYCONTEXTPROC)(Display * dpy, GLXContext ctx);}
+\DoxyCodeLine{497 \textcolor{keyword}{typedef} void (GLAD\_API\_PTR *PFNGLXDESTROYGLXPBUFFERSGIXPROC)(Display * dpy, GLXPbufferSGIX pbuf);}
+\DoxyCodeLine{498 \textcolor{keyword}{typedef} void (GLAD\_API\_PTR *PFNGLXDESTROYGLXPIXMAPPROC)(Display * dpy, GLXPixmap pixmap);}
+\DoxyCodeLine{499 \textcolor{keyword}{typedef} void (GLAD\_API\_PTR *PFNGLXDESTROYPBUFFERPROC)(Display * dpy, GLXPbuffer pbuf);}
+\DoxyCodeLine{500 \textcolor{keyword}{typedef} void (GLAD\_API\_PTR *PFNGLXDESTROYPIXMAPPROC)(Display * dpy, GLXPixmap pixmap);}
+\DoxyCodeLine{501 \textcolor{keyword}{typedef} void (GLAD\_API\_PTR *PFNGLXDESTROYWINDOWPROC)(Display * dpy, GLXWindow win);}
+\DoxyCodeLine{502 \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keywordtype}{char} * (GLAD\_API\_PTR *PFNGLXGETCLIENTSTRINGPROC)(Display * dpy, \textcolor{keywordtype}{int} name);}
+\DoxyCodeLine{503 \textcolor{keyword}{typedef} int (GLAD\_API\_PTR *PFNGLXGETCONFIGPROC)(Display * dpy, XVisualInfo * visual, \textcolor{keywordtype}{int} attrib, \textcolor{keywordtype}{int} * value);}
+\DoxyCodeLine{504 \textcolor{keyword}{typedef} GLXContext (GLAD\_API\_PTR *PFNGLXGETCURRENTCONTEXTPROC)(void);}
+\DoxyCodeLine{505 \textcolor{keyword}{typedef} Display * (GLAD\_API\_PTR *PFNGLXGETCURRENTDISPLAYPROC)(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{506 \textcolor{keyword}{typedef} GLXDrawable (GLAD\_API\_PTR *PFNGLXGETCURRENTDRAWABLEPROC)(void);}
+\DoxyCodeLine{507 \textcolor{keyword}{typedef} GLXDrawable (GLAD\_API\_PTR *PFNGLXGETCURRENTREADDRAWABLEPROC)(void);}
+\DoxyCodeLine{508 \textcolor{keyword}{typedef} int (GLAD\_API\_PTR *PFNGLXGETFBCONFIGATTRIBPROC)(Display * dpy, GLXFBConfig config, \textcolor{keywordtype}{int} attribute, \textcolor{keywordtype}{int} * value);}
+\DoxyCodeLine{509 \textcolor{keyword}{typedef} GLXFBConfig * (GLAD\_API\_PTR *PFNGLXGETFBCONFIGSPROC)(Display * dpy, \textcolor{keywordtype}{int} screen, \textcolor{keywordtype}{int} * nelements);}
+\DoxyCodeLine{510 \textcolor{keyword}{typedef} \_\_GLXextFuncPtr (GLAD\_API\_PTR *PFNGLXGETPROCADDRESSPROC)(\textcolor{keyword}{const} GLubyte * procName);}
+\DoxyCodeLine{511 \textcolor{keyword}{typedef} void (GLAD\_API\_PTR *PFNGLXGETSELECTEDEVENTPROC)(Display * dpy, GLXDrawable draw, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} * event\_mask);}
+\DoxyCodeLine{512 \textcolor{keyword}{typedef} void (GLAD\_API\_PTR *PFNGLXGETSELECTEDEVENTSGIXPROC)(Display * dpy, GLXDrawable drawable, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} * mask);}
+\DoxyCodeLine{513 \textcolor{keyword}{typedef} int (GLAD\_API\_PTR *PFNGLXGETSWAPINTERVALMESAPROC)(void);}
+\DoxyCodeLine{514 \textcolor{keyword}{typedef} XVisualInfo * (GLAD\_API\_PTR *PFNGLXGETVISUALFROMFBCONFIGPROC)(Display * dpy, GLXFBConfig config);}
+\DoxyCodeLine{515 \textcolor{keyword}{typedef} Bool (GLAD\_API\_PTR *PFNGLXISDIRECTPROC)(Display * dpy, GLXContext ctx);}
+\DoxyCodeLine{516 \textcolor{keyword}{typedef} Bool (GLAD\_API\_PTR *PFNGLXMAKECONTEXTCURRENTPROC)(Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx);}
+\DoxyCodeLine{517 \textcolor{keyword}{typedef} Bool (GLAD\_API\_PTR *PFNGLXMAKECURRENTPROC)(Display * dpy, GLXDrawable drawable, GLXContext ctx);}
+\DoxyCodeLine{518 \textcolor{keyword}{typedef} int (GLAD\_API\_PTR *PFNGLXQUERYCONTEXTPROC)(Display * dpy, GLXContext ctx, \textcolor{keywordtype}{int} attribute, \textcolor{keywordtype}{int} * value);}
+\DoxyCodeLine{519 \textcolor{keyword}{typedef} void (GLAD\_API\_PTR *PFNGLXQUERYDRAWABLEPROC)(Display * dpy, GLXDrawable draw, \textcolor{keywordtype}{int} attribute, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} * value);}
+\DoxyCodeLine{520 \textcolor{keyword}{typedef} Bool (GLAD\_API\_PTR *PFNGLXQUERYEXTENSIONPROC)(Display * dpy, \textcolor{keywordtype}{int} * errorb, \textcolor{keywordtype}{int} * event);}
+\DoxyCodeLine{521 \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keywordtype}{char} * (GLAD\_API\_PTR *PFNGLXQUERYEXTENSIONSSTRINGPROC)(Display * dpy, \textcolor{keywordtype}{int} screen);}
+\DoxyCodeLine{522 \textcolor{keyword}{typedef} void (GLAD\_API\_PTR *PFNGLXQUERYGLXPBUFFERSGIXPROC)(Display * dpy, GLXPbufferSGIX pbuf, \textcolor{keywordtype}{int} attribute, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} * value);}
+\DoxyCodeLine{523 \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keywordtype}{char} * (GLAD\_API\_PTR *PFNGLXQUERYSERVERSTRINGPROC)(Display * dpy, \textcolor{keywordtype}{int} screen, \textcolor{keywordtype}{int} name);}
+\DoxyCodeLine{524 \textcolor{keyword}{typedef} Bool (GLAD\_API\_PTR *PFNGLXQUERYVERSIONPROC)(Display * dpy, \textcolor{keywordtype}{int} * maj, \textcolor{keywordtype}{int} * min);}
+\DoxyCodeLine{525 \textcolor{keyword}{typedef} void (GLAD\_API\_PTR *PFNGLXSELECTEVENTPROC)(Display * dpy, GLXDrawable draw, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} event\_mask);}
+\DoxyCodeLine{526 \textcolor{keyword}{typedef} void (GLAD\_API\_PTR *PFNGLXSELECTEVENTSGIXPROC)(Display * dpy, GLXDrawable drawable, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} mask);}
+\DoxyCodeLine{527 \textcolor{keyword}{typedef} void (GLAD\_API\_PTR *PFNGLXSWAPBUFFERSPROC)(Display * dpy, GLXDrawable drawable);}
+\DoxyCodeLine{528 \textcolor{keyword}{typedef} void (GLAD\_API\_PTR *PFNGLXSWAPINTERVALEXTPROC)(Display * dpy, GLXDrawable drawable, \textcolor{keywordtype}{int} interval);}
+\DoxyCodeLine{529 \textcolor{keyword}{typedef} int (GLAD\_API\_PTR *PFNGLXSWAPINTERVALMESAPROC)(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} interval);}
+\DoxyCodeLine{530 \textcolor{keyword}{typedef} int (GLAD\_API\_PTR *PFNGLXSWAPINTERVALSGIPROC)(\textcolor{keywordtype}{int} interval);}
+\DoxyCodeLine{531 \textcolor{keyword}{typedef} void (GLAD\_API\_PTR *PFNGLXUSEXFONTPROC)(Font font, \textcolor{keywordtype}{int} first, \textcolor{keywordtype}{int} count, \textcolor{keywordtype}{int} list);}
+\DoxyCodeLine{532 \textcolor{keyword}{typedef} void (GLAD\_API\_PTR *PFNGLXWAITGLPROC)(void);}
+\DoxyCodeLine{533 \textcolor{keyword}{typedef} void (GLAD\_API\_PTR *PFNGLXWAITXPROC)(void);}
+\DoxyCodeLine{534 }
+\DoxyCodeLine{535 GLAD\_API\_CALL PFNGLXCHOOSEFBCONFIGPROC sf\_glad\_glXChooseFBConfig;}
+\DoxyCodeLine{536 \textcolor{preprocessor}{\#define glXChooseFBConfig sf\_glad\_glXChooseFBConfig}}
+\DoxyCodeLine{537 GLAD\_API\_CALL PFNGLXCHOOSEVISUALPROC sf\_glad\_glXChooseVisual;}
+\DoxyCodeLine{538 \textcolor{preprocessor}{\#define glXChooseVisual sf\_glad\_glXChooseVisual}}
+\DoxyCodeLine{539 GLAD\_API\_CALL PFNGLXCOPYCONTEXTPROC sf\_glad\_glXCopyContext;}
+\DoxyCodeLine{540 \textcolor{preprocessor}{\#define glXCopyContext sf\_glad\_glXCopyContext}}
+\DoxyCodeLine{541 GLAD\_API\_CALL PFNGLXCREATECONTEXTPROC sf\_glad\_glXCreateContext;}
+\DoxyCodeLine{542 \textcolor{preprocessor}{\#define glXCreateContext sf\_glad\_glXCreateContext}}
+\DoxyCodeLine{543 GLAD\_API\_CALL PFNGLXCREATECONTEXTATTRIBSARBPROC sf\_glad\_glXCreateContextAttribsARB;}
+\DoxyCodeLine{544 \textcolor{preprocessor}{\#define glXCreateContextAttribsARB sf\_glad\_glXCreateContextAttribsARB}}
+\DoxyCodeLine{545 GLAD\_API\_CALL PFNGLXCREATEGLXPBUFFERSGIXPROC sf\_glad\_glXCreateGLXPbufferSGIX;}
+\DoxyCodeLine{546 \textcolor{preprocessor}{\#define glXCreateGLXPbufferSGIX sf\_glad\_glXCreateGLXPbufferSGIX}}
+\DoxyCodeLine{547 GLAD\_API\_CALL PFNGLXCREATEGLXPIXMAPPROC sf\_glad\_glXCreateGLXPixmap;}
+\DoxyCodeLine{548 \textcolor{preprocessor}{\#define glXCreateGLXPixmap sf\_glad\_glXCreateGLXPixmap}}
+\DoxyCodeLine{549 GLAD\_API\_CALL PFNGLXCREATENEWCONTEXTPROC sf\_glad\_glXCreateNewContext;}
+\DoxyCodeLine{550 \textcolor{preprocessor}{\#define glXCreateNewContext sf\_glad\_glXCreateNewContext}}
+\DoxyCodeLine{551 GLAD\_API\_CALL PFNGLXCREATEPBUFFERPROC sf\_glad\_glXCreatePbuffer;}
+\DoxyCodeLine{552 \textcolor{preprocessor}{\#define glXCreatePbuffer sf\_glad\_glXCreatePbuffer}}
+\DoxyCodeLine{553 GLAD\_API\_CALL PFNGLXCREATEPIXMAPPROC sf\_glad\_glXCreatePixmap;}
+\DoxyCodeLine{554 \textcolor{preprocessor}{\#define glXCreatePixmap sf\_glad\_glXCreatePixmap}}
+\DoxyCodeLine{555 GLAD\_API\_CALL PFNGLXCREATEWINDOWPROC sf\_glad\_glXCreateWindow;}
+\DoxyCodeLine{556 \textcolor{preprocessor}{\#define glXCreateWindow sf\_glad\_glXCreateWindow}}
+\DoxyCodeLine{557 GLAD\_API\_CALL PFNGLXDESTROYCONTEXTPROC sf\_glad\_glXDestroyContext;}
+\DoxyCodeLine{558 \textcolor{preprocessor}{\#define glXDestroyContext sf\_glad\_glXDestroyContext}}
+\DoxyCodeLine{559 GLAD\_API\_CALL PFNGLXDESTROYGLXPBUFFERSGIXPROC sf\_glad\_glXDestroyGLXPbufferSGIX;}
+\DoxyCodeLine{560 \textcolor{preprocessor}{\#define glXDestroyGLXPbufferSGIX sf\_glad\_glXDestroyGLXPbufferSGIX}}
+\DoxyCodeLine{561 GLAD\_API\_CALL PFNGLXDESTROYGLXPIXMAPPROC sf\_glad\_glXDestroyGLXPixmap;}
+\DoxyCodeLine{562 \textcolor{preprocessor}{\#define glXDestroyGLXPixmap sf\_glad\_glXDestroyGLXPixmap}}
+\DoxyCodeLine{563 GLAD\_API\_CALL PFNGLXDESTROYPBUFFERPROC sf\_glad\_glXDestroyPbuffer;}
+\DoxyCodeLine{564 \textcolor{preprocessor}{\#define glXDestroyPbuffer sf\_glad\_glXDestroyPbuffer}}
+\DoxyCodeLine{565 GLAD\_API\_CALL PFNGLXDESTROYPIXMAPPROC sf\_glad\_glXDestroyPixmap;}
+\DoxyCodeLine{566 \textcolor{preprocessor}{\#define glXDestroyPixmap sf\_glad\_glXDestroyPixmap}}
+\DoxyCodeLine{567 GLAD\_API\_CALL PFNGLXDESTROYWINDOWPROC sf\_glad\_glXDestroyWindow;}
+\DoxyCodeLine{568 \textcolor{preprocessor}{\#define glXDestroyWindow sf\_glad\_glXDestroyWindow}}
+\DoxyCodeLine{569 GLAD\_API\_CALL PFNGLXGETCLIENTSTRINGPROC sf\_glad\_glXGetClientString;}
+\DoxyCodeLine{570 \textcolor{preprocessor}{\#define glXGetClientString sf\_glad\_glXGetClientString}}
+\DoxyCodeLine{571 GLAD\_API\_CALL PFNGLXGETCONFIGPROC sf\_glad\_glXGetConfig;}
+\DoxyCodeLine{572 \textcolor{preprocessor}{\#define glXGetConfig sf\_glad\_glXGetConfig}}
+\DoxyCodeLine{573 GLAD\_API\_CALL PFNGLXGETCURRENTCONTEXTPROC sf\_glad\_glXGetCurrentContext;}
+\DoxyCodeLine{574 \textcolor{preprocessor}{\#define glXGetCurrentContext sf\_glad\_glXGetCurrentContext}}
+\DoxyCodeLine{575 GLAD\_API\_CALL PFNGLXGETCURRENTDISPLAYPROC sf\_glad\_glXGetCurrentDisplay;}
+\DoxyCodeLine{576 \textcolor{preprocessor}{\#define glXGetCurrentDisplay sf\_glad\_glXGetCurrentDisplay}}
+\DoxyCodeLine{577 GLAD\_API\_CALL PFNGLXGETCURRENTDRAWABLEPROC sf\_glad\_glXGetCurrentDrawable;}
+\DoxyCodeLine{578 \textcolor{preprocessor}{\#define glXGetCurrentDrawable sf\_glad\_glXGetCurrentDrawable}}
+\DoxyCodeLine{579 GLAD\_API\_CALL PFNGLXGETCURRENTREADDRAWABLEPROC sf\_glad\_glXGetCurrentReadDrawable;}
+\DoxyCodeLine{580 \textcolor{preprocessor}{\#define glXGetCurrentReadDrawable sf\_glad\_glXGetCurrentReadDrawable}}
+\DoxyCodeLine{581 GLAD\_API\_CALL PFNGLXGETFBCONFIGATTRIBPROC sf\_glad\_glXGetFBConfigAttrib;}
+\DoxyCodeLine{582 \textcolor{preprocessor}{\#define glXGetFBConfigAttrib sf\_glad\_glXGetFBConfigAttrib}}
+\DoxyCodeLine{583 GLAD\_API\_CALL PFNGLXGETFBCONFIGSPROC sf\_glad\_glXGetFBConfigs;}
+\DoxyCodeLine{584 \textcolor{preprocessor}{\#define glXGetFBConfigs sf\_glad\_glXGetFBConfigs}}
+\DoxyCodeLine{585 GLAD\_API\_CALL PFNGLXGETPROCADDRESSPROC sf\_glad\_glXGetProcAddress;}
+\DoxyCodeLine{586 \textcolor{preprocessor}{\#define glXGetProcAddress sf\_glad\_glXGetProcAddress}}
+\DoxyCodeLine{587 GLAD\_API\_CALL PFNGLXGETSELECTEDEVENTPROC sf\_glad\_glXGetSelectedEvent;}
+\DoxyCodeLine{588 \textcolor{preprocessor}{\#define glXGetSelectedEvent sf\_glad\_glXGetSelectedEvent}}
+\DoxyCodeLine{589 GLAD\_API\_CALL PFNGLXGETSELECTEDEVENTSGIXPROC sf\_glad\_glXGetSelectedEventSGIX;}
+\DoxyCodeLine{590 \textcolor{preprocessor}{\#define glXGetSelectedEventSGIX sf\_glad\_glXGetSelectedEventSGIX}}
+\DoxyCodeLine{591 GLAD\_API\_CALL PFNGLXGETSWAPINTERVALMESAPROC sf\_glad\_glXGetSwapIntervalMESA;}
+\DoxyCodeLine{592 \textcolor{preprocessor}{\#define glXGetSwapIntervalMESA sf\_glad\_glXGetSwapIntervalMESA}}
+\DoxyCodeLine{593 GLAD\_API\_CALL PFNGLXGETVISUALFROMFBCONFIGPROC sf\_glad\_glXGetVisualFromFBConfig;}
+\DoxyCodeLine{594 \textcolor{preprocessor}{\#define glXGetVisualFromFBConfig sf\_glad\_glXGetVisualFromFBConfig}}
+\DoxyCodeLine{595 GLAD\_API\_CALL PFNGLXISDIRECTPROC sf\_glad\_glXIsDirect;}
+\DoxyCodeLine{596 \textcolor{preprocessor}{\#define glXIsDirect sf\_glad\_glXIsDirect}}
+\DoxyCodeLine{597 GLAD\_API\_CALL PFNGLXMAKECONTEXTCURRENTPROC sf\_glad\_glXMakeContextCurrent;}
+\DoxyCodeLine{598 \textcolor{preprocessor}{\#define glXMakeContextCurrent sf\_glad\_glXMakeContextCurrent}}
+\DoxyCodeLine{599 GLAD\_API\_CALL PFNGLXMAKECURRENTPROC sf\_glad\_glXMakeCurrent;}
+\DoxyCodeLine{600 \textcolor{preprocessor}{\#define glXMakeCurrent sf\_glad\_glXMakeCurrent}}
+\DoxyCodeLine{601 GLAD\_API\_CALL PFNGLXQUERYCONTEXTPROC sf\_glad\_glXQueryContext;}
+\DoxyCodeLine{602 \textcolor{preprocessor}{\#define glXQueryContext sf\_glad\_glXQueryContext}}
+\DoxyCodeLine{603 GLAD\_API\_CALL PFNGLXQUERYDRAWABLEPROC sf\_glad\_glXQueryDrawable;}
+\DoxyCodeLine{604 \textcolor{preprocessor}{\#define glXQueryDrawable sf\_glad\_glXQueryDrawable}}
+\DoxyCodeLine{605 GLAD\_API\_CALL PFNGLXQUERYEXTENSIONPROC sf\_glad\_glXQueryExtension;}
+\DoxyCodeLine{606 \textcolor{preprocessor}{\#define glXQueryExtension sf\_glad\_glXQueryExtension}}
+\DoxyCodeLine{607 GLAD\_API\_CALL PFNGLXQUERYEXTENSIONSSTRINGPROC sf\_glad\_glXQueryExtensionsString;}
+\DoxyCodeLine{608 \textcolor{preprocessor}{\#define glXQueryExtensionsString sf\_glad\_glXQueryExtensionsString}}
+\DoxyCodeLine{609 GLAD\_API\_CALL PFNGLXQUERYGLXPBUFFERSGIXPROC sf\_glad\_glXQueryGLXPbufferSGIX;}
+\DoxyCodeLine{610 \textcolor{preprocessor}{\#define glXQueryGLXPbufferSGIX sf\_glad\_glXQueryGLXPbufferSGIX}}
+\DoxyCodeLine{611 GLAD\_API\_CALL PFNGLXQUERYSERVERSTRINGPROC sf\_glad\_glXQueryServerString;}
+\DoxyCodeLine{612 \textcolor{preprocessor}{\#define glXQueryServerString sf\_glad\_glXQueryServerString}}
+\DoxyCodeLine{613 GLAD\_API\_CALL PFNGLXQUERYVERSIONPROC sf\_glad\_glXQueryVersion;}
+\DoxyCodeLine{614 \textcolor{preprocessor}{\#define glXQueryVersion sf\_glad\_glXQueryVersion}}
+\DoxyCodeLine{615 GLAD\_API\_CALL PFNGLXSELECTEVENTPROC sf\_glad\_glXSelectEvent;}
+\DoxyCodeLine{616 \textcolor{preprocessor}{\#define glXSelectEvent sf\_glad\_glXSelectEvent}}
+\DoxyCodeLine{617 GLAD\_API\_CALL PFNGLXSELECTEVENTSGIXPROC sf\_glad\_glXSelectEventSGIX;}
+\DoxyCodeLine{618 \textcolor{preprocessor}{\#define glXSelectEventSGIX sf\_glad\_glXSelectEventSGIX}}
+\DoxyCodeLine{619 GLAD\_API\_CALL PFNGLXSWAPBUFFERSPROC sf\_glad\_glXSwapBuffers;}
+\DoxyCodeLine{620 \textcolor{preprocessor}{\#define glXSwapBuffers sf\_glad\_glXSwapBuffers}}
+\DoxyCodeLine{621 GLAD\_API\_CALL PFNGLXSWAPINTERVALEXTPROC sf\_glad\_glXSwapIntervalEXT;}
+\DoxyCodeLine{622 \textcolor{preprocessor}{\#define glXSwapIntervalEXT sf\_glad\_glXSwapIntervalEXT}}
+\DoxyCodeLine{623 GLAD\_API\_CALL PFNGLXSWAPINTERVALMESAPROC sf\_glad\_glXSwapIntervalMESA;}
+\DoxyCodeLine{624 \textcolor{preprocessor}{\#define glXSwapIntervalMESA sf\_glad\_glXSwapIntervalMESA}}
+\DoxyCodeLine{625 GLAD\_API\_CALL PFNGLXSWAPINTERVALSGIPROC sf\_glad\_glXSwapIntervalSGI;}
+\DoxyCodeLine{626 \textcolor{preprocessor}{\#define glXSwapIntervalSGI sf\_glad\_glXSwapIntervalSGI}}
+\DoxyCodeLine{627 GLAD\_API\_CALL PFNGLXUSEXFONTPROC sf\_glad\_glXUseXFont;}
+\DoxyCodeLine{628 \textcolor{preprocessor}{\#define glXUseXFont sf\_glad\_glXUseXFont}}
+\DoxyCodeLine{629 GLAD\_API\_CALL PFNGLXWAITGLPROC sf\_glad\_glXWaitGL;}
+\DoxyCodeLine{630 \textcolor{preprocessor}{\#define glXWaitGL sf\_glad\_glXWaitGL}}
+\DoxyCodeLine{631 GLAD\_API\_CALL PFNGLXWAITXPROC sf\_glad\_glXWaitX;}
+\DoxyCodeLine{632 \textcolor{preprocessor}{\#define glXWaitX sf\_glad\_glXWaitX}}
+\DoxyCodeLine{633 }
+\DoxyCodeLine{634 }
+\DoxyCodeLine{635 }
+\DoxyCodeLine{636 }
+\DoxyCodeLine{637 }
+\DoxyCodeLine{638 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{639 \}}
+\DoxyCodeLine{640 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{641 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{642 }
+\DoxyCodeLine{643 \textcolor{comment}{/* Source */}}
+\DoxyCodeLine{644 \textcolor{preprocessor}{\#ifdef SF\_GLAD\_GLX\_IMPLEMENTATION}}
+\DoxyCodeLine{645 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{646 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{647 \textcolor{preprocessor}{\#include <string.h>}}
+\DoxyCodeLine{648 }
+\DoxyCodeLine{649 \textcolor{preprocessor}{\#ifndef GLAD\_IMPL\_UTIL\_C\_}}
+\DoxyCodeLine{650 \textcolor{preprocessor}{\#define GLAD\_IMPL\_UTIL\_C\_}}
+\DoxyCodeLine{651 }
+\DoxyCodeLine{652 \textcolor{preprocessor}{\#ifdef \_MSC\_VER}}
+\DoxyCodeLine{653 \textcolor{preprocessor}{\#define GLAD\_IMPL\_UTIL\_SSCANF sscanf\_s}}
+\DoxyCodeLine{654 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{655 \textcolor{preprocessor}{\#define GLAD\_IMPL\_UTIL\_SSCANF sscanf}}
+\DoxyCodeLine{656 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{657 }
+\DoxyCodeLine{658 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* GLAD\_IMPL\_UTIL\_C\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{659 }
+\DoxyCodeLine{660 }
+\DoxyCodeLine{661 \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_VERSION\_1\_0 = 0;}
+\DoxyCodeLine{662 \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_VERSION\_1\_1 = 0;}
+\DoxyCodeLine{663 \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_VERSION\_1\_2 = 0;}
+\DoxyCodeLine{664 \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_VERSION\_1\_3 = 0;}
+\DoxyCodeLine{665 \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_VERSION\_1\_4 = 0;}
+\DoxyCodeLine{666 \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_ARB\_create\_context = 0;}
+\DoxyCodeLine{667 \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_ARB\_create\_context\_profile = 0;}
+\DoxyCodeLine{668 \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_ARB\_framebuffer\_sRGB = 0;}
+\DoxyCodeLine{669 \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_ARB\_multisample = 0;}
+\DoxyCodeLine{670 \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_EXT\_framebuffer\_sRGB = 0;}
+\DoxyCodeLine{671 \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_EXT\_swap\_control = 0;}
+\DoxyCodeLine{672 \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_MESA\_swap\_control = 0;}
+\DoxyCodeLine{673 \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_SGIX\_pbuffer = 0;}
+\DoxyCodeLine{674 \textcolor{keywordtype}{int} SF\_GLAD\_GLX\_SGI\_swap\_control = 0;}
+\DoxyCodeLine{675 }
+\DoxyCodeLine{676 }
+\DoxyCodeLine{677 }
+\DoxyCodeLine{678 PFNGLXCHOOSEFBCONFIGPROC sf\_glad\_glXChooseFBConfig = NULL;}
+\DoxyCodeLine{679 PFNGLXCHOOSEVISUALPROC sf\_glad\_glXChooseVisual = NULL;}
+\DoxyCodeLine{680 PFNGLXCOPYCONTEXTPROC sf\_glad\_glXCopyContext = NULL;}
+\DoxyCodeLine{681 PFNGLXCREATECONTEXTPROC sf\_glad\_glXCreateContext = NULL;}
+\DoxyCodeLine{682 PFNGLXCREATECONTEXTATTRIBSARBPROC sf\_glad\_glXCreateContextAttribsARB = NULL;}
+\DoxyCodeLine{683 PFNGLXCREATEGLXPBUFFERSGIXPROC sf\_glad\_glXCreateGLXPbufferSGIX = NULL;}
+\DoxyCodeLine{684 PFNGLXCREATEGLXPIXMAPPROC sf\_glad\_glXCreateGLXPixmap = NULL;}
+\DoxyCodeLine{685 PFNGLXCREATENEWCONTEXTPROC sf\_glad\_glXCreateNewContext = NULL;}
+\DoxyCodeLine{686 PFNGLXCREATEPBUFFERPROC sf\_glad\_glXCreatePbuffer = NULL;}
+\DoxyCodeLine{687 PFNGLXCREATEPIXMAPPROC sf\_glad\_glXCreatePixmap = NULL;}
+\DoxyCodeLine{688 PFNGLXCREATEWINDOWPROC sf\_glad\_glXCreateWindow = NULL;}
+\DoxyCodeLine{689 PFNGLXDESTROYCONTEXTPROC sf\_glad\_glXDestroyContext = NULL;}
+\DoxyCodeLine{690 PFNGLXDESTROYGLXPBUFFERSGIXPROC sf\_glad\_glXDestroyGLXPbufferSGIX = NULL;}
+\DoxyCodeLine{691 PFNGLXDESTROYGLXPIXMAPPROC sf\_glad\_glXDestroyGLXPixmap = NULL;}
+\DoxyCodeLine{692 PFNGLXDESTROYPBUFFERPROC sf\_glad\_glXDestroyPbuffer = NULL;}
+\DoxyCodeLine{693 PFNGLXDESTROYPIXMAPPROC sf\_glad\_glXDestroyPixmap = NULL;}
+\DoxyCodeLine{694 PFNGLXDESTROYWINDOWPROC sf\_glad\_glXDestroyWindow = NULL;}
+\DoxyCodeLine{695 PFNGLXGETCLIENTSTRINGPROC sf\_glad\_glXGetClientString = NULL;}
+\DoxyCodeLine{696 PFNGLXGETCONFIGPROC sf\_glad\_glXGetConfig = NULL;}
+\DoxyCodeLine{697 PFNGLXGETCURRENTCONTEXTPROC sf\_glad\_glXGetCurrentContext = NULL;}
+\DoxyCodeLine{698 PFNGLXGETCURRENTDISPLAYPROC sf\_glad\_glXGetCurrentDisplay = NULL;}
+\DoxyCodeLine{699 PFNGLXGETCURRENTDRAWABLEPROC sf\_glad\_glXGetCurrentDrawable = NULL;}
+\DoxyCodeLine{700 PFNGLXGETCURRENTREADDRAWABLEPROC sf\_glad\_glXGetCurrentReadDrawable = NULL;}
+\DoxyCodeLine{701 PFNGLXGETFBCONFIGATTRIBPROC sf\_glad\_glXGetFBConfigAttrib = NULL;}
+\DoxyCodeLine{702 PFNGLXGETFBCONFIGSPROC sf\_glad\_glXGetFBConfigs = NULL;}
+\DoxyCodeLine{703 PFNGLXGETPROCADDRESSPROC sf\_glad\_glXGetProcAddress = NULL;}
+\DoxyCodeLine{704 PFNGLXGETSELECTEDEVENTPROC sf\_glad\_glXGetSelectedEvent = NULL;}
+\DoxyCodeLine{705 PFNGLXGETSELECTEDEVENTSGIXPROC sf\_glad\_glXGetSelectedEventSGIX = NULL;}
+\DoxyCodeLine{706 PFNGLXGETSWAPINTERVALMESAPROC sf\_glad\_glXGetSwapIntervalMESA = NULL;}
+\DoxyCodeLine{707 PFNGLXGETVISUALFROMFBCONFIGPROC sf\_glad\_glXGetVisualFromFBConfig = NULL;}
+\DoxyCodeLine{708 PFNGLXISDIRECTPROC sf\_glad\_glXIsDirect = NULL;}
+\DoxyCodeLine{709 PFNGLXMAKECONTEXTCURRENTPROC sf\_glad\_glXMakeContextCurrent = NULL;}
+\DoxyCodeLine{710 PFNGLXMAKECURRENTPROC sf\_glad\_glXMakeCurrent = NULL;}
+\DoxyCodeLine{711 PFNGLXQUERYCONTEXTPROC sf\_glad\_glXQueryContext = NULL;}
+\DoxyCodeLine{712 PFNGLXQUERYDRAWABLEPROC sf\_glad\_glXQueryDrawable = NULL;}
+\DoxyCodeLine{713 PFNGLXQUERYEXTENSIONPROC sf\_glad\_glXQueryExtension = NULL;}
+\DoxyCodeLine{714 PFNGLXQUERYEXTENSIONSSTRINGPROC sf\_glad\_glXQueryExtensionsString = NULL;}
+\DoxyCodeLine{715 PFNGLXQUERYGLXPBUFFERSGIXPROC sf\_glad\_glXQueryGLXPbufferSGIX = NULL;}
+\DoxyCodeLine{716 PFNGLXQUERYSERVERSTRINGPROC sf\_glad\_glXQueryServerString = NULL;}
+\DoxyCodeLine{717 PFNGLXQUERYVERSIONPROC sf\_glad\_glXQueryVersion = NULL;}
+\DoxyCodeLine{718 PFNGLXSELECTEVENTPROC sf\_glad\_glXSelectEvent = NULL;}
+\DoxyCodeLine{719 PFNGLXSELECTEVENTSGIXPROC sf\_glad\_glXSelectEventSGIX = NULL;}
+\DoxyCodeLine{720 PFNGLXSWAPBUFFERSPROC sf\_glad\_glXSwapBuffers = NULL;}
+\DoxyCodeLine{721 PFNGLXSWAPINTERVALEXTPROC sf\_glad\_glXSwapIntervalEXT = NULL;}
+\DoxyCodeLine{722 PFNGLXSWAPINTERVALMESAPROC sf\_glad\_glXSwapIntervalMESA = NULL;}
+\DoxyCodeLine{723 PFNGLXSWAPINTERVALSGIPROC sf\_glad\_glXSwapIntervalSGI = NULL;}
+\DoxyCodeLine{724 PFNGLXUSEXFONTPROC sf\_glad\_glXUseXFont = NULL;}
+\DoxyCodeLine{725 PFNGLXWAITGLPROC sf\_glad\_glXWaitGL = NULL;}
+\DoxyCodeLine{726 PFNGLXWAITXPROC sf\_glad\_glXWaitX = NULL;}
+\DoxyCodeLine{727 }
+\DoxyCodeLine{728 }
+\DoxyCodeLine{729 \textcolor{keyword}{static} \textcolor{keywordtype}{void} glad\_glx\_load\_GLX\_VERSION\_1\_0( GLADuserptrloadfunc load, \textcolor{keywordtype}{void}* userptr) \{}
+\DoxyCodeLine{730     \textcolor{keywordflow}{if}(!SF\_GLAD\_GLX\_VERSION\_1\_0) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{731     sf\_glad\_glXChooseVisual = (PFNGLXCHOOSEVISUALPROC) load(userptr, \textcolor{stringliteral}{"{}glXChooseVisual"{}});}
+\DoxyCodeLine{732     sf\_glad\_glXCopyContext = (PFNGLXCOPYCONTEXTPROC) load(userptr, \textcolor{stringliteral}{"{}glXCopyContext"{}});}
+\DoxyCodeLine{733     sf\_glad\_glXCreateContext = (PFNGLXCREATECONTEXTPROC) load(userptr, \textcolor{stringliteral}{"{}glXCreateContext"{}});}
+\DoxyCodeLine{734     sf\_glad\_glXCreateGLXPixmap = (PFNGLXCREATEGLXPIXMAPPROC) load(userptr, \textcolor{stringliteral}{"{}glXCreateGLXPixmap"{}});}
+\DoxyCodeLine{735     sf\_glad\_glXDestroyContext = (PFNGLXDESTROYCONTEXTPROC) load(userptr, \textcolor{stringliteral}{"{}glXDestroyContext"{}});}
+\DoxyCodeLine{736     sf\_glad\_glXDestroyGLXPixmap = (PFNGLXDESTROYGLXPIXMAPPROC) load(userptr, \textcolor{stringliteral}{"{}glXDestroyGLXPixmap"{}});}
+\DoxyCodeLine{737     sf\_glad\_glXGetConfig = (PFNGLXGETCONFIGPROC) load(userptr, \textcolor{stringliteral}{"{}glXGetConfig"{}});}
+\DoxyCodeLine{738     sf\_glad\_glXGetCurrentContext = (PFNGLXGETCURRENTCONTEXTPROC) load(userptr, \textcolor{stringliteral}{"{}glXGetCurrentContext"{}});}
+\DoxyCodeLine{739     sf\_glad\_glXGetCurrentDrawable = (PFNGLXGETCURRENTDRAWABLEPROC) load(userptr, \textcolor{stringliteral}{"{}glXGetCurrentDrawable"{}});}
+\DoxyCodeLine{740     sf\_glad\_glXIsDirect = (PFNGLXISDIRECTPROC) load(userptr, \textcolor{stringliteral}{"{}glXIsDirect"{}});}
+\DoxyCodeLine{741     sf\_glad\_glXMakeCurrent = (PFNGLXMAKECURRENTPROC) load(userptr, \textcolor{stringliteral}{"{}glXMakeCurrent"{}});}
+\DoxyCodeLine{742     sf\_glad\_glXQueryExtension = (PFNGLXQUERYEXTENSIONPROC) load(userptr, \textcolor{stringliteral}{"{}glXQueryExtension"{}});}
+\DoxyCodeLine{743     sf\_glad\_glXQueryVersion = (PFNGLXQUERYVERSIONPROC) load(userptr, \textcolor{stringliteral}{"{}glXQueryVersion"{}});}
+\DoxyCodeLine{744     sf\_glad\_glXSwapBuffers = (PFNGLXSWAPBUFFERSPROC) load(userptr, \textcolor{stringliteral}{"{}glXSwapBuffers"{}});}
+\DoxyCodeLine{745     sf\_glad\_glXUseXFont = (PFNGLXUSEXFONTPROC) load(userptr, \textcolor{stringliteral}{"{}glXUseXFont"{}});}
+\DoxyCodeLine{746     sf\_glad\_glXWaitGL = (PFNGLXWAITGLPROC) load(userptr, \textcolor{stringliteral}{"{}glXWaitGL"{}});}
+\DoxyCodeLine{747     sf\_glad\_glXWaitX = (PFNGLXWAITXPROC) load(userptr, \textcolor{stringliteral}{"{}glXWaitX"{}});}
+\DoxyCodeLine{748 \}}
+\DoxyCodeLine{749 \textcolor{keyword}{static} \textcolor{keywordtype}{void} glad\_glx\_load\_GLX\_VERSION\_1\_1( GLADuserptrloadfunc load, \textcolor{keywordtype}{void}* userptr) \{}
+\DoxyCodeLine{750     \textcolor{keywordflow}{if}(!SF\_GLAD\_GLX\_VERSION\_1\_1) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{751     sf\_glad\_glXGetClientString = (PFNGLXGETCLIENTSTRINGPROC) load(userptr, \textcolor{stringliteral}{"{}glXGetClientString"{}});}
+\DoxyCodeLine{752     sf\_glad\_glXQueryExtensionsString = (PFNGLXQUERYEXTENSIONSSTRINGPROC) load(userptr, \textcolor{stringliteral}{"{}glXQueryExtensionsString"{}});}
+\DoxyCodeLine{753     sf\_glad\_glXQueryServerString = (PFNGLXQUERYSERVERSTRINGPROC) load(userptr, \textcolor{stringliteral}{"{}glXQueryServerString"{}});}
+\DoxyCodeLine{754 \}}
+\DoxyCodeLine{755 \textcolor{keyword}{static} \textcolor{keywordtype}{void} glad\_glx\_load\_GLX\_VERSION\_1\_2( GLADuserptrloadfunc load, \textcolor{keywordtype}{void}* userptr) \{}
+\DoxyCodeLine{756     \textcolor{keywordflow}{if}(!SF\_GLAD\_GLX\_VERSION\_1\_2) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{757     sf\_glad\_glXGetCurrentDisplay = (PFNGLXGETCURRENTDISPLAYPROC) load(userptr, \textcolor{stringliteral}{"{}glXGetCurrentDisplay"{}});}
+\DoxyCodeLine{758 \}}
+\DoxyCodeLine{759 \textcolor{keyword}{static} \textcolor{keywordtype}{void} glad\_glx\_load\_GLX\_VERSION\_1\_3( GLADuserptrloadfunc load, \textcolor{keywordtype}{void}* userptr) \{}
+\DoxyCodeLine{760     \textcolor{keywordflow}{if}(!SF\_GLAD\_GLX\_VERSION\_1\_3) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{761     sf\_glad\_glXChooseFBConfig = (PFNGLXCHOOSEFBCONFIGPROC) load(userptr, \textcolor{stringliteral}{"{}glXChooseFBConfig"{}});}
+\DoxyCodeLine{762     sf\_glad\_glXCreateNewContext = (PFNGLXCREATENEWCONTEXTPROC) load(userptr, \textcolor{stringliteral}{"{}glXCreateNewContext"{}});}
+\DoxyCodeLine{763     sf\_glad\_glXCreatePbuffer = (PFNGLXCREATEPBUFFERPROC) load(userptr, \textcolor{stringliteral}{"{}glXCreatePbuffer"{}});}
+\DoxyCodeLine{764     sf\_glad\_glXCreatePixmap = (PFNGLXCREATEPIXMAPPROC) load(userptr, \textcolor{stringliteral}{"{}glXCreatePixmap"{}});}
+\DoxyCodeLine{765     sf\_glad\_glXCreateWindow = (PFNGLXCREATEWINDOWPROC) load(userptr, \textcolor{stringliteral}{"{}glXCreateWindow"{}});}
+\DoxyCodeLine{766     sf\_glad\_glXDestroyPbuffer = (PFNGLXDESTROYPBUFFERPROC) load(userptr, \textcolor{stringliteral}{"{}glXDestroyPbuffer"{}});}
+\DoxyCodeLine{767     sf\_glad\_glXDestroyPixmap = (PFNGLXDESTROYPIXMAPPROC) load(userptr, \textcolor{stringliteral}{"{}glXDestroyPixmap"{}});}
+\DoxyCodeLine{768     sf\_glad\_glXDestroyWindow = (PFNGLXDESTROYWINDOWPROC) load(userptr, \textcolor{stringliteral}{"{}glXDestroyWindow"{}});}
+\DoxyCodeLine{769     sf\_glad\_glXGetCurrentReadDrawable = (PFNGLXGETCURRENTREADDRAWABLEPROC) load(userptr, \textcolor{stringliteral}{"{}glXGetCurrentReadDrawable"{}});}
+\DoxyCodeLine{770     sf\_glad\_glXGetFBConfigAttrib = (PFNGLXGETFBCONFIGATTRIBPROC) load(userptr, \textcolor{stringliteral}{"{}glXGetFBConfigAttrib"{}});}
+\DoxyCodeLine{771     sf\_glad\_glXGetFBConfigs = (PFNGLXGETFBCONFIGSPROC) load(userptr, \textcolor{stringliteral}{"{}glXGetFBConfigs"{}});}
+\DoxyCodeLine{772     sf\_glad\_glXGetSelectedEvent = (PFNGLXGETSELECTEDEVENTPROC) load(userptr, \textcolor{stringliteral}{"{}glXGetSelectedEvent"{}});}
+\DoxyCodeLine{773     sf\_glad\_glXGetVisualFromFBConfig = (PFNGLXGETVISUALFROMFBCONFIGPROC) load(userptr, \textcolor{stringliteral}{"{}glXGetVisualFromFBConfig"{}});}
+\DoxyCodeLine{774     sf\_glad\_glXMakeContextCurrent = (PFNGLXMAKECONTEXTCURRENTPROC) load(userptr, \textcolor{stringliteral}{"{}glXMakeContextCurrent"{}});}
+\DoxyCodeLine{775     sf\_glad\_glXQueryContext = (PFNGLXQUERYCONTEXTPROC) load(userptr, \textcolor{stringliteral}{"{}glXQueryContext"{}});}
+\DoxyCodeLine{776     sf\_glad\_glXQueryDrawable = (PFNGLXQUERYDRAWABLEPROC) load(userptr, \textcolor{stringliteral}{"{}glXQueryDrawable"{}});}
+\DoxyCodeLine{777     sf\_glad\_glXSelectEvent = (PFNGLXSELECTEVENTPROC) load(userptr, \textcolor{stringliteral}{"{}glXSelectEvent"{}});}
+\DoxyCodeLine{778 \}}
+\DoxyCodeLine{779 \textcolor{keyword}{static} \textcolor{keywordtype}{void} glad\_glx\_load\_GLX\_VERSION\_1\_4( GLADuserptrloadfunc load, \textcolor{keywordtype}{void}* userptr) \{}
+\DoxyCodeLine{780     \textcolor{keywordflow}{if}(!SF\_GLAD\_GLX\_VERSION\_1\_4) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{781     sf\_glad\_glXGetProcAddress = (PFNGLXGETPROCADDRESSPROC) load(userptr, \textcolor{stringliteral}{"{}glXGetProcAddress"{}});}
+\DoxyCodeLine{782 \}}
+\DoxyCodeLine{783 \textcolor{keyword}{static} \textcolor{keywordtype}{void} glad\_glx\_load\_GLX\_ARB\_create\_context( GLADuserptrloadfunc load, \textcolor{keywordtype}{void}* userptr) \{}
+\DoxyCodeLine{784     \textcolor{keywordflow}{if}(!SF\_GLAD\_GLX\_ARB\_create\_context) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{785     sf\_glad\_glXCreateContextAttribsARB = (PFNGLXCREATECONTEXTATTRIBSARBPROC) load(userptr, \textcolor{stringliteral}{"{}glXCreateContextAttribsARB"{}});}
+\DoxyCodeLine{786 \}}
+\DoxyCodeLine{787 \textcolor{keyword}{static} \textcolor{keywordtype}{void} glad\_glx\_load\_GLX\_EXT\_swap\_control( GLADuserptrloadfunc load, \textcolor{keywordtype}{void}* userptr) \{}
+\DoxyCodeLine{788     \textcolor{keywordflow}{if}(!SF\_GLAD\_GLX\_EXT\_swap\_control) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{789     sf\_glad\_glXSwapIntervalEXT = (PFNGLXSWAPINTERVALEXTPROC) load(userptr, \textcolor{stringliteral}{"{}glXSwapIntervalEXT"{}});}
+\DoxyCodeLine{790 \}}
+\DoxyCodeLine{791 \textcolor{keyword}{static} \textcolor{keywordtype}{void} glad\_glx\_load\_GLX\_MESA\_swap\_control( GLADuserptrloadfunc load, \textcolor{keywordtype}{void}* userptr) \{}
+\DoxyCodeLine{792     \textcolor{keywordflow}{if}(!SF\_GLAD\_GLX\_MESA\_swap\_control) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{793     sf\_glad\_glXGetSwapIntervalMESA = (PFNGLXGETSWAPINTERVALMESAPROC) load(userptr, \textcolor{stringliteral}{"{}glXGetSwapIntervalMESA"{}});}
+\DoxyCodeLine{794     sf\_glad\_glXSwapIntervalMESA = (PFNGLXSWAPINTERVALMESAPROC) load(userptr, \textcolor{stringliteral}{"{}glXSwapIntervalMESA"{}});}
+\DoxyCodeLine{795 \}}
+\DoxyCodeLine{796 \textcolor{keyword}{static} \textcolor{keywordtype}{void} glad\_glx\_load\_GLX\_SGIX\_pbuffer( GLADuserptrloadfunc load, \textcolor{keywordtype}{void}* userptr) \{}
+\DoxyCodeLine{797     \textcolor{keywordflow}{if}(!SF\_GLAD\_GLX\_SGIX\_pbuffer) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{798     sf\_glad\_glXCreateGLXPbufferSGIX = (PFNGLXCREATEGLXPBUFFERSGIXPROC) load(userptr, \textcolor{stringliteral}{"{}glXCreateGLXPbufferSGIX"{}});}
+\DoxyCodeLine{799     sf\_glad\_glXDestroyGLXPbufferSGIX = (PFNGLXDESTROYGLXPBUFFERSGIXPROC) load(userptr, \textcolor{stringliteral}{"{}glXDestroyGLXPbufferSGIX"{}});}
+\DoxyCodeLine{800     sf\_glad\_glXGetSelectedEventSGIX = (PFNGLXGETSELECTEDEVENTSGIXPROC) load(userptr, \textcolor{stringliteral}{"{}glXGetSelectedEventSGIX"{}});}
+\DoxyCodeLine{801     sf\_glad\_glXQueryGLXPbufferSGIX = (PFNGLXQUERYGLXPBUFFERSGIXPROC) load(userptr, \textcolor{stringliteral}{"{}glXQueryGLXPbufferSGIX"{}});}
+\DoxyCodeLine{802     sf\_glad\_glXSelectEventSGIX = (PFNGLXSELECTEVENTSGIXPROC) load(userptr, \textcolor{stringliteral}{"{}glXSelectEventSGIX"{}});}
+\DoxyCodeLine{803 \}}
+\DoxyCodeLine{804 \textcolor{keyword}{static} \textcolor{keywordtype}{void} glad\_glx\_load\_GLX\_SGI\_swap\_control( GLADuserptrloadfunc load, \textcolor{keywordtype}{void}* userptr) \{}
+\DoxyCodeLine{805     \textcolor{keywordflow}{if}(!SF\_GLAD\_GLX\_SGI\_swap\_control) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{806     sf\_glad\_glXSwapIntervalSGI = (PFNGLXSWAPINTERVALSGIPROC) load(userptr, \textcolor{stringliteral}{"{}glXSwapIntervalSGI"{}});}
+\DoxyCodeLine{807 \}}
+\DoxyCodeLine{808 }
+\DoxyCodeLine{809 }
+\DoxyCodeLine{810 \textcolor{keyword}{static} \textcolor{keywordtype}{void} glad\_glx\_resolve\_aliases(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{811 \}}
+\DoxyCodeLine{812 }
+\DoxyCodeLine{813 \textcolor{keyword}{static} \textcolor{keywordtype}{int} glad\_glx\_has\_extension(Display *display, \textcolor{keywordtype}{int} screen, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *ext) \{}
+\DoxyCodeLine{814 \textcolor{preprocessor}{\#ifndef GLX\_VERSION\_1\_1}}
+\DoxyCodeLine{815     (void) display;}
+\DoxyCodeLine{816     (void) screen;}
+\DoxyCodeLine{817     (void) ext;}
+\DoxyCodeLine{818 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{819     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *terminator;}
+\DoxyCodeLine{820     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *loc;}
+\DoxyCodeLine{821     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *extensions;}
+\DoxyCodeLine{822 }
+\DoxyCodeLine{823     \textcolor{keywordflow}{if} (glXQueryExtensionsString == NULL) \{}
+\DoxyCodeLine{824         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{825     \}}
+\DoxyCodeLine{826 }
+\DoxyCodeLine{827     extensions = glXQueryExtensionsString(display, screen);}
+\DoxyCodeLine{828 }
+\DoxyCodeLine{829     \textcolor{keywordflow}{if}(extensions == NULL || ext == NULL) \{}
+\DoxyCodeLine{830         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{831     \}}
+\DoxyCodeLine{832 }
+\DoxyCodeLine{833     \textcolor{keywordflow}{while}(1) \{}
+\DoxyCodeLine{834         loc = strstr(extensions, ext);}
+\DoxyCodeLine{835         \textcolor{keywordflow}{if}(loc == NULL)}
+\DoxyCodeLine{836             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{837 }
+\DoxyCodeLine{838         terminator = loc + strlen(ext);}
+\DoxyCodeLine{839         \textcolor{keywordflow}{if}((loc == extensions || *(loc -\/ 1) == \textcolor{charliteral}{' '}) \&\&}
+\DoxyCodeLine{840             (*terminator == \textcolor{charliteral}{' '} || *terminator == \textcolor{charliteral}{'\(\backslash\)0'})) \{}
+\DoxyCodeLine{841             \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{842         \}}
+\DoxyCodeLine{843         extensions = terminator;}
+\DoxyCodeLine{844     \}}
+\DoxyCodeLine{845 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{846 }
+\DoxyCodeLine{847     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{848 \}}
+\DoxyCodeLine{849 }
+\DoxyCodeLine{850 \textcolor{keyword}{static} GLADapiproc glad\_glx\_get\_proc\_from\_userptr(\textcolor{keywordtype}{void} *userptr, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name) \{}
+\DoxyCodeLine{851     \textcolor{keywordflow}{return} (GLAD\_GNUC\_EXTENSION (GLADapiproc (*)(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *name)) userptr)(name);}
+\DoxyCodeLine{852 \}}
+\DoxyCodeLine{853 }
+\DoxyCodeLine{854 \textcolor{keyword}{static} \textcolor{keywordtype}{int} glad\_glx\_find\_extensions(Display *display, \textcolor{keywordtype}{int} screen) \{}
+\DoxyCodeLine{855     SF\_GLAD\_GLX\_ARB\_create\_context = glad\_glx\_has\_extension(display, screen, \textcolor{stringliteral}{"{}GLX\_ARB\_create\_context"{}});}
+\DoxyCodeLine{856     SF\_GLAD\_GLX\_ARB\_create\_context\_profile = glad\_glx\_has\_extension(display, screen, \textcolor{stringliteral}{"{}GLX\_ARB\_create\_context\_profile"{}});}
+\DoxyCodeLine{857     SF\_GLAD\_GLX\_ARB\_framebuffer\_sRGB = glad\_glx\_has\_extension(display, screen, \textcolor{stringliteral}{"{}GLX\_ARB\_framebuffer\_sRGB"{}});}
+\DoxyCodeLine{858     SF\_GLAD\_GLX\_ARB\_multisample = glad\_glx\_has\_extension(display, screen, \textcolor{stringliteral}{"{}GLX\_ARB\_multisample"{}});}
+\DoxyCodeLine{859     SF\_GLAD\_GLX\_EXT\_framebuffer\_sRGB = glad\_glx\_has\_extension(display, screen, \textcolor{stringliteral}{"{}GLX\_EXT\_framebuffer\_sRGB"{}});}
+\DoxyCodeLine{860     SF\_GLAD\_GLX\_EXT\_swap\_control = glad\_glx\_has\_extension(display, screen, \textcolor{stringliteral}{"{}GLX\_EXT\_swap\_control"{}});}
+\DoxyCodeLine{861     SF\_GLAD\_GLX\_MESA\_swap\_control = glad\_glx\_has\_extension(display, screen, \textcolor{stringliteral}{"{}GLX\_MESA\_swap\_control"{}});}
+\DoxyCodeLine{862     SF\_GLAD\_GLX\_SGIX\_pbuffer = glad\_glx\_has\_extension(display, screen, \textcolor{stringliteral}{"{}GLX\_SGIX\_pbuffer"{}});}
+\DoxyCodeLine{863     SF\_GLAD\_GLX\_SGI\_swap\_control = glad\_glx\_has\_extension(display, screen, \textcolor{stringliteral}{"{}GLX\_SGI\_swap\_control"{}});}
+\DoxyCodeLine{864     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{865 \}}
+\DoxyCodeLine{866 }
+\DoxyCodeLine{867 \textcolor{keyword}{static} \textcolor{keywordtype}{int} glad\_glx\_find\_core\_glx(Display **display, \textcolor{keywordtype}{int} *screen) \{}
+\DoxyCodeLine{868     \textcolor{keywordtype}{int} major = 0, minor = 0;}
+\DoxyCodeLine{869     \textcolor{keywordflow}{if}(*display == NULL) \{}
+\DoxyCodeLine{870 \textcolor{preprocessor}{\#ifdef SF\_GLAD\_GLX\_NO\_X11}}
+\DoxyCodeLine{871         (void) screen;}
+\DoxyCodeLine{872         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{873 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{874         *display = XOpenDisplay(0);}
+\DoxyCodeLine{875         \textcolor{keywordflow}{if} (*display == NULL) \{}
+\DoxyCodeLine{876             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{877         \}}
+\DoxyCodeLine{878         *screen = XScreenNumberOfScreen(XDefaultScreenOfDisplay(*display));}
+\DoxyCodeLine{879 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{880     \}}
+\DoxyCodeLine{881     glXQueryVersion(*display, \&major, \&minor);}
+\DoxyCodeLine{882     SF\_GLAD\_GLX\_VERSION\_1\_0 = (major == 1 \&\& minor >= 0) || major > 1;}
+\DoxyCodeLine{883     SF\_GLAD\_GLX\_VERSION\_1\_1 = (major == 1 \&\& minor >= 1) || major > 1;}
+\DoxyCodeLine{884     SF\_GLAD\_GLX\_VERSION\_1\_2 = (major == 1 \&\& minor >= 2) || major > 1;}
+\DoxyCodeLine{885     SF\_GLAD\_GLX\_VERSION\_1\_3 = (major == 1 \&\& minor >= 3) || major > 1;}
+\DoxyCodeLine{886     SF\_GLAD\_GLX\_VERSION\_1\_4 = (major == 1 \&\& minor >= 4) || major > 1;}
+\DoxyCodeLine{887     \textcolor{keywordflow}{return} GLAD\_MAKE\_VERSION(major, minor);}
+\DoxyCodeLine{888 \}}
+\DoxyCodeLine{889 }
+\DoxyCodeLine{890 \textcolor{keyword}{static} \textcolor{keywordtype}{int} gladLoadGLXUserPtr(Display *display, \textcolor{keywordtype}{int} screen, GLADuserptrloadfunc load, \textcolor{keywordtype}{void} *userptr) \{}
+\DoxyCodeLine{891     \textcolor{keywordtype}{int} version;}
+\DoxyCodeLine{892     glXQueryVersion = (PFNGLXQUERYVERSIONPROC) load(userptr, \textcolor{stringliteral}{"{}glXQueryVersion"{}});}
+\DoxyCodeLine{893     \textcolor{keywordflow}{if}(glXQueryVersion == NULL) \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{894     version = glad\_glx\_find\_core\_glx(\&display, \&screen);}
+\DoxyCodeLine{895 }
+\DoxyCodeLine{896     glad\_glx\_load\_GLX\_VERSION\_1\_0(load, userptr);}
+\DoxyCodeLine{897     glad\_glx\_load\_GLX\_VERSION\_1\_1(load, userptr);}
+\DoxyCodeLine{898     glad\_glx\_load\_GLX\_VERSION\_1\_2(load, userptr);}
+\DoxyCodeLine{899     glad\_glx\_load\_GLX\_VERSION\_1\_3(load, userptr);}
+\DoxyCodeLine{900     glad\_glx\_load\_GLX\_VERSION\_1\_4(load, userptr);}
+\DoxyCodeLine{901 }
+\DoxyCodeLine{902     \textcolor{keywordflow}{if} (!glad\_glx\_find\_extensions(display, screen)) \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{903     glad\_glx\_load\_GLX\_ARB\_create\_context(load, userptr);}
+\DoxyCodeLine{904     glad\_glx\_load\_GLX\_EXT\_swap\_control(load, userptr);}
+\DoxyCodeLine{905     glad\_glx\_load\_GLX\_MESA\_swap\_control(load, userptr);}
+\DoxyCodeLine{906     glad\_glx\_load\_GLX\_SGIX\_pbuffer(load, userptr);}
+\DoxyCodeLine{907     glad\_glx\_load\_GLX\_SGI\_swap\_control(load, userptr);}
+\DoxyCodeLine{908 }
+\DoxyCodeLine{909     \textcolor{keywordflow}{return} version;}
+\DoxyCodeLine{910 \}}
+\DoxyCodeLine{911 }
+\DoxyCodeLine{912 \textcolor{keyword}{static} \textcolor{keywordtype}{int} gladLoadGLX(Display *display, \textcolor{keywordtype}{int} screen, GLADloadfunc load) \{}
+\DoxyCodeLine{913     \textcolor{keywordflow}{return} gladLoadGLXUserPtr(display, screen, glad\_glx\_get\_proc\_from\_userptr, GLAD\_GNUC\_EXTENSION (\textcolor{keywordtype}{void}*) load);}
+\DoxyCodeLine{914 \}}
+\DoxyCodeLine{915 }
+\DoxyCodeLine{916  }
+\DoxyCodeLine{917 }
+\DoxyCodeLine{918 \textcolor{preprocessor}{\#ifdef SF\_GLAD\_GLX}}
+\DoxyCodeLine{919 }
+\DoxyCodeLine{920 \textcolor{preprocessor}{\#ifndef GLAD\_LOADER\_LIBRARY\_C\_}}
+\DoxyCodeLine{921 \textcolor{preprocessor}{\#define GLAD\_LOADER\_LIBRARY\_C\_}}
+\DoxyCodeLine{922 }
+\DoxyCodeLine{923 \textcolor{preprocessor}{\#include <stddef.h>}}
+\DoxyCodeLine{924 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{925 }
+\DoxyCodeLine{926 \textcolor{preprocessor}{\#if GLAD\_PLATFORM\_WIN32}}
+\DoxyCodeLine{927 \textcolor{preprocessor}{\#include <windows.h>}}
+\DoxyCodeLine{928 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{929 \textcolor{preprocessor}{\#include <dlfcn.h>}}
+\DoxyCodeLine{930 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{931 }
+\DoxyCodeLine{932 }
+\DoxyCodeLine{933 \textcolor{keyword}{static} \textcolor{keywordtype}{void}* glad\_get\_dlopen\_handle(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *lib\_names[], \textcolor{keywordtype}{int} length) \{}
+\DoxyCodeLine{934     \textcolor{keywordtype}{void} *handle = NULL;}
+\DoxyCodeLine{935     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{936 }
+\DoxyCodeLine{937     \textcolor{keywordflow}{for} (i = 0; i < length; ++i) \{}
+\DoxyCodeLine{938 \textcolor{preprocessor}{\#if GLAD\_PLATFORM\_WIN32}}
+\DoxyCodeLine{939 \textcolor{preprocessor}{  \#if GLAD\_PLATFORM\_UWP}}
+\DoxyCodeLine{940         \textcolor{keywordtype}{size\_t} buffer\_size = (strlen(lib\_names[i]) + 1) * \textcolor{keyword}{sizeof}(WCHAR);}
+\DoxyCodeLine{941         LPWSTR buffer = (LPWSTR) malloc(buffer\_size);}
+\DoxyCodeLine{942         \textcolor{keywordflow}{if} (buffer != NULL) \{}
+\DoxyCodeLine{943             \textcolor{keywordtype}{int} ret = MultiByteToWideChar(CP\_ACP, 0, lib\_names[i], -\/1, buffer, buffer\_size);}
+\DoxyCodeLine{944             \textcolor{keywordflow}{if} (ret != 0) \{}
+\DoxyCodeLine{945                 handle = (\textcolor{keywordtype}{void}*) LoadPackagedLibrary(buffer, 0);}
+\DoxyCodeLine{946             \}}
+\DoxyCodeLine{947             free((\textcolor{keywordtype}{void}*) buffer);}
+\DoxyCodeLine{948         \}}
+\DoxyCodeLine{949 \textcolor{preprocessor}{  \#else}}
+\DoxyCodeLine{950         handle = (\textcolor{keywordtype}{void}*) LoadLibraryA(lib\_names[i]);}
+\DoxyCodeLine{951 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{952 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{953         handle = dlopen(lib\_names[i], RTLD\_LAZY | RTLD\_LOCAL);}
+\DoxyCodeLine{954 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{955         \textcolor{keywordflow}{if} (handle != NULL) \{}
+\DoxyCodeLine{956             \textcolor{keywordflow}{return} handle;}
+\DoxyCodeLine{957         \}}
+\DoxyCodeLine{958     \}}
+\DoxyCodeLine{959 }
+\DoxyCodeLine{960     \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{961 \}}
+\DoxyCodeLine{962 }
+\DoxyCodeLine{963 \textcolor{keyword}{static} \textcolor{keywordtype}{void} glad\_close\_dlopen\_handle(\textcolor{keywordtype}{void}* handle) \{}
+\DoxyCodeLine{964     \textcolor{keywordflow}{if} (handle != NULL) \{}
+\DoxyCodeLine{965 \textcolor{preprocessor}{\#if GLAD\_PLATFORM\_WIN32}}
+\DoxyCodeLine{966         FreeLibrary((HMODULE) handle);}
+\DoxyCodeLine{967 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{968         dlclose(handle);}
+\DoxyCodeLine{969 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{970     \}}
+\DoxyCodeLine{971 \}}
+\DoxyCodeLine{972 }
+\DoxyCodeLine{973 \textcolor{keyword}{static} GLADapiproc glad\_dlsym\_handle(\textcolor{keywordtype}{void}* handle, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name) \{}
+\DoxyCodeLine{974     \textcolor{keywordflow}{if} (handle == NULL) \{}
+\DoxyCodeLine{975         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{976     \}}
+\DoxyCodeLine{977 }
+\DoxyCodeLine{978 \textcolor{preprocessor}{\#if GLAD\_PLATFORM\_WIN32}}
+\DoxyCodeLine{979     \textcolor{keywordflow}{return} (GLADapiproc) GetProcAddress((HMODULE) handle, name);}
+\DoxyCodeLine{980 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{981     \textcolor{keywordflow}{return} GLAD\_GNUC\_EXTENSION (GLADapiproc) dlsym(handle, name);}
+\DoxyCodeLine{982 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{983 \}}
+\DoxyCodeLine{984 }
+\DoxyCodeLine{985 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* GLAD\_LOADER\_LIBRARY\_C\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{986 }
+\DoxyCodeLine{987 \textcolor{keyword}{typedef} \textcolor{keywordtype}{void}* (GLAD\_API\_PTR *GLADglxprocaddrfunc)(\textcolor{keyword}{const} \textcolor{keywordtype}{char}*);}
+\DoxyCodeLine{988 }
+\DoxyCodeLine{989 \textcolor{keyword}{static} GLADapiproc glad\_glx\_get\_proc(\textcolor{keywordtype}{void} *userptr, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name) \{}
+\DoxyCodeLine{990     \textcolor{keywordflow}{return} GLAD\_GNUC\_EXTENSION ((GLADapiproc (*)(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *name)) userptr)(name);}
+\DoxyCodeLine{991 \}}
+\DoxyCodeLine{992 }
+\DoxyCodeLine{993 \textcolor{keyword}{static} \textcolor{keywordtype}{void}* \_glx\_handle;}
+\DoxyCodeLine{994 }
+\DoxyCodeLine{995 \textcolor{keyword}{static} \textcolor{keywordtype}{void}* glad\_glx\_dlopen\_handle(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{996     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *NAMES[] = \{}
+\DoxyCodeLine{997 \textcolor{preprocessor}{\#if defined \_\_CYGWIN\_\_}}
+\DoxyCodeLine{998         \textcolor{stringliteral}{"{}libGL-\/1.so"{}},}
+\DoxyCodeLine{999 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{1000         \textcolor{stringliteral}{"{}libGL.so.1"{}},}
+\DoxyCodeLine{1001         \textcolor{stringliteral}{"{}libGL.so"{}}}
+\DoxyCodeLine{1002     \};}
+\DoxyCodeLine{1003 }
+\DoxyCodeLine{1004     \textcolor{keywordflow}{if} (\_glx\_handle == NULL) \{}
+\DoxyCodeLine{1005         \_glx\_handle = glad\_get\_dlopen\_handle(NAMES, \textcolor{keyword}{sizeof}(NAMES) / \textcolor{keyword}{sizeof}(NAMES[0]));}
+\DoxyCodeLine{1006     \}}
+\DoxyCodeLine{1007 }
+\DoxyCodeLine{1008     \textcolor{keywordflow}{return} \_glx\_handle;}
+\DoxyCodeLine{1009 \}}
+\DoxyCodeLine{1010 }
+\DoxyCodeLine{1011 \textcolor{keyword}{static} \textcolor{keywordtype}{void} gladLoaderUnloadGLX() \{}
+\DoxyCodeLine{1012     \textcolor{keywordflow}{if} (\_glx\_handle != NULL) \{}
+\DoxyCodeLine{1013         glad\_close\_dlopen\_handle(\_glx\_handle);}
+\DoxyCodeLine{1014         \_glx\_handle = NULL;}
+\DoxyCodeLine{1015     \}}
+\DoxyCodeLine{1016 \}}
+\DoxyCodeLine{1017 }
+\DoxyCodeLine{1018 \textcolor{keyword}{static} \textcolor{keywordtype}{int} gladLoaderLoadGLX(Display *display, \textcolor{keywordtype}{int} screen) \{}
+\DoxyCodeLine{1019     \textcolor{keywordtype}{int} version = 0;}
+\DoxyCodeLine{1020     \textcolor{keywordtype}{void} *handle = NULL;}
+\DoxyCodeLine{1021     \textcolor{keywordtype}{int} did\_load = 0;}
+\DoxyCodeLine{1022     GLADglxprocaddrfunc loader;}
+\DoxyCodeLine{1023 }
+\DoxyCodeLine{1024     did\_load = \_glx\_handle == NULL;}
+\DoxyCodeLine{1025     handle = glad\_glx\_dlopen\_handle();}
+\DoxyCodeLine{1026     \textcolor{keywordflow}{if} (handle != NULL) \{}
+\DoxyCodeLine{1027         loader = (GLADglxprocaddrfunc) glad\_dlsym\_handle(handle, \textcolor{stringliteral}{"{}glXGetProcAddressARB"{}});}
+\DoxyCodeLine{1028         \textcolor{keywordflow}{if} (loader != NULL) \{}
+\DoxyCodeLine{1029             version = gladLoadGLXUserPtr(display, screen, glad\_glx\_get\_proc, GLAD\_GNUC\_EXTENSION (\textcolor{keywordtype}{void}*) loader);}
+\DoxyCodeLine{1030         \}}
+\DoxyCodeLine{1031 }
+\DoxyCodeLine{1032         \textcolor{keywordflow}{if} (!version \&\& did\_load) \{}
+\DoxyCodeLine{1033             gladLoaderUnloadGLX();}
+\DoxyCodeLine{1034         \}}
+\DoxyCodeLine{1035     \}}
+\DoxyCodeLine{1036 }
+\DoxyCodeLine{1037     \textcolor{keywordflow}{return} version;}
+\DoxyCodeLine{1038 \}}
+\DoxyCodeLine{1039 }
+\DoxyCodeLine{1040 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* SF\_GLAD\_GLX */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1041 }
+\DoxyCodeLine{1042 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* SF\_GLAD\_GLX\_IMPLEMENTATION */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1043 }
+
+\end{DoxyCode}
