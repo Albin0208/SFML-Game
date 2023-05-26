@@ -1,4 +1,0 @@
-<map id="sf::priv::SoundFileWriterWav" name="sf::priv::SoundFileWriterWav">
-<area shape="rect" id="node1" title="Implementation of sound file writer that handles wav files." alt="" coords="5,160,209,325"/>
-<area shape="rect" id="node2" href="$d8/de4/classsf_1_1SoundFileWriter.html" title="Abstract base class for sound file encoding." alt="" coords="27,5,188,112"/>
-</map>

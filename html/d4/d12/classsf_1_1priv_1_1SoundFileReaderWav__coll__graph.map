@@ -1,5 +1,0 @@
-<map id="sf::priv::SoundFileReaderWav" name="sf::priv::SoundFileReaderWav">
-<area shape="rect" id="node1" title="Implementation of sound file reader that handles wav files." alt="" coords="71,204,282,384"/>
-<area shape="rect" id="node2" href="$de/dad/classsf_1_1SoundFileReader.html" title="Abstract base class for sound file decoding." alt="" coords="5,13,172,134"/>
-<area shape="rect" id="node3" href="$dc/dc4/classsf_1_1InputStream.html" title="Abstract class for custom file input streams." alt="" coords="197,5,335,141"/>
-</map>

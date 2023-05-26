@@ -1,9 +1,0 @@
-<map id="VkRenderPassBeginInfo" name="VkRenderPassBeginInfo">
-<area shape="rect" id="node1" title=" " alt="" coords="159,315,335,451"/>
-<area shape="rect" id="node2" href="$d7/d2d/structVkRect2D.html" title=" " alt="" coords="131,175,218,252"/>
-<area shape="rect" id="node3" href="$d6/d3e/structVkOffset2D.html" title=" " alt="" coords="5,13,101,105"/>
-<area shape="rect" id="node4" href="$d1/d79/structVkExtent2D.html" title=" " alt="" coords="125,13,224,105"/>
-<area shape="rect" id="node5" href="$de/da0/unionVkClearValue.html" title=" " alt="" coords="265,175,375,252"/>
-<area shape="rect" id="node6" href="$dd/dd9/unionVkClearColorValue.html" title=" " alt="" coords="249,5,391,112"/>
-<area shape="rect" id="node7" href="$db/d68/structVkClearDepthStencilValue.html" title=" " alt="" coords="416,13,608,105"/>
-</map>

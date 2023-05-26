@@ -28,6 +28,7 @@ Aim the cursor in the direction where you want to shoot then press ``Mouse 1`` t
 
 ## Documentation
 The documentation is located in the folders ``html`` and ``latex``.
+If they don't exist you have to generate the documentation with the commant ``doxygen config-file``. 
 
 
 ### Requirements to compile

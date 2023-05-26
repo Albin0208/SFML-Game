@@ -1,9 +1,0 @@
-<map id="Movable_Object" name="Movable_Object">
-<area shape="rect" id="node1" title=" " alt="" coords="270,263,438,589"/>
-<area shape="rect" id="node3" href="$da/d4a/classEnemy.html" title=" " alt="" coords="73,637,256,861"/>
-<area shape="rect" id="node6" href="$d2/d4b/classPlayer.html" title=" " alt="" coords="281,674,427,825"/>
-<area shape="rect" id="node7" href="$d9/d4b/classProjectile.html" title=" " alt="" coords="451,667,598,832"/>
-<area shape="rect" id="node2" href="$d8/dfe/classGame__Object.html" title=" " alt="" coords="281,5,427,215"/>
-<area shape="rect" id="node4" href="$df/ddf/classRanged__Enemy.html" title=" " alt="" coords="5,909,153,1031"/>
-<area shape="rect" id="node5" href="$d5/dbf/classSlow__Enemy.html" title=" " alt="" coords="178,909,325,1031"/>
-</map>
